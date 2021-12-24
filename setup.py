@@ -28,6 +28,7 @@ setup(name=__title__,
       long_description=pkg_info['__long_description__'],
       platforms='any',
       packages=['dramkit',
-				'dramkit.logtool'])
+                'dramkit.pystyles',
+                'dramkit.logtools'])
 
 

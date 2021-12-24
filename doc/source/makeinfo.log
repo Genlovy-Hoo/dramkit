@@ -1,0 +1,90 @@
+2021-12-24 16:44:19,300 -logger_utils.py[line: 28] -INFO:
+    --正在运行 Sphinx v4.3.1
+正在加载翻译 [en]... 完成
+加载 pickled环境... 完成
+构建 [mo]： 0 个 po 文件的目标文件已过期
+构建 [html]： 4 个源文件的目标文件已过期
+更新环境: 已添加 0，4 已更改，0 已移除
+阅读源... [ 25%] dramkit                                                          阅读源... [ 50%] dramkit.logtools                                                 阅读源... [ 75%] dramkit.pystyles                                                 阅读源... [100%] index                                                            
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.Roulette_N:4: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.Roulette_N:11: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.check_exist_data:7: WARNING: Definition list ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.check_exist_data:9: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.check_exist_data:10: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.con_count:12: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.con_count:13: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.con_count:22: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.con_count:24: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.con_count:25: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.count_between_gap:15: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.count_between_gap:22: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.count_between_gap:45: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.count_between_gap:52: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.count_between_gap:77: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.count_between_gap:84: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.count_between_gap:109: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.count_between_gap:116: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.cut_df_by_con_val:7: WARNING: Definition list ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.cut_df_by_con_val:9: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.cut_df_by_con_val:13: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.cut_df_by_con_val:14: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.cut_df_by_con_val:16: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.cut_df_by_con_val:17: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.cut_df_by_con_val:19: WARNING: Definition list ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.cut_df_by_con_val:22: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.cut_df_by_con_val:23: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.filter_by_FPrePost_series:9: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.filter_by_FPrePost_series:18: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.filter_by_FPrePost_series:20: WARNING: Definition list ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.gap_count:12: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.gap_count:13: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.gap_count:21: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.gap_count:23: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.gap_count:24: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.get_con_start_end:7: WARNING: Definition list ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.get_con_start_end:9: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.get_con_start_end:10: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.get_con_start_end:12: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.get_pre_val_Fcond:9: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.get_pre_val_Fcond:11: WARNING: Definition list ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.get_pre_val_Fcond:13: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.get_pre_val_Fcond:14: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.merge_df:1: WARNING: Inline strong start-string without end-string.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.print_used_time:3: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.replace_repeat_F_iter:19: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.replace_repeat_iter:11: WARNING: Definition list ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.replace_repeat_iter:13: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.replace_repeat_iter:14: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.replace_repeat_iter:37: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.val_gap_cond:16: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\iotools.py:docstring of dramkit.iotools.zip_files:5: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\iotools.py:docstring of dramkit.iotools.zip_fpaths_7z:3: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\doc\source\dramkit.rst:52: WARNING: Duplicate target name, cannot be used as a unique reference: "con_count".
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_TimedRotating.py:docstring of dramkit.logtools.logger_TimedRotating.get_logger:4: WARNING: Inline interpreted text or phrase reference start-string without end-string.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_TimedRotating.py:docstring of dramkit.logtools.logger_TimedRotating.get_logger:4: WARNING: Inline interpreted text or phrase reference start-string without end-string.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_TimedRotating.py:docstring of dramkit.logtools.logger_TimedRotating.get_logger:4: WARNING: Inline interpreted text or phrase reference start-string without end-string.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_TimedRotating.py:docstring of dramkit.logtools.logger_TimedRotating.get_logger:4: WARNING: Inline interpreted text or phrase reference start-string without end-string.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_TimedRotating.py:docstring of dramkit.logtools.logger_TimedRotating.get_logger:4: WARNING: Inline interpreted text or phrase reference start-string without end-string.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_utils.py:docstring of dramkit.logtools.logger_utils.remove_handlers:3: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style.dramkit_docsytle:73: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style.dramkit_docsytle:74: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style:16: WARNING: 脚注 [8] 没有被引用过。
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style:17: WARNING: 脚注 [9] 没有被引用过。
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style:18: WARNING: 脚注 [10] 没有被引用过。
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style:19: WARNING: 脚注 [11] 没有被引用过。
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style:22: WARNING: 脚注 [12] 没有被引用过。
+查找当前已过期的文件... 没有找到
+pickling环境... 完成
+检查一致性... 完成
+准备文件... 完成
+写入输出... [ 25%] dramkit                                                         写入输出... [ 50%] dramkit.logtools                                                写入输出... [ 75%] dramkit.pystyles                                                写入输出... [100%] index                                                           
+正在生成索引... genindex py-modindex 完成
+正在写入附加页面... search 完成
+copying static files... 完成
+正在复制额外文件... 完成
+正在导出 English (code: en) 的搜索索引... 完成
+正在导出对象清单... 完成
+构建 成功，67 警告。
+
+HTML 页面保存在 build\html 目录。
+
