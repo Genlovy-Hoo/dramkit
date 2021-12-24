@@ -1,10 +1,10 @@
-2021-12-24 16:44:19,300 -logger_utils.py[line: 28] -INFO:
+2021-12-25 00:13:39,525 -logger_utils.py[line: 28] -INFO:
     --正在运行 Sphinx v4.3.1
 正在加载翻译 [en]... 完成
 加载 pickled环境... 完成
 构建 [mo]： 0 个 po 文件的目标文件已过期
 构建 [html]： 4 个源文件的目标文件已过期
-更新环境: 已添加 0，4 已更改，0 已移除
+更新环境: [配置有变化 ('release')] 已添加 4，0 已更改，0 已移除
 阅读源... [ 25%] dramkit                                                          阅读源... [ 50%] dramkit.logtools                                                 阅读源... [ 75%] dramkit.pystyles                                                 阅读源... [100%] index                                                            
 D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.Roulette_N:4: WARNING: Unexpected indentation.
 D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.Roulette_N:11: WARNING: Block quote ends without a blank line; unexpected unindent.

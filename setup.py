@@ -16,6 +16,9 @@ pkg_info = {}
 fpath= os.path.join(here, __title__, '_pkg_info.py')
 with open(fpath, 'r') as f:
     exec(''.join(f.readlines()))
+    
+readme = os.path.join(here, 'README.md')
+readme = open(readme, encoding='utf-8').read()
 
 
 setup(name=__title__,
@@ -25,7 +28,9 @@ setup(name=__title__,
       url=pkg_info['__url__'],
       license=pkg_info['__license__'],
       description=pkg_info['__description__'],
-      long_description=pkg_info['__long_description__'],
+      # long_description=pkg_info['__long_description__'],
+      long_description=readme,
+      long_description_content_type='text/markdown',
       platforms='any',
       packages=['dramkit',
                 'dramkit.pystyles',
