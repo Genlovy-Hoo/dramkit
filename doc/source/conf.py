@@ -7,7 +7,7 @@ import datetime
 
 # 源码查找路径
 PKG_NAME = 'dramkit'
-src_dir = '../../../%s'%PKG_NAME
+src_dir = '../../%s'%PKG_NAME
 sys.path.insert(0, os.path.abspath(src_dir))
 
 
