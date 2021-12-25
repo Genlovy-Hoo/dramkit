@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
 
-###############################################################################
-# by Genlovy Hoo
-###############################################################################
-
 import sys
 import time
 import logging
@@ -40,7 +36,7 @@ def log_used_time1(logger=None):
 
 def log_used_time2(logger=None):
     '''作为装饰器装饰func函数，并用logger记录其运行用时
-    
+
     aaa
     https://www.cnblogs.com/xiuyou/p/11283512.html
     https://www.cnblogs.com/slysky/p/9777424.html
@@ -63,7 +59,7 @@ def log_used_time2(logger=None):
 
 def print_used_time(func):
     '''
-    作为装饰器装饰func函数，print打印其运行用时 
+    作为装饰器装饰func函数，print打印其运行用时
     参考：https://www.cnblogs.com/slysky/p/9777424.html
          https://www.cnblogs.com/zhzhang/p/11375574.html
     '''
@@ -83,8 +79,8 @@ def bootstrapping():
     bootstraping
     '''
     raise NotImplementedError
-    
-    
+
+
 def groupby_rolling_func(data, cols_groupby, cols_val, func, keep_index=True,
                          kwargs_rolling={}, kwargs_func={}):
     '''
@@ -99,8 +95,8 @@ def groupby_rolling_func(data, cols_groupby, cols_val, func, keep_index=True,
     # cols = [cols_val] if isinstance(cols_val, str) else cols_val
     # df = data.reindex(columns=cols_groupby+cols)
     raise NotImplementedError
-    
-    
+
+
 def label_rep_index_str(df):
     '''df中的index若有重复，对重复的index进行后缀编号，返回的index为str类型'''
     idx_name = df.index.name
@@ -155,8 +151,8 @@ def Roulette_base(fitness):
         accumulator += fitn
         if accumulator >= rndPoint:
             return idx
-        
-        
+
+
 def Roulette_stochasticAccept(fitness):
     '''
     轮盘赌法，随机接受法
@@ -170,8 +166,8 @@ def Roulette_stochasticAccept(fitness):
         idx = randint(0, N-1)
         if random() <= fitness[idx] / maxFitn:
             return idx
-        
-        
+
+
 def Roulette_N(fitness, N=10000, randFunc=Roulette_stochasticAccept):
     '''
     轮盘赌法N次模拟，返回每个备选对象在N次模拟中被选中的次数
@@ -194,7 +190,7 @@ def Roulette_N(fitness, N=10000, randFunc=Roulette_stochasticAccept):
         randPicks = [randFunc(Vs) for _ in range(N)]
         idx_Picks = [(x, randPicks.count(x)) for x in range(len(Vs))]
         return {Ks[x[0]]: x[1] for x in idx_Picks}
-    
+
     elif (isinstance(fitness[0], list) or isinstance(fitness[0], tuple)):
         Ks, Vs = [], []
         for k, v in fitness:
@@ -203,7 +199,7 @@ def Roulette_N(fitness, N=10000, randFunc=Roulette_stochasticAccept):
         randPicks = [randFunc(Vs) for _ in range(N)]
         idx_Picks = [(x, randPicks.count(x)) for x in range(len(Vs))]
         return [(Ks[x[0]], x[1]) for x in idx_Picks]
-        
+
     elif (isinstance(fitness[0], int) or isinstance(fitness[0], float)):
         randPicks = [randFunc(fitness) for _ in range(N)]
         idx_Picks = [(x, randPicks.count(x)) for x in range(len(fitness))]
@@ -218,26 +214,26 @@ def randSum(target_sum, n, lowests, highests, isInt=True, n_dot=6):
     注：若输入lowests或highests不是int，则isInt为True无效
     n_dot，动态上下界值与上下限比较时控制小数位数（为了避免python精度问题导致的报错）
     '''
-    
+
     if (not isinstance(lowests, int) and not isinstance(lowests, float)) \
                                                     and len(lowests) != n:
-        raise ValueError('下限值列表（数组）lowests长度必须与n相等！')        
+        raise ValueError('下限值列表（数组）lowests长度必须与n相等！')
     if (not isinstance(highests, int) and not isinstance(highests, float)) \
                                                     and len(highests) != n:
         raise ValueError('上限值列表（数组）highests长度必须与n相等！')
-        
+
     # lowests、highests组织成list
     if isinstance(lowests, int) or isinstance(lowests, float):
         lowests = [lowests] * n
     if isinstance(highests, int) or isinstance(highests, float):
         highests = [highests] * n
-    
+
     if any([isinstance(x, float) for x in lowests]) or \
                             any([isinstance(x, float) for x in highests]):
         isInt = False
-        
+
     LowHigh = list(zip(lowests, highests))
-    
+
     def dyLowHigh(tgt_sum, low_high, n_dot=6):
         '''
         动态计算下界和上界，
@@ -254,7 +250,7 @@ def randSum(target_sum, n, lowests, highests, isInt=True, n_dot=6):
             raise ValueError(
                '上界({})超过最小值下限({})！'.format(high, low_high[0][0]))
         return low, high
-    
+
     S = 0
     adds = []
     low, high = dyLowHigh(target_sum, LowHigh, n_dot=n_dot)
@@ -264,7 +260,7 @@ def randSum(target_sum, n, lowests, highests, isInt=True, n_dot=6):
             randV = randint(low, high)
         else:
             randV = random() * (high-low) + low
-        
+
         # 判断当前所选择的备选数是否符合条件，若符合则加入备选数，
         # 若不符合则删除所有备选数重头开始
         restSum = target_sum - (S + randV)
@@ -277,11 +273,11 @@ def randSum(target_sum, n, lowests, highests, isInt=True, n_dot=6):
                                   n_dot=n_dot)
         else:
             S = 0
-            adds = []            
+            adds = []
             low, high = dyLowHigh(target_sum, LowHigh, n_dot=n_dot)
-            
+
     adds.append(target_sum-sum(adds)) # 最后一个备选数
-    
+
     return adds
 
 
@@ -293,26 +289,26 @@ def randWSum(weight_sum, n, lowests, highests, W=None, n_dot=6):
     注：lowests和highests与W应一一对应
     n_dot，动态上下界值与上下限比较时控制小数位数（为了避免python精度问题导致的报错）
     '''
-    
+
     if W is not None and len(W) != n:
-        raise ValueError('权重列表W的长度必须等于n！')        
+        raise ValueError('权重列表W的长度必须等于n！')
     if (not isinstance(lowests, int) and not isinstance(lowests, float)) \
                                                     and len(lowests) != n:
-        raise ValueError('下限值列表（数组）lowests长度必须与n相等！')        
+        raise ValueError('下限值列表（数组）lowests长度必须与n相等！')
     if (not isinstance(highests, int) and not isinstance(highests, float)) \
                                                     and len(highests) != n:
         raise ValueError('上限值列表（数组）highests长度必须与n相等！')
-        
+
     # W和lowests、highests组织成list
     if W is None:
-        W = [1/n] * n        
+        W = [1/n] * n
     if isinstance(lowests, int) or isinstance(lowests, float):
         lowests = [lowests] * n
     if isinstance(highests, int) or isinstance(highests, float):
         highests = [highests] * n
-        
+
     WLowHigh = list(zip(W, lowests, highests))
-    
+
     def dyLowHigh(wt_sum, w_low_high, n_dot=6):
         '''
         动态计算下界和上界，
@@ -329,14 +325,14 @@ def randWSum(weight_sum, n, lowests, highests, W=None, n_dot=6):
             raise ValueError(
                '上界({})超过最小值下限({})！'.format(high, w_low_high[0][1]))
         return low, high
-    
+
     S = 0
     adds = []
     low, high = dyLowHigh(weight_sum, WLowHigh, n_dot=n_dot)
     while len(adds) < n-1:
         # 每次随机选择一个数
         randV = random() * (high-low) + low
-        
+
         # 判断当前所选择的备选数是否符合条件，若符合则加入备选数，
         # 若不符合则删除所有备选数重头开始
         restSum = weight_sum - (S + randV * W[len(adds)])
@@ -346,25 +342,25 @@ def randWSum(weight_sum, n, lowests, highests, W=None, n_dot=6):
             S += randV * W[len(adds)]
             adds.append(randV)
             low, high = dyLowHigh(weight_sum-S, WLowHigh[len(adds):],
-                                  n_dot=n_dot) 
+                                  n_dot=n_dot)
         else:
             S = 0
-            adds = []            
+            adds = []
             low, high = dyLowHigh(weight_sum, WLowHigh, n_dot=n_dot)
-            
+
     aw = zip(adds, W[:-1])
     adds.append((weight_sum-sum([a*w for a, w in aw])) / W[-1])
-    
+
     return adds
 
 
 def simple_logger():
     '''返回一个简单的logger（只在控制台打印日志信息）'''
-    
+
     # 准备日志记录器logger
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
-    
+
     # 移除已有的handlers
     for h in logger.handlers:
         if isinstance(h, logging.FileHandler):
@@ -372,18 +368,18 @@ def simple_logger():
             logger.removeHandler(h)
     for h in logger.handlers:
         logger.removeHandler(h)
-    
+
     # 日志格式
     formatter = logging.Formatter(
             '''%(asctime)s -%(filename)s[line: %(lineno)d] -%(levelname)s:
     --%(message)s''')
-        
+
     # 控制台打印，StreamHandler
     console_logger = logging.StreamHandler()
     console_logger.setLevel(logging.DEBUG)
     console_logger.setFormatter(formatter)
     logger.addHandler(console_logger)
-    
+
     return logger
 
 
@@ -402,12 +398,12 @@ def con_count_(series, Fcond, via_pd=True,
 
 
 def con_count(series, Fcond, via_pd=True):
-    '''    
+    '''
     计算series(pd.Series)中连续满足Fcond函数指定的条件的记录数
     Fcond为指定条件的函数，Fcond(x)返回结果只能为True或False
     若via_pd为False，则使用循环迭代，若via_pd为True，则使用pd
     返回pd.Series，即连续计数结果
-    
+
     Examples
     --------
         df = pd.DataFrame([0, 0, 1, 1, 0, 0, 1, 1, 1], columns=['series'])
@@ -437,15 +433,15 @@ def con_count(series, Fcond, via_pd=True):
             7       1       2       0
             8       1       3       0
     '''
-    
+
     col = 'series'
     series.name = col
     df = pd.DataFrame(series)
-    
+
     # 当series.index存在重复值时为避免报错，因此先重置index最后再还原
     ori_index = df.index
     df.index = range(0, df.shape[0])
-    
+
     if via_pd:
         df['Fok'] = df[col].apply(lambda x: Fcond(x)).astype(int)
         df['count'] = df['Fok'].cumsum()
@@ -453,11 +449,11 @@ def con_count(series, Fcond, via_pd=True):
         df['tmp'] = df['tmp'].fillna(method='ffill')
         df['tmp'] = df['tmp'].fillna(0)
         df['count'] = (df['count'] - df['tmp']).astype(int)
-        
+
         df.index = ori_index
-        
+
         return df['count']
-    
+
     else:
         df['count'] = 0
         k = 0
@@ -473,9 +469,9 @@ def con_count(series, Fcond, via_pd=True):
                 k = k1
             else:
                 k += 1
-                
+
         df.index = ori_index
-                
+
         return df['count']
 
 
@@ -484,7 +480,7 @@ def get_pre_val_Fcond(data, col_val, col_Fcond, Fcond):
     获取上一个满足指定条件的行中col_val列的值，条件为：该行中col_Fcond列的值x满足
     Fcond(x)为True（Fcond(x)返回结果只能为True或False）
     返回结果为pd.Series
-    
+
     Examples
     --------
     data = pd.DataFrame({'x1': [0, 1, 1, 0, -1, -1, 2, -1, 1, 0, 1, 1, 1, 0,
@@ -515,26 +511,26 @@ def get_pre_val_Fcond(data, col_val, col_Fcond, Fcond):
         18   0   0     0.0
         19   1   1     0.0
     '''
-    
-    df = data[[col_val, col_Fcond]].copy()    
+
+    df = data[[col_val, col_Fcond]].copy()
     # 为了避免计算过程中临时产生的列名与原始列名混淆，对列重新命名
     col_val, col_Fcond = ['col_val', 'col_Fcond']
     df.columns = [col_val, col_Fcond]
-    
+
     df['Fok'] = df[col_Fcond].apply(lambda x: Fcond(x)).astype(int)
     df['val_pre'] = df[df['Fok'] == 1][col_val]
     df['val_pre'] = df['val_pre'].shift(1).fillna(method='ffill')
-    
+
     return df['val_pre']
 
 
 def gap_count(series, Fcond, via_pd=True):
-    '''    
+    '''
     计算series(pd.Series)中当前行距离上一个满足Fcond函数指定条件记录的行数
     Fcond为指定条件的函数，Fcond(x)返回结果只能为True或False，
     若via_pd为False，则使用循环迭代，若via_pd为True，则使用pd
     返回结果为pd.Series
-    
+
     Examples
     --------
     df = pd.DataFrame([0, 1, 1, 0, 0, 1, 1, 1], columns=['series'])
@@ -562,46 +558,46 @@ def gap_count(series, Fcond, via_pd=True):
         6       1     1     2
         7       1     1     3
     '''
-    
+
     col = 'series'
-    series.name = col    
+    series.name = col
     df = pd.DataFrame(series)
-    
+
     # 当series.index存在重复值时为避免报错，因此先重置index最后再还原
     ori_index = df.index
     df.index = range(0, df.shape[0])
-    
-    if via_pd:        
+
+    if via_pd:
         df['idx'] = range(0, df.shape[0])
         df['idx_pre'] = get_pre_val_Fcond(df, 'idx', col, Fcond)
         df['gap'] = (df['idx'] - df['idx_pre']).fillna(0).astype(int)
-        
+
         df.index = ori_index
-        
+
         return df['gap']
-    
+
     else:
         df['count'] = con_count(series, lambda x: not Fcond(x), via_pd=via_pd)
-        
+
         df['gap'] = df['count']
         k0 = 0
         while k0 < df.shape[0] and not Fcond(df.loc[df.index[k0], col]):
             df.loc[df.index[k0], 'gap'] = 0
             k0 += 1
-            
+
         for k1 in range(k0+1, df.shape[0]):
             if Fcond(df.loc[df.index[k1], col]):
                 df.loc[df.index[k1], 'gap'] = \
                                         df.loc[df.index[k1-1], 'count'] + 1
-                                        
+
         df.index = ori_index
-            
+
         return df['gap']
-    
-    
+
+
 def count_between_gap(data, col_gap, col_count, gapFcond, countFcond,
                       count_now_gap=True, count_now=True, via_pd=True):
-    '''    
+    '''
     计算data中当前行与上一个满足gapFcond指定条件的行之间，
     满足countFcond函数指定条件的记录数
     其中函数gapFond作用于col_gap列，countFcond作用于col_count列
@@ -611,7 +607,7 @@ def count_between_gap(data, col_gap, col_count, gapFcond, countFcond,
     （即要么不计数，要么在当前行对其计数）
     若via_pd为True，则调用count_between_gap_pd实现，否则用count_between_gap_iter
     返回结果为pd.Series
-    
+
     Examples
     --------
     data = pd.DataFrame({'to_gap': [0, 1, 1, 0, -1, -1, 2, -1, 1, 0, 1, 1,
@@ -643,7 +639,7 @@ def count_between_gap(data, col_gap, col_count, gapFcond, countFcond,
         17       0         0          0
         18       0         0          0
         19       1         1          1
-            
+
     data = pd.DataFrame({'to_gap': [0, 1, 1, 0, -1, -1, 2, -1, 1, 0, 1, 1,
                                     1, 0, 0, -1, -1, 0, 0, 1, -1, 1],
                          'to_count': [0, 1, 1, 0, -1, -1, 1, -1, 1, 0, 1,
@@ -675,7 +671,7 @@ def count_between_gap(data, col_gap, col_count, gapFcond, countFcond,
         19       1         1          2
         20      -1         1          3
         21       1        -1          0
-            
+
     data = pd.DataFrame({'to_gap': [0, 1, 1, 0, -1, -1, 2, -1, 1, 0, 1, 1,
                                     1, 0, 0, -1, -1, 0, 0, 1, -1, 1],
                          'to_count': [0, -1, -1, 0, -1, -1, 1, -1, 1, 0, 1, 1,
@@ -707,7 +703,7 @@ def count_between_gap(data, col_gap, col_count, gapFcond, countFcond,
         19       1         1          0
         20      -1         1          1
         21       1        -1          0
-            
+
     data = pd.DataFrame({'to_gap': [0, 1, 1, 0, -1, -1, 2, -1, 1, 0, 1, 1, 1,
                                     0, 0, -1, -1, 0, 0, 1, -1, 1],
                          'to_count': [0, -1, -1, 0, -1, -1, 1, -1, 1, 0, 1, 1,
@@ -740,7 +736,7 @@ def count_between_gap(data, col_gap, col_count, gapFcond, countFcond,
         20      -1         1          0
         21       1        -1          0
     '''
-    
+
     if via_pd:
         return count_between_gap_pd(data, col_gap, col_count, gapFcond,
                                     countFcond, count_now_gap=count_now_gap,
@@ -749,17 +745,17 @@ def count_between_gap(data, col_gap, col_count, gapFcond, countFcond,
         return count_between_gap_iter(data, col_gap, col_count, gapFcond,
                                       countFcond, count_now_gap=count_now_gap,
                                       count_now=count_now)
-    
-    
+
+
 def count_between_gap_pd(data, col_gap, col_count, gapFcond, countFcond,
                          count_now_gap=True, count_now=True):
     '''参数和功能说明见count_between_gap函数'''
-    
+
     df = data[[col_gap, col_count]].copy()
     # 为了避免计算过程中临时产生的列名与原始列名混淆，对列重新命名
     col_gap, col_count = ['col_gap', 'col_count']
-    df.columns = [col_gap, col_count]    
-    
+    df.columns = [col_gap, col_count]
+
     df['gap0'] = df[col_gap].apply(lambda x: not gapFcond(x)).astype(int)
     df['count1'] = df[col_count].apply(lambda x: countFcond(x)).astype(int)
     df['gap_count'] = df[df['gap0'] == 1]['count1'].cumsum()
@@ -768,43 +764,43 @@ def count_between_gap_pd(data, col_gap, col_count, gapFcond, countFcond,
     df['tmp'] = (df['gap_count'] * df['gap_cut']).shift(1)
     df['tmp'] = df['tmp'].fillna(method='ffill')
     df['gap_count'] = df['gap_count'] - df['tmp']
-    
+
     if count_now_gap:
         df['pre_gap0'] = df['gap0'].shift(1)
-        df['tmp'] = df['gap_count'].shift()        
-        df['tmp'] = df[df['gap0'] == 0]['tmp'] 
-        
+        df['tmp'] = df['gap_count'].shift()
+        df['tmp'] = df[df['gap0'] == 0]['tmp']
+
         df['gap_count1'] = df['gap_count'].fillna(0)
         df['gap_count2'] = df['tmp'].fillna(0) + df['count1'] * (1-df['gap0'])
         df['gap_count'] = df['gap_count1'] + df['gap_count2']
-        
+
     if not count_now:
         df['gap_count'] = df['gap_count'].shift(1)
         if not count_now_gap:
             df['gap_count'] = df['gap0'] * df['gap_count']
         else:
             df['gap_count'] = df['pre_gap0'] * df['gap_count']
-        
+
     df['gap_count'] = df['gap_count'].fillna(0).astype(int)
-        
+
     return df['gap_count']
 
 
 def count_between_gap_iter(data, col_gap, col_count, gapFcond, countFcond,
                            count_now_gap=True, count_now=True):
     '''参数和功能说明见count_between_gap函数'''
-    
+
     df = data[[col_gap, col_count]].copy()
     # 为了避免计算过程中临时产生的列名与原始列名混淆，对列重新命名
     col_gap, col_count = ['col_gap', 'col_count']
     df.columns = [col_gap, col_count]
-    
+
     # 当data.index存在重复值时为避免报错，因此先重置index最后再还原
     ori_index = df.index
     df.index = range(0, df.shape[0])
-    
+
     df['gap_count'] = 0
-    
+
     k = 0
     while k < df.shape[0]:
         if gapFcond(df.loc[df.index[k], col_gap]):
@@ -818,7 +814,7 @@ def count_between_gap_iter(data, col_gap, col_count, gapFcond, countFcond,
                 k += 1
         else:
             k += 1
-            
+
     if count_now_gap:
         k = 1
         while k < df.shape[0]:
@@ -827,7 +823,7 @@ def count_between_gap_iter(data, col_gap, col_count, gapFcond, countFcond,
                     if countFcond(df.loc[df.index[k], col_count]):
                         df.loc[df.index[k], 'gap_count'] = \
                                         df.loc[df.index[k-1], 'gap_count'] + 1
-                        k += 1 
+                        k += 1
                     else:
                         df.loc[df.index[k], 'gap_count'] = \
                                             df.loc[df.index[k-1], 'gap_count']
@@ -840,7 +836,7 @@ def count_between_gap_iter(data, col_gap, col_count, gapFcond, countFcond,
                         k += 1
             else:
                 k += 1
-                
+
     if not count_now:
         df['gap_count_pre'] = df['gap_count'].copy()
         if not count_now_gap:
@@ -851,22 +847,22 @@ def count_between_gap_iter(data, col_gap, col_count, gapFcond, countFcond,
                     df.loc[df.index[k], 'gap_count'] = \
                                         df.loc[df.index[k-1], 'gap_count_pre']
         else:
-            for k in range(1, df.shape[0]):                
+            for k in range(1, df.shape[0]):
                 if gapFcond(df.loc[df.index[k-1], col_gap]):
                     df.loc[df.index[k], 'gap_count'] = 0
                 else:
                     df.loc[df.index[k], 'gap_count'] = \
                                         df.loc[df.index[k-1], 'gap_count_pre']
         df.drop('gap_count_pre', axis=1, inplace=True)
-                
+
     k0 = 0
     while k0 < df.shape[0] and not gapFcond(df.loc[df.index[k0], col_gap]):
         df.loc[df.index[k0], 'gap_count'] = 0
         k0 += 1
     df.loc[df.index[k0], 'gap_count'] = 0
-    
+
     df.index = ori_index
-                                       
+
     return df['gap_count']
 
 
@@ -877,7 +873,7 @@ def replace_repeat_iter(series, val, val0, gap=None):
     若gap为None，则将连续出现的val值只保留第一个，其余替换为val0(这里连续出现val是指
     不出现除了val和val0之外的其他值)
     返回结果为替换之后的pd.Series
-    
+
     Examples
     --------
     data = pd.DataFrame([0, 1, 1, 0, -1, -1, 2, -1, 1, 0, 1, 1, 1, 0, 0,
@@ -905,7 +901,7 @@ def replace_repeat_iter(series, val, val0, gap=None):
         17     0         0
         18     0         0
         19     1         1
-        
+
     series = pd.Series([-1, 1, -1, 0, 1, 0, 1, 1, -1])
     replace_repeat_iter(series, 1, 0, gap=5)
         0   -1
@@ -918,23 +914,23 @@ def replace_repeat_iter(series, val, val0, gap=None):
         7    0
         8   -1
     '''
-    
+
     col = series.name
     df = pd.DataFrame({col: series})
-    
+
     if gap is not None and (gap > df.shape[0] or gap < 1):
         raise ValueError('gap取值范围必须为1到df.shape[0]之间！')
     gap = None if gap == 1 else gap
-    
+
     # 当series.index存在重复值时为避免报错，因此先重置index最后再还原
     ori_index = df.index
     df.index = range(0, df.shape[0])
-    
+
     k = 0
     while k < df.shape[0]:
         if df.loc[df.index[k], col] == val:
             k1 = k + 1
-            
+
             if gap is None:
                 while k1 < df.shape[0] and \
                                     df.loc[df.index[k1], col] in [val, val0]:
@@ -948,12 +944,12 @@ def replace_repeat_iter(series, val, val0, gap=None):
                         df.loc[df.index[k1], col] = val0
                     k1 += 1
             k =  k1
-            
+
         else:
             k += 1
-            
+
     df.index = ori_index
-            
+
     return df[col]
 
 
@@ -962,18 +958,18 @@ def replace_repeat_pd(series, val, val0):
     series连续出现的重复val值保留第一个，其余替换为val0（用pd，不用循环迭代）
     参数和意义同replace_repeat_iter函数，返回结果为替换之后的pd.Series
     '''
-    
+
     col = series.name
     df = pd.DataFrame({col: series})
     # 为了避免计算过程中临时产生的列名与原始列名混淆，对列重新命名
     col_ori = col
     col = 'series'
     df.columns = [col]
-    
+
     # 当series.index存在重复值时为避免报错，因此先重置index最后再还原
     ori_index = df.index
     df.index = range(0, df.shape[0])
-    
+
     df['gap1'] = df[col].apply(lambda x: x not in [val, val0]).astype(int)
     df['is_val'] = df[col].apply(lambda x: x == val).astype(int)
     df['val_or_gap'] = df['gap1'] + df['is_val']
@@ -987,12 +983,12 @@ def replace_repeat_pd(series, val, val0):
     df['pre_gap'] = df['pre_gap'].fillna(0).astype(int)
     df['keep1'] = (df['is_val'] + df['pre_gap']).map({0: 0, 1: 0, 2: 1})
     df['to_rplc'] = (df['keep1'] + df['is_val']).map({2: 0, 1: 1, 0: 0})
-    df[col] = df[[col, 'to_rplc']].apply(lambda x: 
+    df[col] = df[[col, 'to_rplc']].apply(lambda x:
                             val0 if x['to_rplc'] == 1 else x[col], axis=1)
-        
+
     df.rename(columns={col: col_ori}, inplace=True)
     df.index = ori_index
-    
+
     return df[col_ori]
 
 
@@ -1000,14 +996,14 @@ def replace_repeat_F_iter(series, valF, val0F, gap=None):
     '''
     series中连续出现的满足valF函数的重复值保留第一个，其余替换为val0F函数的值
     与replace_repeat_iter作用一样，只不过把val和val0由指定值换成了由函数生成值，
-    valF函数用于判断连续条件，其返回值只能是True或False，val0F函数用于生成替换的新值    
+    valF函数用于判断连续条件，其返回值只能是True或False，val0F函数用于生成替换的新值
     series中若步长为gap的范围内出现多个满足valF函数为True的值，则只保留第一条记录，
     后面的替换为函数val0F的值
     若gap为None，则将连续出现的满足valF函数为True的值只保留第一个，
     其余替换为函数val0F的值(这里连续出现是指不出现除了满足valF为True和等于val0F函数值
     之外的其他值)
     返回结果为替换之后的pd.Series
-    
+
     Examples
     --------
     data = pd.DataFrame([0, 1, 1, 0, -1, -1, 2, -1, 1, 0, 1, 1, 1, 0, 0,
@@ -1037,23 +1033,23 @@ def replace_repeat_F_iter(series, valF, val0F, gap=None):
         18  0      3
         19  1      1
     '''
-    
+
     col = series.name
     df = pd.DataFrame({col: series})
-    
+
     if gap is not None and (gap > df.shape[0] or gap < 1):
         raise ValueError('gap取值范围必须为1到df.shape[0]之间！')
     gap = None if gap == 1 else gap
-    
+
     # 当series.index存在重复值时为避免报错，因此先重置index最后再还原
     ori_index = df.index
     df.index = range(0, df.shape[0])
-    
+
     k = 0
     while k < df.shape[0]:
         if valF(df.loc[df.index[k], col]):
             k1 = k + 1
-            
+
             if gap is None:
                 while k1 < df.shape[0] and \
                                     (valF(df.loc[df.index[k1], col]) \
@@ -1073,12 +1069,12 @@ def replace_repeat_F_iter(series, valF, val0F, gap=None):
                                               val0F(df.loc[df.index[k1], col])
                     k1 += 1
             k =  k1
-            
+
         else:
             k += 1
-            
+
     df.index = ori_index
-            
+
     return df[col]
 
 
@@ -1088,19 +1084,19 @@ def replace_repeat_F_pd(series, valF, val0F):
     （用pd，不用循环迭代）
     参数和意义同replace_repeat_F_iter函数，返回结果为替换之后的pd.Series
     '''
-    
+
     col = series.name
     df = pd.DataFrame({col: series})
     # 为了避免计算过程中临时产生的列名与原始列名混淆，对列重新命名
     col_ori = col
     col = 'series'
     df.columns = [col]
-    
+
     # 当series.index存在重复值时为避免报错，因此先重置index最后再还原
     ori_index = df.index
     df.index = range(0, df.shape[0])
-    
-    df['gap1'] = df[col].apply(lambda x: 
+
+    df['gap1'] = df[col].apply(lambda x:
                                not valF(x) and x != val0F(x)).astype(int)
     df['is_val'] = df[col].apply(lambda x: valF(x)).astype(int)
     df['val_or_gap'] = df['gap1'] + df['is_val']
@@ -1114,12 +1110,12 @@ def replace_repeat_F_pd(series, valF, val0F):
     df['pre_gap'] = df['pre_gap'].fillna(0).astype(int)
     df['keep1'] = (df['is_val'] + df['pre_gap']).map({0: 0, 1: 0, 2: 1})
     df['to_rplc'] = (df['keep1'] + df['is_val']).map({2: 0, 1: 1, 0: 0})
-    df[col] = df[[col, 'to_rplc']].apply(lambda x: 
+    df[col] = df[[col, 'to_rplc']].apply(lambda x:
                     val0F(x[col]) if x['to_rplc'] == 1 else x[col], axis=1)
-        
+
     df.rename(columns={col: col_ori}, inplace=True)
     df.index = ori_index
-    
+
     return df[col_ori]
 
 
@@ -1142,7 +1138,7 @@ def val_gap_cond(data, col_Fval, col_Fcond, Fcond, Fval,
     Fto_cal作用于to_cal_col列，只有当前行Fto_cal值为True时才进行Fval计算，
     否则返回结果中当前行值设置为Vnan
     contain_1st设置Fval函数计算时是否将上一个满足Fcond的行也纳入计算
-    
+
     Examples
     --------
     data = pd.DataFrame({'val': [1, 2, 5, 3, 1, 7 ,9],
@@ -1159,7 +1155,7 @@ def val_gap_cond(data, col_Fval, col_Fcond, Fcond, Fval,
         5    7   -1       7.0
         6    9    1       9.0
     '''
-    
+
     if to_cal_col is None and Fto_cal is None:
         df = data[[col_Fval, col_Fcond]].copy()
         # 为了避免计算过程中临时产生的列名与原始列名混淆，对列重新命名
@@ -1171,10 +1167,10 @@ def val_gap_cond(data, col_Fval, col_Fcond, Fcond, Fval,
         col_Fval, col_Fcond, to_cal_col = ['col_Fval', 'col_Fcond',
                                                                'to_cal_col']
         df.columns = [col_Fval, col_Fcond, to_cal_col]
-    
+
     df['idx'] = range(0, df.shape[0])
     df['pre_idx'] = get_pre_val_Fcond(df, 'idx', col_Fcond, Fcond)
-    
+
     if to_cal_col is None and Fto_cal is None:
         if not contain_1st:
             df['gap_val'] = df[['pre_idx', 'idx', col_Fval]].apply(lambda x:
@@ -1187,7 +1183,7 @@ def val_gap_cond(data, col_Fval, col_Fcond, Fcond, Fval,
     elif to_cal_col is not None and Fto_cal is not None:
         if not contain_1st:
             df['gap_val'] = df[['pre_idx', 'idx', col_Fval,
-                                                to_cal_col]].apply(lambda x: 
+                                                to_cal_col]].apply(lambda x:
               Fval(df[col_Fval].iloc[int(x['pre_idx']+1): int(x['idx']+1)]) \
               if not isnull(x['pre_idx']) and Fto_cal(x[to_cal_col]) else \
               Vnan, axis=1)
@@ -1197,7 +1193,7 @@ def val_gap_cond(data, col_Fval, col_Fcond, Fcond, Fval,
               Fval(df[col_Fval].iloc[int(x['pre_idx']): int(x['idx']+1)]) \
               if not isnull(x['pre_idx']) and Fto_cal(x[to_cal_col]) else \
               Vnan, axis=1)
-        
+
     return df['gap_val']
 
 
@@ -1206,7 +1202,7 @@ def filter_by_FPrePost_series(series, FPrePost, Fignore=lambda x: isnull(x),
     '''
     对series调用filter_by_FPrePost函数，其中满足Fignore函数的值不参与
     series中被过滤的值在返回结果中用Vnan替换（不参与的值保持不变）
-    
+
     Examples
     --------
     series = pd.Series([1, 2, 3, 4, 1, 1, 2, 3, 6])
@@ -1225,26 +1221,26 @@ def filter_by_FPrePost_series(series, FPrePost, Fignore=lambda x: isnull(x),
                        index=range(14, 0, -1))
     filter_by_FPrePost_series(series, FPrePost, lambda x: x == 0)
     '''
-    
+
     l = [[k, series.iloc[k]] for k in range(0, len(series)) \
                                              if not Fignore(series.iloc[k])]
     lnew = filter_by_FPrePost(l, lambda x, y: FPrePost(x[1], y[1]))
-    
+
     i_l = [k for k, v in l]
-    i_lnew = [k for k, v in lnew]    
+    i_lnew = [k for k, v in lnew]
     idxs_ignore = [_ for _ in i_l if _ not in i_lnew]
-    
+
     seriesNew = series.copy()
     for k in idxs_ignore:
         seriesNew.iloc[k] = Vnan
-        
+
     return seriesNew
 
 
 def get_appear_order(series, ascending=True):
     '''
     标注series（离散值）中重复元素是第几次出现
-    
+
     eg.:
         df = pd.DataFrame({'v': ['A', 'B', 'A', 'A', 'C', 'C']})
         df.index = ['a', 'b', 'c', 'd', 'e', 'f']
@@ -1256,7 +1252,7 @@ def get_appear_order(series, ascending=True):
     # df['nth_appear'] = df['nth_appear'].astype(int)
     df['nth_appear'] = df.groupby('v').cumcount(ascending=ascending)+1
     return df['nth_appear']
-        
+
 
 def filter_by_FPrePost(l, FPrePost):
     '''
@@ -1264,16 +1260,16 @@ def filter_by_FPrePost(l, FPrePost):
         FPrePost(lnew[i], lnew[i+1]) = True
     过滤过程为：将l的第一个元素作为起点，找到其后第一个满足FPrePost函数的元素，
         再以该元素为起点往后寻找...
-    
+
     Parameters
     ----------
     l(list): 待过滤列表
     FPrePost: 过滤函数，接收两个参数，返回值为True或False
-    
+
     Returns
     -------
     lnew(list): 过滤后的列表
-    
+
     Examples
     --------
     l = [1, 2, 3, 4, 1, 1, 2, 3, 6]
@@ -1283,26 +1279,26 @@ def filter_by_FPrePost(l, FPrePost):
     filter_by_FPrePost(l, lambda x, y: y == x+1)
     >>> [1, 2, 3, 4]
     '''
-    
+
     if len(l) == 0:
         return l
-    
+
     lnew = [l[0]]
     idx_pre, idx_post = 0, 1
     while idx_post < len(l):
         vpre = l[idx_pre]
         idx_post = idx_pre + 1
-        
+
         while idx_post < len(l):
             vpost = l[idx_post]
-            
+
             if not FPrePost(vpre, vpost):
                 idx_post += 1
             else:
                 lnew.append(vpost)
                 idx_pre = idx_post
                 break
-            
+
     return lnew
 
 
@@ -1319,22 +1315,22 @@ def max_com_divisor(l):
     '''
     求一列数l的最大公约数，只支持正整数
     '''
-    
+
     def isint(x):
         '''判断x是否为整数'''
         tmp = str(x).split('.')
         if len(tmp) == 1 or all([x == '0' for x in tmp[1]]):
             return True
         return False
-    
+
     if any([x < 1 or not isint(x) for x in l]):
         raise ValueError('只支持正整数！')
-    
+
     l_min = min(l)
     mcd = l_min
     while any([x % mcd != 0 for x in l]):
         mcd -= 1
-        
+
     return mcd
 
 
@@ -1357,12 +1353,12 @@ def max_com_divisor_tad(l):
     # for i in range(1, len(l)):
     #     g = mcd2_tad(g, l[i])
     # return g
-    
+
     return reduce(lambda x, y: mcd2_tad(x, y), l)
-    
+
 
 def isnull(x):
-    '''判断x是否为无效值（None或nan）'''
+    '''判断x是否为无效值，若是无效值，返回True，否则返回False'''
     if x is None:
         return True
     if x is np.nan:
@@ -1428,9 +1424,9 @@ def cal_pct(v0, v1, vv00=1, vv10=-1):
     elif v0 > 0 and v1 < 0:
         return v1 / v0 - 1
     elif v0 < 0 and v1 > 0:
-        return -(v1 / v0 - 1)        
-    
-    
+        return -(v1 / v0 - 1)
+
+
 def merge_df(df_left, df_right, same_keep='left', **kwargs):
     '''
     pd.merge，相同列名时去除重复
@@ -1481,13 +1477,13 @@ def cut_df_by_con_val(df, by_col, eqFunc=None):
                 val by_col
              q    9      d]
     '''
-    
+
     if isnull(eqFunc):
         eqFunc = lambda x: x
     df = df.copy()
     df['VeqFunc'] = df[by_col].apply(eqFunc)
     by_col = 'VeqFunc'
-    
+
     sub_dfs= []
     k = 0
     while k < df.shape[0]:
@@ -1496,14 +1492,14 @@ def cut_df_by_con_val(df, by_col, eqFunc=None):
             k1 += 1
         sub_dfs.append(df.iloc[k:k1, :].drop(by_col, axis=1))
         k = k1
-        
+
     return sub_dfs
 
 
 def get_con_start_end(series, Fcond):
     '''
     找出series中值连续满足Fcond函数的分段起止位置
-    
+
     Example
     -------
     series = pd.Series([0, 1, 1, 0, 1, 1, 0, -1, -1, 0, 0, -1, 1, 1, 1, 1, 0,
@@ -1515,7 +1511,7 @@ def get_con_start_end(series, Fcond):
     start_ends:
         [[1, 2], [4, 5], [12, 15]]
     '''
-    
+
     start_ends = []
     # df['start'] = 0
     # df['end'] = 0
@@ -1532,14 +1528,14 @@ def get_con_start_end(series, Fcond):
             start = end + 1
         else:
             start += 1
-            
+
     return start_ends
-    
+
 
 def check_exist_data(df, x_list, cols=None):
     '''
     依据指定的cols列检查df中是否已经存在x_list中的记录
-    
+
     Examples
     --------
     df = pd.DataFrame([['1', 2, 3.1, ], ['3', 4, 5.1], ['5', 6, 7.1]],
@@ -1550,7 +1546,7 @@ def check_exist_data(df, x_list, cols=None):
     check_exist_data(df, [['1', 3.1], ['3', 5.1]], ['a', 'c']):
         [True, True]
     '''
-    
+
     if not isnull(cols):
         df_ = df.reindex(columns=cols)
     else:
@@ -1562,14 +1558,14 @@ def check_exist_data(df, x_list, cols=None):
 def check_l_in_l0(l, l0):
     '''
     判断l（list）中的值是否都是l0（list）中的元素
-    
+
     Example
     -------
     l = [1, 2, 3, -1, 0]
     l0 = [0, 1, -1]
     check_l_in_l0(l, l0)
     >>> False
-    
+
     l = [1, 1, 0, -1, -1, 0, 0]
     l0 = [0, 1, -1]
     check_l_in_l0(l, l0)
@@ -1590,22 +1586,22 @@ def cut_range_to_subs(N, gap):
         return [(k*gap, (k+1)*gap) for k in range(0, n)] + [(gap * n, N)]
     else:
         return [(k*gap, (k+1)*gap) for k in range(0, n)]
-    
-    
+
+
 if __name__ == '__main__':
     from utils_hoo import load_csv
     from utils_hoo.utils_fin.utils_fin import CCI
     from utils_hoo.utils_plot.plot_Common import plot_Series
-    
+
     # 50ETF日线行情------------------------------------------------------------
     fpath = './test/510050_daily_pre_fq.csv'
     data = load_csv(fpath)
     data.set_index('date', drop=False, inplace=True)
-    
+
     data['cci'] = CCI(data)
     data['cci_100'] = data['cci'].apply(lambda x: 1 if x > 100 else \
                                                     (-1 if x < -100 else 0))
-        
+
     plot_Series(data.iloc[-200:, :], {'close': ('.-k', False)},
                 cols_styl_low_left={'cci': ('.-c', False)},
                 cols_to_label_info={'cci':
@@ -1613,7 +1609,7 @@ if __name__ == '__main__':
                 xparls_info={'cci': [(100, 'r', '-', 1.3),
                                      (-100, 'r', '-', 1.3)]},
                 figsize=(8, 7), grids=True)
-        
+
     start_ends_1 = get_con_start_end(data['cci_100'], lambda x: x == -1)
     start_ends1 = get_con_start_end(data['cci_100'], lambda x: x == 1)
     data['cci_100_'] = 0
@@ -1623,7 +1619,7 @@ if __name__ == '__main__':
     for start, end in start_ends1:
         if end+1 < data.shape[0]:
             data.loc[data.index[end+1], 'cci_100_'] = 1
-            
+
     plot_Series(data.iloc[-200:, :], {'close': ('.-k', False)},
                 cols_styl_low_left={'cci': ('.-c', False)},
                 cols_to_label_info={'cci':
@@ -1633,11 +1629,3 @@ if __name__ == '__main__':
                 xparls_info={'cci': [(100, 'r', '-', 1.3),
                                      (-100, 'r', '-', 1.3)]},
                 figsize=(8, 7), grids=True)
-    
-    
-    
-    
-    
-    
-    
-    

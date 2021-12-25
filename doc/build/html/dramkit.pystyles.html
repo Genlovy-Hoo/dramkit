@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pystyles &mdash; DramKit 0.0.6 documentation</title>
+  <title>pystyles &mdash; DramKit 0.0.6.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="logtools" href="dramkit.logtools.html" /> 
+    <link rel="prev" title="other" href="dramkit.other.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,11 +41,11 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="dramkit.html">dramkit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.logtools.html">logtools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.other.html">other</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">pystyles</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.pystyles.dramkit_style">dramkit_style</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dramkitdocstyle">DramkitDocStyle</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dramkit-docsytle">dramkit_docsytle</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id22">dramkit_style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dramkitclassstyle">DramkitClassStyle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dramkit-funcsytle">dramkit_funcsytle</a></li>
 </ul>
 </li>
 </ul>
@@ -125,23 +125,24 @@ based on VMD and HGWO for container throughput forecasting[J].
 <em>Applied Mathematical Modelling</em> , 2018.</p>
 </dd>
 </dl>
-<section id="dramkitdocstyle">
-<h3>DramkitDocStyle<a class="headerlink" href="#dramkitdocstyle" title="Permalink to this headline"></a></h3>
+<section id="dramkitclassstyle">
+<h3>DramkitClassStyle<a class="headerlink" href="#dramkitclassstyle" title="Permalink to this headline"></a></h3>
 <dl class="py class">
-<dt class="sig sig-object py" id="dramkit.pystyles.dramkit_style.DramkitDocStyle">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dramkit.pystyles.dramkit_style.</span></span><span class="sig-name descname"><span class="pre">DramkitDocStyle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DramkitDocStyle'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.pystyles.dramkit_style.DramkitDocStyle" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="dramkit.pystyles.dramkit_style.DramkitClassStyle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dramkit.pystyles.dramkit_style.</span></span><span class="sig-name descname"><span class="pre">DramkitClassStyle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DramkitDocStyle'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.pystyles.dramkit_style.DramkitClassStyle" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>本程序中的class代码风格示例</p>
 <p>类名由 <code class="docutils literal notranslate"><span class="pre">首字母大写的单词</span></code> 拼接而成，这里写函数详细描述，描述可能比较
-长长长长长长长长长长长长，需要换行</p>
+长长长长长长长长长长长长，需要换行，参见 <a class="reference internal" href="dramkit.html#dramkit.gentools.isnull" title="dramkit.gentools.isnull"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.gentools.isnull()</span></code></a>
+参见属性 <a class="reference internal" href="#dramkit.pystyles.dramkit_style.DramkitClassStyle.name" title="dramkit.pystyles.dramkit_style.DramkitClassStyle.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a> 参见 <a class="reference internal" href="#dramkit.pystyles.dramkit_style.DramkitClassStyle.show" title="dramkit.pystyles.dramkit_style.DramkitClassStyle.show"><code class="xref py py-meth docutils literal notranslate"><span class="pre">show()</span></code></a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>name</strong> (<em>str:</em>) – value for self.name</p>
 </dd>
 </dl>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="dramkit.pystyles.dramkit_style.DramkitDocStyle.name">
-<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#dramkit.pystyles.dramkit_style.DramkitDocStyle.name" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="dramkit.pystyles.dramkit_style.DramkitClassStyle.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#dramkit.pystyles.dramkit_style.DramkitClassStyle.name" title="Permalink to this definition"></a></dt>
 <dd><p>class nick name</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -151,8 +152,8 @@ based on VMD and HGWO for container throughput forecasting[J].
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="dramkit.pystyles.dramkit_style.DramkitDocStyle.otherattr">
-<span class="sig-name descname"><span class="pre">otherattr</span></span><a class="headerlink" href="#dramkit.pystyles.dramkit_style.DramkitDocStyle.otherattr" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="dramkit.pystyles.dramkit_style.DramkitClassStyle.otherattr">
+<span class="sig-name descname"><span class="pre">otherattr</span></span><a class="headerlink" href="#dramkit.pystyles.dramkit_style.DramkitClassStyle.otherattr" title="Permalink to this definition"></a></dt>
 <dd><p>description of other attribute</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -161,13 +162,28 @@ based on VMD and HGWO for container throughput forecasting[J].
 </dl>
 </dd></dl>
 
+<p><a class="reference internal" href="#dramkit.pystyles.dramkit_style.DramkitClassStyle.name" title="dramkit.pystyles.dramkit_style.DramkitClassStyle.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a></p>
+<p>参见
+<a class="reference internal" href="#dramkit.pystyles.dramkit_style.dramkit_funcsytle" title="dramkit.pystyles.dramkit_style.dramkit_funcsytle"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.pystyles.dramkit_style.dramkit_funcsytle()</span></code></a> 和
+<a class="reference internal" href="dramkit.logtools.html#dramkit.logtools.utils_logger.logger_show" title="dramkit.logtools.utils_logger.logger_show"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.logtools.utils_logger.logger_show()</span></code></a></p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="dramkit.logtools.html#dramkit.logtools.utils_logger.logger_show" title="dramkit.logtools.utils_logger.logger_show"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.logtools.utils_logger.logger_show()</span></code></a></dt><dd><p>本程序中的function代码风格示例</p>
+</dd>
+</dl>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>function <a class="reference internal" href="#dramkit.pystyles.dramkit_style.dramkit_funcsytle" title="dramkit.pystyles.dramkit_style.dramkit_funcsytle"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.pystyles.dramkit_style.dramkit_funcsytle()</span></code></a> 函数编码风格</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>为什么Attributes标题没显示，怎么设置？attribute显示有点丑</p>
 </div>
 <dl class="py method">
-<dt class="sig sig-object py" id="dramkit.pystyles.dramkit_style.DramkitDocStyle.show">
-<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.pystyles.dramkit_style.DramkitDocStyle.show" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="dramkit.pystyles.dramkit_style.DramkitClassStyle.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.pystyles.dramkit_style.DramkitClassStyle.show" title="Permalink to this definition"></a></dt>
 <dd><p>class中函数的注释参照function的注释规范</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -186,14 +202,23 @@ based on VMD and HGWO for container throughput forecasting[J].
 </dd></dl>
 
 </section>
-<section id="dramkit-docsytle">
-<h3>dramkit_docsytle<a class="headerlink" href="#dramkit-docsytle" title="Permalink to this headline"></a></h3>
+<section id="dramkit-funcsytle">
+<h3>dramkit_funcsytle<a class="headerlink" href="#dramkit-funcsytle" title="Permalink to this headline"></a></h3>
 <dl class="py method">
-<dt class="sig sig-object py" id="dramkit.pystyles.dramkit_style.dramkit_docsytle">
-<span class="sig-prename descclassname"><span class="pre">dramkit_style.</span></span><span class="sig-name descname"><span class="pre">dramkit_docsytle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'b'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.pystyles.dramkit_style.dramkit_docsytle" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="dramkit.pystyles.dramkit_style.dramkit_funcsytle">
+<span class="sig-prename descclassname"><span class="pre">dramkit_style.</span></span><span class="sig-name descname"><span class="pre">dramkit_funcsytle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'b'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.pystyles.dramkit_style.dramkit_funcsytle" title="Permalink to this definition"></a></dt>
 <dd><p>本程序中的function代码风格示例</p>
 <p>函数名由 <code class="docutils literal notranslate"><span class="pre">小写单词</span></code> 和 <code class="docutils literal notranslate"><span class="pre">_</span></code> 拼接而成，这里写函数详细描述，描述可能比较
 长长长长长长长长长长长长，需要换行</p>
+<p>参见 <a class="reference internal" href="#dramkit.pystyles.dramkit_style.DramkitClassStyle" title="dramkit.pystyles.dramkit_style.DramkitClassStyle"><code class="xref py py-class docutils literal notranslate"><span class="pre">dramkit.pystyles.dramkit_style.DramkitClassStyle</span></code></a></p>
+<div class="admonition-todo admonition" id="id20">
+<p class="admonition-title">Todo</p>
+<p>待完成描述</p>
+<ul class="simple">
+<li><p>todo1</p></li>
+<li><p>todo2</p></li>
+</ul>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -290,9 +315,13 @@ based on VMD and HGWO for container throughput forecasting[J].
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="#dramkit.pystyles.dramkit_style.DramkitDocStyle" title="dramkit.pystyles.dramkit_style.DramkitDocStyle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DramkitDocStyle</span></code></a></dt><dd><p>本程序中的class代码风格示例</p>
+<dt><a class="reference internal" href="#dramkit.pystyles.dramkit_style.DramkitClassStyle" title="dramkit.pystyles.dramkit_style.DramkitClassStyle"><code class="xref py py-class docutils literal notranslate"><span class="pre">dramkit.pystyles.dramkit_style.DramkitClassStyle</span></code></a></dt><dd><p>本程序中的class代码风格示例</p>
 </dd>
 </dl>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Module <a class="reference internal" href="#dramkit.pystyles.dramkit_style.DramkitClassStyle" title="dramkit.pystyles.dramkit_style.DramkitClassStyle"><code class="xref py py-mod docutils literal notranslate"><span class="pre">dramkit.pystyles.dramkit_style.DramkitClassStyle</span></code></a> 类编码风格</p>
 </div>
 <p class="rubric">Notes</p>
 <p>Sphinx也支持生成数学公式，比如FFT是离散傅里叶变换的一种快速实现算法，
@@ -319,9 +348,9 @@ beautiful mathematical formulas.</p>
 <span class="eqno">(1)<a class="headerlink" href="#equation-euler" title="Permalink to this equation"></a></span>\[e^{i\pi} + 1 = 0\]</div>
 <p class="rubric">References</p>
 <p>Sphinxg数学公式: <a class="reference external" href="http://doc.yonyoucloud.com/doc/zh-sphinx-doc/ext/math.html">http://doc.yonyoucloud.com/doc/zh-sphinx-doc/ext/math.html</a></p>
-<p>我的论文 <a class="reference internal" href="#i" id="id20"><span>[i]</span></a></p>
+<p>我的论文 <a class="reference internal" href="#i" id="id21"><span>[i]</span></a></p>
 <dl class="citation">
-<dt class="label" id="i"><span class="brackets">i</span><span class="fn-backref">(<a href="#id20">1</a>,<a href="#id21">2</a>)</span></dt>
+<dt class="label" id="i"><span class="brackets">i</span><span class="fn-backref">(<a href="#id21">1</a>,<a href="#id22">2</a>)</span></dt>
 <dd><p>Niu, Mingfei, Hu, et al. A novel hybrid decomposition-ensemble model
 based on VMD and HGWO for container throughput forecasting[J].
 Applied Mathematical Modelling, 2018.</p>
@@ -330,19 +359,10 @@ Applied Mathematical Modelling, 2018.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>请注意Notes和Note的区别</p>
-<p>为什么生成的文档中引用位置 <a class="reference internal" href="#i" id="id21"><span>[i]</span></a> 处有阴影，怎么去除？</p>
+<p>为什么生成的文档中引用位置 <a class="reference internal" href="#i" id="id22"><span>[i]</span></a> 处有阴影，怎么去除？</p>
 <p>公式编号位置是乱的？</p>
 <p>Sphinx如何安装扩展库？</p>
 </div>
-</dd></dl>
-
-</section>
-<section id="id22">
-<h3>dramkit_style<a class="headerlink" href="#id22" title="Permalink to this headline"></a></h3>
-<dl class="py method">
-<dt class="sig sig-object py" id="dramkit.pystyles.dramkit_style.dramkit_style">
-<span class="sig-prename descclassname"><span class="pre">dramkit_style.</span></span><span class="sig-name descname"><span class="pre">dramkit_style</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.pystyles.dramkit_style.dramkit_style" title="Permalink to this definition"></a></dt>
-<dd><p>test</p>
 </dd></dl>
 
 </section>
@@ -353,7 +373,7 @@ Applied Mathematical Modelling, 2018.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="dramkit.logtools.html" class="btn btn-neutral float-left" title="logtools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dramkit.other.html" class="btn btn-neutral float-left" title="other" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

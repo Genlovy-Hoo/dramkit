@@ -1,0 +1,24 @@
+2021-12-25 23:51:03,072 -logger_timedrotating.py[line: 89] -INFO:
+    --Log start here *****************************************
+2021-12-25 23:51:03,083 -logger_timedrotating.py[line: 90] -DEBUG:
+    --Do something.
+2021-12-25 23:51:03,085 -logger_timedrotating.py[line: 91] -WARNING:
+    --Something maybe fail.
+2021-12-25 23:51:03,088 -logger_timedrotating.py[line: 92] -ERROR:
+    --Some error find here.
+2021-12-25 23:51:03,091 -logger_timedrotating.py[line: 93] -CRITICAL:
+    --Program crashed.
+2021-12-25 23:51:03,093 -logger_timedrotating.py[line: 94] -INFO:
+    --Finish
+2021-12-25 23:51:05,104 -logger_timedrotating.py[line: 89] -INFO:
+    --Log start here *****************************************
+2021-12-25 23:51:05,105 -logger_timedrotating.py[line: 90] -DEBUG:
+    --Do something.
+2021-12-25 23:51:05,106 -logger_timedrotating.py[line: 91] -WARNING:
+    --Something maybe fail.
+2021-12-25 23:51:05,106 -logger_timedrotating.py[line: 92] -ERROR:
+    --Some error find here.
+2021-12-25 23:51:05,107 -logger_timedrotating.py[line: 93] -CRITICAL:
+    --Program crashed.
+2021-12-25 23:51:05,108 -logger_timedrotating.py[line: 94] -INFO:
+    --Finish

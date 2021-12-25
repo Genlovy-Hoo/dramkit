@@ -68,6 +68,8 @@ extensions = [
 # napoleon_type_aliases = None
 # napoleon_attr_annotations = True
 
+todo_include_todos = True
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 

@@ -28,17 +28,20 @@ References
 '''
 
 
-def dramkit_style():
-    '''test'''
-    pass
-
-
-def dramkit_docsytle(a, b='b', *args, **kwargs):
+def dramkit_funcsytle(a, b='b', *args, **kwargs):
     '''
     本程序中的function代码风格示例
 
     函数名由 ``小写单词`` 和 ``_`` 拼接而成，这里写函数详细描述，描述可能比较
     长长长长长长长长长长长长，需要换行
+
+    参见 :class:`dramkit.pystyles.dramkit_style.DramkitClassStyle`
+
+    .. todo::
+        待完成描述
+
+        - todo1
+        - todo2
 
     Parameters
     ----------
@@ -112,7 +115,12 @@ def dramkit_docsytle(a, b='b', *args, **kwargs):
 
     See Also
     --------
-    DramkitDocStyle : 本程序中的class代码风格示例
+    :class:`dramkit.pystyles.dramkit_style.DramkitClassStyle`: 本程序中的class代码风格示例
+
+
+    .. seealso::
+
+        Module :py:mod:`dramkit.pystyles.dramkit_style.DramkitClassStyle` 类编码风格
 
     Notes
     -----
@@ -181,12 +189,13 @@ def dramkit_docsytle(a, b='b', *args, **kwargs):
     return a, b, a+b
 
 
-class DramkitDocStyle(object):
+class DramkitClassStyle(object):
     '''
     本程序中的class代码风格示例
 
     类名由 ``首字母大写的单词`` 拼接而成，这里写函数详细描述，描述可能比较
-    长长长长长长长长长长长长，需要换行
+    长长长长长长长长长长长长，需要换行，参见 :func:`dramkit.gentools.isnull`
+    参见属性 :py:attr:`name` 参见 :py:meth:`show`
 
     Parameters
     ----------
@@ -199,6 +208,23 @@ class DramkitDocStyle(object):
         class nick name
     otherattr : str
         description of other attribute
+
+
+    :py:attr:`name`
+
+
+    参见
+    :func:`dramkit.pystyles.dramkit_style.dramkit_funcsytle` 和
+    :func:`dramkit.logtools.utils_logger.logger_show`
+
+    See Also
+    --------
+    :func:`dramkit.logtools.utils_logger.logger_show`: 本程序中的function代码风格示例
+
+
+    .. seealso::
+
+        function :py:func:`dramkit.pystyles.dramkit_style.dramkit_funcsytle` 函数编码风格
 
     Note
     ----

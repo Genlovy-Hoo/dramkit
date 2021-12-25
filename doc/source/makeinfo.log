@@ -1,11 +1,11 @@
-2021-12-25 00:13:39,525 -logger_utils.py[line: 28] -INFO:
+2021-12-26 00:34:10,778 -utils_logger.py[line: 32] -INFO:
     --正在运行 Sphinx v4.3.1
 正在加载翻译 [en]... 完成
-加载 pickled环境... 完成
+创建输出目录... 完成
 构建 [mo]： 0 个 po 文件的目标文件已过期
-构建 [html]： 4 个源文件的目标文件已过期
-更新环境: [配置有变化 ('release')] 已添加 4，0 已更改，0 已移除
-阅读源... [ 25%] dramkit                                                          阅读源... [ 50%] dramkit.logtools                                                 阅读源... [ 75%] dramkit.pystyles                                                 阅读源... [100%] index                                                            
+构建 [html]： 5 个源文件的目标文件已过期
+更新环境: [新配置] 已添加 5，0 已更改，0 已移除
+阅读源... [ 20%] dramkit                                                          阅读源... [ 40%] dramkit.logtools                                                 阅读源... [ 60%] dramkit.other                                                    阅读源... [ 80%] dramkit.pystyles                                                 阅读源... [100%] index                                                            
 D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.Roulette_N:4: WARNING: Unexpected indentation.
 D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.Roulette_N:11: WARNING: Block quote ends without a blank line; unexpected unindent.
 D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.check_exist_data:7: WARNING: Definition list ends without a blank line; unexpected unindent.
@@ -60,14 +60,16 @@ D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gent
 D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\iotools.py:docstring of dramkit.iotools.zip_files:5: WARNING: Unexpected indentation.
 D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\iotools.py:docstring of dramkit.iotools.zip_fpaths_7z:3: WARNING: Unexpected indentation.
 D:\Genlovy_Hoo\HooProjects\dramkit\doc\source\dramkit.rst:52: WARNING: Duplicate target name, cannot be used as a unique reference: "con_count".
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_TimedRotating.py:docstring of dramkit.logtools.logger_TimedRotating.get_logger:4: WARNING: Inline interpreted text or phrase reference start-string without end-string.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_TimedRotating.py:docstring of dramkit.logtools.logger_TimedRotating.get_logger:4: WARNING: Inline interpreted text or phrase reference start-string without end-string.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_TimedRotating.py:docstring of dramkit.logtools.logger_TimedRotating.get_logger:4: WARNING: Inline interpreted text or phrase reference start-string without end-string.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_TimedRotating.py:docstring of dramkit.logtools.logger_TimedRotating.get_logger:4: WARNING: Inline interpreted text or phrase reference start-string without end-string.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_TimedRotating.py:docstring of dramkit.logtools.logger_TimedRotating.get_logger:4: WARNING: Inline interpreted text or phrase reference start-string without end-string.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_utils.py:docstring of dramkit.logtools.logger_utils.remove_handlers:3: WARNING: Unexpected indentation.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style.dramkit_docsytle:73: WARNING: Unexpected indentation.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style.dramkit_docsytle:74: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_timedrotating.py:docstring of dramkit.logtools.logger_timedrotating.get_logger:5: WARNING: Inline interpreted text or phrase reference start-string without end-string.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_timedrotating.py:docstring of dramkit.logtools.logger_timedrotating.get_logger:5: WARNING: Inline interpreted text or phrase reference start-string without end-string.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_timedrotating.py:docstring of dramkit.logtools.logger_timedrotating.get_logger:5: WARNING: Inline interpreted text or phrase reference start-string without end-string.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_timedrotating.py:docstring of dramkit.logtools.logger_timedrotating.get_logger:5: WARNING: Inline interpreted text or phrase reference start-string without end-string.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_timedrotating.py:docstring of dramkit.logtools.logger_timedrotating.get_logger:5: WARNING: Inline interpreted text or phrase reference start-string without end-string.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_timedrotating.py:docstring of dramkit.logtools.logger_timedrotating.get_logger:5: WARNING: Inline interpreted text or phrase reference start-string without end-string.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\other\replace_endblank.py:docstring of dramkit.other.replace_endblank.replace_endblank_in_file:3: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\other\utils_other.py:docstring of dramkit.other.utils_other.load_csv_ColMaxMin:1: WARNING: Inline strong start-string without end-string.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style.dramkit_funcsytle:85: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style.dramkit_funcsytle:86: WARNING: Block quote ends without a blank line; unexpected unindent.
 D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style:16: WARNING: 脚注 [8] 没有被引用过。
 D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style:17: WARNING: 脚注 [9] 没有被引用过。
 D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style:18: WARNING: 脚注 [10] 没有被引用过。
@@ -77,14 +79,14 @@ D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring o
 pickling环境... 完成
 检查一致性... 完成
 准备文件... 完成
-写入输出... [ 25%] dramkit                                                         写入输出... [ 50%] dramkit.logtools                                                写入输出... [ 75%] dramkit.pystyles                                                写入输出... [100%] index                                                           
+写入输出... [ 20%] dramkit                                                         写入输出... [ 40%] dramkit.logtools                                                写入输出... [ 60%] dramkit.other                                                   写入输出... [ 80%] dramkit.pystyles                                                写入输出... [100%] index                                                           
 正在生成索引... genindex py-modindex 完成
 正在写入附加页面... search 完成
 copying static files... 完成
 正在复制额外文件... 完成
 正在导出 English (code: en) 的搜索索引... 完成
 正在导出对象清单... 完成
-构建 成功，67 警告。
+构建 成功，69 警告。
 
 HTML 页面保存在 build\html 目录。
 

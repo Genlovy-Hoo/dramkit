@@ -7,6 +7,7 @@ Welcome to DramKit's documentation!
 
    dramkit <dramkit>
    logtools <dramkit.logtools>
+   other <dramkit.other>
    pystyles <dramkit.pystyles>
 
 Indices and tables

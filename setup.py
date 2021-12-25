@@ -5,10 +5,10 @@ import sys
 
 if 'bdist_wheel' in sys.argv:
     # to build wheel, use 'python setup.py sdist bdist_wheel'
-    from setuptools import setup 
+    from setuptools import setup
 else:
     from distutils.core import setup # 'python setup.py install'
-    
+
 
 __title__ = 'dramkit'
 here = os.path.abspath(os.path.dirname(__file__))
@@ -16,7 +16,7 @@ pkg_info = {}
 fpath= os.path.join(here, __title__, '_pkg_info.py')
 with open(fpath, 'r') as f:
     exec(''.join(f.readlines()))
-    
+
 readme = os.path.join(here, 'README.md')
 readme = open(readme, encoding='utf-8').read()
 
@@ -33,7 +33,5 @@ setup(name=__title__,
       long_description_content_type='text/markdown',
       platforms='any',
       packages=['dramkit',
-                'dramkit.pystyles',
-                'dramkit.logtools'])
-
-
+                'dramkit.logtools',
+				'dramkit.pystyles'])

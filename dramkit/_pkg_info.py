@@ -11,10 +11,9 @@ pkg_info = {
     '__author__': 'Genlovy Hoo, YueYong Hu',
     '__author_email__': 'genlovhyy@163.com',
     '__author_page__': 'www.glhyy.cn',
-    '__description__': 'dramkit is a toolbox.',
+    '__description__': 'DramKit is a toolbox.',
     '__long_description__':
-        '''dramkit is a toolbox, its name comes from Doraemon's Pocket.
-		for more information please visit glhyy.cn.
+        '''
+		DramKit is a toolbox, `Dram` comes from `Doraemon`.
 		'''
     }
-    

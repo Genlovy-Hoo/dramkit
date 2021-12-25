@@ -8,20 +8,15 @@ dramkit_style
 
 .. currentmodule:: dramkit.pystyles.dramkit_style
 
-DramkitDocStyle
-^^^^^^^^^^^^^^^^
+DramkitClassStyle
+^^^^^^^^^^^^^^^^^^
 
-.. autoclass:: dramkit.pystyles.dramkit_style.DramkitDocStyle
+.. autoclass:: dramkit.pystyles.dramkit_style.DramkitClassStyle
     :members:
     :undoc-members:
     :show-inheritance:
 
-dramkit_docsytle
-^^^^^^^^^^^^^^^^^
+dramkit_funcsytle
+^^^^^^^^^^^^^^^^^^
 
-.. automethod:: dramkit.pystyles.dramkit_style.dramkit_docsytle
-
-dramkit_style
-^^^^^^^^^^^^^^
-
-.. automethod:: dramkit.pystyles.dramkit_style.dramkit_style
+.. automethod:: dramkit.pystyles.dramkit_style.dramkit_funcsytle

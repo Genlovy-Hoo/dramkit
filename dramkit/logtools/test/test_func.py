@@ -12,4 +12,3 @@ def test_func(x, y, txt, logger):
         raise
     logger.fatal('program may crash here.')
     logger.info('test function finished.')
-    

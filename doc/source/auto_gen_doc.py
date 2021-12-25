@@ -22,10 +22,13 @@ INCLUDE_ = False
 # 名称映射，中文有乱码问题
 NAME_MAP = {}
 
+# 目录顺序
+ORDER = {}
+
 
 import sys
 sys.path.append(PKG_DIR)
-from dramkit.logtools.logger_utils import logger_show
+from dramkit.logtools.utils_logger import logger_show
 from dramkit.logtools.logger_general import get_logger
 from dramkit.iotools import read_lines, write_txt, get_all_files
 
@@ -145,7 +148,7 @@ def write_subpkg_rst(sub_pkg, include_=False):
         clas, funcs = get_class_funcs(fpy, include_=include_)
         clas.sort()
         funcs.sort()
-        
+
         # 添加class
         for clss in clas:
             name_ = namemap(clss)
@@ -174,10 +177,10 @@ def write_subpkg_rst(sub_pkg, include_=False):
 
 if __name__ == '__main__':
     import subprocess
-    
+
     import time
     strt_tm = time.time()
-    
+
     # __init__.py临时改名
     initfiles = get_all_files(SRC_DIR, ext=['__init__.py'])
     initfiles_tmp = [x+'tmp' for x in initfiles]
@@ -190,7 +193,7 @@ if __name__ == '__main__':
     sub_pkgs.insert(0, '')
     for sub_pkg in sub_pkgs:
         write_subpkg_rst(sub_pkg, include_=INCLUDE_)
-        
+
     # 生成index.rst
     idxrst = 'index.rst'
     title = "Welcome to %s's documentation!"%DOC_TITLE
@@ -212,12 +215,12 @@ if __name__ == '__main__':
     rst_lines.append('* :ref:`genindex`')
     rst_lines.append('* :ref:`modindex`')
     write_txt(rst_lines, idxrst)
-    
+
     # 执行.\make html生成文档
-    nowpath = os.getcwd()    
-    docpath = os.path.abspath('../')    
+    nowpath = os.getcwd()
+    docpath = os.path.abspath('../')
     os.chdir(docpath)
-    
+
     # os.system('.\make html') # 无返回
     # subprocess.call('.\make html', shell=True) # 无返回
     # subprocess.check_call('.\make html', shell=True) # 无返回
@@ -225,11 +228,16 @@ if __name__ == '__main__':
                                        stderr=subprocess.STDOUT)
     makeinfo = makeinfo.decode('gbk')
     logger_show(makeinfo, get_logger('./source/makeinfo.log'))
-    
+
     # 将__init__文件名改回来
     os.chdir(nowpath)
     for k in range(len(initfiles)):
         os.rename(initfiles_tmp[k], initfiles[k])
+    # 强制修改
+    initfiles = get_all_files(SRC_DIR, ext=['__init__.pytmp'])
+    initfiles_tmp = [x[:-3] for x in initfiles]
+    for k in range(len(initfiles)):
+        os.rename(initfiles[k], initfiles_tmp[k])
 
 
     print('used time: %ss.'%round(time.time()-strt_tm, 6))

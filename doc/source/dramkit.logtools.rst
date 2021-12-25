@@ -1,30 +1,6 @@
 logtools
 =========
 
-logger_Rotating
-----------------
-
-.. automodule:: dramkit.logtools.logger_Rotating
-
-.. currentmodule:: dramkit.logtools.logger_Rotating
-
-get_logger
-^^^^^^^^^^^
-
-.. automethod:: dramkit.logtools.logger_Rotating.get_logger
-
-logger_TimedRotating
----------------------
-
-.. automodule:: dramkit.logtools.logger_TimedRotating
-
-.. currentmodule:: dramkit.logtools.logger_TimedRotating
-
-get_logger
-^^^^^^^^^^^
-
-.. automethod:: dramkit.logtools.logger_TimedRotating.get_logger
-
 logger_general
 ---------------
 
@@ -37,43 +13,48 @@ get_logger
 
 .. automethod:: dramkit.logtools.logger_general.get_logger
 
-logger_utils
+logger_rotating
+----------------
+
+.. automodule:: dramkit.logtools.logger_rotating
+
+.. currentmodule:: dramkit.logtools.logger_rotating
+
+get_logger
+^^^^^^^^^^^
+
+.. automethod:: dramkit.logtools.logger_rotating.get_logger
+
+logger_timedrotating
+---------------------
+
+.. automodule:: dramkit.logtools.logger_timedrotating
+
+.. currentmodule:: dramkit.logtools.logger_timedrotating
+
+get_logger
+^^^^^^^^^^^
+
+.. automethod:: dramkit.logtools.logger_timedrotating.get_logger
+
+utils_logger
 -------------
 
-.. automodule:: dramkit.logtools.logger_utils
+.. automodule:: dramkit.logtools.utils_logger
 
-.. currentmodule:: dramkit.logtools.logger_utils
+.. currentmodule:: dramkit.logtools.utils_logger
 
 close_log_file
 ^^^^^^^^^^^^^^^
 
-.. automethod:: dramkit.logtools.logger_utils.close_log_file
+.. automethod:: dramkit.logtools.utils_logger.close_log_file
 
 logger_show
 ^^^^^^^^^^^^
 
-.. automethod:: dramkit.logtools.logger_utils.logger_show
+.. automethod:: dramkit.logtools.utils_logger.logger_show
 
 remove_handlers
 ^^^^^^^^^^^^^^^^
 
-.. automethod:: dramkit.logtools.logger_utils.remove_handlers
-
-test_func
-----------
-
-.. automodule:: dramkit.logtools.test_func
-
-.. currentmodule:: dramkit.logtools.test_func
-
-test_func
-^^^^^^^^^^
-
-.. automethod:: dramkit.logtools.test_func.test_func
-
-test_log
----------
-
-.. automodule:: dramkit.logtools.test_log
-
-.. currentmodule:: dramkit.logtools.test_log
+.. automethod:: dramkit.logtools.utils_logger.remove_handlers
