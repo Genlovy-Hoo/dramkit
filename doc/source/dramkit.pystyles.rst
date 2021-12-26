@@ -19,4 +19,4 @@ DramkitClassStyle
 dramkit_funcsytle
 ^^^^^^^^^^^^^^^^^^
 
-.. automethod:: dramkit.pystyles.dramkit_style.dramkit_funcsytle
+.. autofunction:: dramkit.pystyles.dramkit_style.dramkit_funcsytle

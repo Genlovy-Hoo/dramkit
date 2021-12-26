@@ -38,9 +38,9 @@ if __name__ == '__main__':
     import time
     strt_tm = time.time()
 
-    target_str = 'io.csv.mixed_timezones'
-    root_dir = 'D:/Genlovy_Hoo/SoftWare/PythonRelated/pkgs/pandas/pandas-master/'
-    file_types = ['.rst']
+    target_str = 'simple_logger'
+    root_dir = '../../'
+    file_types = ['.py']
 
     files = find_files_include_str(target_str, root_dir, file_types)
 

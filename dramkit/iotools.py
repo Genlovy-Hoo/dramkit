@@ -7,10 +7,242 @@ import shutil
 import zipfile
 import subprocess
 import pandas as pd
-from .logtools.utils_logger import logger_show
-from .gentools import simple_logger, isnull, cut_df_by_con_val
-# from dramkit.logtools.logger_utils import logger_show
-# from dramkit.gentools import simple_logger, isnull, cut_df_by_con_val
+# from .logtools.utils_logger import logger_show
+# from .gentools import isnull, cut_df_by_con_val
+from dramkit.logtools.utils_logger import logger_show
+from dramkit.gentools import isnull, cut_df_by_con_val
+
+
+def pickle_file(data, file):
+    '''
+    以二进制格式保存数据data到文件file
+
+    Parameters
+    ----------
+    data :
+        待保存内容
+    file : str
+        保存路径
+    '''
+    with open(file, 'wb') as f:
+        pickle.dump(data, f)
+
+
+def unpickle_file(file):
+    '''
+    读取二进制格式文件file
+
+    Parameters
+    ----------
+    file : str
+        待读取文件路径
+    '''
+    with open(file, 'rb') as f:
+        return pickle.load(f)
+
+
+def load_json(fpath, encoding=None, logger=None):
+    '''
+    读取json格式文件
+
+    Parameters
+    ----------
+    fpath : str
+        待读取文件路径
+    encoding : str, None
+        文件编码格式，若不指定，则尝试用utf-8和gbk编码读取
+    logger : logging.Logger
+        日志记录器
+    '''
+
+    if not os.path.exists(fpath):
+        logger_show('文件不存在，返回None：{}'.format(fpath),
+                    logger, 'warn')
+        return None
+
+    try:
+        with open(fpath, 'r', encoding=encoding) as f:
+            data_json = json.load(f)
+    except:
+        try:
+            with open(fpath, 'r', encoding='utf-8') as f:
+                data_json = json.load(f)
+        except:
+            try:
+                with open(fpath, 'r', encoding='gbk') as f:
+                    data_json = json.load(f)
+            except:
+                logger_show('读取%s出错，请检查文件（如编码或文件末尾多余字符等问题）！'%fpath,
+                            logger, 'error')
+                raise
+
+    return data_json
+
+
+def write_json(data, fpath, encoding=None):
+    '''
+    把data写入json格式文件
+
+    Parameters
+    ----------
+    data : dict
+        待写入数据
+    fpath : str
+        文件保存路径
+    encoding : str, None
+        文件编码格式
+    '''
+    with open(fpath, 'w', encoding=encoding) as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
+
+
+def read_lines(fpath, encoding=None, logger=None):
+    '''
+    读取文本文件中的所有行
+
+    Parameters
+    ----------
+    fpath : str
+        待读取文件路径
+    encoding : str, None
+        文件编码格式，若不指定，则尝试用utf-8和gbk编码读取
+    logger : None, logging.Logger
+        日志记录器
+        
+    Returns
+    -------
+    lines : list
+        文本文件中每行内容列表
+    '''
+    try:
+        with open(fpath, 'r', encoding=encoding) as f:
+            lines = f.readlines()
+    except:
+        try:
+            with open(fpath, 'r', encoding='utf-8') as f:
+                lines = f.readlines()
+        except:
+            try:
+                with open(fpath, 'r', encoding='gbk') as f:
+                    lines = f.readlines()
+            except:
+                logger_show('未正确识别文件编码格式，以二进制读取: %s'%fpath,
+                            logger, 'warn')
+                with open(fpath, 'rb') as f:
+                    lines = f.readlines()
+    return lines
+
+
+def write_txt(lines, file, mode='w', check_end=True, **kwargs):
+    '''
+    将列表lines中的内容写入文本文件中
+
+    Parameters
+    ----------
+    lines : list
+        列表，每个元素为一行文本内容
+    file : str
+        保存路径
+    mode : str
+        写入模式，如'w'或'a'
+    check_end : bool
+        是否检查每行行尾换行符，默认若行尾已经有换行符，则不再新添加换行符
+    **kwargs : 
+        open函数接受的关键字，如encoding等
+
+    Note
+    ----
+    不同系统文本文件每行默认结尾字符不同:
+
+        - linux下一般以`\\\\n`结尾
+        - windows下一般以`\\\\r\\\\n`结尾
+        - 苹果系统一般以`\\\\r`结尾
+    '''
+    if check_end:
+        lines_ = []
+        for x in lines:
+            if not (x.endswith('\n') or x.endswith('\r\n') or x.endswith('\r')):
+                x = x + '\n'
+            lines_.append(x)
+    else:
+        lines_ = [x+'\n' for x in lines]
+    f = open(file, mode=mode, **kwargs)
+    f.writelines(lines_)
+    f.close()
+
+
+def load_text(fpath, sep=',', del_first_line=False, del_first_col=False,
+              to_pd=True, keep_header=True, encoding=None, del_last_col=False,
+              logger=None):
+    '''
+    读取文本文件数据，要求文件中每行存放一个数据样本
+
+    Parameters
+    ----------
+    fpath : str
+        文本文件路径
+    sep : str
+        字段分隔符，默认`,`
+    del_first_line : bool
+        是否删除首行，默认不删除
+        
+        .. note:: 若del_first_line为True，则输出pandas.DataFrame没有列名
+    del_first_col : bool
+        是否删除首列，默认不删除
+    to_pd : bool
+        是否输出为pandas.DataFrame，默认是
+    keep_header : bool
+        输出为pandas.DataFrame时是否以首行作为列名，默认是
+    encoding : str, None
+        指定编码方式，默认不指定时会尝试以uft-8和gbk编码读取
+    del_last_col : bool
+        是否删除最后一列，默认否
+    logger : logging.Logger, None
+        日志记录器
+
+    Returns
+    -------
+    data : list, pandas.DataFrame
+        返回读取的数据
+    '''
+
+    if not os.path.exists(fpath):
+        logger_show('文件不存在，返回None：%s'%fpath, logger, 'warn')
+        return None
+    
+    lines = read_lines(fpath, encoding=encoding, logger=logger)
+
+    data = []
+    for line in lines:
+        line = str(line)
+        line = line.strip()
+        line = line.split(sep)
+        if del_first_col:
+            line = line[1:]
+        if del_last_col:
+            line = line[:-1]
+        data.append(line)
+
+    if del_first_line:
+        data = data[1:]
+        if to_pd:
+            data = pd.DataFrame(data)
+    else:
+        if to_pd:
+            if keep_header:
+                cols = data[0]
+                data = pd.DataFrame(data[1:])
+                data.columns = cols
+            else:
+                data = pd.DataFrame(data)
+
+    return data
+
+
+
+
+
+
 
 
 def copy_file():
@@ -30,34 +262,6 @@ def extract_7z(zip_path, save_dir):
     raise NotImplementedError
 
 
-def install_pkg(pkg_name, version=None, upgrade=False, ignore_exist=False,
-                logger=None):
-    '''
-    安装python库
-    version格式: `==0.1.4`|`>1.0`|`<2.0`
-    '''
-
-    if ignore_exist:
-        ignr = '--ignore-installed'
-
-    if pkg_name[-4:] == '.whl' and os.path.exists(pkg_name):
-        cmd_str = 'pip install {} {}'.format(os.path.abspath(pkg_name),
-                                             ignr)
-    else:
-        if version is not None:
-            cmd_str = 'pip install {}{} {}'.format(
-                                        pkg_name, version, ignr)
-        else:
-            upgrade_str = '--upgrade' if upgrade else ''
-            cmd_str = 'pip install {} {} {}'.format(
-                                        upgrade_str, pkg_name, ignr)
-
-    logger_show('安装{} ...'.format(pkg_name), logger)
-
-    # os.system(cmd_str) # windows下会闪现cmd界面
-    subprocess.call(cmd_str, shell=True)
-
-
 def rename_files_in_dir(dir_path, func_rename):
     '''
     对dir_path中的文件进行批量重命名
@@ -70,40 +274,6 @@ def rename_files_in_dir(dir_path, func_rename):
         old_path = os.path.join(dir_path, name)
         new_path = os.path.join(dir_path, name_new)
         os.rename(old_path, new_path)
-
-
-def load_json(fpath, encoding=None, logger=None):
-    '''读取json格式文件file'''
-
-    if isnull(logger):
-        logger = simple_logger()
-
-    if not os.path.exists(fpath):
-        logger.warning('文件不存在，返回None：{}'.format(fpath))
-        return None
-
-    try:
-        with open(fpath, 'r', encoding=encoding) as f:
-            data_json = json.load(f)
-    except:
-        try:
-            with open(fpath, 'r', encoding='utf-8') as f:
-                data_json = json.load(f)
-        except:
-            try:
-                with open(fpath, 'r', encoding='gbk') as f:
-                    data_json = json.load(f)
-            except:
-                raise IOError(
-                    '读取{}出错，请检查文件（如编码或文件末尾多余字符等问题）！'.format(fpath))
-
-    return data_json
-
-
-def write_json(data, fpath, encoding=None):
-    '''把data（dict）写入json格式文件file'''
-    with open(fpath, 'w', encoding=encoding) as f:
-        json.dump(data, f, indent=4, ensure_ascii=False)
 
 
 def zip_fpath_7z(fpath, zip_path=None, mode='zip', pwd=None,
@@ -250,119 +420,6 @@ def del_dir(dir_path):
     shutil.rmtree(dir_path)
 
 
-def pickleFile(data, file):
-    '''以二进制格式保存数据data到文件file'''
-    with open(file, 'wb') as dbFile:
-        pickle.dump(data, dbFile)
-
-
-def unpickleFile(file):
-    '''读取二进制格式文件file'''
-    with open(file, 'rb') as dbFile:
-        return pickle.load(dbFile)
-
-
-def write_txt(lines, file, mode='w', **kwargs):
-    '''
-    将lines写入txt文件，文件路径为file
-    lines为列表，每个元素为一行文本内容，末尾不包括换行符
-    mode为写入模式，如'w'或'a'
-    '''
-    lines = [line + '\n' for line in lines]
-    f = open(file, mode=mode, **kwargs)
-    f.writelines(lines)
-    f.close()
-
-
-def read_lines(fpath, logger=None):
-    '''读取txt文件中的所有行'''
-    try:
-        with open(fpath, 'r') as f:
-            lines = f.readlines()
-    except:
-        try:
-            with open(fpath, 'r', encoding='utf-8') as f:
-                lines = f.readlines()
-        except:
-            try:
-                with open(fpath, 'r', encoding='gbk') as f:
-                    lines = f.readlines()
-            except:
-                logger_show('未正确识别文件编码格式，以二进制读取: {}'.format(fpath),
-                            logger, 'warn')
-                with open(fpath, 'rb') as f:
-                    lines = f.readlines()
-    return lines
-
-
-def load_text(fpath, sep=',', del_first_line=False, del_first_col=False,
-              to_pd=True, keep_header=True, encoding=None, del_last_col=False,
-              logger=None):
-    '''
-    读取文本文件数据，要求文件每行一个样本
-
-    Parameters
-    ----------
-    fpath: 文本文件路径
-    sep: 字段分隔符，默认`,`
-    del_first_line: 是否删除首行，默认不删除
-    del_first_col: 是否删除首列，默认不删除
-    to_pd: 是否输出为pandas.DataFrame，默认是
-    keep_header: 输出为pandas.DataFrame时是否以首行作为列名，默认是
-    encoding: 指定编码方式，默认不指定，不指定时会尝试以uft-8和gbk编码读取
-    del_last_col: 是否删除最后一列，默认否
-    logger: 日志记录器
-
-    注：若del_first_line为True，则输出pandas.DataFrame没有列名
-
-    Returns
-    -------
-    data: list或pandas.DataFrame
-    '''
-
-    if logger is None:
-        logger = simple_logger()
-
-    if not os.path.exists(fpath):
-        logger.warning('文件不存在，返回None：{}'.format(fpath))
-        return None
-
-    if encoding is not None:
-        try:
-            with open(fpath, 'r', encoding=encoding) as f:
-                lines = f.readlines()
-        except:
-            lines = read_lines(fpath, logger=logger)
-    else:
-        lines = read_lines(fpath, logger=logger)
-
-    data = []
-    for line in lines:
-        line = str(line)
-        line = line.strip()
-        line = line.split(sep)
-        if del_first_col:
-            line = line[1:]
-        if del_last_col:
-            line = line[:-1]
-        data.append(line)
-
-    if del_first_line:
-        data = data[1:]
-        if to_pd:
-            data = pd.DataFrame(data)
-    else:
-        if to_pd:
-            if keep_header:
-                cols = data[0]
-                data = pd.DataFrame(data[1:])
-                data.columns = cols
-            else:
-                data = pd.DataFrame(data)
-
-    return data
-
-
 def load_text_multi(fpath, sep=',', encoding=None, del_first_col=False,
                     del_last_col=False, del_first_line=False, to_pd=True,
                     keep_header=True, logger=None):
@@ -387,9 +444,6 @@ def load_text_multi(fpath, sep=',', encoding=None, del_first_col=False,
     -------
     data: list或pandas.DataFrame
     '''
-
-    if logger is None:
-        logger = simple_logger()
 
     if not os.path.exists(fpath):
         logger.warning('文件不存在，返回None：{}'.format(fpath))

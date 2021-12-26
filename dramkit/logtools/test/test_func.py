@@ -9,6 +9,6 @@ def test_func(x, y, txt, logger):
         logger.debug('x div y : {}'.format(str(x/y)))
     except:
         logger.error('x cannot div y, please check y.', exc_info=True)
-        raise
+        # raise
     logger.fatal('program may crash here.')
     logger.info('test function finished.')

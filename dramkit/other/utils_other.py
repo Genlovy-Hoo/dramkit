@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from utils_hoo.utils_io import load_csv
+import os
+import subprocess
+from utils_hoo.utils_io import load_csv, logger_show
 
 def load_csv_ColMaxMin(csv_path, col='date', return_data=True, dropna=False,
                        **kwargs):
@@ -19,3 +21,31 @@ def load_csv_ColMaxMin(csv_path, col='date', return_data=True, dropna=False,
         return col_Max, col_Min, data
     else:
         return col_Max, col_Min, None
+    
+    
+def install_pkg(pkg_name, version=None, upgrade=False, ignore_exist=False,
+                logger=None):
+    '''
+    安装python库
+    version格式: `==0.1.4`|`>1.0`|`<2.0`
+    '''
+
+    if ignore_exist:
+        ignr = '--ignore-installed'
+
+    if pkg_name[-4:] == '.whl' and os.path.exists(pkg_name):
+        cmd_str = 'pip install {} {}'.format(os.path.abspath(pkg_name),
+                                             ignr)
+    else:
+        if version is not None:
+            cmd_str = 'pip install {}{} {}'.format(
+                                        pkg_name, version, ignr)
+        else:
+            upgrade_str = '--upgrade' if upgrade else ''
+            cmd_str = 'pip install {} {} {}'.format(
+                                        upgrade_str, pkg_name, ignr)
+
+    logger_show('安装{} ...'.format(pkg_name), logger)
+
+    # os.system(cmd_str) # windows下会闪现cmd界面
+    subprocess.call(cmd_str, shell=True)

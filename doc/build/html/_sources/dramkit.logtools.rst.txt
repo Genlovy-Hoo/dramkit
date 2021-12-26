@@ -11,7 +11,7 @@ logger_general
 get_logger
 ^^^^^^^^^^^
 
-.. automethod:: dramkit.logtools.logger_general.get_logger
+.. autofunction:: dramkit.logtools.logger_general.get_logger
 
 logger_rotating
 ----------------
@@ -23,7 +23,7 @@ logger_rotating
 get_logger
 ^^^^^^^^^^^
 
-.. automethod:: dramkit.logtools.logger_rotating.get_logger
+.. autofunction:: dramkit.logtools.logger_rotating.get_logger
 
 logger_timedrotating
 ---------------------
@@ -35,7 +35,7 @@ logger_timedrotating
 get_logger
 ^^^^^^^^^^^
 
-.. automethod:: dramkit.logtools.logger_timedrotating.get_logger
+.. autofunction:: dramkit.logtools.logger_timedrotating.get_logger
 
 utils_logger
 -------------
@@ -47,14 +47,14 @@ utils_logger
 close_log_file
 ^^^^^^^^^^^^^^^
 
-.. automethod:: dramkit.logtools.utils_logger.close_log_file
+.. autofunction:: dramkit.logtools.utils_logger.close_log_file
 
 logger_show
 ^^^^^^^^^^^^
 
-.. automethod:: dramkit.logtools.utils_logger.logger_show
+.. autofunction:: dramkit.logtools.utils_logger.logger_show
 
 remove_handlers
 ^^^^^^^^^^^^^^^^
 
-.. automethod:: dramkit.logtools.utils_logger.remove_handlers
+.. autofunction:: dramkit.logtools.utils_logger.remove_handlers

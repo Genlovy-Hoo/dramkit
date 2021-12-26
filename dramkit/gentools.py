@@ -23,7 +23,7 @@ def log_used_time1(logger=None):
         @wraps(func)
         def timer(*args, **kwargs):
             '''运行func并记录用时'''
-            from utils_hoo.utils_logging.logger_utils import logger_show
+            from dramkit.logtools.utils_logger import logger_show
             t0 = time.time()
             result = func(*args, **kwargs)
             t = time.time()
@@ -46,7 +46,7 @@ def log_used_time2(logger=None):
         @wraps(func)
         def timer(*args, **kwargs):
             '''运行func并记录用时'''
-            from utils_hoo.utils_logging.logger_utils import logger_show
+            from dramkit.logtools.utils_logger import logger_show
             t0 = time.time()
             result = func(*args, **kwargs)
             t = time.time()
@@ -352,35 +352,6 @@ def randWSum(weight_sum, n, lowests, highests, W=None, n_dot=6):
     adds.append((weight_sum-sum([a*w for a, w in aw])) / W[-1])
 
     return adds
-
-
-def simple_logger():
-    '''返回一个简单的logger（只在控制台打印日志信息）'''
-
-    # 准备日志记录器logger
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.DEBUG)
-
-    # 移除已有的handlers
-    for h in logger.handlers:
-        if isinstance(h, logging.FileHandler):
-            h.close()
-            logger.removeHandler(h)
-    for h in logger.handlers:
-        logger.removeHandler(h)
-
-    # 日志格式
-    formatter = logging.Formatter(
-            '''%(asctime)s -%(filename)s[line: %(lineno)d] -%(levelname)s:
-    --%(message)s''')
-
-    # 控制台打印，StreamHandler
-    console_logger = logging.StreamHandler()
-    console_logger.setLevel(logging.DEBUG)
-    console_logger.setFormatter(formatter)
-    logger.addHandler(console_logger)
-
-    return logger
 
 
 def con_count_(series, Fcond, via_pd=True,

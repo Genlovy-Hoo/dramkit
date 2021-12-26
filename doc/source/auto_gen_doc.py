@@ -166,7 +166,7 @@ def write_subpkg_rst(sub_pkg, include_=False):
             rst_lines.append(name_)
             rst_lines.append('^' * (len(name_)+1))
             rst_lines.append('')
-            rst_lines.append('.. automethod:: '+mdlfull+'.'+fnc)
+            rst_lines.append('.. autofunction:: '+mdlfull+'.'+fnc)
             rst_lines.append('')
 
     if rst_lines[-1] == '':
@@ -227,6 +227,7 @@ if __name__ == '__main__':
     makeinfo = subprocess.check_output('.\make html', shell=True,
                                        stderr=subprocess.STDOUT)
     makeinfo = makeinfo.decode('gbk')
+    makeinfo = makeinfo.replace('\r\n', '\n')
     logger_show(makeinfo, get_logger('./source/makeinfo.log'))
 
     # 将__init__文件名改回来

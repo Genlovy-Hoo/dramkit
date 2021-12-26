@@ -15,6 +15,8 @@ if __name__ == '__main__':
 
     logger.info('Log start here *********************************************')
     test_func.test_func(3, 5, 'this is a warning.', logger)
+    
+    test_func.test_func(3, 0, 'this is a error.', logger)
     logger.info('test finished.')
 
     utils_logger.close_log_file(logger)
