@@ -7,10 +7,10 @@ import shutil
 import zipfile
 import subprocess
 import pandas as pd
+# from .gentools import isnull
 # from .logtools.utils_logger import logger_show
-# from .gentools import isnull, cut_df_by_con_val
+from dramkit.gentools import isnull
 from dramkit.logtools.utils_logger import logger_show
-from dramkit.gentools import isnull, cut_df_by_con_val
 
 
 def pickle_file(data, file):
@@ -108,7 +108,7 @@ def read_lines(fpath, encoding=None, logger=None):
         文件编码格式，若不指定，则尝试用utf-8和gbk编码读取
     logger : None, logging.Logger
         日志记录器
-        
+
     Returns
     -------
     lines : list
@@ -147,8 +147,8 @@ def write_txt(lines, file, mode='w', check_end=True, **kwargs):
         写入模式，如'w'或'a'
     check_end : bool
         是否检查每行行尾换行符，默认若行尾已经有换行符，则不再新添加换行符
-    **kwargs : 
-        open函数接受的关键字，如encoding等
+    **kwargs :
+        ``open`` 函数接受的关键字，如encoding等
 
     Note
     ----
@@ -185,7 +185,7 @@ def load_text(fpath, sep=',', del_first_line=False, del_first_col=False,
         字段分隔符，默认`,`
     del_first_line : bool
         是否删除首行，默认不删除
-        
+
         .. note:: 若del_first_line为True，则输出pandas.DataFrame没有列名
     del_first_col : bool
         是否删除首列，默认不删除
@@ -209,7 +209,7 @@ def load_text(fpath, sep=',', del_first_line=False, del_first_col=False,
     if not os.path.exists(fpath):
         logger_show('文件不存在，返回None：%s'%fpath, logger, 'warn')
         return None
-    
+
     lines = read_lines(fpath, encoding=encoding, logger=logger)
 
     data = []
@@ -239,282 +239,28 @@ def load_text(fpath, sep=',', del_first_line=False, del_first_col=False,
     return data
 
 
-
-
-
-
-
-
-def copy_file():
-	'''复制文件'''
-	raise NotImplementedError
-
-
-def copy_dir():
-    '''复制文件夹'''
-    raise NotImplementedError
-
-
-def extract_7z(zip_path, save_dir):
-    '''
-    7z命令解压文件
-    '''
-    raise NotImplementedError
-
-
-def rename_files_in_dir(dir_path, func_rename):
-    '''
-    对dir_path中的文件进行批量重命名
-    name_new = func_rename(name)为重命名规则函数
-    '''
-
-    files = os.listdir(dir_path)
-    for name in files:
-        name_new = func_rename(name)
-        old_path = os.path.join(dir_path, name)
-        new_path = os.path.join(dir_path, name_new)
-        os.rename(old_path, new_path)
-
-
-def zip_fpath_7z(fpath, zip_path=None, mode='zip', pwd=None,
-                 keep_zip_new=True):
-    '''
-    7z命令压缩单个文件（夹）
-
-    fpath: 待压缩文件(夹)路径
-    zip_path: 压缩文件保存路径，若为None，则为fpath路径加后缀
-    mode: 压缩文件后缀，可选['7z', 'zip']
-    pwd: 密码字符串
-    keep_zip_new: 为True时若zip_path已经存在, 则会先删除已经存在的再重新创建新压缩文件
-    '''
-
-    fpath = os.path.abspath(fpath) # 绝对路径
-
-    if isnull(zip_path):
-        zip_path = fpath + '.zip'
-    else:
-        zip_path = os.path.abspath(zip_path)
-
-    if os.path.exists(zip_path) and keep_zip_new:
-        os.remove(zip_path)
-
-    md_str = ' -t' + mode
-
-    if isnull(pwd):
-        pwd = ''
-    else:
-        pwd = ' -p' + str(pwd)
-
-    cmd_str = '7z a ' + zip_path + ' ' + fpath + md_str + pwd
-
-    # os.system(cmd_str) # windows下会闪现cmd界面
-    subprocess.call(cmd_str, shell=True)
-
-
-def zip_fpaths_7z(zip_path, fpaths, mode='zip', pwd=None, keep_zip_new=True):
-    '''
-    7z命令压缩多个文件（夹）列表files到压缩文件zip_path
-    注: files中的单个文件(不是文件夹)在压缩包中不会保留原来的完整路径,
-        所有单个文件都会在压缩包根目录下
-
-    zip_path: 压缩文件保存路径
-    fpaths: 压缩文件路径列表，fpaths太长的时候会出错
-    mode: 压缩文件后缀，可选['7z', 'zip']
-    pwd: 密码字符串
-    keep_zip_new: 为True时若zip_path已经存在, 则会先删除已经存在的再重新创建新压缩文件
-    '''
-
-    md_str = ' -t' + mode
-
-    if isnull(pwd):
-        pwd = ''
-    else:
-        pwd = ' -p' + str(pwd)
-
-    if os.path.exists(zip_path) and keep_zip_new:
-        os.remove(zip_path)
-
-    fpaths_str = ' '.join([os.path.abspath(x) for x in fpaths])
-
-    cmd_str = '7z a ' + zip_path + ' ' + fpaths_str + md_str + pwd
-
-    # os.system(cmd_str) # windows下会闪现cmd界面
-    subprocess.call(cmd_str, shell=True)
-
-
-def zip_fpath(fpath, zip_path=None):
-    '''
-    zipfile压缩单个文件（夹）
-
-    fpath: 待压缩文件夹路径(应为相对路径)
-    zip_path: 压缩文件保存路径，若为None，则为fpath路径加后缀
-    '''
-
-    if isnull(zip_path):
-        if os.path.isdir(fpath) and fpath[-1] == '/':
-            zip_path = fpath[:-1] + '.zip'
-        else:
-            zip_path = fpath + '.zip'
-
-    if os.path.isfile(fpath): # fpath为文件
-        zip_files(zip_path, [fpath])
-    elif os.path.isdir(fpath): # fpath为文件夹
-        fpaths = get_all_files(fpath)
-        zip_files(zip_path, fpaths)
-
-
-def zip_fpaths(zip_path, fpaths):
-    '''
-    压缩路径列表fpaths(可为文件也可为文件夹, 应为相对路径)到zip_path
-    zip_path：zip压缩包保存路径
-    fpaths：需要压缩的路径列表(应为相对路径, 可为文件也可为文件夹)
-    '''
-    all_paths = []
-    for fpath in fpaths:
-        if os.path.isfile(fpath):
-            all_paths.append(fpath)
-        elif os.path.isdir(fpath):
-            all_paths += get_all_files(fpath)
-    zip_files(zip_path, all_paths)
-
-
-def zip_files(zip_path, fpaths, keep_ori_path=True):
-    '''
-    使用zipfile打包为.zip文件
-    zip_path：zip压缩包保存路径
-    fpaths：需要压缩的文件(不是能文件夹)路径列表(应为相对路径)
-    keep_ori_path: 若为True, 则压缩文件会保留fpaths中文件的原始路径
-                   若为False, 则fpaths中所有文件在压缩文件中都在统一根目录下
-    '''
-    f = zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED)
-    if keep_ori_path:
-        for fpath in fpaths:
-            f.write(fpath)
-    else:
-        for fpath in fpaths:
-            file = os.path.basename(fpath)
-            f.write(fpath, file)
-    f.close()
-
-
-def get_all_files(dir_path, ext=None):
-    '''
-	获取dir_path文件夹及其子文件夹中所有的文件路径
-	ext指定文件后缀列表
-	'''
-    assert (ext is None or isinstance(ext, list))
-    fpaths = []
-    for root, dirs, files in os.walk(dir_path):
-        for fname in files:
-            if ext is not None:
-                for x in ext:
-                    if fname[-len(x):] == x:
-                        fpaths.append(os.path.join(root, fname))
-            else:
-                fpaths.append(os.path.join(root, fname))
-    return fpaths
-
-
-def del_dir(dir_path):
-    '''删除文件夹及其所有内容'''
-    shutil.rmtree(dir_path)
-
-
-def load_text_multi(fpath, sep=',', encoding=None, del_first_col=False,
-                    del_last_col=False, del_first_line=False, to_pd=True,
-                    keep_header=True, logger=None):
-    '''
-    读取可能存在多个表纵向排列，且每个表列数不相同的文件，读取出每个表格
-
-    Parameters
-    ----------
-    fpath: 文本文件路径
-    sep: 字段分隔符，默认`,`
-    encoding: 指定编码方式，默认不指定，不指定时会尝试以uft-8和gbk编码读取
-    del_first_col: 是否删除首列，默认不删除
-    del_last_col: 是否删除最后一列，默认否
-    del_first_line: 是否删除首行，默认不删除
-    to_pd: 是否输出为pandas.DataFrame，默认是
-    keep_header: 输出为pandas.DataFrame时是否以首行作为列名，默认是
-    logger: 日志记录器
-
-    注：若del_first_line为True，则输出pandas.DataFrame没有列名
-
-    Returns
-    -------
-    data: list或pandas.DataFrame
-    '''
-
-    if not os.path.exists(fpath):
-        logger.warning('文件不存在，返回None：{}'.format(fpath))
-        return None
-
-    if encoding is not None:
-        try:
-            with open(fpath, 'r', encoding=encoding) as f:
-                lines = f.readlines()
-        except:
-            lines = read_lines(fpath, logger=logger)
-    else:
-        lines = read_lines(fpath, logger=logger)
-
-    data = []
-    lens = []
-    for line in lines:
-        line = str(line)
-        line = line.strip()
-        if line == '':
-            continue
-        line = line.split(sep)
-        if del_first_col:
-            line = line[1:]
-        if del_last_col:
-            line = line[:-1]
-        data.append(line)
-        lens.append(len(line))
-
-    tmp = pd.DataFrame({'len': lens})
-    tmp['idx'] = range(0, tmp.shape[0])
-    tmps = cut_df_by_con_val(tmp, 'len')
-    start_end_idxs = [(x['idx'].iloc[0], x['idx'].iloc[-1]) for x in tmps]
-
-    datas = [data[idx1:idx2+1] for idx1, idx2 in start_end_idxs]
-
-    def get_final_data(data):
-        '''组织数据输出格式'''
-        if del_first_line:
-            data = data[1:]
-            if to_pd:
-                data = pd.DataFrame(data)
-        else:
-            if to_pd:
-                if keep_header:
-                    cols = data[0]
-                    data = pd.DataFrame(data[1:])
-                    data.columns = cols
-                else:
-                    data = pd.DataFrame(data)
-        return data
-
-    datas = [get_final_data(x) for x in datas]
-
-    return datas
-
-
-def load_csv(fpath, del_unname_cols=True, logger=None, encoding=None,
-             **kwargs):
+def load_csv(fpath, del_unname_cols=True, encoding=None,
+             logger=None, **kwargs):
     '''
     用pandas读取csv数据
 
-    Args:
-        fpath: csv文件路径
-        del_unname_cols: 是否删除未命名列，默认删除
-        logger: 日志记录器
-        encoding: 指定编码方式，默认不指定，不指定时会尝试以uft-8和gbk编码读取
-        **kwargs: 其它pd.read_csv支持的参数
+    Parameters
+    ----------
+    fpath : str
+        csv文件路径
+    del_unname_cols : bool
+        是否删除未命名列，默认删除
+    encoding : str, None
+        指定编码方式，默认不指定，不指定时会尝试以uft-8和gbk编码读取
+    logger : logging.Logger, None
+        日志记录器
+    **kwargs :
+        其它 ``pd.read_csv`` 支持的参数
 
-    Returns:
-        data: pandas.DataFrame
+    Returns
+    -------
+    data : pandas.DataFrame
+        读取的数据
     '''
 
     if not os.path.exists(fpath):
@@ -544,8 +290,23 @@ def load_csv(fpath, del_unname_cols=True, logger=None, encoding=None,
 def load_csvs(fdir, sort_cols=None, drop_duplicates=True,
               **kwargs_loadcsv):
     '''
-    读取fdir中所有的csv文件，整合到一个df里面
-    根据sort_cols指定列排序和去重
+    读取指定文件夹中所有的csv文件，整合到一个df里面
+
+    Parameters
+    ----------
+    fdir : str
+        文件夹路径
+    sort_cols : None, str, list
+        根据sort_cols指定列排序(升序)和去重
+    drop_duplicates : bool
+        是否删除重复值(重复值保留第一条)
+    **kwargs_loadcsv :
+        :func:`dramkit.iotools.load_csv` 接受的其它参数
+
+    Returns
+    -------
+    data : pandas.DataFrame
+        读取的数据
     '''
     files = os.listdir(fdir)
     files = [os.path.join(fdir, x) for x in files if x[-4:] == '.csv']
@@ -563,17 +324,31 @@ def load_csvs(fdir, sort_cols=None, drop_duplicates=True,
 
 
 def load_excels(fdir, sort_cols=None, drop_duplicates=True,
-                **kwargs_loadexcel):
+                **kwargs_readexcel):
     '''
-    读取fdir中所有的excel文件，整合到一个df里面
-    根据sort_cols指定列排序和去重
+    读取指定文件夹中所有的excel文件，整合到一个df里面
+
+    Parameters
+    ----------
+    fdir : str
+        文件夹路径
+    sort_cols : None, str, list
+        根据sort_cols指定列排序(升序)和去重
+    drop_duplicates : bool
+        是否删除重复值(重复值保留第一条)
+    **kwargs_readexcel :
+        ``pd.read_excel`` 接受的其它参数
+
+    Returns
+    -------
+    data : pandas.DataFrame
+        读取的数据
     '''
     files = os.listdir(fdir)
-    files = [os.path.join(fdir, x) for x in files \
-                         if x[-4:] == '.xls' or x[-5:] == '.xlsx']
+    files = [os.path.join(fdir, x) for x in files if x[-4:] == '.xls' or x[-5:] == '.xlsx']
     data = []
     for file in files:
-        df = pd.read_excel(file, **kwargs_loadexcel)
+        df = pd.read_excel(file, **kwargs_readexcel)
         data.append(df)
     data = pd.concat(data, axis=0)
     if not isnull(sort_cols):
@@ -582,6 +357,251 @@ def load_excels(fdir, sort_cols=None, drop_duplicates=True,
             dupcols = [sort_cols] if isinstance(sort_cols, str) else sort_cols
             data.drop_duplicates(subset=dupcols, inplace=True)
     return data
+
+
+def get_all_files(dir_path, ext=None, include_dir=False, abspath=False):
+    '''
+	获取指定文件夹及其子文件夹中所有的文件路径
+
+    Parameters
+    ----------
+    dir_path : str
+        文件夹路径
+    ext : None, str, list
+        指定文件后缀列表，若为None，则包含所有类型文件
+    include_dir : bool
+        返回结果中是否包含文件夹路径，默认不包含（即只返回文件路径）
+    abspath : bool
+        是否返回绝对路径，默认返回相对路径
+  
+    Returns
+    -------
+    fpaths : list
+        文件路径列表
+	'''
+    if not (ext is None or isinstance(ext, list) or isinstance(ext, str)):
+        raise ValueError('`ext`必须为None或str或list类型！')
+    if ext is not None and isinstance(ext, str):
+        ext = [ext]
+    fpaths = []
+    for root, dirs, files in os.walk(dir_path):
+        if include_dir:
+            fpaths.append(root)
+        for fname in files:
+            if ext is not None:
+                for x in ext:
+                    if fname[-len(x):] == x:
+                        fpaths.append(os.path.join(root, fname))
+            else:
+                fpaths.append(os.path.join(root, fname))
+    if abspath:
+        fpaths = [os.path.abspath(x) for x in fpaths]
+    return fpaths
+
+
+def zip_files(zip_path, fpaths, keep_ori_path=True, keep_zip_new=True):
+    '''
+    使用zipfile将指定路径列表(不包括子文件(夹)内容)打包为.zip文件
+
+    Parameters
+    ----------
+    zip_path : str
+        zip压缩包保存路径
+    fpaths : list
+        需要压缩的路径列表(应为相对路径)
+    keep_ori_path : bool
+        - 若为True, 则压缩文件会保留fpaths中文件的原始路径
+        - 若为False, 则fpaths中所有文件在压缩文件中都在统一根目录下
+    keep_zip_new : bool
+        若为True，将覆盖已有压缩文件，否则在已有文件里面新增
+    '''
+    if keep_zip_new:
+        f = zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED)
+    else:
+        f = zipfile.ZipFile(zip_path, 'a', zipfile.ZIP_DEFLATED)
+    if keep_ori_path:
+        for fpath in fpaths:
+            f.write(fpath)
+    else:
+        for fpath in fpaths:
+            file = os.path.basename(fpath)
+            f.write(fpath, file)
+    f.close()
+    
+    
+def zip_fpath(fpath, zip_path=None, **kwargs):
+    '''
+    使用zipfile压缩单个文件(夹)下所有内容为.zip文件
+
+    Parameters
+    ----------
+    fpath : str
+        待压缩文件(夹)路径(应为相对路径)
+    zip_path : None, str
+        压缩文件保存路径，若为None，则为fpath路径加后缀
+    **kwargs :
+        :func:`dramkit.iotools.zip_files` 接受的参数
+    '''
+    if isnull(zip_path):
+        if os.path.isdir(fpath) and fpath[-1] == '/':
+            zip_path = fpath[:-1] + '.zip'
+        else:
+            zip_path = fpath + '.zip'
+    if os.path.isfile(fpath): # fpath为文件
+        zip_files(zip_path, [fpath], **kwargs)
+    elif os.path.isdir(fpath): # fpath为文件夹
+        fpaths = get_all_files(fpath, include_dir=True)
+        zip_files(zip_path, fpaths, **kwargs)
+
+
+def zip_fpaths(zip_path, fpaths, **kwargs):
+    '''
+    使用zipfile将指定路径列表(包括子文件(夹)所有内容)打包为.zip文件
+
+    Parameters
+    ----------
+    zip_path : str
+        zip压缩包保存路径
+    fpaths : list
+        需要压缩的路径列表(可为文件也可为文件夹, 应为相对路径)
+    **kwargs :
+        :func:`dramkit.iotools.zip_files` 接受的参数
+    '''
+    all_paths = []
+    for fpath in fpaths:
+        if os.path.isfile(fpath):
+            all_paths.append(fpath)
+        elif os.path.isdir(fpath):
+            all_paths += get_all_files(fpath, include_dir=True)
+    zip_files(zip_path, all_paths, **kwargs)
+
+
+def zip_extract():
+    '''用zipfile解压文件，待实现'''
+    raise NotImplementedError
+
+
+def zip_fpath_7z(fpath, zip_path=None, mode='zip', pwd=None, keep_zip_new=True):
+    '''
+    7z命令压缩单个文件(夹)到.zip文件
+
+    Parameters
+    ----------
+    fpath : str
+        待压缩文件(夹)路径
+    zip_path : None, str
+        压缩文件保存路径，若为None，则为fpath路径加后缀
+    mode : str
+        压缩文件后缀，可选['7z', 'zip']
+    pwd : str
+        密码字符串
+    keep_zip_new : bool
+        - 若为True，则zip_path将覆盖原来已经存在的文件
+        - 若为False，则zip_path将在原来已有的文件中新增需要压缩的文件
+    '''
+
+    fpath = os.path.abspath(fpath) # 绝对路径
+
+    if isnull(zip_path):
+        if os.path.isdir(fpath) and fpath[-1] == '/':
+            zip_path = fpath[:-1] + '.zip'
+        else:
+            zip_path = fpath + '.zip'
+    else:
+        zip_path = os.path.abspath(zip_path)
+
+    if os.path.exists(zip_path) and keep_zip_new:
+        os.remove(zip_path)
+
+    md_str = ' -t' + mode
+
+    if isnull(pwd):
+        pwd = ''
+    else:
+        pwd = ' -p' + str(pwd)
+
+    cmd_str = '7z a ' + zip_path + ' ' + fpath + md_str + pwd
+
+    # os.system(cmd_str) # windows下会闪现cmd界面
+    subprocess.call(cmd_str, shell=True)
+
+
+def zip_fpaths_7z(zip_path, fpaths, mode='zip', pwd=None, keep_zip_new=True):
+    '''
+    7z命令压缩多个文件(夹)列表到.zip文件
+
+    Parameters
+    ----------
+    zip_path : str
+        zip压缩包保存路径
+    fpaths : list
+        待压缩文件(夹)路径列表
+
+        .. warning:: fpaths太长的时候可能会报错
+    mode : str
+        压缩文件后缀，可选['7z', 'zip']
+    pwd : str
+        密码字符串
+    keep_zip_new : bool
+        - 若为True，则zip_path将覆盖原来已经存在的文件
+        - 若为False，则zip_path将在原来已有的文件中新增需要压缩的文件
+    '''
+
+    md_str = ' -t' + mode
+
+    if isnull(pwd):
+        pwd = ''
+    else:
+        pwd = ' -p' + str(pwd)
+
+    if os.path.exists(zip_path) and keep_zip_new:
+        os.remove(zip_path)
+
+    fpaths_str = ' '.join([os.path.abspath(x) for x in fpaths])
+
+    cmd_str = '7z a ' + zip_path + ' ' + fpaths_str + md_str + pwd
+
+    # os.system(cmd_str) # windows下会闪现cmd界面
+    subprocess.call(cmd_str, shell=True)
+
+
+def extract_7z():
+    '''7z命令解压文件，待实现'''
+    raise NotImplementedError
+
+
+def rename_files_in_dir(dir_path, func_rename):
+    '''
+    对指定文件夹中的文件进行批量重命名
+    
+    Parameters
+    ----------
+    dir_path : str
+        目标文件夹
+    func_rename : function
+        命名规则函数: name_new = func_rename(name)
+    '''
+    files = os.listdir(dir_path)
+    for name in files:
+        name_new = func_rename(name)
+        old_path = os.path.join(dir_path, name)
+        new_path = os.path.join(dir_path, name_new)
+        os.rename(old_path, new_path)
+
+
+def del_dir(dir_path):
+    '''删除dir_path指定文件夹及其所有内容'''
+    shutil.rmtree(dir_path)
+    
+
+def copy_file():
+	'''复制文件，待实现'''
+	raise NotImplementedError
+
+
+def copy_dir():
+    '''复制文件夹，待实现'''
+    raise NotImplementedError
 
 
 if __name__ == '__main__':

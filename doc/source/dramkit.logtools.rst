@@ -44,15 +44,15 @@ utils_logger
 
 .. currentmodule:: dramkit.logtools.utils_logger
 
-close_log_file
-^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.logtools.utils_logger.close_log_file
-
 logger_show
 ^^^^^^^^^^^^
 
 .. autofunction:: dramkit.logtools.utils_logger.logger_show
+
+close_log_file
+^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.logtools.utils_logger.close_log_file
 
 remove_handlers
 ^^^^^^^^^^^^^^^^

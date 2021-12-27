@@ -32,12 +32,17 @@ utils_other
 
 .. currentmodule:: dramkit.other.utils_other
 
-install_pkg
-^^^^^^^^^^^^
-
-.. autofunction:: dramkit.other.utils_other.install_pkg
-
 load_csv_ColMaxMin
 ^^^^^^^^^^^^^^^^^^^
 
 .. autofunction:: dramkit.other.utils_other.load_csv_ColMaxMin
+
+load_text_multi
+^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.other.utils_other.load_text_multi
+
+install_pkg
+^^^^^^^^^^^^
+
+.. autofunction:: dramkit.other.utils_other.install_pkg

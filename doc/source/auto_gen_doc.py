@@ -146,8 +146,8 @@ def write_subpkg_rst(sub_pkg, include_=False):
         rst_lines.append('')
 
         clas, funcs = get_class_funcs(fpy, include_=include_)
-        clas.sort()
-        funcs.sort()
+        # clas.sort()
+        # funcs.sort()
 
         # 添加class
         for clss in clas:

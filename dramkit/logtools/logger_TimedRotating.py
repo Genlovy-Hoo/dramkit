@@ -25,9 +25,7 @@ def get_logger(fpath=None, when='S', interval=3, nfile=3,
     screen_show : bool
         是否在控制台打印日志信息，默认打印
 
-    Note
-    ----
-    ``fpath`` 和 ``screen_show`` 必须有至少一个为真
+        .. note:: ``fpath`` 和 ``screen_show`` 必须有至少一个为真
 
     Returns
     -------

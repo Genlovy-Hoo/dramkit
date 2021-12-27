@@ -51,8 +51,9 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.other.utils_other">utils_other</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#install-pkg">install_pkg</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#load-csv-colmaxmin">load_csv_ColMaxMin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-text-multi">load_text_multi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-pkg">install_pkg</a></li>
 </ul>
 </li>
 </ul>
@@ -122,16 +123,6 @@ return new_path</p>
 </section>
 <section id="module-dramkit.other.utils_other">
 <span id="utils-other"></span><h2>utils_other<a class="headerlink" href="#module-dramkit.other.utils_other" title="Permalink to this headline"></a></h2>
-<section id="install-pkg">
-<h3>install_pkg<a class="headerlink" href="#install-pkg" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.other.utils_other.install_pkg">
-<span class="sig-prename descclassname"><span class="pre">dramkit.other.utils_other.</span></span><span class="sig-name descname"><span class="pre">install_pkg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pkg_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upgrade</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_exist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.other.utils_other.install_pkg" title="Permalink to this definition"></a></dt>
-<dd><p>安装python库
-version格式: <cite>==0.1.4`|</cite>&gt;1.0`|`&lt;2.0`</p>
-</dd></dl>
-
-</section>
 <section id="load-csv-colmaxmin">
 <h3>load_csv_ColMaxMin<a class="headerlink" href="#load-csv-colmaxmin" title="Permalink to this headline"></a></h3>
 <dl class="py function">
@@ -141,6 +132,47 @@ version格式: <cite>==0.1.4`|</cite>&gt;1.0`|`&lt;2.0`</p>
 当return_data为True时返回最大值、最小值和df数据，为False时不返回数据（None）
 dropna设置在判断最大最小值之前是否删除col列的无效值
 <a href="#id2"><span class="problematic" id="id3">**</span></a>kwargs为load_csv可接受的参数</p>
+</dd></dl>
+
+</section>
+<section id="load-text-multi">
+<h3>load_text_multi<a class="headerlink" href="#load-text-multi" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.other.utils_other.load_text_multi">
+<span class="sig-prename descclassname"><span class="pre">dramkit.other.utils_other.</span></span><span class="sig-name descname"><span class="pre">load_text_multi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fpath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">','</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">del_first_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">del_last_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">del_first_line</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_pd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.other.utils_other.load_text_multi" title="Permalink to this definition"></a></dt>
+<dd><p>读取可能存在多个表纵向排列，且每个表列数不相同的文件，读取出每个表格</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fpath</strong> (<em>文本文件路径</em>) – </p></li>
+<li><p><strong>sep</strong> (<em>字段分隔符，默认`</em><em>,</em><em>`</em>) – </p></li>
+<li><p><strong>encoding</strong> (<em>指定编码方式，默认不指定，不指定时会尝试以uft-8和gbk编码读取</em>) – </p></li>
+<li><p><strong>del_first_col</strong> (<em>是否删除首列，默认不删除</em>) – </p></li>
+<li><p><strong>del_last_col</strong> (<em>是否删除最后一列，默认否</em>) – </p></li>
+<li><p><strong>del_first_line</strong> (<em>是否删除首行，默认不删除</em>) – </p></li>
+<li><p><strong>to_pd</strong> (<em>是否输出为pandas.DataFrame，默认是</em>) – </p></li>
+<li><p><strong>keep_header</strong> (<em>输出为pandas.DataFrame时是否以首行作为列名，默认是</em>) – </p></li>
+<li><p><strong>logger</strong> (<em>日志记录器</em>) – </p></li>
+<li><p><strong>注：若del_first_line为True，则输出pandas.DataFrame没有列名</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>data</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list或pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="install-pkg">
+<h3>install_pkg<a class="headerlink" href="#install-pkg" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.other.utils_other.install_pkg">
+<span class="sig-prename descclassname"><span class="pre">dramkit.other.utils_other.</span></span><span class="sig-name descname"><span class="pre">install_pkg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pkg_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upgrade</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_exist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.other.utils_other.install_pkg" title="Permalink to this definition"></a></dt>
+<dd><p>安装python库
+version格式: <cite>==0.1.4`|</cite>&gt;1.0`|`&lt;2.0`</p>
 </dd></dl>
 
 </section>

@@ -54,8 +54,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.logtools.utils_logger">utils_logger</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#close-log-file">close_log_file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#logger-show">logger_show</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#close-log-file">close_log_file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#remove-handlers">remove_handlers</a></li>
 </ul>
 </li>
@@ -104,20 +104,19 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>fapth</strong> (<em>str</em><em>, </em><em>None</em>) – 日志文件路径，默认为None即不保存日志文件</p></li>
 <li><p><strong>fmode</strong> (<em>str</em>) – ‘w’或’a’，取’w’时会覆盖原有日志文件（若存在的话），取’a’则追加记录</p></li>
-<li><p><strong>screen_show</strong> (<em>bool</em>) – 是否在控制台打印日志信息，默认打印</p></li>
-</ul>
-</dd>
-</dl>
+<li><p><strong>screen_show</strong> (<em>bool</em>) – <p>是否在控制台打印日志信息，默认打印</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code class="docutils literal notranslate"><span class="pre">fpath</span></code> 和 <code class="docutils literal notranslate"><span class="pre">screen_show</span></code> 必须有至少一个为真</p>
 </div>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>logger</strong> – 日志记录器</p>
+</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>logging.Logger</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>logger</strong> – 日志记录器</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>logging.Logger</p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -144,20 +143,19 @@
 <li><p><strong>fmode</strong> (<em>str</em>) – ‘w’或’a’，取’w’时会覆盖原有日志文件（若存在的话），取’a’则追加记录</p></li>
 <li><p><strong>max_kb</strong> (<em>float</em>) – 单个日志文件大小限制，单位为kb</p></li>
 <li><p><strong>nfile</strong> (<em>int</em>) – 最多备份文件个数</p></li>
-<li><p><strong>screen_show</strong> (<em>bool</em>) – 是否在控制台打印日志信息，默认打印</p></li>
-</ul>
-</dd>
-</dl>
+<li><p><strong>screen_show</strong> (<em>bool</em>) – <p>是否在控制台打印日志信息，默认打印</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code class="docutils literal notranslate"><span class="pre">fpath</span></code> 和 <code class="docutils literal notranslate"><span class="pre">screen_show</span></code> 必须有至少一个为真</p>
 </div>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>logger</strong> – 日志记录器</p>
+</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>logging.Logger</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>logger</strong> – 日志记录器</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>logging.Logger</p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -185,20 +183,19 @@
 <a href="#id3"><span class="problematic" id="id4">`</span></a>S`秒、<a href="#id5"><span class="problematic" id="id6">`</span></a>M`分、<a href="#id7"><span class="problematic" id="id8">`</span></a>H`小时、<a href="#id9"><span class="problematic" id="id10">`</span></a>D`天、<a href="#id11"><span class="problematic" id="id12">`</span></a>W`星期、<a href="#id13"><span class="problematic" id="id14">`</span></a>midnight`午夜 等</p></li>
 <li><p><strong>interval</strong> (<em>int</em>) – 滚动周期，单位由 <code class="docutils literal notranslate"><span class="pre">when</span></code> 指定</p></li>
 <li><p><strong>nfile</strong> (<em>int</em>) – 最多备份文件个数</p></li>
-<li><p><strong>screen_show</strong> (<em>bool</em>) – 是否在控制台打印日志信息，默认打印</p></li>
-</ul>
-</dd>
-</dl>
+<li><p><strong>screen_show</strong> (<em>bool</em>) – <p>是否在控制台打印日志信息，默认打印</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code class="docutils literal notranslate"><span class="pre">fpath</span></code> 和 <code class="docutils literal notranslate"><span class="pre">screen_show</span></code> 必须有至少一个为真</p>
 </div>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>logger</strong> – 日志记录器</p>
+</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>logging.Logger</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>logger</strong> – 日志记录器</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>logging.Logger</p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -212,15 +209,6 @@
 </section>
 <section id="module-dramkit.logtools.utils_logger">
 <span id="utils-logger"></span><h2>utils_logger<a class="headerlink" href="#module-dramkit.logtools.utils_logger" title="Permalink to this headline"></a></h2>
-<section id="close-log-file">
-<h3>close_log_file<a class="headerlink" href="#close-log-file" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.logtools.utils_logger.close_log_file">
-<span class="sig-prename descclassname"><span class="pre">dramkit.logtools.utils_logger.</span></span><span class="sig-name descname"><span class="pre">close_log_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.logtools.utils_logger.close_log_file" title="Permalink to this definition"></a></dt>
-<dd><p>关闭日志记录器logger中的文件流，返回logger</p>
-</dd></dl>
-
-</section>
 <section id="logger-show">
 <h3>logger_show<a class="headerlink" href="#logger-show" title="Permalink to this headline"></a></h3>
 <dl class="py function">
@@ -247,6 +235,15 @@
 <li><p>添加更多level和设置</p></li>
 </ul>
 </div>
+</dd></dl>
+
+</section>
+<section id="close-log-file">
+<h3>close_log_file<a class="headerlink" href="#close-log-file" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.logtools.utils_logger.close_log_file">
+<span class="sig-prename descclassname"><span class="pre">dramkit.logtools.utils_logger.</span></span><span class="sig-name descname"><span class="pre">close_log_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.logtools.utils_logger.close_log_file" title="Permalink to this definition"></a></dt>
+<dd><p>关闭日志记录器logger中的文件流，返回logger</p>
 </dd></dl>
 
 </section>
