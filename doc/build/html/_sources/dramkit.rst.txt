@@ -351,3 +351,8 @@ copy_dir
 ^^^^^^^^^
 
 .. autofunction:: dramkit.iotools.copy_dir
+
+find_files_include_str
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.iotools.find_files_include_str

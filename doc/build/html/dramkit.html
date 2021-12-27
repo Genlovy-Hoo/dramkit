@@ -113,6 +113,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#del-dir">del_dir</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#copy-file">copy_file</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#copy-dir">copy_dir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#find-files-include-str">find_files_include_str</a></li>
 </ul>
 </li>
 </ul>
@@ -1550,6 +1551,38 @@ check_l_in_l0(l, l0)
 <dt class="sig sig-object py" id="dramkit.iotools.copy_dir">
 <span class="sig-prename descclassname"><span class="pre">dramkit.iotools.</span></span><span class="sig-name descname"><span class="pre">copy_dir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.iotools.copy_dir" title="Permalink to this definition"></a></dt>
 <dd><p>复制文件夹，待实现</p>
+</dd></dl>
+
+</section>
+<section id="find-files-include-str">
+<h3>find_files_include_str<a class="headerlink" href="#find-files-include-str" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.iotools.find_files_include_str">
+<span class="sig-prename descclassname"><span class="pre">dramkit.iotools.</span></span><span class="sig-name descname"><span class="pre">find_files_include_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.iotools.find_files_include_str" title="Permalink to this definition"></a></dt>
+<dd><p>在指定目录下的文件中，查找那些文件里面包含了目标字符串</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_str</strong> (<em>str</em>) – 目标字符串</p></li>
+<li><p><strong>root_dir</strong> (<em>str</em><em>, </em><em>None</em>) – 目标文件夹，目标字符串在此文件夹及其所有子文件内所有文本文件中搜索
+若为None，则在os.getcwd()下搜索</p></li>
+<li><p><strong>file_types</strong> (<em>None</em><em>, </em><em>str</em><em>, </em><em>list</em>) – <p>指定查找的文件后缀范围:</p>
+<ul>
+<li><p>None, 在所有文件中查找</p></li>
+<li><p>str, 指定一类文件后缀, 如’.py’表示在Python脚本中查找</p></li>
+<li><p>list, 指定一个后缀列表, 如[‘.py’, ‘.txt’]</p></li>
+</ul>
+</p></li>
+<li><p><strong>logger</strong> (<em>None</em><em>, </em><em>logging.Logger</em>) – 日志记录器</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>files</strong> – key为找到的文件路径，value为包含目标字符串的文本内容(仅第一次出现的位置)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

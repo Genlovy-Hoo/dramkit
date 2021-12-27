@@ -604,6 +604,51 @@ def copy_dir():
     raise NotImplementedError
 
 
+def find_files_include_str(target_str, root_dir=None,
+                           file_types='default', logger=None):
+    '''
+    在指定目录下的文件中，查找那些文件里面包含了目标字符串
+
+    Parameters
+    ----------
+    target_str : str
+        目标字符串
+    root_dir : str, None
+        目标文件夹，目标字符串在此文件夹及其所有子文件内所有文本文件中搜索
+        若为None，则在os.getcwd()下搜索
+    file_types : None, str, list
+        指定查找的文件后缀范围:
+
+        - None, 在所有文件中查找
+        - str, 指定一类文件后缀, 如'.py'表示在Python脚本中查找
+        - list, 指定一个后缀列表, 如['.py', '.txt']
+    logger : None, logging.Logger
+        日志记录器
+
+    Returns
+    -------
+    files : dict
+        key为找到的文件路径，value为包含目标字符串的文本内容(仅第一次出现的位置)
+    '''
+    if root_dir is None:
+        root_dir = os.getcwd()
+    all_files = get_all_files(root_dir, ext=file_types)
+    files = []
+    for fpath in all_files:
+        lines = read_lines(fpath, logger=logger)
+        for line in lines:
+            try:
+                if target_str in line:
+                    files.append([fpath, line])
+                    break
+            except:
+                if target_str.encode('gbk') in line:
+                    files.append([fpath, line])
+                    break
+    files = pd.DataFrame(files, columns=['fpath', 'content'])
+    return files
+
+
 if __name__ == '__main__':
     fpath = './test/load_text_test_utf8.csv'
     data1 = load_text(fpath, encoding='gbk')

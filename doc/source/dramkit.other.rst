@@ -1,18 +1,6 @@
 other
 ======
 
-find_files_include_str
------------------------
-
-.. automodule:: dramkit.other.find_files_include_str
-
-.. currentmodule:: dramkit.other.find_files_include_str
-
-find_files_include_str
-^^^^^^^^^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.other.find_files_include_str.find_files_include_str
-
 replace_endblank
 -----------------
 
