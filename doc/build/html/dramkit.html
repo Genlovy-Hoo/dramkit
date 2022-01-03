@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dramkit &mdash; DramKit 0.0.6.2 documentation</title>
+  <title>dramkit &mdash; DramKit 0.0.6.3 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -41,32 +41,30 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">dramkit</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.gentools">gentools</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#log-used-time1">log_used_time1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#log-used-time2">log_used_time2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#log-used-time">log_used_time</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#print-used-time">print_used_time</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#bootstrapping">bootstrapping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#groupby-rolling-func">groupby_rolling_func</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#label-rep-index-str">label_rep_index_str</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#drop-index-duplicates">drop_index_duplicates</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#get-update-kwargs">get_update_kwargs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#roulette-base">Roulette_base</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#roulette-stochasticaccept">Roulette_stochasticAccept</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#roulette-n">Roulette_N</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#randsum">randSum</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#randwsum">randWSum</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#con-count">con_count_</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">con_count</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#get-pre-val-fcond">get_pre_val_Fcond</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#roulette-base">roulette_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#roulette-stochastic-accept">roulette_stochastic_accept</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#roulette-count">roulette_count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rand-sum">rand_sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rand-weight-sum">rand_weight_sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#replace-repeat-iter">replace_repeat_iter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#replace-repeat-pd">replace_repeat_pd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#replace-repeat-func-iter">replace_repeat_func_iter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#replace-repeat-func-pd">replace_repeat_func_pd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#con-count">con_count</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#con-count-ignore">con_count_ignore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-preval-func-cond">get_preval_func_cond</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gap-count">gap_count</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#count-between-gap">count_between_gap</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#count-between-gap-pd">count_between_gap_pd</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#count-between-gap-iter">count_between_gap_iter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#replace-repeat-iter">replace_repeat_iter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#replace-repeat-pd">replace_repeat_pd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#replace-repeat-f-iter">replace_repeat_F_iter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#replace-repeat-f-pd">replace_repeat_F_pd</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#val-gap-cond-new">val_gap_cond_new</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#val-gap-cond">val_gap_cond</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bootstrapping">bootstrapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#groupby-rolling-func">groupby_rolling_func</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#label-rep-index-str">label_rep_index_str</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drop-index-duplicates">drop_index_duplicates</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#filter-by-fprepost-series">filter_by_FPrePost_series</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#get-appear-order">get_appear_order</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#filter-by-fprepost">filter_by_FPrePost</a></li>
@@ -87,7 +85,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.install_check">install_check</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id4">install_check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">install_check</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.iotools">iotools</a><ul>
@@ -151,26 +149,40 @@
 <h1>dramkit<a class="headerlink" href="#dramkit" title="Permalink to this headline"></a></h1>
 <section id="module-dramkit.gentools">
 <span id="gentools"></span><h2>gentools<a class="headerlink" href="#module-dramkit.gentools" title="Permalink to this headline"></a></h2>
-<section id="log-used-time1">
-<h3>log_used_time1<a class="headerlink" href="#log-used-time1" title="Permalink to this headline"></a></h3>
+<p>General toolboxs</p>
+<section id="log-used-time">
+<h3>log_used_time<a class="headerlink" href="#log-used-time" title="Permalink to this headline"></a></h3>
 <dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.log_used_time1">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">log_used_time1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.log_used_time1" title="Permalink to this definition"></a></dt>
-<dd><p>aaa
-<a class="reference external" href="https://www.cnblogs.com/xiuyou/p/11283512.html">https://www.cnblogs.com/xiuyou/p/11283512.html</a>
-<a class="reference external" href="https://www.cnblogs.com/slysky/p/9777424.html">https://www.cnblogs.com/slysky/p/9777424.html</a>
-<a class="reference external" href="https://www.cnblogs.com/zhzhang/p/11375574.html">https://www.cnblogs.com/zhzhang/p/11375574.html</a></p>
-</dd></dl>
-
-</section>
-<section id="log-used-time2">
-<h3>log_used_time2<a class="headerlink" href="#log-used-time2" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.log_used_time2">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">log_used_time2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.log_used_time2" title="Permalink to this definition"></a></dt>
-<dd><p>作为装饰器装饰func函数，并用logger记录其运行用时</p>
-<p>aaa
-<a class="reference external" href="https://www.cnblogs.com/xiuyou/p/11283512.html">https://www.cnblogs.com/xiuyou/p/11283512.html</a>
+<dt class="sig sig-object py" id="dramkit.gentools.log_used_time">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">log_used_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.log_used_time" title="Permalink to this definition"></a></dt>
+<dd><p>作为装饰器记录函数运行用时</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>logger</strong> (<em>None</em><em>, </em><em>logging.Logger</em>) – 日志记录器</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">dramkit</span> <span class="kn">import</span> <span class="n">simple_logger</span>
+<span class="linenos">2</span><span class="n">logger</span> <span class="o">=</span> <span class="n">simple_logger</span><span class="p">()</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="nd">@log_used_time</span><span class="p">(</span><span class="n">logger</span><span class="p">)</span>
+<span class="linenos">5</span><span class="k">def</span> <span class="nf">wait</span><span class="p">():</span>
+<span class="linenos">6</span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;wait...&#39;</span><span class="p">)</span>
+<span class="linenos">7</span>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">wait</span><span class="p">()</span>
+<span class="go">wait...</span>
+<span class="go">2021-12-28 12:39:54,013 -utils_logger.py[line: 32] -INFO:</span>
+<span class="go">    --function `wait` run time: 3.000383s.</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#dramkit.gentools.print_used_time" title="dramkit.gentools.print_used_time"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.gentools.print_used_time()</span></code></a></p>
+</div>
+<p class="rubric">References</p>
+<p><a class="reference external" href="https://www.cnblogs.com/xiuyou/p/11283512.html">https://www.cnblogs.com/xiuyou/p/11283512.html</a>
 <a class="reference external" href="https://www.cnblogs.com/slysky/p/9777424.html">https://www.cnblogs.com/slysky/p/9777424.html</a>
 <a class="reference external" href="https://www.cnblogs.com/zhzhang/p/11375574.html">https://www.cnblogs.com/zhzhang/p/11375574.html</a></p>
 </dd></dl>
@@ -181,11 +193,746 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="dramkit.gentools.print_used_time">
 <span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">print_used_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.print_used_time" title="Permalink to this definition"></a></dt>
-<dd><p>作为装饰器装饰func函数，print打印其运行用时
-参考：<a class="reference external" href="https://www.cnblogs.com/slysky/p/9777424.html">https://www.cnblogs.com/slysky/p/9777424.html</a></p>
+<dd><p>作为装饰器打印函数运行用时</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>function</em>) – 需要记录运行用时的函数</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="nd">@print_used_time</span>
+<span class="linenos">2</span><span class="k">def</span> <span class="nf">wait</span><span class="p">():</span>
+<span class="linenos">3</span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;wait...&#39;</span><span class="p">)</span>
+<span class="linenos">4</span>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">wait</span><span class="p">()</span>
+<span class="go">wait...</span>
+<span class="go">function `wait` run time: 3.008314s.</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#dramkit.gentools.log_used_time" title="dramkit.gentools.log_used_time"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.gentools.log_used_time()</span></code></a></p>
+</div>
+<p class="rubric">References</p>
+<p><a class="reference external" href="https://www.cnblogs.com/slysky/p/9777424.html">https://www.cnblogs.com/slysky/p/9777424.html</a>
+<a class="reference external" href="https://www.cnblogs.com/zhzhang/p/11375574.html">https://www.cnblogs.com/zhzhang/p/11375574.html</a></p>
+</dd></dl>
+
+</section>
+<section id="get-update-kwargs">
+<h3>get_update_kwargs<a class="headerlink" href="#get-update-kwargs" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.get_update_kwargs">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">get_update_kwargs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg_default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_update</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.get_update_kwargs" title="Permalink to this definition"></a></dt>
+<dd><p>取出并更新kwargs中key参数的值</p>
+<p>使用场景：当一个函数接受**kwargs参数，同时需要对kwargs里面的某个key的值进行更新并且
+提取出来单独传参</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> – kwargs中待取出并更新的关键字</p></li>
+<li><p><strong>arg</strong> – 关键字key对应的新值</p></li>
+<li><p><strong>kwargs</strong> (<em>dict</em>) – 关键字参数对</p></li>
+<li><p><strong>arg_default</strong> (<em>key关键词对应参数默认值</em>) – </p></li>
+<li><p><strong>func_update</strong> (<em>None</em><em>, </em><em>False</em><em>, </em><em>function</em>) – <p>自定义取出的key参数值更新函数: arg_new = func_update(arg, arg_old)</p>
+<ul>
+<li><p>若为False, 则不更新，直接取出原来key对应的参数值或默认值</p></li>
+<li><p>若为`replace`, 则直接替换更新</p></li>
+<li><p>若为None, 则 <strong>默认</strong> 更新方式为:</p>
 <blockquote>
-<div><p><a class="reference external" href="https://www.cnblogs.com/zhzhang/p/11375574.html">https://www.cnblogs.com/zhzhang/p/11375574.html</a></p>
+<div><ul class="simple">
+<li><p>若参数值arg为dict或list类型，则增量更新</p></li>
+<li><p>若参数值arg_old为list且arg不为list，则增量更新</p></li>
+<li><p>其它情况直接替换更新</p></li>
+</ul>
 </div></blockquote>
+</li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>arg_new</em> – 取出并更新之后的关键字key对应参数值</p></li>
+<li><p><em>kwargs</em> – 删除key之后的kwargs</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">key</span><span class="p">,</span> <span class="n">arg</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;aa&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_update_kwargs</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+<span class="go">(&#39;aa&#39;, {&#39;b&#39;: &#39;b&#39;})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">key</span><span class="p">,</span> <span class="n">arg</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;a_&#39;</span><span class="p">:</span> <span class="s1">&#39;aa__&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;aa&#39;</span><span class="p">},</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_update_kwargs</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+<span class="go">({&#39;a&#39;: &#39;aa&#39;, &#39;a_&#39;: &#39;aa__&#39;}, {&#39;b&#39;: &#39;b&#39;})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">key</span><span class="p">,</span> <span class="n">arg</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;aa&#39;</span><span class="p">,</span> <span class="s1">&#39;aa_&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_update_kwargs</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+<span class="go">([&#39;a&#39;, &#39;aa&#39;, &#39;aa_&#39;], {&#39;b&#39;: &#39;b&#39;})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">key</span><span class="p">,</span> <span class="n">arg</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;aa&#39;</span><span class="p">,</span> <span class="s1">&#39;aa_&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_update_kwargs</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">func_update</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">)</span>
+<span class="go">([&#39;aa&#39;, &#39;aa_&#39;], {&#39;b&#39;: &#39;b&#39;})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">key</span><span class="p">,</span> <span class="n">arg</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;aa_&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_update_kwargs</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="roulette-base">
+<h3>roulette_base<a class="headerlink" href="#roulette-base" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.roulette_base">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">roulette_base</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.roulette_base" title="Permalink to this definition"></a></dt>
+<dd><p>基本轮盘赌法</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fitness</strong> (<em>list</em>) – <p>所有备选对象的fitness值列表</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>fitness的元素值应为正，且fitness值越大，被选中概率越大</p>
+</div>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>int</cite> - 返回被选中对象的索引号</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p><a class="reference external" href="https://blog.csdn.net/armwangEric/article/details/50775206">https://blog.csdn.net/armwangEric/article/details/50775206</a></p>
+</dd></dl>
+
+</section>
+<section id="roulette-stochastic-accept">
+<h3>roulette_stochastic_accept<a class="headerlink" href="#roulette-stochastic-accept" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.roulette_stochastic_accept">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">roulette_stochastic_accept</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.roulette_stochastic_accept" title="Permalink to this definition"></a></dt>
+<dd><p>轮盘赌法，随机接受法</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>fitness</strong> (<em>list</em>) – <p>所有备选对象的fitness值列表</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>fitness的元素值应为正，且fitness值越大，被选中概率越大</p>
+</div>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>int</cite> - 返回被选中对象的索引号</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p><a class="reference external" href="https://blog.csdn.net/armwangEric/article/details/50775206">https://blog.csdn.net/armwangEric/article/details/50775206</a></p>
+</dd></dl>
+
+</section>
+<section id="roulette-count">
+<h3>roulette_count<a class="headerlink" href="#roulette-count" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.roulette_count">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">roulette_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rand_func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.roulette_count" title="Permalink to this definition"></a></dt>
+<dd><p>轮盘赌法n次模拟，返回每个备选对象在n次模拟中被选中的次数</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fitness</strong> (<em>list</em><em>, </em><em>dict</em>) – <p>所有备选对象的fitness值列表或字典，格式参见Example</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>fitness的元素值应为正，且fitness值越大，被选中概率越大</p>
+</div>
+</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – 模拟次数</p></li>
+<li><p><strong>rand_func</strong> (<em>None</em><em>, </em><em>function</em>) – 指定轮盘赌法函数，如roulette_base或roulette_stochastic_accept,
+默认用roulette_stochastic_accept</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>list, dict</cite> - 返回每个对象在模拟n次中被选中的次数</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fitness</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">roulette_count</span><span class="p">(</span><span class="n">fitness</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
+<span class="go">[(0, 991), (1, 2022), (2, 2987)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fitness</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">roulette_count</span><span class="p">(</span><span class="n">fitness</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
+<span class="go">[(0, 1003), (1, 1991), (2, 3006)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fitness</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">roulette_count</span><span class="p">(</span><span class="n">fitness</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
+<span class="go">[(&#39;a&#39;, 997), (&#39;b&#39;, 1989), (&#39;c&#39;, 3014)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fitness</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">roulette_count</span><span class="p">(</span><span class="n">fitness</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
+<span class="go">[(&#39;a&#39;, 1033), (&#39;b&#39;, 1967), (&#39;c&#39;, 3000)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fitness</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">roulette_count</span><span class="p">(</span><span class="n">fitness</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">6000</span><span class="p">)</span>
+<span class="go">{&#39;a&#39;: 988, &#39;b&#39;: 1971, &#39;c&#39;: 3041}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="rand-sum">
+<h3>rand_sum<a class="headerlink" href="#rand-sum" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.rand_sum">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">rand_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_sum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lowests</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">highests</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_dot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.rand_sum" title="Permalink to this definition"></a></dt>
+<dd><p>在指定最大最小值范围内随机选取若干个随机数，所选取数之和为定值</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_sum</strong> (<em>int</em><em>, </em><em>float</em>) – 目标和</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – 随机选取个数</p></li>
+<li><p><strong>lowests</strong> (<em>int</em><em>, </em><em>floot</em><em>, </em><em>list</em>) – 随机数下限值，若为list，则其第k个元素对应第k个随机数的下限</p></li>
+<li><p><strong>highests</strong> (<em>int</em><em>, </em><em>floot</em><em>, </em><em>list</em>) – 随机数上限值，若为list，则其第k关元素对应第k个随机数的上限</p></li>
+<li><p><strong>isint</strong> (<em>bool</em>) – <p>所选数是否强制为整数，若为False，则为实数</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>若输入lowests或highests不是int，则isint为True无效</p>
+</div>
+</p></li>
+<li><p><strong>n_dot</strong> (<em>int</em>) – 动态上下界值与上下限比较时控制小数位数(为了避免python精度问题导致的报错)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>list</cite> - 随机选取的n个数，其和为target_sum</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rand_sum</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="mi">100</span><span class="p">)</span>
+<span class="go">[65, 35]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rand_sum</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="go">[41, 59]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rand_sum</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">90</span><span class="p">])</span>
+<span class="go">[73, 27]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="rand-weight-sum">
+<h3>rand_weight_sum<a class="headerlink" href="#rand-weight-sum" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.rand_weight_sum">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">rand_weight_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weight_sum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lowests</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">highests</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_dot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.rand_weight_sum" title="Permalink to this definition"></a></dt>
+<dd><p>在指定最大最小值范围内随机选取若干个随机数，所选取数之加权和为定值</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>weight_sum</strong> (<em>float</em>) – 目标加权和</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – 随机选取个数</p></li>
+<li><p><strong>lowests</strong> (<em>int</em><em>, </em><em>floot</em><em>, </em><em>list</em>) – 随机数下限值，若为list，则其第k个元素对应第k个随机数的下限</p></li>
+<li><p><strong>highests</strong> (<em>int</em><em>, </em><em>floot</em><em>, </em><em>list</em>) – 随机数上限值，若为list，则其第k关元素对应第k个随机数的上限</p></li>
+<li><p><strong>weights</strong> (<em>None</em><em>, </em><em>list</em>) – <p>权重列表</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>lowests和highests与weights应一一对应</p>
+</div>
+</p></li>
+<li><p><strong>n_dot</strong> (<em>int</em>) – 动态上下界值与上下限比较时控制小数位数(为了避免python精度问题导致的报错)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>list</cite> - 随机选取的n个数，其以weights为权重的加权和为weight_sum</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rand_weight_sum</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="mi">100</span><span class="p">)</span>
+<span class="go">[21.41082008017613, 98.58917991982386]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rand_weight_sum</span><span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="go">[56.867261610484356, 83.13273838951565]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rand_weight_sum</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">90</span><span class="p">])</span>
+<span class="go">[80.32071140116187, 79.67928859883813]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rand_weight_sum</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">])</span>
+<span class="go">[88.70409567475888, 66.94385648786168]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rand_weight_sum</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="go">[23.080418085462018, 55.37937287180697]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="replace-repeat-iter">
+<h3>replace_repeat_iter<a class="headerlink" href="#replace-repeat-iter" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.replace_repeat_iter">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">replace_repeat_iter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.replace_repeat_iter" title="Permalink to this definition"></a></dt>
+<dd><p>替换序列中重复出现的值</p>
+<p>series (<cite>pd.Series</cite>) 中若步长为gap的范围内出现多个val值，则只保留第一条记录，
+后面的替换为val0</p>
+<p>若gap为None，则将连续出现的val值只保留第一个，其余替换为val0(这里连续出现val是指
+不出现除了val和val0之外的其他值)</p>
+<p>返回结果为替换之后的series (<cite>pd.Series</cite>)</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+<span class="go">                         -1, -1, 0, 0, 1], columns=[&#39;test&#39;])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;test_rep&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">replace_repeat_iter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">gap</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span>
+<span class="go">    test  test_rep</span>
+<span class="go">0      0         0</span>
+<span class="go">1      1         1</span>
+<span class="go">2      1         0</span>
+<span class="go">3      0         0</span>
+<span class="go">4     -1        -1</span>
+<span class="go">5     -1        -1</span>
+<span class="go">6      2         2</span>
+<span class="go">7     -1        -1</span>
+<span class="go">8      1         1</span>
+<span class="go">9      0         0</span>
+<span class="go">10     1         0</span>
+<span class="go">11     1         0</span>
+<span class="go">12     1         0</span>
+<span class="go">13     0         0</span>
+<span class="go">14     0         0</span>
+<span class="go">15    -1        -1</span>
+<span class="go">16    -1        -1</span>
+<span class="go">17     0         0</span>
+<span class="go">18     0         0</span>
+<span class="go">19     1         1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">replace_repeat_iter</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">gap</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">0   -1</span>
+<span class="go">1    1</span>
+<span class="go">2   -1</span>
+<span class="go">3    0</span>
+<span class="go">4    1</span>
+<span class="go">5    0</span>
+<span class="go">6    0</span>
+<span class="go">7    0</span>
+<span class="go">8   -1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="replace-repeat-pd">
+<h3>replace_repeat_pd<a class="headerlink" href="#replace-repeat-pd" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.replace_repeat_pd">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">replace_repeat_pd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.replace_repeat_pd" title="Permalink to this definition"></a></dt>
+<dd><p>替换序列中重复出现的值, 仅保留第一个</p>
+<p>函数功能，参数和意义同 <a class="reference internal" href="#dramkit.gentools.replace_repeat_iter" title="dramkit.gentools.replace_repeat_iter"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.gentools.replace_repeat_iter()</span></code></a>
+区别在于计算时在pandas.DataFrame里面进行而不是采用迭代方式，同时取消了gap
+参数(即连续出现的val值只保留第一个)</p>
+</dd></dl>
+
+</section>
+<section id="replace-repeat-func-iter">
+<h3>replace_repeat_func_iter<a class="headerlink" href="#replace-repeat-func-iter" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.replace_repeat_func_iter">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">replace_repeat_func_iter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_val0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.replace_repeat_func_iter" title="Permalink to this definition"></a></dt>
+<dd><p>替换序列中重复出现的值，功能与 <a class="reference internal" href="#dramkit.gentools.replace_repeat_iter" title="dramkit.gentools.replace_repeat_iter"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.gentools.replace_repeat_iter()</span></code></a>
+类似，只不过把val和val0的值由直接指定换成了由指定函数生成</p>
+<p><code class="docutils literal notranslate"><span class="pre">func_val</span></code> 函数用于判断连续条件，其返回值只能是True或False, <code class="docutils literal notranslate"><span class="pre">func_val0</span></code>
+函数用于生成替换的新值。即series中若步长为gap的范围内出现多个满足func_val函数为True的值，
+则只保留第一条记录，后面的替换为函数func_val0的值。
+若gap为None，则将连续出现的满足func_val函数为True的值只保留第一个，其余替换为函数
+func_val0的值(这里连续出现是指不出现除了满足func_val为True和等于func_val0函数值
+之外的其他值)</p>
+<p>返回结果为替换之后的series (<cite>pd.Series</cite>)</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+<span class="go">                               1, 1, 0, 0, -1, -1, 0, 0, 1]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y_rep&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">replace_repeat_func_iter</span><span class="p">(</span>
+<span class="go">                    data[&#39;y&#39;], lambda x: x &lt; 1, lambda x: 3, gap=None)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span>
+<span class="go">    y  y_rep</span>
+<span class="go">0   0      0</span>
+<span class="go">1   1      1</span>
+<span class="go">2   1      1</span>
+<span class="go">3   0      0</span>
+<span class="go">4  -1      3</span>
+<span class="go">5  -1      3</span>
+<span class="go">6   2      2</span>
+<span class="go">7  -1     -1</span>
+<span class="go">8   1      1</span>
+<span class="go">9   0      0</span>
+<span class="go">10  1      1</span>
+<span class="go">11  1      1</span>
+<span class="go">12  1      1</span>
+<span class="go">13  0      0</span>
+<span class="go">14  0      3</span>
+<span class="go">15 -1      3</span>
+<span class="go">16 -1      3</span>
+<span class="go">17  0      3</span>
+<span class="go">18  0      3</span>
+<span class="go">19  1      1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="replace-repeat-func-pd">
+<h3>replace_repeat_func_pd<a class="headerlink" href="#replace-repeat-func-pd" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.replace_repeat_func_pd">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">replace_repeat_func_pd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_val0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.replace_repeat_func_pd" title="Permalink to this definition"></a></dt>
+<dd><p>替换序列中重复出现的值, 仅保留第一个</p>
+<p>函数功能，参数和意义同 <a class="reference internal" href="#dramkit.gentools.replace_repeat_func_iter" title="dramkit.gentools.replace_repeat_func_iter"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.gentools.replace_repeat_func_iter()</span></code></a>
+区别在于计算时在pandas.DataFrame里面进行而不是采用迭代方式，同时取消了gap
+参数(即连续出现的满足func_val为True的值只保留第一个)</p>
+</dd></dl>
+
+</section>
+<section id="con-count">
+<h3>con_count<a class="headerlink" href="#con-count" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.con_count">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">con_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_cond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">via_pd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.con_count" title="Permalink to this definition"></a></dt>
+<dd><p>计算series(pd.Series)中连续满足func_cond函数指定的条件的记录数</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>series</strong> (<em>pd.Series</em>) – 目标序列</p></li>
+<li><p><strong>func_cond</strong> (<em>function</em>) – 指定条件的函数，func_cond(x)返回结果只能为True或False</p></li>
+<li><p><strong>via_pd</strong> (<em>bool</em>) – 若via_pd为False，则计算时使用循环迭代，否则在pandas.DataFrame里面进行计算</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>pd.Series</cite> - 返回连续计数结果</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;series&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">func_cond</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;count1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">con_count</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;series&#39;</span><span class="p">],</span> <span class="n">func_cond</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">   series  count1</span>
+<span class="go">0       0       0</span>
+<span class="go">1       0       0</span>
+<span class="go">2       1       1</span>
+<span class="go">3       1       2</span>
+<span class="go">4       0       0</span>
+<span class="go">5       0       0</span>
+<span class="go">6       1       1</span>
+<span class="go">7       1       2</span>
+<span class="go">8       1       3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;count0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">con_count</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;series&#39;</span><span class="p">],</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">   series  count1  count0</span>
+<span class="go">0       0       0       1</span>
+<span class="go">1       0       0       2</span>
+<span class="go">2       1       1       0</span>
+<span class="go">3       1       2       0</span>
+<span class="go">4       0       0       1</span>
+<span class="go">5       0       0       2</span>
+<span class="go">6       1       1       0</span>
+<span class="go">7       1       2       0</span>
+<span class="go">8       1       3       0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="con-count-ignore">
+<h3>con_count_ignore<a class="headerlink" href="#con-count-ignore" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.con_count_ignore">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">con_count_ignore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_cond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">via_pd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_ignore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.con_count_ignore" title="Permalink to this definition"></a></dt>
+<dd><p>在 <a class="reference internal" href="#dramkit.gentools.con_count" title="dramkit.gentools.con_count"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.gentools.con_count()</span></code></a> 的基础上增加连续性判断条件:</p>
+<blockquote>
+<div><p>当series中的值满足func_ignore函数值为True时，不影响连续性判断(func_ignore
+默认为 <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x:</span> <span class="pre">isnull(x)</span></code>)</p>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="get-preval-func-cond">
+<h3>get_preval_func_cond<a class="headerlink" href="#get-preval-func-cond" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.get_preval_func_cond">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">get_preval_func_cond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_cond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_cond</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.get_preval_func_cond" title="Permalink to this definition"></a></dt>
+<dd><p>获取上一个满足指定条件的行中col_val列的值，条件为：</p>
+<p>该行中col_cond列的值x满足func_cond(x)为True (func_cond(x)返回结果只能为True或False)</p>
+<p>返回结果为 <cite>pd.Series</cite></p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+<span class="go">                                0, 0, -1, -1, 0, 0, 1],</span>
+<span class="go">                         &#39;x2&#39;: [0, 1, 1, 0, -1, -1, 1, -1, 1, 0, 1, 1, 1,</span>
+<span class="go">                                0, 0, -1, -1, 0, 0, 1]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x1_pre&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_preval_func_cond</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;x1&#39;</span><span class="p">,</span> <span class="s1">&#39;x2&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span>
+<span class="go">    x1  x2  x1_pre</span>
+<span class="go">0    0   0     NaN</span>
+<span class="go">1    1   1     0.0</span>
+<span class="go">2    1   1     0.0</span>
+<span class="go">3    0   0     0.0</span>
+<span class="go">4   -1  -1     0.0</span>
+<span class="go">5   -1  -1    -1.0</span>
+<span class="go">6    2   1    -1.0</span>
+<span class="go">7   -1  -1    -1.0</span>
+<span class="go">8    1   1    -1.0</span>
+<span class="go">9    0   0    -1.0</span>
+<span class="go">10   1   1     0.0</span>
+<span class="go">11   1   1     0.0</span>
+<span class="go">12   1   1     0.0</span>
+<span class="go">13   0   0     0.0</span>
+<span class="go">14   0   0     0.0</span>
+<span class="go">15  -1  -1     0.0</span>
+<span class="go">16  -1  -1    -1.0</span>
+<span class="go">17   0   0    -1.0</span>
+<span class="go">18   0   0     0.0</span>
+<span class="go">19   1   1     0.0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="gap-count">
+<h3>gap_count<a class="headerlink" href="#gap-count" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.gap_count">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">gap_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_cond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">via_pd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.gap_count" title="Permalink to this definition"></a></dt>
+<dd><p>计算series (<cite>pd.Series</cite>)中当前行距离上一个满足 <code class="docutils literal notranslate"><span class="pre">func_cond</span></code> 函数指定条件记录的行数</p>
+<p>func_cond为指定条件的函数，func_cond(x)返回结果只能为True或False，
+若via_pd为False，则使用循环迭代，若via_pd为True，则在pandas.DataFrme内计算
+返回结果为 <cite>pd.Series</cite></p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;series&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">func_cond</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;gap1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gap_count</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;series&#39;</span><span class="p">],</span> <span class="n">func_cond</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">   series  gap1</span>
+<span class="go">0       0     0</span>
+<span class="go">1       1     0</span>
+<span class="go">2       1     1</span>
+<span class="go">3       0     1</span>
+<span class="go">4       0     2</span>
+<span class="go">5       1     3</span>
+<span class="go">6       1     1</span>
+<span class="go">7       1     1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;gap0&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gap_count</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;series&#39;</span><span class="p">],</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">   series  gap1  gap0</span>
+<span class="go">0       0     0     0</span>
+<span class="go">1       1     0     1</span>
+<span class="go">2       1     1     2</span>
+<span class="go">3       0     1     3</span>
+<span class="go">4       0     2     1</span>
+<span class="go">5       1     3     1</span>
+<span class="go">6       1     1     2</span>
+<span class="go">7       1     1     3</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="count-between-gap">
+<h3>count_between_gap<a class="headerlink" href="#count-between-gap" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.count_between_gap">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">count_between_gap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_gap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_count</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_gap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_count</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_now_gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">via_pd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.count_between_gap" title="Permalink to this definition"></a></dt>
+<dd><p>计算data (<cite>pandas.DataFrame</cite>)中当前行与上一个满足 <code class="docutils literal notranslate"><span class="pre">func_gap</span></code> 函数为True的行之间，
+满足 <code class="docutils literal notranslate"><span class="pre">func_count</span></code> 函数为True的记录数</p>
+<p>函数func_gap作用于 <code class="docutils literal notranslate"><span class="pre">col_gap</span></code> 列，func_count作用于 <code class="docutils literal notranslate"><span class="pre">col_count</span></code> 列，两者返回值均为True或False</p>
+<p><code class="docutils literal notranslate"><span class="pre">count_now_gap</span></code> 设置满足func_gap的行是否参与计数，若为False，则该行计数为0，若为
+True，则该行按照上一次计数的最后一次计数处理</p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>增加count_now_gap的处理方式：</p>
+<ul class="simple">
+<li><p>该行计数为0</p></li>
+<li><p>该行按上一次计数的最后一次计数处理</p></li>
+<li><p>该行按下一次计数的第一次计数处理</p></li>
+</ul>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">count_now</span></code> 设置当当前行满足func_count时，从当前行开始对其计数还是从下一行开始对其计数</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>注：当前行若满足同时满足func_gap和func_count，对其计数的行不会为下一行
+(即要么不计数，要么在当前行对其计数)</p>
+</div>
+<p>若via_pd为True，则调用 <a class="reference internal" href="#dramkit.gentools.count_between_gap_pd" title="dramkit.gentools.count_between_gap_pd"><code class="xref py py-func docutils literal notranslate"><span class="pre">count_between_gap_pd()</span></code></a> 实现，否则用 <a class="reference internal" href="#dramkit.gentools.count_between_gap_iter" title="dramkit.gentools.count_between_gap_iter"><code class="xref py py-func docutils literal notranslate"><span class="pre">count_between_gap_iter()</span></code></a></p>
+<p>返回结果为 <cite>pd.Series</cite></p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;to_gap&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+<span class="go">                                    1, 0, 0, -1, -1, 0, 0, 1],</span>
+<span class="go">                         &#39;to_count&#39;: [0, 1, 1, 0, -1, -1, 1, -1, 1, 0, 1,</span>
+<span class="go">                                      1, 1, 0, 0, -1, -1, 0, 0, 1]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;gap_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">count_between_gap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;to_gap&#39;</span><span class="p">,</span> <span class="s1">&#39;to_count&#39;</span><span class="p">,</span>
+<span class="go">                                          lambda x: x == -1, lambda x: x == 1,</span>
+<span class="go">                                          count_now_gap=False, count_now=False)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span>
+<span class="go">        to_gap  to_count  gap_count</span>
+<span class="go">0        0         0          0</span>
+<span class="go">1        1         1          0</span>
+<span class="go">2        1         1          0</span>
+<span class="go">3        0         0          0</span>
+<span class="go">4       -1        -1          0</span>
+<span class="go">5       -1        -1          0</span>
+<span class="go">6        2         1          0</span>
+<span class="go">7       -1        -1          0</span>
+<span class="go">8        1         1          0</span>
+<span class="go">9        0         0          1</span>
+<span class="go">10      -1         1          0</span>
+<span class="go">11       1         1          0</span>
+<span class="go">12       1         1          1</span>
+<span class="go">13       0         0          2</span>
+<span class="go">14       0         0          2</span>
+<span class="go">15      -1        -1          0</span>
+<span class="go">16      -1        -1          0</span>
+<span class="go">17       0         0          0</span>
+<span class="go">18       0         0          0</span>
+<span class="go">19       1         1          0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;to_gap&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+<span class="go">                                    1, 0, 0, -1, -1, 0, 0, 1, -1, -1],</span>
+<span class="go">                         &#39;to_count&#39;: [0, 1, 1, 0, -1, -1, 1, -1, 1, 0, 1,</span>
+<span class="go">                                      1, 1, 0, 0, -1, 1, 0, 1, 1, 1, 1]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;gap_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">count_between_gap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;to_gap&#39;</span><span class="p">,</span> <span class="s1">&#39;to_count&#39;</span><span class="p">,</span>
+<span class="go">                                          lambda x: x == -1, lambda x: x == 1,</span>
+<span class="go">                                          count_now_gap=False, count_now=True)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span>
+<span class="go">        to_gap  to_count  gap_count</span>
+<span class="go">0        0         0          0</span>
+<span class="go">1        1         1          0</span>
+<span class="go">2        1         1          0</span>
+<span class="go">3        0         0          0</span>
+<span class="go">4       -1        -1          0</span>
+<span class="go">5       -1        -1          0</span>
+<span class="go">6        2         1          1</span>
+<span class="go">7       -1        -1          0</span>
+<span class="go">8        1         1          1</span>
+<span class="go">9        0         0          1</span>
+<span class="go">10      -1         1          0</span>
+<span class="go">11       1         1          1</span>
+<span class="go">12       1         1          2</span>
+<span class="go">13       0         0          2</span>
+<span class="go">14       0         0          2</span>
+<span class="go">15      -1        -1          0</span>
+<span class="go">16      -1         1          0</span>
+<span class="go">17       0         0          0</span>
+<span class="go">18       0         1          1</span>
+<span class="go">19       1         1          2</span>
+<span class="go">20      -1         1          0</span>
+<span class="go">21      -1         1          0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;to_gap&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+<span class="go">                                    1, 0, 0, -1, -1, 0, 0, 1, -1, -1],</span>
+<span class="go">                         &#39;to_count&#39;: [0, -1, -1, 0, -1, -1, 1, -1, 1, 0, 1, 1,</span>
+<span class="go">                                      1, 0, 0, -1, -1, 0, -1, 1, 1, 1]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;gap_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">count_between_gap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;to_gap&#39;</span><span class="p">,</span> <span class="s1">&#39;to_count&#39;</span><span class="p">,</span>
+<span class="go">                                          lambda x: x == -1, lambda x: x == 1,</span>
+<span class="go">                                          count_now_gap=True, count_now=False)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span>
+<span class="go">        to_gap  to_count  gap_count</span>
+<span class="go">0        0         0          0</span>
+<span class="go">1        1        -1          0</span>
+<span class="go">2        1        -1          0</span>
+<span class="go">3        0         0          0</span>
+<span class="go">4       -1        -1          0</span>
+<span class="go">5       -1        -1          0</span>
+<span class="go">6        2         1          0</span>
+<span class="go">7       -1        -1          1</span>
+<span class="go">8        1         1          0</span>
+<span class="go">9        0         0          1</span>
+<span class="go">10      -1         1          1</span>
+<span class="go">11       1         1          0</span>
+<span class="go">12       1         1          1</span>
+<span class="go">13       0         0          2</span>
+<span class="go">14       0         0          2</span>
+<span class="go">15      -1        -1          2</span>
+<span class="go">16      -1        -1          0</span>
+<span class="go">17       0         0          0</span>
+<span class="go">18       0        -1          0</span>
+<span class="go">19       1         1          0</span>
+<span class="go">20      -1         1          1</span>
+<span class="go">21      -1         1          0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;to_gap&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+<span class="go">                                    1, 0, 0, -1, -1, 0, 0, 1, -1, -1],</span>
+<span class="go">                         &#39;to_count&#39;: [0, -1, -1, 0, -1, -1, 1, -1, 1, 0, 1, 1,</span>
+<span class="go">                                      1, 0, 0, -1, -1, 0, -1, 1, 1, 1]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;gap_count&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">count_between_gap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;to_gap&#39;</span><span class="p">,</span> <span class="s1">&#39;to_count&#39;</span><span class="p">,</span>
+<span class="go">                                          lambda x: x == -1, lambda x: x == 1,</span>
+<span class="go">                                          count_now_gap=True, count_now=True)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span>
+<span class="go">        to_gap  to_count  gap_count</span>
+<span class="go">0        0         0          0</span>
+<span class="go">1        1        -1          0</span>
+<span class="go">2        1        -1          0</span>
+<span class="go">3        0         0          0</span>
+<span class="go">4       -1        -1          0</span>
+<span class="go">5       -1        -1          0</span>
+<span class="go">6        2         1          1</span>
+<span class="go">7       -1        -1          1</span>
+<span class="go">8        1         1          1</span>
+<span class="go">9        0         0          1</span>
+<span class="go">10      -1         1          2</span>
+<span class="go">11       1         1          1</span>
+<span class="go">12       1         1          2</span>
+<span class="go">13       0         0          2</span>
+<span class="go">14       0         0          2</span>
+<span class="go">15      -1        -1          2</span>
+<span class="go">16      -1        -1          0</span>
+<span class="go">17       0         0          0</span>
+<span class="go">18       0        -1          0</span>
+<span class="go">19       1         1          1</span>
+<span class="go">20      -1         1          2</span>
+<span class="go">21      -1         1          1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="count-between-gap-pd">
+<h3>count_between_gap_pd<a class="headerlink" href="#count-between-gap-pd" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.count_between_gap_pd">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">count_between_gap_pd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_gap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_count</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_gap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_count</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_now_gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.count_between_gap_pd" title="Permalink to this definition"></a></dt>
+<dd><p>参数和功能说明见 <a class="reference internal" href="#dramkit.gentools.count_between_gap" title="dramkit.gentools.count_between_gap"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.gentools.count_between_gap()</span></code></a> 函数</p>
+</dd></dl>
+
+</section>
+<section id="count-between-gap-iter">
+<h3>count_between_gap_iter<a class="headerlink" href="#count-between-gap-iter" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.count_between_gap_iter">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">count_between_gap_iter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_gap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_count</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_gap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_count</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_now_gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.count_between_gap_iter" title="Permalink to this definition"></a></dt>
+<dd><p>参数和功能说明见 <a class="reference internal" href="#dramkit.gentools.count_between_gap" title="dramkit.gentools.count_between_gap"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.gentools.count_between_gap()</span></code></a> 函数</p>
+</dd></dl>
+
+</section>
+<section id="val-gap-cond">
+<h3>val_gap_cond<a class="headerlink" href="#val-gap-cond" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.val_gap_cond">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">val_gap_cond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_cond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_cond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_cal_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_to_cal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_nan</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contain_1st</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.val_gap_cond" title="Permalink to this definition"></a></dt>
+<dd><p>计算data (<cite>pandas.DataFrame</cite>)中从上一个 <code class="docutils literal notranslate"><span class="pre">col_cond</span></code> 列满足 <code class="docutils literal notranslate"><span class="pre">func_cond</span></code> 函数的行
+到当前行, <code class="docutils literal notranslate"><span class="pre">col_val</span></code> 列记录的 <code class="docutils literal notranslate"><span class="pre">func_val</span></code> 函数值</p>
+<p>func_cond作用于col_cond列，func_cond(x)返回True或False，x为单个值</p>
+<p>func_val函数作用于col_val列，func_val(x)返回单个值，x为np.array或pd.Series或列表等</p>
+<p>func_to_cal作用于to_cal_col列，只有当前行func_to_cal值为True时才进行func_val计算，
+否则返回结果中当前行值设置为val_nan</p>
+<p>contain_1st设置func_val函数计算时是否将上一个满足func_cond的行也纳入计算</p>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<p>参考 <a class="reference internal" href="#dramkit.gentools.count_between_gap" title="dramkit.gentools.count_between_gap"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.gentools.count_between_gap()</span></code></a> 的设置:</p>
+<ul class="simple">
+<li><p>设置col_cond列满足func_cond函数的行，其参与func_val函数的前一次计算还是下一次计算还是不参与计算</p></li>
+</ul>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;val&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span> <span class="p">,</span><span class="mi">9</span><span class="p">],</span>
+<span class="go">                         &#39;sig&#39;: [1, 1, -1, 1, 1, -1, 1]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;val_pre1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">val_gap_cond</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;val&#39;</span><span class="p">,</span> <span class="s1">&#39;sig&#39;</span><span class="p">,</span>
+<span class="go">                       lambda x: x == -1, lambda x: max(x))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span>
+<span class="go">   val  sig  val_pre1</span>
+<span class="go">0    1    1       NaN</span>
+<span class="go">1    2    1       NaN</span>
+<span class="go">2    5   -1       NaN</span>
+<span class="go">3    3    1       3.0</span>
+<span class="go">4    1    1       3.0</span>
+<span class="go">5    7   -1       7.0</span>
+<span class="go">6    9    1       9.0</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </section>
@@ -229,601 +976,13 @@ cols_groupby设定</p>
 </dd></dl>
 
 </section>
-<section id="get-update-kwargs">
-<h3>get_update_kwargs<a class="headerlink" href="#get-update-kwargs" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.get_update_kwargs">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">get_update_kwargs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg_default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.get_update_kwargs" title="Permalink to this definition"></a></dt>
-<dd><p>取出并更新kwargs中key参数的值
-若update为True，则取出的参数将被更新为arg，否则保留原来的值或默认值</p>
-</dd></dl>
-
-</section>
-<section id="roulette-base">
-<h3>Roulette_base<a class="headerlink" href="#roulette-base" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.Roulette_base">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">Roulette_base</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.Roulette_base" title="Permalink to this definition"></a></dt>
-<dd><p>基本轮盘赌法
-fitness所有备选对象的fitness值列表，返回被选中对象的索引号
-注：fitness值应为正，且fitness值越大，被选中概率越大
-<a class="reference external" href="https://blog.csdn.net/armwangEric/article/details/50775206">https://blog.csdn.net/armwangEric/article/details/50775206</a></p>
-</dd></dl>
-
-</section>
-<section id="roulette-stochasticaccept">
-<h3>Roulette_stochasticAccept<a class="headerlink" href="#roulette-stochasticaccept" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.Roulette_stochasticAccept">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">Roulette_stochasticAccept</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.Roulette_stochasticAccept" title="Permalink to this definition"></a></dt>
-<dd><p>轮盘赌法，随机接受法
-fitness所有备选对象的fitness值列表，返回被选中对象的索引号
-注：fitness值应为正，且fitness值越大，被选中概率越大
-<a class="reference external" href="https://blog.csdn.net/armwangEric/article/details/50775206">https://blog.csdn.net/armwangEric/article/details/50775206</a></p>
-</dd></dl>
-
-</section>
-<section id="roulette-n">
-<h3>Roulette_N<a class="headerlink" href="#roulette-n" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.Roulette_N">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">Roulette_N</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N=10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">randFunc=&lt;function</span> <span class="pre">Roulette_stochasticAccept&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.Roulette_N" title="Permalink to this definition"></a></dt>
-<dd><p>轮盘赌法N次模拟，返回每个备选对象在N次模拟中被选中的次数
-N为模拟次数，randFunc指定轮盘赌法函数，如Roulette_base或Roulette_stochasticAccept
-fitness格式和返回格式对应如下（N取6000）：</p>
-<blockquote>
-<div><p>fitenss: [1, 2, 3]或(1, 2, 3)
-——&gt; [(0, 991), (1, 2022), (2, 2987)]
-fitness: [(‘a’, 1), (‘b’, 2), (‘c’, 3)]或[[‘a’, 1], [‘b’, 2], [‘c’, 3]]
-或((‘a’, 1), (‘b’, 2), (‘c’, 3))
-——&gt; [(‘a’, 1016), (‘b’, 1921), (‘c’, 3063)]
-fitness: {‘a’: 1, ‘b’: 2, ‘c’: 3}
-——&gt; {‘a’: 988, ‘b’: 1971, ‘c’: 3041}</p>
-</div></blockquote>
-<p>注：fitness中的值应为正，且fitness值越大，被选中概率越大</p>
-</dd></dl>
-
-</section>
-<section id="randsum">
-<h3>randSum<a class="headerlink" href="#randsum" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.randSum">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">randSum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_sum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lowests</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">highests</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isInt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_dot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.randSum" title="Permalink to this definition"></a></dt>
-<dd><p>在lowests和highests范围内随机产生n个数的列表adds，要求所选数之和为target_sum
-lowests和highests为实数或列表，指定每个备选数的上下限
-isInt若为True，则所选数全为整数，否则为实数，
-注：若输入lowests或highests不是int，则isInt为True无效
-n_dot，动态上下界值与上下限比较时控制小数位数（为了避免python精度问题导致的报错）</p>
-</dd></dl>
-
-</section>
-<section id="randwsum">
-<h3>randWSum<a class="headerlink" href="#randwsum" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.randWSum">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">randWSum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weight_sum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lowests</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">highests</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_dot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.randWSum" title="Permalink to this definition"></a></dt>
-<dd><p>在lowests和highests范围内随机产生n个数的列表adds，
-要求所选数之加权和为weight_sum，W为权重，若W为None，则等权
-lowests和highests为实数或列表，指定每个备选数的上下限
-注：lowests和highests与W应一一对应
-n_dot，动态上下界值与上下限比较时控制小数位数（为了避免python精度问题导致的报错）</p>
-</dd></dl>
-
-</section>
-<section id="con-count">
-<h3><a href="#id5"><span class="problematic" id="id6">con_count_</span></a><a class="headerlink" href="#con-count" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.con_count_">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">con_count_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fcond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">via_pd=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fignore=&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.con_count_" title="Permalink to this definition"></a></dt>
-<dd><dl class="simple">
-<dt>在con_count的基础上增加连续性判断条件：</dt><dd><p>当series中的值满足Fignore函数值为True，不影响连续性判断</p>
-</dd>
-</dl>
-</dd></dl>
-
-</section>
-<section id="id1">
-<h3>con_count<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.con_count">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">con_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fcond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">via_pd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.con_count" title="Permalink to this definition"></a></dt>
-<dd><p>计算series(pd.Series)中连续满足Fcond函数指定的条件的记录数
-Fcond为指定条件的函数，Fcond(x)返回结果只能为True或False
-若via_pd为False，则使用循环迭代，若via_pd为True，则使用pd
-返回pd.Series，即连续计数结果</p>
-<p class="rubric">Examples</p>
-<p>df = pd.DataFrame([0, 0, 1, 1, 0, 0, 1, 1, 1], columns=[‘series’])
-Fcond = lambda x: True if x == 1 else False
-df[‘count1’] = con_count(df[‘series’], Fcond, True)
-df:</p>
-<blockquote>
-<div><blockquote>
-<div><p>series  count1</p>
-</div></blockquote>
-<p>0       0       0
-1       0       0
-2       1       1
-3       1       2
-4       0       0
-5       0       0
-6       1       1
-7       1       2
-8       1       3</p>
-</div></blockquote>
-<p>df[‘count0’] = con_count(df[‘series’], lambda x: x != 1, False)
-df:</p>
-<blockquote>
-<div><blockquote>
-<div><p>series  count1  count0</p>
-</div></blockquote>
-<p>0       0       0       1
-1       0       0       2
-2       1       1       0
-3       1       2       0
-4       0       0       1
-5       0       0       2
-6       1       1       0
-7       1       2       0
-8       1       3       0</p>
-</div></blockquote>
-</dd></dl>
-
-</section>
-<section id="get-pre-val-fcond">
-<h3>get_pre_val_Fcond<a class="headerlink" href="#get-pre-val-fcond" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.get_pre_val_Fcond">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">get_pre_val_Fcond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_Fcond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fcond</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.get_pre_val_Fcond" title="Permalink to this definition"></a></dt>
-<dd><p>获取上一个满足指定条件的行中col_val列的值，条件为：该行中col_Fcond列的值x满足
-Fcond(x)为True（Fcond(x)返回结果只能为True或False）
-返回结果为pd.Series</p>
-<p class="rubric">Examples</p>
-<dl>
-<dt>data = pd.DataFrame({‘x1’: [0, 1, 1, 0, -1, -1, 2, -1, 1, 0, 1, 1, 1, 0,</dt><dd><blockquote>
-<div><p>0, -1, -1, 0, 0, 1],</p>
-</div></blockquote>
-<dl class="simple">
-<dt>‘x2’: [0, 1, 1, 0, -1, -1, 1, -1, 1, 0, 1, 1, 1, 0,</dt><dd><p>0, -1, -1, 0, 0, 1]})</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p>data[‘x1_pre’] = get_pre_val_Fcond(data, ‘x1’, ‘x2’, lambda x: x != 1)
-data:</p>
-<blockquote>
-<div><blockquote>
-<div><p>x1  x2  x1_pre</p>
-</div></blockquote>
-<p>0    0   0     NaN
-1    1   1     0.0
-2    1   1     0.0
-3    0   0     0.0
-4   -1  -1     0.0
-5   -1  -1    -1.0
-6    2   1    -1.0
-7   -1  -1    -1.0
-8    1   1    -1.0
-9    0   0    -1.0
-10   1   1     0.0
-11   1   1     0.0
-12   1   1     0.0
-13   0   0     0.0
-14   0   0     0.0
-15  -1  -1     0.0
-16  -1  -1    -1.0
-17   0   0    -1.0
-18   0   0     0.0
-19   1   1     0.0</p>
-</div></blockquote>
-</dd></dl>
-
-</section>
-<section id="gap-count">
-<h3>gap_count<a class="headerlink" href="#gap-count" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.gap_count">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">gap_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fcond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">via_pd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.gap_count" title="Permalink to this definition"></a></dt>
-<dd><p>计算series(pd.Series)中当前行距离上一个满足Fcond函数指定条件记录的行数
-Fcond为指定条件的函数，Fcond(x)返回结果只能为True或False，
-若via_pd为False，则使用循环迭代，若via_pd为True，则使用pd
-返回结果为pd.Series</p>
-<p class="rubric">Examples</p>
-<p>df = pd.DataFrame([0, 1, 1, 0, 0, 1, 1, 1], columns=[‘series’])
-Fcond = lambda x: True if x == 1 else False
-df[‘gap1’] = gap_count(df[‘series’], Fcond, True)
-df:</p>
-<blockquote>
-<div><blockquote>
-<div><p>series  gap1</p>
-</div></blockquote>
-<p>0       0     0
-1       1     0
-2       1     1
-3       0     1
-4       0     2
-5       1     3
-6       1     1
-7       1     1</p>
-</div></blockquote>
-<p>df[‘gap0’] = gap_count(df[‘series’], lambda x: x != 1, False)
-df:</p>
-<blockquote>
-<div><blockquote>
-<div><p>series  gap1  gap0</p>
-</div></blockquote>
-<p>0       0     0     0
-1       1     0     1
-2       1     1     2
-3       0     1     3
-4       0     2     1
-5       1     3     1
-6       1     1     2
-7       1     1     3</p>
-</div></blockquote>
-</dd></dl>
-
-</section>
-<section id="count-between-gap">
-<h3>count_between_gap<a class="headerlink" href="#count-between-gap" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.count_between_gap">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">count_between_gap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_gap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_count</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gapFcond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">countFcond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_now_gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">via_pd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.count_between_gap" title="Permalink to this definition"></a></dt>
-<dd><p>计算data中当前行与上一个满足gapFcond指定条件的行之间，
-满足countFcond函数指定条件的记录数
-其中函数gapFond作用于col_gap列，countFcond作用于col_count列
-count_now_gap设置满足gapFcond的行是否参与计数
-count_now设置当当前行满足countFcond时，从当前行开始对其计数还是从下一行开始对其计数
-注：当前行若满足同时满足gapFcond和countFcond，对其计数的行不会为下一行
-（即要么不计数，要么在当前行对其计数）
-若via_pd为True，则调用count_between_gap_pd实现，否则用count_between_gap_iter
-返回结果为pd.Series</p>
-<p class="rubric">Examples</p>
-<dl>
-<dt>data = pd.DataFrame({‘to_gap’: [0, 1, 1, 0, -1, -1, 2, -1, 1, 0, 1, 1,</dt><dd><blockquote>
-<div><p>1, 0, 0, -1, -1, 0, 0, 1],</p>
-</div></blockquote>
-<dl class="simple">
-<dt>‘to_count’: [0, 1, 1, 0, -1, -1, 1, -1, 1, 0, 1,</dt><dd><p>1, 1, 0, 0, -1, -1, 0, 0, 1]})</p>
-</dd>
-</dl>
-</dd>
-<dt>data[‘gap_count’] = count_between_gap(data, ‘to_gap’, ‘to_count’,</dt><dd><p>lambda x: x == -1, lambda x: x == 1,
-count_now_gap=False, count_now=False)</p>
-</dd>
-<dt>data:</dt><dd><blockquote>
-<div><p>to_gap  to_count  gap_count</p>
-</div></blockquote>
-<p>0        0         0          0
-1        1         1          0
-2        1         1          0
-3        0         0          0
-4       -1        -1          0
-5       -1        -1          0
-6        2         1          1
-7       -1        -1          0
-8        1         1          1
-9        0         0          1
-10       1         1          2
-11       1         1          3
-12       1         1          4
-13       0         0          4
-14       0         0          4
-15      -1        -1          0
-16      -1        -1          0
-17       0         0          0
-18       0         0          0
-19       1         1          1</p>
-</dd>
-<dt>data = pd.DataFrame({‘to_gap’: [0, 1, 1, 0, -1, -1, 2, -1, 1, 0, 1, 1,</dt><dd><blockquote>
-<div><p>1, 0, 0, -1, -1, 0, 0, 1, -1, 1],</p>
-</div></blockquote>
-<dl class="simple">
-<dt>‘to_count’: [0, 1, 1, 0, -1, -1, 1, -1, 1, 0, 1,</dt><dd><p>1, 1, 0, 0, -1, 1, 0, 1, 1, 1, -1]})</p>
-</dd>
-</dl>
-</dd>
-<dt>data[‘gap_count’] = count_between_gap(data, ‘to_gap’, ‘to_count’,</dt><dd><p>lambda x: x == -1, lambda x: x == 1,
-count_now_gap=True, count_now=True)</p>
-</dd>
-<dt>data:</dt><dd><blockquote>
-<div><p>to_gap  to_count  gap_count</p>
-</div></blockquote>
-<p>0        0         0          0
-1        1         1          0
-2        1         1          0
-3        0         0          0
-4       -1        -1          0
-5       -1        -1          0
-6        2         1          1
-7       -1        -1          1
-8        1         1          1
-9        0         0          1
-10       1         1          2
-11       1         1          3
-12       1         1          4
-13       0         0          4
-14       0         0          4
-15      -1        -1          4
-16      -1         1          1
-17       0         0          0
-18       0         1          1
-19       1         1          2
-20      -1         1          3
-21       1        -1          0</p>
-</dd>
-<dt>data = pd.DataFrame({‘to_gap’: [0, 1, 1, 0, -1, -1, 2, -1, 1, 0, 1, 1,</dt><dd><blockquote>
-<div><p>1, 0, 0, -1, -1, 0, 0, 1, -1, 1],</p>
-</div></blockquote>
-<dl class="simple">
-<dt>‘to_count’: [0, -1, -1, 0, -1, -1, 1, -1, 1, 0, 1, 1,</dt><dd><p>1, 0, 0, -1, -1, 0, -1, 1, 1, -1]})</p>
-</dd>
-</dl>
-</dd>
-<dt>data[‘gap_count’] = count_between_gap(data, ‘to_gap’, ‘to_count’,</dt><dd><p>lambda x: x == -1, lambda x: x == 1,
-count_now_gap=True, count_now=False)</p>
-</dd>
-<dt>data:</dt><dd><blockquote>
-<div><p>to_gap  to_count  gap_count</p>
-</div></blockquote>
-<p>0        0         0          0
-1        1        -1          0
-2        1        -1          0
-3        0         0          0
-4       -1        -1          0
-5       -1        -1          0
-6        2         1          0
-7       -1        -1          1
-8        1         1          0
-9        0         0          1
-10       1         1          1
-11       1         1          2
-12       1         1          3
-13       0         0          4
-14       0         0          4
-15      -1        -1          4
-16      -1        -1          0
-17       0         0          0
-18       0        -1          0
-19       1         1          0
-20      -1         1          1
-21       1        -1          0</p>
-</dd>
-<dt>data = pd.DataFrame({‘to_gap’: [0, 1, 1, 0, -1, -1, 2, -1, 1, 0, 1, 1, 1,</dt><dd><blockquote>
-<div><p>0, 0, -1, -1, 0, 0, 1, -1, 1],</p>
-</div></blockquote>
-<dl class="simple">
-<dt>‘to_count’: [0, -1, -1, 0, -1, -1, 1, -1, 1, 0, 1, 1,</dt><dd><p>1, 0, 0, -1, -1, 0, -1, 1, 1, -1]})</p>
-</dd>
-</dl>
-</dd>
-<dt>data[‘gap_count’] = count_between_gap(data, ‘to_gap’, ‘to_count’,</dt><dd><p>lambda x: x == -1, lambda x: x == 1,
-count_now_gap=False, count_now=True)</p>
-</dd>
-<dt>data:</dt><dd><blockquote>
-<div><p>to_gap  to_count  gap_count</p>
-</div></blockquote>
-<p>0        0         0          0
-1        1        -1          0
-2        1        -1          0
-3        0         0          0
-4       -1        -1          0
-5       -1        -1          0
-6        2         1          1
-7       -1        -1          0
-8        1         1          1
-9        0         0          1
-10       1         1          2
-11       1         1          3
-12       1         1          4
-13       0         0          4
-14       0         0          4
-15      -1        -1          0
-16      -1        -1          0
-17       0         0          0
-18       0        -1          0
-19       1         1          1
-20      -1         1          0
-21       1        -1          0</p>
-</dd>
-</dl>
-</dd></dl>
-
-</section>
-<section id="count-between-gap-pd">
-<h3>count_between_gap_pd<a class="headerlink" href="#count-between-gap-pd" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.count_between_gap_pd">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">count_between_gap_pd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_gap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_count</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gapFcond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">countFcond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_now_gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.count_between_gap_pd" title="Permalink to this definition"></a></dt>
-<dd><p>参数和功能说明见count_between_gap函数</p>
-</dd></dl>
-
-</section>
-<section id="count-between-gap-iter">
-<h3>count_between_gap_iter<a class="headerlink" href="#count-between-gap-iter" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.count_between_gap_iter">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">count_between_gap_iter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_gap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_count</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gapFcond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">countFcond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_now_gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.count_between_gap_iter" title="Permalink to this definition"></a></dt>
-<dd><p>参数和功能说明见count_between_gap函数</p>
-</dd></dl>
-
-</section>
-<section id="replace-repeat-iter">
-<h3>replace_repeat_iter<a class="headerlink" href="#replace-repeat-iter" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.replace_repeat_iter">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">replace_repeat_iter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.replace_repeat_iter" title="Permalink to this definition"></a></dt>
-<dd><p>替换重复出现的值
-series中若步长为gap的范围内出现多个val值，则只保留第一条记录，后面的替换为val0
-若gap为None，则将连续出现的val值只保留第一个，其余替换为val0(这里连续出现val是指
-不出现除了val和val0之外的其他值)
-返回结果为替换之后的pd.Series</p>
-<p class="rubric">Examples</p>
-<dl class="simple">
-<dt>data = pd.DataFrame([0, 1, 1, 0, -1, -1, 2, -1, 1, 0, 1, 1, 1, 0, 0,</dt><dd><p>-1, -1, 0, 0, 1], columns=[‘test’])</p>
-</dd>
-</dl>
-<p>data[‘test_rep’] = replace_repeat_iter(data[‘test’], 1, 0, gap=None)
-data:</p>
-<blockquote>
-<div><blockquote>
-<div><p>test  test_rep</p>
-</div></blockquote>
-<p>0      0         0
-1      1         1
-2      1         0
-3      0         0
-4     -1        -1
-5     -1        -1
-6      2         2
-7     -1        -1
-8      1         1
-9      0         0
-10     1         0
-11     1         0
-12     1         0
-13     0         0
-14     0         0
-15    -1        -1
-16    -1        -1
-17     0         0
-18     0         0
-19     1         1</p>
-</div></blockquote>
-<p>series = pd.Series([-1, 1, -1, 0, 1, 0, 1, 1, -1])
-replace_repeat_iter(series, 1, 0, gap=5)</p>
-<blockquote>
-<div><p>0   -1
-1    1
-2   -1
-3    0
-4    1
-5    0
-6    0
-7    0
-8   -1</p>
-</div></blockquote>
-</dd></dl>
-
-</section>
-<section id="replace-repeat-pd">
-<h3>replace_repeat_pd<a class="headerlink" href="#replace-repeat-pd" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.replace_repeat_pd">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">replace_repeat_pd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.replace_repeat_pd" title="Permalink to this definition"></a></dt>
-<dd><p>series连续出现的重复val值保留第一个，其余替换为val0（用pd，不用循环迭代）
-参数和意义同replace_repeat_iter函数，返回结果为替换之后的pd.Series</p>
-</dd></dl>
-
-</section>
-<section id="replace-repeat-f-iter">
-<h3>replace_repeat_F_iter<a class="headerlink" href="#replace-repeat-f-iter" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.replace_repeat_F_iter">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">replace_repeat_F_iter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val0F</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.replace_repeat_F_iter" title="Permalink to this definition"></a></dt>
-<dd><p>series中连续出现的满足valF函数的重复值保留第一个，其余替换为val0F函数的值
-与replace_repeat_iter作用一样，只不过把val和val0由指定值换成了由函数生成值，
-valF函数用于判断连续条件，其返回值只能是True或False，val0F函数用于生成替换的新值
-series中若步长为gap的范围内出现多个满足valF函数为True的值，则只保留第一条记录，
-后面的替换为函数val0F的值
-若gap为None，则将连续出现的满足valF函数为True的值只保留第一个，
-其余替换为函数val0F的值(这里连续出现是指不出现除了满足valF为True和等于val0F函数值
-之外的其他值)
-返回结果为替换之后的pd.Series</p>
-<p class="rubric">Examples</p>
-<dl>
-<dt>data = pd.DataFrame([0, 1, 1, 0, -1, -1, 2, -1, 1, 0, 1, 1, 1, 0, 0,</dt><dd><p>-1, -1, 0, 0, 1], columns=[‘y’])</p>
-</dd>
-<dt>data[‘y_rep’] = replace_repeat_F_iter(data[‘y’], lambda x: x &lt; 1,</dt><dd><p>lambda x: 3, gap=None)</p>
-</dd>
-<dt>data:</dt><dd><blockquote>
-<div><p>y  y_rep</p>
-</div></blockquote>
-<p>0   0      0
-1   1      1
-2   1      1
-3   0      0
-4  -1      3
-5  -1      3
-6   2      2
-7  -1     -1
-8   1      1
-9   0      0
-10  1      1
-11  1      1
-12  1      1
-13  0      0
-14  0      3
-15 -1      3
-16 -1      3
-17  0      3
-18  0      3
-19  1      1</p>
-</dd>
-</dl>
-</dd></dl>
-
-</section>
-<section id="replace-repeat-f-pd">
-<h3>replace_repeat_F_pd<a class="headerlink" href="#replace-repeat-f-pd" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.replace_repeat_F_pd">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">replace_repeat_F_pd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val0F</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.replace_repeat_F_pd" title="Permalink to this definition"></a></dt>
-<dd><p>series中连续出现的满足valF函数的重复值保留第一个，其余替换为val0F函数的值
-（用pd，不用循环迭代）
-参数和意义同replace_repeat_F_iter函数，返回结果为替换之后的pd.Series</p>
-</dd></dl>
-
-</section>
-<section id="val-gap-cond-new">
-<h3>val_gap_cond_new<a class="headerlink" href="#val-gap-cond-new" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.val_gap_cond_new">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">val_gap_cond_new</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.val_gap_cond_new" title="Permalink to this definition"></a></dt>
-<dd><p>val_gap_cond函数升级修改（与count_between_gap函数结合？）
-修改返回值位置（从满足Fcond的行开始还是从下一行开始）
-修改最后一行是否纳入计算</p>
-</dd></dl>
-
-</section>
-<section id="val-gap-cond">
-<h3>val_gap_cond<a class="headerlink" href="#val-gap-cond" title="Permalink to this headline"></a></h3>
-<dl class="py function">
-<dt class="sig sig-object py" id="dramkit.gentools.val_gap_cond">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">val_gap_cond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_Fval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_Fcond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fcond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_cal_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fto_cal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vnan</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contain_1st</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.val_gap_cond" title="Permalink to this definition"></a></dt>
-<dd><p>计算从上一个满足Fcond函数的记录到当前行，col_Fval列记录的Fval函数值
-Fcond作用于col_Fcond列，Fcond(x)返回True或False，x为单个值
-Fval函数作用于col_Fval列，Fval(x)返回单个值，x为np.array或pd.Series或列表等
-Fto_cal作用于to_cal_col列，只有当前行Fto_cal值为True时才进行Fval计算，
-否则返回结果中当前行值设置为Vnan
-contain_1st设置Fval函数计算时是否将上一个满足Fcond的行也纳入计算</p>
-<p class="rubric">Examples</p>
-<dl>
-<dt>data = pd.DataFrame({‘val’: [1, 2, 5, 3, 1, 7 ,9],</dt><dd><p>‘sig’: [1, 1, -1, 1, 1, -1, 1]})</p>
-</dd>
-<dt>data[‘val_pre1’] = val_gap_cond(data, ‘val’, ‘sig’,</dt><dd><p>lambda x: x == -1, lambda x: max(x))</p>
-</dd>
-<dt>data:</dt><dd><blockquote>
-<div><p>val  sig  val_pre1</p>
-</div></blockquote>
-<p>0    1    1       NaN
-1    2    1       NaN
-2    5   -1       NaN
-3    3    1       3.0
-4    1    1       3.0
-5    7   -1       7.0
-6    9    1       9.0</p>
-</dd>
-</dl>
-</dd></dl>
-
-</section>
 <section id="filter-by-fprepost-series">
 <h3>filter_by_FPrePost_series<a class="headerlink" href="#filter-by-fprepost-series" title="Permalink to this headline"></a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="dramkit.gentools.filter_by_FPrePost_series">
-<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">filter_by_FPrePost_series</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FPrePost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fignore=&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Vnan=nan</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.filter_by_FPrePost_series" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">filter_by_FPrePost_series</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FPrePost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fignore=&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_nan=nan</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.filter_by_FPrePost_series" title="Permalink to this definition"></a></dt>
 <dd><p>对series调用filter_by_FPrePost函数，其中满足Fignore函数的值不参与
-series中被过滤的值在返回结果中用Vnan替换（不参与的值保持不变）</p>
+series中被过滤的值在返回结果中用val_nan替换（不参与的值保持不变）</p>
 <p class="rubric">Examples</p>
 <p>series = pd.Series([1, 2, 3, 4, 1, 1, 2, 3, 6])
 FPrePost = lambda x, y: (y-x) &gt;= 2
@@ -982,7 +1141,7 @@ vv10为当v1的值为0且v0为正时的返回值，v0为负时取负号</p>
 <span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">merge_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">same_keep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'left'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.merge_df" title="Permalink to this definition"></a></dt>
 <dd><p>pd.merge，相同列名时去除重复
 same_keep可选[‘left’, ‘right’]设置相同列保留左边df还是右边df
-<a href="#id2"><span class="problematic" id="id3">**</span></a>kwargs接收pd.merge接受的其他参数</p>
+<a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs接收pd.merge接受的其他参数</p>
 </dd></dl>
 
 </section>
@@ -1107,8 +1266,8 @@ check_l_in_l0(l, l0)
 </section>
 <section id="module-dramkit.install_check">
 <span id="install-check"></span><h2>install_check<a class="headerlink" href="#module-dramkit.install_check" title="Permalink to this headline"></a></h2>
-<section id="id4">
-<h3>install_check<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<section id="id5">
+<h3>install_check<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="dramkit.install_check.install_check">
 <span class="sig-prename descclassname"><span class="pre">dramkit.install_check.</span></span><span class="sig-name descname"><span class="pre">install_check</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.install_check.install_check" title="Permalink to this definition"></a></dt>
@@ -1165,6 +1324,9 @@ check_l_in_l0(l, l0)
 <li><p><strong>logger</strong> (<em>logging.Logger</em>) – 日志记录器</p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>dict</cite> - 返回读取数据</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -1202,10 +1364,7 @@ check_l_in_l0(l, l0)
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>lines</strong> – 文本文件中每行内容列表</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>list</p>
+<dd class="field-even"><p><cite>list</cite> - 文本文件中每行内容列表</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1268,10 +1427,7 @@ check_l_in_l0(l, l0)
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>data</strong> – 返回读取的数据</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>list, pandas.DataFrame</p>
+<dd class="field-even"><p><cite>list, pandas.DataFrame</cite> - 返回读取的数据</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1294,10 +1450,7 @@ check_l_in_l0(l, l0)
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>data</strong> – 读取的数据</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>pandas.DataFrame</p>
+<dd class="field-even"><p><cite>pandas.DataFrame</cite> - 读取的数据</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1319,10 +1472,7 @@ check_l_in_l0(l, l0)
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>data</strong> – 读取的数据</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>pandas.DataFrame</p>
+<dd class="field-even"><p><cite>pandas.DataFrame</cite> - 读取的数据</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1344,10 +1494,7 @@ check_l_in_l0(l, l0)
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>data</strong> – 读取的数据</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>pandas.DataFrame</p>
+<dd class="field-even"><p><cite>pandas.DataFrame</cite> - 读取的数据</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1371,10 +1518,7 @@ check_l_in_l0(l, l0)
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>fpaths</strong> – 文件路径列表</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>list</p>
+<dd class="field-even"><p><cite>list</cite> - 文件路径列表</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1577,10 +1721,7 @@ check_l_in_l0(l, l0)
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>files</strong> – key为找到的文件路径，value为包含目标字符串的文本内容(仅第一次出现的位置)</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>dict</p>
+<dd class="field-even"><p><cite>dict</cite> - 返回dict, key为找到的文件路径，value为包含目标字符串的文本内容(仅第一次出现的位置)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1600,7 +1741,7 @@ check_l_in_l0(l, l0)
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020-2021, YueYong Hu.</p>
+    <p>&#169; Copyright 2020-2022, YueYong Hu.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -1,36 +1,36 @@
-2021-12-26 20:19:18,596 -test_log.py[line: 16] -INFO:
+2021-12-28 09:08:08,671 -_test_log.py[line: 16] -INFO:
     --Log start here *********************************************
-2021-12-26 20:19:18,597 -test_func.py[line: 4] -INFO:
+2021-12-28 09:08:08,672 -_test_func.py[line: 4] -INFO:
     --info of test func ------------------------------------------
-2021-12-26 20:19:18,598 -test_func.py[line: 5] -INFO:
+2021-12-28 09:08:08,673 -_test_func.py[line: 5] -INFO:
     --get input x: 3, y: 5.
-2021-12-26 20:19:18,599 -test_func.py[line: 6] -WARNING:
+2021-12-28 09:08:08,674 -_test_func.py[line: 6] -WARNING:
     --this is a warning.
-2021-12-26 20:19:18,599 -test_func.py[line: 7] -ERROR:
+2021-12-28 09:08:08,675 -_test_func.py[line: 7] -ERROR:
     --some error may find here.
-2021-12-26 20:19:18,600 -test_func.py[line: 9] -DEBUG:
+2021-12-28 09:08:08,675 -_test_func.py[line: 9] -DEBUG:
     --x div y : 0.6
-2021-12-26 20:19:18,603 -test_func.py[line: 13] -CRITICAL:
+2021-12-28 09:08:08,677 -_test_func.py[line: 13] -CRITICAL:
     --program may crash here.
-2021-12-26 20:19:18,603 -test_func.py[line: 14] -INFO:
+2021-12-28 09:08:08,678 -_test_func.py[line: 14] -INFO:
     --test function finished.
-2021-12-26 20:19:18,604 -test_func.py[line: 4] -INFO:
+2021-12-28 09:08:08,679 -_test_func.py[line: 4] -INFO:
     --info of test func ------------------------------------------
-2021-12-26 20:19:18,604 -test_func.py[line: 5] -INFO:
+2021-12-28 09:08:08,679 -_test_func.py[line: 5] -INFO:
     --get input x: 3, y: 0.
-2021-12-26 20:19:18,605 -test_func.py[line: 6] -WARNING:
+2021-12-28 09:08:08,680 -_test_func.py[line: 6] -WARNING:
     --this is a error.
-2021-12-26 20:19:18,605 -test_func.py[line: 7] -ERROR:
+2021-12-28 09:08:08,680 -_test_func.py[line: 7] -ERROR:
     --some error may find here.
-2021-12-26 20:19:18,606 -test_func.py[line: 11] -ERROR:
+2021-12-28 09:08:08,681 -_test_func.py[line: 11] -ERROR:
     --x cannot div y, please check y.
 Traceback (most recent call last):
-  File "D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\test\test_func.py", line 9, in test_func
+  File "D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\test\_test_func.py", line 9, in test_func
     logger.debug('x div y : {}'.format(str(x/y)))
 ZeroDivisionError: division by zero
-2021-12-26 20:19:18,608 -test_func.py[line: 13] -CRITICAL:
+2021-12-28 09:08:08,683 -_test_func.py[line: 13] -CRITICAL:
     --program may crash here.
-2021-12-26 20:19:18,609 -test_func.py[line: 14] -INFO:
+2021-12-28 09:08:08,683 -_test_func.py[line: 14] -INFO:
     --test function finished.
-2021-12-26 20:19:18,610 -test_log.py[line: 20] -INFO:
+2021-12-28 09:08:08,684 -_test_log.py[line: 20] -INFO:
     --test finished.

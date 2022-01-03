@@ -2,7 +2,7 @@
 
 if __name__ == '__main__':
     import time
-    import test_func
+    import _test_func
     from dramkit.logtools import utils_logger
     from dramkit.logtools import logger_general
     from dramkit.logtools import logger_rotating
@@ -14,9 +14,9 @@ if __name__ == '__main__':
                                        screen_show=True)
 
     logger.info('Log start here *********************************************')
-    test_func.test_func(3, 5, 'this is a warning.', logger)
+    _test_func.test_func(3, 5, 'this is a warning.', logger)
     
-    test_func.test_func(3, 0, 'this is a error.', logger)
+    _test_func.test_func(3, 0, 'this is a error.', logger)
     logger.info('test finished.')
 
     utils_logger.close_log_file(logger)
@@ -27,7 +27,7 @@ if __name__ == '__main__':
                                         fmode='w', max_kb=1, nfile=3,
                                         screen_show=True)
     logger.info('Log start here *********************************************')
-    test_func.test_func(3, 1, 'this is a warning.', logger)
+    _test_func.test_func(3, 1, 'this is a warning.', logger)
     logger.info('test finished.')
 
     utils_logger.close_log_file(logger)
@@ -42,7 +42,7 @@ if __name__ == '__main__':
     count = 0
     while count < 2:
         logger.info('{}th log start here ********************'.format(count+1))
-        test_func.test_func(3, 2, 'this is a warning.', logger)
+        _test_func.test_func(3, 2, 'this is a warning.', logger)
         logger.info('test finished.')
 
         time.sleep(2)

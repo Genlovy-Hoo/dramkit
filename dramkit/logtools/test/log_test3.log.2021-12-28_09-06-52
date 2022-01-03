@@ -1,0 +1,36 @@
+2021-12-28 09:06:50,357 -_test_log.py[line: 44] -INFO:
+    --1th log start here ********************
+2021-12-28 09:06:50,359 -test_func.py[line: 4] -INFO:
+    --info of test func ------------------------------------------
+2021-12-28 09:06:50,360 -test_func.py[line: 5] -INFO:
+    --get input x: 3, y: 2.
+2021-12-28 09:06:50,361 -test_func.py[line: 6] -WARNING:
+    --this is a warning.
+2021-12-28 09:06:50,363 -test_func.py[line: 7] -ERROR:
+    --some error may find here.
+2021-12-28 09:06:50,364 -test_func.py[line: 9] -DEBUG:
+    --x div y : 1.5
+2021-12-28 09:06:50,365 -test_func.py[line: 13] -CRITICAL:
+    --program may crash here.
+2021-12-28 09:06:50,366 -test_func.py[line: 14] -INFO:
+    --test function finished.
+2021-12-28 09:06:50,367 -_test_log.py[line: 46] -INFO:
+    --test finished.
+2021-12-28 09:06:52,382 -_test_log.py[line: 44] -INFO:
+    --2th log start here ********************
+2021-12-28 09:06:52,382 -test_func.py[line: 4] -INFO:
+    --info of test func ------------------------------------------
+2021-12-28 09:06:52,383 -test_func.py[line: 5] -INFO:
+    --get input x: 3, y: 2.
+2021-12-28 09:06:52,385 -test_func.py[line: 6] -WARNING:
+    --this is a warning.
+2021-12-28 09:06:52,385 -test_func.py[line: 7] -ERROR:
+    --some error may find here.
+2021-12-28 09:06:52,386 -test_func.py[line: 9] -DEBUG:
+    --x div y : 1.5
+2021-12-28 09:06:52,387 -test_func.py[line: 13] -CRITICAL:
+    --program may crash here.
+2021-12-28 09:06:52,388 -test_func.py[line: 14] -INFO:
+    --test function finished.
+2021-12-28 09:06:52,388 -_test_log.py[line: 46] -INFO:
+    --test finished.

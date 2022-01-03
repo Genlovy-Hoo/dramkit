@@ -1,16 +1,25 @@
 # -*- coding: utf-8 -*-
 
-from utils_hoo.utils_io import get_all_files, read_lines, write_txt
+from dramkit.iotools import get_all_files, read_lines, write_txt
 
 
-def replace_endblank_in_file(fpath, func_new_path=None,
-                             encoding_new='utf-8'):
+def replace_endblank_in_file(fpath, func_new_path=None, logger=None,
+                             encoding=None, encoding_new='utf-8'):
     '''
-    替换文件中每一行尾部的空白，并存为新文件
-    新文件的名称由func_new_path函数给出，其格式为：
-        def func_new_path(fpath):
-            new_path = ...
-            return new_path
+    替换指定文本文件中每一行行尾部的空白，并存为新文件
+
+    Parameters
+    ----------
+    fpath : str
+        待替换目标文本文件路径
+    func_new_path : function
+        新文件的名称由func_new_path函数给出，fpath_new = func_new_path(fpath)
+    logger : None, logging.Logger
+        日志记录器
+    encoding : None, str
+        原文件编码方式
+    encoding_new : str
+        新文件编码方式
     '''
 
     def _func_new_path(x):
@@ -25,7 +34,7 @@ def replace_endblank_in_file(fpath, func_new_path=None,
     fpath_new = func_new_path(fpath)
 
     # 读取文件内容并替换尾部空白
-    lines = read_lines(fpath)
+    lines = read_lines(fpath, encoding=encoding, logger=logger)
     lines_new = []
     for line in lines:
         lines_new.append(line.rstrip())
@@ -42,10 +51,10 @@ if __name__ == '__main__':
 
     root_dir = './'
     files_types = ['.py_']
-
     all_files = get_all_files(root_dir, ext=files_types)
 
-    func_new_path = lambda x: x
+    # func_new_path = lambda x: x
+    func_new_path = None
     encoding_new = 'utf-8'
     for fpath in all_files:
         replace_endblank_in_file(fpath, func_new_path,

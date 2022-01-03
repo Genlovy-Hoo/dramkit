@@ -167,6 +167,12 @@ def dramkit_funcsytle(a, b='b', *args, **kwargs):
        based on VMD and HGWO for container throughput forecasting[J].
        Applied Mathematical Modelling, 2018.
 
+    .. code-block:: python
+       :linenos:
+    
+       def hello():
+           print('这里是Python代码块，linenos用于设置生成行号')
+
     Note
     ----
     请注意Notes和Note的区别

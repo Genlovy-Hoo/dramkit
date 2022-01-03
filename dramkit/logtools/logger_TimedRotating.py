@@ -27,10 +27,8 @@ def get_logger(fpath=None, when='S', interval=3, nfile=3,
 
         .. note:: ``fpath`` 和 ``screen_show`` 必须有至少一个为真
 
-    Returns
-    -------
-    logger : logging.Logger
-        日志记录器
+
+    :returns: `logging.Logger` - 日志记录器
 
     See Also
     --------

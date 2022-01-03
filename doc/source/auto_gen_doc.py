@@ -28,7 +28,7 @@ ORDER = {}
 
 import sys
 sys.path.append(PKG_DIR)
-from dramkit.logtools.utils_logger import logger_show
+from dramkit.logtools.utils_logger import logger_show, close_log_file
 from dramkit.logtools.logger_general import get_logger
 from dramkit.iotools import read_lines, write_txt, get_all_files
 
@@ -181,11 +181,13 @@ if __name__ == '__main__':
     import time
     strt_tm = time.time()
 
+
     # __init__.py临时改名
     initfiles = get_all_files(SRC_DIR, ext=['__init__.py'])
     initfiles_tmp = [x+'tmp' for x in initfiles]
     for k in range(len(initfiles)):
         os.rename(initfiles[k], initfiles_tmp[k])
+
 
     # 子package的rst文档生成
     sub_pkgs = get_sub_pkgs()
@@ -216,6 +218,7 @@ if __name__ == '__main__':
     rst_lines.append('* :ref:`modindex`')
     write_txt(rst_lines, idxrst)
 
+
     # 执行.\make html生成文档
     nowpath = os.getcwd()
     docpath = os.path.abspath('../')
@@ -224,11 +227,15 @@ if __name__ == '__main__':
     # os.system('.\make html') # 无返回
     # subprocess.call('.\make html', shell=True) # 无返回
     # subprocess.check_call('.\make html', shell=True) # 无返回
+
     makeinfo = subprocess.check_output('.\make html', shell=True,
-                                       stderr=subprocess.STDOUT)
+                                        stderr=subprocess.STDOUT)
     makeinfo = makeinfo.decode('gbk')
     makeinfo = makeinfo.replace('\r\n', '\n')
-    logger_show(makeinfo, get_logger('./source/makeinfo.log'))
+    logger = get_logger('./source/makeinfo.log')
+    logger_show(makeinfo, logger)
+    close_log_file(logger)
+
 
     # 将__init__文件名改回来
     os.chdir(nowpath)

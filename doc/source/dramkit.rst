@@ -8,85 +8,80 @@ gentools
 
 .. currentmodule:: dramkit.gentools
 
-log_used_time1
-^^^^^^^^^^^^^^^
+log_used_time
+^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.gentools.log_used_time1
-
-log_used_time2
-^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.gentools.log_used_time2
+.. autofunction:: dramkit.gentools.log_used_time
 
 print_used_time
 ^^^^^^^^^^^^^^^^
 
 .. autofunction:: dramkit.gentools.print_used_time
 
-bootstrapping
-^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.gentools.bootstrapping
-
-groupby_rolling_func
-^^^^^^^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.gentools.groupby_rolling_func
-
-label_rep_index_str
-^^^^^^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.gentools.label_rep_index_str
-
-drop_index_duplicates
-^^^^^^^^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.gentools.drop_index_duplicates
-
 get_update_kwargs
 ^^^^^^^^^^^^^^^^^^
 
 .. autofunction:: dramkit.gentools.get_update_kwargs
 
-Roulette_base
+roulette_base
 ^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.gentools.Roulette_base
+.. autofunction:: dramkit.gentools.roulette_base
 
-Roulette_stochasticAccept
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+roulette_stochastic_accept
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.gentools.Roulette_stochasticAccept
+.. autofunction:: dramkit.gentools.roulette_stochastic_accept
 
-Roulette_N
-^^^^^^^^^^^
+roulette_count
+^^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.gentools.Roulette_N
+.. autofunction:: dramkit.gentools.roulette_count
 
-randSum
-^^^^^^^^
-
-.. autofunction:: dramkit.gentools.randSum
-
-randWSum
+rand_sum
 ^^^^^^^^^
 
-.. autofunction:: dramkit.gentools.randWSum
+.. autofunction:: dramkit.gentools.rand_sum
 
-con_count_
-^^^^^^^^^^^
+rand_weight_sum
+^^^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.gentools.con_count_
+.. autofunction:: dramkit.gentools.rand_weight_sum
+
+replace_repeat_iter
+^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.replace_repeat_iter
+
+replace_repeat_pd
+^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.replace_repeat_pd
+
+replace_repeat_func_iter
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.replace_repeat_func_iter
+
+replace_repeat_func_pd
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.replace_repeat_func_pd
 
 con_count
 ^^^^^^^^^^
 
 .. autofunction:: dramkit.gentools.con_count
 
-get_pre_val_Fcond
-^^^^^^^^^^^^^^^^^^
+con_count_ignore
+^^^^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.gentools.get_pre_val_Fcond
+.. autofunction:: dramkit.gentools.con_count_ignore
+
+get_preval_func_cond
+^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.get_preval_func_cond
 
 gap_count
 ^^^^^^^^^^
@@ -108,35 +103,30 @@ count_between_gap_iter
 
 .. autofunction:: dramkit.gentools.count_between_gap_iter
 
-replace_repeat_iter
-^^^^^^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.gentools.replace_repeat_iter
-
-replace_repeat_pd
-^^^^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.gentools.replace_repeat_pd
-
-replace_repeat_F_iter
-^^^^^^^^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.gentools.replace_repeat_F_iter
-
-replace_repeat_F_pd
-^^^^^^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.gentools.replace_repeat_F_pd
-
-val_gap_cond_new
-^^^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.gentools.val_gap_cond_new
-
 val_gap_cond
 ^^^^^^^^^^^^^
 
 .. autofunction:: dramkit.gentools.val_gap_cond
+
+bootstrapping
+^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.bootstrapping
+
+groupby_rolling_func
+^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.groupby_rolling_func
+
+label_rep_index_str
+^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.label_rep_index_str
+
+drop_index_duplicates
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.drop_index_duplicates
 
 filter_by_FPrePost_series
 ^^^^^^^^^^^^^^^^^^^^^^^^^^

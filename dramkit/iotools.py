@@ -53,6 +53,9 @@ def load_json(fpath, encoding=None, logger=None):
         文件编码格式，若不指定，则尝试用utf-8和gbk编码读取
     logger : logging.Logger
         日志记录器
+
+
+    :returns: `dict` - 返回读取数据
     '''
 
     if not os.path.exists(fpath):
@@ -109,10 +112,8 @@ def read_lines(fpath, encoding=None, logger=None):
     logger : None, logging.Logger
         日志记录器
 
-    Returns
-    -------
-    lines : list
-        文本文件中每行内容列表
+
+    :returns: `list` - 文本文件中每行内容列表
     '''
     try:
         with open(fpath, 'r', encoding=encoding) as f:
@@ -200,10 +201,8 @@ def load_text(fpath, sep=',', del_first_line=False, del_first_col=False,
     logger : logging.Logger, None
         日志记录器
 
-    Returns
-    -------
-    data : list, pandas.DataFrame
-        返回读取的数据
+
+    :returns: `list, pandas.DataFrame` - 返回读取的数据
     '''
 
     if not os.path.exists(fpath):
@@ -257,10 +256,8 @@ def load_csv(fpath, del_unname_cols=True, encoding=None,
     **kwargs :
         其它 ``pd.read_csv`` 支持的参数
 
-    Returns
-    -------
-    data : pandas.DataFrame
-        读取的数据
+
+    :returns: `pandas.DataFrame` - 读取的数据
     '''
 
     if not os.path.exists(fpath):
@@ -303,10 +300,8 @@ def load_csvs(fdir, sort_cols=None, drop_duplicates=True,
     **kwargs_loadcsv :
         :func:`dramkit.iotools.load_csv` 接受的其它参数
 
-    Returns
-    -------
-    data : pandas.DataFrame
-        读取的数据
+
+    :returns: `pandas.DataFrame` - 读取的数据
     '''
     files = os.listdir(fdir)
     files = [os.path.join(fdir, x) for x in files if x[-4:] == '.csv']
@@ -339,10 +334,8 @@ def load_excels(fdir, sort_cols=None, drop_duplicates=True,
     **kwargs_readexcel :
         ``pd.read_excel`` 接受的其它参数
 
-    Returns
-    -------
-    data : pandas.DataFrame
-        读取的数据
+
+    :returns: `pandas.DataFrame` - 读取的数据
     '''
     files = os.listdir(fdir)
     files = [os.path.join(fdir, x) for x in files if x[-4:] == '.xls' or x[-5:] == '.xlsx']
@@ -373,11 +366,9 @@ def get_all_files(dir_path, ext=None, include_dir=False, abspath=False):
         返回结果中是否包含文件夹路径，默认不包含（即只返回文件路径）
     abspath : bool
         是否返回绝对路径，默认返回相对路径
-  
-    Returns
-    -------
-    fpaths : list
-        文件路径列表
+
+
+    :returns: `list` - 文件路径列表
 	'''
     if not (ext is None or isinstance(ext, list) or isinstance(ext, str)):
         raise ValueError('`ext`必须为None或str或list类型！')
@@ -625,10 +616,8 @@ def find_files_include_str(target_str, root_dir=None,
     logger : None, logging.Logger
         日志记录器
 
-    Returns
-    -------
-    files : dict
-        key为找到的文件路径，value为包含目标字符串的文本内容(仅第一次出现的位置)
+
+    :returns: `dict` - 返回dict, key为找到的文件路径，value为包含目标字符串的文本内容(仅第一次出现的位置)
     '''
     if root_dir is None:
         root_dir = os.getcwd()
