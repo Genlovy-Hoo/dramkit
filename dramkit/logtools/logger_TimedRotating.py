@@ -17,7 +17,7 @@ def get_logger(fpath=None, when='S', interval=3, nfile=3,
         日志文件路径，默认为None即不保存日志文件
     when : str
         回滚时间单位:
-        `S`秒、`M`分、`H`小时、`D`天、`W`星期、`midnight`午夜 等
+        ``S`` 秒、``M`` 分、``H`` 小时、``D`` 天、``W`` 星期、``midnight`` 午夜 等
     interval : int
         滚动周期，单位由 ``when`` 指定
     nfile : int

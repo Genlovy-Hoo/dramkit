@@ -34,4 +34,7 @@ setup(name=__title__,
       platforms='any',
       packages=['dramkit',
                 'dramkit.logtools',
+                'dramkit.plottools',
+                'dramkit.datsci',
+                'dramkit.sorts',
 				'dramkit.pystyles'])

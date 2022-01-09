@@ -2,8 +2,8 @@
 
 import os
 import logging
-from .utils_logger import remove_handlers
-# from dramkit.logtools.utils_logger import remove_handlers
+# from .utils_logger import remove_handlers
+from dramkit.logtools.utils_logger import remove_handlers
 
 
 def get_logger(fpath=None, fmode='w', screen_show=True):

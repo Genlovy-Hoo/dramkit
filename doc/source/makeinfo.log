@@ -1,41 +1,23 @@
-2022-01-03 22:53:11,238 -utils_logger.py[line: 32] -INFO:
+2022-01-09 20:53:50,498 -utils_logger.py[line: 32] -INFO:
     --正在运行 Sphinx v4.3.1
 正在加载翻译 [en]... 完成
 加载 pickled环境... 完成
 构建 [mo]： 0 个 po 文件的目标文件已过期
-构建 [html]： 5 个源文件的目标文件已过期
-更新环境: 已添加 0，5 已更改，0 已移除
-阅读源... [ 20%] dramkit                                                          阅读源... [ 40%] dramkit.logtools                                                 阅读源... [ 60%] dramkit.other                                                    阅读源... [ 80%] dramkit.pystyles                                                 阅读源... [100%] index                                                            
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.log_used_time:18: WARNING: Explicit markup ends without a blank line; unexpected unindent.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.print_used_time:15: WARNING: Explicit markup ends without a blank line; unexpected unindent.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.filter_by_FPrePost_series:9: WARNING: Unexpected indentation.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.filter_by_FPrePost_series:18: WARNING: Block quote ends without a blank line; unexpected unindent.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.filter_by_FPrePost_series:20: WARNING: Definition list ends without a blank line; unexpected unindent.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.merge_df:1: WARNING: Inline strong start-string without end-string.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.cut_df_by_con_val:7: WARNING: Definition list ends without a blank line; unexpected unindent.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.cut_df_by_con_val:9: WARNING: Unexpected indentation.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.cut_df_by_con_val:13: WARNING: Unexpected indentation.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.cut_df_by_con_val:14: WARNING: Block quote ends without a blank line; unexpected unindent.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.cut_df_by_con_val:16: WARNING: Unexpected indentation.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.cut_df_by_con_val:17: WARNING: Block quote ends without a blank line; unexpected unindent.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.cut_df_by_con_val:19: WARNING: Definition list ends without a blank line; unexpected unindent.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.cut_df_by_con_val:22: WARNING: Unexpected indentation.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.cut_df_by_con_val:23: WARNING: Block quote ends without a blank line; unexpected unindent.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.get_con_start_end:7: WARNING: Definition list ends without a blank line; unexpected unindent.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.get_con_start_end:9: WARNING: Unexpected indentation.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.get_con_start_end:10: WARNING: Block quote ends without a blank line; unexpected unindent.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.get_con_start_end:12: WARNING: Unexpected indentation.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.check_exist_data:7: WARNING: Definition list ends without a blank line; unexpected unindent.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.check_exist_data:9: WARNING: Unexpected indentation.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\gentools.py:docstring of dramkit.gentools.check_exist_data:10: WARNING: Block quote ends without a blank line; unexpected unindent.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_timedrotating.py:docstring of dramkit.logtools.logger_timedrotating.get_logger:5: WARNING: Inline interpreted text or phrase reference start-string without end-string.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_timedrotating.py:docstring of dramkit.logtools.logger_timedrotating.get_logger:5: WARNING: Inline interpreted text or phrase reference start-string without end-string.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_timedrotating.py:docstring of dramkit.logtools.logger_timedrotating.get_logger:5: WARNING: Inline interpreted text or phrase reference start-string without end-string.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_timedrotating.py:docstring of dramkit.logtools.logger_timedrotating.get_logger:5: WARNING: Inline interpreted text or phrase reference start-string without end-string.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_timedrotating.py:docstring of dramkit.logtools.logger_timedrotating.get_logger:5: WARNING: Inline interpreted text or phrase reference start-string without end-string.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\logtools\logger_timedrotating.py:docstring of dramkit.logtools.logger_timedrotating.get_logger:5: WARNING: Inline interpreted text or phrase reference start-string without end-string.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style.dramkit_funcsytle:85: WARNING: Unexpected indentation.
-D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style.dramkit_funcsytle:86: WARNING: Block quote ends without a blank line; unexpected unindent.
+构建 [html]： 8 个源文件的目标文件已过期
+更新环境: 已添加 0，8 已更改，0 已移除
+阅读源... [ 12%] dramkit                                                          阅读源... [ 25%] dramkit.datsci                                                   阅读源... [ 37%] dramkit.logtools                                                 阅读源... [ 50%] dramkit.other                                                    阅读源... [ 62%] dramkit.plottools                                                阅读源... [ 75%] dramkit.pystyles                                                 阅读源... [ 87%] dramkit.sorts                                                    阅读源... [100%] index                                                            
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\datsci\utils_stats.py:docstring of dramkit.datsci.utils_stats.scale_skl:3: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\datsci\utils_stats.py:docstring of dramkit.datsci.utils_stats.scale_skl:5: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\datsci\utils_stats.py:docstring of dramkit.datsci.utils_stats.scale_skl:5: WARNING: Inline strong start-string without end-string.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\datsci\utils_stats.py:docstring of dramkit.datsci.utils_stats.scale_skl_inverse:1: WARNING: Inline strong start-string without end-string.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\datsci\utils_stats.py:docstring of dramkit.datsci.utils_stats.norm_std:3: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\datsci\utils_stats.py:docstring of dramkit.datsci.utils_stats.norm_std:5: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\datsci\utils_stats.py:docstring of dramkit.datsci.utils_stats.r2:3: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\datsci\utils_stats.py:docstring of dramkit.datsci.utils_stats.r2:5: WARNING: Block quote ends without a blank line; unexpected unindent.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\datsci\utils_stats.py:docstring of dramkit.datsci.utils_stats.r2:8: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\datsci\utils_stats.py:docstring of dramkit.datsci.utils_stats.r2_by_mse:3: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\datsci\utils_stats.py:docstring of dramkit.datsci.utils_stats.r2_deprecated:3: WARNING: Unexpected indentation.
+D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\datsci\utils_stats.py:docstring of dramkit.datsci.utils_stats.cumScale:3: WARNING: Unexpected indentation.
 D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style:16: WARNING: 脚注 [8] 没有被引用过。
 D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style:17: WARNING: 脚注 [9] 没有被引用过。
 D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style:18: WARNING: 脚注 [10] 没有被引用过。
@@ -45,14 +27,14 @@ D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring o
 pickling环境... 完成
 检查一致性... 完成
 准备文件... 完成
-写入输出... [ 20%] dramkit                                                         写入输出... [ 40%] dramkit.logtools                                                写入输出... [ 60%] dramkit.other                                                   写入输出... [ 80%] dramkit.pystyles                                                写入输出... [100%] index                                                           
+写入输出... [ 12%] dramkit                                                         写入输出... [ 25%] dramkit.datsci                                                  写入输出... [ 37%] dramkit.logtools                                                写入输出... [ 50%] dramkit.other                                                   写入输出... [ 62%] dramkit.plottools                                               写入输出... [ 75%] dramkit.pystyles                                                写入输出... [ 87%] dramkit.sorts                                                   写入输出... [100%] index                                                           
 正在生成索引... genindex py-modindex 完成
 正在写入附加页面... search 完成
 copying static files... 完成
 正在复制额外文件... 完成
 正在导出 English (code: en) 的搜索索引... 完成
 正在导出对象清单... 完成
-构建 成功，35 警告。
+构建 成功，17 警告。
 
 HTML 页面保存在 build\html 目录。
 

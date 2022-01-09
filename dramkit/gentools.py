@@ -23,7 +23,7 @@ def log_used_time(logger=None):
     ----------
     logger : None, logging.Logger
         日志记录器
-    
+
     Examples
     --------
     .. code-block:: python
@@ -36,6 +36,7 @@ def log_used_time(logger=None):
         def wait():
             print('wait...')
             time.sleep(3)
+
     >>> wait()
     wait...
     2021-12-28 12:39:54,013 -utils_logger.py[line: 32] -INFO:
@@ -84,6 +85,7 @@ def print_used_time(func):
         def wait():
             print('wait...')
             time.sleep(3)
+
     >>> wait()
     wait...
     function `wait` run time: 3.008314s.
@@ -532,18 +534,17 @@ def replace_repeat_iter(series, val, val0, gap=None):
     '''
     替换序列中重复出现的值
     
-    series (`pd.Series`) 中若步长为gap的范围内出现多个val值，则只保留第一条记录，
-    后面的替换为val0
-    
-    若gap为None，则将连续出现的val值只保留第一个，其余替换为val0(这里连续出现val是指
-    不出现除了val和val0之外的其他值)
+    | series (`pd.Series`) 中若步长为gap的范围内出现多个val值，则只保留第一条记录，
+    | 后面的替换为val0
+    | 若gap为None，则将连续出现的val值只保留第一个，其余替换为val0(这里连续出现val是指
+    | 不出现除了val和val0之外的其他值)
     
     返回结果为替换之后的series (`pd.Series`)
 
     Examples
     --------
     >>> data = pd.DataFrame([0, 1, 1, 0, -1, -1, 2, -1, 1, 0, 1, 1, 1, 0, 0,
-                             -1, -1, 0, 0, 1], columns=['test'])
+    ...                      -1, -1, 0, 0, 1], columns=['test'])
     >>> data['test_rep'] = replace_repeat_iter(data['test'], 1, 0, gap=None)
     >>> data
         test  test_rep
@@ -665,21 +666,22 @@ def replace_repeat_func_iter(series, func_val, func_val0, gap=None):
     替换序列中重复出现的值，功能与 :func:`dramkit.gentools.replace_repeat_iter`
     类似，只不过把val和val0的值由直接指定换成了由指定函数生成
 
-    ``func_val`` 函数用于判断连续条件，其返回值只能是True或False, ``func_val0``
-    函数用于生成替换的新值。即series中若步长为gap的范围内出现多个满足func_val函数为True的值，
-    则只保留第一条记录，后面的替换为函数func_val0的值。
-    若gap为None，则将连续出现的满足func_val函数为True的值只保留第一个，其余替换为函数
-    func_val0的值(这里连续出现是指不出现除了满足func_val为True和等于func_val0函数值
-    之外的其他值)
+    | ``func_val`` 函数用于判断连续条件，其返回值只能是True或False，
+    | ``func_val0`` 函数用于生成替换的新值。
+    | 即series中若步长为gap的范围内出现多个满足func_val函数为True的值，
+    | 则只保留第一条记录，后面的替换为函数func_val0的值。
+    | 若gap为None，则将连续出现的满足func_val函数为True的值只保留第一个，其余替换为函数
+    | func_val0的值(这里连续出现是指不出现除了满足func_val为True和等于func_val0函数值
+    | 之外的其他值)
     
     返回结果为替换之后的series (`pd.Series`)
 
     Examples
     --------
     >>> data = pd.DataFrame({'y': [0, 1, 1, 0, -1, -1, 2, -1, 1, 0, 1,
-                                   1, 1, 0, 0, -1, -1, 0, 0, 1]})
+    ...                            1, 1, 0, 0, -1, -1, 0, 0, 1]})
     >>> data['y_rep'] = replace_repeat_func_iter(
-                        data['y'], lambda x: x < 1, lambda x: 3, gap=None)
+    ...                 data['y'], lambda x: x < 1, lambda x: 3, gap=None)
     >>> data
         y  y_rep
     0   0      0
@@ -752,9 +754,9 @@ def replace_repeat_func_pd(series, func_val, func_val0):
     '''
     替换序列中重复出现的值, 仅保留第一个
     
-    函数功能，参数和意义同 :func:`dramkit.gentools.replace_repeat_func_iter`
-    区别在于计算时在pandas.DataFrame里面进行而不是采用迭代方式，同时取消了gap
-    参数(即连续出现的满足func_val为True的值只保留第一个)
+    | 函数功能，参数和意义同 :func:`dramkit.gentools.replace_repeat_func_iter`
+    | 区别在于计算时在pandas.DataFrame里面进行而不是采用迭代方式
+    | 同时取消了gap参数(即连续出现的满足func_val为True的值只保留第一个)
     '''
 
     col = series.name
@@ -898,18 +900,16 @@ def con_count_ignore(series, func_cond, via_pd=True, func_ignore=None):
 
 def get_preval_func_cond(data, col_val, col_cond, func_cond):
     '''
-    获取上一个满足指定条件的行中col_val列的值，条件为：
-    
-    该行中col_cond列的值x满足func_cond(x)为True (func_cond(x)返回结果只能为True或False)
-    
-    返回结果为 `pd.Series`
+    | 获取上一个满足指定条件的行中col_val列的值，条件为：
+    | 该行中col_cond列的值x满足func_cond(x)为True (func_cond(x)返回结果只能为True或False)
+    | 返回结果为 `pd.Series`
 
     Examples
     --------
     >>> data = pd.DataFrame({'x1': [0, 1, 1, 0, -1, -1, 2, -1, 1, 0, 1, 1, 1,
-                                    0, 0, -1, -1, 0, 0, 1],
-                             'x2': [0, 1, 1, 0, -1, -1, 1, -1, 1, 0, 1, 1, 1,
-                                    0, 0, -1, -1, 0, 0, 1]})
+    ...                             0, 0, -1, -1, 0, 0, 1],
+    ...                      'x2': [0, 1, 1, 0, -1, -1, 1, -1, 1, 0, 1, 1, 1,
+    ...                             0, 0, -1, -1, 0, 0, 1]})
     >>> data['x1_pre'] = get_preval_func_cond(data, 'x1', 'x2', lambda x: x != 1)
     >>> data
         x1  x2  x1_pre
@@ -1025,10 +1025,10 @@ def count_between_gap(data, col_gap, col_count, func_gap, func_count,
     计算data (`pandas.DataFrame`)中当前行与上一个满足 ``func_gap`` 函数为True的行之间，
     满足 ``func_count`` 函数为True的记录数
 
-    函数func_gap作用于 ``col_gap`` 列，func_count作用于 ``col_count`` 列，两者返回值均为True或False
-
-    ``count_now_gap`` 设置满足func_gap的行是否参与计数，若为False，则该行计数为0，若为
-    True，则该行按照上一次计数的最后一次计数处理
+    | 函数func_gap作用于 ``col_gap`` 列，func_count作用于 ``col_count`` 列，
+      两者返回值均为True或False
+    | ``count_now_gap`` 设置满足func_gap的行是否参与计数，若为False，
+      则该行计数为0，若为True，则该行按照上一次计数的最后一次计数处理
     
     .. todo::
         增加count_now_gap的处理方式：
@@ -1050,12 +1050,12 @@ def count_between_gap(data, col_gap, col_count, func_gap, func_count,
     Examples
     --------
     >>> data = pd.DataFrame({'to_gap': [0, 1, 1, 0, -1, -1, 2, -1, 1, 0, -1, 1,
-                                        1, 0, 0, -1, -1, 0, 0, 1],
-                             'to_count': [0, 1, 1, 0, -1, -1, 1, -1, 1, 0, 1,
-                                          1, 1, 0, 0, -1, -1, 0, 0, 1]})
+    ...                                 1, 0, 0, -1, -1, 0, 0, 1],
+    ...                      'to_count': [0, 1, 1, 0, -1, -1, 1, -1, 1, 0, 1,
+    ...                                   1, 1, 0, 0, -1, -1, 0, 0, 1]})
     >>> data['gap_count'] = count_between_gap(data, 'to_gap', 'to_count',
-                                              lambda x: x == -1, lambda x: x == 1,
-                                              count_now_gap=False, count_now=False)
+    ...                                       lambda x: x == -1, lambda x: x == 1,
+    ...                                       count_now_gap=False, count_now=False)
     >>> data
             to_gap  to_count  gap_count
     0        0         0          0
@@ -1309,14 +1309,11 @@ def val_gap_cond(data, col_val, col_cond, func_cond, func_val,
     计算data (`pandas.DataFrame`)中从上一个 ``col_cond`` 列满足 ``func_cond`` 函数的行
     到当前行, ``col_val`` 列记录的 ``func_val`` 函数值
 
-    func_cond作用于col_cond列，func_cond(x)返回True或False，x为单个值
-
-    func_val函数作用于col_val列，func_val(x)返回单个值，x为np.array或pd.Series或列表等
-
-    func_to_cal作用于to_cal_col列，只有当前行func_to_cal值为True时才进行func_val计算，
-    否则返回结果中当前行值设置为val_nan
-
-    contain_1st设置func_val函数计算时是否将上一个满足func_cond的行也纳入计算
+    | func_cond作用于col_cond列，func_cond(x)返回True或False，x为单个值
+    | func_val函数作用于col_val列，func_val(x)返回单个值，x为np.array或pd.Series或列表等
+    | func_to_cal作用于to_cal_col列，只有当前行func_to_cal值为True时才进行func_val计算，
+      否则返回结果中当前行值设置为val_nan
+    | contain_1st设置func_val函数计算时是否将上一个满足func_cond的行也纳入计算
 
     .. todo::
         参考 :func:`dramkit.gentools.count_between_gap` 的设置:
@@ -1326,9 +1323,9 @@ def val_gap_cond(data, col_val, col_cond, func_cond, func_val,
     Examples
     --------
     >>> data = pd.DataFrame({'val': [1, 2, 5, 3, 1, 7 ,9],
-                             'sig': [1, 1, -1, 1, 1, -1, 1]})
+    ...                      'sig': [1, 1, -1, 1, 1, -1, 1]})
     >>> data['val_pre1'] = val_gap_cond(data, 'val', 'sig',
-                           lambda x: x == -1, lambda x: max(x))
+    ...                    lambda x: x == -1, lambda x: max(x))
     >>> data
        val  sig  val_pre1
     0    1    1       NaN
@@ -1381,147 +1378,30 @@ def val_gap_cond(data, col_val, col_cond, func_cond, func_val,
     return df['gap_val']
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def bootstrapping():
+def filter_by_func_prenext(l, func_prenext):
     '''
-    bootstraping
-    '''
-    raise NotImplementedError
+    对 ``l`` (`list`)进行过滤，过滤后返回的 ``lnew`` (`list`)任意前后相邻两个元素满足:
 
+        func_prenext(lnew[i], lnew[i+1]) = True
 
-def groupby_rolling_func(data, cols_groupby, cols_val, func, keep_index=True,
-                         kwargs_rolling={}, kwargs_func={}):
-    '''
-    data按照cols_groupby分组，然后再cols_val列上rolling调用func，
-    func的参数通过*args和**kwargs设定
-    若cols_val为str，则返回pd.Series；若为list，则返回pd.DataFrame
-    若keep_index为True，则返回结果中的index与data一样，否则返回结果中的index由
-    cols_groupby设定
-    '''
-    # if isinstance(cols_groupby, str):
-    #     cols_groupby = [cols_groupby]
-    # cols = [cols_val] if isinstance(cols_val, str) else cols_val
-    # df = data.reindex(columns=cols_groupby+cols)
-    raise NotImplementedError
-
-
-def label_rep_index_str(df):
-    '''df中的index若有重复，对重复的index进行后缀编号，返回的index为str类型'''
-    idx_name = df.index.name
-    df['_idx_idx_idx_'] = df.index
-    df['_idx_idx_idx_'] = df['_idx_idx_idx_'].astype(str)
-    df['_tmp_tmp_'] = get_appear_order(df['_idx_idx_idx_'])
-    df['_idx_idx_idx_'] = df[['_idx_idx_idx_', '_tmp_tmp_']].apply(lambda x:
-                            x['_idx_idx_idx_'] if x['_tmp_tmp_'] == 1 else \
-                            '{}_{}'.format(x['_idx_idx_idx_'], x['_tmp_tmp_']),
-                            axis=1)
-    df.drop('_tmp_tmp_', axis=1, inplace=True)
-    df.set_index('_idx_idx_idx_', inplace=True)
-    df.index.name = idx_name
-    return df
-
-
-def drop_index_duplicates(df, keep='first'):
-    '''删除df中inde重复的记录'''
-    return df[~df.index.duplicated(keep=keep)]
-
-
-def filter_by_FPrePost_series(series, FPrePost, Fignore=lambda x: isnull(x),
-                              val_nan=np.nan):
-    '''
-    对series调用filter_by_FPrePost函数，其中满足Fignore函数的值不参与
-    series中被过滤的值在返回结果中用val_nan替换（不参与的值保持不变）
+    过滤过程为：将 ``l`` 的第一个元素作为起点，找到其后第一个满足 ``func_prenext`` 函数
+    值为True的元素，再以该元素为起点往后寻找...
 
     Examples
     --------
-    series = pd.Series([1, 2, 3, 4, 1, 1, 2, 3, 6])
-    FPrePost = lambda x, y: (y-x) >= 2
-    filter_by_FPrePost_series(series, FPrePost)
-        0    1.0
-        1    NaN
-        2    3.0
-        3    NaN
-        4    NaN
-        5    NaN
-        6    NaN
-        7    NaN
-        8    6.0
-    series = pd.Series([1, 2, 0, 3, 0, 4, 0, 1, 0, 0, 1, 2, 3, 6],
-                       index=range(14, 0, -1))
-    filter_by_FPrePost_series(series, FPrePost, lambda x: x == 0)
-    '''
-
-    l = [[k, series.iloc[k]] for k in range(0, len(series)) \
-                                             if not Fignore(series.iloc[k])]
-    lnew = filter_by_FPrePost(l, lambda x, y: FPrePost(x[1], y[1]))
-
-    i_l = [k for k, v in l]
-    i_lnew = [k for k, v in lnew]
-    idxs_ignore = [_ for _ in i_l if _ not in i_lnew]
-
-    seriesNew = series.copy()
-    for k in idxs_ignore:
-        seriesNew.iloc[k] = val_nan
-
-    return seriesNew
-
-
-def get_appear_order(series, ascending=True):
-    '''
-    标注series（离散值）中重复元素是第几次出现
-
-    eg.:
-        df = pd.DataFrame({'v': ['A', 'B', 'A', 'A', 'C', 'C']})
-        df.index = ['a', 'b', 'c', 'd', 'e', 'f']
-        df['nth'] = get_appear_order(df['v'], ascending=False)
-    '''
-    df = pd.DataFrame({'v': series})
-    # df['Iidx'] = range(0, df.shape[0])
-    # df['nth_appear'] = df.groupby('v')['Iidx'].rank(ascending=ascending)
-    # df['nth_appear'] = df['nth_appear'].astype(int)
-    df['nth_appear'] = df.groupby('v').cumcount(ascending=ascending)+1
-    return df['nth_appear']
-
-
-def filter_by_FPrePost(l, FPrePost):
-    '''
-    对l（list）进行过滤，过滤后的lnew（list）前后相邻两个值满足：
-        FPrePost(lnew[i], lnew[i+1]) = True
-    过滤过程为：将l的第一个元素作为起点，找到其后第一个满足FPrePost函数的元素，
-        再以该元素为起点往后寻找...
-
-    Parameters
-    ----------
-    l(list): 待过滤列表
-    FPrePost: 过滤函数，接收两个参数，返回值为True或False
-
-    Returns
-    -------
-    lnew(list): 过滤后的列表
-
-    Examples
-    --------
-    l = [1, 2, 3, 4, 1, 1, 2, 3, 6]
-    FPrePost = lambda x, y: (y-x) >= 2
-    filter_by_FPrePost(l, FPrePost)
-    >>> [1, 3, 6]
-    filter_by_FPrePost(l, lambda x, y: y == x+1)
-    >>> [1, 2, 3, 4]
+    >>> l = [1, 2, 3, 4, 1, 1, 2, 3, 6]
+    >>> func_prenext = lambda x, y: (y-x) >= 2
+    >>> filter_by_func_prenext(l, func_prenext)
+    [1, 3, 6]
+    >>> l = [1, 2, 3, 4, 1, 5, 1, 2, 3, 6]
+    >>> filter_by_func_prenext(l, func_prenext)
+    [1, 3, 5]
+    >>> filter_by_func_prenext(l, lambda x, y: y == x+1)
+    [1, 2, 3, 4]
+    >>> l = [(1, 2), (2, 3), (4, 1), (5, 0)]
+    >>> func_prenext = lambda x, y: abs(y[-1]-x[-1]) == 1
+    >>> filter_by_func_prenext(l, func_prenext)
+    [(1, 2), (2, 3)]
     '''
 
     if len(l) == 0:
@@ -1536,7 +1416,7 @@ def filter_by_FPrePost(l, FPrePost):
         while idx_post < len(l):
             vpost = l[idx_post]
 
-            if not FPrePost(vpre, vpost):
+            if not func_prenext(vpre, vpost):
                 idx_post += 1
             else:
                 lnew.append(vpost)
@@ -1546,63 +1426,248 @@ def filter_by_FPrePost(l, FPrePost):
     return lnew
 
 
-def min_com_multer(l):
-    '''求一列数l的最小公倍数，支持负数和浮点数'''
-    l_max = max(l)
-    mcm = l_max
-    while any([mcm % x != 0 for x in l]):
-        mcm += l_max
-    return mcm
-
-
-def max_com_divisor(l):
+def filter_by_func_prenext_series(series, func_prenext,
+                                  func_ignore=None, val_nan=np.nan):
     '''
-    求一列数l的最大公约数，只支持正整数
+    对series (`pandas.Series`)调用 ``filter_by_func_prenext`` 函数进行过滤，
+    其中满足 ``func_ignore`` 函数为True的值不参与过滤，func_ignore函数默认为：
+    ``lambda x: isnull(x)``
+
+    series中 **被过滤的值** 在返回结果中用 ``val_nan`` 替换, **不参与过滤** 的值保持不变
+    
+    See Also
+    --------
+    :func:`dramkit.gentools.filter_by_func_prenext`
+
+    Examples
+    --------
+    >>> series = pd.Series([1, 2, 3, 4, 1, 1, 2, 3, 6])
+    >>> func_prenext = lambda x, y: (y-x) >= 2
+    >>> filter_by_func_prenext_series(series, func_prenext)
+    0    1.0
+    1    NaN
+    2    3.0
+    3    NaN
+    4    NaN
+    5    NaN
+    6    NaN
+    7    NaN
+    8    6.0
+    >>> series = pd.Series([1, 2, 0, 3, 0, 4, 0, 1, 0, 0, 1, 2, 3, 6],
+    ...                    index=range(14, 0, -1))
+    >>> filter_by_func_prenext_series(series, func_prenext, lambda x: x == 0)
+    14    1.0
+    13    NaN
+    12    0.0
+    11    3.0
+    10    0.0
+    9     NaN
+    8     0.0
+    7     NaN
+    6     0.0
+    5     0.0
+    4     NaN
+    3     NaN
+    2     NaN
+    1     6.0
+    '''
+    
+    if func_ignore is None:
+        func_ignore = lambda x: isnull(x)
+
+    l = [[k, series.iloc[k]] for k in range(0, len(series)) \
+                                             if not func_ignore(series.iloc[k])]
+    lnew = filter_by_func_prenext(l, lambda x, y: func_prenext(x[1], y[1]))
+
+    i_l = [k for k, v in l]
+    i_lnew = [k for k, v in lnew]
+    idxs_ignore = [_ for _ in i_l if _ not in i_lnew]
+
+    seriesNew = series.copy()
+    for k in idxs_ignore:
+        seriesNew.iloc[k] = val_nan
+
+    return seriesNew
+
+
+def merge_df(df_left, df_right, same_keep='left', **kwargs):
+    '''
+    在 ``pd.merge`` 上改进，相同列名时自动去除重复的
+
+    Parameters
+    ----------
+    df_left : pandas.DataFrame
+        待merge左表
+    df_right : pandas.DataFrame
+        待merge右表
+    same_keep : str
+        可选'left', 'right'，设置相同列保留左边df还是右边df
+    **kwargs :
+        pd.merge接受的其他参数
+
+
+    :returns: `pandas.DataFrame` - 返回merge之后的数据表
+    '''
+    same_cols = [x for x in df_left.columns if x in df_right.columns]
+    if len(same_cols) > 0:
+        if 'on' in kwargs:
+            if isinstance(kwargs['on'], list):
+                same_cols = [x for x in same_cols if x not in kwargs['on']]
+            elif isinstance(kwargs['on'], str):
+                same_cols = [x for x in same_cols if x != kwargs['on']]
+            else:
+                raise ValueError('on参数只接受list或str！')
+        if same_keep == 'left':
+            df_right = df_right.drop(same_cols, axis=1)
+        elif same_keep == 'right':
+            df_left = df_left.drop(same_cols, axis=1)
+        else:
+            raise ValueError('same_keep参数只接受`left`或`right`！')
+    return pd.merge(df_left, df_right, **kwargs)
+
+
+def cut_df_by_con_val(df, by_col, func_eq=None):
+    '''
+    根据 `by_col` 列的值，将 `df (pandas.DataFrame)` 切分为多个子集列表，返回 `list`
+    
+    切分依据：``func_eq`` 函数作用于 ``by_col`` 列，函数值连续相等的记录被划分到一个子集中
+
+    Examples
+    --------
+    >>> df = pd.DataFrame({'val': range(0,10),
+    ...                    'by_col': ['a']*3+['b']*2+['c']*1+['a']*3+['d']*1})
+    >>> df.index = ['z', 'y', 'x', 'w', 'v', 'u', 't', 's', 'r', 'q']
+    >>> cut_df_by_con_val(df, 'by_col')
+    [   val by_col
+     z    0      a
+     y    1      a
+     x    2      a,
+        val by_col
+     w    3      b
+     v    4      b,
+        val by_col
+     u    5      c,
+        val by_col
+     t    6      a
+     s    7      a
+     r    8      a,
+        val by_col
+     q    9      d]
     '''
 
-    def isint(x):
-        '''判断x是否为整数'''
-        tmp = str(x).split('.')
-        if len(tmp) == 1 or all([x == '0' for x in tmp[1]]):
-            return True
-        return False
+    if isnull(func_eq):
+        func_eq = lambda x: x
+    df = df.copy()
+    df['val_func_eq'] = df[by_col].apply(func_eq)
+    by_col = 'val_func_eq'
 
-    if any([x < 1 or not isint(x) for x in l]):
-        raise ValueError('只支持正整数！')
+    sub_dfs= []
+    k = 0
+    while k < df.shape[0]:
+        k1 = k + 1
+        while k1 < df.shape[0] and df[by_col].iloc[k1] == df[by_col].iloc[k]:
+            k1 += 1
+        sub_dfs.append(df.iloc[k:k1, :].drop(by_col, axis=1))
+        k = k1
 
-    l_min = min(l)
-    mcd = l_min
-    while any([x % mcd != 0 for x in l]):
-        mcd -= 1
-
-    return mcd
+    return sub_dfs
 
 
-def mcd2_tad(a, b):
-    '''辗转相除法求a和b的最大公约数，a、b为正数，为小数时由于精度问题会不正确'''
-    if a < b:
-        a, b = b, a # a存放较大值，b存放较小值
-    if a % b == 0:
-        return b
+def get_con_start_end(series, func_con):
+    '''
+    找出series (`pandas.Series`)中值连续满足 ``func_con`` 函数值为True的分段起止位置，
+    返回起止位置对列表
+
+    Examples
+    --------
+    >>> series = pd.Series([0, 1, 1, 0, 1, 1, 0, -1, -1, 0, 0, -1, 1, 1, 1, 1, 0, -1])
+    >>> start_ends = get_con_start_end(series, lambda x: x == -1)
+    >>> start_ends
+    [[7, 8], [11, 11], [17, 17]]
+    >>> start_ends = get_con_start_end(series, lambda x: x == 1)
+    >>> start_ends
+    [[1, 2], [4, 5], [12, 15]]
+    '''
+
+    start_ends = []
+    # df['start'] = 0
+    # df['end'] = 0
+    start = 0
+    N = len(series)
+    while start < N:
+        if func_con(series.iloc[start]):
+            end = start
+            while end < N and func_con(series.iloc[end]):
+                end += 1
+            start_ends.append([start, end-1])
+            # df.loc[df.index[start], 'start'] = 1
+            # df.loc[df.index[end-1], 'end'] = 1
+            start = end + 1
+        else:
+            start += 1
+
+    return start_ends
+
+
+def cut_range_to_subs(n, gap):
+    '''
+    将 ``range(0, n)`` 切分成连续相接的子集:
+    ``[range(0, gap), range(gap, 2*gap), ...]``
+    '''
+    n_ = n // gap
+    mod = n % gap
+    if mod != 0:
+        return [(k*gap, (k+1)*gap) for k in range(0, n_)] + [(gap * n_, n)]
     else:
-        return mcd2_tad(b, a % b)
+        return [(k*gap, (k+1)*gap) for k in range(0, n_)]
 
 
-def max_com_divisor_tad(l):
+def check_l_allin_l0(l, l0):
     '''
-    用辗转相除法求一列数l的最大公约数，l元素均为正数，为小数时由于精度问题会不正确
-    https://blog.csdn.net/weixin_45069761/article/details/107954905
-    '''
-    # g = l[0]
-    # for i in range(1, len(l)):
-    #     g = mcd2_tad(g, l[i])
-    # return g
+    判断 ``l (list)`` 中的值是否都是 ``l0 (list)`` 中的元素, 返回True或False
 
-    return reduce(lambda x, y: mcd2_tad(x, y), l)
+    Examples
+    --------
+    >>> l = [1, 2, 3, -1, 0]
+    >>> l0 = [0, 1, -1]
+    >>> check_l_allin_l0(l, l0)
+    False
+    >>> l = [1, 1, 0, -1, -1, 0, 0]
+    >>> l0 = [0, 1, -1]
+    >>> check_l_in_l0(l, l0)
+    True
+    '''
+    l_ = set(l)
+    l0_ = set(l0)
+    return len(l_-l0_) == 0
+
+
+def check_exist_data(df, x_list, cols=None):
+    '''
+    依据指定的 ``cols`` 列检查 ``df (pandas.DataFrame)`` 中是否已经存在 ``x_list (list)`` 中的记录，
+    返回list，每个元素值为True或False
+
+    Examples
+    --------
+    >>> df = pd.DataFrame([['1', 2, 3.1, ], ['3', 4, 5.1], ['5', 6, 7.1]],
+    ...                   columns=['a', 'b', 'c'])
+    >>> x_list, cols = [[3, 4], ['3', 4]], ['a', 'b']
+    >>> check_exist_data(df, x_list, cols=cols)
+    [False, True]
+    >>> check_exist_data(df, [['1', 3.1], ['3', 5.1]], ['a', 'c'])
+    [True, True]
+    '''
+
+    if not isnull(cols):
+        df_ = df.reindex(columns=cols)
+    else:
+        df_ = df.copy()
+    data = df_.to_dict('split')['data']
+    return [x in data for x in x_list]
 
 
 def isnull(x):
-    '''判断x是否为无效值，若是无效值，返回True，否则返回False'''
+    '''判断x是否为无效值(None, nan, x != x)，若是无效值，返回True，否则返回False'''
     if x is None:
         return True
     if x is np.nan:
@@ -1617,10 +1682,11 @@ def isnull(x):
 
 def x_div_y(x, y, v_x0=None, v_y0=0, v_xy0=1):
     '''
-    x除以y，
-    v_xy0为当x和y同时为0时的返回值，
-    v_y0为当y等于0时的返回值，
-    v_x0为当x等于0时的返回值
+    x除以y
+
+    - v_xy0为当x和y同时为0时的返回值
+    - v_y0为当y等于0时的返回值
+    - v_x0为当x等于0时的返回值
     '''
     if x == 0 and y == 0:
         return v_xy0
@@ -1644,8 +1710,9 @@ def power(a, b, return_real=True):
 def cal_pct(v0, v1, vv00=1, vv10=-1):
     '''
     计算从v0到v1的百分比变化
-    vv00为当v0的值为0且v1为正时的返回值，v1为负时取负号
-    vv10为当v1的值为0且v0为正时的返回值，v0为负时取负号
+
+    - vv00为当v0的值为0且v1为正时的返回值，v1为负时取负号
+    - vv10为当v1的值为0且v0为正时的返回值，v0为负时取负号
     '''
     if isnull(v0) or isnull(v1):
         return np.nan
@@ -1671,171 +1738,184 @@ def cal_pct(v0, v1, vv00=1, vv10=-1):
         return -(v1 / v0 - 1)
 
 
-def merge_df(df_left, df_right, same_keep='left', **kwargs):
-    '''
-    pd.merge，相同列名时去除重复
-    same_keep可选['left', 'right']设置相同列保留左边df还是右边df
-    **kwargs接收pd.merge接受的其他参数
-    '''
-    same_cols = [x for x in df_left.columns if x in df_right.columns]
-    if len(same_cols) > 0:
-        if 'on' in kwargs:
-            if isinstance(kwargs['on'], list):
-                same_cols = [x for x in same_cols if x not in kwargs['on']]
-            elif isinstance(kwargs['on'], str):
-                same_cols = [x for x in same_cols if x != kwargs['on']]
-            else:
-                raise ValueError('on参数只接受list或str！')
-        if same_keep == 'left':
-            df_right = df_right.drop(same_cols, axis=1)
-        elif same_keep == 'right':
-            df_left = df_left.drop(same_cols, axis=1)
-        else:
-            raise ValueError('same_keep参数只接受`left`或`right`！')
-    return pd.merge(df_left, df_right, **kwargs)
+def min_com_multer(l):
+    '''求一列数 `l (list)` 的最小公倍数，支持负数和浮点数'''
+    l_max = max(l)
+    mcm = l_max
+    while any([mcm % x != 0 for x in l]):
+        mcm += l_max
+    return mcm
 
 
-def cut_df_by_con_val(df, by_col, eqFunc=None):
+def max_com_divisor(l):
     '''
-    根据by_col列的值，将df切分为多个子集列表
-    切分依据：eqFunc函数作用于by_col列，函数值连续相等的记录被划分到一个子集中
-    Examples
-    --------
-        df = pd.DataFrame({'val':range(0,10),
-                           'by_col': ['a']*3+['b']*2+['c']*1+['a']*3+['d']*1})
-        df.index = ['z', 'y', 'x', 'w', 'v', 'u', 't', 's', 'r', 'q']
-        cut_df_by_con_val(df, 'by_col')
-            [   val by_col
-             z    0      a
-             y    1      a
-             x    2      a,
-                val by_col
-             w    3      b
-             v    4      b,
-                val by_col
-             u    5      c,
-                val by_col
-             t    6      a
-             s    7      a
-             r    8      a,
-                val by_col
-             q    9      d]
+    求一列数 `l (list)` 的最大公约数，只支持正整数
+
+    .. note::
+        只支持正整数
     '''
 
-    if isnull(eqFunc):
-        eqFunc = lambda x: x
-    df = df.copy()
-    df['VeqFunc'] = df[by_col].apply(eqFunc)
-    by_col = 'VeqFunc'
+    def _isint(x):
+        '''判断x是否为整数'''
+        tmp = str(x).split('.')
+        if len(tmp) == 1 or all([x == '0' for x in tmp[1]]):
+            return True
+        return False
 
-    sub_dfs= []
-    k = 0
-    while k < df.shape[0]:
-        k1 = k + 1
-        while k1 < df.shape[0] and df[by_col].iloc[k1] == df[by_col].iloc[k]:
-            k1 += 1
-        sub_dfs.append(df.iloc[k:k1, :].drop(by_col, axis=1))
-        k = k1
+    if any([x < 1 or not _isint(x) for x in l]):
+        raise ValueError('只支持正整数！')
 
-    return sub_dfs
+    l_min = min(l)
+    mcd = l_min
+    while any([x % mcd != 0 for x in l]):
+        mcd -= 1
+
+    return mcd
 
 
-def get_con_start_end(series, Fcond):
+def mcd2_tad(a, b):
     '''
-    找出series中值连续满足Fcond函数的分段起止位置
-
-    Example
-    -------
-    series = pd.Series([0, 1, 1, 0, 1, 1, 0, -1, -1, 0, 0, -1, 1, 1, 1, 1, 0,
-                        -1])
-    start_ends = get_con_start_end(series, lambda x: x == -1)
-    start_ends:
-        [[7, 8], [11, 11], [17, 17]]
-    start_ends = get_con_start_end(series, lambda x: x == 1)
-    start_ends:
-        [[1, 2], [4, 5], [12, 15]]
+    辗转相除法求a和b的最大公约数，a、b为正数
+    
+    .. note::
+        - a, b应为正数
+        - a, b为小数时由于精度问题会不正确
     '''
-
-    start_ends = []
-    # df['start'] = 0
-    # df['end'] = 0
-    start = 0
-    N = len(series)
-    while start < N:
-        if Fcond(series.iloc[start]):
-            end = start
-            while end < N and Fcond(series.iloc[end]):
-                end += 1
-            start_ends.append([start, end-1])
-            # df.loc[df.index[start], 'start'] = 1
-            # df.loc[df.index[end-1], 'end'] = 1
-            start = end + 1
-        else:
-            start += 1
-
-    return start_ends
+    if a < b:
+        a, b = b, a # a存放较大值，b存放较小值
+    if a % b == 0:
+        return b
+    else:
+        return mcd2_tad(b, a % b)
 
 
-def check_exist_data(df, x_list, cols=None):
+def max_com_divisor_tad(l):
     '''
-    依据指定的cols列检查df中是否已经存在x_list中的记录
+    用辗转相除法求一列数 `l (list)` 的最大公约数, `l` 元素均为正数
+
+    .. note::
+        - l元素均为正数
+        - l元素为小数时由于精度问题会不正确
+
+    References
+    ----------
+    https://blog.csdn.net/weixin_45069761/article/details/107954905
+    '''
+    
+    # g = l[0]
+    # for i in range(1, len(l)):
+    #     g = mcd2_tad(g, l[i])
+    # return g
+
+    return reduce(lambda x, y: mcd2_tad(x, y), l)
+
+
+def get_appear_order(series, ascending=True):
+    '''
+    标注series (`pandas.Series` , 离散值)中重复元素是第几次出现，
+    
+    返回为 `pandas.Series`，ascending设置返回结果是否按出现次序升序排列
 
     Examples
     --------
-    df = pd.DataFrame([['1', 2, 3.1, ], ['3', 4, 5.1], ['5', 6, 7.1]],
-                      columns=['a', 'b', 'c'])
-    x_list, cols = [[3, 4], ['3', 4]], ['a', 'b']
-    check_exist_data(df, x_list, cols=cols):
-        [False, True]
-    check_exist_data(df, [['1', 3.1], ['3', 5.1]], ['a', 'c']):
-        [True, True]
+    >>> df = pd.DataFrame({'v': ['A', 'B', 'A', 'A', 'C', 'C']})
+    >>> df.index = ['a', 'b', 'c', 'd', 'e', 'f']
+    >>> df['nth'] = get_appear_order(df['v'], ascending=False)
+    >>> df
+       v  nth
+    a  A    3
+    b  B    1
+    c  A    2
+    d  A    1
+    e  C    2
+    f  C    1
     '''
+    df = pd.DataFrame({'v': series})
+    # df['Iidx'] = range(0, df.shape[0])
+    # df['nth_appear'] = df.groupby('v')['Iidx'].rank(ascending=ascending)
+    # df['nth_appear'] = df['nth_appear'].astype(int)
+    df['nth_appear'] = df.groupby('v').cumcount(ascending=ascending)+1
+    return df['nth_appear']
 
-    if not isnull(cols):
-        df_ = df.reindex(columns=cols)
+
+def label_rep_index_str(df):
+    '''
+    `df (pandas.DataFrame)` 中的index若有重复，对重复的index进行后缀编号，返回新的 `pandas.DataFrame`
+
+    .. note::
+        若存在重复的index，则添加后缀编号之后返回的df，其index为str类型
+
+    Examples
+    --------
+    >>> df = pd.DataFrame([1, 2, 3, 4, 5])
+    >>> label_rep_index_str(df)
+       0
+    0  1
+    1  2
+    2  3
+    3  4
+    4  5
+    >>> df.index = [0, 0, 1, 2, 2]
+    >>> label_rep_index_str(df)
+         0
+    0    1
+    0_2  2
+    1    3
+    2    4
+    2_2  5
+    '''
+    if df.index.duplicated().sum() == 0:
+        return df
     else:
-        df_ = df.copy()
-    data = df_.to_dict('split')['data']
-    return [x in data for x in x_list]
+        df = df.copy()
+        idx_name = df.index.name
+        df['_idx_idx_idx_'] = df.index
+        df['_idx_idx_idx_'] = df['_idx_idx_idx_'].astype(str)
+        df['_tmp_tmp_'] = get_appear_order(df['_idx_idx_idx_'])
+        df['_idx_idx_idx_'] = df[['_idx_idx_idx_', '_tmp_tmp_']].apply(
+            lambda x: x['_idx_idx_idx_'] if x['_tmp_tmp_'] == 1 else \
+                      '{}_{}'.format(x['_idx_idx_idx_'], x['_tmp_tmp_']),
+                      axis=1)
+        df.drop('_tmp_tmp_', axis=1, inplace=True)
+        df.set_index('_idx_idx_idx_', inplace=True)
+        df.index.name = idx_name
+        return df
 
 
-def check_l_in_l0(l, l0):
+def drop_index_duplicates(df, keep='first'):
+    '''删除 ``df (pandas.DataFrame)`` 中index重复的记录'''
+    return df[~df.index.duplicated(keep=keep)]
+
+
+def bootstrapping():
     '''
-    判断l（list）中的值是否都是l0（list）中的元素
-
-    Example
-    -------
-    l = [1, 2, 3, -1, 0]
-    l0 = [0, 1, -1]
-    check_l_in_l0(l, l0)
-    >>> False
-
-    l = [1, 1, 0, -1, -1, 0, 0]
-    l0 = [0, 1, -1]
-    check_l_in_l0(l, l0)
-    >>> True
+    bootstraping, 待实现
     '''
-    l_ = set(l)
-    l0_ = set(l0)
-    return len(l_-l0_) == 0
+    raise NotImplementedError
 
 
-def cut_range_to_subs(N, gap):
+def groupby_rolling_func(data, cols_groupby, cols_val, func, keep_index=True,
+                         kwargs_rolling={}, kwargs_func={}):
     '''
-    将range(0, N)切分成连续相接的子集[range(0, gap), range(gap, 2*gap), ...]
+    data按照cols_groupby分组，然后在cols_val列上rolling调用func，    
+    func的参数通过kwargs_func设定，
+    若cols_val为str，则返回pd.Series；若为list，则返回pd.DataFrame
+    若keep_index为True，则返回结果中的index与data一样，否则返回结果中的index由
+    cols_groupby设定
+    
+    待实现
     '''
-    n = N // gap
-    mod = N % gap
-    if mod != 0:
-        return [(k*gap, (k+1)*gap) for k in range(0, n)] + [(gap * n, N)]
-    else:
-        return [(k*gap, (k+1)*gap) for k in range(0, n)]
+    # if isinstance(cols_groupby, str):
+    #     cols_groupby = [cols_groupby]
+    # cols = [cols_val] if isinstance(cols_val, str) else cols_val
+    # df = data.reindex(columns=cols_groupby+cols)
+    raise NotImplementedError
 
 
 if __name__ == '__main__':
-    from utils_hoo import load_csv
+    from dramkit import load_csv
     from utils_hoo.utils_fin.utils_fin import CCI
-    from utils_hoo.utils_plot.plot_Common import plot_Series
+    from dramkit.plottools.plot_common import plot_series
 
     # 50ETF日线行情------------------------------------------------------------
     fpath = './test/510050_daily_pre_fq.csv'
@@ -1846,7 +1926,7 @@ if __name__ == '__main__':
     data['cci_100'] = data['cci'].apply(lambda x: 1 if x > 100 else \
                                                     (-1 if x < -100 else 0))
 
-    plot_Series(data.iloc[-200:, :], {'close': ('.-k', False)},
+    plot_series(data.iloc[-200:, :], {'close': ('.-k', False)},
                 cols_styl_low_left={'cci': ('.-c', False)},
                 cols_to_label_info={'cci':
                                 [['cci_100', (-1, 1), ('r^', 'bv'), False]]},
@@ -1864,7 +1944,7 @@ if __name__ == '__main__':
         if end+1 < data.shape[0]:
             data.loc[data.index[end+1], 'cci_100_'] = 1
 
-    plot_Series(data.iloc[-200:, :], {'close': ('.-k', False)},
+    plot_series(data.iloc[-200:, :], {'close': ('.-k', False)},
                 cols_styl_low_left={'cci': ('.-c', False)},
                 cols_to_label_info={'cci':
                                 [['cci_100_', (-1, 1), ('r^', 'bv'), False]],

@@ -108,60 +108,45 @@ val_gap_cond
 
 .. autofunction:: dramkit.gentools.val_gap_cond
 
-bootstrapping
-^^^^^^^^^^^^^^
+filter_by_func_prenext
+^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.gentools.bootstrapping
+.. autofunction:: dramkit.gentools.filter_by_func_prenext
 
-groupby_rolling_func
-^^^^^^^^^^^^^^^^^^^^^
+filter_by_func_prenext_series
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.gentools.groupby_rolling_func
+.. autofunction:: dramkit.gentools.filter_by_func_prenext_series
 
-label_rep_index_str
-^^^^^^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.gentools.label_rep_index_str
-
-drop_index_duplicates
-^^^^^^^^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.gentools.drop_index_duplicates
-
-filter_by_FPrePost_series
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.gentools.filter_by_FPrePost_series
-
-get_appear_order
-^^^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.gentools.get_appear_order
-
-filter_by_FPrePost
-^^^^^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.gentools.filter_by_FPrePost
-
-min_com_multer
-^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.gentools.min_com_multer
-
-max_com_divisor
-^^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.gentools.max_com_divisor
-
-mcd2_tad
+merge_df
 ^^^^^^^^^
 
-.. autofunction:: dramkit.gentools.mcd2_tad
+.. autofunction:: dramkit.gentools.merge_df
 
-max_com_divisor_tad
-^^^^^^^^^^^^^^^^^^^^
+cut_df_by_con_val
+^^^^^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.gentools.max_com_divisor_tad
+.. autofunction:: dramkit.gentools.cut_df_by_con_val
+
+get_con_start_end
+^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.get_con_start_end
+
+cut_range_to_subs
+^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.cut_range_to_subs
+
+check_l_allin_l0
+^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.check_l_allin_l0
+
+check_exist_data
+^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.check_exist_data
 
 isnull
 ^^^^^^^
@@ -183,35 +168,50 @@ cal_pct
 
 .. autofunction:: dramkit.gentools.cal_pct
 
-merge_df
+min_com_multer
+^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.min_com_multer
+
+max_com_divisor
+^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.max_com_divisor
+
+mcd2_tad
 ^^^^^^^^^
 
-.. autofunction:: dramkit.gentools.merge_df
+.. autofunction:: dramkit.gentools.mcd2_tad
 
-cut_df_by_con_val
-^^^^^^^^^^^^^^^^^^
+max_com_divisor_tad
+^^^^^^^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.gentools.cut_df_by_con_val
+.. autofunction:: dramkit.gentools.max_com_divisor_tad
 
-get_con_start_end
-^^^^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.gentools.get_con_start_end
-
-check_exist_data
+get_appear_order
 ^^^^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.gentools.check_exist_data
+.. autofunction:: dramkit.gentools.get_appear_order
 
-check_l_in_l0
+label_rep_index_str
+^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.label_rep_index_str
+
+drop_index_duplicates
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.drop_index_duplicates
+
+bootstrapping
 ^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.gentools.check_l_in_l0
+.. autofunction:: dramkit.gentools.bootstrapping
 
-cut_range_to_subs
-^^^^^^^^^^^^^^^^^^
+groupby_rolling_func
+^^^^^^^^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.gentools.cut_range_to_subs
+.. autofunction:: dramkit.gentools.groupby_rolling_func
 
 install_check
 --------------
@@ -321,6 +321,11 @@ extract_7z
 ^^^^^^^^^^^
 
 .. autofunction:: dramkit.iotools.extract_7z
+
+cmdrun
+^^^^^^^
+
+.. autofunction:: dramkit.iotools.cmdrun
 
 rename_files_in_dir
 ^^^^^^^^^^^^^^^^^^^^

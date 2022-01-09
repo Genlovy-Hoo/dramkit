@@ -126,7 +126,9 @@ def dramkit_funcsytle(a, b='b', *args, **kwargs):
     -----
     Sphinx也支持生成数学公式，比如FFT是离散傅里叶变换的一种快速实现算法，
     其公式为:
-        .. math:: X(e^{j\omega } ) = x(n)e^{ - j\omega n}
+
+    .. math:: X(e^{j\omega}) = x(n)e^{-j\omega n}
+
     行内公式写法: :math:`a^2 + b^2 = c^2`
 
     公式块:

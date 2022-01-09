@@ -561,6 +561,11 @@ def extract_7z():
     raise NotImplementedError
 
 
+def cmdrun(cmd_str):
+    '''调用cmd执行cmd_str命令，待实现'''
+    raise NotImplementedError
+
+
 def rename_files_in_dir(dir_path, func_rename):
     '''
     对指定文件夹中的文件进行批量重命名

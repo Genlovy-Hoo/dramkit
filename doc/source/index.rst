@@ -6,9 +6,12 @@ Welcome to DramKit's documentation!
    :caption: Contents:
 
    dramkit <dramkit>
+   datsci <dramkit.datsci>
    logtools <dramkit.logtools>
    other <dramkit.other>
+   plottools <dramkit.plottools>
    pystyles <dramkit.pystyles>
+   sorts <dramkit.sorts>
 
 Indices and tables
 ===================

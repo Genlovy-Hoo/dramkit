@@ -10,8 +10,8 @@ if __name__ == '__main__':
 
     # logger = None
     logger = simple_logger()
-    target_str = 'count_between_gap('
-    root_dir = '../../../'
+    target_str = 'utils_hoo'
+    root_dir = '../../../dramkit/'
     file_types = ['.py']
     
 

@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>datsci &mdash; DramKit 0.0.6.3 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="logtools" href="dramkit.logtools.html" />
+    <link rel="prev" title="dramkit" href="dramkit.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> DramKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dramkit.html">dramkit</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">datsci</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.utils_stats">utils_stats</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#external-std">External_Std</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-pca">get_pca</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fpdf">fpdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fcdf">fcdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ffit">ffit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fit-f-pdf">fit_f_pdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fit-f-cdf">fit_f_cdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ftest">ftest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tpdf">tpdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tcdf">tcdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tfit">tfit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fit-t-pdf">fit_t_pdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fit-t-cdf">fit_t_cdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ttest">ttest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chi2pdf">chi2pdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chi2cdf">chi2cdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chi2fit">chi2fit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fit-chi2-pdf">fit_chi2_pdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fit-chi2-cdf">fit_chi2_cdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chi2test">chi2test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#normpdf">normpdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#normcdf">normcdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#normfit">normfit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fit-norm-pdf">fit_norm_pdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fit-norm-cdf">fit_norm_cdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#normtest">normtest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lognormpdf">lognormpdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lognormcdf">lognormcdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lognormfit">lognormfit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fit-lognorm-pdf">fit_lognorm_pdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fit-lognorm-cdf">fit_lognorm_cdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lognormtest">lognormtest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#weibullpdf">weibullpdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#weibullcdf">weibullcdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#weibullfit">weibullfit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fit-weibull-pdf">fit_weibull_pdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fit-weibull-cdf">fit_weibull_cdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#weibulltest">weibulltest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scale-skl">scale_skl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scale-skl-inverse">scale_skl_inverse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#norm-std">norm_std</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#norm-linear">norm_linear</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#norm-mid">norm_mid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#norm01-mid">norm01_mid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#norm-side">norm_side</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#norm01-side">norm01_side</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#norm-range">norm_range</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#norm01-range">norm01_range</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mse">mse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#r2">r2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#r2adj">r2adj</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#r2adj-by-r2">r2adj_by_r2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#r2adj-by-mse">r2adj_by_mse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#r2-by-r2adj">r2_by_r2adj</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#r2-by-mse">r2_by_mse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mse-by-r2">mse_by_r2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#r2-deprecated">r2_deprecated</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rmse">rmse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mae">mae</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mape">mape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#smape">smape</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#avedev">AVEDEV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-linear-reg-r">cal_linear_reg_r</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cummean">cummean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delta-var-d0">delta_var_d0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delta-var-d">delta_var_d</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delta-var">delta_var</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumvar-nonan">cumvar_nonan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumvar">cumvar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumvar1">cumvar1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumvar2">cumvar2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumstd">cumstd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumvar-deprecated">cumvar_Deprecated</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumstd-deprecated">cumstd_Deprecated</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumscale">cumScale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rollingscale">rollingScale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-quantiles">get_quantiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumnunique">cumNunique</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumnunique-pd">cumNunique_pd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumrank-nonan">cumrank_nonan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumrank">cumrank</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumrank1-nonan">cumrank1_nonan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumrank1">cumrank1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumrank2">cumrank2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-pct-loc">get_pct_loc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumpctloc">cumPctLoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumpctloc1">cumPctLoc1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cumpctloc2">cumPctLoc2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rollingpctloc">rollingPctLoc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parms-est">parms_est</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auc">auc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#var-hom-test">var_hom_test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ind-ttest">ind_ttest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rel-ttest">rel_ttest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#anova-oneway">anova_oneway</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.logtools.html">logtools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.other.html">other</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.plottools.html">plottools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.pystyles.html">pystyles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.sorts.html">sorts</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DramKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>datsci</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/dramkit.datsci.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="datsci">
+<h1>datsci<a class="headerlink" href="#datsci" title="Permalink to this headline"></a></h1>
+<section id="module-dramkit.datsci.utils_stats">
+<span id="utils-stats"></span><h2>utils_stats<a class="headerlink" href="#module-dramkit.datsci.utils_stats" title="Permalink to this headline"></a></h2>
+<section id="external-std">
+<h3>External_Std<a class="headerlink" href="#external-std" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.External_Std">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">External_Std</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nstd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.External_Std" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>极端值处理，标准差倍数法</p>
+</dd></dl>
+
+</section>
+<section id="get-pca">
+<h3>get_pca<a class="headerlink" href="#get-pca" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.get_pca">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">get_pca</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfs_trans</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs_pca</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.get_pca" title="Permalink to this definition"></a></dt>
+<dd><p>PCA主成分转化</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – 用于训练PCA模型的数据</p></li>
+<li><p><strong>df_trans</strong> (<em>None</em><em>, </em><em>list</em>) – <div class="line-block">
+<div class="line">待转化数据列表，每个元素都是pandas.DataFrame，</div>
+<div class="line">即用训练好的PCA模型对dfs_trans中所有的数据进行主成分转化</div>
+</div>
+</p></li>
+<li><p><strong>**kwargs_pca</strong> – sklearn.decomposition.PCA接受的参数</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>df_pca</strong> (<em>pandas.DataFrame</em>) – df进行PCA转化之后的数据，列名格式为’imfk’(第k列表示第k个主成分)</p></li>
+<li><p><strong>dfs_transed</strong> (<em>tuple</em>) – 利用df训练好的PCA模型对dfs_trans中的数据进行主成分转化之后的结果</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="fpdf">
+<h3>fpdf<a class="headerlink" href="#fpdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.fpdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">fpdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.fpdf" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">计算符合自由度为df1和df2的F分布的随机变量取x时的概率密度函数值</div>
+<div class="line">loc和scale为scipy.stats中f分布参数</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="fcdf">
+<h3>fcdf<a class="headerlink" href="#fcdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.fcdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">fcdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.fcdf" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">计算符合自由度为df1和df2的F分布的随机变量取x时的概率分布函数值</div>
+<div class="line">loc和scale为scipy.stats中f分布参数</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="ffit">
+<h3>ffit<a class="headerlink" href="#ffit" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.ffit">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">ffit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.ffit" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">对series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)进行F分布参数估计</div>
+<div class="line">返回顺序: df1, df2, loc, scale</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="fit-f-pdf">
+<h3>fit_f_pdf<a class="headerlink" href="#fit-f-pdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.fit_f_pdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">fit_f_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.fit_f_pdf" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">用series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)拟合一个F分布，</div>
+<div class="line">并计算随机变量在该分布下取值为x时的概率密度函数值</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="fit-f-cdf">
+<h3>fit_f_cdf<a class="headerlink" href="#fit-f-cdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.fit_f_cdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">fit_f_cdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.fit_f_cdf" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">用series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)拟合一个F分布，</div>
+<div class="line">并计算随机变量在该分布下取值为x时的概率分布函数值</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="ftest">
+<h3>ftest<a class="headerlink" href="#ftest" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.ftest">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">ftest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs_plot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.ftest" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">对series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)进行F分布检验(采用KS检验)</div>
+<div class="line">返回顺序: (统计量, P值), (df1, df2, loc, scale)</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="tpdf">
+<h3>tpdf<a class="headerlink" href="#tpdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.tpdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">tpdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.tpdf" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">计算符合自由度为df的T分布的随机变量取x时的概率密度函数值</div>
+<div class="line">loc和scale为scipy.stats中t分布参数</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="tcdf">
+<h3>tcdf<a class="headerlink" href="#tcdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.tcdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">tcdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.tcdf" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">计算符合自由度为df的T分布的随机变量取x时的概率分布函数值</div>
+<div class="line">loc和scale为scipy.stats中t分布参数</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="tfit">
+<h3>tfit<a class="headerlink" href="#tfit" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.tfit">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">tfit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.tfit" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">对series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)进行T分布参数估计</div>
+<div class="line">返回顺序: df, loc, scale</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="fit-t-pdf">
+<h3>fit_t_pdf<a class="headerlink" href="#fit-t-pdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.fit_t_pdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">fit_t_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.fit_t_pdf" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">用series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)拟合一个T分布，</div>
+<div class="line">并计算随机变量在该分布下取值为x时的概率密度函数值</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="fit-t-cdf">
+<h3>fit_t_cdf<a class="headerlink" href="#fit-t-cdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.fit_t_cdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">fit_t_cdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.fit_t_cdf" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">用series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)拟合一个T分布，</div>
+<div class="line">并计算随机变量在该分布下取值为x时的概率分布函数值</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="ttest">
+<h3>ttest<a class="headerlink" href="#ttest" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.ttest">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">ttest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs_plot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.ttest" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">对series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)进行T分布检验(采用KS检验)</div>
+<div class="line">返回顺序: (统计量, P值), (df, loc, scale)</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="chi2pdf">
+<h3>chi2pdf<a class="headerlink" href="#chi2pdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.chi2pdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">chi2pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.chi2pdf" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">计算符合自由度为df的卡方分布的随机变量取x时的概率密度函数值</div>
+<div class="line">loc和scale为scipy.stats中卡方分布参数</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="chi2cdf">
+<h3>chi2cdf<a class="headerlink" href="#chi2cdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.chi2cdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">chi2cdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.chi2cdf" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">计算符合自由度为df的卡方分布的随机变量取x时的概率分布函数值</div>
+<div class="line">loc和scale为scipy.stats中卡方分布参数</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="chi2fit">
+<h3>chi2fit<a class="headerlink" href="#chi2fit" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.chi2fit">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">chi2fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.chi2fit" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">对series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)进行卡方分布参数估计</div>
+<div class="line">返回顺序: df, loc, scale</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="fit-chi2-pdf">
+<h3>fit_chi2_pdf<a class="headerlink" href="#fit-chi2-pdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.fit_chi2_pdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">fit_chi2_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.fit_chi2_pdf" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">用series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)拟合一个卡方分布，</div>
+<div class="line">并计算随机变量在该分布下取值为x时的概率密度函数值</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="fit-chi2-cdf">
+<h3>fit_chi2_cdf<a class="headerlink" href="#fit-chi2-cdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.fit_chi2_cdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">fit_chi2_cdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.fit_chi2_cdf" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">用series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)拟合一个卡方分布，</div>
+<div class="line">并计算随机变量在该分布下取值为x时的概率分布函数值</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="chi2test">
+<h3>chi2test<a class="headerlink" href="#chi2test" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.chi2test">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">chi2test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs_plot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.chi2test" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">对series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)进行卡方分布检验(采用KS检验)</div>
+<div class="line">返回顺序: (统计量, P值), (df, loc, scale)</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="normpdf">
+<h3>normpdf<a class="headerlink" href="#normpdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.normpdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">normpdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.normpdf" title="Permalink to this definition"></a></dt>
+<dd><p>计算符合正态分布N(mu, sigma)的随机变量取x时的概率密度函数值</p>
+</dd></dl>
+
+</section>
+<section id="normcdf">
+<h3>normcdf<a class="headerlink" href="#normcdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.normcdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">normcdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.normcdf" title="Permalink to this definition"></a></dt>
+<dd><p>计算符合正态分布N(mu, sigma)的随机变量取x时的概率密分布数值</p>
+</dd></dl>
+
+</section>
+<section id="normfit">
+<h3>normfit<a class="headerlink" href="#normfit" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.normfit">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">normfit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.normfit" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">对series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)进行正态分布参数估计</div>
+<div class="line">返回顺序: mu, sigma</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="fit-norm-pdf">
+<h3>fit_norm_pdf<a class="headerlink" href="#fit-norm-pdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.fit_norm_pdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">fit_norm_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.fit_norm_pdf" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">用series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)拟合一个正态分布，</div>
+<div class="line">并计算随机变量在该分布下取值为x时的概率密度函数值</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="fit-norm-cdf">
+<h3>fit_norm_cdf<a class="headerlink" href="#fit-norm-cdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.fit_norm_cdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">fit_norm_cdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.fit_norm_cdf" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">用series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)拟合一个正态分布，</div>
+<div class="line">并计算随机变量在该分布下取值为x时的概率分布函数值</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="normtest">
+<h3>normtest<a class="headerlink" href="#normtest" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.normtest">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">normtest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs_plot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.normtest" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">对series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)进行正态分布检验(采用KS检验)</div>
+<div class="line">返回顺序: (统计量, P值), (mu, sigma)</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="lognormpdf">
+<h3>lognormpdf<a class="headerlink" href="#lognormpdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.lognormpdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">lognormpdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.lognormpdf" title="Permalink to this definition"></a></dt>
+<dd><p>计算符合参数为mu, sigma的对数正态分布的随机变量取x时的概率密度函数值</p>
+</dd></dl>
+
+</section>
+<section id="lognormcdf">
+<h3>lognormcdf<a class="headerlink" href="#lognormcdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.lognormcdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">lognormcdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.lognormcdf" title="Permalink to this definition"></a></dt>
+<dd><p>计算符合参数为mu, sigma的对数正态分布的随机变量取x时的概率分布函数值</p>
+</dd></dl>
+
+</section>
+<section id="lognormfit">
+<h3>lognormfit<a class="headerlink" href="#lognormfit" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.lognormfit">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">lognormfit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.lognormfit" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">对series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)进行对数正态分布参数估计</div>
+<div class="line">返回顺序: mu, sigma</div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<div class="line-block">
+<div class="line">scipy.stats中lognorm分布参数估计和 <a class="reference internal" href="#dramkit.datsci.utils_stats.lognormpdf" title="dramkit.datsci.utils_stats.lognormpdf"><code class="xref py py-func docutils literal notranslate"><span class="pre">lognormpdf()</span></code></a> 中参数关系：</div>
+<div class="line">若设置floc=0（即始终loc=0），则有s = sigma，scale = e ^ mu</div>
+</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="fit-lognorm-pdf">
+<h3>fit_lognorm_pdf<a class="headerlink" href="#fit-lognorm-pdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.fit_lognorm_pdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">fit_lognorm_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.fit_lognorm_pdf" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">用series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)拟合一个对数正态分布，</div>
+<div class="line">并计算随机变量在该分布下取值为x时的概率密度函数值</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="fit-lognorm-cdf">
+<h3>fit_lognorm_cdf<a class="headerlink" href="#fit-lognorm-cdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.fit_lognorm_cdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">fit_lognorm_cdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.fit_lognorm_cdf" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">用series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)拟合一个对数正态分布，</div>
+<div class="line">并计算随机变量在该分布下取值为x时的概率分布函数值</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="lognormtest">
+<h3>lognormtest<a class="headerlink" href="#lognormtest" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.lognormtest">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">lognormtest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs_plot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.lognormtest" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">对series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)进行对数正态分布检验(采用KS检验)</div>
+<div class="line">返回顺序: (统计量, P值), (mu, sigma)</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="weibullpdf">
+<h3>weibullpdf<a class="headerlink" href="#weibullpdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.weibullpdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">weibullpdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.weibullpdf" title="Permalink to this definition"></a></dt>
+<dd><p>计算符合参数为k, lmd的威布尔分布的随机变量取x时的概率密度函数值</p>
+</dd></dl>
+
+</section>
+<section id="weibullcdf">
+<h3>weibullcdf<a class="headerlink" href="#weibullcdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.weibullcdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">weibullcdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.weibullcdf" title="Permalink to this definition"></a></dt>
+<dd><p>计算符合参数为k, lmd的威布尔分布的随机变量取x时的概率分布函数值</p>
+</dd></dl>
+
+</section>
+<section id="weibullfit">
+<h3>weibullfit<a class="headerlink" href="#weibullfit" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.weibullfit">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">weibullfit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.weibullfit" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">对series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)进行威布尔分布参数估计</div>
+<div class="line">返回顺序: k, lmd</div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<div class="line-block">
+<div class="line">scipy.stats中weibull_min分布参数估计和 <a class="reference internal" href="#dramkit.datsci.utils_stats.weibullpdf" title="dramkit.datsci.utils_stats.weibullpdf"><code class="xref py py-func docutils literal notranslate"><span class="pre">weibullpdf()</span></code></a> 中
+weibull分布参数关系：</div>
+<div class="line">若设置floc=0（即始终loc=0），则有c = k，scale = lmd</div>
+<div class="line">scipy.stats中weibull_min分布参数估计和 <code class="docutils literal notranslate"><span class="pre">np.random.weibull</span></code>
+分布参数关系：</div>
+<div class="line">若设置floc=0（即始终loc=0），则有c = a，scale = 1</div>
+</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="fit-weibull-pdf">
+<h3>fit_weibull_pdf<a class="headerlink" href="#fit-weibull-pdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.fit_weibull_pdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">fit_weibull_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.fit_weibull_pdf" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">用series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)拟合一个威布尔分布，</div>
+<div class="line">并计算随机变量在该分布下取值为x时的概率密度函数值</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="fit-weibull-cdf">
+<h3>fit_weibull_cdf<a class="headerlink" href="#fit-weibull-cdf" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.fit_weibull_cdf">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">fit_weibull_cdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.fit_weibull_cdf" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">用series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)拟合一个威布尔分布，</div>
+<div class="line">并计算随机变量在该分布下取值为x时的概率分布函数值</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="weibulltest">
+<h3>weibulltest<a class="headerlink" href="#weibulltest" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.weibulltest">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">weibulltest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs_plot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.weibulltest" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">对series (<cite>pd.Series</cite> 或 <cite>np.array</cite>)进行威布尔分布检验(采用KS检验)</div>
+<div class="line">返回顺序: (统计量, P值), (k, lmd)</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="scale-skl">
+<h3>scale_skl<a class="headerlink" href="#scale-skl" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.scale_skl">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">scale_skl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_fit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfs_trans</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'std'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.scale_skl" title="Permalink to this definition"></a></dt>
+<dd><p>sklearn数据标准化处理，对df_fit中指定列cols进行标准化
+scale_type指定标准化类型具体如下：</p>
+<blockquote>
+<div><p>‘std’或’z-score’使用StandardScaler
+‘maxmin’或’minmax’使用MinMaxScaler</p>
+</div></blockquote>
+<p><a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs接收对应Scaler支持的参数
+dfs_trans为需要以df_fit为基准进行标准化的pd.DataFrame列表
+返回标准化后的数据以及sklearn的Scaler对象</p>
+</dd></dl>
+
+</section>
+<section id="scale-skl-inverse">
+<h3>scale_skl_inverse<a class="headerlink" href="#scale-skl-inverse" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.scale_skl_inverse">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">scale_skl_inverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scaler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfs_toInv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.scale_skl_inverse" title="Permalink to this definition"></a></dt>
+<dd><p>反标准化还原数据
+scaler为fit过的sklearn Scaler类(如StandardScaler、MinMaxScaler)
+dfs_toInv为待还原的df列表
+<a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs接收scaler.inverse_transform函数支持的参数
+注：(scaler, cols)应与scale_skl函数输出一致</p>
+</dd></dl>
+
+</section>
+<section id="norm-std">
+<h3>norm_std<a class="headerlink" href="#norm-std" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.norm_std">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">norm_std</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isReverse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">returnMeanStd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.norm_std" title="Permalink to this definition"></a></dt>
+<dd><p>z-score标准化，series为pd.Series或np.array，isReverse设置是否反向
+ddof指定计算标准差时是无偏还是有偏的：</p>
+<blockquote>
+<div><p>ddof=1时计算的是无偏标准差（样本标准差，分母为n-1），
+ddof=0时计算的是有偏标准差（总体标准差，分母为n）</p>
+</div></blockquote>
+<p>（注：pandas的std()默认计算的是无偏标准差，numpy的std()默认计算的是有偏标准差）
+当returnMeanStd为True时同时返回均值和标准差，为False时不返回</p>
+<dl class="simple">
+<dt>注: Z-score适用于series的最大值和最小值未知或有超出取值范围的离群值的情况。</dt><dd><p>（一般要求原始数据的分布可以近似为高斯分布，否则效果可能会很糟糕）</p>
+</dd>
+<dt>总体标准差和样本标准差参考:</dt><dd><p><a class="reference external" href="https://blog.csdn.net/qxqxqzzz/article/details/88663198">https://blog.csdn.net/qxqxqzzz/article/details/88663198</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="norm-linear">
+<h3>norm_linear<a class="headerlink" href="#norm-linear" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.norm_linear">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">norm_linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xmin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isReverse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xMustInRange</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vXminEqXmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vNminEqNmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.norm_linear" title="Permalink to this definition"></a></dt>
+<dd><p>线性映射：将取值范围在[Xmin, Xmax]内的x映射到取值范围在[Nmin, Nmax]内的xNew
+isReverse设置是否反向，若为True，则映射到[Nmax, Nmin]范围内
+xMustInRange设置当x不在[Xmin, Xmax]范围内时是否报错
+vXminEqXmax设置当Xmin和Xmax相等时的返回值</p>
+</dd></dl>
+
+</section>
+<section id="norm-mid">
+<h3>norm_mid<a class="headerlink" href="#norm-mid" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.norm_mid">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">norm_mid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_best</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.norm_mid" title="Permalink to this definition"></a></dt>
+<dd><p>中间型（倒V型）指标的正向化线性映射，新值范围为[Nmin, Nmax]
+(指标值既不要太大也不要太小，适当取中间值最好，如水质量评估PH值)
+x_min和x_max为指标可能取到的最小值和最大值
+x_best指定最优值，若不指定则将x_min和x_max的均值当成最优值
+参考：<a class="reference external" href="https://zhuanlan.zhihu.com/p/37738503">https://zhuanlan.zhihu.com/p/37738503</a></p>
+</dd></dl>
+
+</section>
+<section id="norm01-mid">
+<h3>norm01_mid<a class="headerlink" href="#norm01-mid" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.norm01_mid">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">norm01_mid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_best</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.norm01_mid" title="Permalink to this definition"></a></dt>
+<dd><p>中间型（倒V型）指标的正向化和（线性）01标准化
+(指标值既不要太大也不要太小，适当取中间值最好，如水质量评估PH值)
+x_min和x_max为指标可能取到的最小值和最大值
+x_best指定最优值，若不指定则将x_min和x_max的均值当成最优值
+参考：<a class="reference external" href="https://zhuanlan.zhihu.com/p/37738503">https://zhuanlan.zhihu.com/p/37738503</a></p>
+</dd></dl>
+
+</section>
+<section id="norm-side">
+<h3>norm_side<a class="headerlink" href="#norm-side" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.norm_side">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">norm_side</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_worst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_outLimit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.norm_side" title="Permalink to this definition"></a></dt>
+<dd><p>两边型（V型）指标的正向化线性映射，新值范围为[Nmin, Nmax]
+(指标越靠近x_min或越靠近x_max越好，越在中间越不好)
+x_min和x_max为指标可能取到的最小值和最大值
+x_worst指定最差值，若不指定则将x_min和x_max的均值当成最差值
+v_outLimit指定当x超过x_min或x_max界限之后的正向标准化值，不指定则默认为Nmax</p>
+</dd></dl>
+
+</section>
+<section id="norm01-side">
+<h3>norm01_side<a class="headerlink" href="#norm01-side" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.norm01_side">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">norm01_side</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_worst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_outLimit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.norm01_side" title="Permalink to this definition"></a></dt>
+<dd><p>两边型（V型）指标的正向化和（线性）01标准化
+(指标越靠近x_min或越靠近x_max越好，越在中间越不好)
+x_min和x_max为指标可能取到的最小值和最大值
+x_worst指定最差值，若不指定则将x_min和x_max的均值当成最差值
+v_outLimit指定当x超过x_min或x_max界限之后的正向标准化值，不指定则默认为1</p>
+</dd></dl>
+
+</section>
+<section id="norm-range">
+<h3>norm_range<a class="headerlink" href="#norm-range" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.norm_range">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">norm_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_minMin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_maxMax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Nmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.norm_range" title="Permalink to this definition"></a></dt>
+<dd><p>区间型指标的正向化正向化线性映射，新值范围为[Nmin, Nmax]
+(指标的取值最好落在某一个确定的区间最好，如体温)
+[x_min, x_max]指定指标的最佳稳定区间，[x_minMin, x_maxMax]指定指标的最大容忍区间
+参考：<a class="reference external" href="https://zhuanlan.zhihu.com/p/37738503">https://zhuanlan.zhihu.com/p/37738503</a></p>
+</dd></dl>
+
+</section>
+<section id="norm01-range">
+<h3>norm01_range<a class="headerlink" href="#norm01-range" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.norm01_range">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">norm01_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_minMin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_maxMax</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.norm01_range" title="Permalink to this definition"></a></dt>
+<dd><p>区间型指标的正向化和（线性）01标准化
+(指标的取值最好落在某一个确定的区间最好，如体温)
+[x_min, x_max]指定指标的最佳稳定区间，[x_minMin, x_maxMax]指定指标的最大容忍区间
+参考：<a class="reference external" href="https://zhuanlan.zhihu.com/p/37738503">https://zhuanlan.zhihu.com/p/37738503</a></p>
+</dd></dl>
+
+</section>
+<section id="mse">
+<h3>mse<a class="headerlink" href="#mse" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.mse">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">mse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_predict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.mse" title="Permalink to this definition"></a></dt>
+<dd><p>MSE，y_true和y_predict格式为np.array或pd.Series
+注: 要求y_true和y_predict值一一对应</p>
+</dd></dl>
+
+</section>
+<section id="r2">
+<h3>r2<a class="headerlink" href="#r2" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.r2">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">r2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_predict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_linear</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.r2" title="Permalink to this definition"></a></dt>
+<dd><p>计算拟合优度R2
+在线性回归情况下（y_predict是由y_true与自变量X进行线性拟合的预测值），有:</p>
+<blockquote>
+<div><p>R2 = 1 - SSres / SStot = SSreg / SStot，
+且此时R2与y_true和y_predict相关系数的平方相等</p>
+</div></blockquote>
+<p>非线性回归情况下，1 - SSres / SStot != SSreg / SStot，R2与两者相关系数平方也不相等
+可设置is_linear为True和False进行比较验证
+参考：<a class="reference external" href="https://blog.csdn.net/wade1203/article/details/98477034">https://blog.csdn.net/wade1203/article/details/98477034</a></p>
+<blockquote>
+<div><p><a class="reference external" href="https://blog.csdn.net/liangyihuai/article/details/88560859">https://blog.csdn.net/liangyihuai/article/details/88560859</a>
+<a class="reference external" href="https://wenku.baidu.com/view/893b22d66bec0975f465e2b8.html">https://wenku.baidu.com/view/893b22d66bec0975f465e2b8.html</a></p>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="r2adj">
+<h3>r2adj<a class="headerlink" href="#r2adj" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.r2adj">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">r2adj</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_predict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.r2adj" title="Permalink to this definition"></a></dt>
+<dd><p>计算调整R2, k为自变量个数
+注：线性回归中常量也算一个变量，例如y=ax+b，则k为2
+<a class="reference external" href="http://blog.sciencenet.cn/blog-651374-975670.html">http://blog.sciencenet.cn/blog-651374-975670.html</a></p>
+</dd></dl>
+
+</section>
+<section id="r2adj-by-r2">
+<h3>r2adj_by_r2<a class="headerlink" href="#r2adj-by-r2" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.r2adj_by_r2">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">r2adj_by_r2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vR2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.r2adj_by_r2" title="Permalink to this definition"></a></dt>
+<dd><p>通过R2计算调整R2, n为样本量, k为自变量个数
+注：线性回归中常量也算一个变量，例如y=ax+b，则k为2</p>
+</dd></dl>
+
+</section>
+<section id="r2adj-by-mse">
+<h3>r2adj_by_mse<a class="headerlink" href="#r2adj-by-mse" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.r2adj_by_mse">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">r2adj_by_mse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vMSE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.r2adj_by_mse" title="Permalink to this definition"></a></dt>
+<dd><p>通过MSE计算调整R2, n为样本量, k为自变量个数
+注：线性回归中常量也算一个变量，例如y=ax+b，则k为2</p>
+</dd></dl>
+
+</section>
+<section id="r2-by-r2adj">
+<h3>r2_by_r2adj<a class="headerlink" href="#r2-by-r2adj" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.r2_by_r2adj">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">r2_by_r2adj</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vR2adj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.r2_by_r2adj" title="Permalink to this definition"></a></dt>
+<dd><p>通过调整R2计算R2, n为样本量, k为自变量个数
+注：线性回归中常量也算一个变量，例如y=ax+b，则k为2</p>
+</dd></dl>
+
+</section>
+<section id="r2-by-mse">
+<h3>r2_by_mse<a class="headerlink" href="#r2-by-mse" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.r2_by_mse">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">r2_by_mse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vMSE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.r2_by_mse" title="Permalink to this definition"></a></dt>
+<dd><p>根据MSE和真实值计算拟合优度R2
+参考：<a class="reference external" href="https://blog.csdn.net/wade1203/article/details/98477034">https://blog.csdn.net/wade1203/article/details/98477034</a></p>
+<blockquote>
+<div><p><a class="reference external" href="https://blog.csdn.net/liangyihuai/article/details/88560859">https://blog.csdn.net/liangyihuai/article/details/88560859</a></p>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="mse-by-r2">
+<h3>mse_by_r2<a class="headerlink" href="#mse-by-r2" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.mse_by_r2">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">mse_by_r2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vR2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.mse_by_r2" title="Permalink to this definition"></a></dt>
+<dd><p>根据R2和真实值计算MSE</p>
+</dd></dl>
+
+</section>
+<section id="r2-deprecated">
+<h3>r2_deprecated<a class="headerlink" href="#r2-deprecated" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.r2_deprecated">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">r2_deprecated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_predict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.r2_deprecated" title="Permalink to this definition"></a></dt>
+<dd><p>拟合优度R2计算
+参考：<a class="reference external" href="https://blog.csdn.net/wade1203/article/details/98477034">https://blog.csdn.net/wade1203/article/details/98477034</a></p>
+<blockquote>
+<div><p><a class="reference external" href="https://blog.csdn.net/liangyihuai/article/details/88560859">https://blog.csdn.net/liangyihuai/article/details/88560859</a></p>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="rmse">
+<h3>rmse<a class="headerlink" href="#rmse" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.rmse">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">rmse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_predict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.rmse" title="Permalink to this definition"></a></dt>
+<dd><p>RMSE，y_true和y_predict格式为np.array或pd.Series
+注: 要求y_true和y_predict值一一对应</p>
+</dd></dl>
+
+</section>
+<section id="mae">
+<h3>mae<a class="headerlink" href="#mae" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.mae">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">mae</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_predict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.mae" title="Permalink to this definition"></a></dt>
+<dd><p>MAE，y_true和y_predict格式为np.array或pd.Series
+注: 要求y_true和y_predict值一一对应</p>
+</dd></dl>
+
+</section>
+<section id="mape">
+<h3>mape<a class="headerlink" href="#mape" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.mape">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">mape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_predict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.mape" title="Permalink to this definition"></a></dt>
+<dd><p>MAPE，y_true和y_predict格式为np.array或pd.Series
+注: 要求y_true和y_predict值一一对应
+注：当y_true存在0值时MAPE不可用</p>
+</dd></dl>
+
+</section>
+<section id="smape">
+<h3>smape<a class="headerlink" href="#smape" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.smape">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">smape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_predict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.smape" title="Permalink to this definition"></a></dt>
+<dd><p>SMAPE，y_true和y_predict格式为np.array或pd.Series
+注: 要求y_true和y_predict值一一对应
+注：当y_true和y_predict均为0值时SMAPE不可用
+公式：<a class="reference external" href="https://blog.csdn.net/guolindonggld/article/details/87856780">https://blog.csdn.net/guolindonggld/article/details/87856780</a></p>
+</dd></dl>
+
+</section>
+<section id="avedev">
+<h3>AVEDEV<a class="headerlink" href="#avedev" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.AVEDEV">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">AVEDEV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.AVEDEV" title="Permalink to this definition"></a></dt>
+<dd><p>AVEDEV函数
+arr为np.array或pd.Series</p>
+<p>参考：
+<a class="reference external" href="https://support.microsoft.com/en-us/office/">https://support.microsoft.com/en-us/office/</a>
+avedev-function-58fe8d65-2a84-4dc7-8052-f3f87b5c6639?ui=en-us&amp;
+rs=en-us&amp;ad=us</p>
+</dd></dl>
+
+</section>
+<section id="cal-linear-reg-r">
+<h3>cal_linear_reg_r<a class="headerlink" href="#cal-linear-reg-r" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cal_linear_reg_r">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cal_linear_reg_r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cal_linear_reg_r" title="Permalink to this definition"></a></dt>
+<dd><p>计算y中数据点的斜率（一元线性回归）
+y和x为list或pd.Series或np.array</p>
+</dd></dl>
+
+</section>
+<section id="cummean">
+<h3>cummean<a class="headerlink" href="#cummean" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cummean">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cummean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skipna</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cummean" title="Permalink to this definition"></a></dt>
+<dd><p>滚动计算序列累计均值
+skip设置是否忽略(删除)无效值记录</p>
+</dd></dl>
+
+</section>
+<section id="delta-var-d0">
+<h3>delta_var_d0<a class="headerlink" href="#delta-var-d0" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.delta_var_d0">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">delta_var_d0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.delta_var_d0" title="Permalink to this definition"></a></dt>
+<dd><p>自由度为0情况下的增量方差算法
+n, mean, var分别为两组样本的样本量、均值和自由度为0的方差
+<a class="reference external" href="https://www.cnblogs.com/yoyaprogrammer/p/delta_variance.html">https://www.cnblogs.com/yoyaprogrammer/p/delta_variance.html</a></p>
+</dd></dl>
+
+</section>
+<section id="delta-var-d">
+<h3>delta_var_d<a class="headerlink" href="#delta-var-d" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.delta_var_d">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">delta_var_d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.delta_var_d" title="Permalink to this definition"></a></dt>
+<dd><p>增量方差算法：根据已经算好的两组样本的方差、均值和样本量计算两组数合并之后的方差
+ddof为自由度
+n, mean, var分别为两组样本的样本量、均值和自由度为ddof的方差
+<a class="reference external" href="https://www.cnblogs.com/yoyaprogrammer/p/delta_variance.html">https://www.cnblogs.com/yoyaprogrammer/p/delta_variance.html</a></p>
+</dd></dl>
+
+</section>
+<section id="delta-var">
+<h3>delta_var<a class="headerlink" href="#delta-var" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.delta_var">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">delta_var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.delta_var" title="Permalink to this definition"></a></dt>
+<dd><p>增量方差算法</p>
+</dd></dl>
+
+</section>
+<section id="cumvar-nonan">
+<h3>cumvar_nonan<a class="headerlink" href="#cumvar-nonan" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cumvar_nonan">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cumvar_nonan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cumvar_nonan" title="Permalink to this definition"></a></dt>
+<dd><p>滚动累计方差算法</p>
+</dd></dl>
+
+</section>
+<section id="cumvar">
+<h3>cumvar<a class="headerlink" href="#cumvar" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cumvar">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cumvar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skipna</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cumvar" title="Permalink to this definition"></a></dt>
+<dd><p>滚动累计方差算法，返回pd.Series</p>
+</dd></dl>
+
+</section>
+<section id="cumvar1">
+<h3>cumvar1<a class="headerlink" href="#cumvar1" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cumvar1">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cumvar1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skipna</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cumvar1" title="Permalink to this definition"></a></dt>
+<dd><p>滚动计算序列累计方差
+参考：<a class="reference external" href="https://www.cnblogs.com/yoyaprogrammer/p/delta_variance.html">https://www.cnblogs.com/yoyaprogrammer/p/delta_variance.html</a></p>
+</dd></dl>
+
+</section>
+<section id="cumvar2">
+<h3>cumvar2<a class="headerlink" href="#cumvar2" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cumvar2">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cumvar2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skipna</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cumvar2" title="Permalink to this definition"></a></dt>
+<dd><p>滚动计算序列累计方差
+<a class="reference external" href="https://www.cnblogs.com/yoyaprogrammer/p/delta_variance.html">https://www.cnblogs.com/yoyaprogrammer/p/delta_variance.html</a></p>
+</dd></dl>
+
+</section>
+<section id="cumstd">
+<h3>cumstd<a class="headerlink" href="#cumstd" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cumstd">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cumstd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ddof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skipna</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cumstd" title="Permalink to this definition"></a></dt>
+<dd><p>滚动计算序列累计标准差</p>
+</dd></dl>
+
+</section>
+<section id="cumvar-deprecated">
+<h3>cumvar_Deprecated<a class="headerlink" href="#cumvar-deprecated" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cumvar_Deprecated">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cumvar_Deprecated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cumvar_Deprecated" title="Permalink to this definition"></a></dt>
+<dd><p>滚动计算序列累计方差</p>
+</dd></dl>
+
+</section>
+<section id="cumstd-deprecated">
+<h3>cumstd_Deprecated<a class="headerlink" href="#cumstd-deprecated" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cumstd_Deprecated">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cumstd_Deprecated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cumstd_Deprecated" title="Permalink to this definition"></a></dt>
+<dd><p>滚动计算序列累计标准差</p>
+</dd></dl>
+
+</section>
+<section id="cumscale">
+<h3>cumScale<a class="headerlink" href="#cumscale" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cumScale">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cumScale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('maxmin',</span> <span class="pre">0,</span> <span class="pre">1)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cumScale" title="Permalink to this definition"></a></dt>
+<dd><p>序列累计标准化
+scale_type可选：</p>
+<blockquote>
+<div><p>最大最小标准化：(‘maxmin’, Nmin, Nmax)
+标准偏差法：(‘std’, ) 或 ‘std’</p>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="rollingscale">
+<h3>rollingScale<a class="headerlink" href="#rollingscale" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.rollingScale">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">rollingScale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('maxmin',</span> <span class="pre">0,</span> <span class="pre">1)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.rollingScale" title="Permalink to this definition"></a></dt>
+<dd><p>序列滚动标准化</p>
+</dd></dl>
+
+</section>
+<section id="get-quantiles">
+<h3>get_quantiles<a class="headerlink" href="#get-quantiles" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.get_quantiles">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">get_quantiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dense'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.get_quantiles" title="Permalink to this definition"></a></dt>
+<dd><p>计算series（pd.Series或np.array）中每个数所处的百分位
+method决定并列排序序号确定方式</p>
+</dd></dl>
+
+</section>
+<section id="cumnunique">
+<h3>cumNunique<a class="headerlink" href="#cumnunique" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cumNunique">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cumNunique</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skipna</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cumNunique" title="Permalink to this definition"></a></dt>
+<dd><p>滚动计算series中unique值的个数</p>
+</dd></dl>
+
+</section>
+<section id="cumnunique-pd">
+<h3>cumNunique_pd<a class="headerlink" href="#cumnunique-pd" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cumNunique_pd">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cumNunique_pd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skipna</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cumNunique_pd" title="Permalink to this definition"></a></dt>
+<dd><p>滚动计算series中unique值的个数</p>
+</dd></dl>
+
+</section>
+<section id="cumrank-nonan">
+<h3>cumrank_nonan<a class="headerlink" href="#cumrank-nonan" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cumrank_nonan">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cumrank_nonan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ascending</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dense'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cumrank_nonan" title="Permalink to this definition"></a></dt>
+<dd><p>滚动计算累计排序号</p>
+</dd></dl>
+
+</section>
+<section id="cumrank">
+<h3>cumrank<a class="headerlink" href="#cumrank" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cumrank">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cumrank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ascending</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dense'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cumrank" title="Permalink to this definition"></a></dt>
+<dd><p>滚动计算累计排序号</p>
+</dd></dl>
+
+</section>
+<section id="cumrank1-nonan">
+<h3>cumrank1_nonan<a class="headerlink" href="#cumrank1-nonan" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cumrank1_nonan">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cumrank1_nonan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ascending</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dense'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cumrank1_nonan" title="Permalink to this definition"></a></dt>
+<dd><p>滚动计算累计排序号</p>
+</dd></dl>
+
+</section>
+<section id="cumrank1">
+<h3>cumrank1<a class="headerlink" href="#cumrank1" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cumrank1">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cumrank1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ascending</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dense'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cumrank1" title="Permalink to this definition"></a></dt>
+<dd><p>滚动计算累计排序号</p>
+</dd></dl>
+
+</section>
+<section id="cumrank2">
+<h3>cumrank2<a class="headerlink" href="#cumrank2" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cumrank2">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cumrank2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ascending</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dense'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cumrank2" title="Permalink to this definition"></a></dt>
+<dd><p>滚动计算累计排序号</p>
+</dd></dl>
+
+</section>
+<section id="get-pct-loc">
+<h3>get_pct_loc<a class="headerlink" href="#get-pct-loc" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.get_pct_loc">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">get_pct_loc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isnew</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dense'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.get_pct_loc" title="Permalink to this definition"></a></dt>
+<dd><p>给定value和series（pd.Series或np.array）计算value在series中所处百分位
+若isnew为True，则将value当成新数据，若为False，则当成series中已经存在的数据
+method决定并列排序序号确定方式</p>
+</dd></dl>
+
+</section>
+<section id="cumpctloc">
+<h3>cumPctLoc<a class="headerlink" href="#cumpctloc" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cumPctLoc">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cumPctLoc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dense'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cumPctLoc" title="Permalink to this definition"></a></dt>
+<dd><p>滚动计算数据累计所处百分位</p>
+</dd></dl>
+
+</section>
+<section id="cumpctloc1">
+<h3>cumPctLoc1<a class="headerlink" href="#cumpctloc1" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cumPctLoc1">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cumPctLoc1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dense'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cumPctLoc1" title="Permalink to this definition"></a></dt>
+<dd><p>滚动计算数据累计所处百分位</p>
+</dd></dl>
+
+</section>
+<section id="cumpctloc2">
+<h3>cumPctLoc2<a class="headerlink" href="#cumpctloc2" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.cumPctLoc2">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">cumPctLoc2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dense'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.cumPctLoc2" title="Permalink to this definition"></a></dt>
+<dd><p>滚动计算数据累计所处百分位</p>
+</dd></dl>
+
+</section>
+<section id="rollingpctloc">
+<h3>rollingPctLoc<a class="headerlink" href="#rollingpctloc" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.rollingPctLoc">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">rollingPctLoc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dense'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.rollingPctLoc" title="Permalink to this definition"></a></dt>
+<dd><p>滚动计算数据所处百分位</p>
+</dd></dl>
+
+</section>
+<section id="parms-est">
+<h3>parms_est<a class="headerlink" href="#parms-est" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.parms_est">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">parms_est</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.parms_est" title="Permalink to this definition"></a></dt>
+<dd><p>各种分布不同方法的参数估计</p>
+</dd></dl>
+
+</section>
+<section id="auc">
+<h3>auc<a class="headerlink" href="#auc" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.auc">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">auc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.auc" title="Permalink to this definition"></a></dt>
+<dd><p>计算auc，待实现</p>
+</dd></dl>
+
+</section>
+<section id="var-hom-test">
+<h3>var_hom_test<a class="headerlink" href="#var-hom-test" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.var_hom_test">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">var_hom_test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.var_hom_test" title="Permalink to this definition"></a></dt>
+<dd><p>方差齐性检验，待实现</p>
+</dd></dl>
+
+</section>
+<section id="ind-ttest">
+<h3>ind_ttest<a class="headerlink" href="#ind-ttest" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.ind_ttest">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">ind_ttest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.ind_ttest" title="Permalink to this definition"></a></dt>
+<dd><p>独立样本T检验，待实现</p>
+</dd></dl>
+
+</section>
+<section id="rel-ttest">
+<h3>rel_ttest<a class="headerlink" href="#rel-ttest" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.rel_ttest">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">rel_ttest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.rel_ttest" title="Permalink to this definition"></a></dt>
+<dd><p>配对样本T检验，待实现</p>
+</dd></dl>
+
+</section>
+<section id="anova-oneway">
+<h3>anova_oneway<a class="headerlink" href="#anova-oneway" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_stats.anova_oneway">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_stats.</span></span><span class="sig-name descname"><span class="pre">anova_oneway</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_stats.anova_oneway" title="Permalink to this definition"></a></dt>
+<dd><p>单因素方差分析，col_val为待比较列，col_group为组别列，待实现</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dramkit.html" class="btn btn-neutral float-left" title="dramkit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dramkit.logtools.html" class="btn btn-neutral float-right" title="logtools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, YueYong Hu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
