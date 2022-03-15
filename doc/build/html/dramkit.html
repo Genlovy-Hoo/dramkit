@@ -41,6 +41,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">dramkit</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.gentools">gentools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#structureobject">StructureObject</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#log-used-time">log_used_time</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#print-used-time">print_used_time</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#get-update-kwargs">get_update_kwargs</a></li>
@@ -80,12 +81,16 @@
 <li class="toctree-l3"><a class="reference internal" href="#get-appear-order">get_appear_order</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#label-rep-index-str">label_rep_index_str</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#drop-index-duplicates">drop_index_duplicates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#group-shift">group_shift</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#group-fillna">group_fillna</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#group-rank">group_rank</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#bootstrapping">bootstrapping</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#groupby-rolling-func">groupby_rolling_func</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#link-lists">link_lists</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.install_check">install_check</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id3">install_check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">install_check</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.iotools">iotools</a><ul>
@@ -154,6 +159,34 @@
 <section id="module-dramkit.gentools">
 <span id="gentools"></span><h2>gentools<a class="headerlink" href="#module-dramkit.gentools" title="Permalink to this headline"></a></h2>
 <p>General toolboxs</p>
+<section id="structureobject">
+<h3>StructureObject<a class="headerlink" href="#structureobject" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="dramkit.gentools.StructureObject">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">StructureObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.StructureObject" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>类似于MATLAB结构数组，存放变量，便于直接赋值和查看</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.gentools.StructureObject.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.StructureObject.clear" title="Permalink to this definition"></a></dt>
+<dd><p>情况所有属性变量</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.gentools.StructureObject.pop">
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.StructureObject.pop" title="Permalink to this definition"></a></dt>
+<dd><p>删除属性变量key，有返回</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.gentools.StructureObject.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.StructureObject.remove" title="Permalink to this definition"></a></dt>
+<dd><p>删除属性变量key，无返回</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="log-used-time">
 <h3>log_used_time<a class="headerlink" href="#log-used-time" title="Permalink to this headline"></a></h3>
 <dl class="py function">
@@ -1322,6 +1355,54 @@
 </dd></dl>
 
 </section>
+<section id="group-shift">
+<h3>group_shift<a class="headerlink" href="#group-shift" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.group_shift">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">group_shift</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.group_shift" title="Permalink to this definition"></a></dt>
+<dd><p>分组shift，待实现</p>
+</dd></dl>
+
+</section>
+<section id="group-fillna">
+<h3>group_fillna<a class="headerlink" href="#group-fillna" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.group_fillna">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">group_fillna</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_fill</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_groupby</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_all</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs_fillna</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.group_fillna" title="Permalink to this definition"></a></dt>
+<dd><p>分组缺失值填充</p>
+</dd></dl>
+
+</section>
+<section id="group-rank">
+<h3>group_rank<a class="headerlink" href="#group-rank" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.group_rank">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">group_rank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_rank</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_groupby</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_all</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs_rank</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.group_rank" title="Permalink to this definition"></a></dt>
+<dd><p>分组排序</p>
+<p>对df(<cite>pandas.DataFrame</cite>)中 <code class="docutils literal notranslate"><span class="pre">cols_rank</span></code> 指定列按 <code class="docutils literal notranslate"><span class="pre">cols_groupby</span></code> 指定列分组排序</p>
+<div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">Todo</p>
+<p>col_rank可为列表，此时范围dataframe，return_all设置只返回指定列结果或者返回全部dataframe</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – 待排序数据表</p></li>
+<li><p><strong>col_rank</strong> (<em>str</em>) – 需要排序的列</p></li>
+<li><p><strong>cols_groupby</strong> (<em>str</em><em>, </em><em>list</em>) – 分组依据列</p></li>
+<li><p><strong>**kwargs_rank</strong> – pandas中rank函数接受的参数</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>series_rank</strong> – 排序结果</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pandas.Series</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 <section id="bootstrapping">
 <h3>bootstrapping<a class="headerlink" href="#bootstrapping" title="Permalink to this headline"></a></h3>
 <dl class="py function">
@@ -1345,11 +1426,32 @@ cols_groupby设定</p>
 </dd></dl>
 
 </section>
+<section id="link-lists">
+<h3>link_lists<a class="headerlink" href="#link-lists" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.link_lists">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">link_lists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lists</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.link_lists" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">将多个列表连接成一个列表</div>
+<div class="line">注：lists为列表，其每个元素也为一个列表</div>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">link_lists</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">])</span>
+<span class="go">[1, 2, 3, 4, 5, 6, &#39;a&#39;, &#39;b&#39;, [1, 2, 3], [4, 5, 6]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
 </section>
 <section id="module-dramkit.install_check">
 <span id="install-check"></span><h2>install_check<a class="headerlink" href="#module-dramkit.install_check" title="Permalink to this headline"></a></h2>
-<section id="id3">
-<h3>install_check<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
+<section id="id4">
+<h3>install_check<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="dramkit.install_check.install_check">
 <span class="sig-prename descclassname"><span class="pre">dramkit.install_check.</span></span><span class="sig-name descname"><span class="pre">install_check</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.install_check.install_check" title="Permalink to this definition"></a></dt>

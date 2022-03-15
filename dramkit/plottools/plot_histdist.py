@@ -129,7 +129,7 @@ def plot_histdist(series, bins=None, cumulative=False, width=None, clor='grey',
         x = np.arange(Smin, Smax, (Smax-Smin)/con_points)
 
         for dist, styl in dists.items():
-            y = funcs_fit[dist](series, x)
+            y = funcs_fit[dist](series.dropna(), x)
 
             if styl is None:
                 lnstyl, lbl_str = '-', dist

@@ -6,6 +6,7 @@ General toolboxs
 
 import sys
 import time
+import pickle
 import numpy as np
 import pandas as pd
 from functools import reduce, wraps
@@ -1887,6 +1888,59 @@ def drop_index_duplicates(df, keep='first'):
     return df[~df.index.duplicated(keep=keep)]
 
 
+def group_shift():
+    '''分组shift，待实现'''
+    raise NotImplementedError
+    
+    
+def group_fillna(df, col_fill, cols_groupby, return_all=False,
+                 **kwargs_fillna):
+    '''
+    分组缺失值填充
+    '''
+    if isinstance(cols_groupby, str):
+        cols_groupby = [cols_groupby]
+    series_fill = df.groupby(cols_groupby)[col_fill].fillna(**kwargs_fillna)
+    series_fill.index = df.index
+    return series_fill
+    
+
+def group_rank(df, col_rank, cols_groupby,
+               return_all=False, **kwargs_rank):
+    '''
+    分组排序
+    
+    对df(`pandas.DataFrame`)中 ``cols_rank`` 指定列按 ``cols_groupby`` 指定列分组排序
+    
+    TODO
+    ----
+    col_rank可为列表，此时范围dataframe，return_all设置只返回指定列结果或者返回全部dataframe
+    
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        待排序数据表
+    col_rank : str
+        需要排序的列
+    cols_groupby : str, list
+        分组依据列
+    **kwargs_rank :
+        pandas中rank函数接受的参数
+    
+    Returns
+    -------
+    series_rank : pandas.Series
+        排序结果
+    '''
+    assert isinstance(col_rank, str), '`cols_rank`必须为str'
+    assert isinstance(cols_groupby, (str, list)), '`cols_groupby`必须为str或list'
+    if isinstance(cols_groupby, str):
+        cols_groupby = [cols_groupby]
+    series_rank = df.groupby(cols_groupby)[col_rank].rank(**kwargs_rank)
+    series_rank.index = df.index
+    return series_rank
+
+
 def bootstrapping():
     '''
     bootstraping, 待实现
@@ -1910,6 +1964,52 @@ def groupby_rolling_func(data, cols_groupby, cols_val, func, keep_index=True,
     # cols = [cols_val] if isinstance(cols_val, str) else cols_val
     # df = data.reindex(columns=cols_groupby+cols)
     raise NotImplementedError
+
+
+class StructureObject(object):
+    '''类似于MATLAB结构数组，存放变量，便于直接赋值和查看'''
+
+    def __init__(self, **kwargs):
+        '''初始化'''
+        self.__dict__ = kwargs
+
+    def __repr__(self):
+        '''查看时以key: value格式打印'''
+        return ''.join('{}: {}\n'.format(k, v) for k, v in self.__dict__.items())
+    
+    def pop(self, key):
+        '''删除属性变量key，有返回'''
+        return self.__dict__.pop(key)
+    
+    def remove(self, key):
+        '''删除属性变量key，无返回'''
+        del self.__dict__[key]
+    
+    def clear(self):
+        '''情况所有属性变量'''
+        self.__dict__.clear()
+
+
+def link_lists(lists):
+    '''
+    | 将多个列表连接成一个列表
+    | 注：lists为列表，其每个元素也为一个列表
+    
+    Examples
+    --------
+    >>> a = [1, 2, 3]
+    >>> b = [4, 5, 6]
+    >>> c = ['a', 'b']
+    >>> d = [a, b]
+    >>> link_lists([a, b, c, d])
+    [1, 2, 3, 4, 5, 6, 'a', 'b', [1, 2, 3], [4, 5, 6]]
+    '''
+    assert isinstance(lists, list)
+    assert all([isinstance(x, list) for x in lists])
+    newlist = []
+    for item in lists:
+        newlist.extend(item)
+    return newlist
 
 
 if __name__ == '__main__':

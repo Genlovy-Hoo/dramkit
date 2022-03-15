@@ -7,51 +7,11 @@ import pandas as pd
 from scipy.stats import norm, lognorm, weibull_min, kstest
 from scipy.stats import t, f, chi2
 
-from sklearn.decomposition import PCA
 from sklearn.linear_model import LinearRegression as lr
-from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 from dramkit.gentools import isnull
 from dramkit.sorts.insert_sort import rank_of_insert
 from dramkit.sorts.insert_sort_bin import rank_of_insert_bin
-
-
-def get_pca(df, dfs_trans=None, **kwargs_pca):
-    '''
-    PCA主成分转化
-
-    Parameters
-    ----------
-    df : pandas.DataFrame
-        用于训练PCA模型的数据
-    df_trans : None, list
-        | 待转化数据列表，每个元素都是pandas.DataFrame，
-        | 即用训练好的PCA模型对dfs_trans中所有的数据进行主成分转化
-    **kwargs_pca :
-        sklearn.decomposition.PCA接受的参数
-
-    Returns
-    -------
-    df_pca : pandas.DataFrame
-        df进行PCA转化之后的数据，列名格式为'imfk'(第k列表示第k个主成分)
-    dfs_transed : tuple
-        利用df训练好的PCA模型对dfs_trans中的数据进行主成分转化之后的结果
-    '''
-    mdl = PCA(**kwargs_pca)
-    mdl.fit(df)
-    def pca_trans(df):
-        df_ = mdl.transform(df)
-        df_ = pd.DataFrame(df_)
-        df_.columns = ['imf'+str(_) for _ in range(1, df_.shape[1]+1)]
-        return df_
-    df_pca = pca_trans(df)
-    if dfs_trans is not None:
-        dfs_transed = []
-        for df_ in dfs_trans:
-            dfs_transed.append(df_)
-    else:
-        dfs_transed = None
-    return df_pca, tuple(dfs_transed)
 
 
 def fpdf(x, df1, df2, loc=0, scale=1):
@@ -416,250 +376,19 @@ def weibulltest(series, plot=False, **kwargs_plot):
     return (Stat, P), (k, lmd)
 
 
-def scale_skl(df_fit, dfs_trans=None, cols=None,
-              scale_type='std', **kwargs):
-    '''
-    sklearn数据标准化处理，对df_fit中指定列cols进行标准化
-    scale_type指定标准化类型具体如下：
-        'std'或'z-score'使用StandardScaler
-        'maxmin'或'minmax'使用MinMaxScaler
-    **kwargs接收对应Scaler支持的参数
-    dfs_trans为需要以df_fit为基准进行标准化的pd.DataFrame列表
-    返回标准化后的数据以及sklearn的Scaler对象
-    '''
-
-    sklScaler_map = {'std': StandardScaler, 'z-score': StandardScaler,
-                     'maxmin': MinMaxScaler, 'minmax': MinMaxScaler}
-    sklScaler = sklScaler_map[scale_type]
-
-    cols_all = list(df_fit.columns)
-
-    if cols is None:
-        scaler = sklScaler(**kwargs).fit(df_fit)
-        df_fited = pd.DataFrame(scaler.transform(df_fit),
-                                         columns=cols_all, index=df_fit.index)
-        if dfs_trans is None:
-            return df_fited, None, (scaler, cols_all)
-        dfs_transed = [pd.DataFrame(scaler.transform(df),
-                       columns=cols_all, index=df.index) for df in dfs_trans]
-        return df_fited, dfs_transed, (scaler, df_fit.columns)
-
-    cols_rest = [x for x in cols_all if x not in cols]
-    df_toFit = df_fit.reindex(columns=cols)
-
-    scaler = sklScaler(**kwargs).fit(df_toFit)
-    df_fited = pd.DataFrame(scaler.transform(df_toFit), columns=cols,
-                                                        index=df_toFit.index)
-    for col in cols_rest:
-        df_fited[col] = df_fit[col]
-    df_fited = df_fited.reindex(columns=cols_all)
-    if dfs_trans is None:
-        return df_fited, None, (scaler, cols)
-    dfs_transed = []
-    for df in dfs_trans:
-        df_trans = df.reindex(columns=cols)
-        df_transed = pd.DataFrame(scaler.transform(df_trans),
-                                  columns=cols, index=df_trans.index)
-        cols_all_df = list(df.columns)
-        cols_rest_df = [x for x in cols_all_df if x not in cols]
-        for col in cols_rest_df:
-            df_transed[col] = df[col]
-        dfs_transed.append(df_transed.reindex(columns=cols_all_df))
-    return df_fited, tuple(dfs_transed), (scaler, cols)
-
-
-def scale_skl_inverse(scaler, dfs_toInv, cols=None, **kwargs):
-    '''
-    反标准化还原数据
-    scaler为fit过的sklearn Scaler类(如StandardScaler、MinMaxScaler)
-    dfs_toInv为待还原的df列表
-    **kwargs接收scaler.inverse_transform函数支持的参数
-    注：(scaler, cols)应与scale_skl函数输出一致
-    '''
-
-    dfs_inved = []
-
-    if cols is None:
-        for df in dfs_toInv:
-            df_inved = pd.DataFrame(scaler.inverse_transform(df, **kwargs),
-                                    columns=df.columns, index=df.index)
-            dfs_inved.append(df_inved)
-        return tuple(dfs_inved)
-
-    for df in dfs_toInv:
-        cols_all = list(df.columns)
-        cols_rest = [x for x in cols_all if x not in cols]
-        df_inved = pd.DataFrame(scaler.inverse_transform(df[cols], **kwargs),
-                                columns=cols, index=df.index)
-        for col in cols_rest:
-            df_inved[col] = df[col]
-        dfs_inved.append(df_inved.reindex(columns=cols_all))
-
-    return tuple(dfs_inved)
-
-
-def norm_std(series, isReverse=False, ddof=1, returnMeanStd=False):
-    '''
-    z-score标准化，series为pd.Series或np.array，isReverse设置是否反向
-    ddof指定计算标准差时是无偏还是有偏的：
-        ddof=1时计算的是无偏标准差（样本标准差，分母为n-1），
-        ddof=0时计算的是有偏标准差（总体标准差，分母为n）
-    （注：pandas的std()默认计算的是无偏标准差，numpy的std()默认计算的是有偏标准差）
-    当returnMeanStd为True时同时返回均值和标准差，为False时不返回
-
-    注: Z-score适用于series的最大值和最小值未知或有超出取值范围的离群值的情况。
-        （一般要求原始数据的分布可以近似为高斯分布，否则效果可能会很糟糕）
-    总体标准差和样本标准差参考:
-        https://blog.csdn.net/qxqxqzzz/article/details/88663198
-    '''
-    Smean, Sstd = series.mean(), series.std(ddof=ddof)
-    if not isReverse:
-        series_new = (series - Smean) / Sstd
-    else:
-        series_new = (Smean - series) / Sstd
-    if not returnMeanStd:
-        return series_new
-    else:
-        return series_new, (Smean, Sstd)
-
-
-def norm_linear(x, Xmin, Xmax, Nmin=0, Nmax=1, isReverse=False,
-                xMustInRange=True, vXminEqXmax=np.nan, vNminEqNmax=np.nan):
-    '''
-    线性映射：将取值范围在[Xmin, Xmax]内的x映射到取值范围在[Nmin, Nmax]内的xNew
-    isReverse设置是否反向，若为True，则映射到[Nmax, Nmin]范围内
-    xMustInRange设置当x不在[Xmin, Xmax]范围内时是否报错
-    vXminEqXmax设置当Xmin和Xmax相等时的返回值
-    '''
-
-    if xMustInRange:
-        if x < Xmin or x > Xmax:
-            raise ValueError('必须满足 Xmin =< x <= Xmax ！')
-
-    if Xmin > Xmax or Nmin > Nmax:
-        raise ValueError('必须满足 Xmin <= Xmax 且 Nmin <= Nmax ！')
-
-    if Xmin == Xmax:
-        return vXminEqXmax
-
-    if Nmin == Nmax:
-        return vNminEqNmax
-
-    if isReverse:
-        Nmin, Nmax = Nmax, Nmin
-
-    xNew = Nmin + (x-Xmin) * (Nmax-Nmin) / (Xmax-Xmin)
-
-    return xNew
-
-
-def norm_mid(x, x_min, x_max, Nmin=0, Nmax=1, x_best=None):
-    '''
-    中间型（倒V型）指标的正向化线性映射，新值范围为[Nmin, Nmax]
-    (指标值既不要太大也不要太小，适当取中间值最好，如水质量评估PH值)
-    x_min和x_max为指标可能取到的最小值和最大值
-    x_best指定最优值，若不指定则将x_min和x_max的均值当成最优值
-    参考：https://zhuanlan.zhihu.com/p/37738503
-    '''
-    x_best = (x_min+x_max)/2 if x_best is None else x_best
-    if x <= x_min or x >= x_max:
-        return Nmin
-    elif x > x_min and x < x_best:
-        return norm_linear(x, x_min, x_best, Nmin, Nmax)
-    elif x < x_max and x >= x_best:
-        return norm_linear(x, x_best, x_max, Nmin, Nmax, isReverse=True)
-
-
-def norm01_mid(x, x_min, x_max, x_best=None):
-    '''
-    中间型（倒V型）指标的正向化和（线性）01标准化
-    (指标值既不要太大也不要太小，适当取中间值最好，如水质量评估PH值)
-    x_min和x_max为指标可能取到的最小值和最大值
-    x_best指定最优值，若不指定则将x_min和x_max的均值当成最优值
-    参考：https://zhuanlan.zhihu.com/p/37738503
-    '''
-    x_best = (x_min+x_max)/2 if x_best is None else x_best
-    if x <= x_min or x >= x_max:
-        return 0
-    elif x > x_min and x < x_best:
-        return (x - x_min) / (x_best - x_min)
-    elif x < x_max and x >= x_best:
-        return (x_max - x) / (x_max - x_best)
-
-
-def norm_side(x, x_min, x_max, Nmin=0, Nmax=1, x_worst=None, v_outLimit=None):
-    '''
-    两边型（V型）指标的正向化线性映射，新值范围为[Nmin, Nmax]
-    (指标越靠近x_min或越靠近x_max越好，越在中间越不好)
-    x_min和x_max为指标可能取到的最小值和最大值
-    x_worst指定最差值，若不指定则将x_min和x_max的均值当成最差值
-    v_outLimit指定当x超过x_min或x_max界限之后的正向标准化值，不指定则默认为Nmax
-    '''
-    v_outLimit = Nmax if v_outLimit is None else v_outLimit
-    x_worst = (x_min+x_max)/2 if x_worst is None else x_worst
-    if x < x_min or x > x_max:
-        return v_outLimit
-    elif x >= x_min and x < x_worst:
-        return norm_linear(x, x_min, x_worst, Nmin, Nmax, isReverse=True)
-    elif x <= x_max and x >= x_worst:
-        return norm_linear(x, x_worst, x_max, Nmin, Nmax)
-
-
-def norm01_side(x, x_min, x_max, x_worst=None, v_outLimit=1):
-    '''
-    两边型（V型）指标的正向化和（线性）01标准化
-    (指标越靠近x_min或越靠近x_max越好，越在中间越不好)
-    x_min和x_max为指标可能取到的最小值和最大值
-    x_worst指定最差值，若不指定则将x_min和x_max的均值当成最差值
-    v_outLimit指定当x超过x_min或x_max界限之后的正向标准化值，不指定则默认为1
-    '''
-    x_worst = (x_min+x_max)/2 if x_worst is None else x_worst
-    if x < x_min or x > x_max:
-        return v_outLimit
-    elif x >= x_min and x < x_worst:
-        return (x_worst - x) / (x_worst - x_min)
-    elif x <= x_max and x >= x_worst:
-        return (x - x_worst) / (x_max - x_worst)
-
-
-def norm_range(x, x_min, x_max, x_minMin, x_maxMax, Nmin=0, Nmax=1):
-    '''
-    区间型指标的正向化正向化线性映射，新值范围为[Nmin, Nmax]
-    (指标的取值最好落在某一个确定的区间最好，如体温)
-    [x_min, x_max]指定指标的最佳稳定区间，[x_minMin, x_maxMax]指定指标的最大容忍区间
-    参考：https://zhuanlan.zhihu.com/p/37738503
-    '''
-    if x >= x_min and x <= x_max:
-        return Nmax
-    elif x <= x_minMin or x >= x_maxMax:
-        return Nmin
-    elif x > x_max and x < x_maxMax:
-        return norm_linear(x, x_max, x_maxMax, Nmin, Nmax, isReverse=True)
-    elif x < x_min and x > x_minMin:
-        return norm_linear(x, x_minMin, x_min, Nmin, Nmax)
-
-
-def norm01_range(x, x_min, x_max, x_minMin, x_maxMax):
-    '''
-    区间型指标的正向化和（线性）01标准化
-    (指标的取值最好落在某一个确定的区间最好，如体温)
-    [x_min, x_max]指定指标的最佳稳定区间，[x_minMin, x_maxMax]指定指标的最大容忍区间
-    参考：https://zhuanlan.zhihu.com/p/37738503
-    '''
-    if x >= x_min and x <= x_max:
-        return 1
-    elif x <= x_minMin or x >= x_maxMax:
-        return 0
-    elif x > x_max and x < x_maxMax:
-        return 1 - (x - x_max) / (x_maxMax - x_max)
-    elif x < x_min and x > x_minMin:
-        return 1 - (x_min - x) / (x_min - x_minMin)
-
-
 def mse(y_true, y_predict):
     '''
-    MSE，y_true和y_predict格式为np.array或pd.Series
-    注: 要求y_true和y_predict值一一对应
+    计算均方误差MSE
+
+    Parameters
+    ----------
+    y_true : np.array, pd.Series
+        真实值
+    y_predict : np.array, pd.Series
+        预测值
+
+
+    :returns: `float` - MSE值
     '''
     if y_predict.shape != y_true.shape:
         raise ValueError('y_true和y_predict的值必须一一对应！')
@@ -670,15 +399,32 @@ def mse(y_true, y_predict):
 
 def r2(y_true, y_predict, is_linear=False):
     '''
-    计算拟合优度R2
-    在线性回归情况下（y_predict是由y_true与自变量X进行线性拟合的预测值），有:
-        R2 = 1 - SSres / SStot = SSreg / SStot，
-        且此时R2与y_true和y_predict相关系数的平方相等
-    非线性回归情况下，1 - SSres / SStot != SSreg / SStot，R2与两者相关系数平方也不相等
-    可设置is_linear为True和False进行比较验证
-    参考：https://blog.csdn.net/wade1203/article/details/98477034
-         https://blog.csdn.net/liangyihuai/article/details/88560859
-         https://wenku.baidu.com/view/893b22d66bec0975f465e2b8.html
+    计算拟合优度R^2
+    
+    Parameters
+    ----------
+    y_true : np.array, pd.Series
+        真实值
+    y_predict : np.array, pd.Series
+        预测值
+    is_linear : bool
+        预测值是否为线性回归结果
+
+
+    :returns: `float` - R^2值
+
+    .. hint:: 
+        | 在线性回归情况下（y_predict是由y_true与自变量X进行线性拟合的预测值），有:
+        |   R2 = 1 - SSres / SStot = SSreg / SStot，
+        |   且此时R2与y_true和y_predict相关系数的平方相等
+        | 非线性回归情况下，1 - SSres / SStot != SSreg / SStot，R2与两者相关系数平方也不相等
+        | 可设置is_linear为True和False进行比较验证
+    
+    References
+    ----------
+    https://blog.csdn.net/wade1203/article/details/98477034
+    https://blog.csdn.net/liangyihuai/article/details/88560859
+    https://wenku.baidu.com/view/893b22d66bec0975f465e2b8.html
     '''
     if y_predict.shape != y_true.shape:
         raise ValueError('y_true和y_predict的值必须一一对应！')
@@ -695,8 +441,25 @@ def r2(y_true, y_predict, is_linear=False):
 
 def r2adj(y_true, y_predict, k):
     '''
-    计算调整R2, k为自变量个数
-    注：线性回归中常量也算一个变量，例如y=ax+b，则k为2
+    计算调整R^2
+
+    Parameters
+    ----------
+    y_true : np.array, pd.Series
+        真实值
+    y_predict : np.array, pd.Series
+        预测值
+    k : int
+        预测y所用自变量个数
+
+        .. note::
+            线性回归中常量也算一个变量，例如y=ax+b，则k为2
+
+
+    :returns: `float` - 调整R^2值
+
+    References
+    ----------
     http://blog.sciencenet.cn/blog-651374-975670.html
     '''
     vR2 = r2(y_true, y_predict)
@@ -704,55 +467,61 @@ def r2adj(y_true, y_predict, k):
     return 1 - (1-vR2) * ((n-1) / (n-k))
 
 
-def r2adj_by_r2(vR2, n, k):
+def r2adj_by_r2(r2, n, k):
     '''
-    通过R2计算调整R2, n为样本量, k为自变量个数
-    注：线性回归中常量也算一个变量，例如y=ax+b，则k为2
+    | 通过R^2计算调整R^2, n为样本量, k为自变量个数
+    | 注：线性回归中常量也算一个变量，例如y=ax+b，则k为2
     '''
-    return 1 - (1-vR2) * ((n-1) / (n-k))
+    return 1 - (1-r2) * ((n-1) / (n-k))
 
 
-def r2adj_by_mse(vMSE, y_true, k):
+def r2_by_mse(mse, y_true):
     '''
-    通过MSE计算调整R2, n为样本量, k为自变量个数
-    注：线性回归中常量也算一个变量，例如y=ax+b，则k为2
+    根据MSE和真实值y_true(`pd.Series, np.array`)计算拟合优度R^2
+    
+    References
+    ----------
+    https://blog.csdn.net/wade1203/article/details/98477034
+    https://blog.csdn.net/liangyihuai/article/details/88560859
+    '''
+    y_true_var = pd.Series(y_true).var(ddof=0)
+    return 1 - mse / y_true_var
+
+
+def r2adj_by_mse(mse, y_true, k):
+    '''
+    | 通过MSE计算调整R^2, y_true为真实值(`pd.Series, np.array`), n为样本量, k为自变量个数
+    | 注：线性回归中常量也算一个变量，例如y=ax+b，则k为2
     '''
     n = len(y_true)
-    vR2 = r2_by_mse(vMSE, y_true)
+    vR2 = r2_by_mse(mse, y_true)
     return 1 - (1-vR2) * ((n-1) / (n-k))
 
 
-def r2_by_r2adj(vR2adj, n, k):
+def r2_by_r2adj(r2adj, n, k):
     '''
-    通过调整R2计算R2, n为样本量, k为自变量个数
-    注：线性回归中常量也算一个变量，例如y=ax+b，则k为2
+    | 通过调整R^2计算R^2, n为样本量, k为自变量个数
+    | 注：线性回归中常量也算一个变量，例如y=ax+b，则k为2
     '''
-    return 1 - (1-vR2adj) * ((n-k) / (n-1))
+    return 1 - (1-r2adj) * ((n-k) / (n-1))
 
 
-def r2_by_mse(vMSE, y_true):
+def mse_by_r2(r2, y_true):
     '''
-    根据MSE和真实值计算拟合优度R2
-    参考：https://blog.csdn.net/wade1203/article/details/98477034
-         https://blog.csdn.net/liangyihuai/article/details/88560859
+    根据R^2和真实值y_true(`pd.Series, np.array`)计算MSE
     '''
     y_true_var = pd.Series(y_true).var(ddof=0)
-    return 1 - vMSE / y_true_var
+    return (1-r2) * y_true_var
 
 
-def mse_by_r2(vR2, y_true):
+def _r2_deprecated(y_true, y_predict):
     '''
-    根据R2和真实值计算MSE
-    '''
-    y_true_var = pd.Series(y_true).var(ddof=0)
-    return (1-vR2) * y_true_var
+    拟合优度R^2计算, y_true, y_predict为 `pd.Series` 或 `np.array`
 
-
-def r2_deprecated(y_true, y_predict):
-    '''
-    拟合优度R2计算
-    参考：https://blog.csdn.net/wade1203/article/details/98477034
-         https://blog.csdn.net/liangyihuai/article/details/88560859
+    References
+    ----------
+    https://blog.csdn.net/wade1203/article/details/98477034
+    https://blog.csdn.net/liangyihuai/article/details/88560859
     '''
     vMSE = mse(y_true, y_predict)
     y_true_var = pd.Series(y_true).var(ddof=0)
@@ -761,16 +530,14 @@ def r2_deprecated(y_true, y_predict):
 
 def rmse(y_true, y_predict):
     '''
-    RMSE，y_true和y_predict格式为np.array或pd.Series
-    注: 要求y_true和y_predict值一一对应
+    计算RMSE, y_true, y_predict为 `pd.Series` 或 `np.array`
     '''
     return mse(y_true, y_predict) ** 0.5
 
 
 def mae(y_true, y_predict):
     '''
-    MAE，y_true和y_predict格式为np.array或pd.Series
-    注: 要求y_true和y_predict值一一对应
+    计算MAE, y_true, y_predict为 `pd.Series` 或 `np.array`
     '''
     if y_predict.shape != y_true.shape:
         raise ValueError('y_true和y_predict的值必须一一对应！')
@@ -781,9 +548,11 @@ def mae(y_true, y_predict):
 
 def mape(y_true, y_predict):
     '''
-    MAPE，y_true和y_predict格式为np.array或pd.Series
-    注: 要求y_true和y_predict值一一对应
-    注：当y_true存在0值时MAPE不可用
+    计算MAPE, y_true, y_predict为 `pd.Series` 或 `np.array`
+
+    Note
+    ----
+    当y_true存在0值时MAPE不可用
     '''
     if y_predict.shape != y_true.shape:
         raise ValueError('y_true和y_predict的值必须一一对应！')
@@ -794,10 +563,15 @@ def mape(y_true, y_predict):
 
 def smape(y_true, y_predict):
     '''
-    SMAPE，y_true和y_predict格式为np.array或pd.Series
-    注: 要求y_true和y_predict值一一对应
-    注：当y_true和y_predict均为0值时SMAPE不可用
-    公式：https://blog.csdn.net/guolindonggld/article/details/87856780
+    计算SMAPE，y_true, y_predict为 `pd.Series` 或 `np.array`
+
+    Note
+    ----
+    当y_true和y_predict均为0值时SMAPE不可用
+
+    References
+    ----------
+    https://blog.csdn.net/guolindonggld/article/details/87856780
     '''
     if y_predict.shape != y_true.shape:
         raise ValueError('y_true和y_predict的值必须一一对应！')
@@ -806,38 +580,41 @@ def smape(y_true, y_predict):
     return (abs(yPred-yTrue) / ((abs(yPred)+abs(yTrue)) / 2)).mean()
 
 
-def AVEDEV(arr):
+def avedev(arr):
     '''
-    AVEDEV函数
-    arr为np.array或pd.Series
+    AVEDEV函数，arr为 `np.array` 或 `pd.Series`
 
-    参考：
-    https://support.microsoft.com/en-us/office/
-    avedev-function-58fe8d65-2a84-4dc7-8052-f3f87b5c6639?ui=en-us&
-    rs=en-us&ad=us
+    References
+    ----------
+    https://support.microsoft.com/en-us/office/avedev-function-58fe8d65-2a84-4dc7-8052-f3f87b5c6639?ui=en-us&rs=en-us&ad=us
     '''
 
     return (abs(arr-arr.mean())).mean()
 
 
-def cal_linear_reg_r(y, x=None):
+def cal_linear_reg_r(y, x=None, fit_intercept=True):
     '''
-    计算y中数据点的斜率（一元线性回归）
-    y和x为list或pd.Series或np.array
+    | 简单计算一元线性回归斜率
+    | y和x为 `list` 或 `pd.Series` 或 `np.array` (x和y均为一维)
+    | 若x为None，则回归自变量取range(0, len(y))
+    | fit_intercept=True时返回斜率和截距，否则只返回斜率
     '''
     if isnull(x):
         X = pd.DataFrame({'X': range(0, len(y))})
     else:
         X = pd.DataFrame({'X': x})
     y = pd.Series(y)
-    mdl = lr().fit(X, y)
-    return mdl.coef_[0], mdl.intercept_
+    mdl = lr(fit_intercept=fit_intercept).fit(X, y)
+    if fit_intercept:
+        return mdl.coef_[0], mdl.intercept_
+    else:
+        return mdl.coef_[0]
 
 
 def cummean(series, skipna=True):
     '''
-    滚动计算序列累计均值
-    skip设置是否忽略(删除)无效值记录
+    | 滚动计算序列series(`list, np.array, pd.Series`)累计均值
+    | skip设置是否忽略无效值记录
     '''
     df = pd.DataFrame({'series': series})
     df['cumsum'] = df['series'].cumsum(skipna=skipna)
@@ -850,9 +627,13 @@ def cummean(series, skipna=True):
 
 def delta_var_d0(n0, mean0, var0, n1, mean1, var1):
     '''
-    自由度为0情况下的增量方差算法
-    n, mean, var分别为两组样本的样本量、均值和自由度为0的方差
+    | 自由度为0情况下的增量方差计算
+    | n, mean, var分别为第一组和第二组(增量)样本的样本量、均值和自由度为0的方差
+
+    References
+    ----------
     https://www.cnblogs.com/yoyaprogrammer/p/delta_variance.html
+    https://blog.csdn.net/u013337691/article/details/119326155
     '''
     if n0 < 1 or n1 < 1:
         raise ValueError('样本量必须大于1！')
@@ -866,10 +647,14 @@ def delta_var_d0(n0, mean0, var0, n1, mean1, var1):
 
 def delta_var_d(n0, mean0, var0, n1, mean1, var1, ddof=1):
     '''
-    增量方差算法：根据已经算好的两组样本的方差、均值和样本量计算两组数合并之后的方差
-    ddof为自由度
-    n, mean, var分别为两组样本的样本量、均值和自由度为ddof的方差
+    | 增量方差算法：根据已经算好的两组样本的方差、均值和样本量计算两组数合并之后的方差
+    | n, mean, var分别为两组样本的样本量、均值和自由度为ddof的方差
+    | 注：跟 :func:`delta_var` 的区别在于本函数调用了 :func:`delta_var_d0`
+    
+    References
+    ----------
     https://www.cnblogs.com/yoyaprogrammer/p/delta_variance.html
+    https://blog.csdn.net/u013337691/article/details/119326155
     '''
     fm = n0 + n1
     if n0 <= ddof or n1 <= ddof or fm <= ddof: # 样本量必须大于自由度
@@ -883,7 +668,14 @@ def delta_var_d(n0, mean0, var0, n1, mean1, var1, ddof=1):
 
 def delta_var(n0, mean0, var0, n1, mean1, var1, ddof=1):
     '''
-    增量方差算法
+    | 增量方差算法：根据已经算好的两组样本的方差、均值和样本量计算两组数合并之后的方差
+    | n, mean, var分别为两组样本的样本量、均值和自由度为ddof的方差
+    | 注：跟 :func:`delta_var_d` 的区别在于本函数没调用 :func:`delta_var_d0`
+    
+    References
+    ----------
+    https://www.cnblogs.com/yoyaprogrammer/p/delta_variance.html
+    https://blog.csdn.net/u013337691/article/details/119326155
     '''
     n = n0+n1
     if n0 <= ddof or n1 <= ddof or n <= ddof: # 样本量必须大于自由度
@@ -899,6 +691,24 @@ def delta_var(n0, mean0, var0, n1, mean1, var1, ddof=1):
 def cumvar_nonan(series, ddof=1):
     '''
     滚动累计方差算法
+
+    Parameters
+    ----------
+    series : pd.Series, np.array
+        目标序列，不应有无效值
+    ddof : int
+        自由度
+
+
+    :returns: `np.array` - 滚动累计方差计算结果
+    
+    Note
+    ----
+    series会被当成没有无效值处理
+
+    See Also
+    --------
+    :func:`dramkit.datsci.utils_stats.delta_var`
     '''
 
     # 数据格式检查
@@ -922,11 +732,30 @@ def cumvar_nonan(series, ddof=1):
         mean1 = np.mean(series[k-ddof:k+1])
         # 增量方差
         cumvar[k] = delta_var(n0, mean0, var0, ddof+1, mean1, var1, ddof=ddof)
+    
     return cumvar
 
 
 def cumvar(series, ddof=1, skipna=True):
-    '''滚动累计方差算法，返回pd.Series'''
+    '''
+    滚动累计方差算法
+
+    Parameters
+    ----------
+    series : np.array, pd.Series
+        目标序列，不应有无效值
+    ddof : int
+        自由度
+    skipna : bool
+        是否忽略无效值
+
+
+    :returns: `pd.Series` - 滚动累计方差计算结果
+
+    See Also
+    --------
+    :func:`dramkit.datsci.utils_stats.cumvar_nonan`
+    '''
     df = pd.DataFrame({'v': series})
     if not skipna:
         df['cumvar'] = cumvar_nonan(df['v'], ddof=ddof)
@@ -938,10 +767,10 @@ def cumvar(series, ddof=1, skipna=True):
         return df['cumvar']
 
 
-def cumvar1(series, ddof=1, skipna=True):
+def _cumvar1(series, ddof=1, skipna=True):
     '''
-    滚动计算序列累计方差
-    参考：https://www.cnblogs.com/yoyaprogrammer/p/delta_variance.html
+    | 滚动计算序列累计方差， 调用 :func:`delta_var` 函数
+    | 参考：https://www.cnblogs.com/yoyaprogrammer/p/delta_variance.html
     '''
 
     df = pd.DataFrame({'v': series})
@@ -988,10 +817,10 @@ def cumvar1(series, ddof=1, skipna=True):
     return df['cumvar']
 
 
-def cumvar2(series, ddof=1, skipna=True):
+def _cumvar2(series, ddof=1, skipna=True):
     '''
-    滚动计算序列累计方差
-    https://www.cnblogs.com/yoyaprogrammer/p/delta_variance.html
+    | 滚动计算序列累计方差，调用 :func:`delta_var_d` 函数
+    | https://www.cnblogs.com/yoyaprogrammer/p/delta_variance.html
     '''
 
     df = pd.DataFrame({'v': series})
@@ -1043,13 +872,13 @@ def cumvar2(series, ddof=1, skipna=True):
 
 
 def cumstd(series, ddof=1, skipna=True):
-    '''滚动计算序列累计标准差'''
+    '''滚动计算序列累计标准差，参数意义同 :func:`cumvar`'''
     return np.sqrt(cumvar(series, ddof=ddof, skipna=skipna))
 
 
-def cumvar_Deprecated(series, **kwargs):
+def _cumvar_deprecated(series, **kwargs):
     '''
-    滚动计算序列累计方差
+    滚动计算序列累计方差，原始方法，kwargs为pd中var函数接受的参数
     '''
     df = pd.DataFrame({'v': series})
     df['cumvar'] = np.nan
@@ -1062,9 +891,9 @@ def cumvar_Deprecated(series, **kwargs):
     return df['cumvar']
 
 
-def cumstd_Deprecated(series, **kwargs):
+def _cumstd_deprecated(series, **kwargs):
     '''
-    滚动计算序列累计标准差
+    滚动计算序列累计标准差，原始方法，kwargs为pd中std函数接受的参数
     '''
     df = pd.DataFrame({'series': series})
     df['cumstd'] = np.nan
@@ -1077,12 +906,22 @@ def cumstd_Deprecated(series, **kwargs):
     return df['cumstd']
 
 
-def cumScale(series, scale_type=('maxmin', 0, 1)):
+def cum_scale(series, scale_type=('maxmin', 0, 1)):
     '''
     序列累计标准化
-    scale_type可选：
-        最大最小标准化：('maxmin', Nmin, Nmax)
-        标准偏差法：('std', ) 或 'std'
+
+    Parameters
+    ----------
+    series : np.array, pd.Series
+        待计算目标序列
+    scale_type : tuple
+        标准化设置，可选：
+
+        - 最大最小标准化：('maxmin', Nmin, Nmax)
+        - 标准偏差法/Z-Score：('std', ) 或 'std'
+
+
+    :returns: `pd.Series` - 累计标准化计算结果
     '''
     df = pd.DataFrame({'v': series})
     if scale_type[0] == 'maxmin':
@@ -1099,8 +938,25 @@ def cumScale(series, scale_type=('maxmin', 0, 1)):
     return df['scale']
 
 
-def rollingScale(series, lag, scale_type=('maxmin', 0, 1)):
-    '''序列滚动标准化'''
+def rolling_scale(series, lag, scale_type=('maxmin', 0, 1)):
+    '''
+    序列滚动标准化
+
+    Parameters
+    ----------
+    series : np.array, pd.Series
+        待计算目标序列
+    lag : int
+        滚动窗口
+    scale_type : tuple
+        标准化设置，可选：
+
+        - 最大最小标准化：('maxmin', Nmin, Nmax)
+        - 标准偏差法/Z-Score：('std', ) 或 'std'
+
+
+    :returns: `pd.Series` - 滚动标准化计算结果
+    '''
     df = pd.DataFrame({'v': series})
     if scale_type[0] == 'maxmin':
         Nmin, Nmax = scale_type[1], scale_type[2]
@@ -1118,8 +974,8 @@ def rollingScale(series, lag, scale_type=('maxmin', 0, 1)):
 
 def get_quantiles(series, method='dense'):
     '''
-    计算series（pd.Series或np.array）中每个数所处的百分位
-    method决定并列排序序号确定方式
+    | 计算series(`pd.Series, np.array`)中每个数所处的百分位
+    | method决定并列排序序号确定方式，见pd中rank函数的参数
     '''
     if not method in ['dense', 'average']:
         raise ValueError('未识别的并列排序方法！')
@@ -1131,8 +987,151 @@ def get_quantiles(series, method='dense'):
         return ranks / ranks.max()
 
 
-def cumNunique(series, skipna=True):
-    '''滚动计算series中unique值的个数'''
+def cumrank_nonan(series, ascending=True, method='dense'):
+    '''
+    滚动计算累计排序号，使用二分法改进的插入排序法
+
+    Parameters
+    ----------
+    series : list, pd.Series, np.array
+        待排序目标序列
+    ascending : bool
+        是否升序
+    method : str
+        排序规则，见pd中rank函数的参数
+
+
+    :returns: `list` - 滚动累计排序序号列表
+    
+    Note
+    ----
+    series会被当成没有无效值处理
+    '''
+
+    series = list(series)
+    n = len(series)
+    cumranks = [1] * n
+
+    nums_sorted = [series[0]]
+    ranks = [1]
+    for k in range(1, n):
+        num = series[k]
+        irank, (nums_sorted, ranks) = rank_of_insert_bin(nums_sorted, ranks,
+                                    num, ascending=ascending, method=method)
+        cumranks[k] = irank
+
+    return cumranks
+
+
+def cumrank(series, ascending=True, method='dense'):
+    '''
+    滚动计算累计排序号
+
+    Parameters
+    ----------
+    series : list, pd.Series, np.array
+        待排序目标序列
+    ascending : bool
+        是否升序
+    method : str
+        排序规则，见pd中rank函数的参数
+
+
+    :returns: `pd.Series` - 滚动累计排序序号
+    
+    Note
+    ----
+    series中无效值会被忽略
+    '''
+    df = pd.DataFrame({'v': series})
+    if df['v'].isnull().sum() == 0:
+        return cumrank_nonan(series, ascending=ascending, method=method)
+    else:
+        df_ = df.copy()
+        df_.dropna(subset=['v'], how='any', inplace=True)
+        df_['cumrank'] = cumrank_nonan(df_['v'], ascending=ascending, method=method)
+        df['cumrank'] = df_['cumrank']
+        return df['cumrank']
+
+
+def _cumrank1_nonan(series, ascending=True, method='dense'):
+    '''
+    滚动计算累计排序号，使用插入排序法
+    '''
+
+    series = list(series)
+    n = len(series)
+    cumranks = [1] * n
+
+    nums_sorted = [series[0]]
+    ranks = [1]
+    for k in range(1, n):
+        num = series[k]
+        irank, (nums_sorted, ranks) = rank_of_insert(nums_sorted, ranks,
+                                    num, ascending=ascending, method=method)
+        cumranks[k] = irank
+
+    return cumranks
+
+
+def _cumrank1(series, ascending=True, method='dense'):
+    '''
+    滚动计算累计排序号，使用插入排序法
+    '''
+    df = pd.DataFrame({'v': series})
+    if df['v'].isnull().sum() == 0:
+        return _cumrank1_nonan(series, ascending=ascending, method=method)
+    else:
+        df_ = df.copy()
+        df_.dropna(subset=['v'], how='any', inplace=True)
+        df_['cumrank'] = _cumrank1_nonan(df_['v'], ascending=ascending, method=method)
+        df['cumrank'] = df_['cumrank']
+        return df['cumrank']
+
+
+def _cumrank2(series, ascending=True, method='dense'):
+    '''
+    滚动计算累计排序号, pd原始排序方法
+    '''
+    df = pd.DataFrame({'v': series})
+    ori_idx = df.index
+    df.reset_index(drop=True, inplace=True)
+    df['cumrank'] = np.nan
+    for k in range(0, df.shape[0]):
+        df.loc[df.index[k], 'cumrank'] = df.loc[df.index[:k+1], 'v'].rank(
+                                  ascending=ascending, method=method).iloc[-1]
+    df.index = ori_idx
+    return df['cumrank']
+
+
+def get_pct_loc(value, series, isnew=True, method='dense'):
+    '''
+    | 给定value(`float`)和series(`pd.Series, np.array`)，计算value在series中所处百分位
+    | 若isnew为True，则将value当成新数据，若为False，则当成series中已经存在的数据
+    | method决定并列排序序号确定方式，参见pd中的rank函数参数
+    '''
+    if isnull(value):
+        return np.nan
+    vals = [value] + list(series)
+    vals = pd.Series(vals)
+    if not method in ['dense', 'average']:
+        raise ValueError('未识别的并列排序方法！')
+    ranks = vals.rank(method=method)
+    rank = ranks.iloc[0]
+    if method == 'dense':
+        return rank / ranks.max()
+    elif method == 'average':
+        if isnew or list(ranks).count(rank) == 1:
+            return rank / len(ranks)
+        else:
+            return (rank-0.5) / (len(vals)-1)
+        
+        
+def cum_n_unique(series, skipna=True):
+    '''
+    | 滚动计算series(`np.array, pd.Series, list`)中值的unique个数
+    | 返回list
+    '''
     vals = list(series)
     n = len(vals)
     if skipna:
@@ -1164,8 +1163,12 @@ def cumNunique(series, skipna=True):
     return Nunique
 
 
-def cumNunique_pd(series, skipna=True):
-    '''滚动计算series中unique值的个数'''
+def cum_n_unique_pd(series, skipna=True):
+    '''
+    | 滚动计算series(`np.array, pd.Series, list`)中值的unique个数
+    | 返回list
+    | 与 :func:`cum_n_unique` 的区别是此函数使用pandas计算而不是循环迭代
+    '''
 
     df = pd.DataFrame({'v': series})
     if skipna:
@@ -1180,122 +1183,17 @@ def cumNunique_pd(series, skipna=True):
     return df['Nunique']
 
 
-def cumrank_nonan(series, ascending=True, method='dense'):
+def cum_pct_loc(series, method='dense'):
     '''
-    滚动计算累计排序号
+    | 滚动计算series(`np.array, pd.Series`)数据累计所处百分位
+    | 调用 :func:`dramkit.datsci.utils_stats.cum_n_unique_pd` 函数
     '''
-
-    series = list(series)
-    n = len(series)
-    cumranks = [1] * n
-
-    nums_sorted = [series[0]]
-    ranks = [1]
-    for k in range(1, n):
-        num = series[k]
-        irank, (nums_sorted, ranks) = rank_of_insert_bin(nums_sorted, ranks,
-                                    num, ascending=ascending, method=method)
-        cumranks[k] = irank
-
-    return cumranks
-
-
-def cumrank(series, ascending=True, method='dense'):
-    '''
-    滚动计算累计排序号
-    '''
-    df = pd.DataFrame({'v': series})
-    if df['v'].isnull().sum() == 0:
-        return cumrank_nonan(series, ascending=ascending, method=method)
-    else:
-        df_ = df.copy()
-        df_.dropna(subset=['v'], how='any', inplace=True)
-        df_['cumrank'] = cumrank_nonan(df_['v'], ascending=ascending, method=method)
-        df['cumrank'] = df_['cumrank']
-        return df['cumrank']
-
-
-def cumrank1_nonan(series, ascending=True, method='dense'):
-    '''
-    滚动计算累计排序号
-    '''
-
-    series = list(series)
-    n = len(series)
-    cumranks = [1] * n
-
-    nums_sorted = [series[0]]
-    ranks = [1]
-    for k in range(1, n):
-        num = series[k]
-        irank, (nums_sorted, ranks) = rank_of_insert(nums_sorted, ranks,
-                                    num, ascending=ascending, method=method)
-        cumranks[k] = irank
-
-    return cumranks
-
-
-def cumrank1(series, ascending=True, method='dense'):
-    '''
-    滚动计算累计排序号
-    '''
-    df = pd.DataFrame({'v': series})
-    if df['v'].isnull().sum() == 0:
-        return cumrank1_nonan(series, ascending=ascending, method=method)
-    else:
-        df_ = df.copy()
-        df_.dropna(subset=['v'], how='any', inplace=True)
-        df_['cumrank'] = cumrank1_nonan(df_['v'], ascending=ascending, method=method)
-        df['cumrank'] = df_['cumrank']
-        return df['cumrank']
-
-
-def cumrank2(series, ascending=True, method='dense'):
-    '''
-    滚动计算累计排序号
-    '''
-    df = pd.DataFrame({'v': series})
-    ori_idx = df.index
-    df.reset_index(drop=True, inplace=True)
-    df['cumrank'] = np.nan
-    for k in range(0, df.shape[0]):
-        df.loc[df.index[k], 'cumrank'] = df.loc[df.index[:k+1], 'v'].rank(
-                                  ascending=ascending, method=method).iloc[-1]
-    df.index = ori_idx
-    return df['cumrank']
-
-
-def get_pct_loc(value, series, isnew=True, method='dense'):
-    '''
-    给定value和series（pd.Series或np.array）计算value在series中所处百分位
-    若isnew为True，则将value当成新数据，若为False，则当成series中已经存在的数据
-    method决定并列排序序号确定方式
-    '''
-    if isnull(value):
-        return np.nan
-    vals = [value] + list(series)
-    vals = pd.Series(vals)
-    if not method in ['dense', 'average']:
-        raise ValueError('未识别的并列排序方法！')
-    ranks = vals.rank(method=method)
-    rank = ranks.iloc[0]
-    if method == 'dense':
-        return rank / ranks.max()
-    elif method == 'average':
-        if isnew or list(ranks).count(rank) == 1:
-            return rank / len(ranks)
-        else:
-            return (rank-0.5) / (len(vals)-1)
-
-
-def cumPctLoc(series, method='dense'):
-    '''滚动计算数据累计所处百分位'''
     if not method in ['dense', 'average']:
         raise ValueError('未识别的并列排序方法！')
     df = pd.DataFrame({'v': series})
     df['cumrank'] = cumrank(df['v'], method=method)
     if method == 'dense':
-        df['cumNunique'] = cumNunique_pd(df['v'])
+        df['cumNunique'] = cum_n_unique_pd(df['v'])
         df['PctLoc'] = df['cumrank'] / df['cumNunique']
     elif method == 'average':
         df['idx'] = range(1, df.shape[0]+1)
@@ -1303,14 +1201,17 @@ def cumPctLoc(series, method='dense'):
     return df['PctLoc']
 
 
-def cumPctLoc1(series, method='dense'):
-    '''滚动计算数据累计所处百分位'''
+def _cum_pct_loc1(series, method='dense'):
+    '''
+    | 滚动计算series(`np.array, pd.Series`)数据累计所处百分位
+    | 调用 :func:`dramkit.datsci.utils_stats.cum_n_unique` 函数
+    '''
     if not method in ['dense', 'average']:
         raise ValueError('未识别的并列排序方法！')
     df = pd.DataFrame({'v': series})
     df['cumrank'] = cumrank(df['v'], method=method)
     if method == 'dense':
-        df['cumNunique'] = cumNunique(df['v'])
+        df['cumNunique'] = cum_n_unique(df['v'])
         df['PctLoc'] = df['cumrank'] / df['cumNunique']
     elif method == 'average':
         df['idx'] = range(1, df.shape[0]+1)
@@ -1318,8 +1219,11 @@ def cumPctLoc1(series, method='dense'):
     return df['PctLoc']
 
 
-def cumPctLoc2(series, method='dense'):
-    '''滚动计算数据累计所处百分位'''
+def _cum_pct_loc2(series, method='dense'):
+    '''
+    | 滚动计算series(`np.array, pd.Series`)数据累计所处百分位
+    | 调用 :func:`dramkit.datsci.utils_stats.get_pct_loc` 函数
+    '''
     df = pd.DataFrame({'v': series})
     df['PctLoc'] = np.nan
     ori_idx = df.index
@@ -1336,8 +1240,12 @@ def cumPctLoc2(series, method='dense'):
     return df['PctLoc']
 
 
-def rollingPctLoc(series, lag, method='dense'):
-    '''滚动计算数据所处百分位'''
+def rolling_pct_loc(series, lag, method='dense'):
+    '''
+    | 滚动计算series(`np.array, pd.Series`)数据所处百分位
+    | lag为滚动窗口长度
+    | method为排序处理方式，见pd中的rank函数参数
+    '''
     df = pd.DataFrame({'v': series})
     ori_idx = df.index
     df.reset_index(drop=True, inplace=True)
@@ -1353,40 +1261,8 @@ def rollingPctLoc(series, lag, method='dense'):
     return df['PctLoc']
 
 
-class External_Std(object):
-    '''极端值处理，标准差倍数法'''
-
-    def __init__(self, nstd=3, cols=None):
-        raise NotImplementedError
-
-    # def deal_ext_value(df_fit, cols=None, dfs_trans=None, nstd=5):
-    #     '''极端值处理'''
-
-    #     cols = df_fit.columns if cols is None else cols
-
-    #     mean_stds = []
-    #     for col in cols:
-    #         mean_stds.append((col, df_fit[col].mean(), df_fit[col].std()))
-
-    #     df_fited = df_fit.copy()
-    #     for (col, mean, std) in mean_stds:
-    #         df_fited[col] = df_fited[col].apply(
-    #                         lambda x: np.clip(x, mean-nstd*std, mean+nstd*std))
-
-    #     if dfs_trans is not None:
-    #         dfs_traned = []
-    #         for df in dfs_trans:
-    #             df_tmp = df.copy()
-    #             for (col, mean, std) in mean_stds:
-    #                 df_tmp[col] = df_tmp[col].apply(
-    #                         lambda x: np.clip(x, mean-nstd*std, mean+nstd*std))
-    #             dfs_traned.append(df_tmp)
-
-    #     return df_fited, tuple(dfs_traned)
-
-
 def parms_est():
-    '''各种分布不同方法的参数估计'''
+    '''各种分布不同方法的参数估计，待实现'''
     raise NotImplementedError
 
 

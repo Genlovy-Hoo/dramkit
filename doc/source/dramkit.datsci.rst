@@ -1,25 +1,102 @@
 datsci
 =======
 
+utils_preprocess
+-----------------
+
+.. automodule:: dramkit.datsci.utils_preprocess
+
+.. currentmodule:: dramkit.datsci.utils_preprocess
+
+External_Std
+^^^^^^^^^^^^^
+
+.. autoclass:: dramkit.datsci.utils_preprocess.External_Std
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+norm_std
+^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_preprocess.norm_std
+
+norm_linear
+^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_preprocess.norm_linear
+
+norm_mid
+^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_preprocess.norm_mid
+
+norm01_mid
+^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_preprocess.norm01_mid
+
+norm_side
+^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_preprocess.norm_side
+
+norm01_side
+^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_preprocess.norm01_side
+
+norm_range
+^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_preprocess.norm_range
+
+norm01_range
+^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_preprocess.norm01_range
+
+get_pca
+^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_preprocess.get_pca
+
+scale_skl
+^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_preprocess.scale_skl
+
+scale_skl_inverse
+^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_preprocess.scale_skl_inverse
+
+get_miss_rate
+^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_preprocess.get_miss_rate
+
+fillna_ma
+^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_preprocess.fillna_ma
+
+fillna_by_mean
+^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_preprocess.fillna_by_mean
+
+fillna_by_median
+^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_preprocess.fillna_by_median
+
 utils_stats
 ------------
 
 .. automodule:: dramkit.datsci.utils_stats
 
 .. currentmodule:: dramkit.datsci.utils_stats
-
-External_Std
-^^^^^^^^^^^^^
-
-.. autoclass:: dramkit.datsci.utils_stats.External_Std
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-get_pca
-^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.get_pca
 
 fpdf
 ^^^^^
@@ -201,56 +278,6 @@ weibulltest
 
 .. autofunction:: dramkit.datsci.utils_stats.weibulltest
 
-scale_skl
-^^^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.scale_skl
-
-scale_skl_inverse
-^^^^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.scale_skl_inverse
-
-norm_std
-^^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.norm_std
-
-norm_linear
-^^^^^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.norm_linear
-
-norm_mid
-^^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.norm_mid
-
-norm01_mid
-^^^^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.norm01_mid
-
-norm_side
-^^^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.norm_side
-
-norm01_side
-^^^^^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.norm01_side
-
-norm_range
-^^^^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.norm_range
-
-norm01_range
-^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.norm01_range
-
 mse
 ^^^^
 
@@ -271,6 +298,11 @@ r2adj_by_r2
 
 .. autofunction:: dramkit.datsci.utils_stats.r2adj_by_r2
 
+r2_by_mse
+^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_stats.r2_by_mse
+
 r2adj_by_mse
 ^^^^^^^^^^^^^
 
@@ -281,20 +313,10 @@ r2_by_r2adj
 
 .. autofunction:: dramkit.datsci.utils_stats.r2_by_r2adj
 
-r2_by_mse
-^^^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.r2_by_mse
-
 mse_by_r2
 ^^^^^^^^^^
 
 .. autofunction:: dramkit.datsci.utils_stats.mse_by_r2
-
-r2_deprecated
-^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.r2_deprecated
 
 rmse
 ^^^^^
@@ -316,10 +338,10 @@ smape
 
 .. autofunction:: dramkit.datsci.utils_stats.smape
 
-AVEDEV
+avedev
 ^^^^^^^
 
-.. autofunction:: dramkit.datsci.utils_stats.AVEDEV
+.. autofunction:: dramkit.datsci.utils_stats.avedev
 
 cal_linear_reg_r
 ^^^^^^^^^^^^^^^^^
@@ -356,55 +378,25 @@ cumvar
 
 .. autofunction:: dramkit.datsci.utils_stats.cumvar
 
-cumvar1
-^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.cumvar1
-
-cumvar2
-^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.cumvar2
-
 cumstd
 ^^^^^^^
 
 .. autofunction:: dramkit.datsci.utils_stats.cumstd
 
-cumvar_Deprecated
-^^^^^^^^^^^^^^^^^^
+cum_scale
+^^^^^^^^^^
 
-.. autofunction:: dramkit.datsci.utils_stats.cumvar_Deprecated
+.. autofunction:: dramkit.datsci.utils_stats.cum_scale
 
-cumstd_Deprecated
-^^^^^^^^^^^^^^^^^^
+rolling_scale
+^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.datsci.utils_stats.cumstd_Deprecated
-
-cumScale
-^^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.cumScale
-
-rollingScale
-^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.rollingScale
+.. autofunction:: dramkit.datsci.utils_stats.rolling_scale
 
 get_quantiles
 ^^^^^^^^^^^^^^
 
 .. autofunction:: dramkit.datsci.utils_stats.get_quantiles
-
-cumNunique
-^^^^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.cumNunique
-
-cumNunique_pd
-^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.cumNunique_pd
 
 cumrank_nonan
 ^^^^^^^^^^^^^^
@@ -416,45 +408,30 @@ cumrank
 
 .. autofunction:: dramkit.datsci.utils_stats.cumrank
 
-cumrank1_nonan
-^^^^^^^^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.cumrank1_nonan
-
-cumrank1
-^^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.cumrank1
-
-cumrank2
-^^^^^^^^^
-
-.. autofunction:: dramkit.datsci.utils_stats.cumrank2
-
 get_pct_loc
 ^^^^^^^^^^^^
 
 .. autofunction:: dramkit.datsci.utils_stats.get_pct_loc
 
-cumPctLoc
-^^^^^^^^^^
+cum_n_unique
+^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.datsci.utils_stats.cumPctLoc
+.. autofunction:: dramkit.datsci.utils_stats.cum_n_unique
 
-cumPctLoc1
-^^^^^^^^^^^
+cum_n_unique_pd
+^^^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.datsci.utils_stats.cumPctLoc1
+.. autofunction:: dramkit.datsci.utils_stats.cum_n_unique_pd
 
-cumPctLoc2
-^^^^^^^^^^^
+cum_pct_loc
+^^^^^^^^^^^^
 
-.. autofunction:: dramkit.datsci.utils_stats.cumPctLoc2
+.. autofunction:: dramkit.datsci.utils_stats.cum_pct_loc
 
-rollingPctLoc
-^^^^^^^^^^^^^^
+rolling_pct_loc
+^^^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.datsci.utils_stats.rollingPctLoc
+.. autofunction:: dramkit.datsci.utils_stats.rolling_pct_loc
 
 parms_est
 ^^^^^^^^^^

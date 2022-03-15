@@ -8,6 +8,14 @@ gentools
 
 .. currentmodule:: dramkit.gentools
 
+StructureObject
+^^^^^^^^^^^^^^^^
+
+.. autoclass:: dramkit.gentools.StructureObject
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 log_used_time
 ^^^^^^^^^^^^^^
 
@@ -203,6 +211,21 @@ drop_index_duplicates
 
 .. autofunction:: dramkit.gentools.drop_index_duplicates
 
+group_shift
+^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.group_shift
+
+group_fillna
+^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.group_fillna
+
+group_rank
+^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.group_rank
+
 bootstrapping
 ^^^^^^^^^^^^^^
 
@@ -212,6 +235,11 @@ groupby_rolling_func
 ^^^^^^^^^^^^^^^^^^^^^
 
 .. autofunction:: dramkit.gentools.groupby_rolling_func
+
+link_lists
+^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.link_lists
 
 install_check
 --------------
