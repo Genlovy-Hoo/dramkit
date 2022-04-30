@@ -1,10 +1,10 @@
-2022-04-30 23:08:37,152 -utils_logger.py[line: 32] -INFO:
+2022-04-30 23:13:30,083 -utils_logger.py[line: 32] -INFO:
     --正在运行 Sphinx v4.5.0
 正在加载翻译 [en]... 完成
 加载 pickled环境... 完成
 构建 [mo]： 0 个 po 文件的目标文件已过期
 构建 [html]： 9 个源文件的目标文件已过期
-更新环境: 已添加 0，9 已更改，0 已移除
+更新环境: [配置有变化 ('release')] 已添加 9，0 已更改，0 已移除
 阅读源... [ 11%] dramkit                                                          阅读源... [ 22%] dramkit.datsci                                                   阅读源... [ 33%] dramkit.logtools                                                 阅读源... [ 44%] dramkit.other                                                    阅读源... [ 55%] dramkit.plottools                                                阅读源... [ 66%] dramkit.pystyles                                                 阅读源... [ 77%] dramkit.sorts                                                    阅读源... [ 88%] dramkit.speedup                                                  阅读源... [100%] index                                                            
 D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style:18: WARNING: 脚注 [8] 没有被引用过。
 D:\Genlovy_Hoo\HooProjects\dramkit\dramkit\pystyles\dramkit_style.py:docstring of dramkit.pystyles.dramkit_style:19: WARNING: 脚注 [9] 没有被引用过。
