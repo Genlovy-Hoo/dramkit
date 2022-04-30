@@ -14,7 +14,7 @@ pip install dramkit --upgrade
 
 接口文档请访问：
 
-[DramKit文档](http://www.glhyy.cn/dramkit/doc/html/index.html)
+[DramKit文档](http://www.glhyy.cn/dramkit/docs/html/index.html)
 
 源码请访问：
 
