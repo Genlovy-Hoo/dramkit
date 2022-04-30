@@ -37,4 +37,6 @@ setup(name=__title__,
                 'dramkit.plottools',
                 'dramkit.datsci',
                 'dramkit.sorts',
-				'dramkit.pystyles'])
+				'speedup',
+				'dramkit.pystyles',
+                'dramkit.other'])

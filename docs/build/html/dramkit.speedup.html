@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speedup &mdash; DramKit 0.0.007 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="sorts" href="dramkit.sorts.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> DramKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dramkit.html">dramkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.datsci.html">datsci</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.logtools.html">logtools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.other.html">other</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.plottools.html">plottools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.pystyles.html">pystyles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.sorts.html">sorts</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">speedup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.speedup.multi_process">multi_process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#multi-process-concurrent">multi_process_concurrent</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.speedup.multi_thread">multi_thread</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#multithread">MultiThread</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multi-thread-threading">multi_thread_threading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multi-thread-concurrent">multi_thread_concurrent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DramKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>speedup</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/dramkit.speedup.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="speedup">
+<h1>speedup<a class="headerlink" href="#speedup" title="Permalink to this headline"></a></h1>
+<section id="module-dramkit.speedup.multi_process">
+<span id="multi-process"></span><h2>multi_process<a class="headerlink" href="#module-dramkit.speedup.multi_process" title="Permalink to this headline"></a></h2>
+<section id="multi-process-concurrent">
+<h3>multi_process_concurrent<a class="headerlink" href="#multi-process-concurrent" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.speedup.multi_process.multi_process_concurrent">
+<span class="sig-prename descclassname"><span class="pre">dramkit.speedup.multi_process.</span></span><span class="sig-name descname"><span class="pre">multi_process_concurrent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multi_line</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.speedup.multi_process.multi_process_concurrent" title="Permalink to this definition"></a></dt>
+<dd><p>多进程，同一个函数执行多次</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<em>function</em>) – 需要多进程运行的目标函数</p></li>
+<li><p><strong>args_list</strong> (<em>list</em>) – 每个元素都是目标函数func的参数列表</p></li>
+<li><p><strong>keep_order</strong> (<em>bool</em>) – <p>是否保持输入args_list与输出results参数顺序一致性</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>若keep_order为True，则func的格式应转化为：</p>
+<div class="line-block">
+<div class="line">def func(args):</div>
+<div class="line-block">
+<div class="line">return f(*args)</div>
+</div>
+</div>
+</div>
+</p></li>
+<li><p><strong>multi_line</strong> (<em>int</em><em>, </em><em>None</em>) – 最大线程数，默认等于len(args_list)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>results</strong> – 每个元素对应func以args_list的元素为输入的返回结果</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>该函数通过import导入在Windows下会出错</p>
+</div>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.speedup.multi_thread">
+<span id="multi-thread"></span><h2>multi_thread<a class="headerlink" href="#module-dramkit.speedup.multi_thread" title="Permalink to this headline"></a></h2>
+<section id="multithread">
+<h3>MultiThread<a class="headerlink" href="#multithread" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="dramkit.speedup.multi_thread.MultiThread">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dramkit.speedup.multi_thread.</span></span><span class="sig-name descname"><span class="pre">MultiThread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.speedup.multi_thread.MultiThread" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">threading.Thread</span></code></p>
+<p>多线程子任务类</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.speedup.multi_thread.MultiThread.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.speedup.multi_thread.MultiThread.__init__" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<em>function</em>) – 需要多线程运行的目标函数</p></li>
+<li><p><strong>args</strong> (<em>list</em>) – 目标函数func输入变量列表</p></li>
+<li><p><strong>logger</strong> (<em>Logger</em><em>, </em><em>None</em>) – 日志记录器</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.speedup.multi_thread.MultiThread.get_result">
+<span class="sig-name descname"><span class="pre">get_result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.speedup.multi_thread.MultiThread.get_result" title="Permalink to this definition"></a></dt>
+<dd><p>获取执行结果</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.speedup.multi_thread.MultiThread.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.speedup.multi_thread.MultiThread.run" title="Permalink to this definition"></a></dt>
+<dd><p>执行目标函数func，获取返回结果</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="multi-thread-threading">
+<h3>multi_thread_threading<a class="headerlink" href="#multi-thread-threading" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.speedup.multi_thread.multi_thread_threading">
+<span class="sig-prename descclassname"><span class="pre">dramkit.speedup.multi_thread.</span></span><span class="sig-name descname"><span class="pre">multi_thread_threading</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.speedup.multi_thread.multi_thread_threading" title="Permalink to this definition"></a></dt>
+<dd><p>多线程，同一个函数执行多次</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<em>function</em>) – 需要多线程运行的目标函数</p></li>
+<li><p><strong>args_list</strong> (<em>list</em>) – 每个元素都是目标函数func的参数列表</p></li>
+<li><p><strong>logger</strong> (<em>Logger</em>) – logging库的日志记录器</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>results</strong> – 每个元素对应func以args_list的元素为输入的返回结果</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="multi-thread-concurrent">
+<h3>multi_thread_concurrent<a class="headerlink" href="#multi-thread-concurrent" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.speedup.multi_thread.multi_thread_concurrent">
+<span class="sig-prename descclassname"><span class="pre">dramkit.speedup.multi_thread.</span></span><span class="sig-name descname"><span class="pre">multi_thread_concurrent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multi_line</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.speedup.multi_thread.multi_thread_concurrent" title="Permalink to this definition"></a></dt>
+<dd><p>多线程，同一个函数执行多次</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<em>function</em>) – 需要多线程运行的目标函数</p></li>
+<li><p><strong>args_list</strong> (<em>list</em>) – 每个元素都是目标函数func的参数列表</p></li>
+<li><p><strong>multi_line</strong> (<em>int</em><em>, </em><em>None</em>) – 最大线程数，默认等于len(args_list)</p></li>
+<li><p><strong>keep_order</strong> (<em>bool</em>) – 是否保持输入args_list与输出results参数顺序一致性，默认是</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>results</strong> – 每个元素对应func以args_list的元素为输入的返回结果</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dramkit.sorts.html" class="btn btn-neutral float-left" title="sorts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, YueYong Hu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

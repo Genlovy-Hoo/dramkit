@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>plottools &mdash; DramKit 0.0.007 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pystyles" href="dramkit.pystyles.html" />
+    <link rel="prev" title="other" href="dramkit.other.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> DramKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dramkit.html">dramkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.datsci.html">datsci</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.logtools.html">logtools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.other.html">other</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">plottools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.plottools.plot_barline">plot_barline</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#plot-barslines">plot_barslines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.plottools.plot_candle">plot_candle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">plot_candle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.plottools.plot_common">plot_common</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#plot-series">plot_series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-series-conlabel">plot_series_conlabel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-maxmins">plot_maxmins</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.plottools.plot_histdist">plot_histdist</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">plot_histdist</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.plottools.plot_scatter">plot_scatter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">plot_scatter</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.pystyles.html">pystyles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.sorts.html">sorts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.speedup.html">speedup</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DramKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>plottools</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/dramkit.plottools.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="plottools">
+<h1>plottools<a class="headerlink" href="#plottools" title="Permalink to this headline"></a></h1>
+<section id="module-dramkit.plottools.plot_barline">
+<span id="plot-barline"></span><h2>plot_barline<a class="headerlink" href="#module-dramkit.plottools.plot_barline" title="Permalink to this headline"></a></h2>
+<section id="plot-barslines">
+<h3>plot_barslines<a class="headerlink" href="#plot-barslines" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.plottools.plot_barline.plot_barslines">
+<span class="sig-prename descclassname"><span class="pre">dramkit.plottools.plot_barline.</span></span><span class="sig-name descname"><span class="pre">plot_barslines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bar_col_infos_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_col_infos_left</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_col_infos_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_bar_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_line_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(11,</span> <span class="pre">6)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xtick_rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">360</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.plottools.plot_barline.plot_barslines" title="Permalink to this definition"></a></dt>
+<dd><p>绘制条形图叠加折线图</p>
+<div class="line-block">
+<div class="line">bar_col_infos_x格式:
+<code class="docutils literal notranslate"><span class="pre">{col1:</span> <span class="pre">(clor1,</span> <span class="pre">lbl1),</span> <span class="pre">col2:</span> <span class="pre">(clor2,</span> <span class="pre">lbl2),</span> <span class="pre">...}</span></code></div>
+<div class="line">line_col_infos_x格式:
+<code class="docutils literal notranslate"><span class="pre">{col1:</span> <span class="pre">(styl1,</span> <span class="pre">lbl1),</span> <span class="pre">col2:</span> <span class="pre">(styl2,</span> <span class="pre">lbl2),</span> <span class="pre">...}</span></code></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.plottools.plot_candle">
+<span id="plot-candle"></span><h2>plot_candle<a class="headerlink" href="#module-dramkit.plottools.plot_candle" title="Permalink to this headline"></a></h2>
+<p>绘制K线图</p>
+<section id="id1">
+<h3>plot_candle<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.plottools.plot_candle.plot_candle">
+<span class="sig-prename descclassname"><span class="pre">dramkit.plottools.plot_candle.</span></span><span class="sig-name descname"><span class="pre">plot_candle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args_ma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args_boll</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[15,</span> <span class="pre">2]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_other_upleft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_other_upright</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_below</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'volume'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args_ma_below</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[3,</span> <span class="pre">5,</span> <span class="pre">10]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_other_lowleft</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_other_lowright</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_to_label_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xparls_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yparls_info_up</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yparls_info_low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yscales</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(11,</span> <span class="pre">7)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nXticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.95</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markersize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.plottools.plot_candle.plot_candle" title="Permalink to this definition"></a></dt>
+<dd><p>绘制K线图（蜡烛图）</p>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>cols_to_label_info增加标注透明度设置</p></li>
+<li><p>增加上下图双坐标轴标签、刻度和文本字体格式等设置</p></li>
+</ul>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pandas.DataFrame</em>) – 待绘图数据，必须有’time’|’date’、’open’、’high’、’low’、’close’五列，
+以及 <code class="docutils literal notranslate"><span class="pre">plot_below</span></code> 参数指定的列名</p></li>
+<li><p><strong>args_ma</strong> (<em>None</em><em>, </em><em>list</em>) – 绘制指定移动均线（MA）列表，None时不绘制</p></li>
+<li><p><strong>args_boll</strong> (<em>None</em><em>, </em><em>list</em>) – <p>绘制布林带参数[lag, width]</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>args_ma和args_boll必须有一个为None</p>
+</div>
+</p></li>
+<li><p><strong>rects</strong> (<em>list</em>) – <div class="line-block">
+<div class="line">矩形标注信息，格式为：</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">[[(left_low_x,</span> <span class="pre">left_low_y),</span> <span class="pre">width,</span> <span class="pre">height],</span> <span class="pre">...]</span></code></div>
+</div>
+</p></li>
+<li><p><strong>cols_other_x</strong> (<em>dict</em>) – <div class="line-block">
+<div class="line">x可为’upleft’, ‘upright’, ‘lowleft’, ‘lowright’，分别设置在
+上图左轴、上图右轴、下图左轴、下图右轴需要绘制的列信息，格式为：</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">{col:</span> <span class="pre">(lnstyl,</span> <span class="pre">label),</span> <span class="pre">...}</span></code></div>
+</div>
+</p></li>
+<li><p><strong>cols_to_label_info</strong> (<em>dict</em>) – <p>设置需要特殊标注的列绘图信息，格式形如:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">col1</span><span class="p">:</span> <span class="p">[[</span><span class="n">col_lbl1</span><span class="p">,</span> <span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="o">..</span><span class="p">),</span> <span class="p">(</span><span class="n">ln1</span><span class="p">,</span> <span class="n">ln2</span><span class="p">,</span> <span class="o">..</span><span class="p">),</span> <span class="p">(</span><span class="n">lbl1</span><span class="p">,</span> <span class="n">lbl2</span><span class="p">,</span> <span class="o">..</span><span class="p">)],</span>
+        <span class="p">[</span><span class="n">col_lbl2</span><span class="p">,</span> <span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="o">..</span><span class="p">),</span> <span class="o">...</span><span class="p">]],</span>
+ <span class="n">col2</span><span class="p">:</span> <span class="o">..</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>其中col是需要被特殊标注的列，col_lbl为标签列；
+v指定哪些标签值对应的数据用于绘图；ln设置线型；
+lbl设置图例标签，若为None，则设置为v，若为False，则不设置图例标签</p>
+</p></li>
+<li><p><strong>xparls_info</strong> (<em>dict</em>) – <div class="line-block">
+<div class="line">设置x轴平行线信息，格式形如：</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">{col1:</span> <span class="pre">[(yval1,</span> <span class="pre">clor1,</span> <span class="pre">styl1,</span> <span class="pre">width1),</span> <span class="pre">(yval2,</span> <span class="pre">...)],</span> <span class="pre">col2:,</span> <span class="pre">...}</span></code></div>
+<div class="line">其中yval指定平行线y轴位置，clor设置颜色，styl设置线型，width设置线宽</div>
+</div>
+</p></li>
+<li><p><strong>yparls_info_x</strong> (<em>None</em><em>, </em><em>list</em>) – <div class="line-block">
+<div class="line">x可为’up’, ‘low’, 分别设置顶部和底部x轴平行线格式信息，格式形如：</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">[(xval1,</span> <span class="pre">clor1,</span> <span class="pre">styl1,</span> <span class="pre">width1),</span> <span class="pre">(xval2,</span> <span class="pre">clor2,</span> <span class="pre">style2,</span> <span class="pre">width2),</span> <span class="pre">...]</span></code></div>
+<div class="line">其中xval指定平行线x轴位置，clor设置颜色，styl设置线型，width设置线宽</div>
+</div>
+</p></li>
+<li><p><strong>ylabels</strong> (<em>None</em><em>, </em><em>list</em>) – 设置四个y轴标签文本内容，若为None则不设置标签文本，
+若为False则既不设置y轴标签文本内容，也不显示y轴刻度</p></li>
+<li><p><strong>xlabels</strong> (<em>None</em><em>, </em><em>list</em>) – 设置两个x轴标签文本内容，若为None则不设置标签文本，
+若为False则既不设置x轴标签文本内容，也不显示x轴刻度</p></li>
+<li><p><strong>yscales</strong> (<em>None</em><em>, </em><em>list</em>) – y轴标轴尺度设置，若为None，则默认普通线性坐标，
+可设置为list指定每个坐标尺度(参见matplotlib中的set_yscale)</p></li>
+<li><p><strong>plot_below</strong> (<em>None</em><em>, </em><em>str</em>) – 在K线底部绘制柱状图所用的列名，None时不绘制</p></li>
+<li><p><strong>args_ma_below</strong> (<em>None</em><em>, </em><em>list</em>) – 底部图均线（MA）列表，None时不绘制</p></li>
+<li><p><strong>width</strong> (<em>float</em>) – 控制蜡烛宽度</p></li>
+<li><p><strong>alpha</strong> (<em>float</em>) – 控制颜色透明度</p></li>
+<li><p><strong>grid</strong> (<em>bool</em>) – 设置是否显示网格</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p><a class="reference external" href="https://github.com/matplotlib/mplfinance">https://github.com/matplotlib/mplfinance</a></p>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.plottools.plot_common">
+<span id="plot-common"></span><h2>plot_common<a class="headerlink" href="#module-dramkit.plottools.plot_common" title="Permalink to this headline"></a></h2>
+<section id="plot-series">
+<h3>plot_series<a class="headerlink" href="#plot-series" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.plottools.plot_common.plot_series">
+<span class="sig-prename descclassname"><span class="pre">dramkit.plottools.plot_common.</span></span><span class="sig-name descname"><span class="pre">plot_series</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_styl_up_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_styl_up_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_styl_low_left</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_styl_low_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_to_label_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_to_fill_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yscales</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xparls_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yparls_info_up</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yparls_info_low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fills_yparl_up</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fills_yparl_low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fills_xparl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twinx_align_up</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twinx_align_low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(11,</span> <span class="pre">7)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_xticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xticks_rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_tick</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markersize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_locs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.plottools.plot_common.plot_series" title="Permalink to this definition"></a></dt>
+<dd><p>对data (<cite>pd.DataFrame</cite>)进行多列绘图</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>目前功能未考虑data.index重复情况，若有重复可能会导致部分绘图错误</p>
+</div>
+<div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>多重索引处理</p></li>
+<li><p>legend位置增加放在图片外面的设置</p></li>
+<li><p>不规则区域填充设置</p></li>
+<li><p>添加堆叠图（面积图）绘制方式</p></li>
+<li><p>数字文本标注（比如在折线图上标注数值）</p></li>
+<li><p>正常绘制与特殊标注重复绘制问题</p></li>
+<li><p>x轴平行线对应列不一定非要在主图绘制列中选择</p></li>
+<li><p>平行线图层绘制在主线下面</p></li>
+<li><p>标注图层绘制在线型图层上面（根据输入顺序绘制图层而不是根据坐标轴区域顺序绘制）</p></li>
+<li><p>上图和下图的x轴不一定非要都是data的index，设置上下图不同x轴坐标</p></li>
+</ul>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pandas.DataFrame</em>) – 待作图数据</p></li>
+<li><p><strong>cols_styl_up_left</strong> (<em>dict</em>) – <p>指定顶部左轴需要绘制的序列及其线型和图例，格式形如：</p>
+<p><code class="docutils literal notranslate"><span class="pre">{'col1':</span> <span class="pre">('.-b',</span> <span class="pre">'lbl1',</span> <span class="pre">kwargs),</span> <span class="pre">'col2':</span> <span class="pre">...}</span></code> 或 <code class="docutils literal notranslate"><span class="pre">{'col1':</span> <span class="pre">'.-b',</span> <span class="pre">'col2':</span> <span class="pre">...}</span></code></p>
+<p>第一种格式中 <cite>lbl</cite> 设置图例(legend)，若为None则默认取列名，为False则不设置图例</p>
+<p>第二种格式只设置线型，legend默认取列名</p>
+</p></li>
+<li><p><strong>cols_styl_up_right</strong> (<em>dict</em>) – 指定顶部右轴需要绘制的序列及其线型和图例，格式同 <code class="docutils literal notranslate"><span class="pre">cols_styl_up_left</span></code></p></li>
+<li><p><strong>cols_styl_low_left</strong> (<em>dict</em>) – 指定底部左轴需要绘制的序列及其线型和图例，格式同 <code class="docutils literal notranslate"><span class="pre">cols_styl_up_left</span></code></p></li>
+<li><p><strong>cols_styl_low_right</strong> (<em>dict</em>) – 指定底部右轴需要绘制的序列及其线型和图例，格式同 <code class="docutils literal notranslate"><span class="pre">cols_styl_up_left</span></code></p></li>
+<li><p><strong>cols_to_label_info</strong> (<em>dict</em>) – <p>设置需要特殊标注的列绘图信息，格式形如:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">col1</span><span class="p">:</span>
+     <span class="p">[[</span><span class="n">col_lbl1</span><span class="p">,</span> <span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="o">..</span><span class="p">),</span> <span class="p">(</span><span class="n">styl1</span><span class="p">,</span> <span class="n">styl2</span><span class="p">,</span> <span class="o">..</span><span class="p">),</span> <span class="p">(</span><span class="n">lbl1</span><span class="p">,</span> <span class="n">lbl2</span><span class="p">,</span> <span class="o">..</span><span class="p">),</span>
+       <span class="p">{</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">v1</span><span class="p">:</span> <span class="p">{</span><span class="n">kwargs1</span><span class="p">},</span> <span class="n">v2</span><span class="p">:</span> <span class="p">{</span><span class="n">kwargs2</span><span class="p">},</span> <span class="o">...</span><span class="p">}],</span>
+      <span class="p">[</span><span class="n">col_lbl2</span><span class="p">,</span> <span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="o">..</span><span class="p">),</span> <span class="o">...</span><span class="p">]</span>
+     <span class="p">],</span>
+ <span class="n">col2</span><span class="p">:</span> <span class="o">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>其中col是需要被特殊标注的列，col_lbl为标签列；v指定哪些标签值对应的
+数据用于绘图；styl设置线型；lbl设置图例标签，若为None，则设置为v，若为False，
+则不设置图例标签；{kwargs, v1: {kwargs1}, v2: {kwargs2}}设置其他绘图标注参数</p>
+</p></li>
+<li><p><strong>cols_to_fill_info</strong> (<em>dict</em>) – <p>需要进行颜色填充的列信息，格式形如(具体参数key参见matplotlib的fill_between函数):</p>
+<p><code class="docutils literal notranslate"><span class="pre">{col1</span> <span class="pre">:</span> <span class="pre">{'color':</span> <span class="pre">'c',</span> <span class="pre">'alpha':</span> <span class="pre">0.3},</span> <span class="pre">...}</span></code></p>
+</p></li>
+<li><p><strong>yscales</strong> (<em>None</em><em>, </em><em>list</em>) – y轴标轴尺度设置，若为None，则默认普通线性坐标，
+可设置为list指定每个坐标尺度(参见matplotlib中的set_yscale)</p></li>
+<li><p><strong>xparls_info</strong> (<em>dict</em>) – <p>设置x轴平行线信息，格式形如：</p>
+<p><code class="docutils literal notranslate"><span class="pre">{col1:</span> <span class="pre">[(yval1,</span> <span class="pre">clor1,</span> <span class="pre">styl1,</span> <span class="pre">width1,</span> <span class="pre">kwargs),</span> <span class="pre">(yval2,</span> <span class="pre">...)],</span> <span class="pre">col2:,</span> <span class="pre">...}</span></code></p>
+<p>其中yval指定平行线y轴位置，clor设置颜色，styl设置线型，width设置线宽</p>
+</p></li>
+<li><p><strong>yparls_info_up</strong> (<em>None</em><em>, </em><em>list</em>) – <p>设置顶部x轴平行线格式信息，格式形如：</p>
+<p><code class="docutils literal notranslate"><span class="pre">[(xval1,</span> <span class="pre">clor1,</span> <span class="pre">styl1,</span> <span class="pre">width1,</span> <span class="pre">kwargs),</span> <span class="pre">(xval2,</span> <span class="pre">clor2,</span> <span class="pre">style2,</span> <span class="pre">width2),</span> <span class="pre">...]</span></code></p>
+<p>其中xval指定平行线x轴位置，clor设置颜色，styl设置线型，width设置线宽</p>
+</p></li>
+<li><p><strong>yparls_info_low</strong> (<em>None</em><em>, </em><em>list</em>) – 设置顶部x轴平行线格式信息，格式同 <code class="docutils literal notranslate"><span class="pre">yparls_info_up</span></code></p></li>
+<li><p><strong>fills_yparl_up</strong> (<em>None</em><em>, </em><em>list</em>) – <p>设置上图平行于y轴的填充区域信息，格式形如:</p>
+<p><code class="docutils literal notranslate"><span class="pre">[([x1,</span> <span class="pre">x2],</span> <span class="pre">clor1,</span> <span class="pre">alpha1,</span> <span class="pre">kwargs),</span> <span class="pre">(...)]</span></code></p>
+</p></li>
+<li><p><strong>fills_yparl_low</strong> (<em>None</em><em>, </em><em>list</em>) – 设置下图平行于y轴的填充区域信息，格式同 <code class="docutils literal notranslate"><span class="pre">fills_yparl_up</span></code></p></li>
+<li><p><strong>fills_xparl</strong> (<em>dict</em>) – <p>设置平行于x轴的填充区域信息，格式形如：</p>
+<p><code class="docutils literal notranslate"><span class="pre">{'col1':</span> <span class="pre">[([y1,</span> <span class="pre">y2],</span> <span class="pre">clor1,</span> <span class="pre">alpha1,</span> <span class="pre">kwargs),</span> <span class="pre">...],</span> <span class="pre">'col2':</span> <span class="pre">...}</span></code></p>
+</p></li>
+<li><p><strong>twinx_align_up</strong> (<em>None</em><em>, </em><em>list</em>) – 设置上图双坐标轴两边坐标轴刻度对齐位置，格式如 <code class="docutils literal notranslate"><span class="pre">[v_left,</span> <span class="pre">v_right]</span></code> ，
+绘图时左轴的 <code class="docutils literal notranslate"><span class="pre">v_left</span></code> 位置与右轴的 <code class="docutils literal notranslate"><span class="pre">v_right</span></code> 位置对齐</p></li>
+<li><p><strong>twinx_align_low</strong> (<em>None</em><em>, </em><em>list</em>) – 设置上图双坐标轴两边坐标轴刻度对齐位置，格式同 <code class="docutils literal notranslate"><span class="pre">twinx_align_up</span></code></p></li>
+<li><p><strong>ylabels</strong> (<em>None</em><em>, </em><em>list</em>) – 设置四个y轴标签文本内容，若为None则不设置标签文本，
+若为False则既不设置y轴标签文本内容，也不显示y轴刻度</p></li>
+<li><p><strong>xlabels</strong> (<em>None</em><em>, </em><em>list</em>) – 置两个x轴标签文本内容，若为None则不设置标签文本，
+若为False则既不设置x轴标签文本内容，也不显示x轴刻度</p></li>
+<li><p><strong>grids</strong> (<em>boll</em><em>, </em><em>list</em>) – <p>设置四个坐标轴网格，若grids=True，则在顶部左轴和底部左轴绘制网格；
+若grids=False，则全部没有网格；若为列表，则分别对四个坐标轴设置网格</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>当某个坐标轴设置为不显示刻度时，其对应的网格线也会不显示？</p>
+</div>
+</p></li>
+<li><p><strong>legend_locs</strong> (<em>None</em><em>, </em><em>list</em>) – 设置上下两个图的legend位置，默认设置为[0, 0]</p></li>
+<li><p><strong>fontname</strong> (<em>None</em><em>, </em><em>str</em>) – <p>字体默认设置为None，可替换其他字体
+(如 <code class="docutils literal notranslate"><span class="pre">Courier</span> <span class="pre">New</span></code>, <code class="docutils literal notranslate"><span class="pre">Times</span> <span class="pre">New</span> <span class="pre">Roman</span></code>)</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>matplotlib默认字体为 <code class="docutils literal notranslate"><span class="pre">sans-serif</span></code></p>
+</div>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-series-conlabel">
+<h3>plot_series_conlabel<a class="headerlink" href="#plot-series-conlabel" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.plottools.plot_common.plot_series_conlabel">
+<span class="sig-prename descclassname"><span class="pre">dramkit.plottools.plot_common.</span></span><span class="sig-name descname"><span class="pre">plot_series_conlabel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conlabel_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">del_repeat_lbl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.plottools.plot_common.plot_series_conlabel" title="Permalink to this definition"></a></dt>
+<dd><p>在 <a class="reference internal" href="#dramkit.plottools.plot_common.plot_series" title="dramkit.plottools.plot_common.plot_series"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.plottools.plot_common.plot_series()</span></code></a> 基础上添加了连续标注绘图功能</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pandas.DataFrame</em>) – 待作图数据</p></li>
+<li><p><strong>conlabel_info</strong> (<em>dict</em>) – <p>需要进行连续标注的列绘图信息，格式形如：</p>
+<p><code class="docutils literal notranslate"><span class="pre">{col:</span> <span class="pre">[[lbl_col,</span> <span class="pre">(v1,</span> <span class="pre">...),</span> <span class="pre">(styl1,</span> <span class="pre">...),</span> <span class="pre">(lbl1,</span> <span class="pre">...)]]}</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>(v1, …)中的最后一个值会被当成默认值，其余的当成特殊值
+（绘图时为了保证连续会将默认值与特殊值连接起来）</p>
+</div>
+</p></li>
+<li><p><strong>del_repeat_lbl</strong> (<em>bool</em>) – 当conlabel_info与cols_to_label_info存在重复设置信息时，
+是否删除cols_to_label_info中的设置信息</p></li>
+<li><p><strong>**kwargs</strong> – <a class="reference internal" href="#dramkit.plottools.plot_common.plot_series" title="dramkit.plottools.plot_common.plot_series"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.plottools.plot_common.plot_series()</span></code></a> 接受的参数</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-maxmins">
+<h3>plot_maxmins<a class="headerlink" href="#plot-maxmins" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.plottools.plot_common.plot_maxmins">
+<span class="sig-prename descclassname"><span class="pre">dramkit.plottools.plot_common.</span></span><span class="sig-name descname"><span class="pre">plot_maxmins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['Max',</span> <span class="pre">'Min']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(11,</span> <span class="pre">6)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_xticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markersize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.plottools.plot_common.plot_maxmins" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">绘制序列数据(data中col指定列)并标注极大极小值点</div>
+<div class="line">col_label指定列中值1表示极大值点，-1表示极小值点，0表示普通点</div>
+<div class="line">label_legend指定col_label为1和-1时的图标标注</div>
+<div class="line">**kwargs为 <a class="reference internal" href="#dramkit.plottools.plot_common.plot_series" title="dramkit.plottools.plot_common.plot_series"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.plottools.plot_common.plot_series()</span></code></a> 支持的其它参数</div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.plottools.plot_histdist">
+<span id="plot-histdist"></span><h2>plot_histdist<a class="headerlink" href="#module-dramkit.plottools.plot_histdist" title="Permalink to this headline"></a></h2>
+<section id="id4">
+<h3>plot_histdist<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.plottools.plot_histdist.plot_histdist">
+<span class="sig-prename descclassname"><span class="pre">dramkit.plottools.plot_histdist.</span></span><span class="sig-name descname"><span class="pre">plot_histdist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cumulative</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'grey'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kde_styl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'norm':</span> <span class="pre">('-r',</span> <span class="pre">None)}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yparls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel_left</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">con_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xticks_gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(12,</span> <span class="pre">8)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.plottools.plot_histdist.plot_histdist" title="Permalink to this definition"></a></dt>
+<dd><p>绘制直方图，及分布拟合曲线</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>series</strong> (<em>pandas.Series</em>) – 待绘图序列</p></li>
+<li><p><strong>bins</strong> (<em>None</em><em>, </em><em>int</em><em>, </em><em>list</em>) – 指定区间划分方式</p></li>
+<li><p><strong>cumulative</strong> (<em>bool</em>) – 是否画累计（概率）图，默认False</p></li>
+<li><p><strong>width</strong> (<em>None</em><em>, </em><em>float</em>) – 直方图宽度设置</p></li>
+<li><p><strong>clor</strong> (<em>str</em>) – 直方图颜色</p></li>
+<li><p><strong>density</strong> (<em>bool</em>) – 直方图坐标是否转为改概率密度</p></li>
+<li><p><strong>kde_styl</strong> (<em>None</em><em>, </em><em>tuple</em>) – <div class="line-block">
+<div class="line">若为None，则不绘制核密度图kde</div>
+<div class="line">若绘制kde核密度图，则kde_styl格式形如：</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(lnstyl,</span> <span class="pre">clor,</span> <span class="pre">label)，若为None</span></code></div>
+<div class="line">其中lnsty设置线型，可为None或str；clor设置颜色，可为None或str；
+label设置图例内容，可为None或str或False，为None时默认’kde’，
+为False时不设置图例</div>
+</div>
+</p></li>
+<li><p><strong>dists</strong> (<em>None</em><em>, </em><em>dict</em>) – <div class="line-block">
+<div class="line">若为None，不绘制概率分布拟合曲线</div>
+<div class="line">若绘制概率密度分布拟合图，则dists格式形如:</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">{disttype:</span> <span class="pre">(lnstyl,</span> <span class="pre">label)}</span></code> 或 <code class="docutils literal notranslate"><span class="pre">{disttype:</span> <span class="pre">lnstyl}</span></code></div>
+<div class="line">其中disttype指定概率密度函数类型；lnstyl设置线型，可为str或None，为None时自动设置线型；
+第一种格式中label设置图例内容，可为str或None或False，为None时图例设置为disttype，
+为False时不设置图例；第二种格式图例默认设置为disttype</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>disttype目前可选’norm’, ‘lognorm’, ‘weibull’, ‘t’, ‘f’, ‘chi2’</p>
+</div>
+</p></li>
+<li><p><strong>con_points</strong> (<em>int</em>) – 概率密度曲线拟合时在x轴采样点个数</p></li>
+<li><p><strong>xticks_gap</strong> (<em>int</em>) – 设置每xticks_gap个直方图矩形框显示一个x轴刻度</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.plottools.plot_scatter">
+<span id="plot-scatter"></span><h2>plot_scatter<a class="headerlink" href="#module-dramkit.plottools.plot_scatter" title="Permalink to this headline"></a></h2>
+<section id="id5">
+<h3>plot_scatter<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.plottools.plot_scatter.plot_scatter">
+<span class="sig-prename descclassname"><span class="pre">dramkit.plottools.plot_scatter.</span></span><span class="sig-name descname"><span class="pre">plot_scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coly</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dotstyl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.k'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regstyl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'-b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(10,</span> <span class="pre">7)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nXticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.plottools.plot_scatter.plot_scatter" title="Permalink to this definition"></a></dt>
+<dd><p>散点图绘制</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dramkit.other.html" class="btn btn-neutral float-left" title="other" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dramkit.pystyles.html" class="btn btn-neutral float-right" title="pystyles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, YueYong Hu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

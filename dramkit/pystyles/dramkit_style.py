@@ -5,7 +5,7 @@
 
 dramkit(本程序)的注释文本格式主要借鉴Numpy注释风格 [1]_ ，遵循
 re-structured text (reST)语法 [2]_ 并参考Google代码风格 [3]_ [4]_。
-本程序的说明文档由Sphinx自动生成 [5]_ [6]_ [7]_ 。
+本程序的说明文档由Sphinx自动生成 [5]_ [6]_ [7]_ [r1]_ [13]_ 。
 
 References
 ----------
@@ -16,6 +16,8 @@ References
 .. [5] https://blog.csdn.net/lixiaomei0623/article/details/120530642
 .. [6] Sphinx语法: https://mathpretty.com/13551.html
 .. [7] https://zhuanlan.zhihu.com/p/264647009
+.. [r1] https://www.sphinx-doc.org/en/master/
+.. [13] https://www.osgeo.cn/sphinx/index.html 引文编号貌似必须用数字才会正常显示？
 .. [8] https://blog.csdn.net/dengdi8115/article/details/102077973
 .. [9] reStructuredText在线工具: http://rst.ninjs.org/
 .. [10] markdown转reST: https://cloudconvert.com/md-to-rst
@@ -120,7 +122,7 @@ def dramkit_funcsytle(a, b='b', *args, **kwargs):
 
     .. seealso::
 
-        Module :py:mod:`dramkit.pystyles.dramkit_style.DramkitClassStyle` 类编码风格
+        Module :py:mod:`dramkit.pystyles.dramkit_style` 编码风格模块
 
     Notes
     -----
@@ -205,17 +207,10 @@ class DramkitClassStyle(object):
     长长长长长长长长长长长长，需要换行，参见 :func:`dramkit.gentools.isnull`
     参见属性 :py:attr:`name` 参见 :py:meth:`show`
 
-    Parameters
-    ----------
-    name : str:
-        value for self.name
-
     Attributes
     ----------
     name : str
         class nick name
-    otherattr : str
-        description of other attribute
 
 
     :py:attr:`name`
@@ -239,11 +234,27 @@ class DramkitClassStyle(object):
     为什么Attributes标题没显示，怎么设置？attribute显示有点丑
     '''
 
-    def __init__(self, name='DramkitDocStyle'):
+    def __init__(self, name='DramkitDocStyle', parm2=None):
         '''
         初始化
+        
+        Parameters
+        ----------
+        name : str
+            value for self.name
+        parm2 : str, None
+            self.vparm2
+
+            
+        属性可以写到这里
+    
+        Attributes
+        ----------
+        otherattr : str
+            description of other attribute
         '''
         self.name = name
+        self.parm2 = parm2
 
     def show(self, x=None):
         '''
@@ -263,4 +274,21 @@ class DramkitClassStyle(object):
         '''
 
         print(self.name)
+        print(x)
+        
+    def show2(self, y):
+        '''
+        | :py:meth:`show`
+        | :py:meth:`dramkit.pystyles.dramkit_style.DramkitClassStyle.show`
+        '''
+        print(y)
+        
+    @property
+    def account_id(self):
+        '''账户id'''
+        return 0
+    
+    @staticmethod
+    def show3(x):
+        '''staticmethod here'''
         print(x)

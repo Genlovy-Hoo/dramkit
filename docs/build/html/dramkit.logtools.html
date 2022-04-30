@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>logtools &mdash; DramKit 0.0.007 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="other" href="dramkit.other.html" />
+    <link rel="prev" title="datsci" href="dramkit.datsci.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> DramKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dramkit.html">dramkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.datsci.html">datsci</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">logtools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.logtools.logger_general">logger_general</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-logger">get_logger</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.logtools.logger_rotating">logger_rotating</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">get_logger</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.logtools.logger_timedrotating">logger_timedrotating</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">get_logger</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.logtools.utils_logger">utils_logger</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#logger-show">logger_show</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#close-log-file">close_log_file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remove-handlers">remove_handlers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.other.html">other</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.plottools.html">plottools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.pystyles.html">pystyles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.sorts.html">sorts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.speedup.html">speedup</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DramKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>logtools</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/dramkit.logtools.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="logtools">
+<h1>logtools<a class="headerlink" href="#logtools" title="Permalink to this headline"></a></h1>
+<section id="module-dramkit.logtools.logger_general">
+<span id="logger-general"></span><h2>logger_general<a class="headerlink" href="#module-dramkit.logtools.logger_general" title="Permalink to this headline"></a></h2>
+<section id="get-logger">
+<h3>get_logger<a class="headerlink" href="#get-logger" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.logtools.logger_general.get_logger">
+<span class="sig-prename descclassname"><span class="pre">dramkit.logtools.logger_general.</span></span><span class="sig-name descname"><span class="pre">get_logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'w'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">screen_show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.logtools.logger_general.get_logger" title="Permalink to this definition"></a></dt>
+<dd><p>获取常规日志记录，将日志信息保存在文件或在屏幕中打印</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fapth</strong> (<em>str</em><em>, </em><em>None</em>) – 日志文件路径，默认为None即不保存日志文件</p></li>
+<li><p><strong>fmode</strong> (<em>str</em>) – ‘w’或’a’，取’w’时会覆盖原有日志文件（若存在的话），取’a’则追加记录</p></li>
+<li><p><strong>screen_show</strong> (<em>bool</em>) – <p>是否在控制台打印日志信息，默认打印</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">fpath</span></code> 和 <code class="docutils literal notranslate"><span class="pre">screen_show</span></code> 必须有至少一个为真</p>
+</div>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>logging.Logger</cite> - 日志记录器</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>日志文件按大小滚动: <a class="reference internal" href="#dramkit.logtools.logger_rotating.get_logger" title="dramkit.logtools.logger_rotating.get_logger"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.logtools.logger_rotating.get_logger()</span></code></a></p>
+<p>日志文件按时间滚动: <a class="reference internal" href="#dramkit.logtools.logger_timedrotating.get_logger" title="dramkit.logtools.logger_timedrotating.get_logger"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.logtools.logger_timedrotating.get_logger()</span></code></a></p>
+</div>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.logtools.logger_rotating">
+<span id="logger-rotating"></span><h2>logger_rotating<a class="headerlink" href="#module-dramkit.logtools.logger_rotating" title="Permalink to this headline"></a></h2>
+<section id="id1">
+<h3>get_logger<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.logtools.logger_rotating.get_logger">
+<span class="sig-prename descclassname"><span class="pre">dramkit.logtools.logger_rotating.</span></span><span class="sig-name descname"><span class="pre">get_logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'w'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_kb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nfile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">screen_show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.logtools.logger_rotating.get_logger" title="Permalink to this definition"></a></dt>
+<dd><p>滚动日志记录(按文件大小)，将日志信息滚动保存在文件或在屏幕中打印</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fapth</strong> (<em>str</em><em>, </em><em>None</em>) – 日志文件路径，默认为None即不保存日志文件</p></li>
+<li><p><strong>fmode</strong> (<em>str</em>) – ‘w’或’a’，取’w’时会覆盖原有日志文件（若存在的话），取’a’则追加记录</p></li>
+<li><p><strong>max_kb</strong> (<em>float</em>) – 单个日志文件大小限制，单位为kb</p></li>
+<li><p><strong>nfile</strong> (<em>int</em>) – 最多备份文件个数</p></li>
+<li><p><strong>screen_show</strong> (<em>bool</em>) – <p>是否在控制台打印日志信息，默认打印</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">fpath</span></code> 和 <code class="docutils literal notranslate"><span class="pre">screen_show</span></code> 必须有至少一个为真</p>
+</div>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>logging.Logger</cite> - 日志记录器</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>常规日志记录: <a class="reference internal" href="#dramkit.logtools.logger_general.get_logger" title="dramkit.logtools.logger_general.get_logger"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.logtools.logger_general.get_logger()</span></code></a></p>
+<p>日志文件按时间滚动: <a class="reference internal" href="#dramkit.logtools.logger_timedrotating.get_logger" title="dramkit.logtools.logger_timedrotating.get_logger"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.logtools.logger_timedrotating.get_logger()</span></code></a></p>
+</div>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.logtools.logger_timedrotating">
+<span id="logger-timedrotating"></span><h2>logger_timedrotating<a class="headerlink" href="#module-dramkit.logtools.logger_timedrotating" title="Permalink to this headline"></a></h2>
+<section id="id2">
+<h3>get_logger<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.logtools.logger_timedrotating.get_logger">
+<span class="sig-prename descclassname"><span class="pre">dramkit.logtools.logger_timedrotating.</span></span><span class="sig-name descname"><span class="pre">get_logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">when</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'S'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nfile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">screen_show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.logtools.logger_timedrotating.get_logger" title="Permalink to this definition"></a></dt>
+<dd><p>滚动日志记录（按时间），将日志信息滚动保存在文件或在屏幕中打印</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fapth</strong> (<em>str</em><em>, </em><em>None</em>) – 日志文件路径，默认为None即不保存日志文件</p></li>
+<li><p><strong>when</strong> (<em>str</em>) – 回滚时间单位:
+<code class="docutils literal notranslate"><span class="pre">S</span></code> 秒、<code class="docutils literal notranslate"><span class="pre">M</span></code> 分、<code class="docutils literal notranslate"><span class="pre">H</span></code> 小时、<code class="docutils literal notranslate"><span class="pre">D</span></code> 天、<code class="docutils literal notranslate"><span class="pre">W</span></code> 星期、<code class="docutils literal notranslate"><span class="pre">midnight</span></code> 午夜 等</p></li>
+<li><p><strong>interval</strong> (<em>int</em>) – 滚动周期，单位由 <code class="docutils literal notranslate"><span class="pre">when</span></code> 指定</p></li>
+<li><p><strong>nfile</strong> (<em>int</em>) – 最多备份文件个数</p></li>
+<li><p><strong>screen_show</strong> (<em>bool</em>) – <p>是否在控制台打印日志信息，默认打印</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">fpath</span></code> 和 <code class="docutils literal notranslate"><span class="pre">screen_show</span></code> 必须有至少一个为真</p>
+</div>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>logging.Logger</cite> - 日志记录器</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>常规日志记录: <a class="reference internal" href="#dramkit.logtools.logger_general.get_logger" title="dramkit.logtools.logger_general.get_logger"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.logtools.logger_general.get_logger()</span></code></a></p>
+<p>日志文件按大小滚动: <a class="reference internal" href="#dramkit.logtools.logger_rotating.get_logger" title="dramkit.logtools.logger_rotating.get_logger"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.logtools.logger_rotating.get_logger()</span></code></a></p>
+</div>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.logtools.utils_logger">
+<span id="utils-logger"></span><h2>utils_logger<a class="headerlink" href="#module-dramkit.logtools.utils_logger" title="Permalink to this headline"></a></h2>
+<section id="logger-show">
+<h3>logger_show<a class="headerlink" href="#logger-show" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.logtools.utils_logger.logger_show">
+<span class="sig-prename descclassname"><span class="pre">dramkit.logtools.utils_logger.</span></span><span class="sig-name descname"><span class="pre">logger_show</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'info'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.logtools.utils_logger.logger_show" title="Permalink to this definition"></a></dt>
+<dd><p>显示|记录日志信息</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>log_str</strong> (<em>str</em>) – 日志内容字符串</p></li>
+<li><p><strong>logger</strong> (<em>logging.Logger</em><em>, </em><em>None</em><em>, </em><em>nan</em><em>, </em><em>False</em>) – <ul>
+<li><p>若为False，则不显示|记录日志信息</p></li>
+<li><p>若为None或nan，则用print打印log_str</p></li>
+<li><p>若为logging.Logger对象，则根据level设置进行日志显示|记录</p></li>
+</ul>
+</p></li>
+<li><p><strong>level</strong> (<em>str</em>) – 支持’info’, ‘warn’, ‘error’三个日志级别</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>添加更多level和设置</p></li>
+</ul>
+</div>
+</dd></dl>
+
+</section>
+<section id="close-log-file">
+<h3>close_log_file<a class="headerlink" href="#close-log-file" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.logtools.utils_logger.close_log_file">
+<span class="sig-prename descclassname"><span class="pre">dramkit.logtools.utils_logger.</span></span><span class="sig-name descname"><span class="pre">close_log_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.logtools.utils_logger.close_log_file" title="Permalink to this definition"></a></dt>
+<dd><p>关闭日志记录器logger中的文件流，返回logger</p>
+</dd></dl>
+
+</section>
+<section id="remove-handlers">
+<h3>remove_handlers<a class="headerlink" href="#remove-handlers" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.logtools.utils_logger.remove_handlers">
+<span class="sig-prename descclassname"><span class="pre">dramkit.logtools.utils_logger.</span></span><span class="sig-name descname"><span class="pre">remove_handlers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.logtools.utils_logger.remove_handlers" title="Permalink to this definition"></a></dt>
+<dd><p>关闭并移除logger中已存在的handlers，返回logger</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>貌似必须先把FileHandler close并remove之后，再remove其它handler
+才能完全remove所有handlers，原因待查（可能由于FileHandler
+是StreamHandler的子类的缘故？）</p>
+</div>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dramkit.datsci.html" class="btn btn-neutral float-left" title="datsci" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dramkit.other.html" class="btn btn-neutral float-right" title="other" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, YueYong Hu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

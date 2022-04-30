@@ -2,18 +2,18 @@
 
 import numpy as np
 from dramkit.gentools import isnull
-from dramkit.datsci.utils_stats import fit_norm_pdf
-from dramkit.datsci.utils_stats import fit_norm_cdf
-from dramkit.datsci.utils_stats import fit_lognorm_pdf
-from dramkit.datsci.utils_stats import fit_lognorm_cdf
-from dramkit.datsci.utils_stats import fit_weibull_pdf
-from dramkit.datsci.utils_stats import fit_weibull_cdf
-from dramkit.datsci.utils_stats import fit_t_pdf
-from dramkit.datsci.utils_stats import fit_t_cdf
-from dramkit.datsci.utils_stats import fit_f_pdf
-from dramkit.datsci.utils_stats import fit_f_cdf
-from dramkit.datsci.utils_stats import fit_chi2_pdf
-from dramkit.datsci.utils_stats import fit_chi2_cdf
+from dramkit.datsci.stats import fit_norm_pdf
+from dramkit.datsci.stats import fit_norm_cdf
+from dramkit.datsci.stats import fit_lognorm_pdf
+from dramkit.datsci.stats import fit_lognorm_cdf
+from dramkit.datsci.stats import fit_weibull_pdf
+from dramkit.datsci.stats import fit_weibull_cdf
+from dramkit.datsci.stats import fit_t_pdf
+from dramkit.datsci.stats import fit_t_cdf
+from dramkit.datsci.stats import fit_f_pdf
+from dramkit.datsci.stats import fit_f_cdf
+from dramkit.datsci.stats import fit_chi2_pdf
+from dramkit.datsci.stats import fit_chi2_cdf
 
 import matplotlib as mpl
 mpl.rcParams['font.sans-serif'] = ['SimHei']

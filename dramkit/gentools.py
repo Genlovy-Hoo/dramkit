@@ -16,6 +16,30 @@ from random import randint, random, uniform
 PYTHON_VERSION = float(sys.version[:3])
 
 
+class StructureObject(object):
+    '''类似于MATLAB结构数组，存放变量，便于直接赋值和查看'''
+
+    def __init__(self, **kwargs):
+        '''初始化'''
+        self.__dict__ = kwargs
+
+    def __repr__(self):
+        '''查看时以key: value格式打印'''
+        return ''.join('{}: {}\n'.format(k, v) for k, v in self.__dict__.items())
+    
+    def pop(self, key):
+        '''删除属性变量key，有返回'''
+        return self.__dict__.pop(key)
+    
+    def remove(self, key):
+        '''删除属性变量key，无返回'''
+        del self.__dict__[key]
+    
+    def clear(self):
+        '''清空所有属性变量'''
+        self.__dict__.clear()
+
+
 def log_used_time(logger=None):
     '''
     作为装饰器记录函数运行用时
@@ -167,6 +191,7 @@ def get_update_kwargs(key, arg, kwargs, arg_default=None,
     >>> key, arg = 'a', 'aa_'
     >>> kwargs = {'a': ['a'], 'b': 'b'}
     >>> get_update_kwargs(key, arg, kwargs)
+    (['a', 'aa_'], {'b': 'b'})
     '''
 
     def _default_update(arg, arg_old):
@@ -1964,30 +1989,6 @@ def groupby_rolling_func(data, cols_groupby, cols_val, func, keep_index=True,
     # cols = [cols_val] if isinstance(cols_val, str) else cols_val
     # df = data.reindex(columns=cols_groupby+cols)
     raise NotImplementedError
-
-
-class StructureObject(object):
-    '''类似于MATLAB结构数组，存放变量，便于直接赋值和查看'''
-
-    def __init__(self, **kwargs):
-        '''初始化'''
-        self.__dict__ = kwargs
-
-    def __repr__(self):
-        '''查看时以key: value格式打印'''
-        return ''.join('{}: {}\n'.format(k, v) for k, v in self.__dict__.items())
-    
-    def pop(self, key):
-        '''删除属性变量key，有返回'''
-        return self.__dict__.pop(key)
-    
-    def remove(self, key):
-        '''删除属性变量key，无返回'''
-        del self.__dict__[key]
-    
-    def clear(self):
-        '''情况所有属性变量'''
-        self.__dict__.clear()
 
 
 def link_lists(lists):

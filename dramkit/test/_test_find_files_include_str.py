@@ -10,7 +10,7 @@ if __name__ == '__main__':
 
     # logger = None
     logger = simple_logger()
-    target_str = 'utils_hoo'
+    target_str = 'utils_hoo'#'get_logger'
     root_dir = '../../../dramkit/'
     file_types = ['.py']
     

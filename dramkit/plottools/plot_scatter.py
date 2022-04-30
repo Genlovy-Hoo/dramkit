@@ -35,7 +35,7 @@ def plot_scatter(data, colx, coly, reg_type=None, dotstyl='.k', regstyl='-b',
     if title:
         plt.title(title, fontsize=fontsize)
     xlabel = colx if xlabel is None else xlabel
-    ylabel = colx if ylabel is None else ylabel
+    ylabel = coly if ylabel is None else ylabel
     plt.xlabel(xlabel, fontsize=fontsize)
     plt.ylabel(ylabel, fontsize=fontsize)
     plt.show()

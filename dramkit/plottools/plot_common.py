@@ -8,7 +8,7 @@ import numpy as np
 from dramkit.gentools import isnull
 from dramkit.gentools import get_con_start_end
 from dramkit.gentools import get_update_kwargs
-from dramkit.logtools.logger_general import get_logger
+from dramkit.logtools.utils_logger import logger_show
 
 import matplotlib as mpl
 mpl.rcParams['font.family'] = ['sans-serif', 'stixgeneral', 'serif']
@@ -63,6 +63,7 @@ def plot_series(data, cols_styl_up_left, cols_styl_up_right={},
                 cols_to_label_info={}, cols_to_fill_info={}, yscales=None,
                 xparls_info={}, yparls_info_up=None, yparls_info_low=None,
                 fills_yparl_up=None, fills_yparl_low=None, fills_xparl={},
+                twinx_align_up=None, twinx_align_low=None,
                 ylabels=None, xlabels=None, grids=False, figsize=(11, 7),
                 title=None, n_xticks=8, xticks_rotation=None,
                 fontsize_label=15, fontsize_title=15,
@@ -152,6 +153,11 @@ def plot_series(data, cols_styl_up_left, cols_styl_up_right={},
         设置平行于x轴的填充区域信息，格式形如：
 
         ``{'col1': [([y1, y2], clor1, alpha1, kwargs), ...], 'col2': ...}``
+    twinx_align_up : None, list
+        设置上图双坐标轴两边坐标轴刻度对齐位置，格式如 ``[v_left, v_right]`` ，
+        绘图时左轴的 ``v_left`` 位置与右轴的 ``v_right`` 位置对齐
+    twinx_align_low : None, list
+        设置上图双坐标轴两边坐标轴刻度对齐位置，格式同 ``twinx_align_up``
     ylabels : None, list
         设置四个y轴标签文本内容，若为None则不设置标签文本，
         若为False则既不设置y轴标签文本内容，也不显示y轴刻度
@@ -173,8 +179,7 @@ def plot_series(data, cols_styl_up_left, cols_styl_up_right={},
         .. hint::
             matplotlib默认字体为 ``sans-serif``
     '''
-
-    logger = get_logger() if logger is None else logger
+    
     df = data.copy()
 
     # 网格设置，grids分别设置顶部左边、顶部右边、底部左边、底部右边的网格
@@ -208,7 +213,7 @@ def plot_series(data, cols_styl_up_left, cols_styl_up_right={},
     df.reset_index(inplace=True)
 
     if len(cols_styl_low_left) == 0 and len(cols_styl_low_right) > 0:
-        logger.warning('当底部图只指定右边坐标轴时，默认绘制在左边坐标轴！')
+        logger_show('当底部图只指定右边坐标轴时，默认绘制在左边坐标轴！', logger, 'warning')
         cols_styl_low_left, cols_styl_low_right = cols_styl_low_right, {}
 
     # 坐标准备
@@ -373,6 +378,32 @@ def plot_series(data, cols_styl_up_left, cols_styl_up_right={},
             xlocs = [df[df[idx_name] == x].index[0] for x in xlocs]
             to_fills.append([xlocs, clor, alpha, kwstyl])
         return to_fills
+    
+    def twinx_align(ax_left, ax_right, v_left, v_right):
+        '''双坐标轴左右按照v_left和v_right对齐'''
+        left_min, left_max = ax_left.get_ybound()
+        right_min, right_max = ax_right.get_ybound()
+        k = (left_max-left_min) / (right_max-right_min)
+        b = left_min - k * right_min
+        x_right_new = k * v_right + b
+        dif = x_right_new - v_left
+        if dif >= 0:
+            right_min_new = ((left_min-dif) - b) / k
+            k_new = (left_min-v_left) / (right_min_new-v_right)
+            b_new = v_left - k_new * v_right
+            right_max_new = (left_max - b_new) / k_new
+        else:
+            right_max_new = ((left_max-dif) - b) / k
+            k_new = (left_max-v_left) / (right_max_new-v_right)
+            b_new = v_left - k_new * v_right
+            right_min_new = (left_min - b_new) / k_new
+        def _forward(x):
+            return k_new * x + b_new
+        def _inverse(x):
+            return (x - b_new) / k_new
+        ax_right.set_ylim([right_min_new, right_max_new])
+        ax_right.set_yscale('function', functions=(_forward, _inverse))
+        return ax_left, ax_right
 
 
     # lns存放双坐标legend信息
@@ -494,6 +525,11 @@ def plot_series(data, cols_styl_up_left, cols_styl_up_right={},
                 for ylocs, clor, alpha, kwstyl_ in to_fills:
                     axUpRight.fill_betweenx(ylocs, xlimMinUp, xlimMaxUp,
                                       color=clor, alpha=alpha, **kwstyl_)
+
+        # 顶部双坐标轴刻度对齐
+        if twinx_align_up is not None:
+            axUpLeft, axUpRight = twinx_align(axUpLeft, axUpRight,
+                                    twinx_align_up[0], twinx_align_up[1])
 
         # 坐标轴尺度
         axUpRight.set_yscale(yscales[1])
@@ -645,6 +681,11 @@ def plot_series(data, cols_styl_up_left, cols_styl_up_right={},
                         axLowRight.fill_betweenx(ylocs, xlimMinUp, xlimMaxUp,
                                           color=clor, alpha=alpha, **kwstyl_)
 
+            # 底部双坐标轴刻度对齐
+            if twinx_align_low is not None:
+                axLowLeft, axLowRight = twinx_align(axUpLeft, axUpRight,
+                                      twinx_align_low[0], twinx_align_low[1])
+            
             # 坐标轴尺度
             axLowRight.set_yscale(yscales[3])
 
