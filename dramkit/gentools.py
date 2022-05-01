@@ -299,8 +299,9 @@ def roulette_count(fitness, n=10000, rand_func=None):
     n : int
         模拟次数
     rand_func : None, function
-        指定轮盘赌法函数，如roulette_base或roulette_stochastic_accept,
-        默认用roulette_stochastic_accept
+        | 指定轮盘赌法函数，如'roulette_base'(:func:`dramkit.gentools.roulette_base`)
+        | 或'roulette_stochastic_accept'(:func:`dramkit.gentools.roulette_stochastic_accept`),
+        | 默认用'roulette_stochastic_accept'
         
 
     :returns: `list, dict` - 返回每个对象在模拟n次中被选中的次数
@@ -2011,6 +2012,28 @@ def link_lists(lists):
     for item in lists:
         newlist.extend(item)
     return newlist
+
+
+def get_num_decimal(x, ignore_tail0=True):
+    '''
+    | 获取浮点数x的小数位数
+    | ignore_tail0设置是否忽略小数点尾部无效的0
+    '''
+    try:
+        float(x)
+    except:
+        raise ValueError('输入不是有效浮点数，请检查：{}！'.format(x))
+    xstr = str(x)
+    xsplit = xstr.split('.')
+    if len(xsplit) == 1:
+        return 0
+    if len(xsplit) > 2:
+        raise ValueError('输入出错，请检查：{}！'.format(xstr))
+    decimal = xsplit[-1]
+    if ignore_tail0:
+        while decimal[-1] == '0':
+            decimal = decimal[:-1]
+    return len(decimal)
 
 
 if __name__ == '__main__':

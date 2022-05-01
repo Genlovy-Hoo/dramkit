@@ -378,6 +378,11 @@ link_lists
 
 .. autofunction:: dramkit.gentools.link_lists
 
+get_num_decimal
+^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.get_num_decimal
+
 install_check
 --------------
 

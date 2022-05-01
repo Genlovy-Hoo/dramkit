@@ -18,7 +18,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="datsci" href="dramkit.datsci.html" />
+    <link rel="next" title="backpacks" href="dramkit.backpacks.html" />
     <link rel="prev" title="Welcome to DramKit’s documentation!" href="index.html" /> 
 </head>
 
@@ -116,6 +116,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#bootstrapping">bootstrapping</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#groupby-rolling-func">groupby_rolling_func</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#link-lists">link_lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-num-decimal">get_num_decimal</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.install_check">install_check</a><ul>
@@ -151,13 +152,17 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.backpacks.html">backpacks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.datsci.html">datsci</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.find_addends.html">find_addends</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.logtools.html">logtools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.other.html">other</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.plottools.html">plottools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.pystyles.html">pystyles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.sorts.html">sorts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.speedup.html">speedup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.sqltools.html">sqltools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.webtools.html">webtools</a></li>
 </ul>
 
         </div>
@@ -743,8 +748,12 @@
 </div>
 </p></li>
 <li><p><strong>n</strong> (<em>int</em>) – 模拟次数</p></li>
-<li><p><strong>rand_func</strong> (<em>None</em><em>, </em><em>function</em>) – 指定轮盘赌法函数，如roulette_base或roulette_stochastic_accept,
-默认用roulette_stochastic_accept</p></li>
+<li><p><strong>rand_func</strong> (<em>None</em><em>, </em><em>function</em>) – <div class="line-block">
+<div class="line">指定轮盘赌法函数，如’roulette_base’(<a class="reference internal" href="#dramkit.gentools.roulette_base" title="dramkit.gentools.roulette_base"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.gentools.roulette_base()</span></code></a>)</div>
+<div class="line">或’roulette_stochastic_accept’(<a class="reference internal" href="#dramkit.gentools.roulette_stochastic_accept" title="dramkit.gentools.roulette_stochastic_accept"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.gentools.roulette_stochastic_accept()</span></code></a>),</div>
+<div class="line">默认用’roulette_stochastic_accept’</div>
+</div>
+</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1803,6 +1812,18 @@ cols_groupby设定</p>
 </dd></dl>
 
 </section>
+<section id="get-num-decimal">
+<h3>get_num_decimal<a class="headerlink" href="#get-num-decimal" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.gentools.get_num_decimal">
+<span class="sig-prename descclassname"><span class="pre">dramkit.gentools.</span></span><span class="sig-name descname"><span class="pre">get_num_decimal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_tail0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.gentools.get_num_decimal" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">获取浮点数x的小数位数</div>
+<div class="line">ignore_tail0设置是否忽略小数点尾部无效的0</div>
+</div>
+</dd></dl>
+
+</section>
 </section>
 <section id="module-dramkit.install_check">
 <span id="install-check"></span><h2>install_check<a class="headerlink" href="#module-dramkit.install_check" title="Permalink to this headline"></a></h2>
@@ -2284,7 +2305,7 @@ cols_groupby设定</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome to DramKit’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="dramkit.datsci.html" class="btn btn-neutral float-right" title="datsci" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dramkit.backpacks.html" class="btn btn-neutral float-right" title="backpacks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

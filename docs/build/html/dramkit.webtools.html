@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>webtools &mdash; DramKit 0.0.8 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="sqltools" href="dramkit.sqltools.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> DramKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dramkit.html">dramkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.backpacks.html">backpacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.datsci.html">datsci</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.find_addends.html">find_addends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.logtools.html">logtools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.other.html">other</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.plottools.html">plottools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.pystyles.html">pystyles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.sorts.html">sorts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.speedup.html">speedup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.sqltools.html">sqltools</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">webtools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.webtools.utils_html">utils_html</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-browser-path">get_browser_path</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#open-html">open_html</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#html-to-soup">html_to_soup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#soup-to-html">soup_to_html</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#insert-src-head-end">insert_src_head_end</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#del-js-head-end">del_js_head_end</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-head-num">get_head_num</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DramKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>webtools</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/dramkit.webtools.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="webtools">
+<h1>webtools<a class="headerlink" href="#webtools" title="Permalink to this headline"></a></h1>
+<section id="module-dramkit.webtools.utils_html">
+<span id="utils-html"></span><h2>utils_html<a class="headerlink" href="#module-dramkit.webtools.utils_html" title="Permalink to this headline"></a></h2>
+<section id="get-browser-path">
+<h3>get_browser_path<a class="headerlink" href="#get-browser-path" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.webtools.utils_html.get_browser_path">
+<span class="sig-prename descclassname"><span class="pre">dramkit.webtools.utils_html.</span></span><span class="sig-name descname"><span class="pre">get_browser_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">browser</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'chrome'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.webtools.utils_html.get_browser_path" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">获取浏览器的安装路径</div>
+<div class="line">param browser为浏览器名称，可选dramkit.webtools.utils_html.BROWSER_REGS中的key值</div>
+<div class="line">参考: <a class="reference external" href="https://blog.csdn.net/u013314786/article/details/122497226">https://blog.csdn.net/u013314786/article/details/122497226</a></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="open-html">
+<h3>open_html<a class="headerlink" href="#open-html" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.webtools.utils_html.open_html">
+<span class="sig-prename descclassname"><span class="pre">dramkit.webtools.utils_html.</span></span><span class="sig-name descname"><span class="pre">open_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_html</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">browser</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.webtools.utils_html.open_html" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">调用浏览器打开html文档</div>
+<div class="line">path_html为html文档路径</div>
+<div class="line">browser支持浏览器名称或浏览器路径</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="html-to-soup">
+<h3>html_to_soup<a class="headerlink" href="#html-to-soup" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.webtools.utils_html.html_to_soup">
+<span class="sig-prename descclassname"><span class="pre">dramkit.webtools.utils_html.</span></span><span class="sig-name descname"><span class="pre">html_to_soup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_html</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.webtools.utils_html.html_to_soup" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">将HTML文档读取成BeautifulSoup数据格式</div>
+<div class="line">path_html为HTML文件路径</div>
+<div class="line">返回Soup对象</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="soup-to-html">
+<h3>soup_to_html<a class="headerlink" href="#soup-to-html" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.webtools.utils_html.soup_to_html">
+<span class="sig-prename descclassname"><span class="pre">dramkit.webtools.utils_html.</span></span><span class="sig-name descname"><span class="pre">soup_to_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Soup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_html</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.webtools.utils_html.soup_to_html" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">将BeautifulSoup对象写入HTML文档</div>
+<div class="line">Soup为需要写入的BeautifulSoup对象</div>
+<div class="line">path_html为HTML文件存放路径</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="insert-src-head-end">
+<h3>insert_src_head_end<a class="headerlink" href="#insert-src-head-end" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.webtools.utils_html.insert_src_head_end">
+<span class="sig-prename descclassname"><span class="pre">dramkit.webtools.utils_html.</span></span><span class="sig-name descname"><span class="pre">insert_src_head_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_html</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.webtools.utils_html.insert_src_head_end" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">在HTML文档中添加一个引用脚本的script标签，添加位置为head标签的最后</div>
+<div class="line">path_html为HTML文件路径</div>
+<div class="line">path_src为引用的js数据文件路径和名称</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="del-js-head-end">
+<h3>del_js_head_end<a class="headerlink" href="#del-js-head-end" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.webtools.utils_html.del_js_head_end">
+<span class="sig-prename descclassname"><span class="pre">dramkit.webtools.utils_html.</span></span><span class="sig-name descname"><span class="pre">del_js_head_end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_html</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.webtools.utils_html.del_js_head_end" title="Permalink to this definition"></a></dt>
+<dd><p>删除HTML文档head部分的最后一个标签</p>
+</dd></dl>
+
+</section>
+<section id="get-head-num">
+<h3>get_head_num<a class="headerlink" href="#get-head-num" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.webtools.utils_html.get_head_num">
+<span class="sig-prename descclassname"><span class="pre">dramkit.webtools.utils_html.</span></span><span class="sig-name descname"><span class="pre">get_head_num</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_html</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.webtools.utils_html.get_head_num" title="Permalink to this definition"></a></dt>
+<dd><p>获取head标签子标签的个数</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dramkit.sqltools.html" class="btn btn-neutral float-left" title="sqltools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, YueYong Hu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
