@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; DramKit 0.0.8 documentation</title>
+  <title>Index &mdash; DramKit 0.0.9 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -40,7 +40,9 @@
 <li class="toctree-l1"><a class="reference internal" href="dramkit.backpacks.html">backpacks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.datsci.html">datsci</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.find_addends.html">find_addends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.fintools.html">fintools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.logtools.html">logtools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.optimizer.html">optimizer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.other.html">other</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.plottools.html">plottools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.pystyles.html">pystyles</a></li>
@@ -87,6 +89,7 @@
  | <a href="#G"><strong>G</strong></a>
  | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
+ | <a href="#K"><strong>K</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
@@ -109,6 +112,8 @@
       <li><a href="dramkit.html#dramkit.gentools.StructureObject.__init__">__init__() (dramkit.gentools.StructureObject method)</a>
 
       <ul>
+        <li><a href="dramkit.optimizer.html#dramkit.optimizer.utils_heuristic.FuncOpterInfo.__init__">(dramkit.optimizer.utils_heuristic.FuncOpterInfo method)</a>
+</li>
         <li><a href="dramkit.pystyles.html#dramkit.pystyles.dramkit_style.DramkitClassStyle.__init__">(dramkit.pystyles.dramkit_style.DramkitClassStyle method)</a>
 </li>
         <li><a href="dramkit.speedup.html#dramkit.speedup.multi_thread.MultiThread.__init__">(dramkit.speedup.multi_thread.MultiThread method)</a>
@@ -122,10 +127,22 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dramkit.pystyles.html#dramkit.pystyles.dramkit_style.DramkitClassStyle.account_id">account_id (dramkit.pystyles.dramkit_style.DramkitClassStyle property)</a>
 </li>
-      <li><a href="dramkit.datsci.html#dramkit.datsci.stats.anova_oneway">anova_oneway() (in module dramkit.datsci.stats)</a>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs.ackley">ackley() (dramkit.optimizer.base_funcs.TestFuncs static method)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs.ackley2">ackley2() (dramkit.optimizer.base_funcs.TestFuncs static method)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.ACPMP">ACPMP() (in module dramkit.fintools.fintools)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.ADX">ADX() (in module dramkit.fintools.fintools)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.alo.alo">alo() (in module dramkit.optimizer.alo)</a>
+</li>
+      <li><a href="dramkit.datsci.html#dramkit.datsci.stats.anova_oneway">anova_oneway() (in module dramkit.datsci.stats)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.ATR">ATR() (in module dramkit.fintools.fintools)</a>
+</li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.auc">auc() (in module dramkit.datsci.stats)</a>
 </li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.avedev">avedev() (in module dramkit.datsci.stats)</a>
@@ -150,13 +167,25 @@
         <li><a href="dramkit.backpacks.html#dramkit.backpacks.backpack01_int_dy.backpack01_float_dy_smp">(in module dramkit.backpacks.backpack01_int_dy)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dramkit.backpacks.html#dramkit.backpacks.backpack01_int_dy.backpack01_int_dy">backpack01_int_dy() (in module dramkit.backpacks.backpack01_int_dy)</a>
 </li>
       <li><a href="dramkit.backpacks.html#dramkit.backpacks.backpack01_int_dy.backpack01_int_dy_smp">backpack01_int_dy_smp() (in module dramkit.backpacks.backpack01_int_dy)</a>
 </li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.BBI">BBI() (in module dramkit.fintools.fintools)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.BBW">BBW() (in module dramkit.fintools.fintools)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.utils_heuristic.FuncOpterInfo.best_val">best_val (dramkit.optimizer.utils_heuristic.FuncOpterInfo property)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.utils_heuristic.FuncOpterInfo.best_x">best_x (dramkit.optimizer.utils_heuristic.FuncOpterInfo property)</a>
+</li>
       <li><a href="dramkit.sorts.html#dramkit.sorts.insert_sort_bin.bin_search">bin_search() (in module dramkit.sorts.insert_sort_bin)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.boa.boa">boa() (in module dramkit.optimizer.boa)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.Boll">Boll() (in module dramkit.fintools.fintools)</a>
 </li>
       <li><a href="dramkit.html#dramkit.gentools.bootstrapping">bootstrapping() (in module dramkit.gentools)</a>
 </li>
@@ -170,11 +199,65 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.cal_alpha_beta">cal_alpha_beta() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.cal_alpha_by_beta_and_r">cal_alpha_by_beta_and_r() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.cal_beta">cal_beta() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.datsci.html#dramkit.datsci.ahp_sim_ri.cal_CI">cal_CI() (in module dramkit.datsci.ahp_sim_ri)</a>
+</li>
+      <li><a href="dramkit.datsci.html#dramkit.datsci.ahp_sim_ri.cal_CI_sim">cal_CI_sim() (in module dramkit.datsci.ahp_sim_ri)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.cal_cost_add">cal_cost_add() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.cal_ext_return_period">cal_ext_return_period() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.cal_ext_return_period_by_gain_pct">cal_ext_return_period_by_gain_pct() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.cal_gain_con_futures">cal_gain_con_futures() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.cal_gain_con_futures2">cal_gain_con_futures2() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.cal_gain_pct">cal_gain_pct() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.cal_gain_pct_log">cal_gain_pct_log() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.cal_gain_pcts">cal_gain_pcts() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.cal_IC">cal_IC() (in module dramkit.fintools.fintools)</a>
+</li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.cal_linear_reg_r">cal_linear_reg_r() (in module dramkit.datsci.stats)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.cal_n_period_1year">cal_n_period_1year() (in module dramkit.fintools.utils_gains)</a>
 </li>
       <li><a href="dramkit.html#dramkit.gentools.cal_pct">cal_pct() (in module dramkit.gentools)</a>
 </li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.cal_return_period_by_gain_pct">cal_return_period_by_gain_pct() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.cal_returns_period">cal_returns_period() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.cal_returns_period_mean">cal_returns_period_mean() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.cal_sharpe">cal_sharpe() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.cal_sharpe2">cal_sharpe2() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.cal_sig_gains">cal_sig_gains() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.cal_volatility">cal_volatility() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.datsci.html#dramkit.datsci.ahp.cal_weights">cal_weights() (in module dramkit.datsci.ahp)</a>
+</li>
+      <li><a href="dramkit.datsci.html#dramkit.datsci.ahp.cal_weights_mats">cal_weights_mats() (in module dramkit.datsci.ahp)</a>
+</li>
+      <li><a href="dramkit.datsci.html#dramkit.datsci.ahp.cal_weights_sim">cal_weights_sim() (in module dramkit.datsci.ahp)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.CCI">CCI() (in module dramkit.fintools.fintools)</a>
+</li>
       <li><a href="dramkit.html#dramkit.gentools.check_exist_data">check_exist_data() (in module dramkit.gentools)</a>
+</li>
+      <li><a href="dramkit.datsci.html#dramkit.datsci.ahp.check_JM">check_JM() (in module dramkit.datsci.ahp)</a>
 </li>
       <li><a href="dramkit.html#dramkit.gentools.check_l_allin_l0">check_l_allin_l0() (in module dramkit.gentools)</a>
 </li>
@@ -182,6 +265,8 @@
 </li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.chi2fit">chi2fit() (in module dramkit.datsci.stats)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.chi2pdf">chi2pdf() (in module dramkit.datsci.stats)</a>
 </li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.chi2test">chi2test() (in module dramkit.datsci.stats)</a>
@@ -196,17 +281,31 @@
 </li>
       <li><a href="dramkit.html#dramkit.gentools.con_count_ignore">con_count_ignore() (in module dramkit.gentools)</a>
 </li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.utils_heuristic.FuncOpterInfo.convergence_curve">convergence_curve (dramkit.optimizer.utils_heuristic.FuncOpterInfo property)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.utils_heuristic.FuncOpterInfo.convergence_curve_mean">convergence_curve_mean (dramkit.optimizer.utils_heuristic.FuncOpterInfo property)</a>
+</li>
       <li><a href="dramkit.html#dramkit.iotools.copy_dir">copy_dir() (in module dramkit.iotools)</a>
 </li>
       <li><a href="dramkit.html#dramkit.iotools.copy_file">copy_file() (in module dramkit.iotools)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dramkit.html#dramkit.gentools.count_between_gap">count_between_gap() (in module dramkit.gentools)</a>
 </li>
       <li><a href="dramkit.html#dramkit.gentools.count_between_gap_iter">count_between_gap_iter() (in module dramkit.gentools)</a>
 </li>
       <li><a href="dramkit.html#dramkit.gentools.count_between_gap_pd">count_between_gap_pd() (in module dramkit.gentools)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.cross">cross() (in module dramkit.fintools.fintools)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.cross2">cross2() (in module dramkit.fintools.fintools)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.cross2_plot">cross2_plot() (in module dramkit.fintools.fintools)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.cross_cum_maxmin_dif">cross_cum_maxmin_dif() (in module dramkit.fintools.fintools)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.cross_plot">cross_plot() (in module dramkit.fintools.fintools)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.cs.cs">cs() (in module dramkit.optimizer.cs)</a>
 </li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.cum_n_unique">cum_n_unique() (in module dramkit.datsci.stats)</a>
 </li>
@@ -264,6 +363,8 @@
 </li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.delta_var_d0">delta_var_d0() (in module dramkit.datsci.stats)</a>
 </li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.DeMark_TD">DeMark_TD() (in module dramkit.fintools.fintools)</a>
+</li>
       <li><a href="dramkit.sqltools.html#dramkit.sqltools.mysql.df_to_sql_pymysql">df_to_sql_pymysql() (in module dramkit.sqltools.mysql)</a>
 </li>
       <li><a href="dramkit.html#dramkit.datetimetools.diff_days_date">diff_days_date() (in module dramkit.datetimetools)</a>
@@ -289,6 +390,20 @@
 
       <ul>
         <li><a href="dramkit.html#module-dramkit.datetimetools">module</a>
+</li>
+      </ul></li>
+      <li>
+    dramkit.datsci.ahp
+
+      <ul>
+        <li><a href="dramkit.datsci.html#module-dramkit.datsci.ahp">module</a>
+</li>
+      </ul></li>
+      <li>
+    dramkit.datsci.ahp_sim_ri
+
+      <ul>
+        <li><a href="dramkit.datsci.html#module-dramkit.datsci.ahp_sim_ri">module</a>
 </li>
       </ul></li>
       <li>
@@ -348,6 +463,20 @@
 </li>
       </ul></li>
       <li>
+    dramkit.fintools.fintools
+
+      <ul>
+        <li><a href="dramkit.fintools.html#module-dramkit.fintools.fintools">module</a>
+</li>
+      </ul></li>
+      <li>
+    dramkit.fintools.utils_gains
+
+      <ul>
+        <li><a href="dramkit.fintools.html#module-dramkit.fintools.utils_gains">module</a>
+</li>
+      </ul></li>
+      <li>
     dramkit.gentools
 
       <ul>
@@ -375,8 +504,6 @@
         <li><a href="dramkit.logtools.html#module-dramkit.logtools.logger_general">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     dramkit.logtools.logger_rotating
 
@@ -396,6 +523,92 @@
 
       <ul>
         <li><a href="dramkit.logtools.html#module-dramkit.logtools.utils_logger">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    dramkit.optimizer.alo
+
+      <ul>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.alo">module</a>
+</li>
+      </ul></li>
+      <li>
+    dramkit.optimizer.base_funcs
+
+      <ul>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.base_funcs">module</a>
+</li>
+      </ul></li>
+      <li>
+    dramkit.optimizer.boa
+
+      <ul>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.boa">module</a>
+</li>
+      </ul></li>
+      <li>
+    dramkit.optimizer.cs
+
+      <ul>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.cs">module</a>
+</li>
+      </ul></li>
+      <li>
+    dramkit.optimizer.ga
+
+      <ul>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.ga">module</a>
+</li>
+      </ul></li>
+      <li>
+    dramkit.optimizer.gwo
+
+      <ul>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.gwo">module</a>
+</li>
+      </ul></li>
+      <li>
+    dramkit.optimizer.hcpsoboa
+
+      <ul>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.hcpsoboa">module</a>
+</li>
+      </ul></li>
+      <li>
+    dramkit.optimizer.hho
+
+      <ul>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.hho">module</a>
+</li>
+      </ul></li>
+      <li>
+    dramkit.optimizer.hpsoboa
+
+      <ul>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.hpsoboa">module</a>
+</li>
+      </ul></li>
+      <li>
+    dramkit.optimizer.pso
+
+      <ul>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.pso">module</a>
+</li>
+      </ul></li>
+      <li>
+    dramkit.optimizer.utils_heuristic
+
+      <ul>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.utils_heuristic">module</a>
+</li>
+      </ul></li>
+      <li>
+    dramkit.optimizer.woa
+
+      <ul>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.woa">module</a>
 </li>
       </ul></li>
       <li>
@@ -529,10 +742,18 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dramkit.datsci.html#dramkit.datsci.preprocess.ExternalStd">ExternalStd (class in dramkit.datsci.preprocess)</a>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.utils_heuristic.FuncOpterInfo.end_time">end_time (dramkit.optimizer.utils_heuristic.FuncOpterInfo property)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.ER">ER() (in module dramkit.fintools.fintools)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.utils_heuristic.FuncOpterInfo.exe_time">exe_time (dramkit.optimizer.utils_heuristic.FuncOpterInfo property)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.EXPMA">EXPMA() (in module dramkit.fintools.fintools)</a>
+</li>
+      <li><a href="dramkit.datsci.html#dramkit.datsci.preprocess.ExternalStd">ExternalStd (class in dramkit.datsci.preprocess)</a>
+</li>
       <li><a href="dramkit.html#dramkit.iotools.extract_7z">extract_7z() (in module dramkit.iotools)</a>
 </li>
   </ul></td>
@@ -541,6 +762,30 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs.f1">f1() (dramkit.optimizer.base_funcs.TestFuncs static method)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs.f10">f10() (dramkit.optimizer.base_funcs.TestFuncs static method)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs.f11">f11() (dramkit.optimizer.base_funcs.TestFuncs static method)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs.f12">f12() (dramkit.optimizer.base_funcs.TestFuncs static method)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs.f2">f2() (dramkit.optimizer.base_funcs.TestFuncs static method)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs.f3">f3() (dramkit.optimizer.base_funcs.TestFuncs static method)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs.f4">f4() (dramkit.optimizer.base_funcs.TestFuncs static method)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs.f5">f5() (dramkit.optimizer.base_funcs.TestFuncs static method)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs.f6">f6() (dramkit.optimizer.base_funcs.TestFuncs static method)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs.f7">f7() (dramkit.optimizer.base_funcs.TestFuncs static method)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs.f8">f8() (dramkit.optimizer.base_funcs.TestFuncs static method)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs.f9">f9() (dramkit.optimizer.base_funcs.TestFuncs static method)</a>
+</li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.fcdf">fcdf() (in module dramkit.datsci.stats)</a>
 </li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.ffit">ffit() (in module dramkit.datsci.stats)</a>
@@ -557,6 +802,8 @@
 </li>
       <li><a href="dramkit.find_addends.html#dramkit.find_addends.find_addends_backpack01float.find_addends_backpack01float">find_addends_backpack01float() (in module dramkit.find_addends.find_addends_backpack01float)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dramkit.find_addends.html#dramkit.find_addends.find_addends_backpack01int.find_addends_backpack01int">find_addends_backpack01int() (in module dramkit.find_addends.find_addends_backpack01int)</a>
 </li>
       <li><a href="dramkit.find_addends.html#dramkit.find_addends.find_addends_bigfirst.find_addends_bigfirst">find_addends_bigfirst() (in module dramkit.find_addends.find_addends_bigfirst)</a>
@@ -567,8 +814,6 @@
 </li>
       <li><a href="dramkit.html#dramkit.iotools.find_files_include_str">find_files_include_str() (in module dramkit.iotools)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.fit_chi2_cdf">fit_chi2_cdf() (in module dramkit.datsci.stats)</a>
 </li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.fit_chi2_pdf">fit_chi2_pdf() (in module dramkit.datsci.stats)</a>
@@ -597,13 +842,19 @@
 </li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.ftest">ftest() (in module dramkit.datsci.stats)</a>
 </li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.utils_heuristic.FuncOpterInfo">FuncOpterInfo (class in dramkit.optimizer.utils_heuristic)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.ga.ga">ga() (in module dramkit.optimizer.ga)</a>
+</li>
       <li><a href="dramkit.html#dramkit.gentools.gap_count">gap_count() (in module dramkit.gentools)</a>
+</li>
+      <li><a href="dramkit.datsci.html#dramkit.datsci.ahp_sim_ri.gen_random_mat">gen_random_mat() (in module dramkit.datsci.ahp_sim_ri)</a>
 </li>
       <li><a href="dramkit.html#dramkit.iotools.get_all_files">get_all_files() (in module dramkit.iotools)</a>
 </li>
@@ -625,6 +876,12 @@
 </li>
       <li><a href="dramkit.html#dramkit.datetimetools.get_dayofyear">get_dayofyear() (in module dramkit.datetimetools)</a>
 </li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.get_fundnet">get_fundnet() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.get_gains">get_gains() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.get_gains_act">get_gains_act() (in module dramkit.fintools.utils_gains)</a>
+</li>
       <li><a href="dramkit.webtools.html#dramkit.webtools.utils_html.get_head_num">get_head_num() (in module dramkit.webtools.utils_html)</a>
 </li>
       <li><a href="dramkit.logtools.html#dramkit.logtools.logger_general.get_logger">get_logger() (in module dramkit.logtools.logger_general)</a>
@@ -635,15 +892,33 @@
         <li><a href="dramkit.logtools.html#dramkit.logtools.logger_timedrotating.get_logger">(in module dramkit.logtools.logger_timedrotating)</a>
 </li>
       </ul></li>
-      <li><a href="dramkit.datsci.html#dramkit.datsci.preprocess.get_miss_rate">get_miss_rate() (in module dramkit.datsci.preprocess)</a>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.get_maxdown">get_maxdown() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.get_maxdown_all">get_maxdown_all() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.get_maxdown_dy">get_maxdown_dy() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.get_maxdown_pd">get_maxdown_pd() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.get_maxup">get_maxup() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.get_mean_cost">get_mean_cost() (in module dramkit.fintools.utils_gains)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dramkit.datsci.html#dramkit.datsci.preprocess.get_miss_rate">get_miss_rate() (in module dramkit.datsci.preprocess)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.get_netval_prod">get_netval_prod() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.get_netval_sum">get_netval_sum() (in module dramkit.fintools.utils_gains)</a>
+</li>
       <li><a href="dramkit.html#dramkit.datetimetools.get_next_nth_inweekday_chncal">get_next_nth_inweekday_chncal() (in module dramkit.datetimetools)</a>
 </li>
       <li><a href="dramkit.html#dramkit.datetimetools.get_next_nth_workday_chncal">get_next_nth_workday_chncal() (in module dramkit.datetimetools)</a>
 </li>
       <li><a href="dramkit.html#dramkit.gentools.get_num_decimal">get_num_decimal() (in module dramkit.gentools)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.get_open_gain_info">get_open_gain_info() (in module dramkit.fintools.utils_gains)</a>
 </li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.preprocess.get_pca">get_pca() (in module dramkit.datsci.preprocess)</a>
 </li>
@@ -659,9 +934,19 @@
 </li>
       <li><a href="dramkit.speedup.html#dramkit.speedup.multi_thread.MultiThread.get_result">get_result() (dramkit.speedup.multi_thread.MultiThread method)</a>
 </li>
+      <li><a href="dramkit.datsci.html#dramkit.datsci.ahp_sim_ri.get_RIs">get_RIs() (in module dramkit.datsci.ahp_sim_ri)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.get_turn_point">get_turn_point() (in module dramkit.fintools.fintools)</a>
+</li>
       <li><a href="dramkit.html#dramkit.gentools.get_update_kwargs">get_update_kwargs() (in module dramkit.gentools)</a>
 </li>
       <li><a href="dramkit.html#dramkit.datetimetools.get_year_month">get_year_month() (in module dramkit.datetimetools)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.get_yield_curve">get_yield_curve() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.get_yield_curve2">get_yield_curve2() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs.griewank">griewank() (dramkit.optimizer.base_funcs.TestFuncs static method)</a>
 </li>
       <li><a href="dramkit.html#dramkit.gentools.group_fillna">group_fillna() (in module dramkit.gentools)</a>
 </li>
@@ -671,12 +956,22 @@
 </li>
       <li><a href="dramkit.html#dramkit.gentools.groupby_rolling_func">groupby_rolling_func() (in module dramkit.gentools)</a>
 </li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.gwo.gwo">gwo() (in module dramkit.optimizer.gwo)</a>
+</li>
   </ul></td>
 </tr></table>
 
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.hcpsoboa.hcpsoboa">hcpsoboa() (in module dramkit.optimizer.hcpsoboa)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.hho.hho">hho() (in module dramkit.optimizer.hho)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.hpsoboa.hpsoboa">hpsoboa() (in module dramkit.optimizer.hpsoboa)</a>
+</li>
       <li><a href="dramkit.webtools.html#dramkit.webtools.utils_html.html_to_soup">html_to_soup() (in module dramkit.webtools.utils_html)</a>
 </li>
   </ul></td>
@@ -704,6 +999,20 @@
       <li><a href="dramkit.html#dramkit.gentools.isnull">isnull() (in module dramkit.gentools)</a>
 </li>
       <li><a href="dramkit.html#dramkit.datetimetools.isworkday_chncal">isworkday_chncal() (in module dramkit.datetimetools)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.KAMA">KAMA() (in module dramkit.fintools.fintools)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.KDJ">KDJ() (in module dramkit.fintools.fintools)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.kelly_formula">kelly_formula() (in module dramkit.fintools.fintools)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -747,15 +1056,23 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.ma_trend_strength">ma_trend_strength() (in module dramkit.fintools.fintools)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.MACD">MACD() (in module dramkit.fintools.fintools)</a>
+</li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.mae">mae() (in module dramkit.datsci.stats)</a>
 </li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.mape">mape() (in module dramkit.datsci.stats)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.MAs_order">MAs_order() (in module dramkit.fintools.fintools)</a>
 </li>
       <li><a href="dramkit.html#dramkit.gentools.max_com_divisor">max_com_divisor() (in module dramkit.gentools)</a>
 </li>
       <li><a href="dramkit.html#dramkit.gentools.max_com_divisor_tad">max_com_divisor_tad() (in module dramkit.gentools)</a>
 </li>
       <li><a href="dramkit.html#dramkit.gentools.mcd2_tad">mcd2_tad() (in module dramkit.gentools)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.mean_candle">mean_candle() (in module dramkit.fintools.fintools)</a>
 </li>
       <li><a href="dramkit.html#dramkit.gentools.merge_df">merge_df() (in module dramkit.gentools)</a>
 </li>
@@ -770,6 +1087,10 @@
         <li><a href="dramkit.backpacks.html#module-dramkit.backpacks.backpack01_int_dy">dramkit.backpacks.backpack01_int_dy</a>
 </li>
         <li><a href="dramkit.html#module-dramkit.datetimetools">dramkit.datetimetools</a>
+</li>
+        <li><a href="dramkit.datsci.html#module-dramkit.datsci.ahp">dramkit.datsci.ahp</a>
+</li>
+        <li><a href="dramkit.datsci.html#module-dramkit.datsci.ahp_sim_ri">dramkit.datsci.ahp_sim_ri</a>
 </li>
         <li><a href="dramkit.datsci.html#module-dramkit.datsci.preprocess">dramkit.datsci.preprocess</a>
 </li>
@@ -787,6 +1108,10 @@
 </li>
         <li><a href="dramkit.find_addends.html#module-dramkit.find_addends.find_addends_utils">dramkit.find_addends.find_addends_utils</a>
 </li>
+        <li><a href="dramkit.fintools.html#module-dramkit.fintools.fintools">dramkit.fintools.fintools</a>
+</li>
+        <li><a href="dramkit.fintools.html#module-dramkit.fintools.utils_gains">dramkit.fintools.utils_gains</a>
+</li>
         <li><a href="dramkit.html#module-dramkit.gentools">dramkit.gentools</a>
 </li>
         <li><a href="dramkit.html#module-dramkit.install_check">dramkit.install_check</a>
@@ -800,6 +1125,30 @@
         <li><a href="dramkit.logtools.html#module-dramkit.logtools.logger_timedrotating">dramkit.logtools.logger_timedrotating</a>
 </li>
         <li><a href="dramkit.logtools.html#module-dramkit.logtools.utils_logger">dramkit.logtools.utils_logger</a>
+</li>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.alo">dramkit.optimizer.alo</a>
+</li>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.base_funcs">dramkit.optimizer.base_funcs</a>
+</li>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.boa">dramkit.optimizer.boa</a>
+</li>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.cs">dramkit.optimizer.cs</a>
+</li>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.ga">dramkit.optimizer.ga</a>
+</li>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.gwo">dramkit.optimizer.gwo</a>
+</li>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.hcpsoboa">dramkit.optimizer.hcpsoboa</a>
+</li>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.hho">dramkit.optimizer.hho</a>
+</li>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.hpsoboa">dramkit.optimizer.hpsoboa</a>
+</li>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.pso">dramkit.optimizer.pso</a>
+</li>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.utils_heuristic">dramkit.optimizer.utils_heuristic</a>
+</li>
+        <li><a href="dramkit.optimizer.html#module-dramkit.optimizer.woa">dramkit.optimizer.woa</a>
 </li>
         <li><a href="dramkit.other.html#module-dramkit.other.othertools">dramkit.other.othertools</a>
 </li>
@@ -910,6 +1259,10 @@
 </li>
       <li><a href="dramkit.plottools.html#dramkit.plottools.plot_candle.plot_candle">plot_candle() (in module dramkit.plottools.plot_candle)</a>
 </li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.plot_gain_act">plot_gain_act() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.plot_gain_prod">plot_gain_prod() (in module dramkit.fintools.utils_gains)</a>
+</li>
       <li><a href="dramkit.plottools.html#dramkit.plottools.plot_histdist.plot_histdist">plot_histdist() (in module dramkit.plottools.plot_histdist)</a>
 </li>
       <li><a href="dramkit.plottools.html#dramkit.plottools.plot_common.plot_maxmins">plot_maxmins() (in module dramkit.plottools.plot_common)</a>
@@ -927,6 +1280,10 @@
       <li><a href="dramkit.html#dramkit.gentools.power">power() (in module dramkit.gentools)</a>
 </li>
       <li><a href="dramkit.html#dramkit.gentools.print_used_time">print_used_time() (in module dramkit.gentools)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.prod">prod() (in module dramkit.optimizer.base_funcs)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.pso.pso">pso() (in module dramkit.optimizer.pso)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -954,6 +1311,8 @@
 </li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.r2adj_by_r2">r2adj_by_r2() (in module dramkit.datsci.stats)</a>
 </li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.utils_heuristic.rand_init">rand_init() (in module dramkit.optimizer.utils_heuristic)</a>
+</li>
       <li><a href="dramkit.html#dramkit.gentools.rand_sum">rand_sum() (in module dramkit.gentools)</a>
 </li>
       <li><a href="dramkit.html#dramkit.gentools.rand_weight_sum">rand_weight_sum() (in module dramkit.gentools)</a>
@@ -961,6 +1320,8 @@
       <li><a href="dramkit.sorts.html#dramkit.sorts.insert_sort.rank_of_insert">rank_of_insert() (in module dramkit.sorts.insert_sort)</a>
 </li>
       <li><a href="dramkit.sorts.html#dramkit.sorts.insert_sort_bin.rank_of_insert_bin">rank_of_insert_bin() (in module dramkit.sorts.insert_sort_bin)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs.rastrigin">rastrigin() (dramkit.optimizer.base_funcs.TestFuncs static method)</a>
 </li>
       <li><a href="dramkit.html#dramkit.iotools.read_lines">read_lines() (in module dramkit.iotools)</a>
 </li>
@@ -986,9 +1347,13 @@
 </li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.rmse">rmse() (in module dramkit.datsci.stats)</a>
 </li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.ROC">ROC() (in module dramkit.fintools.fintools)</a>
+</li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.rolling_pct_loc">rolling_pct_loc() (in module dramkit.datsci.stats)</a>
 </li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.rolling_scale">rolling_scale() (in module dramkit.datsci.stats)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs.rosenbrock">rosenbrock() (dramkit.optimizer.base_funcs.TestFuncs static method)</a>
 </li>
       <li><a href="dramkit.html#dramkit.gentools.roulette_base">roulette_base() (in module dramkit.gentools)</a>
 </li>
@@ -1008,17 +1373,47 @@
 </li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.preprocess.scale_skl_inverse">scale_skl_inverse() (in module dramkit.datsci.preprocess)</a>
 </li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs.schwefel">schwefel() (dramkit.optimizer.base_funcs.TestFuncs static method)</a>
+</li>
+      <li><a href="dramkit.datsci.html#dramkit.datsci.ahp.score2JM">score2JM() (in module dramkit.datsci.ahp)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.utils_heuristic.FuncOpterInfo.set_best_val">set_best_val() (dramkit.optimizer.utils_heuristic.FuncOpterInfo method)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.utils_heuristic.FuncOpterInfo.set_best_x">set_best_x() (dramkit.optimizer.utils_heuristic.FuncOpterInfo method)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.utils_heuristic.FuncOpterInfo.set_convergence_curve">set_convergence_curve() (dramkit.optimizer.utils_heuristic.FuncOpterInfo method)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.utils_heuristic.FuncOpterInfo.set_convergence_curve_mean">set_convergence_curve_mean() (dramkit.optimizer.utils_heuristic.FuncOpterInfo method)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.utils_heuristic.FuncOpterInfo.set_end_time">set_end_time() (dramkit.optimizer.utils_heuristic.FuncOpterInfo method)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.utils_heuristic.FuncOpterInfo.set_exe_time">set_exe_time() (dramkit.optimizer.utils_heuristic.FuncOpterInfo method)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.utils_heuristic.FuncOpterInfo.set_start_time">set_start_time() (dramkit.optimizer.utils_heuristic.FuncOpterInfo method)</a>
+</li>
       <li><a href="dramkit.pystyles.html#dramkit.pystyles.dramkit_style.DramkitClassStyle.show">show() (dramkit.pystyles.dramkit_style.DramkitClassStyle method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dramkit.pystyles.html#dramkit.pystyles.dramkit_style.DramkitClassStyle.show2">show2() (dramkit.pystyles.dramkit_style.DramkitClassStyle method)</a>
 </li>
       <li><a href="dramkit.pystyles.html#dramkit.pystyles.dramkit_style.DramkitClassStyle.show3">show3() (dramkit.pystyles.dramkit_style.DramkitClassStyle static method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.utils_gains.signal_merge">signal_merge() (in module dramkit.fintools.utils_gains)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.sim_MC">sim_MC() (in module dramkit.fintools.fintools)</a>
+</li>
+      <li><a href="dramkit.datsci.html#dramkit.datsci.ahp_sim_ri.sim_ri">sim_ri() (in module dramkit.datsci.ahp_sim_ri)</a>
+</li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.smape">smape() (in module dramkit.datsci.stats)</a>
 </li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.utils_heuristic.sort_population">sort_population() (in module dramkit.optimizer.utils_heuristic)</a>
+</li>
       <li><a href="dramkit.webtools.html#dramkit.webtools.utils_html.soup_to_html">soup_to_html() (in module dramkit.webtools.utils_html)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs.sphere">sphere() (dramkit.optimizer.base_funcs.TestFuncs static method)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.utils_heuristic.FuncOpterInfo.start_time">start_time (dramkit.optimizer.utils_heuristic.FuncOpterInfo property)</a>
 </li>
       <li><a href="dramkit.html#dramkit.datetimetools.str2datetime">str2datetime() (in module dramkit.datetimetools)</a>
 </li>
@@ -1032,7 +1427,17 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.talib_ADX">talib_ADX() (in module dramkit.fintools.fintools)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.talib_ATR">talib_ATR() (in module dramkit.fintools.fintools)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.talib_ROC">talib_ROC() (in module dramkit.fintools.fintools)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.talib_RSI">talib_RSI() (in module dramkit.fintools.fintools)</a>
+</li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.tcdf">tcdf() (in module dramkit.datsci.stats)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.base_funcs.TestFuncs">TestFuncs (class in dramkit.optimizer.base_funcs)</a>
 </li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.tfit">tfit() (in module dramkit.datsci.stats)</a>
 </li>
@@ -1040,14 +1445,14 @@
 </li>
       <li><a href="dramkit.html#dramkit.datetimetools.today_date">today_date() (in module dramkit.datetimetools)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dramkit.html#dramkit.datetimetools.today_month">today_month() (in module dramkit.datetimetools)</a>
 </li>
       <li><a href="dramkit.html#dramkit.datetimetools.today_quarter">today_quarter() (in module dramkit.datetimetools)</a>
 </li>
       <li><a href="dramkit.find_addends.html#dramkit.find_addends.find_addends_utils.tol2side_x_eq_y">tol2side_x_eq_y() (in module dramkit.find_addends.find_addends_utils)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dramkit.find_addends.html#dramkit.find_addends.find_addends_utils.tol_eq">tol_eq() (in module dramkit.find_addends.find_addends_utils)</a>
 </li>
       <li><a href="dramkit.find_addends.html#dramkit.find_addends.find_addends_utils.tol_x_big_eq_y">tol_x_big_eq_y() (in module dramkit.find_addends.find_addends_utils)</a>
@@ -1082,6 +1487,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.var_hom_test">var_hom_test() (in module dramkit.datsci.stats)</a>
 </li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.VRI">VRI() (in module dramkit.fintools.fintools)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -1094,13 +1501,19 @@
 </li>
       <li><a href="dramkit.datsci.html#dramkit.datsci.stats.weibullpdf">weibullpdf() (in module dramkit.datsci.stats)</a>
 </li>
+      <li><a href="dramkit.datsci.html#dramkit.datsci.stats.weibulltest">weibulltest() (in module dramkit.datsci.stats)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="dramkit.datsci.html#dramkit.datsci.stats.weibulltest">weibulltest() (in module dramkit.datsci.stats)</a>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.weight_MA_linear_decay">weight_MA_linear_decay() (in module dramkit.fintools.fintools)</a>
+</li>
+      <li><a href="dramkit.optimizer.html#dramkit.optimizer.woa.woa">woa() (in module dramkit.optimizer.woa)</a>
 </li>
       <li><a href="dramkit.html#dramkit.iotools.write_json">write_json() (in module dramkit.iotools)</a>
 </li>
       <li><a href="dramkit.html#dramkit.iotools.write_txt">write_txt() (in module dramkit.iotools)</a>
+</li>
+      <li><a href="dramkit.fintools.html#dramkit.fintools.fintools.wuxianpu">wuxianpu() (in module dramkit.fintools.fintools)</a>
 </li>
   </ul></td>
 </tr></table>

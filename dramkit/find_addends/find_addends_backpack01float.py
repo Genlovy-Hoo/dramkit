@@ -28,8 +28,8 @@ def find_addends_backpack01float(tgt_sum, alts):
         
     References
     ----------
-    https://blog.csdn.net/mandagod/article/details/79588753
-    https://my.oschina.net/u/3242615/blog/1940533/
+    - https://blog.csdn.net/mandagod/article/details/79588753
+    - https://my.oschina.net/u/3242615/blog/1940533/
     '''
 
     n = len(alts)

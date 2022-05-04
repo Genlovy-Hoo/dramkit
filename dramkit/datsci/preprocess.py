@@ -260,7 +260,7 @@ def get_pca(df, dfs_trans=None, **kwargs_pca):
     return df_pca, tuple(dfs_transed)
 
 
-def scale_skl(df_fit, cols=None, dfs_trans=None, scale_type='std', **kwargs):
+def scale_skl(df_fit, dfs_trans=None, cols=None, scale_type='std', **kwargs):
     '''
     用sklearn进行数据标准化处理
 
@@ -268,10 +268,10 @@ def scale_skl(df_fit, cols=None, dfs_trans=None, scale_type='std', **kwargs):
     ----------
     df_fit : pandas.DataFrame
         训练数据，用于计算标准化中间变量
-    cols : None, pandas.DataFrame, list
-        指定需要标准化的列，默认对所有列进行标准化
     dfs_trans : None, pandas.DataFrame, list
         需要以df_fit为基准进行标准化的df或df列表
+    cols : None, list
+        指定需要标准化的列，默认对所有列进行标准化
     scale_type : str
         | 指定标准化类型:
         | ``std`` 或 ``z-score`` 使用 ``sklearn.preprocessing.StandardScaler``

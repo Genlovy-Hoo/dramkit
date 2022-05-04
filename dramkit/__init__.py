@@ -13,5 +13,5 @@ from .iotools import pickle_file, unpickle_file
 
 from .plottools import plot_series
 
-from .logtools.utils_logger import logger_show
+from .logtools.utils_logger import logger_show, close_log_file
 from .logtools.logger_general import get_logger as simple_logger

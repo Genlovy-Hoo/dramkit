@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>datsci &mdash; DramKit 0.0.8 documentation</title>
+  <title>datsci &mdash; DramKit 0.0.9 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -42,6 +42,22 @@
 <li class="toctree-l1"><a class="reference internal" href="dramkit.html">dramkit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.backpacks.html">backpacks</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">datsci</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.ahp">ahp</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#score2jm">score2JM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check-jm">check_JM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-weights">cal_weights</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-weights-sim">cal_weights_sim</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-weights-mats">cal_weights_mats</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.ahp_sim_ri">ahp_sim_ri</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cal-ci">cal_CI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-ci-sim">cal_CI_sim</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gen-random-mat">gen_random_mat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sim-ri">sim_ri</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-ris">get_RIs</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.preprocess">preprocess</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#externalstd">ExternalStd</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#norm-std">norm_std</a></li>
@@ -140,7 +156,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.find_addends.html">find_addends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.fintools.html">fintools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.logtools.html">logtools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.optimizer.html">optimizer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.other.html">other</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.plottools.html">plottools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.pystyles.html">pystyles</a></li>
@@ -176,6 +194,168 @@
              
   <section id="datsci">
 <h1>datsci<a class="headerlink" href="#datsci" title="Permalink to this headline"></a></h1>
+<section id="module-dramkit.datsci.ahp">
+<span id="ahp"></span><h2>ahp<a class="headerlink" href="#module-dramkit.datsci.ahp" title="Permalink to this headline"></a></h2>
+<section id="score2jm">
+<h3>score2JM<a class="headerlink" href="#score2jm" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.ahp.score2JM">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.ahp.</span></span><span class="sig-name descname"><span class="pre">score2JM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_score</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_important_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">judge_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'big_score'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.ahp.score2JM" title="Permalink to this definition"></a></dt>
+<dd><p>将指标重要性评分转化为判断矩阵</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df_score</strong> (<em>pd.DataFrame</em>) – 每列一个指标，每行为一个专家对不同指标的重要性打分，
+打分要求均为正值，越大表示越重要</p></li>
+<li><p><strong>max_important_level</strong> (<em>int</em>) – 构造判断矩阵时指标两两比较最大等级差，默认9
+（两两比较重要性等级范围为1/9-9）</p></li>
+<li><p><strong>judge_type</strong> (<em>str</em>) – <ul>
+<li><p>‘big’表示两指标评分比较时，大于就记1分</p></li>
+<li><p>’big_score’表示记分数差值</p></li>
+<li><p>’score’表示直接用各自得分之和表示重要程度</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>judge_mat</strong> – 返回判断矩阵</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="check-jm">
+<h3>check_JM<a class="headerlink" href="#check-jm" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.ahp.check_JM">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.ahp.</span></span><span class="sig-name descname"><span class="pre">check_JM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">judge_mat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.ahp.check_JM" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">检查判断矩阵是否符合条件：对称位置乘积是否为1</div>
+<div class="line">tol为乘积与1比较时的误差范围控制</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cal-weights">
+<h3>cal_weights<a class="headerlink" href="#cal-weights" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.ahp.cal_weights">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.ahp.</span></span><span class="sig-name descname"><span class="pre">cal_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">judge_mat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RI_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_JM_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.ahp.cal_weights" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">精确方法根据判断矩阵计算权重并进行一致性检验</div>
+<div class="line">判断矩阵judge_mat应为np.array或pd.DataFrame</div>
+<div class="line">RI_dict为随机一致性指标参考值，dict或None</div>
+<div class="line">check_JM_tol为 <a class="reference internal" href="#dramkit.datsci.ahp.check_JM" title="dramkit.datsci.ahp.check_JM"><code class="xref py py-func docutils literal notranslate"><span class="pre">check_JM()</span></code></a> 的 <code class="docutils literal notranslate"><span class="pre">tol</span></code> 参数</div>
+<div class="line">返回权重向量w以及是否通过一致性检验（True or False）和(CR, CI, lmdmax,RI)等检验信息</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cal-weights-sim">
+<h3>cal_weights_sim<a class="headerlink" href="#cal-weights-sim" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.ahp.cal_weights_sim">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.ahp.</span></span><span class="sig-name descname"><span class="pre">cal_weights_sim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">judge_mat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RI_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_JM_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.ahp.cal_weights_sim" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">近似方法根据判断矩阵计算权重并进行一致性检验</div>
+<div class="line">判断矩阵judge_mat应为np.array或pd.DataFrame</div>
+<div class="line">RI_dict为随机一致性指标参考值，dict或None</div>
+<div class="line">check_JM_tol为 <a class="reference internal" href="#dramkit.datsci.ahp.check_JM" title="dramkit.datsci.ahp.check_JM"><code class="xref py py-func docutils literal notranslate"><span class="pre">check_JM()</span></code></a> 的 <code class="docutils literal notranslate"><span class="pre">tol</span></code> 参数</div>
+<div class="line">返回权重向量w以及是否通过一致性检验（True or False）和(CR, CI, lmdmax,RI)等检验信息</div>
+<div class="line">参考:</div>
+<div class="line">- 层次分析：层次分析法在确定绩效指标权重中的应用.pdf</div>
+<div class="line">- <a class="reference external" href="https://zhuanlan.zhihu.com/p/37738503">https://zhuanlan.zhihu.com/p/37738503</a></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cal-weights-mats">
+<h3>cal_weights_mats<a class="headerlink" href="#cal-weights-mats" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.ahp.cal_weights_mats">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.ahp.</span></span><span class="sig-name descname"><span class="pre">cal_weights_mats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">judge_mats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RI_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_bad_JM</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_JM_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.ahp.cal_weights_mats" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">多个专家（多个判断矩阵）情况下AHP方法计算权重并进行一致性检验</div>
+<div class="line">judge_mats为判断矩阵列表，每个矩阵应为np.array或pd.DataFrame</div>
+<div class="line">RI_dict为随机一致性指标参考值，dict或None</div>
+<div class="line">w_func指定单个判断矩阵时AHP计算权重的函数，其应接收参数judge_mat、RI_dict、check_JM_tol和logger</div>
+<div class="line">w_func若不指定，则默认为 <a class="reference internal" href="#dramkit.datsci.ahp.cal_weights" title="dramkit.datsci.ahp.cal_weights"><code class="xref py py-func docutils literal notranslate"><span class="pre">cal_weights()</span></code></a></div>
+<div class="line">返回权重向量w以及是否通过一致性检验（True or False）、(CR, CI, lmdmax,RI)等检验信息</div>
+<div class="line">以及综合判断矩阵和专家判断力权值列表和一致性指标列表</div>
+<div class="line">参考：</div>
+<div class="line">- 多专家评价的AHP方法及其工程应用:</div>
+<div class="line"><a class="reference external" href="https://www.doc88.com/p-9913949483932.html">https://www.doc88.com/p-9913949483932.html</a></div>
+<div class="line">- 层次分析法中判断矩阵的群组综合构造方法:</div>
+<div class="line"><a class="reference external" href="https://www.ixueshu.com/document/1b154ecb637fc9ea05675f42f11aa1a6318947a18e7f9386.html">https://www.ixueshu.com/document/1b154ecb637fc9ea05675f42f11aa1a6318947a18e7f9386.html</a></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.datsci.ahp_sim_ri">
+<span id="ahp-sim-ri"></span><h2>ahp_sim_ri<a class="headerlink" href="#module-dramkit.datsci.ahp_sim_ri" title="Permalink to this headline"></a></h2>
+<section id="cal-ci">
+<h3>cal_CI<a class="headerlink" href="#cal-ci" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.ahp_sim_ri.cal_CI">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.ahp_sim_ri.</span></span><span class="sig-name descname"><span class="pre">cal_CI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">judge_mat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.ahp_sim_ri.cal_CI" title="Permalink to this definition"></a></dt>
+<dd><p>计算判断矩阵judge_mat的CI值，精确方法</p>
+</dd></dl>
+
+</section>
+<section id="cal-ci-sim">
+<h3>cal_CI_sim<a class="headerlink" href="#cal-ci-sim" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.ahp_sim_ri.cal_CI_sim">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.ahp_sim_ri.</span></span><span class="sig-name descname"><span class="pre">cal_CI_sim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">judge_mat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.ahp_sim_ri.cal_CI_sim" title="Permalink to this definition"></a></dt>
+<dd><p>计算判断矩阵judge_mat的CI值，近似方法</p>
+</dd></dl>
+
+</section>
+<section id="gen-random-mat">
+<h3>gen_random_mat<a class="headerlink" href="#gen-random-mat" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.ahp_sim_ri.gen_random_mat">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.ahp_sim_ri.</span></span><span class="sig-name descname"><span class="pre">gen_random_mat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_indicator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choices</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.ahp_sim_ri.gen_random_mat" title="Permalink to this definition"></a></dt>
+<dd><p>产生num_indicator阶随机对称矩阵（即判断矩阵），随机值从choices中选择</p>
+</dd></dl>
+
+</section>
+<section id="sim-ri">
+<h3>sim_ri<a class="headerlink" href="#sim-ri" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.ahp_sim_ri.sim_ri">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.ahp_sim_ri.</span></span><span class="sig-name descname"><span class="pre">sim_ri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_indicator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_important_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_sim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.ahp_sim_ri.sim_ri" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">模拟RI值</div>
+<div class="line">num_indicator为指标个数，即判断矩阵阶数</div>
+<div class="line">max_important_level为构造判断矩阵时指标两两比较最大等级差，默认9</div>
+<div class="line">（两两比较重要性等级范围为1/9-9）</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-ris">
+<h3>get_RIs<a class="headerlink" href="#get-ris" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.ahp_sim_ri.get_RIs">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.ahp_sim_ri.</span></span><span class="sig-name descname"><span class="pre">get_RIs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_num_indicator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_sim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.ahp_sim_ri.get_RIs" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">AHP中随机一致性指标RI的模拟</div>
+<div class="line">max_num_indicator设置模拟的最大指标数量</div>
+<div class="line">num_sim设置随机模拟次数</div>
+<div class="line">参考：</div>
+<div class="line">- <a class="reference external" href="https://zhidao.baidu.com/question/13745867.html">https://zhidao.baidu.com/question/13745867.html</a></div>
+<div class="line">- 层次分析：层次分析法在确定绩效指标权重中的应用.pdf</div>
+<div class="line">- <a class="reference external" href="https://zhuanlan.zhihu.com/p/37738503">https://zhuanlan.zhihu.com/p/37738503</a></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
 <section id="module-dramkit.datsci.preprocess">
 <span id="preprocess"></span><h2>preprocess<a class="headerlink" href="#module-dramkit.datsci.preprocess" title="Permalink to this headline"></a></h2>
 <section id="externalstd">
@@ -369,14 +549,14 @@
 <h3>scale_skl<a class="headerlink" href="#scale-skl" title="Permalink to this headline"></a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="dramkit.datsci.preprocess.scale_skl">
-<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.preprocess.</span></span><span class="sig-name descname"><span class="pre">scale_skl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_fit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfs_trans</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'std'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.preprocess.scale_skl" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.preprocess.</span></span><span class="sig-name descname"><span class="pre">scale_skl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_fit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dfs_trans</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'std'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.preprocess.scale_skl" title="Permalink to this definition"></a></dt>
 <dd><p>用sklearn进行数据标准化处理</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>df_fit</strong> (<em>pandas.DataFrame</em>) – 训练数据，用于计算标准化中间变量</p></li>
-<li><p><strong>cols</strong> (<em>None</em><em>, </em><em>pandas.DataFrame</em><em>, </em><em>list</em>) – 指定需要标准化的列，默认对所有列进行标准化</p></li>
 <li><p><strong>dfs_trans</strong> (<em>None</em><em>, </em><em>pandas.DataFrame</em><em>, </em><em>list</em>) – 需要以df_fit为基准进行标准化的df或df列表</p></li>
+<li><p><strong>cols</strong> (<em>None</em><em>, </em><em>list</em>) – 指定需要标准化的列，默认对所有列进行标准化</p></li>
 <li><p><strong>scale_type</strong> (<em>str</em>) – <div class="line-block">
 <div class="line">指定标准化类型:</div>
 <div class="line"><code class="docutils literal notranslate"><span class="pre">std</span></code> 或 <code class="docutils literal notranslate"><span class="pre">z-score</span></code> 使用 <code class="docutils literal notranslate"><span class="pre">sklearn.preprocessing.StandardScaler</span></code></div>

@@ -1,6 +1,70 @@
 datsci
 =======
 
+ahp
+----
+
+.. automodule:: dramkit.datsci.ahp
+
+.. currentmodule:: dramkit.datsci.ahp
+
+score2JM
+^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.ahp.score2JM
+
+check_JM
+^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.ahp.check_JM
+
+cal_weights
+^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.ahp.cal_weights
+
+cal_weights_sim
+^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.ahp.cal_weights_sim
+
+cal_weights_mats
+^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.ahp.cal_weights_mats
+
+ahp_sim_ri
+-----------
+
+.. automodule:: dramkit.datsci.ahp_sim_ri
+
+.. currentmodule:: dramkit.datsci.ahp_sim_ri
+
+cal_CI
+^^^^^^^
+
+.. autofunction:: dramkit.datsci.ahp_sim_ri.cal_CI
+
+cal_CI_sim
+^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.ahp_sim_ri.cal_CI_sim
+
+gen_random_mat
+^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.ahp_sim_ri.gen_random_mat
+
+sim_ri
+^^^^^^^
+
+.. autofunction:: dramkit.datsci.ahp_sim_ri.sim_ri
+
+get_RIs
+^^^^^^^^
+
+.. autofunction:: dramkit.datsci.ahp_sim_ri.get_RIs
+
 preprocess
 -----------
 

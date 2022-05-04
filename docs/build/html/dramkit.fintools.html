@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fintools &mdash; DramKit 0.0.9 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="logtools" href="dramkit.logtools.html" />
+    <link rel="prev" title="find_addends" href="dramkit.find_addends.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> DramKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dramkit.html">dramkit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.backpacks.html">backpacks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.datsci.html">datsci</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.find_addends.html">find_addends</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">fintools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">fintools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cal-ic">cal_IC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kelly-formula">kelly_formula</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sim-mc">sim_MC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wuxianpu">wuxianpu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mas-order">MAs_order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macd">MACD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#boll">Boll</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bbi">BBI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cci">CCI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#expma">EXPMA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#weight-ma-linear-decay">weight_MA_linear_decay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kama">KAMA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#er">ER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ma-trend-strength">ma_trend_strength</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kdj">KDJ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#talib-rsi">talib_RSI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#atr">ATR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#talib-atr">talib_ATR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adx">ADX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#talib-adx">talib_ADX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#talib-roc">talib_ROC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#roc">ROC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vri">VRI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bbw">BBW</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mean-candle">mean_candle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#demark-td">DeMark_TD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#acpmp">ACPMP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-turn-point">get_turn_point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cross">cross</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cross-plot">cross_plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cross2">cross2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cross2-plot">cross2_plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cross-cum-maxmin-dif">cross_cum_maxmin_dif</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.fintools.utils_gains">utils_gains</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#signal-merge">signal_merge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-cost-add">cal_cost_add</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-mean-cost">get_mean_cost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-gain-con-futures">cal_gain_con_futures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-gain-con-futures2">cal_gain_con_futures2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-gain-pct-log">cal_gain_pct_log</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-gain-pct">cal_gain_pct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-gain-pcts">cal_gain_pcts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-beta">cal_beta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-alpha-beta">cal_alpha_beta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-alpha-by-beta-and-r">cal_alpha_by_beta_and_r</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-return-period-by-gain-pct">cal_return_period_by_gain_pct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-ext-return-period-by-gain-pct">cal_ext_return_period_by_gain_pct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-ext-return-period">cal_ext_return_period</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-returns-period">cal_returns_period</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-returns-period-mean">cal_returns_period_mean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-volatility">cal_volatility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-sharpe">cal_sharpe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-sharpe2">cal_sharpe2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-maxdown">get_maxdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-maxdown-all">get_maxdown_all</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-maxdown-dy">get_maxdown_dy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-maxup">get_maxup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-maxdown-pd">get_maxdown_pd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-n-period-1year">cal_n_period_1year</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-netval-prod">get_netval_prod</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-netval-sum">get_netval_sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-gains-act">get_gains_act</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-fundnet">get_fundnet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-gains">get_gains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-gain-act">plot_gain_act</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-gain-prod">plot_gain_prod</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-sig-gains">cal_sig_gains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-open-gain-info">get_open_gain_info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-yield-curve">get_yield_curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-yield-curve2">get_yield_curve2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.logtools.html">logtools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.optimizer.html">optimizer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.other.html">other</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.plottools.html">plottools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.pystyles.html">pystyles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.sorts.html">sorts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.speedup.html">speedup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.sqltools.html">sqltools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dramkit.webtools.html">webtools</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DramKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>fintools</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/dramkit.fintools.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="fintools">
+<h1>fintools<a class="headerlink" href="#fintools" title="Permalink to this headline"></a></h1>
+<section id="id1">
+<h2>fintools<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<span class="target" id="module-dramkit.fintools.fintools"></span><section id="cal-ic">
+<h3>cal_IC<a class="headerlink" href="#cal-ic" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.cal_IC">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">cal_IC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_factor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_price</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'close'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ic_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rank'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.cal_IC" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">计算因子IC值</div>
+<div class="line">col_factor、col_price、col_time、col_code分别为因子列、价格列、时间列、代码列</div>
+<div class="line">lag设置期数，ic_type设置IC类型，可选`normal`和`rank`</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="kelly-formula">
+<h3>kelly_formula<a class="headerlink" href="#kelly-formula" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.kelly_formula">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">kelly_formula</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.kelly_formula" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">凯利公式：根据胜率p和盈亏比b计算最优仓位</div>
+<div class="line">参考：</div>
+<div class="line"><a class="reference external" href="https://zhuanlan.zhihu.com/p/38279377">https://zhuanlan.zhihu.com/p/38279377</a></div>
+<div class="line"><a class="reference external" href="https://xueqiu.com/6551266259/146636046">https://xueqiu.com/6551266259/146636046</a></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="sim-mc">
+<h3>sim_MC<a class="headerlink" href="#sim-mc" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.sim_MC">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">sim_MC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">his_values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sim_periods</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">240</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_sim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_v0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_mid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs_plot_mid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs_plot_final</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.sim_MC" title="Permalink to this definition"></a></dt>
+<dd><p>蒙特卡洛法模拟序列数据变化路径</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>his_values</strong> (<em>pd.Series</em><em>, </em><em>np.array</em><em>, </em><em>list</em>) – 历史序列</p></li>
+<li><p><strong>sim_periods</strong> (<em>int</em>) – 向后模拟期数</p></li>
+<li><p><strong>n_cut</strong> (<em>int</em>) – 将一期时间划分为多少个小时段</p></li>
+<li><p><strong>num_sim</strong> (<em>int</em>) – 模拟次数</p></li>
+<li><p><strong>random_seed</strong> (<em>None</em><em>, </em><em>int</em>) – 随机数种子设置</p></li>
+<li><p><strong>keep_v0</strong> (<em>bool</em>) – 模拟结果中是否保留第一个初始价格</p></li>
+<li><p><strong>return_mid</strong> (<em>bool</em>) – 是否范围模拟过程中的中间路径数据</p></li>
+<li><p><strong>kwargs_plot_mid</strong> (<em>dict</em>) – 中间路径数据绘图参数， <code class="docutils literal notranslate"><span class="pre">plot_series</span></code> 函数接收</p></li>
+<li><p><strong>kwargs_plot_final</strong> (<em>dict</em>) – 最终模拟数据绘图参数， <code class="docutils literal notranslate"><span class="pre">plot_series</span></code> 函数接收</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>df_sim</strong> (<em>pd.DataFrame</em>) – 模拟结果，shape为(sim_periods, num_sim)，即每列为一条模拟路径</p></li>
+<li><p><strong>df_sim_</strong> (<em>pd.DataFrame</em>) – 包含中间路径的模拟结果， <code class="docutils literal notranslate"><span class="pre">return_mid</span></code> 为True时返回</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p><a class="reference external" href="https://zhuanlan.zhihu.com/p/342624971">https://zhuanlan.zhihu.com/p/342624971</a></p>
+</dd></dl>
+
+</section>
+<section id="wuxianpu">
+<h3>wuxianpu<a class="headerlink" href="#wuxianpu" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.wuxianpu">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">wuxianpu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">875</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.05,</span> <span class="pre">0.32]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.wuxianpu" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">五线谱指标</div>
+<div class="line">参考：</div>
+<div class="line"><a class="reference external" href="https://caibaoshuo.com/guides/15">https://caibaoshuo.com/guides/15</a></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="mas-order">
+<h3>MAs_order<a class="headerlink" href="#mas-order" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.MAs_order">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">MAs_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[3,</span> <span class="pre">5,</span> <span class="pre">15,</span> <span class="pre">20,</span> <span class="pre">30,</span> <span class="pre">60]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.MAs_order" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">指定均线排列情况判断，lags为从小到大排列的lag列表</div>
+<div class="line">返回结果1为多头排列，-1位空头排列，0其他情况</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="macd">
+<h3>MACD<a class="headerlink" href="#macd" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.MACD">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">MACD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">26</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.MACD" title="Permalink to this definition"></a></dt>
+<dd><p>MACD计算</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>series</strong> (<em>pd.Series</em><em>, </em><em>np.array</em><em>, </em><em>list</em>) – 待计算序列</p></li>
+<li><p><strong>fast</strong> (<em>int</em>) – 短期窗口长度</p></li>
+<li><p><strong>slow</strong> (<em>int</em>) – 长期窗口长度</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – 平滑移动平均窗口长度</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>df</strong> – 包含[‘MACD’, ‘DIF’, ‘DEA’]三列</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>计算结果与同花顺PC统一版基本能对上，但是跟远航版没对上</p>
+</div>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.360doc.com/content/17/1128/12/50117541_707746936.shtml">http://www.360doc.com/content/17/1128/12/50117541_707746936.shtml</a></p></li>
+<li><p><a class="reference external" href="https://baijiahao.baidu.com/s?id=1602850251881203999&amp;wfr=spider&amp;for=pc">https://baijiahao.baidu.com/s?id=1602850251881203999&amp;wfr=spider&amp;for=pc</a></p></li>
+<li><p><a class="reference external" href="https://www.cnblogs.com/xuruilong100/p/9866338.html">https://www.cnblogs.com/xuruilong100/p/9866338.html</a></p></li>
+<li><p><a class="reference external" href="https://blog.csdn.net/u012724887/article/details/105358115">https://blog.csdn.net/u012724887/article/details/105358115</a></p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="boll">
+<h3>Boll<a class="headerlink" href="#boll" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.Boll">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">Boll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_dot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.Boll" title="Permalink to this definition"></a></dt>
+<dd><p>布林带计算</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>series</strong> (<em>pd.Series</em>) – 序列数据</p></li>
+<li><p><strong>lag</strong> (<em>int</em>) – 历史期数</p></li>
+<li><p><strong>width</strong> (<em>int</em><em>, </em><em>float</em>) – 计算布林带上下轨时用的标准差倍数（宽度）</p></li>
+<li><p><strong>n_dot</strong> (<em>int</em>) – 计算结果保留小数位数</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>df_boll</strong> – 布林带，包含原始值(即series)，布林带下轨值(boll_low列)，
+中间值(boll_mid列)，上轨值(boll_up列)，标准差(std列)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="bbi">
+<h3>BBI<a class="headerlink" href="#bbi" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.BBI">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">BBI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[3,</span> <span class="pre">6,</span> <span class="pre">12,</span> <span class="pre">24]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.BBI" title="Permalink to this definition"></a></dt>
+<dd><p>BBI计算</p>
+</dd></dl>
+
+</section>
+<section id="cci">
+<h3>CCI<a class="headerlink" href="#cci" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.CCI">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">CCI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_typeprice</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">14</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.015</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.CCI" title="Permalink to this definition"></a></dt>
+<dd><p>CCI计算</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – 历史行情数据，须包含[‘high’, ‘low’, ‘close’]列或col_typeprice列</p></li>
+<li><p><strong>col_typeprice</strong> (<em>None</em><em>, </em><em>str</em>) – 用于计算CCI的价格列，若不指定，则根据[‘high’, ‘low’, ‘close’]计算</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – 计算周期</p></li>
+<li><p><strong>r</strong> (<em>float</em>) – 计算系数</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>cci</strong> – CCI序列</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.Series</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p>同花顺PC端CCI指标公式</p></li>
+<li><p><a class="reference external" href="https://blog.csdn.net/spursping/article/details/104485136">https://blog.csdn.net/spursping/article/details/104485136</a></p></li>
+<li><p><a class="reference external" href="https://blog.csdn.net/weixin_43055882/article/details/86696954">https://blog.csdn.net/weixin_43055882/article/details/86696954</a></p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="expma">
+<h3>EXPMA<a class="headerlink" href="#expma" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.EXPMA">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">EXPMA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">26</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.EXPMA" title="Permalink to this definition"></a></dt>
+<dd><p>EXPMA计算</p>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://blog.csdn.net/zxyhhjs2017/article/details/93499930">https://blog.csdn.net/zxyhhjs2017/article/details/93499930</a></p></li>
+<li><p><a class="reference external" href="https://blog.csdn.net/ydjcs567/article/details/62249627">https://blog.csdn.net/ydjcs567/article/details/62249627</a></p></li>
+<li><p>tradingview公式</p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="weight-ma-linear-decay">
+<h3>weight_MA_linear_decay<a class="headerlink" href="#weight-ma-linear-decay" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.weight_MA_linear_decay">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">weight_MA_linear_decay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.weight_MA_linear_decay" title="Permalink to this definition"></a></dt>
+<dd><p>加权MA，权重呈线性递减</p>
+</dd></dl>
+
+</section>
+<section id="kama">
+<h3>KAMA<a class="headerlink" href="#kama" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.KAMA">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">KAMA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.KAMA" title="Permalink to this definition"></a></dt>
+<dd><p>Kaufman’s Adaptive Moving Average (KAMA)</p>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://school.stockcharts.com/doku.php?id=technical_indicators:kaufman_s_adaptive_moving_average">https://school.stockcharts.com/doku.php?id=technical_indicators:kaufman_s_adaptive_moving_average</a></p></li>
+<li><p><a class="reference external" href="https://www.technicalindicators.net/indicators-technical-analysis/152-kama-kaufman-adaptive-moving-average">https://www.technicalindicators.net/indicators-technical-analysis/152-kama-kaufman-adaptive-moving-average</a></p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="er">
+<h3>ER<a class="headerlink" href="#er" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.ER">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">ER</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sign</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.ER" title="Permalink to this definition"></a></dt>
+<dd><p>价格效率</p>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p>KAMA指标</p></li>
+<li><p>华泰联合-震荡市还是趋势市：市场状态的量化划分方法</p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="ma-trend-strength">
+<h3>ma_trend_strength<a class="headerlink" href="#ma-trend-strength" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.ma_trend_strength">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">ma_trend_strength</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag_fast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag_slow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.ma_trend_strength" title="Permalink to this definition"></a></dt>
+<dd><p>用均线度量的市场趋势强度</p>
+<p class="rubric">References</p>
+<p>华泰联合-震荡市还是趋势市：市场状态的量化划分方法</p>
+</dd></dl>
+
+</section>
+<section id="kdj">
+<h3>KDJ<a class="headerlink" href="#kdj" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.KDJ">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">KDJ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_his</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_k_</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_d_</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.KDJ" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">KDJ计算，data(pd.DataFrame)中必须包含[‘close’, ‘high’, ‘low’]三列</div>
+<div class="line">返回结果中包含=[‘K’, ‘D’, ‘J’, ‘RSV’]四列</div>
+<div class="line">注：计算结果跟同花顺能对上</div>
+<div class="line">参考：</div>
+<div class="line">tradingview公式</div>
+<div class="line"><a class="reference external" href="https://blog.csdn.net/qq337484627/article/details/110727392">https://blog.csdn.net/qq337484627/article/details/110727392</a></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="talib-rsi">
+<h3>talib_RSI<a class="headerlink" href="#talib-rsi" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.talib_RSI">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">talib_RSI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.talib_RSI" title="Permalink to this definition"></a></dt>
+<dd><p>talib计算RSI</p>
+</dd></dl>
+
+</section>
+<section id="atr">
+<h3>ATR<a class="headerlink" href="#atr" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.ATR">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">ATR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">14</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.ATR" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">平均真实波幅ATR计算，df中必须包含[‘high’, ‘low’, ‘close’]三列</div>
+<div class="line">返回ATR, TR</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="talib-atr">
+<h3>talib_ATR<a class="headerlink" href="#talib-atr" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.talib_ATR">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">talib_ATR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">14</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.talib_ATR" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">talib计算平均真实波幅ATR</div>
+<div class="line">df中必须包含[‘high’, ‘low’, ‘close’]三列</div>
+<div class="line">注：talib的结果跟同花顺对不上</div>
+<div class="line">参考：</div>
+<div class="line"><a class="reference external" href="https://www.bilibili.com/read/cv7141776/">https://www.bilibili.com/read/cv7141776/</a></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="adx">
+<h3>ADX<a class="headerlink" href="#adx" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.ADX">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">ADX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">14</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.ADX" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">平均趋向指标ADX计算</div>
+<div class="line">df中必须包含[‘high’, ‘low’, ‘close’]三列</div>
+<div class="line">参考：</div>
+<div class="line"><a class="reference external" href="https://zhuanlan.zhihu.com/p/64827704">https://zhuanlan.zhihu.com/p/64827704</a></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="talib-adx">
+<h3>talib_ADX<a class="headerlink" href="#talib-adx" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.talib_ADX">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">talib_ADX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">14</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.talib_ADX" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">talib计算平均趋向指标ADX</div>
+<div class="line">df中必须包含[‘high’, ‘low’, ‘close’]三列</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="talib-roc">
+<h3>talib_ROC<a class="headerlink" href="#talib-roc" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.talib_ROC">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">talib_ROC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.talib_ROC" title="Permalink to this definition"></a></dt>
+<dd><p>talib计算ROC</p>
+</dd></dl>
+
+</section>
+<section id="roc">
+<h3>ROC<a class="headerlink" href="#roc" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.ROC">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">ROC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.ROC" title="Permalink to this definition"></a></dt>
+<dd><p>ROC计算</p>
+</dd></dl>
+
+</section>
+<section id="vri">
+<h3>VRI<a class="headerlink" href="#vri" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.VRI">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">VRI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.VRI" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">VRI计算</div>
+<div class="line">参考：</div>
+<div class="line"><a class="reference external" href="https://finquanthub.com">https://finquanthub.com</a>/量化策略：基于波动率范围指标的反向交易策略/</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="bbw">
+<h3>BBW<a class="headerlink" href="#bbw" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.BBW">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">BBW</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sign</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.BBW" title="Permalink to this definition"></a></dt>
+<dd><p>BBW计算</p>
+</dd></dl>
+
+</section>
+<section id="mean-candle">
+<h3>mean_candle<a class="headerlink" href="#mean-candle" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.mean_candle">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">mean_candle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.mean_candle" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">平均K线计算</div>
+<div class="line">data(pd.DataFrame)中必须包含[‘open’, ‘close’, ‘high’, ‘low’]列</div>
+<div class="line">参考：</div>
+<div class="line"><a class="reference external" href="https://cn.tradingview.com/script/YfPnKE22-Heikin-Ashi-MACD/">https://cn.tradingview.com/script/YfPnKE22-Heikin-Ashi-MACD/</a></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="demark-td">
+<h3>DeMark_TD<a class="headerlink" href="#demark-td" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.DeMark_TD">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">DeMark_TD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.DeMark_TD" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">迪马克TD序列：连续n次出现收盘价高/低于前面第lag个收盘价就发信号</div>
+<div class="line">默认九转序列</div>
+<div class="line">返回label序列，label取1表示高点信号，-1表示低点信号</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="acpmp">
+<h3>ACPMP<a class="headerlink" href="#acpmp" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.ACPMP">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">ACPMP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periods</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">range(2,</span> <span class="pre">60)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sum'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pct'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag_roll</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.ACPMP" title="Permalink to this definition"></a></dt>
+<dd><p>多周期平均累计百分比(Average Cumulative Percentage of Multi-Period)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> (<em>pd.Series</em><em>, </em><em>np.array</em><em>, </em><em>list</em>) – 待计算序列数据</p></li>
+<li><p><strong>periods</strong> (<em>list</em>) – 指定多个周期列表</p></li>
+<li><p><strong>mode</strong> (<em>str</em>) – <div class="line-block">
+<div class="line">设置动量累计模式：</div>
+<div class="line">- 为`sum`时累计涨跌幅为周期内一期涨跌幅的累计求和</div>
+<div class="line">- 为`dirt`时累计涨跌幅为周期内最后一期相较于第一期的涨跌幅</div>
+</div>
+</p></li>
+<li><p><strong>std_type</strong> (<em>str</em>) – <div class="line-block">
+<div class="line">设置滚动标准化方式：</div>
+<div class="line">- 若为`01`，则用maxmin方法转化到0-1之间</div>
+<div class="line">- 若为`pct`，则转化为百分位</div>
+</div>
+</p></li>
+<li><p><strong>lag_roll</strong> (<em>None</em><em>, </em><em>int</em>) – 设置为整数时，标准化时采用滚动方式而不是累计方式</p></li>
+<li><p><strong>std_order</strong> (<em>bool</em><em>, </em><em>None</em><em>, </em><em>str</em>) – <div class="line-block">
+<div class="line">设置标准化顺序：</div>
+<div class="line">- 若为`first`，则先对每个周期进行标准化后再求平均</div>
+<div class="line">- 若为`last`，则先求平均之后再进行标准化</div>
+<div class="line">- 若为None或False，则不标准化</div>
+</div>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>acpmp</strong> – ACPMP计算结果序列</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.Series</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="get-turn-point">
+<h3>get_turn_point<a class="headerlink" href="#get-turn-point" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.get_turn_point">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">get_turn_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.get_turn_point" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">拐点标注</div>
+<div class="line">返回结果中1位从上往下拐，-1位从下往上拐</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cross">
+<h3>cross<a class="headerlink" href="#cross" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.cross">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">cross</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">series_base</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.cross" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">生成交叉信号（series上穿或下穿series_base）</div>
+<div class="line">返回信号中-1为上穿信号，1为下穿信号</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cross-plot">
+<h3>cross_plot<a class="headerlink" href="#cross-plot" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.cross_plot">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">cross_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_base</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_price</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'close'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_down</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_same_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs_plot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.cross_plot" title="Permalink to this definition"></a></dt>
+<dd><p>在 <a class="reference internal" href="#dramkit.fintools.fintools.cross" title="dramkit.fintools.fintools.cross"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.fintools.fintools.cross()</span></code></a> 基础上增加画图</p>
+</dd></dl>
+
+</section>
+<section id="cross2">
+<h3>cross2<a class="headerlink" href="#cross2" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.cross2">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">cross2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series_buy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_buy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">series_sel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_sel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buy_sig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sel_sig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.cross2" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">生成由两个交叉信号最终合成的买卖信号</div>
+<div class="line">series_buy和base_buy交叉生成买入信号:</div>
+<div class="line-block">
+<div class="line">- 当buy_sig=-1时以series_buy上穿base_buy为买入信号</div>
+<div class="line">- 当buy_sig=1时以series_buy下穿base_buy为买入信号</div>
+</div>
+<div class="line">series_sel和base_sel交叉生成卖出信号:</div>
+<div class="line-block">
+<div class="line">- 当buy_sel=-1时以series_sel上穿base_sel为卖出信号</div>
+<div class="line">- 当buy_sel=1时以series_sel下穿base_sel为卖出信号</div>
+</div>
+<div class="line">返回值中-1为买，1为卖，没信号</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cross2-plot">
+<h3>cross2_plot<a class="headerlink" href="#cross2-plot" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.cross2_plot">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">cross2_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_buy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_buy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_sel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_sel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buy_sig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sel_sig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_price</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'close'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs_plot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.cross2_plot" title="Permalink to this definition"></a></dt>
+<dd><p>在 <a class="reference internal" href="#dramkit.fintools.fintools.cross2" title="dramkit.fintools.fintools.cross2"><code class="xref py py-func docutils literal notranslate"><span class="pre">cross2()</span></code></a> 函数的信号基础上增加绘图</p>
+</dd></dl>
+
+</section>
+<section id="cross-cum-maxmin-dif">
+<h3>cross_cum_maxmin_dif<a class="headerlink" href="#cross-cum-maxmin-dif" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.fintools.cross_cum_maxmin_dif">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">cross_cum_maxmin_dif</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rlag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thr_rmax2now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thr_rmin2now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_price</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'close'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buy_sig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sel_sig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.cross_cum_maxmin_dif" title="Permalink to this definition"></a></dt>
+<dd><p>依据指标值与滚动最大最小值的差值绝对大小来生成信号</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.fintools.utils_gains">
+<span id="utils-gains"></span><h2>utils_gains<a class="headerlink" href="#module-dramkit.fintools.utils_gains" title="Permalink to this headline"></a></h2>
+<section id="signal-merge">
+<h3>signal_merge<a class="headerlink" href="#signal-merge" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.signal_merge">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">signal_merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig1_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig2_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">merge_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.signal_merge" title="Permalink to this definition"></a></dt>
+<dd><p>两个信号合并成一个信号</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pandas.DataFrame</em>) – 待处理数据，必须包含 <code class="docutils literal notranslate"><span class="pre">sig1_col</span></code> 和 <code class="docutils literal notranslate"><span class="pre">sig2_col</span></code> 指定的列</p></li>
+<li><p><strong>sig1_col</strong> (<em>str</em>) – 指定信号列，值为-1表示买（做多），1表示卖（做空）</p></li>
+<li><p><strong>sig2_col</strong> (<em>str</em>) – 指定信号列，值为-1表示买（做多），1表示卖（做空）</p></li>
+<li><p><strong>merge_type</strong> (<em>int</em>) – <p>设置信号合并方式:</p>
+<ul>
+<li><p>1: 两个信号出现任何一个都算有效信号</p></li>
+<li><p>2: 根据两个信号的持仓量叠加计算交易信号（返回信号不适用反向开仓）</p></li>
+<li><p>3: 只有两个信号方向相同时才算交易信号（返回信号不适用反向开仓）</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>pd.Series</cite> - 合并之后的信号</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="cal-cost-add">
+<h3>cal_cost_add<a class="headerlink" href="#cal-cost-add" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.cal_cost_add">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">cal_cost_add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hold_vol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hold_cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_vol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_price</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.cal_cost_add" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">计算加仓之后的平均持仓成本</div>
+<div class="line">hold_vol为加仓前持仓量，hold_cost为加仓前平均持仓成本，add_vol为加仓量</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-mean-cost">
+<h3>get_mean_cost<a class="headerlink" href="#get-mean-cost" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.get_mean_cost">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">get_mean_cost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trade_records</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirt_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vol_col</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.get_mean_cost" title="Permalink to this definition"></a></dt>
+<dd><p>根据交易记录计算每期持仓成本</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trade_records</strong> (<em>pd.DataFrame</em>) – 交易记录数据，必须包含 <code class="docutils literal notranslate"><span class="pre">dirt_col</span></code> 、 <code class="docutils literal notranslate"><span class="pre">price_col</span></code> 和 <cite>vol_col</cite> 指定的列</p></li>
+<li><p><strong>dirt_col</strong> (<em>str</em>) – 买卖方向列，1为买入（做多），-1为卖出（做空）</p></li>
+<li><p><strong>price_col</strong> (<em>str</em>) – 成交价格列</p></li>
+<li><p><strong>vol_col</strong> (<em>str</em>) – 为成交量列</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>pd.DataFrame</cite> - 在trade_records上增加了’holdVol’, ‘holdCost’, ‘meanCost’三列</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="cal-gain-con-futures">
+<h3>cal_gain_con_futures<a class="headerlink" href="#cal-gain-con-futures" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.cal_gain_con_futures">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">cal_gain_con_futures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_open</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fee</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lever</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_future2target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.cal_gain_con_futures" title="Permalink to this definition"></a></dt>
+<dd><p>永续合约收益计算，如火币BTC合约</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>price_open</strong> (<em>float</em>) – 开仓价格</p></li>
+<li><p><strong>price_now</strong> (<em>float</em>) – 现价</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – 数量（张）</p></li>
+<li><p><strong>player</strong> (<em>str</em>) – 做空或做多</p></li>
+<li><p><strong>fee</strong> (<em>float</em>) – 手续费比例</p></li>
+<li><p><strong>lever</strong> (<em>int</em>) – 杠杆</p></li>
+<li><p><strong>n_future2target</strong> (<em>float</em>) – 一份合约对应的标的数量</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>gain_lever</strong> (<em>float</em>) – 盈亏金额</p></li>
+<li><p><strong>gain_pct</strong> (<em>float</em>) – 盈亏比例</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="cal-gain-con-futures2">
+<h3>cal_gain_con_futures2<a class="headerlink" href="#cal-gain-con-futures2" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.cal_gain_con_futures2">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">cal_gain_con_futures2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_open</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fee</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lever</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.cal_gain_con_futures2" title="Permalink to this definition"></a></dt>
+<dd><p>永续合约收益计算，如币安ETH合约</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>price_open</strong> (<em>float</em>) – 开仓价格</p></li>
+<li><p><strong>price_now</strong> (<em>float</em>) – 现价</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – 数量（标的量）</p></li>
+<li><p><strong>player</strong> (<em>str</em>) – 做空或做多</p></li>
+<li><p><strong>fee</strong> (<em>float</em>) – 手续费比例</p></li>
+<li><p><strong>lever</strong> (<em>int</em>) – 杠杆</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>gain_lever</strong> (<em>float</em>) – 盈亏金额</p></li>
+<li><p><strong>gain_pct</strong> (<em>float</em>) – 盈亏比例</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="cal-gain-pct-log">
+<h3>cal_gain_pct_log<a class="headerlink" href="#cal-gain-pct-log" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.cal_gain_pct_log">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">cal_gain_pct_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_cost0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.cal_gain_pct_log" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">计算对数收益率</div>
+<div class="line">price_cost为成本</div>
+<div class="line">price为现价</div>
+<div class="line">pct_cost0为成本price_cost为0时的返回值</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cal-gain-pct">
+<h3>cal_gain_pct<a class="headerlink" href="#cal-gain-pct" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.cal_gain_pct">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">cal_gain_pct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_cost0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.cal_gain_pct" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">计算百分比收益率</div>
+<div class="line">price_cost为成本</div>
+<div class="line">price为现价</div>
+<div class="line">pct_cost0为成本price_cost为0时的返回值</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>默认以权利方成本price_cost为正（eg. 买入价为100，则price_cost=100）、
+义务方成本price_cost为负进行计算（eg. 卖出价为100，则price_cost=-100）</p>
+</div>
+</dd></dl>
+
+</section>
+<section id="cal-gain-pcts">
+<h3>cal_gain_pcts<a class="headerlink" href="#cal-gain-pcts" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.cal_gain_pcts">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">cal_gain_pcts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pct'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_cost0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.cal_gain_pcts" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">计算资产价值序列price_series(<cite>pd.Series</cite>)每个时间的收益率</div>
+<div class="line">gain_type:</div>
+<div class="line-block">
+<div class="line">为’pct’，使用普通百分比收益</div>
+<div class="line">为’log’，使用对数收益率（当price_series存在小于等于0时不能使用）</div>
+<div class="line">为’dif’，收益率为前后差值（适用于累加净值情况）</div>
+</div>
+<div class="line">pct_cost0为当成本为0时收益率的指定值</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cal-beta">
+<h3>cal_beta<a class="headerlink" href="#cal-beta" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.cal_beta">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">cal_beta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values_target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values_base</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pct'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_cost0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.cal_beta" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">计算贝塔系数</div>
+<div class="line">values_target, values_base分别为目标价值序列和基准价值序列</div>
+<div class="line">gain_type和pct_cost0同 <a class="reference internal" href="#dramkit.fintools.utils_gains.cal_gain_pcts" title="dramkit.fintools.utils_gains.cal_gain_pcts"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.fintools.utils_gains.cal_gain_pcts()</span></code></a> 中的参数</div>
+<div class="line">参考：</div>
+<div class="line"><a class="reference external" href="https://www.joinquant.com/help/api/help#api">https://www.joinquant.com/help/api/help#api</a>:风险指标</div>
+<div class="line"><a class="reference external" href="https://blog.csdn.net/thfyshz/article/details/83443783">https://blog.csdn.net/thfyshz/article/details/83443783</a></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cal-alpha-beta">
+<h3>cal_alpha_beta<a class="headerlink" href="#cal-alpha-beta" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.cal_alpha_beta">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">cal_alpha_beta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values_target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values_base</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">252</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pct'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'exp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_cost0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.cal_alpha_beta" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">计算alpha和beta系数</div>
+<div class="line">参数参考 <a class="reference internal" href="#dramkit.fintools.utils_gains.cal_beta" title="dramkit.fintools.utils_gains.cal_beta"><code class="xref py py-func docutils literal notranslate"><span class="pre">cal_beta()</span></code></a> 和 <a class="reference internal" href="#dramkit.fintools.utils_gains.cal_returns_period" title="dramkit.fintools.utils_gains.cal_returns_period"><code class="xref py py-func docutils literal notranslate"><span class="pre">cal_returns_period()</span></code></a> 函数</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cal-alpha-by-beta-and-r">
+<h3>cal_alpha_by_beta_and_r<a class="headerlink" href="#cal-alpha-by-beta-and-r" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.cal_alpha_by_beta_and_r">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">cal_alpha_by_beta_and_r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_base</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.cal_alpha_by_beta_and_r" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">根据年化收益以及beta计算alpha</div>
+<div class="line">r为策略年化收益，r_base为基准年化收益，r0为无风险收益率，beta为策略beta值</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cal-return-period-by-gain-pct">
+<h3>cal_return_period_by_gain_pct<a class="headerlink" href="#cal-return-period-by-gain-pct" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.cal_return_period_by_gain_pct">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">cal_return_period_by_gain_pct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gain_pct</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">250</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'exp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain_pct_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pct'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.cal_return_period_by_gain_pct" title="Permalink to this definition"></a></dt>
+<dd><p>给定最终收益率gain_pct，计算周期化收益率</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gain_pct</strong> (<em>float</em>) – 给定的最终收益率</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – 期数</p></li>
+<li><p><strong>nn</strong> (<em>int</em>) – <div class="line-block">
+<div class="line">一个完整周期包含的期数，eg.</div>
+<div class="line-block">
+<div class="line">若price_series周期为日，求年化收益率时nn一般为252（一年的交易日数）</div>
+<div class="line">若price_series周期为日，求月度收益率时nn一般为21（一个月的交易日数）</div>
+<div class="line">若price_series周期为分钟，求年化收益率时nn一般为252*240（一年的交易分钟数）</div>
+</div>
+</div>
+</p></li>
+<li><p><strong>rtype</strong> (<em>str</em>) – 周期化时采用指数方式’exp’或平均方式’mean’</p></li>
+<li><p><strong>gain_pct_type</strong> (<em>str</em>) – <div class="line-block">
+<div class="line">设置最终收益率gain_pct得来的计算方式，可选’pct’, ‘log’</div>
+<div class="line">默认为百分比收益，若为对数收益，则计算周期化收益率时只能采用平均法，不能用指数法</div>
+</div>
+</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<div class="line-block">
+<div class="line">百分比收益率：</div>
+<div class="line-block">
+<div class="line">复利(指数)公式：1 + R = (1 + r) ^ (n / nn) ——&gt; r = (1 + R) ^ (nn / n) - 1</div>
+<div class="line">单利(平均)公式：1 + R = 1 + r * (n / nn) ——&gt; r = R * nn / n</div>
+</div>
+<div class="line">对数收益率：</div>
+<div class="line-block">
+<div class="line">R = r * (n / nn) ——&gt; r = R * nn / n（采用对数收益率计算年化收益只能用平均法）</div>
+</div>
+</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>r</strong> – 周期化收益率，其周期由nn确定</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p><a class="reference external" href="https://zhuanlan.zhihu.com/p/112211063">https://zhuanlan.zhihu.com/p/112211063</a></p>
+</dd></dl>
+
+</section>
+<section id="cal-ext-return-period-by-gain-pct">
+<h3>cal_ext_return_period_by_gain_pct<a class="headerlink" href="#cal-ext-return-period-by-gain-pct" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.cal_ext_return_period_by_gain_pct">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">cal_ext_return_period_by_gain_pct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gain_pct</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain_pct_base</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">250</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'exp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain_pct_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pct'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ext_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.cal_ext_return_period_by_gain_pct" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">给定收益率和基准收益率，计算周期化超额收益率</div>
+<div class="line">rtype周期化收益率方法，可选’exp’或’mean’或’log’</div>
+<div class="line">ext_type设置超额收益率计算方式:</div>
+<div class="line-block">
+<div class="line">若为1，先算各自周期化收益率，再相减</div>
+<div class="line">若为2，先相减，再周期化算超额</div>
+<div class="line">若为3，先还原两者实际净值，再以相对于基准净值的收益计算周期化超额</div>
+</div>
+<div class="line">其他参数意义同 <a class="reference internal" href="#dramkit.fintools.utils_gains.cal_return_period_by_gain_pct" title="dramkit.fintools.utils_gains.cal_return_period_by_gain_pct"><code class="xref py py-func docutils literal notranslate"><span class="pre">cal_return_period_by_gain_pct()</span></code></a> 函数</div>
+</div>
+<div class="line-block">
+<div class="line">参考：</div>
+<div class="line"><a class="reference external" href="https://xueqiu.com/1930958059/167803003?page=1">https://xueqiu.com/1930958059/167803003?page=1</a></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cal-ext-return-period">
+<h3>cal_ext_return_period<a class="headerlink" href="#cal-ext-return-period" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.cal_ext_return_period">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">cal_ext_return_period</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values_base</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pct'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'exp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">250</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_cost0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ext_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.cal_ext_return_period" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">根据给定价格或价值序列计values和基准序列values_base，算超额收益</div>
+<div class="line">pct_cost0参考 <a class="reference internal" href="#dramkit.fintools.utils_gains.cal_gain_pct" title="dramkit.fintools.utils_gains.cal_gain_pct"><code class="xref py py-func docutils literal notranslate"><span class="pre">cal_gain_pct()</span></code></a> 和 <a class="reference internal" href="#dramkit.fintools.utils_gains.cal_gain_pct_log" title="dramkit.fintools.utils_gains.cal_gain_pct_log"><code class="xref py py-func docutils literal notranslate"><span class="pre">cal_gain_pct_log()</span></code></a> 函数</div>
+<div class="line">其它参数参考 <a class="reference internal" href="#dramkit.fintools.utils_gains.cal_ext_return_period_by_gain_pct" title="dramkit.fintools.utils_gains.cal_ext_return_period_by_gain_pct"><code class="xref py py-func docutils literal notranslate"><span class="pre">cal_ext_return_period_by_gain_pct()</span></code></a> 函数</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cal-returns-period">
+<h3>cal_returns_period<a class="headerlink" href="#cal-returns-period" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.cal_returns_period">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">cal_returns_period</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pct'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'exp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">252</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_cost0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.cal_returns_period" title="Permalink to this definition"></a></dt>
+<dd><p>计算周期化收益率</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>price_series</strong> (<em>pd.Series</em><em>, </em><em>np.array</em><em>, </em><em>list</em>) – 资产价值序列（有负值时不能使用对数收益率）</p></li>
+<li><p><strong>gain_type</strong> (<em>str</em>) – <div class="line-block">
+<div class="line">收益率计算方式设置</div>
+<div class="line-block">
+<div class="line">为’pct’，使用普通百分比收益</div>
+<div class="line">为’log’，使用对数收益率（当price_series存在小于等于0时不能使用）</div>
+<div class="line">为’dif’，收益率为前后差值（适用于累加净值情况）</div>
+</div>
+</div>
+</p></li>
+<li><p><strong>rtype</strong> (<em>str</em>) – <div class="line-block">
+<div class="line">收益率周期化时采用指数方式’exp’或平均方式’mean’</div>
+<div class="line">（采用对数收益率计算年化收益只能用平均法）</div>
+</div>
+</p></li>
+<li><p><strong>nn</strong> (<em>int</em>) – <div class="line-block">
+<div class="line">一个完整周期包含的期数，eg.</div>
+<div class="line-block">
+<div class="line">若price_series周期为日，求年化收益率时nn一般为252（一年的交易日数）</div>
+<div class="line">若price_series周期为日，求月度收益率时nn一般为21（一个月的交易日数）</div>
+<div class="line">若price_series周期为分钟，求年化收益率时nn一般为252*240（一年的交易分钟数）</div>
+</div>
+</div>
+</p></li>
+<li><p><strong>pct_cost0</strong> (<em>float</em>) – 成本为0时收益率的指定值，参见 <a class="reference internal" href="#dramkit.fintools.utils_gains.cal_gain_pct" title="dramkit.fintools.utils_gains.cal_gain_pct"><code class="xref py py-func docutils literal notranslate"><span class="pre">cal_gain_pct()</span></code></a> 和 <a class="reference internal" href="#dramkit.fintools.utils_gains.cal_gain_pct_log" title="dramkit.fintools.utils_gains.cal_gain_pct_log"><code class="xref py py-func docutils literal notranslate"><span class="pre">cal_gain_pct_log()</span></code></a> 函数</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>r</strong> – 周期化收益率，其周期由nn确定</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#dramkit.fintools.utils_gains.cal_return_period_by_gain_pct" title="dramkit.fintools.utils_gains.cal_return_period_by_gain_pct"><code class="xref py py-func docutils literal notranslate"><span class="pre">cal_return_period_by_gain_pct()</span></code></a></p>
+</div>
+</dd></dl>
+
+</section>
+<section id="cal-returns-period-mean">
+<h3>cal_returns_period_mean<a class="headerlink" href="#cal-returns-period-mean" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.cal_returns_period_mean">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">cal_returns_period_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pct'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">252</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_cost0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.cal_returns_period_mean" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">计算周期化收益率，采用收益率直接平均的方法</div>
+<div class="line">price_series为资产价值序列，pd.Series或list或np.array（有负值时不能使用对数收益率）</div>
+<div class="line">gain_type和pct_cost0参数参见 <a class="reference internal" href="#dramkit.fintools.utils_gains.cal_gain_pcts" title="dramkit.fintools.utils_gains.cal_gain_pcts"><code class="xref py py-func docutils literal notranslate"><span class="pre">cal_gain_pcts()</span></code></a></div>
+<div class="line">nn为一个完整周期包含的期数，eg.</div>
+<div class="line-block">
+<div class="line">若price_series周期为日，求年化收益率时nn一般为252（一年的交易日数）</div>
+<div class="line">若price_series周期为日，求月度收益率时nn一般为21（一个月的交易日数）</div>
+<div class="line">若price_series周期为分钟，求年化收益率时nn一般为252*240（一年的交易分钟数）</div>
+</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cal-volatility">
+<h3>cal_volatility<a class="headerlink" href="#cal-volatility" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.cal_volatility">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">cal_volatility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pct'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">252</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_cost0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.cal_volatility" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">价格序列price_series的周期化波动率计算</div>
+<div class="line">price_series为资产价值序列，pd.Series或list或np.array（有负值时不能使用对数收益率）</div>
+<div class="line">gain_type和pct_cost0参数参见 <a class="reference internal" href="#dramkit.fintools.utils_gains.cal_gain_pcts" title="dramkit.fintools.utils_gains.cal_gain_pcts"><code class="xref py py-func docutils literal notranslate"><span class="pre">cal_gain_pcts()</span></code></a></div>
+<div class="line">nn为一个完整周期包含的期数，eg.</div>
+<div class="line-block">
+<div class="line">若price_series周期为日，求年化收益率时nn一般为252（一年的交易日数）</div>
+<div class="line">若price_series周期为日，求月度收益率时nn一般为21（一个月的交易日数）</div>
+<div class="line">若price_series周期为分钟，求年化收益率时nn一般为252*240（一年的交易分钟数）</div>
+</div>
+<div class="line">返回收益波动率，其周期由nn确定</div>
+<div class="line">参考：</div>
+<div class="line"><a class="reference external" href="https://wiki.mbalib.com/wiki/%E5%8E%86%E5%8F%B2%E6%B3%A2%E5%8A%A8%E7%8E%87">https://wiki.mbalib.com/wiki/%E5%8E%86%E5%8F%B2%E6%B3%A2%E5%8A%A8%E7%8E%87</a></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cal-sharpe">
+<h3>cal_sharpe<a class="headerlink" href="#cal-sharpe" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.cal_sharpe">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">cal_sharpe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">252</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pct'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ann_rtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'exp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_cost0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.cal_sharpe" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">计算夏普比率，先算期望收益和波动率，再算夏普</div>
+<div class="line">r为无风险收益率</div>
+<div class="line">其余参数间 <a class="reference internal" href="#dramkit.fintools.utils_gains.cal_returns_period" title="dramkit.fintools.utils_gains.cal_returns_period"><code class="xref py py-func docutils literal notranslate"><span class="pre">cal_returns_period()</span></code></a> 和 <a class="reference internal" href="#dramkit.fintools.utils_gains.cal_volatility" title="dramkit.fintools.utils_gains.cal_volatility"><code class="xref py py-func docutils literal notranslate"><span class="pre">cal_volatility()</span></code></a></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cal-sharpe2">
+<h3>cal_sharpe2<a class="headerlink" href="#cal-sharpe2" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.cal_sharpe2">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">cal_sharpe2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">252</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pct'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_cost0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.cal_sharpe2" title="Permalink to this definition"></a></dt>
+<dd><p>计算夏普比率</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> (<em>pd.Series</em>) – 资产价值序列</p></li>
+<li><p><strong>r</strong> (<em>float</em>) – 无风险收益率</p></li>
+<li><p><strong>nn</strong> (<em>int</em>) – <div class="line-block">
+<div class="line">无风险收益率r的周期所包含的values的周期数，eg.</div>
+<div class="line-block">
+<div class="line">若values周期为日，r为年化无风险收益率时，N一般为252（一年的交易日数）</div>
+<div class="line">若values周期为日，r月度无风险收益率时，N一般为21（一个月的交易日数）</div>
+<div class="line">若values周期为分钟，r为年化无风险收益率时，N一般为252*240（一年的交易分钟数）</div>
+</div>
+</div>
+</p></li>
+<li><p><strong>gain_type</strong> (<em>str</em>) – <div class="line-block">
+<div class="line">收益率计算方式设置</div>
+<div class="line-block">
+<div class="line">为’pct’，使用普通百分比收益</div>
+<div class="line">为’log’，使用对数收益率（当price_series存在小于等于0时不能使用）</div>
+<div class="line">为’dif’，收益率为前后差值（适用于累加净值情况）</div>
+</div>
+</div>
+</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.joinquant.com/help/api/help">https://www.joinquant.com/help/api/help</a>?name=api#风险指标</p></li>
+<li><p><a class="reference external" href="https://www.zhihu.com/question/348938505/answer/1848898074">https://www.zhihu.com/question/348938505/answer/1848898074</a></p></li>
+<li><p><a class="reference external" href="https://blog.csdn.net/thfyshz/article/details/83443783">https://blog.csdn.net/thfyshz/article/details/83443783</a></p></li>
+<li><p><a class="reference external" href="https://www.jianshu.com/p/363aa2dd3441">https://www.jianshu.com/p/363aa2dd3441</a> （夏普计算方法貌似有误）</p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="get-maxdown">
+<h3>get_maxdown<a class="headerlink" href="#get-maxdown" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.get_maxdown">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">get_maxdown</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abs_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.get_maxdown" title="Permalink to this definition"></a></dt>
+<dd><p>最大回撤计算</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> (<em>list</em><em>, </em><em>np.array</em><em>, </em><em>pd.Series</em>) – 资产价值序列</p></li>
+<li><p><strong>return_idx</strong> (<em>bool</em>) – 是否返回最大回撤区间起止位置，若为False，则起止位置返回None</p></li>
+<li><p><strong>abs_val</strong> (<em>bool</em>) – 若为True，则计算最大回撤时采用亏损绝对值而不是亏损比率</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>maxdown</strong> (<em>float</em>) – 最大回撤幅度（正值）</p></li>
+<li><p><strong>start_end_idxs</strong> (<em>tuple</em>) – 最大回撤起止位置(start_idx, end_idx)，若return_idx为False，则为(None, None)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.cnblogs.com/xunziji/p/6760019.html">https://www.cnblogs.com/xunziji/p/6760019.html</a></p></li>
+<li><p><a class="reference external" href="https://blog.csdn.net/changyan_123/article/details/80994170">https://blog.csdn.net/changyan_123/article/details/80994170</a></p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="get-maxdown-all">
+<h3>get_maxdown_all<a class="headerlink" href="#get-maxdown-all" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.get_maxdown_all">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">get_maxdown_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abs_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.get_maxdown_all" title="Permalink to this definition"></a></dt>
+<dd><p>计算区间每个时期的最大回撤</p>
+</dd></dl>
+
+</section>
+<section id="get-maxdown-dy">
+<h3>get_maxdown_dy<a class="headerlink" href="#get-maxdown-dy" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.get_maxdown_dy">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">get_maxdown_dy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abs_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.get_maxdown_dy" title="Permalink to this definition"></a></dt>
+<dd><p>计算动态最大回撤（每个时间点之前的最高值到当前的回撤）</p>
+</dd></dl>
+
+</section>
+<section id="get-maxup">
+<h3>get_maxup<a class="headerlink" href="#get-maxup" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.get_maxup">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">get_maxup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abs_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.get_maxup" title="Permalink to this definition"></a></dt>
+<dd><p>最大盈利计算（与最大回撤 <a class="reference internal" href="#dramkit.fintools.utils_gains.get_maxdown" title="dramkit.fintools.utils_gains.get_maxdown"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.fintools.utils_gains.get_maxdown()</span></code></a>
+相对应，即做空情况下的最大回撤）</p>
+</dd></dl>
+
+</section>
+<section id="get-maxdown-pd">
+<h3>get_maxdown_pd<a class="headerlink" href="#get-maxdown-pd" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.get_maxdown_pd">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">get_maxdown_pd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abs_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.get_maxdown_pd" title="Permalink to this definition"></a></dt>
+<dd><p>使用pd计算最大回撤计算</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>series</strong> (<em>pd.Series</em><em>, </em><em>np.array</em><em>, </em><em>list</em>) – 资产价值序列</p></li>
+<li><p><strong>abs_val</strong> (<em>bool</em>) – 若为True，则计算最大回撤时采用亏损绝对值而不是亏损比率</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>maxdown</strong> (<em>float</em>) – 最大回撤幅度（正值）</p></li>
+<li><p><strong>start_end_idxs</strong> (<em>tuple</em>) – 最大回撤起止索引：(start_idx, end_idx)</p></li>
+<li><p><strong>start_end_iloc</strong> (<em>tuple</em>) – 最大回撤起止位置（int）：(start_iloc, end_iloc)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="cal-n-period-1year">
+<h3>cal_n_period_1year<a class="headerlink" href="#cal-n-period-1year" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.cal_n_period_1year">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">cal_n_period_1year</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'date'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n1year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">252</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.cal_n_period_1year" title="Permalink to this definition"></a></dt>
+<dd><p>根据交易记录及日期列估计一年的交易期数</p>
+</dd></dl>
+
+</section>
+<section id="get-netval-prod">
+<h3>get_netval_prod<a class="headerlink" href="#get-netval-prod" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.get_netval_prod">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">get_netval_prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pct_series</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.get_netval_prod" title="Permalink to this definition"></a></dt>
+<dd><p>累乘法净值计算，pct_series(<cite>pd.Series</cite>)为收益率序列（注：单位应为%）</p>
+</dd></dl>
+
+</section>
+<section id="get-netval-sum">
+<h3>get_netval_sum<a class="headerlink" href="#get-netval-sum" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.get_netval_sum">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">get_netval_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pct_series</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.get_netval_sum" title="Permalink to this definition"></a></dt>
+<dd><p>累加法净值计算，pct_series(<cite>pd.Series</cite>)为收益率序列（注：单位应为%）</p>
+</dd></dl>
+
+</section>
+<section id="get-gains-act">
+<h3>get_gains_act<a class="headerlink" href="#get-gains-act" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.get_gains_act">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">get_gains_act</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_settle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.get_gains_act" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">根据资金转入转出和资产总值记录计算实际总盈亏%（累计收益/累计投入）</div>
+<div class="line">df_settle须包含列[‘转入’, ‘转出’, ‘资产总值’]</div>
+<div class="line">返回df中包含[‘累计净流入’, ‘累计投入’, ‘累计盈亏’, ‘实际总盈亏%’]这几列</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-fundnet">
+<h3>get_fundnet<a class="headerlink" href="#get-fundnet" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.get_fundnet">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">get_fundnet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_settle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">when</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'before'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.get_fundnet" title="Permalink to this definition"></a></dt>
+<dd><p>用基金净值法根据转入转出和资产总值记录计算净值</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df_settle</strong> (<em>pd.DataFrame</em>) – 须包含列[‘转入’, ‘转出’, ‘资产总值’]三列</p></li>
+<li><p><strong>when</strong> (<em>str</em>) – <div class="line-block">
+<div class="line">列用于指定当期转入转出计算份额时使用的净值对应的时间:</div>
+<div class="line-block">
+<div class="line">若为’before’，表示转入转出发生在当天净值结算之前（计算增减份额用前一期净值）</div>
+<div class="line">若为’after’，表示转入转出发生在当天净值结算之后（计算增减份额用结算之后的净值）</div>
+<div class="line">若为None，当转入大于转出时设置为’before’，当转出大于转入时设置为’after’</div>
+<div class="line">若为’when’，在df_settle中通过’when’列指定，’when’列的值只能为’before’或’after’</div>
+</div>
+</div>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>pd.DataFrame</cite> - 包含[‘新增份额’, ‘份额’, ‘净值’]三列</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="get-gains">
+<h3>get_gains<a class="headerlink" href="#get-gains" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.get_gains">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">get_gains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_settle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['act',</span> <span class="pre">'fundnet']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">when</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.get_gains" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">不同类型的盈亏情况统计</div>
+<div class="line">gain_types为累计收益计算方法，可选：</div>
+<div class="line-block">
+<div class="line">[‘act’实际总盈亏, ‘prod’累乘法, ‘sum’累加法, ‘fundnet’基金份额净值法]</div>
+</div>
+<div class="line">注意：</div>
+<div class="line-block">
+<div class="line">累乘法和累加法df_settle须包含’盈亏%’列</div>
+<div class="line">实际总盈亏和基金净值法df_settle须包含[‘转入’, ‘转出’, ‘资产总值’]列</div>
+</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="plot-gain-act">
+<h3>plot_gain_act<a class="headerlink" href="#plot-gain-act" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.plot_gain_act">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">plot_gain_act</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_gain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'日期'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs_plot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.plot_gain_act" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">绘制实际盈亏曲线图</div>
+<div class="line">df_gain须包含列[time_col, ‘实际总盈亏%’]</div>
+<div class="line">n设置需要绘制的期数</div>
+<div class="line">**kwargs_plot为plot_series可接受参数</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="plot-gain-prod">
+<h3>plot_gain_prod<a class="headerlink" href="#plot-gain-prod" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.plot_gain_prod">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">plot_gain_prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_gain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'日期'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_gain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs_plot</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.plot_gain_prod" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">绘制盈亏净值曲线图</div>
+<div class="line">df_gain须包含列[time_col, ‘盈亏%’]</div>
+<div class="line">n设置需要绘制的期数</div>
+<div class="line">**kwargs为plot_series可接受参数</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cal-sig-gains">
+<h3>cal_sig_gains<a class="headerlink" href="#cal-sig-gains" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.cal_sig_gains">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">cal_sig_gains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift_lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_price</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'close'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_price_buy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'close'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_price_sel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'close'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settle_after_act</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_vol_add</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'base_1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_vol_sub</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'base_1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_vol_stoploss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hold_1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_vol_stopgain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hold_1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_no_same</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_no_stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hold_buy_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hold_sel_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_min_vol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_money</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_vol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_cash</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fee</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0015</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sos_money</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_gain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_down</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_loss_pct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_gain_pct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_sig_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'both'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_sig_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'offset'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_final0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'settle'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">del_begin0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap_repeat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nshow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.cal_sig_gains" title="Permalink to this definition"></a></dt>
+<dd><p>统计信号收益情况（没考虑杠杆，适用A股）</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>仅考虑市场价格为正，不考虑市场价格为负值的极端情况</p>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>若报错，检查数据中是否存在无效值等</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pd.DataFrame</em>) – <div class="line-block">
+<div class="line">行情数据，须包含 <code class="docutils literal notranslate"><span class="pre">sig_col</span></code>, <code class="docutils literal notranslate"><span class="pre">col_price</span></code>, <code class="docutils literal notranslate"><span class="pre">col_price_buy</span></code>,
+<code class="docutils literal notranslate"><span class="pre">col_price_sel</span></code> 指定的列。</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">col_price</span></code> 为结算价格列；<code class="docutils literal notranslate"><span class="pre">col_price_buy</span></code> 和 <code class="docutils literal notranslate"><span class="pre">col_price_sel</span></code>
+分别为做多（买入）和做空（卖出）操作的价格列。</div>
+</div>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>当结算价格的出现时间晚于操作价格时 <code class="docutils literal notranslate"><span class="pre">settle_after_act</span></code>
+应设置为True，否则 <code class="docutils literal notranslate"><span class="pre">settle_after_act</span></code> 设置为False。</p>
+</div>
+</div></blockquote>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">sig_col</span></code> 列为信号列，其值规则应满足：</div>
+<div class="line">- 当 <code class="docutils literal notranslate"><span class="pre">sig_type</span></code> =1时， <code class="docutils literal notranslate"><span class="pre">sig_col</span></code> 列的值只能包含-1、1和0，
+其中1为做空（卖出）信号，-1为做多（买入）信号，0为不操作</div>
+<div class="line">- 当 <code class="docutils literal notranslate"><span class="pre">sig_type</span></code> =2时， <code class="docutils literal notranslate"><span class="pre">sig_col</span></code> 列的值为正|负整数或0，
+其中正整数表示买入（做多）交易量，负整数表示卖出（做空）交易量，0表示不交易</div>
+</div>
+</p></li>
+<li><p><strong>func_vol_add</strong> (<em>str</em><em>, </em><em>function</em>) – <div class="line-block">
+<div class="line">自定义开仓/加仓操作时的交易量函数，其输入和输出格式应为：</div>
+<div class="line-block">
+<div class="line">def func_vol_add(base_vol, holdVol, cash, Price):</div>
+<div class="line-block">
+<div class="line"># Parameters:</div>
+<div class="line">#     base_vol：底仓量</div>
+<div class="line">#     holdVol：当前持仓量</div>
+<div class="line">#     cash: 可用现金</div>
+<div class="line">#     Price: 交易价格</div>
+<div class="line"># Returns:</div>
+<div class="line">#     tradeVol：计划交易量</div>
+<div class="line">……</div>
+<div class="line">return tradeVol</div>
+</div>
+</div>
+<div class="line">- 当 <code class="docutils literal notranslate"><span class="pre">func_vol_add</span></code> 指定为’base_x’时，使用预定义函数 <code class="docutils literal notranslate"><span class="pre">get_AddTradeVol_baseX</span></code> ，
+其交易计划为：开底仓的x倍</div>
+<div class="line">- 当 <code class="docutils literal notranslate"><span class="pre">func_vol_add</span></code> 指定为’hold_x’时，使用预定义函数 <code class="docutils literal notranslate"><span class="pre">get_AddTradeVol_holdX</span></code> ，
+其交易计划为：无持仓时开底仓，有持仓时开持仓的x倍</div>
+<div class="line">- 当 <code class="docutils literal notranslate"><span class="pre">func_vol_add</span></code> 指定为’all’时，使用预定义函数 <code class="docutils literal notranslate"><span class="pre">get_AddTradeVol_all</span></code> ，
+其交易计划为：以账户当前可用资金为限额开全仓</div>
+</div>
+</p></li>
+<li><p><strong>func_vol_sub</strong> (<em>str</em><em>, </em><em>function</em>) – <div class="line-block">
+<div class="line">自定义平仓/减仓操作时的交易量函数，其输入和输出格式应为：</div>
+<div class="line-block">
+<div class="line">def func_vol_sub_stop(base_vol, holdVol, cash, Price, holdCost):</div>
+<div class="line-block">
+<div class="line"># Parameters:</div>
+<div class="line">#     base_vol：底仓量</div>
+<div class="line">#     holdVol：当前持仓量(正负号表示持仓方向)</div>
+<div class="line">#     cash: 可用现金(不包含平|减仓释放的资金)</div>
+<div class="line">#     Price: 交易价格</div>
+<div class="line">#     holdCost: 当前持仓总成本(用于计算平|减仓释放资金量)</div>
+<div class="line"># Returns:</div>
+<div class="line">#     tradeVol：计划交易量</div>
+<div class="line">……</div>
+<div class="line">return tradeVol</div>
+</div>
+</div>
+<div class="line">- 当指定为’base_x’时，使用预定义函数 <code class="docutils literal notranslate"><span class="pre">get_SubStopTradeVol_baseX</span></code> ，
+其交易计划为：减底仓的x倍（若超过了持仓量相当于平仓后反向开仓）</div>
+<div class="line">- 当指定为’hold_x’时，使用预定义函数 <code class="docutils literal notranslate"><span class="pre">get_SubStopTradeVol_holdX</span></code> ，
+其交易计划为：减持仓的x倍（x大于1时相当于平仓后反向开仓）</div>
+<div class="line">- 当指定为’hold_base_x’时，使用预定义函数 <code class="docutils literal notranslate"><span class="pre">get_SubStopTradeVol_holdbaseX</span></code> ，
+其交易计划为：平仓后反向以base_vol的x倍反向开仓</div>
+<div class="line">- 当指定为’hold_all’时，使用预定义函数 <code class="docutils literal notranslate"><span class="pre">get_SubStopTradeVol_holdAll</span></code> ，
+其交易计划为：平仓后以账户当前可用资金（包含平仓释放资金）为限额反向开全仓</div>
+</div>
+</p></li>
+<li><p><strong>func_vol_stoploss</strong> (<em>str</em><em>, </em><em>function</em>) – 自定义止损操作时的交易量函数，格式同 <code class="docutils literal notranslate"><span class="pre">func_vol_sub</span></code> 参数</p></li>
+<li><p><strong>func_vol_stopgain</strong> (<em>str</em><em>, </em><em>function</em>) – 自定义止盈操作时的交易量函数，格式同 <code class="docutils literal notranslate"><span class="pre">func_vol_sub</span></code> 参数</p></li>
+<li><p><strong>stop_no_same</strong> (<em>bool</em>) – 当止盈止损和操作信号同时出现，是否忽略同向操作信号
+(做多|空止损|盈后是否禁止继续做多|空)</p></li>
+<li><p><strong>ignore_no_stop</strong> (<em>bool</em>) – 当有持仓且没有触及止盈止损条件时是否忽略信号，为True时忽略，为False时不忽略</p></li>
+<li><p><strong>hold_buy_max</strong> (<em>int</em><em>, </em><em>float</em>) – 买入(做多)持仓量最大值限制，若信号导致持仓量超限，将被忽略</p></li>
+<li><p><strong>hold_sel_max</strong> (<em>int</em><em>, </em><em>float</em>) – 卖出(做空)持仓量最大值限制，若信号导致持仓量超限，将被忽略</p></li>
+<li><p><strong>limit_min_vol</strong> (<em>int</em><em>, </em><em>float</em>) – 最少开仓量限制（比如股票至少买100股）</p></li>
+<li><p><strong>base_money</strong> (<em>float</em>) – 开底仓交易限额</p></li>
+<li><p><strong>base_vol</strong> (<em>int</em><em>, </em><em>float</em>) – <p>开底仓交易限量</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>同时设置 <code class="docutils literal notranslate"><span class="pre">base_money</span></code> 和 <code class="docutils literal notranslate"><span class="pre">base_vol</span></code> 时以 <code class="docutils literal notranslate"><span class="pre">base_money</span></code> 为准</p>
+</div>
+</p></li>
+<li><p><strong>init_cash</strong> (<em>float</em>) – 账户初始资金额</p></li>
+<li><p><strong>fee</strong> (<em>float</em>) – 单向交易综合成本比例（双向收费）</p></li>
+<li><p><strong>max_loss</strong> (<em>float</em>) – 止损比例</p></li>
+<li><p><strong>max_gain</strong> (<em>float</em>) – 止盈比例</p></li>
+<li><p><strong>max_down</strong> (<em>float</em>) – 平仓最大回撤比例</p></li>
+<li><p><strong>add_loss_pct</strong> (<em>float</em>) – 当前价格比上次同向交易价格亏损达到 <code class="docutils literal notranslate"><span class="pre">add_loss_pct</span></code> 时加仓，
+加仓方式由 <code class="docutils literal notranslate"><span class="pre">func_vol_add</span></code> 决定</p></li>
+<li><p><strong>add_gain_pct</strong> (<em>float</em>) – 当前价格比上次同向交易价格盈利达到 <code class="docutils literal notranslate"><span class="pre">add_gain_pct</span></code> 时加仓，
+加仓方式由 <code class="docutils literal notranslate"><span class="pre">func_vol_add</span></code> 决定</p></li>
+<li><p><strong>stop_sig_order</strong> (<em>str</em>) – <div class="line-block">
+<div class="line">- 若为`sig_only`，当止盈止损和操作信号同时出现时，忽略止盈止损信号</div>
+<div class="line">- 若为`stop_only`，当止盈止损和操作信号同时出现时，忽略操作信号</div>
+<div class="line">- 若为`stop_first`，当止盈止损和操作信号同时出现时，先考虑止盈止损及反向再开新仓</div>
+<div class="line">- 若为`sig_first`，当止盈止损和操作信号同时出现时，先考虑操作信号再进行剩余止盈止损及反向</div>
+<div class="line">- 若为`both`，则止盈止损及反向量和信号交易量同时考虑</div>
+</div>
+</p></li>
+<li><p><strong>add_sig_order</strong> (<em>str</em>) – <div class="line-block">
+<div class="line">- 若为`offset`，当加仓信号与操作信号相反时，两者抵消</div>
+<div class="line">- 若为`sig_only`，当加仓信号与操作信号相反时，以操作信号为准</div>
+<div class="line">- 若为`add_only`，当加仓信号与操作信号相反时，以加仓信号为准</div>
+</div>
+</p></li>
+<li><p><strong>force_final0</strong> (<em>str</em><em>, </em><em>bool</em>) – <div class="line-block">
+<div class="line">最后一个时间强平价格设置：</div>
+<div class="line">- 若为False，则不强平，按结算价结算账户信息</div>
+<div class="line">- 若为’trade’，则按col_price_sel或col_price_buy强平</div>
+<div class="line">- 若为’settle’，则按结算价col_price强平</div>
+</div>
+</p></li>
+<li><p><strong>sos_money</strong> (<em>float</em>) – 账户本金亏损完，补资金时保证账户本金最少为 <code class="docutils literal notranslate"><span class="pre">sos_money</span></code></p></li>
+<li><p><strong>del_begin0</strong> (<em>bool</em>) – 是否删除数据中第一个信号之前没有信号的部分数据</p></li>
+<li><p><strong>gap_repeat</strong> (<em>bool</em><em>, </em><em>None</em><em>, </em><em>int</em>) – <div class="line-block">
+<div class="line">重复同向信号处理设置
+(见 <a class="reference internal" href="dramkit.html#dramkit.gentools.replace_repeat_func_iter" title="dramkit.gentools.replace_repeat_func_iter"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.gentools.replace_repeat_func_iter()</span></code></a> 函数中的 <code class="docutils literal notranslate"><span class="pre">gap</span></code> 参数):</div>
+<div class="line">- 为False时不处理</div>
+<div class="line">- 为None时重复同向信号只保留第一个</div>
+<div class="line">- 为整数gap时，重复同向信号每隔gap保留一个</div>
+</div>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>trade_gain_info</strong> (<em>dict</em>) – 返回各个收益评价指标</p></li>
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – 包含中间过程数据</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<ul>
+<li><p>增加根据固定盈亏点位止盈止损/减仓（比如IF赚30个点止盈，亏20个点止损）</p></li>
+<li><p>增加根据固定盈亏点位加仓（比如IF赚20个点或亏20个点加仓）</p></li>
+<li><p>止盈止损信号增加动态确定函数(止盈止损或最大回撤百分比不固定，根据持仓时间和盈亏等情况确定)</p></li>
+<li><p>增加平仓条件设置（比如分段回撤平仓(不同盈利水平不同回撤容忍度)，参数设计成函数）</p></li>
+<li><p>止损参数和加减仓设计成函数（输入为盈亏比例、最大回撤、盈亏金额、盈亏点位、最近一次交易信息等）</p></li>
+<li><p>增加浮盈/亏加仓价格确定方式（例如根据距离上次的亏损比例确定）</p></li>
+<li><p>重写开仓盈亏信息计算函数（先拆单再统计）</p></li>
+<li><p>正常信号加仓和浮盈/亏加仓方式分开处理（目前是合并一致处理）</p></li>
+<li><p>固定持仓时间平仓</p></li>
+<li><p>fee买入和卖出分开设置</p></li>
+<li><p>func_vol_add, func_vol_sub, func_vol_stoploss, func_vol_stopgain买入和卖出分开设置
+(考虑股票不能卖空情况，目前可通过设置 hold_sel_max=0控制禁止买空)</p></li>
+<li><p>添加更多的止盈止损交易量确定方式设置，比如：</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">1) 分段止盈止损</div>
+<div class="line-block">
+<div class="line">(eg. 亏10%止损一半仓位，亏20%强平)(需要记录交易过程中的止盈止损历史记录)</div>
+</div>
+<div class="line">2) 止盈止损和加减仓交易量函数参数扩展(加入持仓周期，盈亏比率等参数）</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-open-gain-info">
+<h3>get_open_gain_info<a class="headerlink" href="#get-open-gain-info" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.get_open_gain_info">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">get_open_gain_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_gain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_price</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'close'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_price_buy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'close'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_price_sel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'close'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fee</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0015</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_final0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'settle'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nshow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.get_open_gain_info" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">以开仓为统计口径，计算盈亏指标</div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">df_gain</span></code> 为 <a class="reference internal" href="#dramkit.fintools.utils_gains.cal_sig_gains" title="dramkit.fintools.utils_gains.cal_sig_gains"><code class="xref py py-func docutils literal notranslate"><span class="pre">cal_sig_gains()</span></code></a> 函数的输出 <code class="docutils literal notranslate"><span class="pre">df</span></code></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-yield-curve">
+<h3>get_yield_curve<a class="headerlink" href="#get-yield-curve" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.get_yield_curve">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">get_yield_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sig_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">252</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ext_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fundnet'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pct'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'exp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_sigs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_dy_maxdown</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_key_infos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'figsize':</span> <span class="pre">(11,</span> <span class="pre">7)}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs_gain</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.get_yield_curve" title="Permalink to this definition"></a></dt>
+<dd><p>根据信号生成收益曲线</p>
+</dd></dl>
+
+</section>
+<section id="get-yield-curve2">
+<h3>get_yield_curve2<a class="headerlink" href="#get-yield-curve2" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_gains.get_yield_curve2">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">get_yield_curve2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_gain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_price</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">252</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fundnet'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pct'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'exp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ext_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_mkt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_dy_maxdown</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_key_infos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.get_yield_curve2" title="Permalink to this definition"></a></dt>
+<dd><p>根据每期收益和成本/资金占用计算收益曲线</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dramkit.find_addends.html" class="btn btn-neutral float-left" title="find_addends" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dramkit.logtools.html" class="btn btn-neutral float-right" title="logtools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2022, YueYong Hu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -6,7 +6,6 @@ General toolboxs
 
 import sys
 import time
-import pickle
 import numpy as np
 import pandas as pd
 from functools import reduce, wraps
@@ -224,7 +223,7 @@ def get_update_kwargs(key, arg, kwargs, arg_default=None,
     if func_update is None:
         func_update = _default_update
     elif func_update == 'replace':
-        func_update = lambda arg, arg_old : arg
+        func_update = lambda arg, arg_old: arg
     arg_new = func_update(arg, arg_old)
         
     return arg_new, kwargs
@@ -2037,9 +2036,8 @@ def get_num_decimal(x, ignore_tail0=True):
 
 
 if __name__ == '__main__':
-    from dramkit import load_csv
-    from utils_hoo.utils_fin.utils_fin import CCI
-    from dramkit.plottools.plot_common import plot_series
+    from dramkit import load_csv, plot_series
+    from dramkit.fintools.fintools import CCI
 
     # 50ETF日线行情------------------------------------------------------------
     fpath = './test/510050_daily_pre_fq.csv'
