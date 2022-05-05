@@ -1,6 +1,38 @@
 datsci
 =======
 
+activate_funcs
+---------------
+
+.. automodule:: dramkit.datsci.activate_funcs
+
+.. currentmodule:: dramkit.datsci.activate_funcs
+
+sigmoid
+^^^^^^^^
+
+.. autofunction:: dramkit.datsci.activate_funcs.sigmoid
+
+softmax
+^^^^^^^^
+
+.. autofunction:: dramkit.datsci.activate_funcs.softmax
+
+softmax2d
+^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.activate_funcs.softmax2d
+
+softplus
+^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.activate_funcs.softplus
+
+tanh
+^^^^^
+
+.. autofunction:: dramkit.datsci.activate_funcs.tanh
+
 ahp
 ----
 
@@ -64,6 +96,95 @@ get_RIs
 ^^^^^^^^
 
 .. autofunction:: dramkit.datsci.ahp_sim_ri.get_RIs
+
+apriori
+--------
+
+.. automodule:: dramkit.datsci.apriori
+
+.. currentmodule:: dramkit.datsci.apriori
+
+gen_C1
+^^^^^^^
+
+.. autofunction:: dramkit.datsci.apriori.gen_C1
+
+get_CkSup_and_FreqLk
+^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.apriori.get_CkSup_and_FreqLk
+
+gen_Ck_from_FreqLk_1
+^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.apriori.gen_Ck_from_FreqLk_1
+
+get_CkSup_and_FreqLk_all
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.apriori.get_CkSup_and_FreqLk_all
+
+elm_cls
+--------
+
+.. automodule:: dramkit.datsci.elm_cls
+
+.. currentmodule:: dramkit.datsci.elm_cls
+
+ELMClassifier
+^^^^^^^^^^^^^^
+
+.. autoclass:: dramkit.datsci.elm_cls.ELMClassifier
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+elm_reg
+--------
+
+.. automodule:: dramkit.datsci.elm_reg
+
+.. currentmodule:: dramkit.datsci.elm_reg
+
+ELMRegressor
+^^^^^^^^^^^^^
+
+.. autoclass:: dramkit.datsci.elm_reg.ELMRegressor
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+freq_item_set
+--------------
+
+.. automodule:: dramkit.datsci.freq_item_set
+
+.. currentmodule:: dramkit.datsci.freq_item_set
+
+gen_rules
+^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.freq_item_set.gen_rules
+
+apriori_dramkit
+^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.freq_item_set.apriori_dramkit
+
+rules2df
+^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.freq_item_set.rules2df
+
+arpiori_mlx
+^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.freq_item_set.arpiori_mlx
+
+fpgrowth_mlx
+^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.freq_item_set.fpgrowth_mlx
 
 preprocess
 -----------

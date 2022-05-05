@@ -218,7 +218,7 @@ def date_add_nday(date, n=1):
     | 在给定日期date上加上n天（减去时n写成负数即可）
     | 日期输入输出符合get_date_format函数支持的格式
     '''
-    n, joiner = get_date_format(date)
+    _, joiner = get_date_format(date)
     if joiner is not None:
         formater = joiner.join(['%Y', '%m', '%d'])
         date = datetime.datetime.strptime(date, formater)

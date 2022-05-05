@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>datsci &mdash; DramKit 0.0.9 documentation</title>
+  <title>datsci &mdash; DramKit 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -42,6 +42,14 @@
 <li class="toctree-l1"><a class="reference internal" href="dramkit.html">dramkit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.backpacks.html">backpacks</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">datsci</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.activate_funcs">activate_funcs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sigmoid">sigmoid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#softmax">softmax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#softmax2d">softmax2d</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#softplus">softplus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tanh">tanh</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.ahp">ahp</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#score2jm">score2JM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#check-jm">check_JM</a></li>
@@ -56,6 +64,29 @@
 <li class="toctree-l3"><a class="reference internal" href="#gen-random-mat">gen_random_mat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sim-ri">sim_ri</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#get-ris">get_RIs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.apriori">apriori</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gen-c1">gen_C1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-cksup-and-freqlk">get_CkSup_and_FreqLk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gen-ck-from-freqlk-1">gen_Ck_from_FreqLk_1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-cksup-and-freqlk-all">get_CkSup_and_FreqLk_all</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.elm_cls">elm_cls</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#elmclassifier">ELMClassifier</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.elm_reg">elm_reg</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#elmregressor">ELMRegressor</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.freq_item_set">freq_item_set</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gen-rules">gen_rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#apriori-dramkit">apriori_dramkit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rules2df">rules2df</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arpiori-mlx">arpiori_mlx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fpgrowth-mlx">fpgrowth_mlx</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.preprocess">preprocess</a><ul>
@@ -194,6 +225,64 @@
              
   <section id="datsci">
 <h1>datsci<a class="headerlink" href="#datsci" title="Permalink to this headline"></a></h1>
+<section id="module-dramkit.datsci.activate_funcs">
+<span id="activate-funcs"></span><h2>activate_funcs<a class="headerlink" href="#module-dramkit.datsci.activate_funcs" title="Permalink to this headline"></a></h2>
+<section id="sigmoid">
+<h3>sigmoid<a class="headerlink" href="#sigmoid" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.activate_funcs.sigmoid">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.activate_funcs.</span></span><span class="sig-name descname"><span class="pre">sigmoid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.activate_funcs.sigmoid" title="Permalink to this definition"></a></dt>
+<dd><p>sigmoid激活函数</p>
+</dd></dl>
+
+</section>
+<section id="softmax">
+<h3>softmax<a class="headerlink" href="#softmax" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.activate_funcs.softmax">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.activate_funcs.</span></span><span class="sig-name descname"><span class="pre">softmax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.activate_funcs.softmax" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">softmax函数</div>
+<div class="line">x为一维np.array或list或pd.Series</div>
+<div class="line">若max_为True，则计算时减去x的最大值以防止取指数之后数据溢出</div>
+<div class="line">参考：<a class="reference external" href="https://www.cnblogs.com/ysugyl/p/12922598.html">https://www.cnblogs.com/ysugyl/p/12922598.html</a></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="softmax2d">
+<h3>softmax2d<a class="headerlink" href="#softmax2d" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.activate_funcs.softmax2d">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.activate_funcs.</span></span><span class="sig-name descname"><span class="pre">softmax2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x2d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.activate_funcs.softmax2d" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">softmax函数</div>
+<div class="line">x是二维的np.array或list或dataframe</div>
+<div class="line">若max_为True，则计算时减去x的最大值以防止取指数之后数据溢出</div>
+<div class="line">参考：<a class="reference external" href="https://www.cnblogs.com/ysugyl/p/12922598.html">https://www.cnblogs.com/ysugyl/p/12922598.html</a></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="softplus">
+<h3>softplus<a class="headerlink" href="#softplus" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.activate_funcs.softplus">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.activate_funcs.</span></span><span class="sig-name descname"><span class="pre">softplus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.activate_funcs.softplus" title="Permalink to this definition"></a></dt>
+<dd><p>softplus激活函数</p>
+</dd></dl>
+
+</section>
+<section id="tanh">
+<h3>tanh<a class="headerlink" href="#tanh" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.activate_funcs.tanh">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.activate_funcs.</span></span><span class="sig-name descname"><span class="pre">tanh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.activate_funcs.tanh" title="Permalink to this definition"></a></dt>
+<dd><p>tanh激活函数</p>
+</dd></dl>
+
+</section>
+</section>
 <section id="module-dramkit.datsci.ahp">
 <span id="ahp"></span><h2>ahp<a class="headerlink" href="#module-dramkit.datsci.ahp" title="Permalink to this headline"></a></h2>
 <section id="score2jm">
@@ -351,6 +440,425 @@
 <div class="line">- <a class="reference external" href="https://zhidao.baidu.com/question/13745867.html">https://zhidao.baidu.com/question/13745867.html</a></div>
 <div class="line">- 层次分析：层次分析法在确定绩效指标权重中的应用.pdf</div>
 <div class="line">- <a class="reference external" href="https://zhuanlan.zhihu.com/p/37738503">https://zhuanlan.zhihu.com/p/37738503</a></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.datsci.apriori">
+<span id="apriori"></span><h2>apriori<a class="headerlink" href="#module-dramkit.datsci.apriori" title="Permalink to this headline"></a></h2>
+<div class="line-block">
+<div class="line">关联规则-Apriori算法实现</div>
+<div class="line"><br /></div>
+<div class="line">关联规则分析（挖掘）用于发现项目或项目集合之间可能存在的关联模式（或因果结构），</div>
+<div class="line">如“由于某些事件的发生而引起另外一些事件的发生”之类的规则。</div>
+<div class="line">经典的案例是通过关联规则挖掘发现“买尿布的年轻父亲通常也会顺便为自己买啤酒”。</div>
+<div class="line"><br /></div>
+<div class="line">关联规则数据集示例：</div>
+<div class="line">编号, 交易清单</div>
+<div class="line">001, 可乐 &amp; 鸡蛋 &amp; 香肠</div>
+<div class="line">002, 可乐 &amp; 尿布 &amp; 啤酒</div>
+<div class="line">003, 可乐 &amp; 尿布 &amp; 啤酒 &amp; 香肠</div>
+<div class="line">004, 尿布 &amp; 啤酒</div>
+<div class="line"><br /></div>
+<div class="line">基本概念：</div>
+<div class="line">1. 事务：每一个样本（一条交易记录）称为一个事务，示例中的数据集包含四个事务。</div>
+<div class="line">2. 项：事务（交易记录）中的每一个组成部分（交易物品）称为一个项，例如可乐、鸡蛋等。</div>
+<div class="line">3. 项集：包含零个或多个项的集合叫做项集，例如{可乐, 鸡蛋, 香肠}。</div>
+<div class="line">4. k项集：包含k个项的项集叫做k-项集，{可乐}是1项集，{可乐, 鸡蛋}是2项集。</div>
+<div class="line">5. 支持度计数：一个项集在数据集不同事务中出现的次数。
+示例中{尿布, 啤酒}出现在事务002、003和004中，其支持度计数为3。</div>
+<div class="line">6. 支持度：支持度计数除以总的事务数。
+示例中{尿布, 啤酒}的支持度为3÷4=0.75（有75%的人同时买了尿布和啤酒）。</div>
+<div class="line">7. 频繁项集：支持度不小于给定阈值的项集就叫做频繁项集。
+若阈值设为0.7，示例中{尿布, 啤酒}的支持度是0.75 &gt; 0.7，是频繁项集。</div>
+<div class="line">8. 前件和后件：对于规则{尿布}→{啤酒}，{尿布}叫做前件，{啤酒}叫做后件。</div>
+<div class="line">9. 置信度：对于规则{X}→{Y}，其置信度为Conf=P(Y|X)=P(XY)/P(X)（条件概率公式）。
+示例中规则{尿布}→{啤酒}的支持度为3÷3=1（即{尿布, 啤酒}的支持度计数除以
+{尿布}的支持度计数），置信度为100%说明买了尿布的人100%也买了啤酒）。</div>
+<div class="line">10. 强关联规则：大于或等于最小支持度阈值和最小置信度阈值的规则叫做强关联规则。</div>
+<div class="line">11. 提升度：对于规则{X}→{Y}，其提升度为Lift=P(Y|X)/P(Y)=Conf/P(Y)。
+提升度度量了后件分别在以前件为条件和不以前件为条件时发生概率的比值。
+提升度大于1表示关联规则有效（在X发生的情况下Y发生的概率比Y本身发生的概率大），
+提升度小于等于1表示，关联规则无效（在X发生的情况下Y发生的概率不变或者反而变小了）。</div>
+<div class="line"><br /></div>
+<div class="line">关联规则挖掘的最终目的就是要找出有效的强关联规则。</div>
+<div class="line"><br /></div>
+<div class="line">关联规则原理其实很简单，就是贝叶斯公式及其拓展。</div>
+<div class="line">关联规则挖掘难点在于如何高效快速地从大量数据中发现有效的强关联规则，
+因为事务中不同项的组合可以形成的规则数量很庞大。</div>
+<div class="line">(假设有n个商品，潜在的关联规则数量为n*(n-1)+n*(n-1)*(n-2)+···，枚举法几乎不能用)</div>
+<div class="line"><br /></div>
+<div class="line">Apriori算法基于两个定律，能有效提升挖掘效率。</div>
+<div class="line"><br /></div>
+<div class="line"><strong>Apriori定律1</strong> ：如果一个集合是频繁项集，则它的所有子集都是频繁项集。</div>
+<div class="line-block">
+<div class="line">eg. 若集合{A, B}是频繁项集，由于出现{A, B}的地方一定会出现{A}和{B}，
+因此{A}和{B}出现的次数一定不小于{A, B}，故{A}和{B}一定是频繁项集。</div>
+<div class="line"><br /></div>
+</div>
+<div class="line"><strong>Apriori定律2</strong> ：如果一个集合不是频繁项集，则它的所有超集都不是频繁项集。</div>
+<div class="line-block">
+<div class="line">eg. 若集合{A}不是频繁项集，由于出现{A}的地方不一定出现{A, B}，
+因此{A, B}出现的次数一定不大于{A}，故{A}的超集{A, B}一定不是频繁项集。</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">基于两个定律，Apriori思路是以最小支持度为条件先找出所有频繁项集，然后由频繁项集构建规则，
+再计算置信度和支持度筛选出有效强关联规则。寻找频繁项集算法流程如下：</div>
+<div class="line"><br /></div>
+<div class="line">step1. 扫描整个数据集，得到所有出现过的项，作为候选频繁1项集C(1)。</div>
+<div class="line">step2. 对k &gt;= 1，筛选出频繁k项集L(k)。</div>
+<div class="line-block">
+<div class="line">step2.1. 计算候选频繁k项集的支持度（需要扫描整个数据集）。</div>
+<div class="line">step2.2. 去除候选频繁k项集中支持度低于阈值的项集（依据定律2），
+得到频繁k项集L(k)并保存，如果得到的频繁k项集L(k)为空集或只有一项，
+则返回所有频繁项集，算法结束。</div>
+<div class="line">step2.3. 基于频繁k项集，项集之间取并集生成候选频繁k+1项集C(k+1)。</div>
+</div>
+<div class="line">step3. 令k=k+1，转入step2。</div>
+<div class="line"><br /></div>
+<div class="line">得到所有频繁项集之后，再在频繁项集的子集之间构建规则并计算置信度和提升度，
+筛选出有效强关联规则即可。</div>
+<div class="line"><br /></div>
+<div class="line">缺点:</div>
+<div class="line">Aprior算法每轮迭代筛选频繁k项集都要扫描整个数据集，因此在数据集很大，
+数据种类很多的时候，算法效率仍然很低。</div>
+<div class="line"><br /></div>
+<div class="line">参考:</div>
+<div class="line"><a class="reference external" href="https://blog.csdn.net/qq_23860475/article/details/80824568">https://blog.csdn.net/qq_23860475/article/details/80824568</a></div>
+<div class="line"><a class="reference external" href="https://www.cnblogs.com/pinard/p/6293298.html">https://www.cnblogs.com/pinard/p/6293298.html</a></div>
+<div class="line"><a class="reference external" href="https://www.jianshu.com/p/26d61b83492e">https://www.jianshu.com/p/26d61b83492e</a></div>
+<div class="line"><a class="reference external" href="https://blog.csdn.net/zllnau66/article/details/81534368">https://blog.csdn.net/zllnau66/article/details/81534368</a></div>
+<div class="line"><a class="reference external" href="https://www.cnblogs.com/MaggieForest/p/12176915.html">https://www.cnblogs.com/MaggieForest/p/12176915.html</a></div>
+<div class="line"><a class="reference external" href="https://www.jianshu.com/p/fba9e41334a8">https://www.jianshu.com/p/fba9e41334a8</a></div>
+<div class="line"><a class="reference external" href="https://blog.csdn.net/tangyudi/article/details/88822705">https://blog.csdn.net/tangyudi/article/details/88822705</a></div>
+</div>
+<section id="gen-c1">
+<h3>gen_C1<a class="headerlink" href="#gen-c1" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.apriori.gen_C1">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.apriori.</span></span><span class="sig-name descname"><span class="pre">gen_C1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.apriori.gen_C1" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">生成初始项集C1，每个项集以python不变集合frozenset格式保存。</div>
+<div class="line">数据集dataset为list格式，每个list元素为一个样本（即由不同项组成的事务）。</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-cksup-and-freqlk">
+<h3>get_CkSup_and_FreqLk<a class="headerlink" href="#get-cksup-and-freqlk" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.apriori.get_CkSup_and_FreqLk">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.apriori.</span></span><span class="sig-name descname"><span class="pre">get_CkSup_and_FreqLk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ck</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_sup</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.apriori.get_CkSup_and_FreqLk" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">筛选频繁项集</div>
+<div class="line">扫描数据集dataset(dataset为list格式，每条事务记录以set或frozenset格式保存)，</div>
+<div class="line">计算Ck中项集的支持度CkSup，并筛选出Ck中不小于最小支持度min_sup的频繁项集列表FreqLk。</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="gen-ck-from-freqlk-1">
+<h3>gen_Ck_from_FreqLk_1<a class="headerlink" href="#gen-ck-from-freqlk-1" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.apriori.gen_Ck_from_FreqLk_1">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.apriori.</span></span><span class="sig-name descname"><span class="pre">gen_Ck_from_FreqLk_1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FreqLk_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.apriori.gen_Ck_from_FreqLk_1" title="Permalink to this definition"></a></dt>
+<dd><p>由频繁k-1项集FreqLk_1生成k项集Ck</p>
+</dd></dl>
+
+</section>
+<section id="get-cksup-and-freqlk-all">
+<h3>get_CkSup_and_FreqLk_all<a class="headerlink" href="#get-cksup-and-freqlk-all" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.apriori.get_CkSup_and_FreqLk_all">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.apriori.</span></span><span class="sig-name descname"><span class="pre">get_CkSup_and_FreqLk_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_sup</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.apriori.get_CkSup_and_FreqLk_all" title="Permalink to this definition"></a></dt>
+<dd><p>Apriori算法寻找最大频繁K项集</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<em>list</em>) – 数据集，list中每个元素为一个样本（即由不同项组成的事务，也为list）</p></li>
+<li><p><strong>min_sup</strong> (<em>float</em>) – 最小支持度阈值</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul>
+<li><p><strong>FreqLk_all</strong> (<em>list</em>) – 所有频繁项集FreqLk，每个元素均为频繁项集列表，
+如FreqLk_all[1]为所有频繁2项集列表。</p></li>
+<li><p><strong>CkSup_all</strong> (<em>dict</em>) – 所有Ck的支持度</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>CkSup_all中保存了每一步Ck中所有项集的支持度，
+因此CkSup_all中并不是所有Ck全部都满足最小支持度的。</p>
+</div>
+</li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.datsci.elm_cls">
+<span id="elm-cls"></span><h2>elm_cls<a class="headerlink" href="#module-dramkit.datsci.elm_cls" title="Permalink to this headline"></a></h2>
+<section id="elmclassifier">
+<h3>ELMClassifier<a class="headerlink" href="#elmclassifier" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="dramkit.datsci.elm_cls.ELMClassifier">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dramkit.datsci.elm_cls.</span></span><span class="sig-name descname"><span class="pre">ELMClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_hide</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_act</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'softplus'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_up</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_up</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5262</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.elm_cls.ELMClassifier" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<div class="line-block">
+<div class="line">极限学习机，分类任务</div>
+</div>
+<div class="line-block">
+<div class="line">记输入为层X，输出层为Y，隐藏层为H，样本量为Nsmp、X特征数为NcolX、</div>
+<div class="line">隐藏层节点数为n_hide、Y特征数为NcolY，则ELM的过程为：</div>
+<div class="line-block">
+<div class="line">H(Nsmp*n_hide) = X(Nsmp*NcolX) * w(NcolX*n_hide) + b((Nsmp*1)*n_hide)</div>
+<div class="line">Y(Nsmp*NcolY) = H(Nsmp*n_hide) * beta(n_hide*NcolY)</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">ELM的训练过程：W和b随机生成，beta则利用公式求解析解(beta = H的MP广义逆 * Y)</div>
+</div>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://blog.csdn.net/m0_37922734/article/details/80424133">https://blog.csdn.net/m0_37922734/article/details/80424133</a></p></li>
+<li><p><a class="reference external" href="https://blog.csdn.net/qq_32892383/article/details/90760481">https://blog.csdn.net/qq_32892383/article/details/90760481</a></p></li>
+<li><p><a class="reference external" href="https://blog.csdn.net/qq_40360172/article/details/105175946">https://blog.csdn.net/qq_40360172/article/details/105175946</a></p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.elm_cls.ELMClassifier.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_hide</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_act</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'softplus'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_up</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_up</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5262</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.elm_cls.ELMClassifier.__init__" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_hide</strong> (<em>int</em>) – 隐层节点数</p></li>
+<li><p><strong>func_act</strong> (<em>str</em><em>, </em><em>function</em>) – 激活函数，可选[‘softplus’, ‘sigmoid’, ‘tanh’]或自定义</p></li>
+<li><p><strong>w_low</strong> (<em>float</em>) – 输入层—&gt;隐层权重w取值下限</p></li>
+<li><p><strong>w_up</strong> (<em>float</em>) – 输入层—&gt;隐层权重w取值上限</p></li>
+<li><p><strong>b_low</strong> (<em>float</em>) – 输入层—&gt;隐层偏置项b取值下限</p></li>
+<li><p><strong>b_up</strong> (<em>float</em>) – 输入层—&gt;隐层偏置项b取值上限</p></li>
+<li><p><strong>c</strong> (<em>float</em><em>, </em><em>None</em>) – 正则化参数</p></li>
+<li><p><strong>random_state</strong> (<em>None</em><em>, </em><em>int</em>) – 随机数种子</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.elm_cls.ELMClassifier.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.elm_cls.ELMClassifier.fit" title="Permalink to this definition"></a></dt>
+<dd><p>模型训练</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_train</strong> (<em>pd.DataFrame</em><em>, </em><em>np.array</em>) – 训练集输入，每行一个样本</p></li>
+<li><p><strong>y_train</strong> (<em>pd.DataFrame</em><em>, </em><em>np.array</em>) – 训练集输出，每行一个样本</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.elm_cls.ELMClassifier.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.elm_cls.ELMClassifier.predict" title="Permalink to this definition"></a></dt>
+<dd><p>模型预测，x每行为一个待预测样本</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.elm_cls.ELMClassifier.predict_proba">
+<span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.elm_cls.ELMClassifier.predict_proba" title="Permalink to this definition"></a></dt>
+<dd><p>概率预测</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.elm_cls.ELMClassifier.sigmoid">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sigmoid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.elm_cls.ELMClassifier.sigmoid" title="Permalink to this definition"></a></dt>
+<dd><p>sigmoid激活函数</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.elm_cls.ELMClassifier.softplus">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">softplus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.elm_cls.ELMClassifier.softplus" title="Permalink to this definition"></a></dt>
+<dd><p>softplus激活函数</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.elm_cls.ELMClassifier.tanh">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tanh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.elm_cls.ELMClassifier.tanh" title="Permalink to this definition"></a></dt>
+<dd><p>tanh激活函数</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.datsci.elm_reg">
+<span id="elm-reg"></span><h2>elm_reg<a class="headerlink" href="#module-dramkit.datsci.elm_reg" title="Permalink to this headline"></a></h2>
+<section id="elmregressor">
+<h3>ELMRegressor<a class="headerlink" href="#elmregressor" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="dramkit.datsci.elm_reg.ELMRegressor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dramkit.datsci.elm_reg.</span></span><span class="sig-name descname"><span class="pre">ELMRegressor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_hide</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_act</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'softplus'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_up</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_up</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5262</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.elm_reg.ELMRegressor" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<div class="line-block">
+<div class="line">极限学习机，回归任务</div>
+</div>
+<div class="line-block">
+<div class="line">记输入为层X，输出层为Y，隐藏层为H，样本量为Nsmp、X特征数为NcolX、</div>
+<div class="line">隐藏层节点数为n_hide、Y特征数为NcolY，则ELM的过程为：</div>
+<div class="line-block">
+<div class="line">H(Nsmp*n_hide) = X(Nsmp*NcolX) * w(NcolX*n_hide) + b((Nsmp*1)*n_hide)</div>
+<div class="line">Y(Nsmp*NcolY) = H(Nsmp*n_hide) * beta(n_hide*NcolY)</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">ELM的训练过程：W和b随机生成，beta则利用公式求解析解(beta = H的MP广义逆 * Y)</div>
+</div>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://blog.csdn.net/m0_37922734/article/details/80424133">https://blog.csdn.net/m0_37922734/article/details/80424133</a></p></li>
+<li><p><a class="reference external" href="https://blog.csdn.net/qq_32892383/article/details/90760481">https://blog.csdn.net/qq_32892383/article/details/90760481</a></p></li>
+<li><p><a class="reference external" href="https://blog.csdn.net/qq_40360172/article/details/105175946">https://blog.csdn.net/qq_40360172/article/details/105175946</a></p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.elm_reg.ELMRegressor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_hide</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_act</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'softplus'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_up</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_up</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5262</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.elm_reg.ELMRegressor.__init__" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_hide</strong> (<em>int</em>) – 隐层节点数</p></li>
+<li><p><strong>func_act</strong> (<em>str</em><em>, </em><em>function</em>) – 激活函数，可选[‘softplus’, ‘sigmoid’, ‘tanh’]或自定义</p></li>
+<li><p><strong>w_low</strong> (<em>float</em>) – 输入层—&gt;隐层权重w取值下限</p></li>
+<li><p><strong>w_up</strong> (<em>float</em>) – 输入层—&gt;隐层权重w取值上限</p></li>
+<li><p><strong>b_low</strong> (<em>float</em>) – 输入层—&gt;隐层偏置项b取值下限</p></li>
+<li><p><strong>b_up</strong> (<em>float</em>) – 输入层—&gt;隐层偏置项b取值上限</p></li>
+<li><p><strong>c</strong> (<em>float</em><em>, </em><em>None</em>) – 正则化参数</p></li>
+<li><p><strong>random_state</strong> (<em>None</em><em>, </em><em>int</em>) – 随机数种子</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.elm_reg.ELMRegressor.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.elm_reg.ELMRegressor.fit" title="Permalink to this definition"></a></dt>
+<dd><p>模型训练</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_train</strong> (<em>pd.DataFrame</em><em>, </em><em>np.array</em>) – 训练集输入，每行一个样本</p></li>
+<li><p><strong>y_train</strong> (<em>pd.DataFrame</em><em>, </em><em>np.array</em>) – 训练集输出，每行一个样本</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.elm_reg.ELMRegressor.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.elm_reg.ELMRegressor.predict" title="Permalink to this definition"></a></dt>
+<dd><p>模型预测，x每行为一个待预测样本</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.elm_reg.ELMRegressor.sigmoid">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sigmoid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.elm_reg.ELMRegressor.sigmoid" title="Permalink to this definition"></a></dt>
+<dd><p>sigmoid激活函数</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.elm_reg.ELMRegressor.softplus">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">softplus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.elm_reg.ELMRegressor.softplus" title="Permalink to this definition"></a></dt>
+<dd><p>softplus激活函数</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.elm_reg.ELMRegressor.tanh">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tanh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.elm_reg.ELMRegressor.tanh" title="Permalink to this definition"></a></dt>
+<dd><p>tanh激活函数</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.datsci.freq_item_set">
+<span id="freq-item-set"></span><h2>freq_item_set<a class="headerlink" href="#module-dramkit.datsci.freq_item_set" title="Permalink to this headline"></a></h2>
+<div class="line-block">
+<div class="line">频繁项集挖掘数据集和算法研究资料参考：</div>
+<div class="line"><a class="reference external" href="http://fimi.uantwerpen.be/">http://fimi.uantwerpen.be/</a></div>
+<div class="line"><a class="reference external" href="http://fimi.uantwerpen.be/data/">http://fimi.uantwerpen.be/data/</a></div>
+<div class="line"><a class="reference external" href="http://fimi.uantwerpen.be/src/">http://fimi.uantwerpen.be/src/</a></div>
+</div>
+<section id="gen-rules">
+<h3>gen_rules<a class="headerlink" href="#gen-rules" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.freq_item_set.gen_rules">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.freq_item_set.</span></span><span class="sig-name descname"><span class="pre">gen_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FreqSets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">setSups</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_conf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.7</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.freq_item_set.gen_rules" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">生成关联规则并计算置信度和提升度</div>
+<div class="line">FreqSets(list)为所有频繁项集列表</div>
+<div class="line">setSups(dict)为项集支持度，FreqSets中的所有元素必须出现在setSups的keys中</div>
+<div class="line">(注：输入参数FreqSets和setSups格式同
+<a class="reference internal" href="#dramkit.datsci.apriori.get_CkSup_and_FreqLk_all" title="dramkit.datsci.apriori.get_CkSup_and_FreqLk_all"><code class="xref py py-func docutils literal notranslate"><span class="pre">dramkit.datsci.apriori.get_CkSup_and_FreqLk_all()</span></code></a> 函数的输出)</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="apriori-dramkit">
+<h3>apriori_dramkit<a class="headerlink" href="#apriori-dramkit" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.freq_item_set.apriori_dramkit">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.freq_item_set.</span></span><span class="sig-name descname"><span class="pre">apriori_dramkit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_sup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_conf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.freq_item_set.apriori_dramkit" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">Apriori主函数</div>
+<div class="line">dataset为list数据集，每个元素为一个样本(由不同项组成的事务，也为list)</div>
+<div class="line">min_sup, min_conf分别为最小支持度和最小置信度阈值</div>
+<div class="line">返回list格式规则列表rules，每条规则包含：</div>
+<div class="line-block">
+<div class="line">[前件, 后件, 前件支持度, 后件支持度, 支持度, 置信度, 提升度]</div>
+</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="rules2df">
+<h3>rules2df<a class="headerlink" href="#rules2df" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.freq_item_set.rules2df">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.freq_item_set.</span></span><span class="sig-name descname"><span class="pre">rules2df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rules</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joiner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&amp;'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.freq_item_set.rules2df" title="Permalink to this definition"></a></dt>
+<dd><p>将列表格式rules（gen_rules函数的输出格式）转存为pd.DataFrame格式，
+joiner设置项集元素之间的文本连接符</p>
+</dd></dl>
+
+</section>
+<section id="arpiori-mlx">
+<h3>arpiori_mlx<a class="headerlink" href="#arpiori-mlx" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.freq_item_set.arpiori_mlx">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.freq_item_set.</span></span><span class="sig-name descname"><span class="pre">arpiori_mlx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_sup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_conf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joiner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&amp;'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.freq_item_set.arpiori_mlx" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">调用mlxtend的Apriori算法实现关联规则挖掘</div>
+<div class="line">dataset为list数据集，每个元素为一个样本(由不同项组成的事务，也为list)</div>
+<div class="line">min_sup, min_conf分别为最小支持度和最小置信度阈值</div>
+<div class="line">返回pd.DataFrame结果</div>
+<div class="line">joiner设置项集元素之间的文本连接符</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="fpgrowth-mlx">
+<h3>fpgrowth_mlx<a class="headerlink" href="#fpgrowth-mlx" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.freq_item_set.fpgrowth_mlx">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.freq_item_set.</span></span><span class="sig-name descname"><span class="pre">fpgrowth_mlx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_sup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_conf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joiner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'&amp;'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.freq_item_set.fpgrowth_mlx" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">调用mlxtend的FP-growth算法实现关联规则挖掘</div>
+<div class="line">dataset为list数据集，每个元素为一个样本(由不同项组成的事务，也为list)</div>
+<div class="line">min_sup, min_conf分别为最小支持度和最小置信度阈值</div>
+<div class="line">返回pd.DataFrame结果</div>
+<div class="line">joiner设置项集元素之间的文本连接符</div>
 </div>
 </dd></dl>
 
