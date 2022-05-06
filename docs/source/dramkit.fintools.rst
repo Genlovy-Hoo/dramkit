@@ -205,6 +205,11 @@ cal_gain_con_futures2
 
 .. autofunction:: dramkit.fintools.utils_gains.cal_gain_con_futures2
 
+cal_expect_return
+^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.utils_gains.cal_expect_return
+
 cal_gain_pct_log
 ^^^^^^^^^^^^^^^^^
 

@@ -162,26 +162,26 @@ if __name__ == '__main__':
 
 
     # test2 ------------------------------------------------------------------
-    import time
-    from dramkit import load_text
+    # import time
+    # from dramkit import load_text
 
-    fpath = '../../../DataScience/dataSets/Frequent_Itemset_Mining_Dataset/T10I4D100K.dat'
-    dataset = load_text(fpath, sep=' ', keep_header=False, to_pd=False)
+    # fpath = '../../../DataScience/dataSets/Frequent_Itemset_Mining_Dataset/T10I4D100K.dat'
+    # dataset = load_text(fpath, sep=' ', keep_header=False, to_pd=False)
 
-    min_sup = 0.01
-    min_conf = 0.01
+    # min_sup = 0.01
+    # min_conf = 0.01
 
-    # Apriori
-    strt_tm = time.time()
-    RulesApriHoo = apriori_dramkit(dataset, min_sup, min_conf)
-    RulesApriHoodf = rules2df(RulesApriHoo)
-    print('used {}s.'.format(round(time.time()-strt_tm, 6)))
+    # # Apriori
+    # strt_tm = time.time()
+    # RulesApriHoo = apriori_dramkit(dataset, min_sup, min_conf)
+    # RulesApriHoodf = rules2df(RulesApriHoo)
+    # print('used {}s.'.format(round(time.time()-strt_tm, 6)))
 
-    # 使用mlxtend的算法
-    strt_tm = time.time()
-    RulesApri_mlx = arpiori_mlx(dataset, min_sup, min_conf)
-    print('used {}s.'.format(round(time.time()-strt_tm, 6)))
+    # # 使用mlxtend的算法
+    # strt_tm = time.time()
+    # RulesApri_mlx = arpiori_mlx(dataset, min_sup, min_conf)
+    # print('used {}s.'.format(round(time.time()-strt_tm, 6)))
 
-    strt_tm = time.time()
-    RulesFpGrow_mlx = fpgrowth_mlx(dataset, min_sup, min_conf)
-    print('used {}s.'.format(round(time.time()-strt_tm, 6)))
+    # strt_tm = time.time()
+    # RulesFpGrow_mlx = fpgrowth_mlx(dataset, min_sup, min_conf)
+    # print('used {}s.'.format(round(time.time()-strt_tm, 6)))

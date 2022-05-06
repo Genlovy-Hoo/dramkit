@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
 
+try:
+    import dramkit
+except:
+    import sys
+    sys.path.append('../../../dramkit/')
+
 from dramkit import simple_logger
 from dramkit.iotools import find_files_include_str
 
@@ -10,7 +16,7 @@ if __name__ == '__main__':
 
     # logger = None
     logger = simple_logger()
-    target_str = 'utils_hoo'#'get_logger'
+    target_str = 'utils_hoo'#'simple_logger'#'get_logger'
     root_dir = '../../../dramkit/'
     file_types = ['.py']
     

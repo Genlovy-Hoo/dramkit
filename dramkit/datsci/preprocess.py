@@ -58,7 +58,7 @@ def norm_std(series, reverse=False, ddof=1, return_mean_std=False):
 
         .. hint::
             | pandas的std()默认计算的是无偏标准差，
-            | numpy的std()默认计算的是有偏标准差）
+            | numpy的std()默认计算的是有偏标准差
     return_mean_std : bool
         为True时同时返回均值和标准差，为False时不返回
 

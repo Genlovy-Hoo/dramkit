@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>datsci &mdash; DramKit 0.1.0 documentation</title>
+  <title>datsci &mdash; DramKit 0.1.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -73,6 +73,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#get-cksup-and-freqlk-all">get_CkSup_and_FreqLk_all</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.curvature">curvature</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#curvature-3point">curvature_3point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rolling-curvature-3point">rolling_curvature_3point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-curvature">plot_curvature</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.elm_cls">elm_cls</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#elmclassifier">ELMClassifier</a></li>
 </ul>
@@ -81,12 +87,35 @@
 <li class="toctree-l3"><a class="reference internal" href="#elmregressor">ELMRegressor</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.entropy_weight">entropy_weight</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">entropy_weight</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.find_maxmin">find_maxmin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">find_maxmin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check-maxmins">check_maxmins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-his-maxmin-info">get_his_maxmin_info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-last-pos-info">get_last_pos_info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-maxmin-neighbor-label">get_maxmin_neighbor_label</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#del-tooclose-maxmin">del_tooclose_maxmin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-maxmin-records">get_maxmin_records</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-last-sure-maxmin-info">get_last_sure_maxmin_info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-continue-maxmin-info">get_continue_maxmin_info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#disaper">disaper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#find-maxmin-dy">find_maxmin_dy</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.freq_item_set">freq_item_set</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#gen-rules">gen_rules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#apriori-dramkit">apriori_dramkit</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rules2df">rules2df</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#arpiori-mlx">arpiori_mlx</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fpgrowth-mlx">fpgrowth_mlx</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.lr">lr</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lrclassifierbinary">LRClassifierBinary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lr-fit-sm">lr_fit_sm</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.preprocess">preprocess</a><ul>
@@ -182,6 +211,46 @@
 <li class="toctree-l3"><a class="reference internal" href="#ind-ttest">ind_ttest</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rel-ttest">rel_ttest</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#anova-oneway">anova_oneway</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.time_series">time_series</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">fillna_ma</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-directionalaccuracy-1step">get_DirectionalAccuracy_1step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#genxy-x2d-y1d1step">genXy_X2d_y1d1step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#predict-x2d-y1d1step">predict_X2d_y1d1step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Predict_X2d_y1d1step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#forward-predict-x2d-y1d1step">forward_predict_X2d_y1d1step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seriespredict-x2d-y1d1step">SeriesPredict_X2d_y1d1step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#genxy-x2d-y1dsteps">genXy_X2d_y1dsteps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#forward-predict-x2d-y1dsteps">forward_predict_X2d_y1dsteps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seriespredict-x2d-y1dsteps">SeriesPredict_X2d_y1dsteps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.topsis">topsis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id11">topsis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.utils_lgb">utils_lgb</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#check-parms-mdl">check_parms_mdl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-parms-mdl">get_parms_mdl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-parms-train-or-cv">get_parms_train_or_cv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lgb-train">lgb_train</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lgb-cv">lgb_cv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lgb-cv-grid-search">lgb_cv_grid_search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lgb-cv-hoo">lgb_cv_hoo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lgb-predict">lgb_predict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-features-importance">get_features_importance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.utils_ml">utils_ml</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vote-label-int">vote_label_int</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vote-prob-multi">vote_prob_multi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vote-prob-bin-pcut">vote_prob_bin_pcut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vote-prob-bin-rate1">vote_prob_bin_rate1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auc-bin">auc_bin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-f1-score">cal_f1_score</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#confusion-matrix">confusion_matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-roc-bin">plot_roc_bin</a></li>
 </ul>
 </li>
 </ul>
@@ -599,6 +668,64 @@
 
 </section>
 </section>
+<section id="module-dramkit.datsci.curvature">
+<span id="curvature"></span><h2>curvature<a class="headerlink" href="#module-dramkit.datsci.curvature" title="Permalink to this headline"></a></h2>
+<section id="curvature-3point">
+<h3>curvature_3point<a class="headerlink" href="#curvature-3point" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.curvature.curvature_3point">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.curvature.</span></span><span class="sig-name descname"><span class="pre">curvature_3point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.curvature.curvature_3point" title="Permalink to this definition"></a></dt>
+<dd><p>根据三个离散点计算曲率</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>list</em>) – 三个点x轴坐标列表</p></li>
+<li><p><strong>y</strong> (<em>list</em>) – 三个点y轴坐标列表</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>curvature</strong> (<em>float</em>) – 曲率大小</p></li>
+<li><p><strong>dircts</strong> (<em>np.array</em>) – 曲率方向（标准化）</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Pjer-zhang/Curvature_3Point">https://github.com/Pjer-zhang/Curvature_3Point</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/72083902">https://zhuanlan.zhihu.com/p/72083902</a></p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="rolling-curvature-3point">
+<h3>rolling_curvature_3point<a class="headerlink" href="#rolling-curvature-3point" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.curvature.rolling_curvature_3point">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.curvature.</span></span><span class="sig-name descname"><span class="pre">rolling_curvature_3point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xcol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_pre</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_post</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.curvature.rolling_curvature_3point" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">三点法滚动计算曲率</div>
+<div class="line">data(<cite>pd.DataFrame</cite>)应包含[xcol, ycol]列</div>
+<div class="line">返回df包含[‘curvature’, ‘dirct_x’, ‘dirct_y’]三列</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="plot-curvature">
+<h3>plot_curvature<a class="headerlink" href="#plot-curvature" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.curvature.plot_curvature">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.curvature.</span></span><span class="sig-name descname"><span class="pre">plot_curvature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_xy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std_dirt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax_equal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quvier_clor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xyline_styl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(9,</span> <span class="pre">6)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.curvature.plot_curvature" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">绘制曲率图像</div>
+<div class="line">data中的cols应包含绘制曲率所需的全部列，包括：</div>
+<div class="line">[x坐标列, y坐标列, 曲率值列, x方向列, y方向列]，且遵循此顺序</div>
+</div>
+</dd></dl>
+
+</section>
+</section>
 <section id="module-dramkit.datsci.elm_cls">
 <span id="elm-cls"></span><h2>elm_cls<a class="headerlink" href="#module-dramkit.datsci.elm_cls" title="Permalink to this headline"></a></h2>
 <section id="elmclassifier">
@@ -783,6 +910,208 @@
 
 </section>
 </section>
+<section id="module-dramkit.datsci.entropy_weight">
+<span id="entropy-weight"></span><h2>entropy_weight<a class="headerlink" href="#module-dramkit.datsci.entropy_weight" title="Permalink to this headline"></a></h2>
+<section id="id1">
+<h3>entropy_weight<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.entropy_weight.entropy_weight">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.entropy_weight.</span></span><span class="sig-name descname"><span class="pre">entropy_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neg_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.entropy_weight.entropy_weight" title="Permalink to this definition"></a></dt>
+<dd><p>熵值法计算变量的权重</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – 样本数据，每行一个样本，每列一个指标，为每个指标计算权重
+(注意：df应先删除或填充无效值)</p></li>
+<li><p><strong>neg_cols</strong> (<em>list</em>) – 负向指标列名列表</p></li>
+<li><p><strong>score_type</strong> (<em>None</em><em>, </em><em>str</em>) – 可选[None, ‘ori’, ‘std’]，分别表示不计算每个样本得分、
+以原始数据计算每个样本得分、以标准化数据计算每个样本得分</p></li>
+<li><p><strong>Returns</strong> – </p></li>
+<li><p><strong>w</strong> (<em>pd.DataFrame</em>) – 权重向量’weight’，w.index为df.columns</p></li>
+<li><p><strong>score</strong> (<em>None</em><em>, </em><em>pd.DataFrame</em>) – 每个样本得分，列名为’score’，若score_type为None，则为None</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.jianshu.com/p/3e08e6f6e244">https://www.jianshu.com/p/3e08e6f6e244</a></p></li>
+<li><p><a class="reference external" href="https://blog.csdn.net/qq_24975309/article/details/82026022">https://blog.csdn.net/qq_24975309/article/details/82026022</a></p></li>
+<li><p><a class="reference external" href="https://wenku.baidu.com/view/06f7590602768e9950e7386a.html">https://wenku.baidu.com/view/06f7590602768e9950e7386a.html</a></p></li>
+<li><p><a class="reference external" href="https://www.jianshu.com/p/51e3f4d75943">https://www.jianshu.com/p/51e3f4d75943</a></p></li>
+</ul>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.datsci.find_maxmin">
+<span id="find-maxmin"></span><h2>find_maxmin<a class="headerlink" href="#module-dramkit.datsci.find_maxmin" title="Permalink to this headline"></a></h2>
+<section id="id2">
+<h3>find_maxmin<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.find_maxmin.find_maxmin">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.find_maxmin.</span></span><span class="sig-name descname"><span class="pre">find_maxmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_dif_pct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_dif_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_dif_pct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_dif_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pct_v00</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_nan</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.find_maxmin.find_maxmin" title="Permalink to this definition"></a></dt>
+<dd><p>标注序列中的极值点</p>
+<div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">Todo</p>
+<p>series中存在nan时的值填充及信号纠正处理</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>series</strong> (<em>pd.Series</em>) – 待标注极值点的序列</p></li>
+<li><p><strong>t_min</strong> (<em>int</em>) – 设置极大极小值之间至少需要间隔t_min个点(相当于最小半周期)</p></li>
+<li><p><strong>t_max</strong> (<em>int</em>) – 设置极大极小值直接最大间隔期数(若间隔大于t_max，则直接保留极值点，不进行其它判断)</p></li>
+<li><p><strong>min_dif_val</strong> (<em>float</em>) – 若两个相邻极值点之间的间隔大于等于t_min，但是两者差值/百分比小于
+min_dif_val/min_dif_pct，则删除该极值点对</p></li>
+<li><p><strong>min_dif_pct</strong> (<em>float</em>) – 若两个相邻极值点之间的间隔大于等于t_min，但是两者差值/百分比小于
+min_dif_val/min_dif_pct，则删除该极值点对</p></li>
+<li><p><strong>max_dif_val</strong> (<em>float</em>) – 若两个相邻极值点之间的间隔小于t_min，但是两者差值/百分比大于
+max_dif_val/max_dif_pct，则保留该极值点对（两个参数二选一）</p></li>
+<li><p><strong>max_dif_pct</strong> (<em>float</em>) – 若两个相邻极值点之间的间隔小于t_min，但是两者差值/百分比大于
+max_dif_val/max_dif_pct，则保留该极值点对（两个参数二选一）</p></li>
+<li><p><strong>pct_v00</strong> (<em>float</em>) – 当使用百分比控制差值时，若前一个值为0时，指定的百分比变化值</p></li>
+<li><p><strong>skip_nan</strong> (<em>float</em>) – 当series中存在nan值时，是否继续，若为False，则抛出异常，为True则抛出警告信息</p></li>
+<li><p><strong>logger</strong> (<em>None</em><em>, </em><em>Logger</em>) – 日志记录器</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>label</strong> – 标注的极值序列，其值中1表示极大值点，-1表示极小值点，0表示普通点</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.Series</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="check-maxmins">
+<h3>check_maxmins<a class="headerlink" href="#check-maxmins" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.find_maxmin.check_maxmins">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.find_maxmin.</span></span><span class="sig-name descname"><span class="pre">check_maxmins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_lbl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_lbl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.find_maxmin.check_maxmins" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">检查df中col_label指定列的极值点排列是否正确</div>
+<div class="line">要求df须包含指定的两列，其中：</div>
+<div class="line">- col_label指定列保存极值点，其值max_lbl(int，默认1)表示极大值，
+min_lbl(int，默认-1)表示极小值，其余(默认0)为普通点</div>
+<div class="line">- col列为序列数值列</div>
+<div class="line"><br /></div>
+<div class="line">返回判断结果(True或False)以及错误信息</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-his-maxmin-info">
+<h3>get_his_maxmin_info<a class="headerlink" href="#get-his-maxmin-info" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.find_maxmin.get_his_maxmin_info">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.find_maxmin.</span></span><span class="sig-name descname"><span class="pre">get_his_maxmin_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_lbl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_lbl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.find_maxmin.get_his_maxmin_info" title="Permalink to this definition"></a></dt>
+<dd><p>获取历史极值点序列信息</p>
+</dd></dl>
+
+</section>
+<section id="get-last-pos-info">
+<h3>get_last_pos_info<a class="headerlink" href="#get-last-pos-info" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.find_maxmin.get_last_pos_info">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.find_maxmin.</span></span><span class="sig-name descname"><span class="pre">get_last_pos_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_lbl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_lbl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.find_maxmin.get_last_pos_info" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">获取最后一条记录在极大极小值间的位置信息</div>
+<div class="line">min_gap若大于0，则强制将最后min_gap条记录的标签去除</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-maxmin-neighbor-label">
+<h3>get_maxmin_neighbor_label<a class="headerlink" href="#get-maxmin-neighbor-label" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.find_maxmin.get_maxmin_neighbor_label">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.find_maxmin.</span></span><span class="sig-name descname"><span class="pre">get_maxmin_neighbor_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[-</span> <span class="pre">1,</span> <span class="pre">1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_pct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.find_maxmin.get_maxmin_neighbor_label" title="Permalink to this definition"></a></dt>
+<dd><p>极大极小值邻近点标签标注</p>
+<div class="admonition-todo admonition" id="id4">
+<p class="admonition-title">Todo</p>
+<p>处理不同标签重复标注问题</p>
+</div>
+</dd></dl>
+
+</section>
+<section id="del-tooclose-maxmin">
+<h3>del_tooclose_maxmin<a class="headerlink" href="#del-tooclose-maxmin" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.find_maxmin.del_tooclose_maxmin">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.find_maxmin.</span></span><span class="sig-name descname"><span class="pre">del_tooclose_maxmin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_pct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.find_maxmin.del_tooclose_maxmin" title="Permalink to this definition"></a></dt>
+<dd><p>删除 <a class="reference internal" href="#dramkit.datsci.find_maxmin.find_maxmin" title="dramkit.datsci.find_maxmin.find_maxmin"><code class="xref py py-func docutils literal notranslate"><span class="pre">find_maxmin()</span></code></a> 结果中极大值和极小值差别太小的极值点</p>
+</dd></dl>
+
+</section>
+<section id="get-maxmin-records">
+<h3>get_maxmin_records<a class="headerlink" href="#get-maxmin-records" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.find_maxmin.get_maxmin_records">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.find_maxmin.</span></span><span class="sig-name descname"><span class="pre">get_maxmin_records</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxmin_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'maxmin'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.find_maxmin.get_maxmin_records" title="Permalink to this definition"></a></dt>
+<dd><p>获取所有maxmin记录</p>
+</dd></dl>
+
+</section>
+<section id="get-last-sure-maxmin-info">
+<h3>get_last_sure_maxmin_info<a class="headerlink" href="#get-last-sure-maxmin-info" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.find_maxmin.get_last_sure_maxmin_info">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.find_maxmin.</span></span><span class="sig-name descname"><span class="pre">get_last_sure_maxmin_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxmin_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'maxmin'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ma'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sure_gap_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sure_pct_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.find_maxmin.get_last_sure_maxmin_info" title="Permalink to this definition"></a></dt>
+<dd><p>获取最后一个确定的maxmin标签信息</p>
+</dd></dl>
+
+</section>
+<section id="get-continue-maxmin-info">
+<h3>get_continue_maxmin_info<a class="headerlink" href="#get-continue-maxmin-info" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.find_maxmin.get_continue_maxmin_info">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.find_maxmin.</span></span><span class="sig-name descname"><span class="pre">get_continue_maxmin_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maxmins_his</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxmin_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'maxmin'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.find_maxmin.get_continue_maxmin_info" title="Permalink to this definition"></a></dt>
+<dd><p>获取连续maxmin标签的连续期数和信号类型</p>
+</dd></dl>
+
+</section>
+<section id="disaper">
+<h3>disaper<a class="headerlink" href="#disaper" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.find_maxmin.disaper">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.find_maxmin.</span></span><span class="sig-name descname"><span class="pre">disaper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maxmins_his</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_iloc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'idx'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol_gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.find_maxmin.disaper" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">判断maxmin信号消失</div>
+<div class="line">loc指定位置，tol_gap设置误差范围</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="find-maxmin-dy">
+<h3>find_maxmin_dy<a class="headerlink" href="#find-maxmin-dy" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.find_maxmin.find_maxmin_dy">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.find_maxmin.</span></span><span class="sig-name descname"><span class="pre">find_maxmin_dy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">his_lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_all</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minGap_min2now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minDif_min2now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minPct_min2now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxGap_min2now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxDif_min2now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxPct_min2now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirtSureMinGap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirtSureMinDif</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirtSureMinPct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minGap_max2nowMin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minDif_max2nowMin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minPct_max2nowMin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirtSureMinGap_max2now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirtSureMinDif_max2now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirtSureMinPct_max2now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Min_max_now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Min_max_pre_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minGap_max2now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minDif_max2now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minPct_max2now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxGap_max2now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxDif_max2now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxPct_max2now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirtSureMaxGap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirtSureMaxDif</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirtSureMaxPct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minGap_min2nowMax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minDif_min2nowMax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minPct_min2nowMax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirtSureMaxGap_min2now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirtSureMaxDif_min2now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirtSureMaxPct_min2now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Max_min_now</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Max_min_pre_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_save_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_all</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs_findMaxMin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_sleep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.find_maxmin.find_maxmin_dy" title="Permalink to this definition"></a></dt>
+<dd><p>动态标签确定</p>
+<div class="admonition-todo admonition" id="id5">
+<p class="admonition-title">Todo</p>
+<p>待重新实现</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>his_lag</strong> (<em>int</em><em>, </em><em>None</em>) – 从第his_lag条记录处开始动态标注，若为None则默认为4*t_min</p></li>
+<li><p><strong>use_all</strong> (<em>bool</em>) – 若为True，每次动态标注时使用之前的所有历史数据，否则只使用前his_lag期数据</p></li>
+<li><p><strong>动态确定标签参数和规则（以确定极小值信号为例，极大值同理），（待补充）</strong> – </p></li>
+<li><p><strong>logger</strong> (<em>Logger</em><em>, </em><em>None</em>) – 日志记录器</p></li>
+<li><p><strong>n_log</strong> (<em>int</em><em>, </em><em>None</em>) – 每隔n_log期日志提示进度</p></li>
+<li><p><strong>fig_save_dir</strong> (<em>str</em><em>, </em><em>bool</em>) – 若为False，则不做图；若为文件夹路径，则画图并保存到文件夹；若为None，则绘图但不保存</p></li>
+<li><p><strong>plot_all</strong> (<em>bool</em>) – 若为False，则只有在确定为极大/小值是才绘图，否则每期都绘图</p></li>
+<li><p><strong>plot_lag</strong> (<em>None</em><em>, </em><em>str</em><em>, </em><em>int</em>) – 指定每次画图时往前取plot_lag期历史数据进行绘图。
+若为None，则取his_lag；若为`all`，则取所有历史期数。</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
 <section id="module-dramkit.datsci.freq_item_set">
 <span id="freq-item-set"></span><h2>freq_item_set<a class="headerlink" href="#module-dramkit.datsci.freq_item_set" title="Permalink to this headline"></a></h2>
 <div class="line-block">
@@ -864,6 +1193,117 @@ joiner设置项集元素之间的文本连接符</p>
 
 </section>
 </section>
+<section id="module-dramkit.datsci.lr">
+<span id="lr"></span><h2>lr<a class="headerlink" href="#module-dramkit.datsci.lr" title="Permalink to this headline"></a></h2>
+<section id="lrclassifierbinary">
+<h3>LRClassifierBinary<a class="headerlink" href="#lrclassifierbinary" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="dramkit.datsci.lr.LRClassifierBinary">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dramkit.datsci.lr.</span></span><span class="sig-name descname"><span class="pre">LRClassifierBinary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opt_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gd'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.lr.LRClassifierBinary" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<div class="line-block">
+<div class="line">逻辑回归二分类</div>
+<div class="line"><br /></div>
+<div class="line">记输入为X，输出为y，则逻辑回归二分类模型表达式为：</div>
+<div class="line-block">
+<div class="line">y` = Sigmoid(X * W  + b)，其中y`表示模型预测值，</div>
+<div class="line">将截距项b并入W（在X中添加常数项变量），简写为：</div>
+<div class="line">y` = Sigmoid(X * W)</div>
+<div class="line">其中Sigmoid函数为: Sigmoid(x) = 1.0 / (1 + np.exp(-x))</div>
+</div>
+<div class="line">代价函数为：</div>
+<div class="line-block">
+<div class="line">Cost = y * ln(y`) + (1-y) * ln(1-y`)</div>
+<div class="line">（分类正确代价为0，分类错误代价无穷大，由极大似然估计得来）</div>
+</div>
+<div class="line">转为最小化问题后总代价函数为：</div>
+<div class="line-block">
+<div class="line">Cost = -Sum(y * ln(y`) + (1-y) * ln(1-y`))</div>
+<div class="line"><br /></div>
+</div>
+<div class="line">梯度下降法：</div>
+<div class="line">根据上面三个方程，用链式求导法则可得到Cost对W的导数：</div>
+<div class="line-block">
+<div class="line">J = X * (y` - y)</div>
+</div>
+<div class="line">J即为梯度下降法中的梯度</div>
+<div class="line"><br /></div>
+<div class="line">牛顿法：待补充</div>
+<div class="line"><br /></div>
+<div class="line">参考：</div>
+<div class="line"><a class="reference external" href="https://www.cnblogs.com/loongofqiao/p/8642045.html">https://www.cnblogs.com/loongofqiao/p/8642045.html</a></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.lr.LRClassifierBinary.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opt_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gd'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.lr.LRClassifierBinary.__init__" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>opt_method</strong> (<em>str</em>) – 优化算法设置，默认梯度下降’gd’，牛顿法为’newton’或’nt’</p></li>
+<li><p><strong>max_iter</strong> (<em>int</em>) – 最大迭代次数</p></li>
+<li><p><strong>lr</strong> (<em>float</em>) – 学习速率</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.lr.LRClassifierBinary.add_const">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_const</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.lr.LRClassifierBinary.add_const" title="Permalink to this definition"></a></dt>
+<dd><p>X添加常数列，X为二维</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.lr.LRClassifierBinary.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.lr.LRClassifierBinary.fit" title="Permalink to this definition"></a></dt>
+<dd><p>模型训练</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> (<em>pd.DataFrame</em><em>, </em><em>np.array</em>) – 训练集输入，每行一个样本</p></li>
+<li><p><strong>y_train</strong> (<em>pd.Series</em><em>, </em><em>pd.DataFrame</em><em>, </em><em>np.array</em>) – 训练集输出，每行一个样本</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.lr.LRClassifierBinary.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.lr.LRClassifierBinary.forward" title="Permalink to this definition"></a></dt>
+<dd><p>前向传播（模型表达式）</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.lr.LRClassifierBinary.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.lr.LRClassifierBinary.predict" title="Permalink to this definition"></a></dt>
+<dd><p>标签预测</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.lr.LRClassifierBinary.predict_proba">
+<span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.lr.LRClassifierBinary.predict_proba" title="Permalink to this definition"></a></dt>
+<dd><p>概率预测</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dramkit.datsci.lr.LRClassifierBinary.sigmoid">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sigmoid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.lr.LRClassifierBinary.sigmoid" title="Permalink to this definition"></a></dt>
+<dd><p>sigmoid激活函数</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="lr-fit-sm">
+<h3>lr_fit_sm<a class="headerlink" href="#lr-fit-sm" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.lr.lr_fit_sm">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.lr.</span></span><span class="sig-name descname"><span class="pre">lr_fit_sm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.lr.lr_fit_sm" title="Permalink to this definition"></a></dt>
+<dd><p>statsmodels线性回归拟合</p>
+</dd></dl>
+
+</section>
+</section>
 <section id="module-dramkit.datsci.preprocess">
 <span id="preprocess"></span><h2>preprocess<a class="headerlink" href="#module-dramkit.datsci.preprocess" title="Permalink to this headline"></a></h2>
 <section id="externalstd">
@@ -896,7 +1336,7 @@ joiner设置项集元素之间的文本连接符</p>
 <p class="admonition-title">Hint</p>
 <div class="line-block">
 <div class="line">pandas的std()默认计算的是无偏标准差，</div>
-<div class="line">numpy的std()默认计算的是有偏标准差）</div>
+<div class="line">numpy的std()默认计算的是有偏标准差</div>
 </div>
 </div>
 </p></li>
@@ -1045,7 +1485,7 @@ joiner设置项集元素之间的文本连接符</p>
 </p>
 </dd>
 </dl>
-<div class="admonition-todo admonition" id="id1">
+<div class="admonition-todo admonition" id="id6">
 <p class="admonition-title">Todo</p>
 <p>改成跟 <a class="reference internal" href="#dramkit.datsci.preprocess.scale_skl" title="dramkit.datsci.preprocess.scale_skl"><code class="xref py py-func docutils literal notranslate"><span class="pre">scale_skl()</span></code></a> 和 <a class="reference internal" href="#dramkit.datsci.preprocess.scale_skl_inverse" title="dramkit.datsci.preprocess.scale_skl_inverse"><code class="xref py py-func docutils literal notranslate"><span class="pre">scale_skl_inverse()</span></code></a> 函数那样
 有返回训练好的模型以及用训练好的模型进行转换</p>
@@ -1118,7 +1558,7 @@ joiner设置项集元素之间的文本连接符</p>
 <dt class="sig sig-object py" id="dramkit.datsci.preprocess.get_miss_rate">
 <span class="sig-prename descclassname"><span class="pre">dramkit.datsci.preprocess.</span></span><span class="sig-name descname"><span class="pre">get_miss_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dict'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.preprocess.get_miss_rate" title="Permalink to this definition"></a></dt>
 <dd><p>计算df(<cite>pd.DataFrame</cite>)中指定cols列的缺失率，return_type可选[‘dict’, ‘df’]</p>
-<div class="admonition-todo admonition" id="id2">
+<div class="admonition-todo admonition" id="id7">
 <p class="admonition-title">Todo</p>
 <p>cols可为str，指定单列，返回单个值</p>
 </div>
@@ -2153,6 +2593,665 @@ weibull分布参数关系：</div>
 <dt class="sig sig-object py" id="dramkit.datsci.stats.anova_oneway">
 <span class="sig-prename descclassname"><span class="pre">dramkit.datsci.stats.</span></span><span class="sig-name descname"><span class="pre">anova_oneway</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.stats.anova_oneway" title="Permalink to this definition"></a></dt>
 <dd><p>单因素方差分析，col_val为待比较列，col_group为组别列，待实现</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.datsci.time_series">
+<span id="time-series"></span><h2>time_series<a class="headerlink" href="#module-dramkit.datsci.time_series" title="Permalink to this headline"></a></h2>
+<section id="id8">
+<h3>fillna_ma<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.time_series.fillna_ma">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">fillna_ma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ma_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.fillna_ma" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">用移动平均ma填充序列series中的缺失值</div>
+<div class="line">ma设置填充时向前取平均数用的期数，ma_min设置最小期数</div>
+<div class="line">若ma为None，则根据最大连续缺失记录数确定ma期数</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-directionalaccuracy-1step">
+<h3>get_DirectionalAccuracy_1step<a class="headerlink" href="#get-directionalaccuracy-1step" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.time_series.get_DirectionalAccuracy_1step">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">get_DirectionalAccuracy_1step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.get_DirectionalAccuracy_1step" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">一步向前预测方向准确率计算</div>
+<div class="line">y_true和y_pred为pd.Series</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="genxy-x2d-y1d1step">
+<h3>genXy_X2d_y1d1step<a class="headerlink" href="#genxy-x2d-y1d1step" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.time_series.genXy_X2d_y1d1step">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">genXy_X2d_y1d1step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.genXy_X2d_y1d1step" title="Permalink to this definition"></a></dt>
+<dd><p>构造时间序列预测的输入X和输出y，适用于X二维，ycol一维一步向前预测情况</p>
+<div class="admonition-todo admonition" id="id9">
+<p class="admonition-title">Todo</p>
+<p>gap为-1的情况检查确认</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – 包含因变量列和所有自变量列的数据集</p></li>
+<li><p><strong>ycol</strong> (<em>str</em>) – 因变量序列名</p></li>
+<li><p><strong>Xcols_series_lag</strong> (<em>list</em><em>, </em><em>None</em>) – <div class="line-block">
+<div class="line">序列自变量列名和历史期数，格式如：</div>
+<div class="line">[(xcol1, lag1), (xcol2, lag2)]</div>
+<div class="line">若为None，则默认设置为[(ycol, 3)]</div>
+</div>
+</p></li>
+<li><p><strong>Xcols_other</strong> (<em>list</em><em>, </em><em>None</em>) – <p>非序列自变量列名列表</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>序列自变量视为不能拿到跟因变量预测同期的数据，非序列自变量视为可以拿到同期数据</p>
+</div>
+</p></li>
+<li><p><strong>gap</strong> (<em>int</em>) – 预测跳跃期数（eg.用截止今天的数据预测gap天之后的数据）</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>X</strong> (<em>np.array</em>) – 二维np.array，行数为样本量，列数为特征数量</p></li>
+<li><p><strong>y</strong> (<em>np.array</em>) – 一维np.array，长度等于样本量</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="predict-x2d-y1d1step">
+<h3>predict_X2d_y1d1step<a class="headerlink" href="#predict-x2d-y1d1step" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.time_series.predict_X2d_y1d1step">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">predict_X2d_y1d1step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcPred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_pre</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.predict_X2d_y1d1step" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">使用训练好的模型在数据df_pre上进行构造样本并预测(非滚动预测)</div>
+<div class="line">适用于X二维、ycol一维一步向前预测情况</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – 训练好的预测模型</p></li>
+<li><p><strong>funcPred</strong> (<em>function</em>) – funcPred为预测函数，接受必要参数model和X，也接受可选参数**kwargs</p></li>
+<li><p><strong>df_pre</strong> (<em>pd.DataFrame</em>) – 待预测所用数据，其中 <code class="docutils literal notranslate"><span class="pre">ycol</span></code> 为待预测列，除了初始构造输入X必须满足的数据行外，
+后面的数据可以为空值</p></li>
+<li><p><strong>Xcols_series_lag</strong> – 参数意义同genXy_X2d_y1d1step中参数意义，用其构造输入变量的过程亦完全相同</p></li>
+<li><p><strong>Xcols_other</strong> – 参数意义同genXy_X2d_y1d1step中参数意义，用其构造输入变量的过程亦完全相同</p></li>
+<li><p><strong>gap</strong> – 参数意义同genXy_X2d_y1d1step中参数意义，用其构造输入变量的过程亦完全相同</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><cite>pd.DataFrame</cite> - 返回pd.DataFrame包含原来的数据以及预测结果ycol+’_pre’列</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="id10">
+<h3>Predict_X2d_y1d1step<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.time_series.Predict_X2d_y1d1step">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">Predict_X2d_y1d1step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcPred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_valid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.Predict_X2d_y1d1step" title="Permalink to this definition"></a></dt>
+<dd><p>时间序列验证集和测试集预测（非滚动预测, 即不使用前面预测的数据作为输入）
+适用于X二维、ycol一维一步向前预测情况</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>与predict_X2d_y1d1step参数意义相同</em>) – </p></li>
+<li><p><strong>funcPred</strong> (<em>与predict_X2d_y1d1step参数意义相同</em>) – </p></li>
+<li><p><strong>df_train</strong> – df_train为用作训练的数据，df_valid和df_test为验证集和测试集数据
+df_valid和df_test的列须与df_train相同
+df_valid和df_test可以为None或pd.DataFrame
+df_train、df_valid、df_test须为连续时间序列
+当df_test不为空时，df_valid的ycol列必须有真实值</p></li>
+<li><p><strong>df_valid</strong> – df_train为用作训练的数据，df_valid和df_test为验证集和测试集数据
+df_valid和df_test的列须与df_train相同
+df_valid和df_test可以为None或pd.DataFrame
+df_train、df_valid、df_test须为连续时间序列
+当df_test不为空时，df_valid的ycol列必须有真实值</p></li>
+<li><p><strong>df_test</strong> – df_train为用作训练的数据，df_valid和df_test为验证集和测试集数据
+df_valid和df_test的列须与df_train相同
+df_valid和df_test可以为None或pd.DataFrame
+df_train、df_valid、df_test须为连续时间序列
+当df_test不为空时，df_valid的ycol列必须有真实值</p></li>
+<li><p><strong>ycol</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
+<li><p><strong>Xcols_series_lag</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
+<li><p><strong>Xcols_other</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
+<li><p><strong>gap</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
+<li><p><strong>**kwargs</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>valid_pre, test_pre</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.DataFrame，验证集和测试集预测结果，包含ycol+’_pre’列</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="forward-predict-x2d-y1d1step">
+<h3>forward_predict_X2d_y1d1step<a class="headerlink" href="#forward-predict-x2d-y1d1step" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.time_series.forward_predict_X2d_y1d1step">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">forward_predict_X2d_y1d1step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcPred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_pre</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.forward_predict_X2d_y1d1step" title="Permalink to this definition"></a></dt>
+<dd><p>todo: gap为-1的情况检查确认</p>
+<p>时间序列向前滚动预测（前面的预测作为后面的输入）
+适用于X二维、ycol一维一步向前预测情况</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>训练好的预测模型</em>) – </p></li>
+<li><p><strong>funcPred</strong> (<em>funcPred为预测函数，接受必要参数model和X，也接受可选参数**kwargs</em>) – </p></li>
+<li><p><strong>df_pre</strong> (<em>待预测所用数据，其中ycol为待预测列，除了初始构造输入X必须满足的数据行外，</em>) – 后面的数据可以为空值</p></li>
+<li><p><strong>Xcols_series_lag</strong> (<em>参数意义同genXy_X2d_y1d1step中参数意义，</em>) – 用其构造输入变量的过程亦完全相同</p></li>
+<li><p><strong>Xcols_other</strong> (<em>参数意义同genXy_X2d_y1d1step中参数意义，</em>) – 用其构造输入变量的过程亦完全相同</p></li>
+<li><p><strong>gap</strong> (<em>参数意义同genXy_X2d_y1d1step中参数意义，</em>) – 用其构造输入变量的过程亦完全相同</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>df_pre</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>返回pd.DataFrame包含原来的数据以及预测结果ycol+’_pre’列</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="seriespredict-x2d-y1d1step">
+<h3>SeriesPredict_X2d_y1d1step<a class="headerlink" href="#seriespredict-x2d-y1d1step" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.time_series.SeriesPredict_X2d_y1d1step">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">SeriesPredict_X2d_y1d1step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcPred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_valid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.SeriesPredict_X2d_y1d1step" title="Permalink to this definition"></a></dt>
+<dd><p>时间序列验证集和测试集向前滚动预测（前面的预测作为后面的输入）
+适用于X二维、ycol一维一步向前预测情况</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>与forward_predict_X2d_y1d1step参数意义相同</em>) – </p></li>
+<li><p><strong>funcPred</strong> (<em>与forward_predict_X2d_y1d1step参数意义相同</em>) – </p></li>
+<li><p><strong>df_train</strong> – df_train为用作训练的数据，df_valid和df_test为验证集和测试集数据
+df_valid和df_test的列须与df_train相同
+df_valid和df_test可以为None或pd.DataFrame
+df_train、df_valid、df_test须为连续时间序列
+当df_test不为空时，df_valid的ycol列必须有真实值</p></li>
+<li><p><strong>df_valid</strong> – df_train为用作训练的数据，df_valid和df_test为验证集和测试集数据
+df_valid和df_test的列须与df_train相同
+df_valid和df_test可以为None或pd.DataFrame
+df_train、df_valid、df_test须为连续时间序列
+当df_test不为空时，df_valid的ycol列必须有真实值</p></li>
+<li><p><strong>df_test</strong> – df_train为用作训练的数据，df_valid和df_test为验证集和测试集数据
+df_valid和df_test的列须与df_train相同
+df_valid和df_test可以为None或pd.DataFrame
+df_train、df_valid、df_test须为连续时间序列
+当df_test不为空时，df_valid的ycol列必须有真实值</p></li>
+<li><p><strong>ycol</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
+<li><p><strong>Xcols_series_lag</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
+<li><p><strong>Xcols_other</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
+<li><p><strong>gap</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
+<li><p><strong>**kwargs</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>valid_pre, test_pre</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.DataFrame，验证集和测试集预测结果，包含ycol+’_pre’列</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="genxy-x2d-y1dsteps">
+<h3>genXy_X2d_y1dsteps<a class="headerlink" href="#genxy-x2d-y1dsteps" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.time_series.genXy_X2d_y1dsteps">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">genXy_X2d_y1dsteps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.genXy_X2d_y1dsteps" title="Permalink to this definition"></a></dt>
+<dd><p>构造时间序列预测的输入X和输出y，适用于X二维，ycol一维多步向前预测情况</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>包含因变量列和所有自变量列的数据集</em>) – </p></li>
+<li><p><strong>ycol</strong> (<em>因变量序列名</em>) – </p></li>
+<li><p><strong>Xcols_series_lag</strong> (<em>序列自变量列名和历史期数，格式如：</em>) – [(xcol1, lag1), (xcol2, lag2)]，若为None，则默认设置为[(ycol, 3)]</p></li>
+<li><p><strong>Xcols_other</strong> (<em>非序列自变量列名列表</em>) – </p></li>
+<li><p><strong>*注：序列自变量视为不能拿到跟因变量预测同期的数据，非序列自变量视为可以拿到同期数据</strong> – </p></li>
+<li><p><strong>y_step</strong> (<em>一次向前预测ycol的步数</em>) – （即因变量y的维度，多输出模型中y为多维，时间序列上相当于向前预测多步）</p></li>
+<li><p><strong>gap</strong> (<em>预测跳跃期数（eg.用截止今天的数据预测gap天之后的y_step天的数据）</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>X</strong> (<em>二维np.array，行数为样本量，列数为特征数量</em>)</p></li>
+<li><p><strong>y</strong> (<em>np.array，若y_step为1则为一维，若y_step大于1，则形状为样本量*y_step</em>)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="forward-predict-x2d-y1dsteps">
+<h3>forward_predict_X2d_y1dsteps<a class="headerlink" href="#forward-predict-x2d-y1dsteps" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.time_series.forward_predict_X2d_y1dsteps">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">forward_predict_X2d_y1dsteps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcPred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_pre</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.forward_predict_X2d_y1dsteps" title="Permalink to this definition"></a></dt>
+<dd><p>时间序列向前滚动预测（前面的预测作为后面的输入）
+适用于X二维，ycol一维多步向前预测情况</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>训练好的预测模型</em>) – </p></li>
+<li><p><strong>funcPred</strong> (<em>funcPred为预测函数，接受必要参数model和X，也接受可选参数**kwargs</em>) – </p></li>
+<li><p><strong>df_pre</strong> (<em>待预测所用数据，其中ycol为待预测列，除了初始构造输入X必须满足的数据行外，</em>) – 后面的数据可以为空值</p></li>
+<li><p><strong>Xcols_series_lag</strong> (<em>参数意义同genXy_X2d_y1dsteps</em>) – 中参数意义，用其构造输入变量的过程亦完全相同</p></li>
+<li><p><strong>Xcols_other</strong> (<em>参数意义同genXy_X2d_y1dsteps</em>) – 中参数意义，用其构造输入变量的过程亦完全相同</p></li>
+<li><p><strong>y_step</strong> (<em>参数意义同genXy_X2d_y1dsteps</em>) – 中参数意义，用其构造输入变量的过程亦完全相同</p></li>
+<li><p><strong>gap</strong> (<em>参数意义同genXy_X2d_y1dsteps</em>) – 中参数意义，用其构造输入变量的过程亦完全相同</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>df_pre</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>返回pd.DataFrame包含原来的数据以及预测结果ycol+’_pre’列</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="seriespredict-x2d-y1dsteps">
+<h3>SeriesPredict_X2d_y1dsteps<a class="headerlink" href="#seriespredict-x2d-y1dsteps" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.time_series.SeriesPredict_X2d_y1dsteps">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">SeriesPredict_X2d_y1dsteps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcPred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_valid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.SeriesPredict_X2d_y1dsteps" title="Permalink to this definition"></a></dt>
+<dd><p>时间序列验证集和测试集向前滚动预测（前面的预测作为后面的输入）
+适用于X二维，ycol一维多步向前预测情况</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>与forward_predict_X2d_y1dsteps参数意义相同</em>) – </p></li>
+<li><p><strong>funcPred</strong> (<em>与forward_predict_X2d_y1dsteps参数意义相同</em>) – </p></li>
+<li><p><strong>df_train</strong> – df_train为用作训练的数据，df_valid和df_test为验证集和测试集数据
+df_valid和df_test的列须与df_train相同
+df_valid和df_test可以为None或pd.DataFrame
+df_train、df_valid、df_test须为连续时间序列
+当df_test不为空时，df_valid的ycol列必须有真实值</p></li>
+<li><p><strong>df_valid</strong> – df_train为用作训练的数据，df_valid和df_test为验证集和测试集数据
+df_valid和df_test的列须与df_train相同
+df_valid和df_test可以为None或pd.DataFrame
+df_train、df_valid、df_test须为连续时间序列
+当df_test不为空时，df_valid的ycol列必须有真实值</p></li>
+<li><p><strong>df_test</strong> – df_train为用作训练的数据，df_valid和df_test为验证集和测试集数据
+df_valid和df_test的列须与df_train相同
+df_valid和df_test可以为None或pd.DataFrame
+df_train、df_valid、df_test须为连续时间序列
+当df_test不为空时，df_valid的ycol列必须有真实值</p></li>
+<li><p><strong>ycol</strong> – 与forward_predict_X2d_y1dsteps参数意义相同</p></li>
+<li><p><strong>Xcols_series_lag</strong> – 与forward_predict_X2d_y1dsteps参数意义相同</p></li>
+<li><p><strong>Xcols_other</strong> – 与forward_predict_X2d_y1dsteps参数意义相同</p></li>
+<li><p><strong>y_step</strong> – 与forward_predict_X2d_y1dsteps参数意义相同</p></li>
+<li><p><strong>gap</strong> – 与forward_predict_X2d_y1dsteps参数意义相同</p></li>
+<li><p><strong>**kwargs</strong> – 与forward_predict_X2d_y1dsteps参数意义相同</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>valid_pre, test_pre</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.DataFrame，验证集和测试集预测结果，包含ycol+’_pre’列</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.datsci.topsis">
+<span id="topsis"></span><h2>topsis<a class="headerlink" href="#module-dramkit.datsci.topsis" title="Permalink to this headline"></a></h2>
+<section id="id11">
+<h3>topsis<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.topsis.topsis">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.topsis.</span></span><span class="sig-name descname"><span class="pre">topsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.topsis.topsis" title="Permalink to this definition"></a></dt>
+<dd><p>TOPSIS评价方法</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – <p>每行一个样本，每列一个指标，为每个样本计算综合得分</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>df应保证所有指标都是正向的，且已经预处理了无效值</p>
+</div>
+</p></li>
+<li><p><strong>weight</strong> (<em>list</em>) – 顺序与df.columns对应的指标权重列表，若为None，则默认采用熵值法计算权重</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul>
+<li><p><strong>score</strong> (<em>pd.DataFrame</em>) – 每个样本综合得分指数，列名为’score’</p></li>
+<li><p><strong>mid_info</strong> (<em>tuple</em>) – 返回中间过程数据(result, Z, weight):</p>
+<div class="line-block">
+<div class="line">- result: df规范化之后的数据，加上’正dis’, ‘负dis’, ‘score’, ‘rank’四列，
+‘正dis’和’负dis’分别为样本距正理想解和负理想解的距离</div>
+<div class="line">- Z: 正理想解和负理想解</div>
+<div class="line">- weight: 指标权重列表</div>
+</div>
+</li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p><a class="reference external" href="https://zhuanlan.zhihu.com/p/37738503">https://zhuanlan.zhihu.com/p/37738503</a></p>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.datsci.utils_lgb">
+<span id="utils-lgb"></span><h2>utils_lgb<a class="headerlink" href="#module-dramkit.datsci.utils_lgb" title="Permalink to this headline"></a></h2>
+<p><strong>LightGBM核心参数说明</strong></p>
+<div class="line-block">
+<div class="line"><strong>算法类型</strong></div>
+<div class="line">- boosting: 可选[‘gbdt’, ‘rf’, ‘dart’, ‘goss’]（使用dart？可能准确率更高）</div>
+<div class="line">- extra_trees: 若为True，则特征分裂时使用极端随机树方式（普通决策树对某个特征进行分裂
+时通过比较不同划分点来选择最优分裂点，极端随机树则随机选择分裂点），使用extra_trees
+可以减少过拟合</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>树结构</strong></div>
+<div class="line">- max_depth: 树的深度，太大可能过拟合</div>
+<div class="line">- num_leaves: 树的叶子节点数量，太大可能过拟合（二叉树叶子节点数量为: 2^树深度）</div>
+<div class="line">- min_data_in_leaf: 每个叶子节点上的样本数，太小可能过拟合</div>
+<div class="line">注：LightGBM使用leaf-wise的算法，因此在调节树的复杂程度时，应使用的是num_leaves，
+而不是max_depth。其值应设置为小于2^(max_depth)，否则容易导致过拟合。</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>采样和特征处理</strong></div>
+<div class="line">- bagging_fraction: 样本采样比例，用于降低过拟合和提升训练速度</div>
+<div class="line">- bagging_freq: 采样频率，即每个多少轮对样本进行一次采样</div>
+<div class="line">注：bagging_fraction和bagging_freq须同时设置（具体过程？每轮用的样本不一样？）</div>
+<div class="line">- feature_fraction: 特征采样比例，即在每轮迭代（每棵树？）随机选取指定比例的特征参与
+建模，用于降低过拟合和提升训练速度</div>
+<div class="line">- max_bin: 特征离散化时的分组数（lightgbm采用直方图对特征进行离散化），
+越小训练速度越快，越大越容易过拟合</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>正则化</strong></div>
+<div class="line">- lambda_l1: L1正则化项系数</div>
+<div class="line">- lambda_l2: L2正则化项系数</div>
+<div class="line">- min_gain_to_split: 节点分裂时的最小gain？控制，越大可以减少过拟合</div>
+<div class="line">- min_sum_hessian_in_leaf: 每个叶子节点上的hessian矩阵？之和的最小值限制，
+起正则化和限制树深度的作用，越大可以减少过拟合</div>
+<div class="line">- path_smooth: 树节点平滑？，越大可以减少过拟合</div>
+<div class="line">注：设置path_smooth大于0时min_data_in_leaf必须大于等于2</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>训练过程控制</strong></div>
+<div class="line">- learning_rate, num_iterations: 设置较小的learning_rate配合较大的num_iterations比较好</div>
+</div>
+<div class="line-block">
+<div class="line"><strong>其它注意事项</strong></div>
+<div class="line">- categorical_feature参数值在训练函数lgb.train中与在lgb.Dataset中须一致，其对应
+变量必须是大于等于0的整数值，须与数据集中的类别型（category）变量名列相同，最好在
+pandas.DataFrame中设置为.astype(‘category’)</div>
+<div class="line">- 多分类任务中，标签y的值必须为[0, num_class)范围内的整数，num_class为类别数</div>
+<div class="line">- 二分类任务中，lgb貌似会默认将y中小于等于0的值当做负标签，大于0的当做正标签</div>
+<div class="line">- ‘num_boost_round’和树的数量是啥关系？</div>
+</div>
+<section id="check-parms-mdl">
+<h3>check_parms_mdl<a class="headerlink" href="#check-parms-mdl" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_lgb.check_parms_mdl">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_lgb.</span></span><span class="sig-name descname"><span class="pre">check_parms_mdl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parms_mdl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_class</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_lgb.check_parms_mdl" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">检查模型相关参数设置是否正确</div>
+<div class="line">parms_mdl为设置的模型参数</div>
+<div class="line">检查的参数项目（可添加新的检查项目）：</div>
+<div class="line-block">
+<div class="line">任务类型objective</div>
+<div class="line">multiclass中的num_class参数</div>
+</div>
+<div class="line">返回检查的参数值</div>
+<div class="line">注：后续若更改该函数检查的参数项，则在调用该函数的地方也须做相应修改</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-parms-mdl">
+<h3>get_parms_mdl<a class="headerlink" href="#get-parms-mdl" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_lgb.get_parms_mdl">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_lgb.</span></span><span class="sig-name descname"><span class="pre">get_parms_mdl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parms_mdl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_lgb.get_parms_mdl" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">获取模型参数</div>
+<div class="line">parms_mdl为设置的模型参数，若关键参数没设置，则会补充设置默认值</div>
+<div class="line">objective为任务类型，支持的任务类型（可添加其他任务类型）：</div>
+<div class="line-block">
+<div class="line">multiclass、binary、regression</div>
+</div>
+<div class="line">num_class：多分类任务中的类别数（对多分类任务起作用，会对此参数进行特殊检查）</div>
+<div class="line">注：若新增其它任务类型，可能需要设置对应需要特殊检查的参数</div>
+<div class="line">注意：由于lgb参数有别称，可能导致混淆或重复设置，故parms_mdl中出现的参数名称应与
+本函数中默认名称保持一致！</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-parms-train-or-cv">
+<h3>get_parms_train_or_cv<a class="headerlink" href="#get-parms-train-or-cv" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_lgb.get_parms_train_or_cv">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_lgb.</span></span><span class="sig-name descname"><span class="pre">get_parms_train_or_cv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parms_train_or_cv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_lgb.get_parms_train_or_cv" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">获取lgb.train或lgb.cv参数</div>
+<div class="line">parms_train_or_cv为以字典形式设置的train或cv参数，
+若关键参数没设置，则会补充设置默认值</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="lgb-train">
+<h3>lgb_train<a class="headerlink" href="#lgb-train" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_lgb.lgb_train">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_lgb.</span></span><span class="sig-name descname"><span class="pre">lgb_train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X_valid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_valid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parms_mdl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parms_train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mdl_save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_lgb.lgb_train" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">lightgbm模型训练</div>
+<div class="line">X_train, y_train, X_valid, y_valid为pd或np格式，最好为pd格式数据</div>
+<div class="line">objective为任务类型，支持的任务类型（可添加其他任务类型）：</div>
+<div class="line-block">
+<div class="line">multiclass、binary、regression</div>
+</div>
+<div class="line">parms_mdl和parms_train为模型参数和训练参数（dict）</div>
+<div class="line">mdl_save_path为模型本地化路径</div>
+<div class="line">返回训练好的模型和损失函数变化曲线数据</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="lgb-cv">
+<h3>lgb_cv<a class="headerlink" href="#lgb-cv" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_lgb.lgb_cv">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_lgb.</span></span><span class="sig-name descname"><span class="pre">lgb_cv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parms_mdl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parms_cv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_lgb.lgb_cv" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">lightgbm交叉验证</div>
+<div class="line">X_train, y_train为pd或np格式，最好为pd格式数据</div>
+<div class="line">objective为任务类型，支持的任务类型（可添加其他任务类型）：</div>
+<div class="line-block">
+<div class="line">multiclass、binary、regression</div>
+</div>
+<div class="line">parms_mdl和parms_cv为模型参数和cv参数（dict）</div>
+<div class="line">返回各损失函数值？</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="lgb-cv-grid-search">
+<h3>lgb_cv_grid_search<a class="headerlink" href="#lgb-cv-grid-search" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_lgb.lgb_cv_grid_search">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_lgb.</span></span><span class="sig-name descname"><span class="pre">lgb_cv_grid_search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parms_mdl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parms_to_opt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parms_cv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_lgb.lgb_cv_grid_search" title="Permalink to this definition"></a></dt>
+<dd><p>lgb交叉验证网格搜索调参</p>
+</dd></dl>
+
+</section>
+<section id="lgb-cv-hoo">
+<h3>lgb_cv_hoo<a class="headerlink" href="#lgb-cv-hoo" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_lgb.lgb_cv_hoo">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_lgb.</span></span><span class="sig-name descname"><span class="pre">lgb_cv_hoo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parms_mdl_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parms_train_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_fold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">62</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mdl_path_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_lgb.lgb_cv_hoo" title="Permalink to this definition"></a></dt>
+<dd><p>自定义lgb交叉验证，返回模型列表和结果列表</p>
+</dd></dl>
+
+</section>
+<section id="lgb-predict">
+<h3>lgb_predict<a class="headerlink" href="#lgb-predict" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_lgb.lgb_predict">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_lgb.</span></span><span class="sig-name descname"><span class="pre">lgb_predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mdl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_lgb.lgb_predict" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">lgb模型预测</div>
+<div class="line">mdl为训练好的模型或本地模型路径，X为待预测输入</div>
+<div class="line">p_cut为二分类确定标签时的概率切分点</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-features-importance">
+<h3>get_features_importance<a class="headerlink" href="#get-features-importance" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_lgb.get_features_importance">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_lgb.</span></span><span class="sig-name descname"><span class="pre">get_features_importance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mdl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sum1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'df'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_lgb.get_features_importance" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">返回特征重要性</div>
+<div class="line">sum1设置是否标准化成和为1的权重</div>
+<div class="line">return_type可选[<cite>df</cite>, <cite>dict</cite>]</div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.datsci.utils_ml">
+<span id="utils-ml"></span><h2>utils_ml<a class="headerlink" href="#module-dramkit.datsci.utils_ml" title="Permalink to this headline"></a></h2>
+<section id="vote-label-int">
+<h3>vote_label_int<a class="headerlink" href="#vote-label-int" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_ml.vote_label_int">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_ml.</span></span><span class="sig-name descname"><span class="pre">vote_label_int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_pred_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_ml.vote_label_int" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">投票法生成最终二分类或多分类label</div>
+<div class="line">label_pred_list为不同的预测结果列表，
+每个预测结果是值为整数的np.array或pd.Series或list</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="vote-prob-multi">
+<h3>vote_prob_multi<a class="headerlink" href="#vote-prob-multi" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_ml.vote_prob_multi">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_ml.</span></span><span class="sig-name descname"><span class="pre">vote_prob_multi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prob_pred_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_ml.vote_prob_multi" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">投票法生成最终多分类label</div>
+<div class="line">prob_pred_list为不同预测结果列表，
+每个预测结果是值为概率的np.array或pd.Series，shape为样本数*类别数</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="vote-prob-bin-pcut">
+<h3>vote_prob_bin_pcut<a class="headerlink" href="#vote-prob-bin-pcut" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_ml.vote_prob_bin_pcut">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_ml.</span></span><span class="sig-name descname"><span class="pre">vote_prob_bin_pcut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prob_pred_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pcut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_ml.vote_prob_bin_pcut" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">投票法生成最终二分类label</div>
+<div class="line">prob_pred_list为不同预测结果列表，
+每个预测结果是值为概率（label为1的概率）的np.array或pd.Series，shape为样本数*1</div>
+<div class="line">pcut: 指定将预测概率大于pcut的样本标注为1</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="vote-prob-bin-rate1">
+<h3>vote_prob_bin_rate1<a class="headerlink" href="#vote-prob-bin-rate1" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_ml.vote_prob_bin_rate1">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_ml.</span></span><span class="sig-name descname"><span class="pre">vote_prob_bin_rate1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prob_pred_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_ml.vote_prob_bin_rate1" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">投票法生成最终二分类label</div>
+<div class="line">prob_pred_list为不同预测结果列表，
+每个预测结果是值为概率（label为1的概率）的np.array或pd.Series，shape为样本数*1</div>
+<div class="line">rate1: 指定标签为1的样本比例</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="auc-bin">
+<h3>auc_bin<a class="headerlink" href="#auc-bin" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_ml.auc_bin">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_ml.</span></span><span class="sig-name descname"><span class="pre">auc_bin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_prob</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_ml.auc_bin" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">二分类AUC计算</div>
+<div class="line">y_true为真实标签，pred_prob为预测概率（取y_true中较大值的概率）</div>
+<div class="line">**kwargs可设置sklearn.metrics.roc_auc_score函数接收的其它参数</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="cal-f1-score">
+<h3>cal_f1_score<a class="headerlink" href="#cal-f1-score" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_ml.cal_f1_score">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_ml.</span></span><span class="sig-name descname"><span class="pre">cal_f1_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_ml.cal_f1_score" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">F1-score计算</div>
+<div class="line">y_true为真实标签，y_pred为预测标签</div>
+<div class="line">**kwargs可设置sklearn.metrics.f1_score函数接收的其它参数</div>
+<div class="line">多分类时sklearn中计算F1值的方式参考：</div>
+<div class="line"><a class="reference external" href="https://zhuanlan.zhihu.com/p/59862986">https://zhuanlan.zhihu.com/p/59862986</a></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="confusion-matrix">
+<h3>confusion_matrix<a class="headerlink" href="#confusion-matrix" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_ml.confusion_matrix">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_ml.</span></span><span class="sig-name descname"><span class="pre">confusion_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs_f1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_ml.confusion_matrix" title="Permalink to this definition"></a></dt>
+<dd><p>混淆矩阵，y_true和y_predict分别为真实标签和预测标签</p>
+</dd></dl>
+
+</section>
+<section id="plot-roc-bin">
+<h3>plot_roc_bin<a class="headerlink" href="#plot-roc-bin" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.datsci.utils_ml.plot_roc_bin">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.utils_ml.</span></span><span class="sig-name descname"><span class="pre">plot_roc_bin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true_pred_prob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lnstyls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(8,</span> <span class="pre">8)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_save_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.utils_ml.plot_roc_bin" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">二分类ROC曲线绘制</div>
+<div class="line">y_true_pred_prob格式：</div>
+<div class="line-block">
+<div class="line">[(y_true1, pred_prob1), (y_true2, pred_prob2), …]，</div>
+<div class="line">其中y_true为真实标签，</div>
+<div class="line">pred_prob为预测概率结果（取y_true中较大值的概率）</div>
+</div>
+<div class="line">labels设置每个结果ROC曲线图例标签，list或tuple</div>
+<div class="line">lnstyls设置每个结果ROC曲线的线型，list或tuple</div>
+<div class="line">若只有一个结果，则labels，lnstyls可不用写成list或tuple</div>
+<div class="line">**kwargs可设置sklearn.metrics.roc_curve函数接收的其它参数</div>
+<div class="line">返回AUC值</div>
+</div>
 </dd></dl>
 
 </section>

@@ -40,12 +40,17 @@ def namemap(name):
     return name
 
 
-def get_sub_pkgs():
-    '''查找所有子package名称列表'''
+def get_sub_pkgs(include_=False):
+    '''
+    | 查找所有子package名称列表
+    | include_设置返回结果是否包含以'_'开头的被保护文件夹
+    '''
     sub_pkgs = os.listdir(SRC_DIR)
     sub_pkgs = [x for x in sub_pkgs if os.path.isdir(SRC_DIR+x)]
     ignores = ['__pycache__', '.ipynb_checkpoints', '.pylint.d', 'test']
     sub_pkgs = [x for x in sub_pkgs if x not in ignores]
+    if not include_:
+        sub_pkgs = [x for x in sub_pkgs if x[0] != '_']
     return sub_pkgs
 
 

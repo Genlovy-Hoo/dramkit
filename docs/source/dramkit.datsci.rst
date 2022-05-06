@@ -124,6 +124,28 @@ get_CkSup_and_FreqLk_all
 
 .. autofunction:: dramkit.datsci.apriori.get_CkSup_and_FreqLk_all
 
+curvature
+----------
+
+.. automodule:: dramkit.datsci.curvature
+
+.. currentmodule:: dramkit.datsci.curvature
+
+curvature_3point
+^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.curvature.curvature_3point
+
+rolling_curvature_3point
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.curvature.rolling_curvature_3point
+
+plot_curvature
+^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.curvature.plot_curvature
+
 elm_cls
 --------
 
@@ -153,6 +175,80 @@ ELMRegressor
     :members:
     :undoc-members:
     :show-inheritance:
+
+entropy_weight
+---------------
+
+.. automodule:: dramkit.datsci.entropy_weight
+
+.. currentmodule:: dramkit.datsci.entropy_weight
+
+entropy_weight
+^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.entropy_weight.entropy_weight
+
+find_maxmin
+------------
+
+.. automodule:: dramkit.datsci.find_maxmin
+
+.. currentmodule:: dramkit.datsci.find_maxmin
+
+find_maxmin
+^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.find_maxmin.find_maxmin
+
+check_maxmins
+^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.find_maxmin.check_maxmins
+
+get_his_maxmin_info
+^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.find_maxmin.get_his_maxmin_info
+
+get_last_pos_info
+^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.find_maxmin.get_last_pos_info
+
+get_maxmin_neighbor_label
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.find_maxmin.get_maxmin_neighbor_label
+
+del_tooclose_maxmin
+^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.find_maxmin.del_tooclose_maxmin
+
+get_maxmin_records
+^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.find_maxmin.get_maxmin_records
+
+get_last_sure_maxmin_info
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.find_maxmin.get_last_sure_maxmin_info
+
+get_continue_maxmin_info
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.find_maxmin.get_continue_maxmin_info
+
+disaper
+^^^^^^^^
+
+.. autofunction:: dramkit.datsci.find_maxmin.disaper
+
+find_maxmin_dy
+^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.find_maxmin.find_maxmin_dy
 
 freq_item_set
 --------------
@@ -185,6 +281,26 @@ fpgrowth_mlx
 ^^^^^^^^^^^^^
 
 .. autofunction:: dramkit.datsci.freq_item_set.fpgrowth_mlx
+
+lr
+---
+
+.. automodule:: dramkit.datsci.lr
+
+.. currentmodule:: dramkit.datsci.lr
+
+LRClassifierBinary
+^^^^^^^^^^^^^^^^^^^
+
+.. autoclass:: dramkit.datsci.lr.LRClassifierBinary
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+lr_fit_sm
+^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.lr.lr_fit_sm
 
 preprocess
 -----------
@@ -647,3 +763,171 @@ anova_oneway
 ^^^^^^^^^^^^^
 
 .. autofunction:: dramkit.datsci.stats.anova_oneway
+
+time_series
+------------
+
+.. automodule:: dramkit.datsci.time_series
+
+.. currentmodule:: dramkit.datsci.time_series
+
+fillna_ma
+^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.time_series.fillna_ma
+
+get_DirectionalAccuracy_1step
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.time_series.get_DirectionalAccuracy_1step
+
+genXy_X2d_y1d1step
+^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.time_series.genXy_X2d_y1d1step
+
+predict_X2d_y1d1step
+^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.time_series.predict_X2d_y1d1step
+
+Predict_X2d_y1d1step
+^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.time_series.Predict_X2d_y1d1step
+
+forward_predict_X2d_y1d1step
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.time_series.forward_predict_X2d_y1d1step
+
+SeriesPredict_X2d_y1d1step
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.time_series.SeriesPredict_X2d_y1d1step
+
+genXy_X2d_y1dsteps
+^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.time_series.genXy_X2d_y1dsteps
+
+forward_predict_X2d_y1dsteps
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.time_series.forward_predict_X2d_y1dsteps
+
+SeriesPredict_X2d_y1dsteps
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.time_series.SeriesPredict_X2d_y1dsteps
+
+topsis
+-------
+
+.. automodule:: dramkit.datsci.topsis
+
+.. currentmodule:: dramkit.datsci.topsis
+
+topsis
+^^^^^^^
+
+.. autofunction:: dramkit.datsci.topsis.topsis
+
+utils_lgb
+----------
+
+.. automodule:: dramkit.datsci.utils_lgb
+
+.. currentmodule:: dramkit.datsci.utils_lgb
+
+check_parms_mdl
+^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_lgb.check_parms_mdl
+
+get_parms_mdl
+^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_lgb.get_parms_mdl
+
+get_parms_train_or_cv
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_lgb.get_parms_train_or_cv
+
+lgb_train
+^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_lgb.lgb_train
+
+lgb_cv
+^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_lgb.lgb_cv
+
+lgb_cv_grid_search
+^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_lgb.lgb_cv_grid_search
+
+lgb_cv_hoo
+^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_lgb.lgb_cv_hoo
+
+lgb_predict
+^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_lgb.lgb_predict
+
+get_features_importance
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_lgb.get_features_importance
+
+utils_ml
+---------
+
+.. automodule:: dramkit.datsci.utils_ml
+
+.. currentmodule:: dramkit.datsci.utils_ml
+
+vote_label_int
+^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_ml.vote_label_int
+
+vote_prob_multi
+^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_ml.vote_prob_multi
+
+vote_prob_bin_pcut
+^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_ml.vote_prob_bin_pcut
+
+vote_prob_bin_rate1
+^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_ml.vote_prob_bin_rate1
+
+auc_bin
+^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_ml.auc_bin
+
+cal_f1_score
+^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_ml.cal_f1_score
+
+confusion_matrix
+^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_ml.confusion_matrix
+
+plot_roc_bin
+^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.datsci.utils_ml.plot_roc_bin

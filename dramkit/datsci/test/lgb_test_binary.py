@@ -2,15 +2,17 @@
 
 from sklearn import datasets
 from sklearn.model_selection import train_test_split as tts
-from utils_hoo.utils_datsci.utils_lgb import lgb_train, lgb_predict
 from sklearn.metrics import accuracy_score, roc_auc_score
-from utils_hoo.utils_datsci.utils_lgb import lgb_cv_hoo
-from utils_hoo.utils_datsci.utils_ml import vote_label_int, vote_prob_bin_pcut
-from utils_hoo.utils_datsci.utils_lgb import lgb_cv_GridSearch
+from dramkit.datsci.utils_lgb import lgb_cv_hoo
+from dramkit.datsci.utils_lgb import lgb_train
+from dramkit.datsci.utils_lgb import lgb_predict
+from dramkit.datsci.utils_lgb import lgb_cv_grid_search
+from dramkit.datsci.utils_ml import vote_label_int
+from dramkit.datsci.utils_ml import vote_prob_bin_pcut
 
-
+#%%
 if __name__ == '__main__':
-    #%% 二分类任务
+    # 二分类任务
     data = datasets.load_breast_cancer()
     X, y = data['data'], data['target']
 
@@ -43,9 +45,9 @@ if __name__ == '__main__':
                  'nthread': 4,
                  'learning_rate': 0.1}
     # part1
-    best1, s1 = lgb_cv_GridSearch(X_train, y_train, objective='binary',
-                                  parms_to_opt={'num_leaves': range(5, 100, 5),
-                                                'max_depth': range(3, 8, 1)})
+    best1, s1 = lgb_cv_grid_search(X_train, y_train, objective='binary',
+                                   parms_to_opt={'num_leaves': range(5, 100, 5),
+                                                 'max_depth': range(3, 8, 1)})
     parms_mdl.update(best1)
     mdl, evals_result = lgb_train(X_train, y_train, objective='binary',
                                   parms_mdl=parms_mdl)
@@ -53,7 +55,7 @@ if __name__ == '__main__':
     acc3= accuracy_score(y_valid, valid_pre)
 
     # part2
-    best2, s2 = lgb_cv_GridSearch(X_train, y_train, objective='binary',
+    best2, s2 = lgb_cv_grid_search(X_train, y_train, objective='binary',
                     parms_to_opt={'min_data_in_leaf': range(1, 102, 10),
                                             'max_bin': range(5, 256, 10)})
     parms_mdl.update(best2)
@@ -63,7 +65,7 @@ if __name__ == '__main__':
     acc4= accuracy_score(y_valid, valid_pre)
 
     # part3
-    best3, s3 = lgb_cv_GridSearch(X_train, y_train, objective='binary',
+    best3, s3 = lgb_cv_grid_search(X_train, y_train, objective='binary',
                     parms_to_opt={'feature_fraction': [0.6,0.7,0.8,0.9,1.0],
                                   'bagging_fraction':  [0.6,0.7,0.8,0.9,1.0],
                                   'bagging_freq':  range(0,50,5)})
@@ -74,7 +76,7 @@ if __name__ == '__main__':
     acc5= accuracy_score(y_valid, valid_pre)
 
     # part4
-    best4, s4 = lgb_cv_GridSearch(X_train, y_train, objective='binary',
+    best4, s4 = lgb_cv_grid_search(X_train, y_train, objective='binary',
       parms_to_opt={'lambda_l1': [1e-5,1e-3,1e-1,0.0,0.1,0.3,0.5,0.7,0.9,1.0],
                     'lambda_l2': [1e-5,1e-3,1e-1,0.0,0.1,0.4,0.6,0.7,0.9,1.0]})
     parms_mdl.update(best4)
@@ -84,7 +86,7 @@ if __name__ == '__main__':
     acc6= accuracy_score(y_valid, valid_pre)
 
     # part5
-    best5, s5 = lgb_cv_GridSearch(X_train, y_train, objective='binary',
+    best5, s5 = lgb_cv_grid_search(X_train, y_train, objective='binary',
                   parms_to_opt={'min_split_gain': [0.0,0.1,0.2,0.3,0.4,0.5,
                                                    0.6,0.7,0.8,0.9,1.0],})
     parms_mdl.update(best5)

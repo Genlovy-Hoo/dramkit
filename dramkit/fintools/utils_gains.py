@@ -246,6 +246,11 @@ def cal_gain_con_futures2(price_open, price_now, n, player,
     return gain_lever, gain_pct
 
 #%%
+def cal_expect_return(hit_prob, gain_loss_ratio):
+    '''根据胜率和盈亏比计算期望收益'''
+    return hit_prob*gain_loss_ratio - (1-hit_prob)
+
+
 def cal_gain_pct_log(price_cost, price, pct_cost0=1):
     '''
     | 计算对数收益率
