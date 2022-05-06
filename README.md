@@ -20,5 +20,9 @@ pip install dramkit --upgrade
 
 [dramkit](https://github.com/Genlovy-Hoo/dramkit/)
 
+Pypi
+
+[dramkit](https://pypi.org/project/dramkit/)
+
 感谢使用和支持！
 
