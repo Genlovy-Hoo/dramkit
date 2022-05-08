@@ -2035,6 +2035,18 @@ def get_num_decimal(x, ignore_tail0=True):
     return len(decimal)
 
 
+def sort_dict(d, by='key', reverse=False):
+    '''
+    对字典排序，by设置依据'key'还是'value'排，reverse同sorted函数参数
+    '''
+    assert by in ['key', 'value']
+    if by == 'key':
+        d_ = sorted(d.items(), key=lambda kv: (kv[0], kv[1]), reverse=reverse)
+    else:
+        d_ = sorted(d.items(), key=lambda kv: (kv[1], kv[0]), reverse=reverse)
+    return dict(d_)
+
+
 if __name__ == '__main__':
     from dramkit import load_csv, plot_series
     from dramkit.fintools.fintools import CCI

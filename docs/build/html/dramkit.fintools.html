@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>fintools &mdash; DramKit 0.1.1 documentation</title>
+  <title>fintools &mdash; DramKit 0.1.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -44,7 +44,15 @@
 <li class="toctree-l1"><a class="reference internal" href="dramkit.datsci.html">datsci</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.find_addends.html">find_addends</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">fintools</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">fintools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.fintools.ahr999">ahr999</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-ahr999">get_ahr999</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.fintools.candle_similar">candle_similar</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">candle_similar</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">fintools</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cal-ic">cal_IC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#kelly-formula">kelly_formula</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sim-mc">sim_MC</a></li>
@@ -78,6 +86,68 @@
 <li class="toctree-l3"><a class="reference internal" href="#cross2">cross2</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cross2-plot">cross2_plot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cross-cum-maxmin-dif">cross_cum_maxmin_dif</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.fintools.limit_stock_value">limit_stock_value</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#app">app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cal-limit-stock-value">cal_limit_stock_value</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.fintools.load_his_data">load_his_data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#find-target-dir">find_target_dir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-15s-dir">get_15s_dir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-1min-dir1">get_1min_dir1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-1min-dir2">get_1min_dir2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-daily-dir1">get_daily_dir1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-15s-data">load_15s_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-minute-data">load_minute_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#handle-minute-930">handle_minute_930</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-minute-data">get_minute_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-daily-data">load_daily_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-index-daily">load_index_daily</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-index-minute">load_index_minute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-btc-daily">load_btc_daily</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-eth-daily">load_eth_daily</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-index-futures-daily">load_index_futures_daily</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load-index-futures-minute">load_index_futures_minute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check-daily-data-is-new">check_daily_data_is_new</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.fintools.options">options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#bs-opt">bs_opt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mc-bs-opt">mc_bs_opt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mc-log-bs-opt">mc_log_bs_opt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bopm-european">bopm_european</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bsm-iv-dichotomy">bsm_iv_dichotomy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bsm-iv-dichotomy0">bsm_iv_dichotomy0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bsm-iv-newton">bsm_iv_newton</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bs-vega">bs_vega</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bs-delta">bs_delta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bs-gamma">bs_gamma</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bs-theta">bs_theta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bs-rho">bs_rho</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.fintools.report_date_align">report_date_align</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-tushare-api">get_tushare_api</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-trade-date">get_trade_date</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-aligned-data">get_aligned_data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.fintools.utils_chn">utils_chn</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-finreport-date-by-delta">get_finreport_date_by_delta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-last-effect-finreport-dates">get_last_effect_finreport_dates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-code-ext">get_code_ext</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-trade-fee-astock">get_trade_fee_Astock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#trade-fee-astock">trade_fee_Astock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#is-trade-day-chncal">is_trade_day_chncal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-recent-trade-date-chncal">get_recent_trade_date_chncal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-next-nth-trade-date-chncal">get_next_nth_trade_date_chncal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-next-nth-trade-date">get_next_nth_trade_date</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-trade-dates-chncal">get_trade_dates_chncal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-trade-dates">get_trade_dates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-trade-dates-bk">get_trade_dates_bk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-num-trade-dates">get_num_trade_dates</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.fintools.utils_gains">utils_gains</a><ul>
@@ -120,6 +190,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#get-yield-curve2">get_yield_curve2</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dramkit.fintools.zigzag">zigzag</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">zigzag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-candle-zz">plot_candle_zz</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dramkit.logtools.html">logtools</a></li>
@@ -159,8 +234,46 @@
              
   <section id="fintools">
 <h1>fintools<a class="headerlink" href="#fintools" title="Permalink to this headline"></a></h1>
+<section id="module-dramkit.fintools.ahr999">
+<span id="ahr999"></span><h2>ahr999<a class="headerlink" href="#module-dramkit.fintools.ahr999" title="Permalink to this headline"></a></h2>
+<section id="get-ahr999">
+<h3>get_ahr999<a class="headerlink" href="#get-ahr999" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.ahr999.get_ahr999">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.ahr999.</span></span><span class="sig-name descname"><span class="pre">get_ahr999</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">birthday</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_price</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'close'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lr'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_fix_inv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix_inv_cost</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gmean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'volume'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'figsize':</span> <span class="pre">(12,</span> <span class="pre">8),</span> <span class="pre">'title':</span> <span class="pre">None}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.ahr999.get_ahr999" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">AHR999指标计算</div>
+<div class="line">data中需包含[‘time’|’date’, col_price]列
+以及VWAP用到的[col_vol, col_val]列</div>
+<div class="line">poly设置拟合模型输入X进行多项式扩展的最高次方数</div>
+<div class="line">fit_log设置拟合模型是否进行对数变换</div>
+<div class="line">model指定模型类别：’lr’为线性回归，’gbr’为gbdt回归</div>
+<div class="line">n_fix_inv设置几定投历史期数</div>
+<div class="line">fix_inv_cost设置定投成本计算方法，可选’gmean’，’vwap’</div>
+<div class="line">col_weight指定VWAP方法中的权重列（通常是成交量）</div>
+<div class="line">参考：</div>
+<div class="line"><a class="reference external" href="https://www.qkl123.com/data/ahr999/btc">https://www.qkl123.com/data/ahr999/btc</a></div>
+<div class="line"><a class="reference external" href="https://weibo.com/ttarticle/p/show?id=2309404441088189399138">https://weibo.com/ttarticle/p/show?id=2309404441088189399138</a></div>
+<div class="line"><a class="reference external" href="https://blog.csdn.net/weixin_30521175/article/details/112435923">https://blog.csdn.net/weixin_30521175/article/details/112435923</a></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.fintools.candle_similar">
+<span id="candle-similar"></span><h2>candle_similar<a class="headerlink" href="#module-dramkit.fintools.candle_similar" title="Permalink to this headline"></a></h2>
 <section id="id1">
-<h2>fintools<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<h3>candle_similar<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.candle_similar.candle_similar">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.candle_similar.</span></span><span class="sig-name descname"><span class="pre">candle_similar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std01</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.candle_similar.candle_similar" title="Permalink to this definition"></a></dt>
+<dd><p>计算K线相似度，df1和df2应包含K线数据指定列cols</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="id2">
+<h2>fintools<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 <span class="target" id="module-dramkit.fintools.fintools"></span><section id="cal-ic">
 <h3>cal_IC<a class="headerlink" href="#cal-ic" title="Permalink to this headline"></a></h3>
 <dl class="py function">
@@ -669,6 +782,913 @@
 <dt class="sig sig-object py" id="dramkit.fintools.fintools.cross_cum_maxmin_dif">
 <span class="sig-prename descclassname"><span class="pre">dramkit.fintools.fintools.</span></span><span class="sig-name descname"><span class="pre">cross_cum_maxmin_dif</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rlag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thr_rmax2now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thr_rmin2now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_price</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'close'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buy_sig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sel_sig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.fintools.cross_cum_maxmin_dif" title="Permalink to this definition"></a></dt>
 <dd><p>依据指标值与滚动最大最小值的差值绝对大小来生成信号</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.fintools.limit_stock_value">
+<span id="limit-stock-value"></span><h2>limit_stock_value<a class="headerlink" href="#module-dramkit.fintools.limit_stock_value" title="Permalink to this headline"></a></h2>
+<section id="app">
+<h3>app<a class="headerlink" href="#app" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.limit_stock_value.app">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.limit_stock_value.</span></span><span class="sig-name descname"><span class="pre">app</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.limit_stock_value.app" title="Permalink to this definition"></a></dt>
+<dd><p>平均价格亚式期权模型（“AAP模型”）</p>
+</dd></dl>
+
+</section>
+<section id="cal-limit-stock-value">
+<h3>cal_limit_stock_value<a class="headerlink" href="#cal-limit-stock-value" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.limit_stock_value.cal_limit_stock_value">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.limit_stock_value.</span></span><span class="sig-name descname"><span class="pre">cal_limit_stock_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.limit_stock_value.cal_limit_stock_value" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">S：估值日在证券交易所上市交易的同一股票的公允价值</div>
+<div class="line">T：剩余限售期，以年为单位表示</div>
+<div class="line">sigma：股票在剩余限售期内的股价的预期年化波动率</div>
+<div class="line">q：股票预期年化股利收益率</div>
+<div class="line"><br /></div>
+<div class="line">参考：</div>
+<div class="line">中证指数有限公司流通受限股票流动性折扣计算说明v2.docx</div>
+<div class="line"><a class="reference external" href="https://www.sohu.com/a/193630728_656666">https://www.sohu.com/a/193630728_656666</a></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.fintools.load_his_data">
+<span id="load-his-data"></span><h2>load_his_data<a class="headerlink" href="#module-dramkit.fintools.load_his_data" title="Permalink to this headline"></a></h2>
+<section id="find-target-dir">
+<h3>find_target_dir<a class="headerlink" href="#find-target-dir" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.load_his_data.find_target_dir">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.load_his_data.</span></span><span class="sig-name descname"><span class="pre">find_target_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.load_his_data.find_target_dir" title="Permalink to this definition"></a></dt>
+<dd><p>从不同磁盘分区中搜索dir_name文件夹所做的路径，并返回完整路径</p>
+</dd></dl>
+
+</section>
+<section id="get-15s-dir">
+<h3>get_15s_dir<a class="headerlink" href="#get-15s-dir" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.load_his_data.get_15s_dir">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.load_his_data.</span></span><span class="sig-name descname"><span class="pre">get_15s_dir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.load_his_data.get_15s_dir" title="Permalink to this definition"></a></dt>
+<dd><p>查找15秒K线数据存放路径</p>
+</dd></dl>
+
+</section>
+<section id="get-1min-dir1">
+<h3>get_1min_dir1<a class="headerlink" href="#get-1min-dir1" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.load_his_data.get_1min_dir1">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.load_his_data.</span></span><span class="sig-name descname"><span class="pre">get_1min_dir1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.load_his_data.get_1min_dir1" title="Permalink to this definition"></a></dt>
+<dd><p>查找1分钟K线数据存放路径</p>
+</dd></dl>
+
+</section>
+<section id="get-1min-dir2">
+<h3>get_1min_dir2<a class="headerlink" href="#get-1min-dir2" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.load_his_data.get_1min_dir2">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.load_his_data.</span></span><span class="sig-name descname"><span class="pre">get_1min_dir2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.load_his_data.get_1min_dir2" title="Permalink to this definition"></a></dt>
+<dd><p>查找1分钟K线数据存放路径</p>
+</dd></dl>
+
+</section>
+<section id="get-daily-dir1">
+<h3>get_daily_dir1<a class="headerlink" href="#get-daily-dir1" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.load_his_data.get_daily_dir1">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.load_his_data.</span></span><span class="sig-name descname"><span class="pre">get_daily_dir1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.load_his_data.get_daily_dir1" title="Permalink to this definition"></a></dt>
+<dd><p>查找日K线数据存放路径</p>
+</dd></dl>
+
+</section>
+<section id="load-15s-data">
+<h3>load_15s_data<a class="headerlink" href="#load-15s-data" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.load_his_data.load_15s_data">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.load_his_data.</span></span><span class="sig-name descname"><span class="pre">load_15s_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.load_his_data.load_15s_data" title="Permalink to this definition"></a></dt>
+<dd><p>读取15s数据</p>
+</dd></dl>
+
+</section>
+<section id="load-minute-data">
+<h3>load_minute_data<a class="headerlink" href="#load-minute-data" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.load_his_data.load_minute_data">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.load_his_data.</span></span><span class="sig-name descname"><span class="pre">load_minute_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.load_his_data.load_minute_data" title="Permalink to this definition"></a></dt>
+<dd><p>读取分钟数据</p>
+</dd></dl>
+
+</section>
+<section id="handle-minute-930">
+<h3>handle_minute_930<a class="headerlink" href="#handle-minute-930" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.load_his_data.handle_minute_930">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.load_his_data.</span></span><span class="sig-name descname"><span class="pre">handle_minute_930</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_minute</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.load_his_data.handle_minute_930" title="Permalink to this definition"></a></dt>
+<dd><p>处理9.30分开盘行情</p>
+</dd></dl>
+
+</section>
+<section id="get-minute-data">
+<h3>get_minute_data<a class="headerlink" href="#get-minute-data" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.load_his_data.get_minute_data">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.load_his_data.</span></span><span class="sig-name descname"><span class="pre">get_minute_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.load_his_data.get_minute_data" title="Permalink to this definition"></a></dt>
+<dd><p>分钟行情数据获取</p>
+</dd></dl>
+
+</section>
+<section id="load-daily-data">
+<h3>load_daily_data<a class="headerlink" href="#load-daily-data" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.load_his_data.load_daily_data">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.load_his_data.</span></span><span class="sig-name descname"><span class="pre">load_daily_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.load_his_data.load_daily_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="load-index-daily">
+<h3>load_index_daily<a class="headerlink" href="#load-index-daily" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.load_his_data.load_index_daily">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.load_his_data.</span></span><span class="sig-name descname"><span class="pre">load_index_daily</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.load_his_data.load_index_daily" title="Permalink to this definition"></a></dt>
+<dd><p>读取指数日K线数据</p>
+</dd></dl>
+
+</section>
+<section id="load-index-minute">
+<h3>load_index_minute<a class="headerlink" href="#load-index-minute" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.load_his_data.load_index_minute">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.load_his_data.</span></span><span class="sig-name descname"><span class="pre">load_index_minute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_minute</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.load_his_data.load_index_minute" title="Permalink to this definition"></a></dt>
+<dd><p>读取指数分钟K线数据</p>
+</dd></dl>
+
+</section>
+<section id="load-btc-daily">
+<h3>load_btc_daily<a class="headerlink" href="#load-btc-daily" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.load_his_data.load_btc_daily">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.load_his_data.</span></span><span class="sig-name descname"><span class="pre">load_btc_daily</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.load_his_data.load_btc_daily" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="load-eth-daily">
+<h3>load_eth_daily<a class="headerlink" href="#load-eth-daily" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.load_his_data.load_eth_daily">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.load_his_data.</span></span><span class="sig-name descname"><span class="pre">load_eth_daily</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.load_his_data.load_eth_daily" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="load-index-futures-daily">
+<h3>load_index_futures_daily<a class="headerlink" href="#load-index-futures-daily" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.load_his_data.load_index_futures_daily">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.load_his_data.</span></span><span class="sig-name descname"><span class="pre">load_index_futures_daily</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.load_his_data.load_index_futures_daily" title="Permalink to this definition"></a></dt>
+<dd><p>读取股指期货日K线数据</p>
+</dd></dl>
+
+</section>
+<section id="load-index-futures-minute">
+<h3>load_index_futures_minute<a class="headerlink" href="#load-index-futures-minute" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.load_his_data.load_index_futures_minute">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.load_his_data.</span></span><span class="sig-name descname"><span class="pre">load_index_futures_minute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_minute</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.load_his_data.load_index_futures_minute" title="Permalink to this definition"></a></dt>
+<dd><p>读取股指期货分钟K线数据</p>
+</dd></dl>
+
+</section>
+<section id="check-daily-data-is-new">
+<h3>check_daily_data_is_new<a class="headerlink" href="#check-daily-data-is-new" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.load_his_data.check_daily_data_is_new">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.load_his_data.</span></span><span class="sig-name descname"><span class="pre">check_daily_data_is_new</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'date'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_trade_day</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_workday</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_inweek</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.load_his_data.check_daily_data_is_new" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">检查日频数据是否为最新值</div>
+<div class="line">若date_col列不存在，则默认将索引作为日期</div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.fintools.options">
+<span id="options"></span><h2>options<a class="headerlink" href="#module-dramkit.fintools.options" title="Permalink to this headline"></a></h2>
+<section id="bs-opt">
+<h3>bs_opt<a class="headerlink" href="#bs-opt" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.options.bs_opt">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.options.</span></span><span class="sig-name descname"><span class="pre">bs_opt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.225</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days1year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">365</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.options.bs_opt" title="Permalink to this definition"></a></dt>
+<dd><p>BS期权定价公式</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>price_now</strong> (<em>float</em>) – 标的现价</p></li>
+<li><p><strong>price_exe</strong> (<em>float</em>) – 标的执行价</p></li>
+<li><p><strong>days_left</strong> (<em>int</em>) – 剩余天数</p></li>
+<li><p><strong>r</strong> (<em>float</em>) – 无风险利率，年化</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – 波动率（目标标的收益波动率，年化）？</p></li>
+<li><p><strong>i_d</strong> (<em>float</em>) – 隐含分红率？</p></li>
+<li><p><strong>days1year</strong> (<em>int</em>) – 一年天数，默认为365，即自然天数（也可以只考虑交易天数）</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>price_call</strong> (<em>float</em>) – 认购做多期权合约价格</p></li>
+<li><p><strong>price_put</strong> (<em>float</em>) – 认沽做空期权合约价格</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.optionseducation.org/toolsoptionquotes/optionscalculator">https://www.optionseducation.org/toolsoptionquotes/optionscalculator</a></p></li>
+<li><p><a class="reference external" href="http://www.rmmsoft.com.cn/RSPages/onlinetools/OptionAnalysis/OptionAnalysisCN.aspx">http://www.rmmsoft.com.cn/RSPages/onlinetools/OptionAnalysis/OptionAnalysisCN.aspx</a></p></li>
+<li><p><a class="reference external" href="https://blog.csdn.net/qq_41239584/article/details/83383780">https://blog.csdn.net/qq_41239584/article/details/83383780</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/38293827">https://zhuanlan.zhihu.com/p/38293827</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/38294971">https://zhuanlan.zhihu.com/p/38294971</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/96431951">https://zhuanlan.zhihu.com/p/96431951</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p">https://zhuanlan.zhihu.com/p</a>/142685333（隐含分红率）</p></li>
+<li><p><a class="reference external" href="https://github.com/caly5144/shu-s-project/tree/master/options">https://github.com/caly5144/shu-s-project/tree/master/options</a></p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="mc-bs-opt">
+<h3>mc_bs_opt<a class="headerlink" href="#mc-bs-opt" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.options.mc_bs_opt">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.options.</span></span><span class="sig-name descname"><span class="pre">mc_bs_opt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.225</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days1year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">365</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mc_cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_mc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">62</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.options.mc_bs_opt" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">注：没考虑分红！</div>
+<div class="line">MC-BS，蒙特卡罗模拟BS公式计算期权价格</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>price_now</strong> (<em>float</em>) – 标的现价</p></li>
+<li><p><strong>price_exe</strong> (<em>float</em>) – 标的执行价</p></li>
+<li><p><strong>days_left</strong> (<em>int</em>) – 剩余天数</p></li>
+<li><p><strong>r</strong> (<em>float</em>) – 无风险利率，年化</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – 波动率（目标标的收益波动率，年化）</p></li>
+<li><p><strong>days1year</strong> (<em>int</em>) – 一年天数，默认为365，即自然天数（也可以只考虑交易天数）</p></li>
+<li><p><strong>mc_cut</strong> (<em>int</em>) – 将剩余到期时间划分为mc_cut个小时段</p></li>
+<li><p><strong>n_mc</strong> (<em>int</em>) – 蒙特卡罗模拟次数</p></li>
+<li><p><strong>random_seed</strong> (<em>int</em><em>, </em><em>None</em>) – 随机数种子</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>price_call</strong> (<em>float</em>) – 认购做多期权合约价格</p></li>
+<li><p><strong>price_put</strong> (<em>float</em>) – 认沽做空期权合约价格</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://blog.csdn.net/qwop446/article/details/88914401">https://blog.csdn.net/qwop446/article/details/88914401</a></p></li>
+<li><p><a class="reference external" href="https://blog.csdn.net/hzk427/article/details/104538974">https://blog.csdn.net/hzk427/article/details/104538974</a></p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="mc-log-bs-opt">
+<h3>mc_log_bs_opt<a class="headerlink" href="#mc-log-bs-opt" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.options.mc_log_bs_opt">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.options.</span></span><span class="sig-name descname"><span class="pre">mc_log_bs_opt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.225</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days1year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">365</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mc_cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_mc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">62</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.options.mc_log_bs_opt" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">注：没考虑分红！</div>
+<div class="line">MC-BS，蒙特卡罗模拟BS公式计算期权价格，对数格式</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>price_now</strong> (<em>float</em>) – 标的现价</p></li>
+<li><p><strong>price_exe</strong> (<em>float</em>) – 标的执行价</p></li>
+<li><p><strong>days_left</strong> (<em>int</em>) – 剩余天数</p></li>
+<li><p><strong>r</strong> (<em>float</em>) – 无风险利率，年化</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – 波动率（目标标的收益波动率，年化）</p></li>
+<li><p><strong>days1year</strong> (<em>int</em>) – 一年天数，默认为365，即自然天数（也可以只考虑交易天数）</p></li>
+<li><p><strong>mc_cut</strong> (<em>int</em>) – 将剩余到期时间划分为mc_cut个小时段</p></li>
+<li><p><strong>n_mc</strong> (<em>int</em>) – 蒙特卡罗模拟次数</p></li>
+<li><p><strong>random_seed</strong> (<em>int</em><em>, </em><em>None</em>) – 随机数种子</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>price_call</strong> (<em>float</em>) – 认购做多期权合约价格</p></li>
+<li><p><strong>price_put</strong> (<em>float</em>) – 认沽做空期权合约价格</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://blog.csdn.net/qwop446/article/details/88914401">https://blog.csdn.net/qwop446/article/details/88914401</a></p></li>
+<li><p><a class="reference external" href="https://blog.csdn.net/hzk427/article/details/104538974">https://blog.csdn.net/hzk427/article/details/104538974</a></p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="bopm-european">
+<h3>bopm_european<a class="headerlink" href="#bopm-european" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.options.bopm_european">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.options.</span></span><span class="sig-name descname"><span class="pre">bopm_european</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.225</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days1year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">365</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mc_cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.options.bopm_european" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">注：没考虑分红！</div>
+<div class="line">二叉树欧式期权定价模型（BOP/CRR）</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>price_now</strong> (<em>float</em>) – 标的现价</p></li>
+<li><p><strong>price_exe</strong> (<em>float</em>) – 标的执行价</p></li>
+<li><p><strong>days_left</strong> (<em>int</em>) – 剩余天数</p></li>
+<li><p><strong>r</strong> (<em>float</em>) – 无风险利率，年化</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – 波动率（目标标的收益波动率，年化）</p></li>
+<li><p><strong>days1year</strong> (<em>int</em>) – 一年天数，默认为365，即自然天数（也可以只考虑交易天数）</p></li>
+<li><p><strong>mc_cut</strong> (<em>int</em>) – 将剩余到期时间划分为mc_cut个小时段</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>price_call</strong> (<em>float</em>) – 认购做多期权合约价格</p></li>
+<li><p><strong>price_put</strong> (<em>float</em>) – 认沽做空期权合约价格</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/62031783">https://zhuanlan.zhihu.com/p/62031783</a></p></li>
+<li><p><a class="reference external" href="https://wiki.mbalib.com/wiki">https://wiki.mbalib.com/wiki</a>/二项期权定价模型</p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="bsm-iv-dichotomy">
+<h3>bsm_iv_dichotomy<a class="headerlink" href="#bsm-iv-dichotomy" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.options.bsm_iv_dichotomy">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.options.</span></span><span class="sig-name descname"><span class="pre">bsm_iv_dichotomy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_opt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days1year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">365</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.options.bsm_iv_dichotomy" title="Permalink to this definition"></a></dt>
+<dd><p>二分法求隐含波动率</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>price_now</strong> (<em>float</em>) – 标的现价</p></li>
+<li><p><strong>price_exe</strong> (<em>float</em>) – 标的执行价</p></li>
+<li><p><strong>price_opt</strong> (<em>float</em>) – 期权现价</p></li>
+<li><p><strong>days_left</strong> (<em>int</em>) – 剩余天数</p></li>
+<li><p><strong>opt_type</strong> (<em>str</em>) – 期权类型</p></li>
+<li><p><strong>r</strong> (<em>float</em>) – 无风险利率，年化</p></li>
+<li><p><strong>i_d</strong> (<em>float</em>) – 隐含分红率？</p></li>
+<li><p><strong>days1year</strong> (<em>int</em>) – 一年天数，默认为365，即自然天数（也可以只考虑交易天数）</p></li>
+<li><p><strong>sigma_max</strong> (<em>float</em>) – 隐含波动率上限</p></li>
+<li><p><strong>sigma_min</strong> (<em>float</em>) – 隐含波动率下限</p></li>
+<li><p><strong>tol</strong> (<em>float</em>) – 迭代误差控制</p></li>
+<li><p><strong>n_tol</strong> (<em>int</em>) – 当计算的理论期权价格连续n_tol次迭代改变量均不超过tol时结束</p></li>
+<li><p><strong>max_iter</strong> (<em>int</em>) – 迭代最大次数控制</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sigma_iv</strong> – 返回隐含波动率求解结果</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/142685333">https://zhuanlan.zhihu.com/p/142685333</a></p></li>
+<li><p><a class="reference external" href="https://www.jianshu.com/p/e73f538859df">https://www.jianshu.com/p/e73f538859df</a></p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="bsm-iv-dichotomy0">
+<h3>bsm_iv_dichotomy0<a class="headerlink" href="#bsm-iv-dichotomy0" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.options.bsm_iv_dichotomy0">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.options.</span></span><span class="sig-name descname"><span class="pre">bsm_iv_dichotomy0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_opt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days1year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">365</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.options.bsm_iv_dichotomy0" title="Permalink to this definition"></a></dt>
+<dd><p>二分法求隐含波动率</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>price_now</strong> (<em>float</em>) – 标的现价</p></li>
+<li><p><strong>price_exe</strong> (<em>float</em>) – 标的执行价</p></li>
+<li><p><strong>price_opt</strong> (<em>float</em>) – 期权现价</p></li>
+<li><p><strong>days_left</strong> (<em>int</em>) – 剩余天数</p></li>
+<li><p><strong>opt_type</strong> (<em>str</em>) – 期权类型</p></li>
+<li><p><strong>r</strong> (<em>float</em>) – 无风险利率，年化</p></li>
+<li><p><strong>i_d</strong> (<em>float</em>) – 隐含分红率？</p></li>
+<li><p><strong>days1year</strong> (<em>int</em>) – 一年天数，默认为365，即自然天数（也可以只考虑交易天数）</p></li>
+<li><p><strong>sigma_max</strong> (<em>float</em>) – 隐含波动率上限</p></li>
+<li><p><strong>sigma_min</strong> (<em>float</em>) – 隐含波动率下限</p></li>
+<li><p><strong>tol</strong> (<em>float</em>) – 迭代误差控制</p></li>
+<li><p><strong>max_iter</strong> (<em>int</em>) – 迭代最大次数控制</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sigma_iv</strong> – 返回隐含波动率求解结果</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/142685333">https://zhuanlan.zhihu.com/p/142685333</a></p></li>
+<li><p><a class="reference external" href="https://www.jianshu.com/p/e73f538859df">https://www.jianshu.com/p/e73f538859df</a></p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="bsm-iv-newton">
+<h3>bsm_iv_newton<a class="headerlink" href="#bsm-iv-newton" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.options.bsm_iv_newton">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.options.</span></span><span class="sig-name descname"><span class="pre">bsm_iv_newton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_opt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_iv_init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days1year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">365</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.options.bsm_iv_newton" title="Permalink to this definition"></a></dt>
+<dd><p>牛顿法计算隐含波动率</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>price_now</strong> (<em>float</em>) – 标的现价</p></li>
+<li><p><strong>price_exe</strong> (<em>float</em>) – 标的执行价</p></li>
+<li><p><strong>price_opt</strong> (<em>float</em>) – 期权现价</p></li>
+<li><p><strong>days_left</strong> (<em>int</em>) – 剩余天数</p></li>
+<li><p><strong>opt_type</strong> (<em>str</em>) – 期权类型</p></li>
+<li><p><strong>r</strong> (<em>float</em>) – 无风险利率，年化</p></li>
+<li><p><strong>i_d</strong> (<em>float</em>) – 隐含分红率？</p></li>
+<li><p><strong>sigma_iv_init</strong> (<em>float</em>) – 设置隐含波动率初始值</p></li>
+<li><p><strong>days1year</strong> (<em>int</em>) – 一年天数，默认为365，即自然天数（也可以只考虑交易天数）</p></li>
+<li><p><strong>lr</strong> (<em>float</em>) – 学习率</p></li>
+<li><p><strong>max_iter</strong> (<em>int</em>) – 迭代最大次数控制</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sigma_iv</strong> – 返回隐含波动率求解结果</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p><a class="reference external" href="https://www.jianshu.com/p/e73f538859df">https://www.jianshu.com/p/e73f538859df</a></p>
+</dd></dl>
+
+</section>
+<section id="bs-vega">
+<h3>bs_vega<a class="headerlink" href="#bs-vega" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.options.bs_vega">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.options.</span></span><span class="sig-name descname"><span class="pre">bs_vega</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days1year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">365</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.options.bs_vega" title="Permalink to this definition"></a></dt>
+<dd><p>BS公式，Vega计算</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>price_now</strong> (<em>float</em>) – 标的现价</p></li>
+<li><p><strong>price_exe</strong> (<em>float</em>) – 标的执行价</p></li>
+<li><p><strong>days_left</strong> (<em>int</em>) – 剩余天数</p></li>
+<li><p><strong>r</strong> (<em>float</em>) – 无风险利率，年化</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – 波动率</p></li>
+<li><p><strong>i_d</strong> (<em>float</em>) – 隐含分红率？</p></li>
+<li><p><strong>days1year</strong> (<em>int</em>) – 一年天数，默认为365，即自然天数（也可以只考虑交易天数）</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>vega</strong> – 返回vega求解结果</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://blog.csdn.net/zita_11/article/details/104200887">https://blog.csdn.net/zita_11/article/details/104200887</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/135867175">https://zhuanlan.zhihu.com/p/135867175</a></p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="bs-delta">
+<h3>bs_delta<a class="headerlink" href="#bs-delta" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.options.bs_delta">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.options.</span></span><span class="sig-name descname"><span class="pre">bs_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days1year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">365</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.options.bs_delta" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">注：分红处理需要再检查确认！</div>
+<div class="line">BS公式，Delta计算</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>price_now</strong> (<em>float</em>) – 标的现价</p></li>
+<li><p><strong>price_exe</strong> (<em>float</em>) – 标的执行价</p></li>
+<li><p><strong>days_left</strong> (<em>int</em>) – 剩余天数</p></li>
+<li><p><strong>opt_type</strong> (<em>str</em>) – 期权类型</p></li>
+<li><p><strong>r</strong> (<em>float</em>) – 无风险利率，年化</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – 波动率</p></li>
+<li><p><strong>i_d</strong> (<em>float</em>) – 隐含分红率？</p></li>
+<li><p><strong>days1year</strong> (<em>int</em>) – 一年天数，默认为365，即自然天数（也可以只考虑交易天数）</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>delta</strong> – 返回delta求解结果</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://blog.csdn.net/zita_11/article/details/104200887">https://blog.csdn.net/zita_11/article/details/104200887</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/113915774">https://zhuanlan.zhihu.com/p/113915774</a></p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="bs-gamma">
+<h3>bs_gamma<a class="headerlink" href="#bs-gamma" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.options.bs_gamma">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.options.</span></span><span class="sig-name descname"><span class="pre">bs_gamma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days1year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">365</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.options.bs_gamma" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">注：分红处理需要再检查确认！</div>
+<div class="line">BS公式，Gamma计算</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>price_now</strong> (<em>float</em>) – 标的现价</p></li>
+<li><p><strong>price_exe</strong> (<em>float</em>) – 标的执行价</p></li>
+<li><p><strong>days_left</strong> (<em>int</em>) – 剩余天数</p></li>
+<li><p><strong>r</strong> (<em>float</em>) – 无风险利率，年化</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – 波动率</p></li>
+<li><p><strong>i_d</strong> (<em>float</em>) – 隐含分红率？</p></li>
+<li><p><strong>days1year</strong> (<em>int</em>) – 一年天数，默认为365，即自然天数（也可以只考虑交易天数）</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>gamma</strong> – 返回gamma求解结果</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://blog.csdn.net/zita_11/article/details/104200887">https://blog.csdn.net/zita_11/article/details/104200887</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/113915774">https://zhuanlan.zhihu.com/p/113915774</a></p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="bs-theta">
+<h3>bs_theta<a class="headerlink" href="#bs-theta" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.options.bs_theta">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.options.</span></span><span class="sig-name descname"><span class="pre">bs_theta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days1year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">365</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.options.bs_theta" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">注：分红处理需要再检查确认！</div>
+<div class="line">BS公式，Theta计算</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>price_now</strong> (<em>float</em>) – 标的现价</p></li>
+<li><p><strong>price_exe</strong> (<em>float</em>) – 标的执行价</p></li>
+<li><p><strong>days_left</strong> (<em>int</em>) – 剩余天数</p></li>
+<li><p><strong>opt_type</strong> (<em>str</em>) – 期权类型</p></li>
+<li><p><strong>r</strong> (<em>float</em>) – 无风险利率，年化</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – 波动率</p></li>
+<li><p><strong>i_d</strong> (<em>float</em>) – 隐含分红率？</p></li>
+<li><p><strong>days1year</strong> (<em>int</em>) – 一年天数，默认为365，即自然天数（也可以只考虑交易天数）</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>theta</strong> – 返回theta求解结果</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://blog.csdn.net/zita_11/article/details/104200887">https://blog.csdn.net/zita_11/article/details/104200887</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/113915774">https://zhuanlan.zhihu.com/p/113915774</a></p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="bs-rho">
+<h3>bs_rho<a class="headerlink" href="#bs-rho" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.options.bs_rho">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.options.</span></span><span class="sig-name descname"><span class="pre">bs_rho</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_now</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_exe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.03</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days1year</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">365</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.options.bs_rho" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">注：分红处理需要再检查确认！</div>
+<div class="line">BS公式，Rho计算</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>price_now</strong> (<em>float</em>) – 标的现价</p></li>
+<li><p><strong>price_exe</strong> (<em>float</em>) – 标的执行价</p></li>
+<li><p><strong>days_left</strong> (<em>int</em>) – 剩余天数</p></li>
+<li><p><strong>opt_type</strong> (<em>str</em>) – 期权类型</p></li>
+<li><p><strong>r</strong> (<em>float</em>) – 无风险利率，年化</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – 波动率</p></li>
+<li><p><strong>i_d</strong> (<em>float</em>) – 隐含分红率？</p></li>
+<li><p><strong>days1year</strong> (<em>int</em>) – 一年天数，默认为365，即自然天数（也可以只考虑交易天数）</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>rho</strong> – 返回rho求解结果</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p><a class="reference external" href="https://zhuanlan.zhihu.com/p/137938792">https://zhuanlan.zhihu.com/p/137938792</a></p>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.fintools.report_date_align">
+<span id="report-date-align"></span><h2>report_date_align<a class="headerlink" href="#module-dramkit.fintools.report_date_align" title="Permalink to this headline"></a></h2>
+<section id="get-tushare-api">
+<h3>get_tushare_api<a class="headerlink" href="#get-tushare-api" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.report_date_align.get_tushare_api">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.report_date_align.</span></span><span class="sig-name descname"><span class="pre">get_tushare_api</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.report_date_align.get_tushare_api" title="Permalink to this definition"></a></dt>
+<dd><p>根据token获取tushare API接口</p>
+</dd></dl>
+
+</section>
+<section id="get-trade-date">
+<h3>get_trade_date<a class="headerlink" href="#get-trade-date" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.report_date_align.get_trade_date">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.report_date_align.</span></span><span class="sig-name descname"><span class="pre">get_trade_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ts_api</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.report_date_align.get_trade_date" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">获取从start_date到end_date的交易日索引</div>
+<div class="line">start_date和end_date格式为’%Y%m%d’</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-aligned-data">
+<h3>get_aligned_data<a class="headerlink" href="#get-aligned-data" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.report_date_align.get_aligned_data">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.report_date_align.</span></span><span class="sig-name descname"><span class="pre">get_aligned_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">since</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">until</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ts_api</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_nan</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop_headnan</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">notffill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.report_date_align.get_aligned_data" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">财报数据对齐到交易日</div>
+<div class="line">data: 需包含[‘report_period’, ‘sid’, ‘ann_dt’]以及因子名称col列</div>
+<div class="line">since和until: 日期/str，格式’%Y%m%d’，设置返回数据交易日起止日期，
+如不指定，则取data中的起止日期</div>
+<div class="line">keep_nan: 原始数据中的空值是否保留</div>
+<div class="line">drop_headnan: 是否删除第一个公告日之前没有数据的部分</div>
+<div class="line">notffill: 是否不填充交易日空值</div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.fintools.utils_chn">
+<span id="utils-chn"></span><h2>utils_chn<a class="headerlink" href="#module-dramkit.fintools.utils_chn" title="Permalink to this headline"></a></h2>
+<section id="get-finreport-date-by-delta">
+<h3>get_finreport_date_by_delta<a class="headerlink" href="#get-finreport-date-by-delta" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_chn.get_finreport_date_by_delta">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_chn.</span></span><span class="sig-name descname"><span class="pre">get_finreport_date_by_delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'str'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_chn.get_finreport_date_by_delta" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">给定一个报告期，获取往后推n期的报告期，若n为负，则往前推</div>
+<div class="line">注：函数实际上计算的是end_date所在月往后推3*n季度之后所处月的最后一天，
+所以如果入参end_date不是财报日期所在月，则返回结果也不是财报日期</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-last-effect-finreport-dates">
+<h3>get_last_effect_finreport_dates<a class="headerlink" href="#get-last-effect-finreport-dates" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_chn.get_last_effect_finreport_dates">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_chn.</span></span><span class="sig-name descname"><span class="pre">get_last_effect_finreport_dates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_q1q3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_finished</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semi_annual_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annual_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adjust_report</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_chn.get_last_effect_finreport_dates" title="Permalink to this definition"></a></dt>
+<dd><div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>完成adjust_report设置部分</p></li>
+<li><p>检查确认和完善***备注处</p></li>
+</ul>
+</div>
+<div class="line-block">
+<div class="line">获取距离date最近的财报日期，即date可以取到的最新财报数据对应的财报日期</div>
+<div class="line">force_q1q3: 一季报和三季报是否为强制披露，默认不强制披露</div>
+<div class="line">wait_finished: 是否必须等财报发布结束才可取数据</div>
+<div class="line">semi_annual_only: 仅考虑年报和中报</div>
+<div class="line">annual_only: 仅考虑年报</div>
+<div class="line">adjust_report: 是否考虑报告调整</div>
+<div class="line">注：</div>
+<div class="line">2020年特殊处理（2019年报和2020一季报不晚于20200630披露）</div>
+<div class="line"><a class="reference external" href="http://www.csrc.gov.cn/pub/zjhpublic/zjh/202004/t20200407_373381.htm">http://www.csrc.gov.cn/pub/zjhpublic/zjh/202004/t20200407_373381.htm</a></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-code-ext">
+<h3>get_code_ext<a class="headerlink" href="#get-code-ext" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_chn.get_code_ext">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_chn.</span></span><span class="sig-name descname"><span class="pre">get_code_ext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_chn.get_code_ext" title="Permalink to this definition"></a></dt>
+<dd><div class="admonition-todo admonition" id="id4">
+<p class="admonition-title">Todo</p>
+<p>检查更新代码规则，增加北交所</p>
+</div>
+<div class="line-block">
+<div class="line">返回带交易所后缀的股票代码格式，如输入`300033`，返回`300033.SZ`</div>
+<div class="line">code目前可支持[A股、B股、50ETF期权、300ETF期权]，根据需要更新</div>
+<div class="line">如不能确定后缀，则直接返回code原始值</div>
+<div class="line"><br /></div>
+<div class="line"><a class="reference external" href="http://www.sse.com.cn/lawandrules/guide/jyznlc/jyzn/c/c_20191206_4960455.shtml">http://www.sse.com.cn/lawandrules/guide/jyznlc/jyzn/c/c_20191206_4960455.shtml</a></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-trade-fee-astock">
+<h3>get_trade_fee_Astock<a class="headerlink" href="#get-trade-fee-astock" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_chn.get_trade_fee_Astock">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_chn.</span></span><span class="sig-name descname"><span class="pre">get_trade_fee_Astock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buy_or_sel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fee_least</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fee_pct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.00025</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_chn.get_trade_fee_Astock" title="Permalink to this definition"></a></dt>
+<dd><p>普通A股股票普通交易费用计算</p>
+<div class="admonition-todo admonition" id="id5">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>检查更新交易费率变化(若同一个交易所不同板块费率不同，新增按板块计算)</p></li>
+<li><p>新增北交所</p></li>
+</ul>
+</div>
+</dd></dl>
+
+</section>
+<section id="trade-fee-astock">
+<h3>trade_fee_Astock<a class="headerlink" href="#trade-fee-astock" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_chn.trade_fee_Astock">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_chn.</span></span><span class="sig-name descname"><span class="pre">trade_fee_Astock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mkt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buy_or_sel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fee_least</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fee_pct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.00025</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_chn.trade_fee_Astock" title="Permalink to this definition"></a></dt>
+<dd><div class="admonition-todo admonition" id="id6">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>检查更新交易费率变化(若同一个交易所不同板块费率不同，新增按板块计算)</p></li>
+<li><p>新增北交所</p></li>
+</ul>
+</div>
+<p>普通A股股票普通交易费用计算</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mkt</strong> (<em>str</em>) – ‘SH’(‘sh’, ‘SSE’)或’SZ’(‘sz’, ‘SZSE’)，分别代表上海和深圳市场</p></li>
+<li><p><strong>buy_or_sel</strong> (<em>str</em>) – ‘B’(‘b’, ‘buy’)或’S’(‘s’, ‘sell’, ‘sel’)，分别标注买入或卖出</p></li>
+<li><p><strong>vol</strong> (<em>int</em>) – 量（股）</p></li>
+<li><p><strong>price</strong> (<em>float</em>) – 价格（元）</p></li>
+<li><p><strong>fee_least</strong> (<em>float</em>) – 券商手续费最低值</p></li>
+<li><p><strong>fee_pct</strong> (<em>float</em>) – 券商手续费比例</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>fee_all</strong> – 交易成本综合（包含交易所税费和券商手续费）</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<div class="line-block">
+<div class="line">收费标准源于沪深交易所官网，若有更新须更改：</div>
+<div class="line"><a class="reference external" href="http://www.sse.com.cn/services/tradingservice/charge/ssecharge">http://www.sse.com.cn/services/tradingservice/charge/ssecharge</a>/（2020年4月）</div>
+<div class="line"><a class="reference external" href="http://www.szse.cn/marketServices/deal/payFees/index">http://www.szse.cn/marketServices/deal/payFees/index</a>.html（2020年2月）</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="is-trade-day-chncal">
+<h3>is_trade_day_chncal<a class="headerlink" href="#is-trade-day-chncal" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_chn.is_trade_day_chncal">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_chn.</span></span><span class="sig-name descname"><span class="pre">is_trade_day_chncal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_chn.is_trade_day_chncal" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">利用chinese_calendar库判断date（str格式）是否为交易日</div>
+<div class="line">注：若chinese_calendar库统计的周内工作日与交易日有差异或没更新，可能导致结果不准确</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-recent-trade-date-chncal">
+<h3>get_recent_trade_date_chncal<a class="headerlink" href="#get-recent-trade-date-chncal" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_chn.get_recent_trade_date_chncal">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_chn.</span></span><span class="sig-name descname"><span class="pre">get_recent_trade_date_chncal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'post'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_chn.get_recent_trade_date_chncal" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">若date为交易日，则直接返回date，否则返回下一个(dirt=’post’)或上一个(dirt=’pre’)交易日</div>
+<div class="line">注：若chinese_calendar库统计的周内工作日与交易日有差异或没更新，可能导致结果不准确</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-next-nth-trade-date-chncal">
+<h3>get_next_nth_trade_date_chncal<a class="headerlink" href="#get-next-nth-trade-date-chncal" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_chn.get_next_nth_trade_date_chncal">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_chn.</span></span><span class="sig-name descname"><span class="pre">get_next_nth_trade_date_chncal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_chn.get_next_nth_trade_date_chncal" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">给定日期date，返回其后第n个交易日日期，n可为负数（返回结果在date之前）</div>
+<div class="line">若n为0，直接返回date</div>
+<div class="line">注：若chinese_calendar库统计的周内工作日与交易日有差异或没更新，可能导致结果不准确</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-next-nth-trade-date">
+<h3>get_next_nth_trade_date<a class="headerlink" href="#get-next-nth-trade-date" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_chn.get_next_nth_trade_date">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_chn.</span></span><span class="sig-name descname"><span class="pre">get_next_nth_trade_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trade_dates_df_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_chn.get_next_nth_trade_date" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">给定日期date，返回其后第n个交易日日期，n可为负数（返回结果在date之前）</div>
+<div class="line">trade_dates_df_path可以为历史交易日期数据存档路径，也可以为pd.DataFrame</div>
+<div class="line">注：默认trade_dates_df_path数据格式为tushare格式：</div>
+<div class="line-block">
+<div class="line">exchange,date,is_open</div>
+<div class="line">SSE,2020-09-02,1</div>
+<div class="line">SSE,2020-09-03,1</div>
+<div class="line">SSE,2020-09-04,1</div>
+<div class="line">SSE,2020-09-05,0</div>
+</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-trade-dates-chncal">
+<h3>get_trade_dates_chncal<a class="headerlink" href="#get-trade-dates-chncal" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_chn.get_trade_dates_chncal">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_chn.</span></span><span class="sig-name descname"><span class="pre">get_trade_dates_chncal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_chn.get_trade_dates_chncal" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">利用chinese_calendar库获取指定起止日期内的交易日期（周内的工作日）</div>
+<div class="line">注：若chinese_calendar库统计的周内工作日与交易日有差异或没更新，可能导致结果不准确</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-trade-dates">
+<h3>get_trade_dates<a class="headerlink" href="#get-trade-dates" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_chn.get_trade_dates">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_chn.</span></span><span class="sig-name descname"><span class="pre">get_trade_dates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trade_dates_df_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joiner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_chn.get_trade_dates" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">获取起止日期之间(从start_date到end_date)的交易日期，返回列表</div>
+<div class="line">trade_dates_df_path可以为历史交易日期数据存档路径，也可以为pd.DataFrame</div>
+<div class="line">注：默认trade_dates_df_path数据格式为tushare格式：</div>
+<div class="line-block">
+<div class="line">exchange,date,is_open</div>
+<div class="line">SSE,2020-09-02,1</div>
+<div class="line">SSE,2020-09-03,1</div>
+<div class="line">SSE,2020-09-04,1</div>
+<div class="line">SSE,2020-09-05,0</div>
+</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-trade-dates-bk">
+<h3>get_trade_dates_bk<a class="headerlink" href="#get-trade-dates-bk" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_chn.get_trade_dates_bk">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_chn.</span></span><span class="sig-name descname"><span class="pre">get_trade_dates_bk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trade_dates_df_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_chn.get_trade_dates_bk" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">获取起止日期之间(从start_date到end_date)的交易日期，返回列表</div>
+<div class="line">trade_dates_df_path可以为历史交易日期数据存档路径，也可以为pd.DataFrame</div>
+<div class="line">注：默认trade_dates_df_path数据格式为tushare格式：</div>
+<div class="line-block">
+<div class="line">exchange,date,is_open</div>
+<div class="line">SSE,2020-09-02,1</div>
+<div class="line">SSE,2020-09-03,1</div>
+<div class="line">SSE,2020-09-04,1</div>
+<div class="line">SSE,2020-09-05,0</div>
+</div>
+</div>
+</dd></dl>
+
+</section>
+<section id="get-num-trade-dates">
+<h3>get_num_trade_dates<a class="headerlink" href="#get-num-trade-dates" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.utils_chn.get_num_trade_dates">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_chn.</span></span><span class="sig-name descname"><span class="pre">get_num_trade_dates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trade_dates_df_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_chn.get_num_trade_dates" title="Permalink to this definition"></a></dt>
+<dd><p>给定起止时间，获取可交易天数</p>
 </dd></dl>
 
 </section>
@@ -1486,7 +2506,7 @@
 </p>
 </dd>
 </dl>
-<div class="admonition-todo admonition" id="id2">
+<div class="admonition-todo admonition" id="id7">
 <p class="admonition-title">Todo</p>
 <ul>
 <li><p>增加根据固定盈亏点位止盈止损/减仓（比如IF赚30个点止盈，亏20个点止损）</p></li>
@@ -1544,6 +2564,49 @@
 <dt class="sig sig-object py" id="dramkit.fintools.utils_gains.get_yield_curve2">
 <span class="sig-prename descclassname"><span class="pre">dramkit.fintools.utils_gains.</span></span><span class="sig-name descname"><span class="pre">get_yield_curve2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_gain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_price</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">252</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fundnet'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pct'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'exp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ext_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_mkt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_dy_maxdown</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_key_infos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.utils_gains.get_yield_curve2" title="Permalink to this definition"></a></dt>
 <dd><p>根据每期收益和成本/资金占用计算收益曲线</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-dramkit.fintools.zigzag">
+<span id="zigzag"></span><h2>zigzag<a class="headerlink" href="#module-dramkit.fintools.zigzag" title="Permalink to this headline"></a></h2>
+<section id="id8">
+<h3>zigzag<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.zigzag.zigzag">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.zigzag.</span></span><span class="sig-name descname"><span class="pre">zigzag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'high'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'low'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">up_pct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">down_pct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.zigzag.zigzag" title="Permalink to this definition"></a></dt>
+<dd><p>ZigZag转折点</p>
+<div class="admonition-todo admonition" id="id9">
+<p class="admonition-title">Todo</p>
+<p>加入时间间隔控制</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pd.DataFrame</em>) – 需包含[high_col, low_col]列</p></li>
+<li><p><strong>high_col</strong> (<em>str</em>) – 确定zigzag高点的数据列名</p></li>
+<li><p><strong>low_col</strong> (<em>str</em>) – 确定zigzag低点的数据列名</p></li>
+<li><p><strong>up_pct</strong> (<em>float</em>) – 确定zigzag高/低转折点的幅度</p></li>
+<li><p><strong>down_pct</strong> (<em>float</em>) – 确定zigzag高/低转折点的幅度</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>zigzag</strong> – 返回zigzag标签序列。其中1/-1表示确定的高/低点；
+0.5/-0.5表示未达到偏离幅度而不能确定的高低点。</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.Series</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-candle-zz">
+<h3>plot_candle_zz<a class="headerlink" href="#plot-candle-zz" title="Permalink to this headline"></a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="dramkit.fintools.zigzag.plot_candle_zz">
+<span class="sig-prename descclassname"><span class="pre">dramkit.fintools.zigzag.</span></span><span class="sig-name descname"><span class="pre">plot_candle_zz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zzcol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'zigzag'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zz_high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'high'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zz_low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'low'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.fintools.zigzag.plot_candle_zz" title="Permalink to this definition"></a></dt>
+<dd><p>在K线图上绘制ZigZag</p>
 </dd></dl>
 
 </section>

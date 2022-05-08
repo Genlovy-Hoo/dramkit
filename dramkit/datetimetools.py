@@ -252,8 +252,8 @@ def get_dates_between(date1, date2, keep1=False, keep2=True,
     '''
     _, joiner1 = get_date_format(date1)
     _, joiner2 = get_date_format(date2)
-    date1 = date_reformat_simple(date1, joiner1)
-    date2 = date_reformat_simple(date2, joiner2)
+    date1 = date_reformat(date1, '-')
+    date2 = date_reformat(date2, '-')
     dates = pd.date_range(date1, date2)
     if only_workday:
         dates = [x for x in dates if is_workday(x)]
@@ -268,7 +268,7 @@ def get_dates_between(date1, date2, keep1=False, keep2=True,
         joiner = joiner2
     elif joiner == 1:
         joiner = joiner1
-    dates = [date_reformat_simple(x, '-', joiner) for x in dates]
+    dates = [date_reformat(x, joiner) for x in dates]
     return dates
 
 

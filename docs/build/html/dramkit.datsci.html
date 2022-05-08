@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>datsci &mdash; DramKit 0.1.1 documentation</title>
+  <title>datsci &mdash; DramKit 0.1.2 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -214,20 +214,20 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.time_series">time_series</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id8">fillna_ma</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#get-directionalaccuracy-1step">get_DirectionalAccuracy_1step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">fillna_ma</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-directional-accuracy-1step">get_directional_accuracy_1step</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#genxy-x2d-y1d1step">genXy_X2d_y1d1step</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#predict-x2d-y1d1step">predict_X2d_y1d1step</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">Predict_X2d_y1d1step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#valid-test-predict-x2d-y1d1step">valid_test_predict_X2d_y1d1step</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#forward-predict-x2d-y1d1step">forward_predict_X2d_y1d1step</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#seriespredict-x2d-y1d1step">SeriesPredict_X2d_y1d1step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#forward-valid-test-predict-x2d-y1d1step">forward_valid_test_predict_X2d_y1d1step</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#genxy-x2d-y1dsteps">genXy_X2d_y1dsteps</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#forward-predict-x2d-y1dsteps">forward_predict_X2d_y1dsteps</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#seriespredict-x2d-y1dsteps">SeriesPredict_X2d_y1dsteps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#forward-valid-test-predict-x2d-y1dsteps">forward_valid_test_predict_X2d_y1dsteps</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.topsis">topsis</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id11">topsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">topsis</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-dramkit.datsci.utils_lgb">utils_lgb</a><ul>
@@ -2599,8 +2599,13 @@ weibull分布参数关系：</div>
 </section>
 <section id="module-dramkit.datsci.time_series">
 <span id="time-series"></span><h2>time_series<a class="headerlink" href="#module-dramkit.datsci.time_series" title="Permalink to this headline"></a></h2>
-<section id="id8">
-<h3>fillna_ma<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h3>
+<p>时间序列处理工具函数</p>
+<div class="admonition-todo admonition" id="id8">
+<p class="admonition-title">Todo</p>
+<p>改成class以简化函数调用传参</p>
+</div>
+<section id="id9">
+<h3>fillna_ma<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="dramkit.datsci.time_series.fillna_ma">
 <span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">fillna_ma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ma_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.fillna_ma" title="Permalink to this definition"></a></dt>
@@ -2612,11 +2617,11 @@ weibull分布参数关系：</div>
 </dd></dl>
 
 </section>
-<section id="get-directionalaccuracy-1step">
-<h3>get_DirectionalAccuracy_1step<a class="headerlink" href="#get-directionalaccuracy-1step" title="Permalink to this headline"></a></h3>
+<section id="get-directional-accuracy-1step">
+<h3>get_directional_accuracy_1step<a class="headerlink" href="#get-directional-accuracy-1step" title="Permalink to this headline"></a></h3>
 <dl class="py function">
-<dt class="sig sig-object py" id="dramkit.datsci.time_series.get_DirectionalAccuracy_1step">
-<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">get_DirectionalAccuracy_1step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.get_DirectionalAccuracy_1step" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="dramkit.datsci.time_series.get_directional_accuracy_1step">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">get_directional_accuracy_1step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.get_directional_accuracy_1step" title="Permalink to this definition"></a></dt>
 <dd><div class="line-block">
 <div class="line">一步向前预测方向准确率计算</div>
 <div class="line">y_true和y_pred为pd.Series</div>
@@ -2630,7 +2635,7 @@ weibull分布参数关系：</div>
 <dt class="sig sig-object py" id="dramkit.datsci.time_series.genXy_X2d_y1d1step">
 <span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">genXy_X2d_y1d1step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.genXy_X2d_y1d1step" title="Permalink to this definition"></a></dt>
 <dd><p>构造时间序列预测的输入X和输出y，适用于X二维，ycol一维一步向前预测情况</p>
-<div class="admonition-todo admonition" id="id9">
+<div class="admonition-todo admonition" id="id10">
 <p class="admonition-title">Todo</p>
 <p>gap为-1的情况检查确认</p>
 </div>
@@ -2641,7 +2646,7 @@ weibull分布参数关系：</div>
 <li><p><strong>ycol</strong> (<em>str</em>) – 因变量序列名</p></li>
 <li><p><strong>Xcols_series_lag</strong> (<em>list</em><em>, </em><em>None</em>) – <div class="line-block">
 <div class="line">序列自变量列名和历史期数，格式如：</div>
-<div class="line">[(xcol1, lag1), (xcol2, lag2)]</div>
+<div class="line">[(xcol1, lag1), (xcol2, lag2), …]</div>
 <div class="line">若为None，则默认设置为[(ycol, 3)]</div>
 </div>
 </p></li>
@@ -2669,7 +2674,7 @@ weibull分布参数关系：</div>
 <h3>predict_X2d_y1d1step<a class="headerlink" href="#predict-x2d-y1d1step" title="Permalink to this headline"></a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="dramkit.datsci.time_series.predict_X2d_y1d1step">
-<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">predict_X2d_y1d1step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcPred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_pre</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.predict_X2d_y1d1step" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">predict_X2d_y1d1step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_pre</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.predict_X2d_y1d1step" title="Permalink to this definition"></a></dt>
 <dd><div class="line-block">
 <div class="line">使用训练好的模型在数据df_pre上进行构造样本并预测(非滚动预测)</div>
 <div class="line">适用于X二维、ycol一维一步向前预测情况</div>
@@ -2678,12 +2683,11 @@ weibull分布参数关系：</div>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>model</strong> – 训练好的预测模型</p></li>
-<li><p><strong>funcPred</strong> (<em>function</em>) – funcPred为预测函数，接受必要参数model和X，也接受可选参数**kwargs</p></li>
-<li><p><strong>df_pre</strong> (<em>pd.DataFrame</em>) – 待预测所用数据，其中 <code class="docutils literal notranslate"><span class="pre">ycol</span></code> 为待预测列，除了初始构造输入X必须满足的数据行外，
-后面的数据可以为空值</p></li>
-<li><p><strong>Xcols_series_lag</strong> – 参数意义同genXy_X2d_y1d1step中参数意义，用其构造输入变量的过程亦完全相同</p></li>
-<li><p><strong>Xcols_other</strong> – 参数意义同genXy_X2d_y1d1step中参数意义，用其构造输入变量的过程亦完全相同</p></li>
-<li><p><strong>gap</strong> – 参数意义同genXy_X2d_y1d1step中参数意义，用其构造输入变量的过程亦完全相同</p></li>
+<li><p><strong>func_pred</strong> (<em>function</em>) – func_pred为预测函数，接受必要参数model和X，也接受可选参数**kwargs</p></li>
+<li><p><strong>df_pre</strong> (<em>pd.DataFrame</em>) – 待预测所用数据，其中 <code class="docutils literal notranslate"><span class="pre">ycol</span></code> 为待预测列</p></li>
+<li><p><strong>Xcols_series_lag</strong> – 参数意义同 <a class="reference internal" href="#dramkit.datsci.time_series.genXy_X2d_y1d1step" title="dramkit.datsci.time_series.genXy_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">genXy_X2d_y1d1step()</span></code></a> 中参数意义</p></li>
+<li><p><strong>Xcols_other</strong> – 参数意义同 <a class="reference internal" href="#dramkit.datsci.time_series.genXy_X2d_y1d1step" title="dramkit.datsci.time_series.genXy_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">genXy_X2d_y1d1step()</span></code></a> 中参数意义</p></li>
+<li><p><strong>gap</strong> – 参数意义同 <a class="reference internal" href="#dramkit.datsci.time_series.genXy_X2d_y1d1step" title="dramkit.datsci.time_series.genXy_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">genXy_X2d_y1d1step()</span></code></a> 中参数意义</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -2693,45 +2697,46 @@ weibull分布参数关系：</div>
 </dd></dl>
 
 </section>
-<section id="id10">
-<h3>Predict_X2d_y1d1step<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h3>
+<section id="valid-test-predict-x2d-y1d1step">
+<h3>valid_test_predict_X2d_y1d1step<a class="headerlink" href="#valid-test-predict-x2d-y1d1step" title="Permalink to this headline"></a></h3>
 <dl class="py function">
-<dt class="sig sig-object py" id="dramkit.datsci.time_series.Predict_X2d_y1d1step">
-<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">Predict_X2d_y1d1step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcPred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_valid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.Predict_X2d_y1d1step" title="Permalink to this definition"></a></dt>
-<dd><p>时间序列验证集和测试集预测（非滚动预测, 即不使用前面预测的数据作为输入）
-适用于X二维、ycol一维一步向前预测情况</p>
+<dt class="sig sig-object py" id="dramkit.datsci.time_series.valid_test_predict_X2d_y1d1step">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">valid_test_predict_X2d_y1d1step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_valid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.valid_test_predict_X2d_y1d1step" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">用训练好的模型做时间序列验证集和测试集预测(非滚动预测, 即不使用前面预测的数据作为输入)</div>
+<div class="line">适用于X二维、ycol一维一步向前预测情况</div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>model</strong> (<em>与predict_X2d_y1d1step参数意义相同</em>) – </p></li>
-<li><p><strong>funcPred</strong> (<em>与predict_X2d_y1d1step参数意义相同</em>) – </p></li>
-<li><p><strong>df_train</strong> – df_train为用作训练的数据，df_valid和df_test为验证集和测试集数据
-df_valid和df_test的列须与df_train相同
-df_valid和df_test可以为None或pd.DataFrame
-df_train、df_valid、df_test须为连续时间序列
-当df_test不为空时，df_valid的ycol列必须有真实值</p></li>
-<li><p><strong>df_valid</strong> – df_train为用作训练的数据，df_valid和df_test为验证集和测试集数据
-df_valid和df_test的列须与df_train相同
-df_valid和df_test可以为None或pd.DataFrame
-df_train、df_valid、df_test须为连续时间序列
-当df_test不为空时，df_valid的ycol列必须有真实值</p></li>
-<li><p><strong>df_test</strong> – df_train为用作训练的数据，df_valid和df_test为验证集和测试集数据
-df_valid和df_test的列须与df_train相同
-df_valid和df_test可以为None或pd.DataFrame
-df_train、df_valid、df_test须为连续时间序列
-当df_test不为空时，df_valid的ycol列必须有真实值</p></li>
-<li><p><strong>ycol</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
-<li><p><strong>Xcols_series_lag</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
-<li><p><strong>Xcols_other</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
-<li><p><strong>gap</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
-<li><p><strong>**kwargs</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
+<li><p><strong>model</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.predict_X2d_y1d1step" title="dramkit.datsci.time_series.predict_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">predict_X2d_y1d1step()</span></code></a> 参数意义相同</p></li>
+<li><p><strong>func_pred</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.predict_X2d_y1d1step" title="dramkit.datsci.time_series.predict_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">predict_X2d_y1d1step()</span></code></a> 参数意义相同</p></li>
+<li><p><strong>ycol</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.predict_X2d_y1d1step" title="dramkit.datsci.time_series.predict_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">predict_X2d_y1d1step()</span></code></a> 参数意义相同</p></li>
+<li><p><strong>Xcols_series_lag</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.predict_X2d_y1d1step" title="dramkit.datsci.time_series.predict_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">predict_X2d_y1d1step()</span></code></a> 参数意义相同</p></li>
+<li><p><strong>Xcols_other</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.predict_X2d_y1d1step" title="dramkit.datsci.time_series.predict_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">predict_X2d_y1d1step()</span></code></a> 参数意义相同</p></li>
+<li><p><strong>gap</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.predict_X2d_y1d1step" title="dramkit.datsci.time_series.predict_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">predict_X2d_y1d1step()</span></code></a> 参数意义相同</p></li>
+<li><p><strong>**kwargs</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.predict_X2d_y1d1step" title="dramkit.datsci.time_series.predict_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">predict_X2d_y1d1step()</span></code></a> 参数意义相同</p></li>
+<li><p><strong>df_train</strong> (<em>pd.DataFrame</em>) – df_train为用作训练的数据</p></li>
+<li><p><strong>df_valid</strong> (<em>pd.DataFrame</em>) – df_valid为验证集待预测数据</p></li>
+<li><p><strong>df_test</strong> (<em>pd.DataFrame</em>) – <p>df_test为测试集待预测数据</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="line-block">
+<div class="line">df_valid和df_test的列须与df_train相同</div>
+<div class="line">df_valid和df_test可以为None或pd.DataFrame</div>
+<div class="line">df_train、df_valid、df_test须为连续时间序列</div>
+<div class="line">当df_test不为空时，df_valid的ycol列必须有真实值</div>
+</div>
+</div>
+</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>valid_pre, test_pre</strong></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>pd.DataFrame，验证集和测试集预测结果，包含ycol+’_pre’列</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>valid_pre</strong> (<em>pd.DataFrame</em>) – 验证集预测结果，包含ycol+’_pre’列</p></li>
+<li><p><strong>test_pre</strong> (<em>pd.DataFrame</em>) – 测试集预测结果，包含ycol+’_pre’列</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2741,70 +2746,77 @@ df_train、df_valid、df_test须为连续时间序列
 <h3>forward_predict_X2d_y1d1step<a class="headerlink" href="#forward-predict-x2d-y1d1step" title="Permalink to this headline"></a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="dramkit.datsci.time_series.forward_predict_X2d_y1d1step">
-<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">forward_predict_X2d_y1d1step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcPred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_pre</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.forward_predict_X2d_y1d1step" title="Permalink to this definition"></a></dt>
-<dd><p>todo: gap为-1的情况检查确认</p>
-<p>时间序列向前滚动预测（前面的预测作为后面的输入）
-适用于X二维、ycol一维一步向前预测情况</p>
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">forward_predict_X2d_y1d1step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_pre</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.forward_predict_X2d_y1d1step" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">用训练好的模型做在数据df_pre上进行构造样本并进行向前滚动预测(前面的预测作为后面的输入)</div>
+<div class="line">适用于X二维、ycol一维一步向前预测情况</div>
+</div>
+<div class="admonition-todo admonition" id="id11">
+<p class="admonition-title">Todo</p>
+<p>gap为-1的情况检查确认</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>model</strong> (<em>训练好的预测模型</em>) – </p></li>
-<li><p><strong>funcPred</strong> (<em>funcPred为预测函数，接受必要参数model和X，也接受可选参数**kwargs</em>) – </p></li>
-<li><p><strong>df_pre</strong> (<em>待预测所用数据，其中ycol为待预测列，除了初始构造输入X必须满足的数据行外，</em>) – 后面的数据可以为空值</p></li>
-<li><p><strong>Xcols_series_lag</strong> (<em>参数意义同genXy_X2d_y1d1step中参数意义，</em>) – 用其构造输入变量的过程亦完全相同</p></li>
-<li><p><strong>Xcols_other</strong> (<em>参数意义同genXy_X2d_y1d1step中参数意义，</em>) – 用其构造输入变量的过程亦完全相同</p></li>
-<li><p><strong>gap</strong> (<em>参数意义同genXy_X2d_y1d1step中参数意义，</em>) – 用其构造输入变量的过程亦完全相同</p></li>
+<li><p><strong>model</strong> – 训练好的预测模型</p></li>
+<li><p><strong>func_pred</strong> (<em>function</em>) – func_pred为预测函数，接受必要参数model和X，也接受可选参数**kwargs</p></li>
+<li><p><strong>df_pre</strong> (<em>pd.DataFrame</em>) – 待预测所用数据，其中 <code class="docutils literal notranslate"><span class="pre">ycol</span></code> 为待预测列。
+除了初始构造输入X必须满足的数据行外，后面的数据可以为空值</p></li>
+<li><p><strong>Xcols_series_lag</strong> – 参数意义同 <a class="reference internal" href="#dramkit.datsci.time_series.genXy_X2d_y1d1step" title="dramkit.datsci.time_series.genXy_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">genXy_X2d_y1d1step()</span></code></a> 中参数意义，
+用其构造输入变量的过程亦完全相同</p></li>
+<li><p><strong>Xcols_other</strong> – 参数意义同 <a class="reference internal" href="#dramkit.datsci.time_series.genXy_X2d_y1d1step" title="dramkit.datsci.time_series.genXy_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">genXy_X2d_y1d1step()</span></code></a> 中参数意义，
+用其构造输入变量的过程亦完全相同</p></li>
+<li><p><strong>gap</strong> – 参数意义同 <a class="reference internal" href="#dramkit.datsci.time_series.genXy_X2d_y1d1step" title="dramkit.datsci.time_series.genXy_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">genXy_X2d_y1d1step()</span></code></a> 中参数意义，
+用其构造输入变量的过程亦完全相同</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>df_pre</strong></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>返回pd.DataFrame包含原来的数据以及预测结果ycol+’_pre’列</p>
+<dd class="field-even"><p><cite>pd.DataFrame</cite> - 返回pd.DataFrame包含原来的数据以及预测结果ycol+’_pre’列</p>
 </dd>
 </dl>
 </dd></dl>
 
 </section>
-<section id="seriespredict-x2d-y1d1step">
-<h3>SeriesPredict_X2d_y1d1step<a class="headerlink" href="#seriespredict-x2d-y1d1step" title="Permalink to this headline"></a></h3>
+<section id="forward-valid-test-predict-x2d-y1d1step">
+<h3>forward_valid_test_predict_X2d_y1d1step<a class="headerlink" href="#forward-valid-test-predict-x2d-y1d1step" title="Permalink to this headline"></a></h3>
 <dl class="py function">
-<dt class="sig sig-object py" id="dramkit.datsci.time_series.SeriesPredict_X2d_y1d1step">
-<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">SeriesPredict_X2d_y1d1step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcPred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_valid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.SeriesPredict_X2d_y1d1step" title="Permalink to this definition"></a></dt>
-<dd><p>时间序列验证集和测试集向前滚动预测（前面的预测作为后面的输入）
-适用于X二维、ycol一维一步向前预测情况</p>
+<dt class="sig sig-object py" id="dramkit.datsci.time_series.forward_valid_test_predict_X2d_y1d1step">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">forward_valid_test_predict_X2d_y1d1step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_valid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.forward_valid_test_predict_X2d_y1d1step" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">用训练好的模型做时间序列验证集和测试集预测(滚动预测, 前面的预测作为后面的输入)</div>
+<div class="line">适用于X二维、ycol一维一步向前预测情况</div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>model</strong> (<em>与forward_predict_X2d_y1d1step参数意义相同</em>) – </p></li>
-<li><p><strong>funcPred</strong> (<em>与forward_predict_X2d_y1d1step参数意义相同</em>) – </p></li>
-<li><p><strong>df_train</strong> – df_train为用作训练的数据，df_valid和df_test为验证集和测试集数据
-df_valid和df_test的列须与df_train相同
-df_valid和df_test可以为None或pd.DataFrame
-df_train、df_valid、df_test须为连续时间序列
-当df_test不为空时，df_valid的ycol列必须有真实值</p></li>
-<li><p><strong>df_valid</strong> – df_train为用作训练的数据，df_valid和df_test为验证集和测试集数据
-df_valid和df_test的列须与df_train相同
-df_valid和df_test可以为None或pd.DataFrame
-df_train、df_valid、df_test须为连续时间序列
-当df_test不为空时，df_valid的ycol列必须有真实值</p></li>
-<li><p><strong>df_test</strong> – df_train为用作训练的数据，df_valid和df_test为验证集和测试集数据
-df_valid和df_test的列须与df_train相同
-df_valid和df_test可以为None或pd.DataFrame
-df_train、df_valid、df_test须为连续时间序列
-当df_test不为空时，df_valid的ycol列必须有真实值</p></li>
-<li><p><strong>ycol</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
-<li><p><strong>Xcols_series_lag</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
-<li><p><strong>Xcols_other</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
-<li><p><strong>gap</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
-<li><p><strong>**kwargs</strong> – 与forward_predict_X2d_y1d1step参数意义相同</p></li>
+<li><p><strong>model</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.forward_predict_X2d_y1d1step" title="dramkit.datsci.time_series.forward_predict_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward_predict_X2d_y1d1step()</span></code></a> 参数意义相同</p></li>
+<li><p><strong>func_pred</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.forward_predict_X2d_y1d1step" title="dramkit.datsci.time_series.forward_predict_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward_predict_X2d_y1d1step()</span></code></a> 参数意义相同</p></li>
+<li><p><strong>ycol</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.forward_predict_X2d_y1d1step" title="dramkit.datsci.time_series.forward_predict_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward_predict_X2d_y1d1step()</span></code></a> 参数意义相同</p></li>
+<li><p><strong>Xcols_series_lag</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.forward_predict_X2d_y1d1step" title="dramkit.datsci.time_series.forward_predict_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward_predict_X2d_y1d1step()</span></code></a> 参数意义相同</p></li>
+<li><p><strong>Xcols_other</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.forward_predict_X2d_y1d1step" title="dramkit.datsci.time_series.forward_predict_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward_predict_X2d_y1d1step()</span></code></a> 参数意义相同</p></li>
+<li><p><strong>gap</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.forward_predict_X2d_y1d1step" title="dramkit.datsci.time_series.forward_predict_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward_predict_X2d_y1d1step()</span></code></a> 参数意义相同</p></li>
+<li><p><strong>**kwargs</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.forward_predict_X2d_y1d1step" title="dramkit.datsci.time_series.forward_predict_X2d_y1d1step"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward_predict_X2d_y1d1step()</span></code></a> 参数意义相同</p></li>
+<li><p><strong>df_train</strong> (<em>pd.DataFrame</em>) – df_train为用作训练的数据</p></li>
+<li><p><strong>df_valid</strong> (<em>pd.DataFrame</em>) – df_valid为验证集待预测数据</p></li>
+<li><p><strong>df_test</strong> (<em>pd.DataFrame</em>) – <p>df_test为测试集待预测数据</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="line-block">
+<div class="line">df_valid和df_test的列须与df_train相同</div>
+<div class="line">df_valid和df_test可以为None或pd.DataFrame</div>
+<div class="line">df_train、df_valid、df_test须为连续时间序列</div>
+<div class="line">当df_test不为空时，df_valid的ycol列必须有真实值</div>
+</div>
+</div>
+</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>valid_pre, test_pre</strong></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>pd.DataFrame，验证集和测试集预测结果，包含ycol+’_pre’列</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>valid_pre</strong> (<em>pd.DataFrame</em>) – 验证集预测结果，包含ycol+’_pre’列</p></li>
+<li><p><strong>test_pre</strong> (<em>pd.DataFrame</em>) – 测试集预测结果，包含ycol+’_pre’列</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2816,22 +2828,36 @@ df_train、df_valid、df_test须为连续时间序列
 <dt class="sig sig-object py" id="dramkit.datsci.time_series.genXy_X2d_y1dsteps">
 <span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">genXy_X2d_y1dsteps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.genXy_X2d_y1dsteps" title="Permalink to this definition"></a></dt>
 <dd><p>构造时间序列预测的输入X和输出y，适用于X二维，ycol一维多步向前预测情况</p>
+<div class="admonition-todo admonition" id="id12">
+<p class="admonition-title">Todo</p>
+<p>gap为-1的情况检查确认</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>df</strong> (<em>包含因变量列和所有自变量列的数据集</em>) – </p></li>
-<li><p><strong>ycol</strong> (<em>因变量序列名</em>) – </p></li>
-<li><p><strong>Xcols_series_lag</strong> (<em>序列自变量列名和历史期数，格式如：</em>) – [(xcol1, lag1), (xcol2, lag2)]，若为None，则默认设置为[(ycol, 3)]</p></li>
-<li><p><strong>Xcols_other</strong> (<em>非序列自变量列名列表</em>) – </p></li>
-<li><p><strong>*注：序列自变量视为不能拿到跟因变量预测同期的数据，非序列自变量视为可以拿到同期数据</strong> – </p></li>
-<li><p><strong>y_step</strong> (<em>一次向前预测ycol的步数</em>) – （即因变量y的维度，多输出模型中y为多维，时间序列上相当于向前预测多步）</p></li>
-<li><p><strong>gap</strong> (<em>预测跳跃期数（eg.用截止今天的数据预测gap天之后的y_step天的数据）</em>) – </p></li>
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – 包含因变量列和所有自变量列的数据集</p></li>
+<li><p><strong>ycol</strong> (<em>str</em>) – 因变量序列名</p></li>
+<li><p><strong>Xcols_series_lag</strong> (<em>list</em><em>, </em><em>None</em>) – <div class="line-block">
+<div class="line">序列自变量列名和历史期数，格式如：</div>
+<div class="line">[(xcol1, lag1), (xcol2, lag2), …]</div>
+<div class="line">若为None，则默认设置为[(ycol, 3)]</div>
+</div>
+</p></li>
+<li><p><strong>Xcols_other</strong> (<em>list</em><em>, </em><em>None</em>) – <p>非序列自变量列名列表</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>序列自变量视为不能拿到跟因变量预测同期的数据，非序列自变量视为可以拿到同期数据</p>
+</div>
+</p></li>
+<li><p><strong>y_step</strong> (<em>int</em>) – 一次向前预测ycol的步数
+（即因变量y的维度，多输出模型中y为多维，时间序列上相当于向前预测多步）</p></li>
+<li><p><strong>gap</strong> (<em>int</em>) – 预测跳跃期数（eg.用截止今天的数据预测gap天之后的y_step天的数据）</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p><strong>X</strong> (<em>二维np.array，行数为样本量，列数为特征数量</em>)</p></li>
-<li><p><strong>y</strong> (<em>np.array，若y_step为1则为一维，若y_step大于1，则形状为样本量*y_step</em>)</p></li>
+<li><p><strong>X</strong> (<em>np.array</em>) – 二维，行数为样本量，列数为特征数量</p></li>
+<li><p><strong>y</strong> (<em>np.array</em>) – 若y_step为1则为一维，若y_step大于1，则形状为样本量*y_step</p></li>
 </ul>
 </p>
 </dd>
@@ -2843,71 +2869,83 @@ df_train、df_valid、df_test须为连续时间序列
 <h3>forward_predict_X2d_y1dsteps<a class="headerlink" href="#forward-predict-x2d-y1dsteps" title="Permalink to this headline"></a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="dramkit.datsci.time_series.forward_predict_X2d_y1dsteps">
-<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">forward_predict_X2d_y1dsteps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcPred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_pre</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.forward_predict_X2d_y1dsteps" title="Permalink to this definition"></a></dt>
-<dd><p>时间序列向前滚动预测（前面的预测作为后面的输入）
-适用于X二维，ycol一维多步向前预测情况</p>
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">forward_predict_X2d_y1dsteps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_pre</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.forward_predict_X2d_y1dsteps" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">用训练好的模型做在数据df_pre上进行构造样本并进行向前滚动预测(前面的预测作为后面的输入)</div>
+<div class="line">适用于X二维，ycol一维多步向前预测情况</div>
+</div>
+<div class="admonition-todo admonition" id="id13">
+<p class="admonition-title">Todo</p>
+<p>gap为-1的情况检查确认</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>model</strong> (<em>训练好的预测模型</em>) – </p></li>
-<li><p><strong>funcPred</strong> (<em>funcPred为预测函数，接受必要参数model和X，也接受可选参数**kwargs</em>) – </p></li>
-<li><p><strong>df_pre</strong> (<em>待预测所用数据，其中ycol为待预测列，除了初始构造输入X必须满足的数据行外，</em>) – 后面的数据可以为空值</p></li>
-<li><p><strong>Xcols_series_lag</strong> (<em>参数意义同genXy_X2d_y1dsteps</em>) – 中参数意义，用其构造输入变量的过程亦完全相同</p></li>
-<li><p><strong>Xcols_other</strong> (<em>参数意义同genXy_X2d_y1dsteps</em>) – 中参数意义，用其构造输入变量的过程亦完全相同</p></li>
-<li><p><strong>y_step</strong> (<em>参数意义同genXy_X2d_y1dsteps</em>) – 中参数意义，用其构造输入变量的过程亦完全相同</p></li>
-<li><p><strong>gap</strong> (<em>参数意义同genXy_X2d_y1dsteps</em>) – 中参数意义，用其构造输入变量的过程亦完全相同</p></li>
+<li><p><strong>model</strong> – 训练好的预测模型</p></li>
+<li><p><strong>func_pred</strong> (<em>function</em>) – func_pred为预测函数，接受必要参数model和X，也接受可选参数**kwargs</p></li>
+<li><p><strong>df_pre</strong> (<em>pd.DataFrame</em>) – 待预测所用数据，其中 <code class="docutils literal notranslate"><span class="pre">ycol</span></code> 为待预测列。
+除了初始构造输入X必须满足的数据行外，后面的数据可以为空值</p></li>
+<li><p><strong>Xcols_series_lag</strong> – 参数意义同 <a class="reference internal" href="#dramkit.datsci.time_series.genXy_X2d_y1dsteps" title="dramkit.datsci.time_series.genXy_X2d_y1dsteps"><code class="xref py py-func docutils literal notranslate"><span class="pre">genXy_X2d_y1dsteps()</span></code></a> 中参数意义，
+用其构造输入变量的过程亦完全相同</p></li>
+<li><p><strong>Xcols_other</strong> – 参数意义同 <a class="reference internal" href="#dramkit.datsci.time_series.genXy_X2d_y1dsteps" title="dramkit.datsci.time_series.genXy_X2d_y1dsteps"><code class="xref py py-func docutils literal notranslate"><span class="pre">genXy_X2d_y1dsteps()</span></code></a> 中参数意义，
+用其构造输入变量的过程亦完全相同</p></li>
+<li><p><strong>y_step</strong> – 参数意义同 <a class="reference internal" href="#dramkit.datsci.time_series.genXy_X2d_y1dsteps" title="dramkit.datsci.time_series.genXy_X2d_y1dsteps"><code class="xref py py-func docutils literal notranslate"><span class="pre">genXy_X2d_y1dsteps()</span></code></a> 中参数意义，
+用其构造输入变量的过程亦完全相同</p></li>
+<li><p><strong>gap</strong> – 参数意义同 <a class="reference internal" href="#dramkit.datsci.time_series.genXy_X2d_y1dsteps" title="dramkit.datsci.time_series.genXy_X2d_y1dsteps"><code class="xref py py-func docutils literal notranslate"><span class="pre">genXy_X2d_y1dsteps()</span></code></a> 中参数意义，
+用其构造输入变量的过程亦完全相同</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>df_pre</strong></p>
+<dd class="field-even"><p><strong>df_pre</strong> – 返回数据中包含原来的数据以及预测结果ycol+’_pre’列</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>返回pd.DataFrame包含原来的数据以及预测结果ycol+’_pre’列</p>
+<dd class="field-odd"><p>pd.DataFrame</p>
 </dd>
 </dl>
 </dd></dl>
 
 </section>
-<section id="seriespredict-x2d-y1dsteps">
-<h3>SeriesPredict_X2d_y1dsteps<a class="headerlink" href="#seriespredict-x2d-y1dsteps" title="Permalink to this headline"></a></h3>
+<section id="forward-valid-test-predict-x2d-y1dsteps">
+<h3>forward_valid_test_predict_X2d_y1dsteps<a class="headerlink" href="#forward-valid-test-predict-x2d-y1dsteps" title="Permalink to this headline"></a></h3>
 <dl class="py function">
-<dt class="sig sig-object py" id="dramkit.datsci.time_series.SeriesPredict_X2d_y1dsteps">
-<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">SeriesPredict_X2d_y1dsteps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcPred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_valid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.SeriesPredict_X2d_y1dsteps" title="Permalink to this definition"></a></dt>
-<dd><p>时间序列验证集和测试集向前滚动预测（前面的预测作为后面的输入）
-适用于X二维，ycol一维多步向前预测情况</p>
+<dt class="sig sig-object py" id="dramkit.datsci.time_series.forward_valid_test_predict_X2d_y1dsteps">
+<span class="sig-prename descclassname"><span class="pre">dramkit.datsci.time_series.</span></span><span class="sig-name descname"><span class="pre">forward_valid_test_predict_X2d_y1dsteps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_valid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df_test</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ycol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_series_lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xcols_other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.time_series.forward_valid_test_predict_X2d_y1dsteps" title="Permalink to this definition"></a></dt>
+<dd><div class="line-block">
+<div class="line">用训练好的模型做时间序列验证集和测试集预测(滚动预测, 前面的预测作为后面的输入)</div>
+<div class="line">适用于X二维，ycol一维多步向前预测情况</div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>model</strong> (<em>与forward_predict_X2d_y1dsteps参数意义相同</em>) – </p></li>
-<li><p><strong>funcPred</strong> (<em>与forward_predict_X2d_y1dsteps参数意义相同</em>) – </p></li>
-<li><p><strong>df_train</strong> – df_train为用作训练的数据，df_valid和df_test为验证集和测试集数据
-df_valid和df_test的列须与df_train相同
-df_valid和df_test可以为None或pd.DataFrame
-df_train、df_valid、df_test须为连续时间序列
-当df_test不为空时，df_valid的ycol列必须有真实值</p></li>
-<li><p><strong>df_valid</strong> – df_train为用作训练的数据，df_valid和df_test为验证集和测试集数据
-df_valid和df_test的列须与df_train相同
-df_valid和df_test可以为None或pd.DataFrame
-df_train、df_valid、df_test须为连续时间序列
-当df_test不为空时，df_valid的ycol列必须有真实值</p></li>
-<li><p><strong>df_test</strong> – df_train为用作训练的数据，df_valid和df_test为验证集和测试集数据
-df_valid和df_test的列须与df_train相同
-df_valid和df_test可以为None或pd.DataFrame
-df_train、df_valid、df_test须为连续时间序列
-当df_test不为空时，df_valid的ycol列必须有真实值</p></li>
-<li><p><strong>ycol</strong> – 与forward_predict_X2d_y1dsteps参数意义相同</p></li>
-<li><p><strong>Xcols_series_lag</strong> – 与forward_predict_X2d_y1dsteps参数意义相同</p></li>
-<li><p><strong>Xcols_other</strong> – 与forward_predict_X2d_y1dsteps参数意义相同</p></li>
-<li><p><strong>y_step</strong> – 与forward_predict_X2d_y1dsteps参数意义相同</p></li>
-<li><p><strong>gap</strong> – 与forward_predict_X2d_y1dsteps参数意义相同</p></li>
-<li><p><strong>**kwargs</strong> – 与forward_predict_X2d_y1dsteps参数意义相同</p></li>
+<li><p><strong>model</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.forward_predict_X2d_y1dsteps" title="dramkit.datsci.time_series.forward_predict_X2d_y1dsteps"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward_predict_X2d_y1dsteps()</span></code></a> 中参数意义相同</p></li>
+<li><p><strong>func_pred</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.forward_predict_X2d_y1dsteps" title="dramkit.datsci.time_series.forward_predict_X2d_y1dsteps"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward_predict_X2d_y1dsteps()</span></code></a> 中参数意义相同</p></li>
+<li><p><strong>ycol</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.forward_predict_X2d_y1dsteps" title="dramkit.datsci.time_series.forward_predict_X2d_y1dsteps"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward_predict_X2d_y1dsteps()</span></code></a> 中参数意义相同</p></li>
+<li><p><strong>Xcols_series_lag</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.forward_predict_X2d_y1dsteps" title="dramkit.datsci.time_series.forward_predict_X2d_y1dsteps"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward_predict_X2d_y1dsteps()</span></code></a> 中参数意义相同</p></li>
+<li><p><strong>Xcols_other</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.forward_predict_X2d_y1dsteps" title="dramkit.datsci.time_series.forward_predict_X2d_y1dsteps"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward_predict_X2d_y1dsteps()</span></code></a> 中参数意义相同</p></li>
+<li><p><strong>y_step</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.forward_predict_X2d_y1dsteps" title="dramkit.datsci.time_series.forward_predict_X2d_y1dsteps"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward_predict_X2d_y1dsteps()</span></code></a> 中参数意义相同</p></li>
+<li><p><strong>gap</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.forward_predict_X2d_y1dsteps" title="dramkit.datsci.time_series.forward_predict_X2d_y1dsteps"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward_predict_X2d_y1dsteps()</span></code></a> 中参数意义相同</p></li>
+<li><p><strong>**kwargs</strong> – 与 <a class="reference internal" href="#dramkit.datsci.time_series.forward_predict_X2d_y1dsteps" title="dramkit.datsci.time_series.forward_predict_X2d_y1dsteps"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward_predict_X2d_y1dsteps()</span></code></a> 中参数意义相同</p></li>
+<li><p><strong>df_train</strong> (<em>pd.DataFrame</em>) – df_train为用作训练的数据</p></li>
+<li><p><strong>df_valid</strong> (<em>pd.DataFrame</em>) – df_valid为验证集待预测数据</p></li>
+<li><p><strong>df_test</strong> (<em>pd.DataFrame</em>) – <p>df_test为测试集待预测数据</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="line-block">
+<div class="line">df_valid和df_test的列须与df_train相同</div>
+<div class="line">df_valid和df_test可以为None或pd.DataFrame</div>
+<div class="line">df_train、df_valid、df_test须为连续时间序列</div>
+<div class="line">当df_test不为空时，df_valid的ycol列必须有真实值</div>
+</div>
+</div>
+</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>valid_pre, test_pre</strong></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>pd.DataFrame，验证集和测试集预测结果，包含ycol+’_pre’列</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>valid_pre</strong> (<em>pd.DataFrame</em>) – 验证集预测结果，包含ycol+’_pre’列</p></li>
+<li><p><strong>test_pre</strong> (<em>pd.DataFrame</em>) – 测试集预测结果，包含ycol+’_pre’列</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2916,8 +2954,8 @@ df_train、df_valid、df_test须为连续时间序列
 </section>
 <section id="module-dramkit.datsci.topsis">
 <span id="topsis"></span><h2>topsis<a class="headerlink" href="#module-dramkit.datsci.topsis" title="Permalink to this headline"></a></h2>
-<section id="id11">
-<h3>topsis<a class="headerlink" href="#id11" title="Permalink to this headline"></a></h3>
+<section id="id14">
+<h3>topsis<a class="headerlink" href="#id14" title="Permalink to this headline"></a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="dramkit.datsci.topsis.topsis">
 <span class="sig-prename descclassname"><span class="pre">dramkit.datsci.topsis.</span></span><span class="sig-name descname"><span class="pre">topsis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dramkit.datsci.topsis.topsis" title="Permalink to this definition"></a></dt>

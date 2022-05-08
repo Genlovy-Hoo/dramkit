@@ -383,6 +383,11 @@ get_num_decimal
 
 .. autofunction:: dramkit.gentools.get_num_decimal
 
+sort_dict
+^^^^^^^^^^
+
+.. autofunction:: dramkit.gentools.sort_dict
+
 install_check
 --------------
 

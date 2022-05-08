@@ -1,6 +1,30 @@
 fintools
 =========
 
+ahr999
+-------
+
+.. automodule:: dramkit.fintools.ahr999
+
+.. currentmodule:: dramkit.fintools.ahr999
+
+get_ahr999
+^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.ahr999.get_ahr999
+
+candle_similar
+---------------
+
+.. automodule:: dramkit.fintools.candle_similar
+
+.. currentmodule:: dramkit.fintools.candle_similar
+
+candle_similar
+^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.candle_similar.candle_similar
+
 fintools
 ---------
 
@@ -172,6 +196,276 @@ cross_cum_maxmin_dif
 ^^^^^^^^^^^^^^^^^^^^^
 
 .. autofunction:: dramkit.fintools.fintools.cross_cum_maxmin_dif
+
+limit_stock_value
+------------------
+
+.. automodule:: dramkit.fintools.limit_stock_value
+
+.. currentmodule:: dramkit.fintools.limit_stock_value
+
+app
+^^^^
+
+.. autofunction:: dramkit.fintools.limit_stock_value.app
+
+cal_limit_stock_value
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.limit_stock_value.cal_limit_stock_value
+
+load_his_data
+--------------
+
+.. automodule:: dramkit.fintools.load_his_data
+
+.. currentmodule:: dramkit.fintools.load_his_data
+
+find_target_dir
+^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.load_his_data.find_target_dir
+
+get_15s_dir
+^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.load_his_data.get_15s_dir
+
+get_1min_dir1
+^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.load_his_data.get_1min_dir1
+
+get_1min_dir2
+^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.load_his_data.get_1min_dir2
+
+get_daily_dir1
+^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.load_his_data.get_daily_dir1
+
+load_15s_data
+^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.load_his_data.load_15s_data
+
+load_minute_data
+^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.load_his_data.load_minute_data
+
+handle_minute_930
+^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.load_his_data.handle_minute_930
+
+get_minute_data
+^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.load_his_data.get_minute_data
+
+load_daily_data
+^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.load_his_data.load_daily_data
+
+load_index_daily
+^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.load_his_data.load_index_daily
+
+load_index_minute
+^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.load_his_data.load_index_minute
+
+load_btc_daily
+^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.load_his_data.load_btc_daily
+
+load_eth_daily
+^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.load_his_data.load_eth_daily
+
+load_index_futures_daily
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.load_his_data.load_index_futures_daily
+
+load_index_futures_minute
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.load_his_data.load_index_futures_minute
+
+check_daily_data_is_new
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.load_his_data.check_daily_data_is_new
+
+options
+--------
+
+.. automodule:: dramkit.fintools.options
+
+.. currentmodule:: dramkit.fintools.options
+
+bs_opt
+^^^^^^^
+
+.. autofunction:: dramkit.fintools.options.bs_opt
+
+mc_bs_opt
+^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.options.mc_bs_opt
+
+mc_log_bs_opt
+^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.options.mc_log_bs_opt
+
+bopm_european
+^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.options.bopm_european
+
+bsm_iv_dichotomy
+^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.options.bsm_iv_dichotomy
+
+bsm_iv_dichotomy0
+^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.options.bsm_iv_dichotomy0
+
+bsm_iv_newton
+^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.options.bsm_iv_newton
+
+bs_vega
+^^^^^^^^
+
+.. autofunction:: dramkit.fintools.options.bs_vega
+
+bs_delta
+^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.options.bs_delta
+
+bs_gamma
+^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.options.bs_gamma
+
+bs_theta
+^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.options.bs_theta
+
+bs_rho
+^^^^^^^
+
+.. autofunction:: dramkit.fintools.options.bs_rho
+
+report_date_align
+------------------
+
+.. automodule:: dramkit.fintools.report_date_align
+
+.. currentmodule:: dramkit.fintools.report_date_align
+
+get_tushare_api
+^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.report_date_align.get_tushare_api
+
+get_trade_date
+^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.report_date_align.get_trade_date
+
+get_aligned_data
+^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.report_date_align.get_aligned_data
+
+utils_chn
+----------
+
+.. automodule:: dramkit.fintools.utils_chn
+
+.. currentmodule:: dramkit.fintools.utils_chn
+
+get_finreport_date_by_delta
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.utils_chn.get_finreport_date_by_delta
+
+get_last_effect_finreport_dates
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.utils_chn.get_last_effect_finreport_dates
+
+get_code_ext
+^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.utils_chn.get_code_ext
+
+get_trade_fee_Astock
+^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.utils_chn.get_trade_fee_Astock
+
+trade_fee_Astock
+^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.utils_chn.trade_fee_Astock
+
+is_trade_day_chncal
+^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.utils_chn.is_trade_day_chncal
+
+get_recent_trade_date_chncal
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.utils_chn.get_recent_trade_date_chncal
+
+get_next_nth_trade_date_chncal
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.utils_chn.get_next_nth_trade_date_chncal
+
+get_next_nth_trade_date
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.utils_chn.get_next_nth_trade_date
+
+get_trade_dates_chncal
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.utils_chn.get_trade_dates_chncal
+
+get_trade_dates
+^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.utils_chn.get_trade_dates
+
+get_trade_dates_bk
+^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.utils_chn.get_trade_dates_bk
+
+get_num_trade_dates
+^^^^^^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.utils_chn.get_num_trade_dates
 
 utils_gains
 ------------
@@ -364,3 +658,20 @@ get_yield_curve2
 ^^^^^^^^^^^^^^^^^
 
 .. autofunction:: dramkit.fintools.utils_gains.get_yield_curve2
+
+zigzag
+-------
+
+.. automodule:: dramkit.fintools.zigzag
+
+.. currentmodule:: dramkit.fintools.zigzag
+
+zigzag
+^^^^^^^
+
+.. autofunction:: dramkit.fintools.zigzag.zigzag
+
+plot_candle_zz
+^^^^^^^^^^^^^^^
+
+.. autofunction:: dramkit.fintools.zigzag.plot_candle_zz

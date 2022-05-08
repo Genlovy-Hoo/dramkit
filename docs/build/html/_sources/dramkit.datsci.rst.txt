@@ -776,10 +776,10 @@ fillna_ma
 
 .. autofunction:: dramkit.datsci.time_series.fillna_ma
 
-get_DirectionalAccuracy_1step
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+get_directional_accuracy_1step
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.datsci.time_series.get_DirectionalAccuracy_1step
+.. autofunction:: dramkit.datsci.time_series.get_directional_accuracy_1step
 
 genXy_X2d_y1d1step
 ^^^^^^^^^^^^^^^^^^^
@@ -791,20 +791,20 @@ predict_X2d_y1d1step
 
 .. autofunction:: dramkit.datsci.time_series.predict_X2d_y1d1step
 
-Predict_X2d_y1d1step
-^^^^^^^^^^^^^^^^^^^^^
+valid_test_predict_X2d_y1d1step
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.datsci.time_series.Predict_X2d_y1d1step
+.. autofunction:: dramkit.datsci.time_series.valid_test_predict_X2d_y1d1step
 
 forward_predict_X2d_y1d1step
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autofunction:: dramkit.datsci.time_series.forward_predict_X2d_y1d1step
 
-SeriesPredict_X2d_y1d1step
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+forward_valid_test_predict_X2d_y1d1step
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.datsci.time_series.SeriesPredict_X2d_y1d1step
+.. autofunction:: dramkit.datsci.time_series.forward_valid_test_predict_X2d_y1d1step
 
 genXy_X2d_y1dsteps
 ^^^^^^^^^^^^^^^^^^^
@@ -816,10 +816,10 @@ forward_predict_X2d_y1dsteps
 
 .. autofunction:: dramkit.datsci.time_series.forward_predict_X2d_y1dsteps
 
-SeriesPredict_X2d_y1dsteps
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+forward_valid_test_predict_X2d_y1dsteps
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. autofunction:: dramkit.datsci.time_series.SeriesPredict_X2d_y1dsteps
+.. autofunction:: dramkit.datsci.time_series.forward_valid_test_predict_X2d_y1dsteps
 
 topsis
 -------

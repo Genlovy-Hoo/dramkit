@@ -500,7 +500,7 @@ if __name__ == '__main__':
     for k in range(13, data.shape[0]-5, 17):
         data.loc[data.index[k], 'sig_avg'] = -1
 
-    data = data.iloc[-300:, :].copy()
+    data = data.iloc[-500:, :].copy()
 
     args_ma = None
     # args_ma = [5, 10, 20, 30, 50]
