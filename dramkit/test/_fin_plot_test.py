@@ -14,7 +14,7 @@ from dramkit import simple_logger
 
 if __name__ == '__main__':
     # 导入数据
-    data = pd.read_excel('./动能和资金分析信号.xlsx')
+    data = pd.read_excel('./test_signal.xlsx')
     data['date'] = data['date'].apply(lambda x: x.strftime('%Y-%m-%d'))
     data.set_index('date', inplace=True)
     
