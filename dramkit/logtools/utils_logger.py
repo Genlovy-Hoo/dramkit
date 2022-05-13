@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
-from dramkit.gentools import isnull
+from pandas import isnull
 
 
 def logger_show(log_str, logger=None, level='info'):

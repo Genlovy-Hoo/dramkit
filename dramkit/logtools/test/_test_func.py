@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import numpy as np
+
 def test_func(x, y, txt, logger):
     logger.info('info of test func ------------------------------------------')
     logger.info('get input x: {}, y: {}.'.format(x, y))
@@ -12,3 +14,11 @@ def test_func(x, y, txt, logger):
         # raise
     logger.fatal('program may crash here.')
     logger.info('test function finished.')
+    
+    
+def rand_div(x):
+    y = np.random.randint(-1, 1)
+    try:
+        return x / y
+    except:
+        raise 

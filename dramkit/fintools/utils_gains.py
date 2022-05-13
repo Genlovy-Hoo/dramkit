@@ -2426,7 +2426,9 @@ def get_yield_curve(data, sig_col, nn=252, ext_type=1,
     '''
 
     assert net_type in ['fundnet', 'prod', 'sum']
-
+    
+    if not logger is None:
+        kwargs_gain['logger'] = logger
     trade_gain_info, df_gain = cal_sig_gains(data, sig_col, **kwargs_gain)
 
     cols_to_plot = []

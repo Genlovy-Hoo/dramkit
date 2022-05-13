@@ -2,10 +2,12 @@
 
 import os
 import json
+import uuid
 import pickle
 import shutil
 import zipfile
 import subprocess
+import py_compile
 import pandas as pd
 # from .gentools import isnull
 # from .logtools.utils_logger import logger_show
@@ -352,9 +354,10 @@ def load_excels(fdir, sort_cols=None, drop_duplicates=True,
     return data
 
 
-def get_all_files(dir_path, ext=None, include_dir=False, abspath=False):
+def get_all_paths(dir_path, ext=None, include_dir=False, abspath=False,
+                  recu_sub_dir=True, only_dir=False):
     '''
-	获取指定文件夹及其子文件夹中所有的文件路径
+	获取指定文件夹(及其子文件夹)中所有的文件路径
 
     Parameters
     ----------
@@ -366,6 +369,11 @@ def get_all_files(dir_path, ext=None, include_dir=False, abspath=False):
         返回结果中是否包含文件夹路径，默认不包含（即只返回文件路径）
     abspath : bool
         是否返回绝对路径，默认返回相对路径
+    rec_sub_dir : bool
+        若为False，则不对子文件中的文件进行变量，即只返回dir_path下的文件（夹）路径
+    only_dir : bool
+        若为True，则只返回子文件夹路径(文件夹名称尾部与ext指定尾部相同的文件夹)，
+        不返回文件路径，此时include_dir不起作用
 
 
     :returns: `list` - 文件路径列表
@@ -374,20 +382,96 @@ def get_all_files(dir_path, ext=None, include_dir=False, abspath=False):
         raise ValueError('`ext`必须为None或str或list类型！')
     if ext is not None and isinstance(ext, str):
         ext = [ext]
-    fpaths = []
-    for root, dirs, files in os.walk(dir_path):
-        if include_dir:
-            fpaths.append(root)
-        for fname in files:
-            if ext is not None:
-                for x in ext:
-                    if fname[-len(x):] == x:
-                        fpaths.append(os.path.join(root, fname))
+    if recu_sub_dir:
+        fpaths = []
+        for root, dirs, files in os.walk(dir_path):
+            if only_dir:
+                if ext is not None:
+                    if any([root[-len(x):] in ext for x in ext]):
+                        fpaths.append(root)
+                else:
+                    fpaths.append(root)
             else:
-                fpaths.append(os.path.join(root, fname))
+                if include_dir:
+                    fpaths.append(root)
+                for fname in files:
+                    if ext is not None:
+                        for x in ext:
+                            if fname[-len(x):] == x:
+                                fpaths.append(os.path.join(root, fname))
+                    else:
+                        fpaths.append(os.path.join(root, fname))
+    else:
+        fpaths = [os.path.join(dir_path, x) for x in os.listdir(dir_path)]
+        fpaths = [dir_path] + fpaths
+        if only_dir:
+            fpaths = [x for x in fpaths if os.path.isdir(x)]
+        else:
+            if not include_dir:
+                fpaths = [x for x in fpaths if not os.path.isdir(x)]
+        if ext is not None:
+            fpaths = [x for x in fpaths if any([x[-len(y):] in ext for y in ext])]
     if abspath:
         fpaths = [os.path.abspath(x) for x in fpaths]
     return fpaths
+
+
+def del_specified_type_files(dir_path, type_list, recu_sub_dir=True):
+    '''删除dir_path文件夹下所有类型在type_list中的文件'''
+    fpaths = get_all_paths(dir_path, ext=type_list, recu_sub_dir=recu_sub_dir,
+                           abspath=True)
+    for fpath in fpaths:
+        os.remove(fpath)
+    
+    
+def del_dir(dir_path):
+    '''删除dir_path指定文件夹及其所有内容'''
+    shutil.rmtree(dir_path)
+    
+    
+def del_specified_subdir(dir_path, del_names, recu_sub_dir=True):
+    '''删除dir_path文件夹下所有文件夹名在del_names中的子文件夹'''
+    subdirs = get_all_paths(dir_path, ext=del_names, only_dir=True,
+                            abspath=True, recu_sub_dir=recu_sub_dir)
+    for subdir in subdirs:
+        shutil.rmtree(subdir)
+    
+
+def copy_file():
+	'''复制文件，待实现'''
+	raise NotImplementedError
+
+
+def copy_dir():
+    '''复制文件夹，待实现'''
+    raise NotImplementedError
+    
+    
+def py2pyc_dir(dir_path, force=True, del_py=False, recu_sub_dir=True):
+    '''将一个文件夹下的所有.py文件编译为.pyc文件'''
+    all_pys = get_all_paths(dir_path, ext='.py', recu_sub_dir=recu_sub_dir,
+                            abspath=True)
+    for fpy in all_pys:
+        fpyc = fpy+'c'
+        if not force:
+            if not os.path.exists(fpyc):
+                py_compile.compile(fpy, fpyc)
+        else:
+            if os.path.exists(fpyc):
+                os.remove(fpyc)
+            py_compile.compile(fpy, fpyc)
+        if del_py:
+            os.remove(fpy)
+            
+            
+def get_mac_address():
+    '''
+    获取Mac地址，返回大写地址，如：F8-A2-D6-CC-BB-AA
+    '''
+    mac = uuid.UUID(int=uuid.getnode()).hex[-12:]
+    # 转大写
+    mac = '-'.join([mac[e: e+2] for e in range(0, 11, 2)]).upper()
+    return mac
 
 
 def zip_files(zip_path, fpaths, keep_ori_path=True, keep_zip_new=True):
@@ -441,7 +525,7 @@ def zip_fpath(fpath, zip_path=None, **kwargs):
     if os.path.isfile(fpath): # fpath为文件
         zip_files(zip_path, [fpath], **kwargs)
     elif os.path.isdir(fpath): # fpath为文件夹
-        fpaths = get_all_files(fpath, include_dir=True)
+        fpaths = get_all_paths(fpath, include_dir=True)
         zip_files(zip_path, fpaths, **kwargs)
 
 
@@ -463,7 +547,7 @@ def zip_fpaths(zip_path, fpaths, **kwargs):
         if os.path.isfile(fpath):
             all_paths.append(fpath)
         elif os.path.isdir(fpath):
-            all_paths += get_all_files(fpath, include_dir=True)
+            all_paths += get_all_paths(fpath, include_dir=True)
     zip_files(zip_path, all_paths, **kwargs)
 
 
@@ -585,21 +669,6 @@ def rename_files_in_dir(dir_path, func_rename):
         os.rename(old_path, new_path)
 
 
-def del_dir(dir_path):
-    '''删除dir_path指定文件夹及其所有内容'''
-    shutil.rmtree(dir_path)
-    
-
-def copy_file():
-	'''复制文件，待实现'''
-	raise NotImplementedError
-
-
-def copy_dir():
-    '''复制文件夹，待实现'''
-    raise NotImplementedError
-
-
 def find_files_include_str(target_str, root_dir=None,
                            file_types='default', logger=None):
     '''
@@ -626,7 +695,7 @@ def find_files_include_str(target_str, root_dir=None,
     '''
     if root_dir is None:
         root_dir = os.getcwd()
-    all_files = get_all_files(root_dir, ext=file_types)
+    all_files = get_all_paths(root_dir, ext=file_types)
     files = []
     for fpath in all_files:
         lines = read_lines(fpath, logger=logger)

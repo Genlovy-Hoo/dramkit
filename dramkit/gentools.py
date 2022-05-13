@@ -6,10 +6,13 @@ General toolboxs
 
 import sys
 import time
+import inspect
 import numpy as np
 import pandas as pd
 from functools import reduce, wraps
 from random import randint, random, uniform
+
+from dramkit.logtools.utils_logger import logger_show
 
 
 PYTHON_VERSION = float(sys.version[:3])
@@ -37,6 +40,94 @@ class StructureObject(object):
     def clear(self):
         '''清空所有属性变量'''
         self.__dict__.clear()
+        
+        
+def get_func_arg_names(func):
+    '''获取函数func的参数名称列表'''
+    return inspect.getfullargspec(func).args
+        
+        
+def try_repeat_run(n_max_run=3, logger=None, sleep_seconds=0, force_rep=False):
+    '''
+    | 作为装饰器尝试多次运行指定函数
+    | 使用场景：第一次运行可能出错，需要再次运行(比如取数据时第一次可能连接超时，需要再取一次)
+    
+    Parameters
+    ----------
+    n_max_run : int
+        最多尝试运行次数
+    logger : None, logging.Logger
+        日志记录器
+    sleep_seconds : int, float
+        | 多次执行时，上一次执行完成之后需要暂停的时间（秒）
+        | 注：在force_rep为True时，每次执行完都会暂停，force_rep为False只有报错之后才会暂停
+    force_rep : bool
+        若为True，则不论是否报错都强制重复执行，若为False，则只有报错才会重复执行
+        
+    Returns
+    -------
+    result : None, other
+        若目标函数执行成功，则返回执行结果；若失败，则返回None
+
+    Examples
+    --------
+    .. code-block:: python
+        :linenos:
+
+        from dramkit import simple_logger
+        logger = simple_logger()
+        
+        @try_repeat_run(2, logger=logger, sleep_seconds=0, force_rep=False)
+        def rand_div(x):
+            return x / np.random.randint(-1, 1)
+
+        def repeat_test(info_):
+            print(info_)
+            return rand_div(0)
+
+    >>> a = repeat_test('repeat test...')
+    >>> print(a)
+    '''
+    def transfunc(func):
+        @wraps(func)
+        def repeater(*args, **kwargs):
+            '''尝试多次运行func'''
+            if not force_rep:
+                n_run, ok = 0, False
+                while not ok and n_run < n_max_run:
+                    n_run += 1
+                    # logger_show('第%s次运行`%s`...'%(n_run, func.__name__),
+                    #             logger, 'info')
+                    try:
+                        result = func(*args, **kwargs)
+                        return result
+                    except:
+                        if n_run == n_max_run:
+                            logger_show('函数`%s`运行失败，共运行了%s次。'%(func.__name__, n_run),
+                                        logger, 'error')
+                            return
+                        else:
+                            if sleep_seconds > 0:
+                                time.sleep(sleep_seconds)
+                            else:
+                                pass
+            else:
+                n_run = 0
+                while n_run < n_max_run:
+                    n_run += 1
+                    try:
+                        result = func(*args, **kwargs)
+                        logger_show('函数`%s`第%s运行：成功。'%(func.__name__, n_run),
+                                    logger, 'info')
+                    except:
+                        result = None
+                        logger_show('函数`%s`第%s运行：失败。'%(func.__name__, n_run),
+                                    logger, 'error')
+                    if sleep_seconds > 0:
+                        time.sleep(sleep_seconds)
+                return result
+        return repeater
+    return transfunc
 
 
 def log_used_time(logger=None):
@@ -72,15 +163,14 @@ def log_used_time(logger=None):
 
     References
     ----------
-    https://www.cnblogs.com/xiuyou/p/11283512.html
-    https://www.cnblogs.com/slysky/p/9777424.html
-    https://www.cnblogs.com/zhzhang/p/11375574.html
+    - https://www.cnblogs.com/xiuyou/p/11283512.html
+    - https://www.cnblogs.com/slysky/p/9777424.html
+    - https://www.cnblogs.com/zhzhang/p/11375574.html
     '''
     def transfunc(func):
         @wraps(func)
         def timer(*args, **kwargs):
             '''运行func并记录用时'''
-            from dramkit.logtools.utils_logger import logger_show
             t0 = time.time()
             result = func(*args, **kwargs)
             t = time.time()
@@ -120,8 +210,8 @@ def print_used_time(func):
 
     References
     ----------
-    https://www.cnblogs.com/slysky/p/9777424.html
-    https://www.cnblogs.com/zhzhang/p/11375574.html
+    - https://www.cnblogs.com/slysky/p/9777424.html
+    - https://www.cnblogs.com/zhzhang/p/11375574.html
     '''
     @wraps(func)
     def timer(*args, **kwargs):
@@ -556,14 +646,15 @@ def rand_weight_sum(weight_sum, n, lowests, highests, weights=None, n_dot=6):
     return adds
 
 
-def replace_repeat_iter(series, val, val0, gap=None):
+def replace_repeat_iter(series, val, val0, gap=None, keep_last=False):
     '''
     替换序列中重复出现的值
     
     | series (`pd.Series`) 中若步长为gap的范围内出现多个val值，则只保留第一条记录，
-    | 后面的替换为val0
+      后面的替换为val0
     | 若gap为None，则将连续出现的val值只保留第一个，其余替换为val0(这里连续出现val是指
-    | 不出现除了val和val0之外的其他值)
+      不出现除了val和val0之外的其他值)
+    | 若keep_last为True，则连续的保留最后一个
     
     返回结果为替换之后的series (`pd.Series`)
 
@@ -606,6 +697,20 @@ def replace_repeat_iter(series, val, val0, gap=None):
     7    0
     8   -1
     '''
+    if not keep_last:
+        return _replace_repeat_iter(series, val, val0, gap=gap)
+    else:
+        series_ = series[::-1]
+        series_ = _replace_repeat_iter(series_, val, val0, gap=gap)
+        return series_[::-1]
+
+
+def _replace_repeat_iter(series, val, val0, gap=None):
+    '''
+    TODO
+    ----
+    改为不在df里面算（df.loc可能会比较慢？）
+    '''
 
     col = series.name
     df = pd.DataFrame({col: series})
@@ -643,17 +748,25 @@ def replace_repeat_iter(series, val, val0, gap=None):
     df.index = ori_index
 
     return df[col]
-
-
-def replace_repeat_pd(series, val, val0):
-    '''
-    替换序列中重复出现的值, 仅保留第一个
     
-    函数功能，参数和意义同 :func:`dramkit.gentools.replace_repeat_iter`
-    区别在于计算时在pandas.DataFrame里面进行而不是采用迭代方式，同时取消了gap
-    参数(即连续出现的val值只保留第一个)
+    
+def replace_repeat_pd(series, val, val0, keep_last=False):
     '''
+    | 替换序列中重复出现的值, 仅保留第一个
+    | 
+    | 函数功能，参数和意义同 :func:`dramkit.gentools.replace_repeat_iter`
+    | 区别在于计算时在pandas.DataFrame里面进行而不是采用迭代方式，同时取消了gap
+      参数(即连续出现的val值只保留第一个)
+    '''
+    if not keep_last:
+        return _replace_repeat_pd(series, val, val0)
+    else:
+        series_ = series[::-1]
+        series_ = _replace_repeat_pd(series_, val, val0)
+        return series_[::-1]
 
+
+def _replace_repeat_pd(series, val, val0):
     col = series.name
     df = pd.DataFrame({col: series})
     # 为了避免计算过程中临时产生的列名与原始列名混淆，对列重新命名
@@ -685,20 +798,21 @@ def replace_repeat_pd(series, val, val0):
     df.index = ori_index
 
     return df[col_ori]
-
-
-def replace_repeat_func_iter(series, func_val, func_val0, gap=None):
+    
+    
+def replace_repeat_func_iter(series, func_val, func_val0,
+                             gap=None, keep_last=False):
     '''
-    替换序列中重复出现的值，功能与 :func:`dramkit.gentools.replace_repeat_iter`
-    类似，只不过把val和val0的值由直接指定换成了由指定函数生成
+    | 替换序列中重复出现的值，功能与 :func:`dramkit.gentools.replace_repeat_iter`
+      类似，只不过把val和val0的值由直接指定换成了由指定函数生成
 
     | ``func_val`` 函数用于判断连续条件，其返回值只能是True或False，
     | ``func_val0`` 函数用于生成替换的新值。
-    | 即series中若步长为gap的范围内出现多个满足func_val函数为True的值，
-    | 则只保留第一条记录，后面的替换为函数func_val0的值。
+    | 即series中若步长为gap的范围内出现多个满足func_val函数为True的值， 
+      则只保留第一条记录，后面的替换为函数func_val0的值。
     | 若gap为None，则将连续出现的满足func_val函数为True的值只保留第一个，其余替换为函数
-    | func_val0的值(这里连续出现是指不出现除了满足func_val为True和等于func_val0函数值
-    | 之外的其他值)
+      func_val0的值(这里连续出现是指不出现除了满足func_val为True和等于func_val0函数值
+      之外的其他值)
     
     返回结果为替换之后的series (`pd.Series`)
 
@@ -731,7 +845,15 @@ def replace_repeat_func_iter(series, func_val, func_val0, gap=None):
     18  0      3
     19  1      1
     '''
+    if not keep_last:
+        return _replace_repeat_func_iter(series, func_val, func_val0, gap=gap)
+    else:
+        series_ = series[::-1]
+        series_ = _replace_repeat_func_iter(series_, func_val, func_val0, gap=gap)
+        return series_[::-1]
 
+
+def _replace_repeat_func_iter(series, func_val, func_val0, gap=None):
     col = series.name
     df = pd.DataFrame({col: series})
 
@@ -774,9 +896,9 @@ def replace_repeat_func_iter(series, func_val, func_val0, gap=None):
     df.index = ori_index
 
     return df[col]
-
-
-def replace_repeat_func_pd(series, func_val, func_val0):
+    
+    
+def replace_repeat_func_pd(series, func_val, func_val0, keep_last=False):
     '''
     替换序列中重复出现的值, 仅保留第一个
     
@@ -784,7 +906,15 @@ def replace_repeat_func_pd(series, func_val, func_val0):
     | 区别在于计算时在pandas.DataFrame里面进行而不是采用迭代方式
     | 同时取消了gap参数(即连续出现的满足func_val为True的值只保留第一个)
     '''
+    if not keep_last:
+        return _replace_repeat_func_pd(series, func_val, func_val0)
+    else:
+        series_ = series[::-1]
+        series_ = _replace_repeat_func_pd(series_, func_val, func_val0)
+        return series_[::-1]
 
+
+def _replace_repeat_func_pd(series, func_val, func_val0):
     col = series.name
     df = pd.DataFrame({col: series})
     # 为了避免计算过程中临时产生的列名与原始列名混淆，对列重新命名

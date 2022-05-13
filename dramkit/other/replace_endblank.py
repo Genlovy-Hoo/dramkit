@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from dramkit.iotools import get_all_files, read_lines, write_txt
+from dramkit.iotools import get_all_paths, read_lines, write_txt
 
 
 def replace_endblank_in_file(fpath, func_new_path=None, logger=None,
@@ -51,7 +51,7 @@ if __name__ == '__main__':
 
     root_dir = './'
     files_types = ['.py_']
-    all_files = get_all_files(root_dir, ext=files_types)
+    all_files = get_all_paths(root_dir, ext=files_types)
 
     # func_new_path = lambda x: x
     func_new_path = None

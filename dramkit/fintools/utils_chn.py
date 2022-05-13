@@ -489,7 +489,7 @@ def get_trade_dates(start_date, end_date=None, trade_dates_df_path=None,
         if last_date == end_date:
             return dates
         else:
-            start_date_ = dttools.date_add_nday(last_date, N=1)
+            start_date_ = dttools.date_add_nday(last_date, n=1)
             dates_ = dttools.get_dates_between(start_date_, end_date,
                                  keep1=True, keep2=True, only_workday=True,
                                  del_weekend=True, joiner=joiner)
@@ -525,8 +525,8 @@ def get_trade_dates_bk(start_date, end_date, trade_dates_df_path):
 def get_num_trade_dates(start_date, end_date, trade_dates_df_path=None):
     '''给定起止时间，获取可交易天数'''
     if not isnull(trade_dates_df_path):
-        trade_dates = get_trade_dates(trade_dates_df_path, start_date,
-                                      end_date)
+        trade_dates = get_trade_dates(start_date, end_date,
+                                      trade_dates_df_path)
     else:
         trade_dates = get_trade_dates_chncal(start_date, end_date)
     return len(trade_dates)
