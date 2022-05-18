@@ -228,6 +228,17 @@ def date_add_nday(date, n=1):
     raise ValueError('请检查日期格式：只接受get_date_format函数识别的日期格式！')
 
 
+def diff_time_second(time1, time2):
+    '''
+    | 计算两个时间的差：time1-time2，time1和time2的格式应相同
+    | 返回两个时间差的秒数
+    '''
+    time1_ = pd.to_datetime(time1)
+    time2_ = pd.to_datetime(time2)
+    time_delta = time1_ - time2_
+    return 24*3600*time_delta.days + time_delta.seconds
+
+
 def diff_days_date(date1, date2):
     '''
     | 计算两个日期间相隔天数，若date1大于date2，则输出为正，否则为负

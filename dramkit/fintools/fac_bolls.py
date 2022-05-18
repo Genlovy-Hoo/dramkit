@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pandas as pd
-from dramkit.fintools.fintools import Boll
+from dramkit.fintools.fintools import boll
 
 
 def boll_label_uplow(data, tol=0.2/100, judge_type='maxmin'):
@@ -193,12 +193,12 @@ def get_boll_label_uplow(data, lag=15, width=2, tol=0.2/100,
     '''
     | 生成基于布林带的高低点标签
     | data中必须包含['close', 'high', 'low']三列
-    | lag、width、n_dot参数同 :func:`dramkit.fintools.fintools.Boll` 函数
+    | lag、width、n_dot参数同 :func:`dramkit.fintools.fintools.boll` 函数
     | judge_type、tol参数同 :func:`boll_label_uplow` 函数
     '''
 
     # 布林带
-    boll_close = Boll(data['close'], lag=lag, width=width, n_dot=n_dot)
+    boll_close = boll(data['close'], lag=lag, width=width, n_dot=n_dot)
 
     # 布林带高低点标签
     # df_boll = boll_close.drop(['boll_mid', 'boll_std'], axis=1)
@@ -216,12 +216,12 @@ def get_boll_label_uplow_cross(data, lag=15, width=2, tol=0.0/100,
     '''
     | 生成基于布林带穿越的高低点标签
     | data中必须包含['close', 'high', 'low']三列
-    | lag、width、n_dot参数同 :func:`dramkit.fintools.fintools.Boll` 函数
+    | lag、width、n_dot参数同 :func:`dramkit.fintools.fintools.boll` 函数
     | judge_type、tol参数同 :func:`boll_label_uplow_cross` 函数
     '''
 
     # 布林带
-    boll_close = Boll(data['close'], lag=lag, width=width, n_dot=n_dot)
+    boll_close = boll(data['close'], lag=lag, width=width, n_dot=n_dot)
 
     # 布林带高低点标签
     # df_boll = boll_close.drop(['boll_mid', 'boll_std'], axis=1)
@@ -249,7 +249,7 @@ if __name__ == '__main__':
                                  'volume', 'amount'])
 
     # 布林带
-    boll_close = Boll(data['close'], lag=15, width=2, n_dot=3)
+    boll_close = boll(data['close'], lag=15, width=2, n_dot=3)
     df_boll = pd.merge(boll_close.drop('close', axis=1), data, how='right',
                        left_index=True, right_index=True).reset_index()
     df_boll = df_boll.reindex(columns=['time', 'open', 'high', 'low', 'close',

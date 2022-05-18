@@ -57,7 +57,7 @@ def plot_boll(df_boll, N=100, figsize=(12.5, 9), markersize=10):
 
 if __name__ == '__main__':
     from dramkit import load_csv
-    from dramkit.fintools.fintools import Boll
+    from dramkit.fintools.fintools import boll
     
     fpath = '../test/510050_daily_pre_fq.csv'
 
@@ -67,7 +67,7 @@ if __name__ == '__main__':
                                  'amount'])
 
     # 布林带
-    boll_close = Boll(data['close'], lag=15, width=2, n_dot=3)
+    boll_close = boll(data['close'], lag=15, width=2, n_dot=3)
     df_boll = pd.merge(boll_close.drop('close', axis=1), data, how='right',
                        left_index=True, right_index=True).reset_index()
     df_boll = df_boll.reindex(columns=['time', 'open', 'high', 'low', 'close',

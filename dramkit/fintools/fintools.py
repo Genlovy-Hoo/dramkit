@@ -22,7 +22,7 @@ except:
                 logger, 'warn')
 
 
-def cal_IC(data, col_factor, col_price='close', col_time=None,
+def cal_ic(data, col_factor, col_price='close', col_time=None,
            col_code=None, lag=1, ic_type='rank'):
     '''
     | 计算因子IC值
@@ -63,7 +63,7 @@ def kelly_formula(p, b):
     return (b*p - q) / b
 
 
-def sim_MC(his_values, sim_periods, n_cut=240, num_sim=1000,
+def sim_mc(his_values, sim_periods, n_cut=240, num_sim=1000,
            random_seed=None, keep_v0=True, return_mid=False,
            kwargs_plot_mid=None, kwargs_plot_final=None):
     '''
@@ -190,7 +190,7 @@ def wuxianpu(series, lag=875, alphas=[0.05, 0.32], plot=False):
     return df
 
 
-def MAs_order(series, lags=[3, 5, 15, 20, 30, 60]):
+def mas_order(series, lags=[3, 5, 15, 20, 30, 60]):
     '''
     | 指定均线排列情况判断，lags为从小到大排列的lag列表
     | 返回结果1为多头排列，-1位空头排列，0其他情况
@@ -216,7 +216,7 @@ def MAs_order(series, lags=[3, 5, 15, 20, 30, 60]):
     return df['order_type']
 
 
-def MACD(series, fast=12, slow=26, m=9):
+def macd(series, fast=12, slow=26, m=9):
     '''
     MACD计算
     
@@ -279,7 +279,7 @@ def MACD(series, fast=12, slow=26, m=9):
     return df[['MACD', 'DIF', 'DEA']]
 
 
-def Boll(series, lag=15, width=2, n_dot=3):
+def boll(series, lag=15, width=2, n_dot=3):
     '''
     布林带计算
 
@@ -318,7 +318,7 @@ def Boll(series, lag=15, width=2, n_dot=3):
     return df_boll
 
 
-def BBI(series, lags=[3, 6, 12, 24]):
+def bbi(series, lags=[3, 6, 12, 24]):
     '''BBI计算'''
     df = pd.DataFrame({'p': series})
     df['bbi'] = 0
@@ -328,7 +328,7 @@ def BBI(series, lags=[3, 6, 12, 24]):
     return df['bbi']
 
 
-def CCI(df, col_typeprice=None, n=14, r=0.015):
+def cci(df, col_typeprice=None, n=14, r=0.015):
     '''
     CCI计算
 
@@ -372,7 +372,7 @@ def CCI(df, col_typeprice=None, n=14, r=0.015):
     return cci
 
 
-def EXPMA(series, n=26):
+def expma(series, n=26):
     '''
     EXPMA计算
 
@@ -392,13 +392,13 @@ def EXPMA(series, n=26):
     return df_['expma']
 
 
-def weight_MA_linear_decay(series, n=15):
+def weight_ma_linear_decay(series, n=15):
     '''加权MA，权重呈线性递减'''
     return series.rolling(n).apply(
            lambda x: np.average(x, weights=list(range(1, len(x)+1))))
 
 
-def KAMA(series, lag=9, fast=2, slow=30):
+def kama(series, lag=9, fast=2, slow=30):
     '''
     Kaufman's Adaptive Moving Average (KAMA)
     
@@ -436,7 +436,7 @@ def KAMA(series, lag=9, fast=2, slow=30):
     return df['kama']
 
 
-def ER(series, lag=10, sign=False):
+def er(series, lag=10, sign=False):
     '''
     价格效率
     
@@ -474,7 +474,7 @@ def ma_trend_strength(series, lag_fast=5, lag_slow=20):
     return df['strength']
 
 
-def KDJ(data, n_his=9, n_k=3, n_d=3, n_k_=1, n_d_=1):
+def kdj(data, n_his=9, n_k=3, n_d=3, n_k_=1, n_d_=1):
     '''
     | KDJ计算，data(pd.DataFrame)中必须包含['close', 'high', 'low']三列
     | 返回结果中包含=['K', 'D', 'J', 'RSV']四列
@@ -500,14 +500,14 @@ def KDJ(data, n_his=9, n_k=3, n_d=3, n_k_=1, n_d_=1):
     return df.reindex(columns=['K', 'D', 'J', 'RSV'])
 
 
-def talib_RSI(series, n=20):
+def talib_rsi(series, n=20):
     '''
     talib计算RSI
     '''
     return talib.RSI(series, n)
 
 
-def ATR(df, lag=14):
+def atr(df, lag=14):
     '''
     | 平均真实波幅ATR计算，df中必须包含['high', 'low', 'close']三列
     | 返回ATR, TR
@@ -521,7 +521,7 @@ def ATR(df, lag=14):
     return df['ATR'], df['TR']
 
 
-def talib_ATR(df, lag=14):
+def talib_atr(df, lag=14):
     '''
     | talib计算平均真实波幅ATR
     | df中必须包含['high', 'low', 'close']三列
@@ -532,7 +532,7 @@ def talib_ATR(df, lag=14):
     return talib.ATR(df['high'], df['low'], df['close'], lag)
 
 
-def ADX(df, lag=14):
+def adx(df, lag=14):
     '''
     | 平均趋向指标ADX计算
     | df中必须包含['high', 'low', 'close']三列
@@ -542,7 +542,7 @@ def ADX(df, lag=14):
     raise NotImplementedError
 
 
-def talib_ADX(df, lag=14):
+def talib_adx(df, lag=14):
     '''
     | talib计算平均趋向指标ADX
     | df中必须包含['high', 'low', 'close']三列
@@ -550,19 +550,19 @@ def talib_ADX(df, lag=14):
     return talib.ADX(df['high'], df['low'], df['close'], lag)
 
 
-def talib_ROC(series, lag=12):
+def talib_roc(series, lag=12):
     '''talib计算ROC'''
     return talib.ROC(series, timeperiod=lag)
 
 
-def ROC(series, lag=12):
+def roc(series, lag=12):
     '''ROC计算'''
     df = pd.DataFrame({'p': series})
     df['roc'] = 100 * df['p'].pct_change(lag)
     return df['roc']
 
 
-def VRI(data, n=3):
+def vri(data, n=3):
     '''
     | VRI计算
     | 参考：
@@ -577,7 +577,7 @@ def VRI(data, n=3):
     return df['vri']
 
 
-def BBW(series, lag=20, width=2, sign=False):
+def bbw(series, lag=20, width=2, sign=False):
     '''BBW计算'''
     df = pd.DataFrame(series)
     col = df.columns[0]
@@ -617,7 +617,7 @@ def mean_candle(data):
     return df
 
 
-def DeMark_TD(series, n=9, lag=4):
+def demark_td(series, n=9, lag=4):
     '''
     | 迪马克TD序列：连续n次出现收盘价高/低于前面第lag个收盘价就发信号
     | 默认九转序列
@@ -675,7 +675,7 @@ def DeMark_TD(series, n=9, lag=4):
     return df['label']
 
 
-def ACPMP(values, periods=range(2, 60), mode='sum', std_type='pct',
+def acpmp(values, periods=range(2, 60), mode='sum', std_type='pct',
           lag_roll=None, std_order=False):
     '''
     多周期平均累计百分比(Average Cumulative Percentage of Multi-Period)
@@ -951,7 +951,7 @@ if __name__ == '__main__':
     # df = df.reindex(columns=['high', 'low', 'close'])
 
     #%%
-    df['acpmp'] = ACPMP(df['close'], periods=range(2, 60),
+    df['acpmp'] = acpmp(df['close'], periods=range(2, 60),
                         mode='sum', std_type='pct', lag_roll=200,
                         std_order='last')
     plot_series(df, {'close': '.-k'},
@@ -963,7 +963,7 @@ if __name__ == '__main__':
     # CCI
     n = 14
     r = 0.015
-    df['cci'] = CCI(df, n=n, r=r)
+    df['cci'] = cci(df, n=n, r=r)
 
     df['cci_up_crs'] = cross(df['cci'], 100)
     df['cci_low_crs'] = cross(df['cci'], -100)
@@ -1002,7 +1002,7 @@ if __name__ == '__main__':
 
     #%%
     # KDJ
-    df_kdj = KDJ(df, 9, 9, 3)
+    df_kdj = kdj(df, 9, 9, 3)
     df_ = pd.merge(df, df_kdj, how='left', left_index=True, right_index=True)
     plot_series(df_, {'close': '.-k'},
                 cols_styl_up_right={'J': '-b'})
@@ -1010,18 +1010,18 @@ if __name__ == '__main__':
     #%%
     # EXPMA
     n = 5
-    df['expma'+str(n)] = EXPMA(df['close'], n)
+    df['expma'+str(n)] = expma(df['close'], n)
 
     #%%
     # MACD
-    macds = MACD(df['close'])
+    macds = macd(df['close'])
     df = df.merge(macds, how='left', left_index=True, right_index=True)
 
     #%%
     # 九转序列
     df_ = df.iloc[:, :].copy()
     n, lag = 9, 4
-    df_['dmktd'] = DeMark_TD(df_['close'], n, lag)
+    df_['dmktd'] = demark_td(df_['close'], n, lag)
     # df_['dmktd'] = replace_repeat_pd(df_['dmktd'], 1, 0)
     # df_['dmktd'] = replace_repeat_pd(df_['dmktd'], -1, 0)
     plot_series(df_, {'close': ('.-k', False)},
@@ -1046,14 +1046,14 @@ if __name__ == '__main__':
 
     #%%
     # RSI
-    df['rsi'] = talib_RSI(df['close'], n=24)
+    df['rsi'] = talib_rsi(df['close'], n=24)
     plot_series(df.iloc[-1000:, :], {'close': '.-k'},
                 cols_styl_up_right={'rsi': '.-b'})
 
     #%%
     # BBW
     n = 1500
-    df['bbw'] = BBW(df['close'], sign=True)
+    df['bbw'] = bbw(df['close'], sign=True)
     # df['bbw'] = df['bbw'].rolling(5).mean()
     df['bbw_dif'] = df['bbw'].diff(1)
     plot_series(df.iloc[-n:, :], {'close': '.-k'},
@@ -1082,7 +1082,7 @@ if __name__ == '__main__':
 
     #%%
     # VRI
-    df['vri'] = VRI(df, n=5)
+    df['vri'] = vri(df, n=5)
     plot_series(df.iloc[-1000:, :], {'close': '.-k'},
                 cols_styl_up_right={'vri': '.-b'},
                 xparls_info={'vri': [(0, 'b', '-', 1.0)]})

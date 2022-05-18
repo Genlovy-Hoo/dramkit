@@ -184,7 +184,7 @@ def load_index_minute(code, freq_minute=1):
 
 #%%
 def load_btc_daily():
-    data_dir = find_target_dir('btc_daily/')
+    data_dir = find_target_dir('btc/btc126/')
     fpaths = [data_dir+x for x in os.listdir(data_dir)]
     data = []
     for fpath in fpaths:
@@ -209,7 +209,7 @@ def load_btc_daily():
 
 
 def load_eth_daily():
-    data_dir = find_target_dir('eth_daily/')
+    data_dir = find_target_dir('eth/btc126/')
     fpaths = [data_dir+x for x in os.listdir(data_dir)]
     data = []
     for fpath in fpaths:

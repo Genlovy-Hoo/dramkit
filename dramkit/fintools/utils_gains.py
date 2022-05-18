@@ -869,21 +869,55 @@ def get_netval_sum(pct_series):
     return (pct_series / 100).cumsum() + 1
 
 
-def get_gains_act(df_settle):
+def cal_pct_by_cost_gain(cost, gain, vcost0=1):
     '''
-    | 根据资金转入转出和资产总值记录计算实际总盈亏%（累计收益/累计投入）
+    计算在成本为cost，盈利为gain时的盈亏百分比
+
+    - vcost0为当成本cost为0且盈利gain为正时的返回值，gain为负时取负号
+    '''
+    if isnull(cost) or isnull(gain):
+        return np.nan
+    if cost == 0:
+        if gain == 0:
+            return 0
+        elif gain > 0:
+            return vcost0
+        elif gain < 0:
+            return -vcost0
+    elif cost > 0:
+        return gain / cost
+    elif cost < 0:
+        return -gain / cost
+
+
+def get_gains_act(df_settle, act_gain_pct_method=2):
+    '''
+    | 根据资金转入转出和资产总值记录计算实际总盈亏%
     | df_settle须包含列['转入', '转出', '资产总值']
-    | 返回df中包含['累计净流入', '累计投入', '累计盈亏', '实际总盈亏%']这几列
+    | 返回df中包含['累计转入', '累计转出', '累计净流入', '累计总值',
+      '累计盈亏', '实际总盈亏%']这几列
     '''
+    assert act_gain_pct_method in [1, 2, 3]
     df = df_settle.reindex(columns=['转入', '转出', '资产总值'])
-    df['净流入'] = df['转入'] - df['转出']
-    df['累计净流入'] = df['净流入'].cumsum()
+    df['累计转入'] = df['转入'].cumsum()
+    df['累计转出'] = df['转出'].cumsum()
+    df['累计净流入'] = df['累计转入'] - df['累计转出']
+    df['累计总值'] = df['资产总值'] + df['累计转出']
     df['累计盈亏'] = df['资产总值'] - df['累计净流入']
-    df['累计净流入_pre'] = df['累计净流入'].shift(1, fill_value=0)
-    df['累计投入'] = df['转入'] + df['累计净流入_pre']
-    df['实际总盈亏%'] = 100 * df[['累计投入', '累计盈亏']].apply(lambda x:
-              x_div_y(x['累计盈亏'], x['累计投入'], v_xy0=0.0, v_y0=1.0), axis=1)
-    return df.reindex(columns=['累计净流入', '累计投入', '累计盈亏', '实际总盈亏%'])
+    if act_gain_pct_method == 1:
+        df['实际总盈亏%'] = 100* df[['累计转入', '累计总值']].apply(lambda x:
+                                cal_pct(x['累计转入'], x['累计总值']), axis=1)
+    elif act_gain_pct_method == 3:
+        df['实际总盈亏%'] = 100 * df[['累计净流入', '累计盈亏']].apply(lambda x:
+                                 cal_pct_by_cost_gain(x['累计净流入'], x['累计盈亏']), axis=1)
+    elif act_gain_pct_method == 2:
+        df['累计净流入_pre'] = df['累计净流入'].shift(1, fill_value=0)
+        df['累计投入'] = df['转入'] + df['累计净流入_pre']
+        df['实际总盈亏%'] = 100 * df[['累计投入', '累计盈亏']].apply(lambda x:
+                                 cal_pct_by_cost_gain(x['累计投入'], x['累计盈亏']), axis=1)
+    df = df.reindex(columns=['累计转入', '累计转出', '累计净流入',
+                             '累计总值', '累计盈亏', '实际总盈亏%'])
+    return df
 
 
 def get_fundnet(df_settle, when='before'):
@@ -947,7 +981,8 @@ def get_fundnet(df_settle, when='before'):
     return df.reindex(columns=['新增份额', '份额', '净值'])
 
 
-def get_gains(df_settle, gain_types=['act', 'fundnet'], when=None):
+def get_gains(df_settle, gain_types=['act', 'fundnet'], when=None,
+              act_gain_pct_method=2):
     '''
     | 不同类型的盈亏情况统计
     | gain_types为累计收益计算方法，可选：
@@ -965,7 +1000,7 @@ def get_gains(df_settle, gain_types=['act', 'fundnet'], when=None):
         cols = ['转入', '转出', '资产总值']
         if any([x not in df_settle.columns for x in cols]):
             raise ValueError('计算实际盈亏要求包含[`转入`, `转出`, `资产总值`]列！')
-        df_act = get_gains_act(df_gain)
+        df_act = get_gains_act(df_gain, act_gain_pct_method=act_gain_pct_method)
         df_gain = pd.merge(df_gain, df_act, how='left', left_index=True,
                            right_index=True)
 

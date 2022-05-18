@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 
+import re
 import os
 import json
 import uuid
 import pickle
 import shutil
 import zipfile
+import socket
+import requests
 import subprocess
 import py_compile
 import pandas as pd
@@ -472,6 +475,40 @@ def get_mac_address():
     # 转大写
     mac = '-'.join([mac[e: e+2] for e in range(0, 11, 2)]).upper()
     return mac
+
+
+def get_ip1():
+    '''
+    | 获取ip地址
+    | 参考：https://blog.csdn.net/hemadaili/article/details/89555681
+    '''
+    return socket.gethostbyname(socket.gethostname())
+
+ 
+def get_ip2():
+    '''
+    | 查询ip地址
+    | 参考：https://blog.csdn.net/qq_36530891/article/details/102725580
+    '''
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(('8.8.8.8', 80))
+        ip = s.getsockname()[0]
+    finally:
+        s.close() 
+    return ip
+
+
+def get_ip_public():
+    '''
+    | 获取公网ip
+    | 参考：https://zhuanlan.zhihu.com/p/262185582
+    '''
+    # 可以获取公网ip的网站
+    ip_html = requests.get('http://txt.go.sohu.com/ip/soip')
+    # 从响应中提取公网ip
+    cur_public_ip = re.findall(r'\d+.\d+.\d+.\d+', ip_html.text)
+    return cur_public_ip[0]
 
 
 def zip_files(zip_path, fpaths, keep_ori_path=True, keep_zip_new=True):

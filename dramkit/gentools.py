@@ -2179,14 +2179,14 @@ def sort_dict(d, by='key', reverse=False):
 
 if __name__ == '__main__':
     from dramkit import load_csv, plot_series
-    from dramkit.fintools.fintools import CCI
+    from dramkit.fintools.fintools import cci
 
     # 50ETF日线行情------------------------------------------------------------
     fpath = './test/510050_daily_pre_fq.csv'
     data = load_csv(fpath)
     data.set_index('date', drop=False, inplace=True)
 
-    data['cci'] = CCI(data)
+    data['cci'] = cci(data)
     data['cci_100'] = data['cci'].apply(lambda x: 1 if x > 100 else \
                                                     (-1 if x < -100 else 0))
 

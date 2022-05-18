@@ -98,6 +98,8 @@ def df_to_sql_pymysql(df, conn, db_name, tb_name, loc='new',
         cur.execute('CREATE TABLE {a}({b});'.format(a=tb_name, b=cols_info))
     cur.execute('CREATE TABLE IF NOT EXISTS {a}({b});'.format(
                                                     a=tb_name, b=cols_info))
+    # TODO
+    # 检查字段是否已经存在，不存在新建
 
     # 数据更新
     if loc in ['new', 'tail']:
