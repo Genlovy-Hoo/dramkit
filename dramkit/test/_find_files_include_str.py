@@ -16,10 +16,6 @@ if __name__ == '__main__':
 
     # logger = None
     logger = simple_logger()
-    # target_str = 'get_next_nth_trade_date'
-    # root_dir = '../../../HooFin/'
-    # target_str = 'utils_hoo'
-    # root_dir = '../../../HooFin/RealTrading/'
     target_str = 'utils_hoo'#'simple_logger'#'get_logger'
     root_dir = '../../../dramkit/'
     file_types = ['.py']

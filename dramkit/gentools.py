@@ -11,8 +11,8 @@ import numpy as np
 import pandas as pd
 from functools import reduce, wraps
 from random import randint, random, uniform
-
 from dramkit.logtools.utils_logger import logger_show
+from dramkit.speedup.multi_thread import SingleThread
 
 
 PYTHON_VERSION = float(sys.version[:3])
@@ -40,6 +40,22 @@ class StructureObject(object):
     def clear(self):
         '''清空所有属性变量'''
         self.__dict__.clear()
+        
+        
+def run_func_with_timeout(func, args, timeout=10):
+    '''
+    | 限定时间(timeout秒)执行函数func，若限定时间内未执行完毕，返回None
+    | args为tuple或list，为func函数接受的参数列表
+    '''
+    task = SingleThread(func, args, False) # 创建线程
+    task.start() # 启动线程
+    task.join(timeout=timeout) # 最大执行时间
+
+    # 若超时后，线程依旧运行，则强制结束
+    if task.is_alive():
+        task.stop_thread()
+
+    return task.get_result()
         
         
 def get_func_arg_names(func):

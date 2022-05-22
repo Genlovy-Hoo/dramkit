@@ -1,14 +1,20 @@
 # -*- coding: utf-8 -*-
 
+import inspect, ctypes
 from threading import Thread
 from concurrent.futures import ThreadPoolExecutor
 from concurrent.futures import as_completed
 from dramkit.logtools.utils_logger import logger_show
 
 #%%
-class MultiThread(Thread):
+class SingleThread(Thread):
     '''
-    多线程子任务类
+    | 单个线程任务
+    | 参考：
+    | https://www.csdn.net/tags/MtTaQg3sMDE1MzYtYmxvZwO0O0OO0O0O.html
+    | https://www.cnblogs.com/ojbk6943/p/14047952.html
+    | https://blog.csdn.net/weixin_43285186/article/details/124338274
+    | https://m.php.cn/article/471342.html
     '''
 
     def __init__(self, func, args, logger=None):
@@ -22,7 +28,7 @@ class MultiThread(Thread):
         logger : Logger, None
             日志记录器
         '''
-        super(MultiThread, self).__init__()
+        super(SingleThread, self).__init__()
         self.func = func
         self.args = args
         self.logger = logger
@@ -39,6 +45,25 @@ class MultiThread(Thread):
             logger_show('error occurred, return None.',
                         self.logger, 'error')
             return None
+ 
+    def stop_thread(self):
+        '''结束线程'''
+        def _async_raise(tid, exctype):
+            '''raises the exception, performs cleanup if needed'''
+            if not inspect.isclass(exctype):
+                exctype = type(exctype)
+            res = ctypes.pythonapi.PyThreadState_SetAsyncExc(
+                                   tid, ctypes.py_object(exctype))
+            if res == 0:
+                raise ValueError('invalid thread id')
+            elif res != 1:
+                '''
+                if it returns a number greater than one, you're in trouble,
+                and you should call it again with exc=NULL to revert the effect
+                '''
+                ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, None)
+                raise SystemError('PyThreadState_SetAsyncExc failed')
+        _async_raise(self.ident, SystemExit)
 
 
 def multi_thread_threading(func, args_list, logger=None):
@@ -62,7 +87,7 @@ def multi_thread_threading(func, args_list, logger=None):
 
     tasks = []
     for args in args_list:
-        task = MultiThread(func, args, logger=logger)
+        task = SingleThread(func, args, logger=logger)
         tasks.append(task)
         task.start()
 

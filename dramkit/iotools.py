@@ -4,6 +4,7 @@ import re
 import os
 import json
 import uuid
+import wmi
 import pickle
 import shutil
 import zipfile
@@ -15,7 +16,72 @@ import pandas as pd
 # from .gentools import isnull
 # from .logtools.utils_logger import logger_show
 from dramkit.gentools import isnull
+from dramkit.gentools import get_update_kwargs
 from dramkit.logtools.utils_logger import logger_show
+from dramkit.speedup.multi_thread import SingleThread
+
+
+def get_input_with_timeout(timeout=10, hint_str=None):
+    '''
+    | 通过input函数获取输入
+    | 若等待时间超过timeout秒没接收到输入，则返回None
+    | hint_str为input函数提示信息
+    | 参考：https://zhuanlan.zhihu.com/p/367634630
+    '''
+    def _get_input(hint_str):
+        str_input = input(hint_str)
+        return str_input
+    
+    if hint_str is None:
+        hint_str = 'Please input:\n'
+
+    task = SingleThread(_get_input, (hint_str,), False) # 创建线程
+    task.start() # 启动线程
+    task.join(timeout=timeout) # 最大执行时间
+
+    # 若超时后，线程依旧运行，则强制结束
+    if task.is_alive():
+        task.stop_thread()
+
+    return task.get_result()
+
+
+def get_input_multi_line(end_word='end', end_char='',
+                         hint_str=None, hint_lineno=True):
+    '''
+    | input读取多行输入（包括回车换行符也会被保留）
+    | end_word设置结束词，当在一行里面输入完整结束词，则表示输入完毕
+    | 注：若end_word设置为''，则空行输入回车时会结束输入，
+      此时返回结果中上下行之间回车换行符不会被保留
+    | end_char设置结束字符串，当在一行里面任意位置输入end_char，则表示输入完毕，
+      此时返回在end_char之前输入的内容(不包括end_char和end_char之后的内容)
+    | hint_str设置input函数中的输入提示
+    | 若hint_lineno为True，则input函数输入时提示当前是第几行
+    | 参考：https://blog.csdn.net/weixin_45642669/article/details/114199303
+    '''
+    if end_word == '\n':
+        if end_char == '\n' or end_char == '':
+            raise ValueError("`end_word`为`\\n`时`end_char`不能为`\\n`和`''`")
+    if hint_str is None:
+        hint_str = 'Please input:\n'
+    data = end_word
+    if hint_lineno:
+        lineno = 0
+        hint_str_ = str(hint_str)
+    while True:
+        if hint_lineno:
+            lineno += 1
+            hint_str = '(第{}行)'.format(lineno)+hint_str_
+        var = input(hint_str)
+        if var == str(end_word):
+            break
+        elif end_char != '' and var.find(end_char) != -1:
+            var = var[0:var.find(end_char)]
+            data = '{}\n{}'.format(data, var)
+            break
+        else:
+            data = '{}\n{}'.format(data, var)
+    return data.replace('{}\n'.format(end_word), '')
 
 
 def pickle_file(data, file):
@@ -289,7 +355,7 @@ def load_csv(fpath, del_unname_cols=True, encoding=None,
     return data
 
 
-def load_csvs(fdir, sort_cols=None, drop_duplicates=True,
+def load_csvs(fdir, kwargs_sort={}, kwargs_drop_dup={},
               **kwargs_loadcsv):
     '''
     读取指定文件夹中所有的csv文件，整合到一个df里面
@@ -298,10 +364,10 @@ def load_csvs(fdir, sort_cols=None, drop_duplicates=True,
     ----------
     fdir : str
         文件夹路径
-    sort_cols : None, str, list
-        根据sort_cols指定列排序(升序)和去重
-    drop_duplicates : bool
-        是否删除重复值(重复值保留第一条)
+    kwargs_sort : dict
+        设置sort_values接受的排序参数
+    kwargs_drop_dup : dict
+        设置drop_duplicates接受的去重参数
     **kwargs_loadcsv :
         :func:`dramkit.iotools.load_csv` 接受的其它参数
 
@@ -315,15 +381,16 @@ def load_csvs(fdir, sort_cols=None, drop_duplicates=True,
         df = load_csv(file, **kwargs_loadcsv)
         data.append(df)
     data = pd.concat(data, axis=0)
-    if not isnull(sort_cols):
-        data.sort_values(sort_cols, inplace=True)
-        if drop_duplicates:
-            dupcols = [sort_cols] if isinstance(sort_cols, str) else sort_cols
-            data.drop_duplicates(subset=dupcols, inplace=True)
+    if len(kwargs_sort) > 0:
+        _, kwargs_sort = get_update_kwargs('inplace', True, kwargs_sort)
+        data.sort_values(**kwargs_sort, inplace=True)
+    if len(kwargs_drop_dup) > 0:
+        _, kwargs_drop_dup = get_update_kwargs('inplace', True, kwargs_drop_dup)
+        data.drop_duplicates(**kwargs_drop_dup, inplace=True)
     return data
 
 
-def load_excels(fdir, sort_cols=None, drop_duplicates=True,
+def load_excels(fdir, kwargs_sort={}, kwargs_drop_dup={},
                 **kwargs_readexcel):
     '''
     读取指定文件夹中所有的excel文件，整合到一个df里面
@@ -332,10 +399,10 @@ def load_excels(fdir, sort_cols=None, drop_duplicates=True,
     ----------
     fdir : str
         文件夹路径
-    sort_cols : None, str, list
-        根据sort_cols指定列排序(升序)和去重
-    drop_duplicates : bool
-        是否删除重复值(重复值保留第一条)
+    kwargs_sort : dict
+        设置sort_values接受的排序参数
+    kwargs_drop_dup : dict
+        设置drop_duplicates接受的去重参数
     **kwargs_readexcel :
         ``pd.read_excel`` 接受的其它参数
 
@@ -349,11 +416,12 @@ def load_excels(fdir, sort_cols=None, drop_duplicates=True,
         df = pd.read_excel(file, **kwargs_readexcel)
         data.append(df)
     data = pd.concat(data, axis=0)
-    if not isnull(sort_cols):
-        data.sort_values(sort_cols, inplace=True)
-        if drop_duplicates:
-            dupcols = [sort_cols] if isinstance(sort_cols, str) else sort_cols
-            data.drop_duplicates(subset=dupcols, inplace=True)
+    if len(kwargs_sort) > 0:
+        _, kwargs_sort = get_update_kwargs('inplace', True, kwargs_sort)
+        data.sort_values(**kwargs_sort, inplace=True)
+    if len(kwargs_drop_dup) > 0:
+        _, kwargs_drop_dup = get_update_kwargs('inplace', True, kwargs_drop_dup)
+        data.drop_duplicates(**kwargs_drop_dup, inplace=True)
     return data
 
 
@@ -475,6 +543,45 @@ def get_mac_address():
     # 转大写
     mac = '-'.join([mac[e: e+2] for e in range(0, 11, 2)]).upper()
     return mac
+
+
+def get_hardware_ids():
+    '''
+    | 获取电脑硬件序列号信息，包括主板和硬盘序列号、MAC地址、BIOS序列号等
+    | 参考：https://blog.csdn.net/lekmoon/article/details/111478394
+    '''
+    results = {'cpu': [],
+               'base_board': [],
+               'disk': [],
+               'network_mac': [],
+               'bios': []}
+    infos = wmi.WMI()
+    # CPU序列号
+    for cpu in infos.Win32_Processor():
+        id_ = cpu.ProcessorId
+        if id_ is not None:
+            results['cpu'].append(id_.strip())
+    # 主板序列号
+    for board in infos.Win32_BaseBoard():
+        id_ = board.SerialNumber
+        if id_ is not None:
+            results['base_board'].append(id_.strip())
+    # 硬盘序列号
+    for disk in infos.Win32_DiskDrive():
+        id_ = disk.SerialNumber
+        if id_ is not None:
+            results['disk'].append(id_.strip())
+    # mac地址
+    for mac in infos.Win32_NetworkAdapter():
+        id_ = mac.MACAddress
+        if id_ is not None:
+            results['network_mac'].append(id_.strip().replace(':', '-'))
+    # bios序列号    
+    for bios in infos.Win32_BIOS():
+        id_ = bios.SerialNumber
+        if id_ is not None:
+            results['bios'].append(id_.strip())
+    return results
 
 
 def get_ip1():
