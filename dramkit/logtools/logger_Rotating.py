@@ -7,7 +7,7 @@ from .utils_logger import remove_handlers
 # from dramkit.logtools.utils_logger import remove_handlers
 
 
-def get_logger(fpath=None, fmode='w', max_kb=1, nfile=3, screen_show=True):
+def get_logger(fpath=None, fmode='w', max_kb=128, nfile=3, screen_show=True):
     '''
     滚动日志记录(按文件大小)，将日志信息滚动保存在文件或在屏幕中打印
 

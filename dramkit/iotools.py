@@ -441,7 +441,7 @@ def get_all_paths(dir_path, ext=None, include_dir=False, abspath=False,
     abspath : bool
         是否返回绝对路径，默认返回相对路径
     rec_sub_dir : bool
-        若为False，则不对子文件中的文件进行变量，即只返回dir_path下的文件（夹）路径
+        若为False，则不对子文件中的文件进行遍历，即只返回dir_path下的文件（夹）路径
     only_dir : bool
         若为True，则只返回子文件夹路径(文件夹名称尾部与ext指定尾部相同的文件夹)，
         不返回文件路径，此时include_dir不起作用
@@ -518,21 +518,68 @@ def copy_dir():
     raise NotImplementedError
     
     
-def py2pyc_dir(dir_path, force=True, del_py=False, recu_sub_dir=True):
+def py2pyc(py_path, pyc_path=None, force=True, del_py=False,
+           **kwargs_compile):
+    '''py文件编译为pyc文件'''
+    if pyc_path is None:
+        pyc_path = py_path + 'c'
+    if not force:
+        if not os.path.exists(pyc_path):
+            py_compile.compile(py_path, pyc_path)
+    else:
+        if os.path.exists(pyc_path):
+            os.remove(pyc_path)
+        py_compile.compile(py_path, pyc_path, **kwargs_compile)
+    if del_py:
+        os.remove(py_path)
+    
+    
+def py2pyc_dir(dir_path, force=True, del_py=False,
+               recu_sub_dir=True, **kwargs_compile):
     '''将一个文件夹下的所有.py文件编译为.pyc文件'''
     all_pys = get_all_paths(dir_path, ext='.py', recu_sub_dir=recu_sub_dir,
                             abspath=True)
     for fpy in all_pys:
         fpyc = fpy+'c'
-        if not force:
-            if not os.path.exists(fpyc):
-                py_compile.compile(fpy, fpyc)
-        else:
-            if os.path.exists(fpyc):
-                os.remove(fpyc)
-            py_compile.compile(fpy, fpyc)
-        if del_py:
-            os.remove(fpy)
+        py2pyc(fpy, pyc_path=fpyc, force=force,
+               del_py=del_py, **kwargs_compile)
+        
+        
+def pyc2py(pyc_path, py_path=None, force=True,
+           del_pyc=False, logger=None):
+    '''pyc文件反编译为py'''
+    def _pyc2py(pyc_path, py_path, logger):
+        cmdstr = 'uncompyle6 -o {} {}'.format(py_path, pyc_path)
+        cmdinfo = subprocess.check_output(cmdstr, shell=True,
+                                          stderr=subprocess.STDOUT)
+        cmdinfo = cmdinfo.decode('gbk')
+        cmdinfo = cmdinfo.replace('\r\n', '\n')
+        logger_show(cmdinfo, logger, 'info')
+    if py_path is None:
+        py_path = pyc_path.replace('.pyc', '.py')
+        if 'cpython' in pyc_path:
+            tmp = pyc_path.split('.')
+            tmp = [x for x in tmp if 'cpython'  in x][0]
+            py_path = py_path.replace('.'+tmp, '')
+    if not force:
+        if not os.path.exists(py_path):
+            _pyc2py(pyc_path, py_path, logger)
+    else:
+        if os.path.exists(py_path):
+            os.remove(py_path)
+        _pyc2py(pyc_path, py_path, logger)    
+    if del_pyc:
+        logger_show('remove %s'%pyc_path, logger, 'warn')
+        os.remove(pyc_path)
+        
+        
+def pyc2py_dir(dir_path, force=True, del_pyc=False,
+               recu_sub_dir=True, logger=None):
+    '''将一个文件夹下的所有.pyc文件反编译为.py文件'''
+    all_pycs = get_all_paths(dir_path, ext='.pyc', recu_sub_dir=recu_sub_dir,
+                             abspath=True)
+    for fpyc in all_pycs:
+        pyc2py(fpyc, force=force, del_pyc=del_pyc, logger=logger)
             
             
 def get_mac_address():

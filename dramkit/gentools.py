@@ -29,6 +29,11 @@ class StructureObject(object):
         '''查看时以key: value格式打印'''
         return ''.join('{}: {}\n'.format(k, v) for k, v in self.__dict__.items())
     
+    def add_from_dict(self, d):
+        '''通过dict批量增加属性变量'''
+        assert isinstance(d, dict), '必须为dict格式'
+        self.__dict__.update(d)
+    
     def pop(self, key):
         '''删除属性变量key，有返回'''
         return self.__dict__.pop(key)
@@ -63,7 +68,8 @@ def get_func_arg_names(func):
     return inspect.getfullargspec(func).args
         
         
-def try_repeat_run(n_max_run=3, logger=None, sleep_seconds=0, force_rep=False):
+def try_repeat_run(n_max_run=3, logger=None, sleep_seconds=0,
+                   force_rep=False):
     '''
     | 作为装饰器尝试多次运行指定函数
     | 使用场景：第一次运行可能出错，需要再次运行(比如取数据时第一次可能连接超时，需要再取一次)
@@ -182,6 +188,8 @@ def log_used_time(logger=None):
     - https://www.cnblogs.com/xiuyou/p/11283512.html
     - https://www.cnblogs.com/slysky/p/9777424.html
     - https://www.cnblogs.com/zhzhang/p/11375574.html
+    - https://www.cnblogs.com/zhzhang/p/11375774.html
+    - https://blog.csdn.net/weixin_33711647/article/details/92549215
     '''
     def transfunc(func):
         @wraps(func)
@@ -2057,6 +2065,29 @@ def label_rep_index_str(df):
 def drop_index_duplicates(df, keep='first'):
     '''删除 ``df (pandas.DataFrame)`` 中index重复的记录'''
     return df[~df.index.duplicated(keep=keep)]
+
+
+def count_values(df, cols=None):
+    '''计算df列中cols指定列的值出现次数'''
+    if cols is None:
+        cols = list(df.columns)
+    elif isinstance(cols, str):
+        cols = [cols]
+    assert isinstance(cols, (list, tuple))
+    tmp = df.reindex(columns=cols)
+    tmp['count'] = 1
+    tmp = tmp.groupby(cols, as_index=False)['count'].count()
+    df_ = pd.merge(df, tmp, how='left', on=cols)
+    df_.index = df.index
+    return df_['count']
+
+
+def count_index(df):
+    '''计算df的每个index出现的次数'''
+    df_index = pd.DataFrame({'index_': df.index})
+    df_index['count'] = count_values(df_index, 'index_')
+    df_index.index = df_index['index_']
+    return df_index['count']
 
 
 def group_shift():
