@@ -21,7 +21,7 @@ PYTHON_VERSION = float(sys.version[:3])
 class StructureObject(object):
     '''类似于MATLAB结构数组，存放变量，便于直接赋值和查看'''
 
-    def __init__(self, dirt_modify=True, logger=None, **kwargs):
+    def __init__(self, dirt_modify=True, **kwargs):
         '''初始化'''
         self.set_dirt_modify(dirt_modify)
         self.set_from_dict(kwargs)
@@ -75,7 +75,7 @@ class StructureObject(object):
         
         
 class DirtModifyError(Exception):
-        pass
+    pass
         
         
 def run_func_with_timeout(func, args, timeout=10):
