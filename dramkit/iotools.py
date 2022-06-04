@@ -501,7 +501,7 @@ def del_dir(dir_path):
     
     
 def del_specified_subdir(dir_path, del_names, recu_sub_dir=True):
-    '''删除dir_path文件夹下所有文件夹名在del_names中的子文件夹'''
+    '''删除dir_path文件夹下所有文件夹名尾缀在del_names中的子文件夹'''
     subdirs = get_all_paths(dir_path, ext=del_names, only_dir=True,
                             abspath=True, recu_sub_dir=recu_sub_dir)
     for subdir in subdirs:

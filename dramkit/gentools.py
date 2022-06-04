@@ -21,15 +21,42 @@ PYTHON_VERSION = float(sys.version[:3])
 class StructureObject(object):
     '''类似于MATLAB结构数组，存放变量，便于直接赋值和查看'''
 
-    def __init__(self, **kwargs):
+    def __init__(self, dirt_modify=True, logger=None, **kwargs):
         '''初始化'''
-        self.__dict__ = kwargs
+        self.set_dirt_modify(dirt_modify)
+        self.set_from_dict(kwargs)
+        
+    @property
+    def dirt_modify(self):
+        return self.__dirt_modify
+        
+    def set_dirt_modify(self, dirt_modify):
+        assert isinstance(dirt_modify, bool)
+        self.__dirt_modify = dirt_modify
+        
+    def __setattr__(self, key, value):
+        _defaults = ['__dirt_modify', '__logger']
+        _defaults = ['_StructureObject' + x for x in _defaults]
+        if key in _defaults:
+            self.__dict__[key] = value
+            return
+        if self.dirt_modify:
+            self.__dict__[key] = value
+        else:
+            raise DirtModifyError(
+                '不允许直接赋值，请调用`set_key_value`或`set_from_dict`方法！')
 
     def __repr__(self):
         '''查看时以key: value格式打印'''
-        return ''.join('{}: {}\n'.format(k, v) for k, v in self.__dict__.items())
+        _defaults = ['__dirt_modify', '__logger']
+        _defaults = ['_StructureObject' + x for x in _defaults]
+        return ''.join('{}: {}\n'.format(k, v) for k, v in self.__dict__.items() \
+                       if k not in _defaults)
     
-    def add_from_dict(self, d):
+    def set_key_value(self, key, value):
+        self.__dict__[key] = value
+    
+    def set_from_dict(self, d):
         '''通过dict批量增加属性变量'''
         assert isinstance(d, dict), '必须为dict格式'
         self.__dict__.update(d)
@@ -45,6 +72,10 @@ class StructureObject(object):
     def clear(self):
         '''清空所有属性变量'''
         self.__dict__.clear()
+        
+        
+class DirtModifyError(Exception):
+        pass
         
         
 def run_func_with_timeout(func, args, timeout=10):
@@ -125,7 +156,7 @@ def try_repeat_run(n_max_run=3, logger=None, sleep_seconds=0,
                         return result
                     except:
                         if n_run == n_max_run:
-                            logger_show('函数`%s`运行失败，共运行了%s次。'%(func.__name__, n_run),
+                            logger_show('`%s`运行失败，共运行了%s次。'%(func.__name__, n_run),
                                         logger, 'error')
                             return
                         else:
@@ -139,11 +170,11 @@ def try_repeat_run(n_max_run=3, logger=None, sleep_seconds=0,
                     n_run += 1
                     try:
                         result = func(*args, **kwargs)
-                        logger_show('函数`%s`第%s运行：成功。'%(func.__name__, n_run),
+                        logger_show('`%s`第%s运行：成功。'%(func.__name__, n_run),
                                     logger, 'info')
                     except:
                         result = None
-                        logger_show('函数`%s`第%s运行：失败。'%(func.__name__, n_run),
+                        logger_show('`%s`第%s运行：失败。'%(func.__name__, n_run),
                                     logger, 'error')
                     if sleep_seconds > 0:
                         time.sleep(sleep_seconds)

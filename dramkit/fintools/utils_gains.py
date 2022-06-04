@@ -2105,6 +2105,7 @@ def cal_sig_gains(data, sig_col, sig_type=1, shift_lag=0,
     df['AccountValue_maxUsed'] = df['gain_cum'] + cashUsedMax
     df['AccountValue_maxUsed_net'] = df['AccountValue_maxUsed'] / cashUsedMax
 
+    df['pct_mkt'] = df[col_price].pct_change()
     # 持有仓位当期收益率（可用于累加和累乘收益计算）
     df['holdGainPct_cur'] = df['holdVal'].rolling(2).apply(lambda x:
                                     cal_gain_pct(x.iloc[0], x.iloc[1], pct_cost0=0))
