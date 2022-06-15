@@ -3,8 +3,7 @@
 import re
 import os
 import json
-import uuid
-import wmi
+import yaml
 import pickle
 import shutil
 import zipfile
@@ -18,6 +17,7 @@ import pandas as pd
 from dramkit.gentools import isnull
 from dramkit.gentools import get_update_kwargs
 from dramkit.logtools.utils_logger import logger_show
+from dramkit.logtools.utils_logger import close_log_file
 from dramkit.speedup.multi_thread import SingleThread
 
 
@@ -110,6 +110,22 @@ def unpickle_file(file):
     '''
     with open(file, 'rb') as f:
         return pickle.load(f)
+    
+    
+def load_yml(fpath, **kwargs_open):
+    '''
+    | 读取yml文件内容
+    | 参考：
+    | https://blog.csdn.net/qq_33106045/article/details/108507775
+    '''
+    with open(fpath, **kwargs_open) as f:
+        data = yaml.load(f.read(), Loader=yaml.FullLoader)
+    return data
+    
+    
+def write_yml():
+    '''写入yml文件，待实现'''
+    raise NotImplementedError
 
 
 def load_json(fpath, encoding=None, logger=None):
@@ -425,6 +441,22 @@ def load_excels(fdir, kwargs_sort={}, kwargs_drop_dup={},
     return data
 
 
+def clear_text_file(fpath, encoding=None):
+    '''清空文本文件中的内容，保留文件'''
+    with open(fpath, 'w', encoding=encoding) as f:
+        f.writelines([''])
+        
+        
+def clear_specified_type_files(dir_path, type_list,
+                               encoding=None,
+                               recu_sub_dir=False):
+    '''清空dir_path文件夹下所有类型在type_list中的文件内容，保留文件'''
+    fpaths = get_all_paths(dir_path, ext=type_list,
+                           recu_sub_dir=recu_sub_dir, abspath=True)
+    for fpath in fpaths:
+        clear_text_file(fpath, encoding=encoding)
+
+
 def get_all_paths(dir_path, ext=None, include_dir=False, abspath=False,
                   recu_sub_dir=True, only_dir=False):
     '''
@@ -518,6 +550,22 @@ def copy_dir():
     raise NotImplementedError
     
     
+def move_file():
+    '''移动文件，待实现'''
+    raise NotImplementedError
+    
+    
+def move_dir():
+    '''移动文件夹，待实现'''
+    raise NotImplementedError
+    
+    
+def make_dir(dir_path):
+    '''新建文件夹'''
+    if not os.path.exists(dir_path):
+        os.makedirs(dir_path)
+    
+    
 def py2pyc(py_path, pyc_path=None, force=True, del_py=False,
            **kwargs_compile):
     '''py文件编译为pyc文件'''
@@ -586,6 +634,7 @@ def get_mac_address():
     '''
     获取Mac地址，返回大写地址，如：F8-A2-D6-CC-BB-AA
     '''
+    import uuid
     mac = uuid.UUID(int=uuid.getnode()).hex[-12:]
     # 转大写
     mac = '-'.join([mac[e: e+2] for e in range(0, 11, 2)]).upper()
@@ -597,6 +646,7 @@ def get_hardware_ids():
     | 获取电脑硬件序列号信息，包括主板和硬盘序列号、MAC地址、BIOS序列号等
     | 参考：https://blog.csdn.net/lekmoon/article/details/111478394
     '''
+    import wmi
     results = {'cpu': [],
                'base_board': [],
                'disk': [],
@@ -742,7 +792,7 @@ def zip_fpaths(zip_path, fpaths, **kwargs):
     zip_files(zip_path, all_paths, **kwargs)
 
 
-def zip_extract():
+def zip_extract(fzip, to_dir=None, replace_exists=True):
     '''用zipfile解压文件，待实现'''
     raise NotImplementedError
 
@@ -839,6 +889,26 @@ def extract_7z():
 def cmdrun(cmd_str):
     '''调用cmd执行cmd_str命令，待实现'''
     raise NotImplementedError
+    
+    
+def cmd_run_pys(py_list, logger=None):
+    '''cmd命令批量运行py脚本，logger捕捉日志'''
+    for py in py_list:
+        logger_show(f'running {py} ...', logger)
+        if not os.path.exists(py):
+            logger_show(f'{py} 不存在！', None, level='warn')
+            continue
+        # cmd_str = f'python {file}'
+        # os.system(cmd_str)
+        # subprocess.call(cmd_str)
+        p = subprocess.Popen(['python', py],
+                              shell=True,
+                              stdout=subprocess.PIPE,
+                              stderr=subprocess.STDOUT,
+                              encoding='gbk'
+                              )
+        logger_show(p.communicate()[0], logger)
+    close_log_file(logger)
 
 
 def rename_files_in_dir(dir_path, func_rename):

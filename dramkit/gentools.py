@@ -173,9 +173,9 @@ def try_repeat_run(n_max_run=3, logger=None, sleep_seconds=0,
                         logger_show('`%s`第%s运行：成功。'%(func.__name__, n_run),
                                     logger, 'info')
                     except:
-                        result = None
                         logger_show('`%s`第%s运行：失败。'%(func.__name__, n_run),
                                     logger, 'error')
+                        result = None
                     if sleep_seconds > 0:
                         time.sleep(sleep_seconds)
                 return result

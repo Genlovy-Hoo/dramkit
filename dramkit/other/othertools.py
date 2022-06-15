@@ -7,19 +7,49 @@ Uncommonly used utility functions
 import os
 import subprocess
 import pandas as pd
-from dramkit.gentools import cut_df_by_con_val
+from dramkit.gentools import cut_df_by_con_val, isnull
 from dramkit.iotools import read_lines, load_csv, logger_show
 
 
-def get_csv_colmaxmin(csv_path, col, skipna=True, return_data=True,
-                      ascending=None, **kwargs):
+def archive_data(df_new, df_old,
+                 sort_cols=None, ascending=True,
+                 del_dup_cols=None, del_dup_keep='last',
+                 sort_first=True, csv_path=None,
+                 csv_index=True, csv_encoding='utf-8',
+                 concat_axis=0):
     '''
-    获取指定csv文件中指定列的最大值和最小值
+    合并df_new和df_old，再排序、去重、写入csv
+    '''
+    if isnull(df_old):
+        df = df_new
+    else:
+        df = pd.concat((df_old, df_new), axis=concat_axis)
+    if isinstance(sort_cols, str):
+        sort_cols = [sort_cols]
+    if isinstance(del_dup_cols, str):
+        del_dup_cols = [del_dup_cols]
+    if not isnull(sort_cols):
+        if sort_first:
+            df.sort_values(sort_cols, ascending=ascending, inplace=True)
+    if not isnull(del_dup_cols):
+        df.drop_duplicates(del_dup_cols, keep=del_dup_keep, inplace=True)
+        if (not sort_first) and (not isnull(sort_cols)):
+            df.sort_values(sort_cols, ascending=ascending, inplace=True)
+    if isinstance(csv_path, str):
+        df.to_csv(csv_path, index=csv_index, encoding=csv_encoding)
+    return df
+
+
+def get_csv_df_colmaxmin(csv_path_df, col, skipna=True,
+                         return_data=True, ascending=None,
+                         **kwargs):
+    '''
+    获取指定csv文件或df中指定列的最大值和最小值
 
     Parameters
     ----------
-    csv_path : str
-        csv数据文件路径
+    csv_path_df : str, pandas.DataFrame
+        csv数据文件路径或df
     col : str
         指定列名
     skipna : bool
@@ -40,7 +70,10 @@ def get_csv_colmaxmin(csv_path, col, skipna=True, return_data=True,
     data : None, pandas.DataFrame
         返回数据
     '''
-    data = load_csv(csv_path, **kwargs)
+    if isinstance(csv_path_df, pd.core.frame.DataFrame):
+        data = csv_path_df.copy()
+    else:
+        data = load_csv(csv_path, **kwargs)
     col_max = data[col].max(skipna=skipna)
     col_min = data[col].min(skipna=skipna)
     if return_data:
@@ -165,8 +198,7 @@ def install_pkg(pkg_name, version=None, upgrade=False,
                                              ignr)
     else:
         if version is not None:
-            cmd_str = 'pip install {}{} {}'.format(
-                                        pkg_name, version, ignr)
+            cmd_str = 'pip install {}{} {}'.format(pkg_name, version, ignr)
         else:
             upgrade_str = '--upgrade' if upgrade else ''
             cmd_str = 'pip install {} {} {}'.format(
@@ -182,6 +214,7 @@ if __name__ == '__main__':
     fpath = '../test/中金所持仓排名_IF20100416.csv'
     datas = load_text_multi(fpath)
     
+    
     csv_path = '../test/510050_daily_pre_fq.csv'
-    datemax, datemin, data = get_csv_colmaxmin(csv_path, 'date',
-                                               return_data=False)
+    datemax, datemin, data = get_csv_df_colmaxmin(csv_path, 'date',
+                                                  return_data=False)

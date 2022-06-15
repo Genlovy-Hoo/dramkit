@@ -42,6 +42,8 @@ def logger_show(log_str, logger=None, level='info'):
 
 def close_log_file(logger):
     '''关闭日志记录器logger中的文件流，返回logger'''
+    if logger is None or logger is False:
+        return logger
     for h in logger.handlers:
         if isinstance(h, logging.FileHandler):
             h.close()

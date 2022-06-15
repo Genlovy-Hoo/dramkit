@@ -469,15 +469,19 @@ def get_trade_dates(start_date, end_date=None, trade_dates_df_path=None,
             data = trade_dates_df_path.copy()
         else:
             raise ValueError('trade_dates_df_path不是pd.DataFrame或路径不存在！')
-
+        
+        if data['date'].notna().sum() == 0:
+            return dttools.get_dates_between(start_date, end_date, keep1=True,
+                   keep2=True, only_workday=True, del_weekend=True, joiner=joiner)
+        
         _, joiner2 = dttools.get_date_format(end_date)
         start_date = dttools.date_reformat(start_date, '-')
         end_date = dttools.date_reformat(end_date, '-')
 
-        data = data[data['date'] >= start_date]
-        data = data[data['date'] <= end_date]
         last_date = data['date'].max()
-
+        data = data[data['date'] >= start_date]
+        data = data[data['date'] <= end_date] 
+        
         if joiner == 2:
             joiner = joiner2
         elif joiner == 1:
