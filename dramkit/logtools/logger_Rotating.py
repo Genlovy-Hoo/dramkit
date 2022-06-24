@@ -3,8 +3,8 @@
 import os
 import logging
 from logging.handlers import RotatingFileHandler
-from .utils_logger import remove_handlers
-# from dramkit.logtools.utils_logger import remove_handlers
+# from .utils_logger import remove_handlers
+from dramkit.logtools.utils_logger import remove_handlers
 
 
 def get_logger(fpath=None, fmode='w', max_kb=128, nfile=3, screen_show=True):
@@ -48,7 +48,7 @@ def get_logger(fpath=None, fmode='w', max_kb=128, nfile=3, screen_show=True):
 
     # 日志格式
     formatter = logging.Formatter(
-    '''%(asctime)s -%(filename)s[line: %(lineno)d] -%(levelname)s:
+    '''%(asctime)s -%(name)s[line: %(lineno)d] -%(levelname)s:
     --%(message)s''')
 
     if fpath is not None:

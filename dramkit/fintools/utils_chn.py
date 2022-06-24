@@ -346,38 +346,65 @@ def trade_fee_Astock(mkt, buy_or_sel, vol, price,
     return fee_all
 
 
-def is_trade_day_chncal(date):
+def _is_trade_day_chncal(date=None):
     '''
-    | 利用chinese_calendar库判断date（str格式）是否为交易日
-    | 注：若chinese_calendar库统计的周内工作日与交易日有差异或没更新，可能导致结果不准确
+    利用chinese_calendar库判断date（str格式）是否为交易日
     '''
+    if isnull(date):
+        date = dttools.today_date()
     date = dttools.date_reformat(date, '')
     date_dt = datetime.strptime(date, '%Y%m%d')
     return is_workday(date_dt) and date_dt.weekday() not in [5, 6]
 
 
-def get_recent_trade_date_chncal(date=None, dirt='post'):
+def is_trade_day(date=None, trade_dates=None):
+    '''判断date（str格式）是否为交易日'''
+    if isnull(trade_dates):
+        return _is_trade_day_chncal(date)
+    if isnull(date):
+        date = dttools.today_date()
+    dates = get_trade_dates(date, date, trade_dates)
+    if date in dates:
+        return True
+    return False
+
+
+def _get_recent_trade_date_chncal(date=None, dirt='post'):
     '''
     | 若date为交易日，则直接返回date，否则返回下一个(dirt='post')或上一个(dirt='pre')交易日
     | 注：若chinese_calendar库统计的周内工作日与交易日有差异或没更新，可能导致结果不准确
     '''
-    assert dirt in ['port', 'pre']
+    assert dirt in ['post', 'pre']
     if isnull(date):
         date = dttools.today_date()
     if dirt == 'post':
-        while not is_trade_day_chncal(date):
+        while not _is_trade_day_chncal(date):
             date = dttools.date_add_nday(date, 1)
     elif dirt == 'pre':
-        while not is_trade_day_chncal(date):
+        while not _is_trade_day_chncal(date):
             date = dttools.date_add_nday(date, -1)
     return date
 
 
-def get_next_nth_trade_date_chncal(date=None, n=1):
+def get_recent_trade_date(date=None, dirt='pre', trade_dates=None):
+    '''
+    | 若date为交易日，则直接返回date，否则返回下一个(dirt='post')或上一个(dirt='pre')交易日
+    '''
+    assert dirt in ['post', 'pre']
+    if isnull(trade_dates):
+        return _get_recent_trade_date_chncal(date, dirt)
+    if is_trade_day(date, trade_dates):
+        return date
+    if dirt == 'pre':
+        return get_next_nth_trade_date(date, -1, trade_dates)
+    elif dirt == 'post':
+        return get_next_nth_trade_date(date, 1, trade_dates)
+
+
+def _get_next_nth_trade_date_chncal(date=None, n=1):
     '''
     | 给定日期date，返回其后第n个交易日日期，n可为负数（返回结果在date之前）
     | 若n为0，直接返回date
-    | 注：若chinese_calendar库统计的周内工作日与交易日有差异或没更新，可能导致结果不准确
     '''
     if isnull(date):
         date = dttools.today_date()
@@ -386,14 +413,16 @@ def get_next_nth_trade_date_chncal(date=None, n=1):
     tmp = 0
     while tmp < n:
         date = dttools.date_add_nday(date, n_add)
-        if is_trade_day_chncal(date):
+        if _is_trade_day_chncal(date):
             tmp += 1
     return date
 
 
-def get_next_nth_trade_date(date=None, n=1, trade_dates_df_path=None):
+def get_next_nth_trade_date(date=None, n=1,
+                            trade_dates_df_path=None):
     '''
     | 给定日期date，返回其后第n个交易日日期，n可为负数（返回结果在date之前）
+    | 若n为0，直接返回date
     | trade_dates_df_path可以为历史交易日期数据存档路径，也可以为pd.DataFrame
     | 注：默认trade_dates_df_path数据格式为tushare格式：
     |     exchange,date,is_open
@@ -402,38 +431,48 @@ def get_next_nth_trade_date(date=None, n=1, trade_dates_df_path=None):
     |     SSE,2020-09-04,1
     |     SSE,2020-09-05,0
     '''
+    
     if isnull(trade_dates_df_path):
-        return get_next_nth_trade_date_chncal(date=date, n=n)
+        return _get_next_nth_trade_date_chncal(date=date, n=n)
+    
     if isnull(date):
         if isnull(date):
             date, joiner = dttools.today_date('-'), '-'
     else:
         _, joiner = dttools.get_date_format(date)
         date = dttools.date_reformat(date, '-')
-    if isinstance(trade_dates_df_path, str) \
-                                    and os.path.isfile(trade_dates_df_path):
+        
+    if isinstance(trade_dates_df_path, str) and \
+                        os.path.isfile(trade_dates_df_path):
         dates = load_csv(trade_dates_df_path)
+    elif isinstance(trade_dates_df_path, pd.core.frame.DataFrame):
+            dates = trade_dates_df_path.copy()
     else:
-        dates = trade_dates_df_path.copy()
+        raise ValueError('trade_dates_df_path不是pd.DataFrame或路径不存在！')
+
     dates.sort_values('date', ascending=True, inplace=True)
     dates.drop_duplicates(subset=['date'], keep='last', inplace=True)
     dates['tmp'] = dates[['date', 'is_open']].apply(lambda x:
                 1 if x['is_open'] == 1 or x['date'] == date else 0, axis=1)
     dates = list(dates[dates['tmp'] == 1]['date'].unique())
     dates.sort()
-    idx = dates.index(date)
-    if -1 < idx+n < len(dates):
-        return dttools.date_reformat(dates[idx+n], joiner)
+    if not date in dates:
+        return _get_next_nth_trade_date_chncal(date=date, n=n)
     else:
-        return None
+        idx = dates.index(date)
+        if -1 < idx+n < len(dates):
+            return dttools.date_reformat(dates[idx+n], joiner)
+        else:
+            return _get_next_nth_trade_date_chncal(date=date, n=n)
 
 
-def get_trade_dates_chncal(start_date, end_date):
+def _get_trade_dates_chncal(start_date, end_date=None):
     '''
-    | 利用chinese_calendar库获取指定起止日期内的交易日期（周内的工作日）
-    | 注：若chinese_calendar库统计的周内工作日与交易日有差异或没更新，可能导致结果不准确
+    利用chinese_calendar库获取指定起止日期内的交易日期（周内的工作日）
     '''
     _, joiner = dttools.get_date_format(start_date)
+    if isnull(end_date):
+        end_date = dttools.today_date(joiner=joiner)
     dates = pd.date_range(start_date, end_date)
     dates = [x.strftime(joiner.join(['%Y', '%m', '%d'])) for x in dates if \
                         is_workday(x) and x.weekday() not in [5, 6]]
@@ -441,8 +480,8 @@ def get_trade_dates_chncal(start_date, end_date):
     return dates
 
 
-def get_trade_dates(start_date, end_date=None, trade_dates_df_path=None,
-                    joiner=2):
+def get_trade_dates(start_date, end_date=None,
+                    trade_dates_df_path=None, joiner=2):
     '''
     | 获取起止日期之间(从start_date到end_date)的交易日期，返回列表
     | trade_dates_df_path可以为历史交易日期数据存档路径，也可以为pd.DataFrame
@@ -462,8 +501,8 @@ def get_trade_dates(start_date, end_date=None, trade_dates_df_path=None,
         return dttools.get_dates_between(start_date, end_date, keep1=True,
                keep2=True, only_workday=True, del_weekend=True, joiner=joiner)
     else:
-        if isinstance(trade_dates_df_path, str) \
-                                    and os.path.isfile(trade_dates_df_path):
+        if isinstance(trade_dates_df_path, str) and \
+                        os.path.isfile(trade_dates_df_path):
             data = load_csv(trade_dates_df_path)
         elif isinstance(trade_dates_df_path, pd.core.frame.DataFrame):
             data = trade_dates_df_path.copy()
@@ -500,37 +539,11 @@ def get_trade_dates(start_date, end_date=None, trade_dates_df_path=None,
             return dates + dates_
 
 
-def get_trade_dates_bk(start_date, end_date, trade_dates_df_path):
-    '''
-    | 获取起止日期之间(从start_date到end_date)的交易日期，返回列表
-    | trade_dates_df_path可以为历史交易日期数据存档路径，也可以为pd.DataFrame
-    | 注：默认trade_dates_df_path数据格式为tushare格式：
-    |     exchange,date,is_open
-    |     SSE,2020-09-02,1
-    |     SSE,2020-09-03,1
-    |     SSE,2020-09-04,1
-    |     SSE,2020-09-05,0
-    '''
-    _, joiner = dttools.get_date_format(start_date)
-    start_date = dttools.date_reformat(start_date, '-')
-    end_date = dttools.date_reformat(end_date, '-')
-    if isinstance(trade_dates_df_path, str) \
-                                    and os.path.isfile(trade_dates_df_path):
-        data = load_csv(trade_dates_df_path)
-    else:
-        data = trade_dates_df_path.copy()
-    data = data[data['date'] >= start_date]
-    data = data[data['date'] <= end_date]
-    dates = data[data['is_open'] == 1]['date']
-    dates = [dttools.date_reformat(x, joiner) for x in list(dates)]
-    return dates
-
-
 def get_num_trade_dates(start_date, end_date, trade_dates_df_path=None):
     '''给定起止时间，获取可交易天数'''
     if not isnull(trade_dates_df_path):
         trade_dates = get_trade_dates(start_date, end_date,
                                       trade_dates_df_path)
     else:
-        trade_dates = get_trade_dates_chncal(start_date, end_date)
+        trade_dates = _get_trade_dates_chncal(start_date, end_date)
     return len(trade_dates)

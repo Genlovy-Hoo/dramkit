@@ -5,10 +5,12 @@ Uncommonly used utility functions
 '''
 
 import os
+import sys
 import subprocess
 import pandas as pd
 from dramkit.gentools import cut_df_by_con_val, isnull
 from dramkit.iotools import read_lines, load_csv, logger_show
+from dramkit.iotools import find_files_include_str
 
 
 def archive_data(df_new, df_old,
@@ -73,7 +75,7 @@ def get_csv_df_colmaxmin(csv_path_df, col, skipna=True,
     if isinstance(csv_path_df, pd.core.frame.DataFrame):
         data = csv_path_df.copy()
     else:
-        data = load_csv(csv_path, **kwargs)
+        data = load_csv(csv_path_df, **kwargs)
     col_max = data[col].max(skipna=skipna)
     col_min = data[col].min(skipna=skipna)
     if return_data:
@@ -165,6 +167,19 @@ def load_text_multi(fpath, sep=',', encoding=None, del_first_col=False,
     datas = [_get_final_data(x) for x in datas]
 
     return datas
+
+
+def find_pypkgs_str(tgt_str, pkgs=None):
+    if isnull(pkgs):
+        pkgs = ['DramKit', 'FinFactory']
+    if isinstance(pkgs, str):
+        pkgs = [pkgs]
+    pkg_paths = [x for x in sys.path if any([y in x for y in pkgs])]
+    files = []
+    for fdir in pkg_paths:
+        files.append(find_files_include_str(tgt_str, fdir, '.py'))
+    files = pd.concat(files, axis=0)
+    return files
 
 
 def install_pkg(pkg_name, version=None, upgrade=False,

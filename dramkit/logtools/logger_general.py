@@ -29,6 +29,10 @@ def get_logger(fpath=None, fmode='w', screen_show=True):
     日志文件按大小滚动: :func:`dramkit.logtools.logger_rotating.get_logger`
 
     日志文件按时间滚动: :func:`dramkit.logtools.logger_timedrotating.get_logger`
+    
+    References
+    ----------
+    - https://blog.csdn.net/weixin_43625263/article/details/123931477
     '''
 
     if fpath is None and not screen_show:
@@ -42,8 +46,11 @@ def get_logger(fpath=None, fmode='w', screen_show=True):
     logger = remove_handlers(logger)
 
     # 日志格式
+    # formatter = logging.Formatter(
+    # '''%(asctime)s -%(filename)s[line: %(lineno)d] -%(levelname)s:
+    # --%(message)s''')
     formatter = logging.Formatter(
-    '''%(asctime)s -%(filename)s[line: %(lineno)d] -%(levelname)s:
+    '''%(asctime)s -%(name)s[line: %(lineno)d] -%(levelname)s:
     --%(message)s''')
 
     if fpath is not None:

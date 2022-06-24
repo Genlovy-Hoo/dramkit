@@ -2,8 +2,8 @@
 
 import logging
 from logging.handlers import TimedRotatingFileHandler
-from .utils_logger import remove_handlers
-# from dramkit.logtools.utils_logger import remove_handlers
+# from .utils_logger import remove_handlers
+from dramkit.logtools.utils_logger import remove_handlers
 
 
 def get_logger(fpath=None, when='S', interval=3, nfile=3,

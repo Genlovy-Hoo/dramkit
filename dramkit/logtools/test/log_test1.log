@@ -1,12 +1,12 @@
-2022-01-05 15:43:27,670 -logger_general.py[line: 75] -INFO:
+2022-06-24 19:10:21,079 -__main__[line: 82] -INFO:
     --Log start here ********************************************
-2022-01-05 15:43:27,671 -logger_general.py[line: 76] -DEBUG:
+2022-06-24 19:10:21,080 -__main__[line: 83] -DEBUG:
     --Do something.
-2022-01-05 15:43:27,672 -logger_general.py[line: 77] -WARNING:
+2022-06-24 19:10:21,081 -__main__[line: 84] -WARNING:
     --Something maybe fail.
-2022-01-05 15:43:27,672 -logger_general.py[line: 78] -ERROR:
+2022-06-24 19:10:21,082 -__main__[line: 85] -ERROR:
     --Some error find here.
-2022-01-05 15:43:27,674 -logger_general.py[line: 79] -CRITICAL:
+2022-06-24 19:10:21,083 -__main__[line: 86] -CRITICAL:
     --Program crashed.
-2022-01-05 15:43:27,674 -logger_general.py[line: 80] -INFO:
+2022-06-24 19:10:21,084 -__main__[line: 87] -INFO:
     --Finish

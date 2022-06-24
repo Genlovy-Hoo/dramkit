@@ -19,6 +19,7 @@ from dramkit.gentools import get_update_kwargs
 from dramkit.logtools.utils_logger import logger_show
 from dramkit.logtools.utils_logger import close_log_file
 from dramkit.speedup.multi_thread import SingleThread
+from dramkit.datetimetools import timestamp2str
 
 
 def get_input_with_timeout(timeout=10, hint_str=None):
@@ -564,6 +565,11 @@ def make_dir(dir_path):
     '''新建文件夹'''
     if not os.path.exists(dir_path):
         os.makedirs(dir_path)
+        
+        
+def get_last_change_time(fpath, strformat='%Y-%m-%d %H:%M:%S'):
+    '''获取文件的最后修改时间'''
+    return timestamp2str(os.stat(fpath).st_mtime, strformat)
     
     
 def py2pyc(py_path, pyc_path=None, force=True, del_py=False,

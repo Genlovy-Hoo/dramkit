@@ -5,7 +5,6 @@ import time
 import datetime
 import pandas as pd
 from chinese_calendar import is_workday
-from dramkit.gentools import isnull
 
 
 def str2datetime(tstr, strformat='%Y-%m-%d'):
@@ -260,6 +259,9 @@ def get_dates_between(date1, date2, keep1=False, keep2=True,
                       joiner=2):
     '''
     获取date1到date2之间的日期列表，keep1和keep2设置结果是否保留date1和date2
+
+
+    .. note:: 是否为workday用了chinese_calendar包，若chinese_calendar库没更新，可能导致结果不准确
     '''
     _, joiner1 = get_date_format(date1)
     _, joiner2 = get_date_format(date2)
@@ -283,18 +285,24 @@ def get_dates_between(date1, date2, keep1=False, keep2=True,
     return dates
 
 
-def get_dayofweek(date):
+def get_dayofweek(date=None):
     '''返回date属于星期几（1-7）'''
+    if pd.isnull(date):
+        date = today_date()
     return pd.to_datetime(date_reformat(date, '-')).weekday() + 1
 
 
-def get_dayofyear(date):
+def get_dayofyear(date=None):
     '''返回date属于一年当中的第几天（从1开始记）'''
+    if pd.isnull(date):
+        date = today_date()
     return pd.to_datetime(date_reformat(date, '-')).dayofyear
 
 
-def isworkday_chncal(date):
+def isworkday_chncal(date=None):
     '''利用chinese_calendar库判断date（str格式）是否为工作日'''
+    if pd.isnull(date):
+        date = today_date()
     date = date_reformat(date, '')
     date_dt = datetime.datetime.strptime(date, '%Y%m%d')
     return is_workday(date_dt)
@@ -307,7 +315,7 @@ def get_recent_workday_chncal(date=None, dirt='post'):
 
     .. note:: 若chinese_calendar库没更新，可能导致结果不准确
     '''
-    if isnull(date):
+    if pd.isnull(date):
         date = today_date()
     if dirt == 'post':
         while not isworkday_chncal(date):
@@ -318,7 +326,7 @@ def get_recent_workday_chncal(date=None, dirt='post'):
     return date
 
 
-def get_next_nth_workday_chncal(date, n=1):
+def get_next_nth_workday_chncal(date=None, n=1):
     '''
     | 给定日期date，返回其后第n个工作日日期，n可为负数（返回结果在date之前）
     | 若n为0，直接返回date
@@ -326,6 +334,8 @@ def get_next_nth_workday_chncal(date, n=1):
     
     .. note:: 若chinese_calendar库没更新，可能导致结果不准确
     '''
+    if pd.isnull(date):
+        date = today_date()
     n_add = -1 if n < 0 else 1
     n = abs(n)
     tmp = 0
@@ -336,10 +346,12 @@ def get_next_nth_workday_chncal(date, n=1):
     return date
 
 
-def get_recent_inweekday_chncal(date, dirt='post'):
+def get_recent_inweekday(date=None, dirt='post'):
     '''
     若date不是周末，则返回，否则返回下一个(post)或上一个(pre)周内日期
     '''
+    if pd.isnull(date):
+        date = today_date()
     if dirt == 'post':
         while not get_dayofweek(date) <= 5:
             date = date_add_nday(date, 1)
@@ -349,11 +361,13 @@ def get_recent_inweekday_chncal(date, dirt='post'):
     return date
 
 
-def get_next_nth_inweekday_chncal(date, n=1):
+def get_next_nth_inweekday(date=None, n=1):
     '''
     | 给定日期date，返回其后第n个周内日日期，n可为负数（返回结果在date之前）
     | 若n为0，直接返回date
     '''
+    if pd.isnull(date):
+        date = today_date()
     n_add = -1 if n < 0 else 1
     n = abs(n)
     tmp = 0

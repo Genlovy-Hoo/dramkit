@@ -17,3 +17,5 @@ from .plottools import plot_series_conlabel
 
 from .logtools.utils_logger import logger_show, close_log_file
 from .logtools.logger_general import get_logger as simple_logger
+
+from .other.othertools import find_pypkgs_str

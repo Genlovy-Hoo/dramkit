@@ -43,8 +43,9 @@ class StructureObject(object):
         if self.dirt_modify:
             self.__dict__[key] = value
         else:
-            raise DirtModifyError(
-                '不允许直接赋值，请调用`set_key_value`或`set_from_dict`方法！')
+            raise DirtModifyError('不允许直接赋值！')
+            # raise DirtModifyError(
+            #     '不允许直接赋值，请调用`set_key_value`或`set_from_dict`方法！')
 
     def __repr__(self):
         '''查看时以key: value格式打印'''

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
 from dramkit import isnull, load_csv
@@ -45,9 +46,9 @@ if __name__ == '__main__':
         relations.append((df_['node'].iloc[k],
                           df_['children_node'].iloc[k]))
     
-    tree = tree_from_edgs(relations)
-    nx.draw(tree, with_labels=True)
-    plt.savefig('test.png')
+    # tree = tree_from_edgs(relations)
+    # nx.draw(tree, with_labels=True)
+    # plt.savefig('test.png')
     
     
     
@@ -66,24 +67,29 @@ if __name__ == '__main__':
     parents = df['node'].dropna().unique().tolist()
     childs = df['children_node'].dropna().unique().tolist()
     roots = list(set([x for x in parents if x not in childs]))
-    names = list(set(parents + childs))
-    names_id = {names[k]: k for k in range(len(names))}
+    # names = list(set(parents + childs))
+    # names_id = {names[k]: k for k in range(len(names))}
     
-    nodes = []
-    for rt in roots:
-        nodes.append({'id': names_id[rt],
-                      'name': rt,
-                      'parent_id': None})
+    # nodes = []
+    # for rt in roots:
+    #     nodes.append({'id': names_id[rt],
+    #                   'name': rt,
+    #                   'parent_id': None})
+    # for k in range(df.shape[0]):
+    #     if isnull(df['children_node'].iloc[k]):
+    #         continue
+    #     else:
+    #         child = df['children_node'].iloc[k]
+    #         parent = df['node'].iloc[k]
+    #         nodes.append({'id': names_id[child],
+    #                       'name': child,
+    #                       'parent_id': names_id[parent]})
+    # tree2 = tree_from_node_and_parent(nodes)
+    
+    base = []
     for k in range(df.shape[0]):
-        if isnull(df['children_node'].iloc[k]):
-            continue
-        else:
-            child = df['children_node'].iloc[k]
-            parent = df['node'].iloc[k]
-            nodes.append({'id': names_id[child],
-                          'name': child,
-                          'parent_id': names_id[parent]})
-    tree2 = tree_from_node_and_parent(nodes)
+        if pd.isna(df['children_node'].iloc[k]):
+            base.append(df['node'].iloc[k])
 
 
 
