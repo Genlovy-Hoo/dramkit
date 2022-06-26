@@ -186,9 +186,9 @@ if __name__ == '__main__':
     import pandas as pd
     from scipy import stats
 
-    # series = pd.read_excel('./test/percent.xlsx')['percent']
-    # series = pd.read_csv('./test/series1.csv')['series']
-    # series = pd.read_csv('./test/series2.csv')['series']
+    # series = pd.read_excel('./_test/percent.xlsx')['percent']
+    # series = pd.read_csv('./_test/series1.csv')['series']
+    # series = pd.read_csv('./_test/series2.csv')['series']
 
     # series = pd.Series(np.random.normal(5, 3, (1000,)))
 
@@ -223,7 +223,7 @@ if __name__ == '__main__':
     figsize = (10, 8)
     title = '直方图（拟合）'
     fontsize = 20
-    fig_save_path = './test/HistDist_test.png'
+    fig_save_path = './_test/HistDist_test.png'
     # fig_save_path = None
 
     plot_histdist(series, bins=bins, width=width, clor=clor,

@@ -1,6 +1,6 @@
 pkg_info = {
     '__pkgname__': 'dramkit',
-    '__version__': '0.2.8',
+    '__version__': '0.3.0',
     '__license__': 'MIT',
     '__url__': 'https://github.com/Genlovy-Hoo/dramkit/',
     '__urls__':
@@ -13,7 +13,6 @@ pkg_info = {
     '__author_page__': 'www.glhyy.cn',
     '__description__': 'DramKit is a toolbox.',
     '__long_description__':
-        '''
-		DramKit is a toolbox, `Dram` comes from `Doraemon`.
+        '''DramKit is a toolbox, `Dram` comes from `Doraemon`.
 		'''
     }

@@ -1,0 +1,24 @@
+2022-06-26 02:26:11,367 -logger_timedrotating.py[line: 85] -INFO:
+    --Log start here *****************************************
+2022-06-26 02:26:11,370 -logger_timedrotating.py[line: 86] -DEBUG:
+    --Do something.
+2022-06-26 02:26:11,371 -logger_timedrotating.py[line: 87] -WARNING:
+    --Something maybe fail.
+2022-06-26 02:26:11,372 -logger_timedrotating.py[line: 88] -ERROR:
+    --Some error find here.
+2022-06-26 02:26:11,373 -logger_timedrotating.py[line: 89] -CRITICAL:
+    --Program crashed.
+2022-06-26 02:26:11,373 -logger_timedrotating.py[line: 90] -INFO:
+    --Finish
+2022-06-26 02:26:13,381 -logger_timedrotating.py[line: 85] -INFO:
+    --Log start here *****************************************
+2022-06-26 02:26:13,488 -logger_timedrotating.py[line: 86] -DEBUG:
+    --Do something.
+2022-06-26 02:26:13,489 -logger_timedrotating.py[line: 87] -WARNING:
+    --Something maybe fail.
+2022-06-26 02:26:13,489 -logger_timedrotating.py[line: 88] -ERROR:
+    --Some error find here.
+2022-06-26 02:26:13,490 -logger_timedrotating.py[line: 89] -CRITICAL:
+    --Program crashed.
+2022-06-26 02:26:13,490 -logger_timedrotating.py[line: 90] -INFO:
+    --Finish

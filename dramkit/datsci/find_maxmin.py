@@ -964,7 +964,7 @@ if __name__ == '__main__':
 
     #%%
     # 50ETF日线行情------------------------------------------------------------
-    fpath = '../test/510050_daily_pre_fq.csv'
+    fpath = '../_test/510050_daily_pre_fq.csv'
     his_data = load_csv(fpath)
     his_data.set_index('date', drop=False, inplace=True)
 
@@ -1026,7 +1026,7 @@ if __name__ == '__main__':
     #                                 use_all=False,
     #                                 logger=None,
     #                                 n_log=10,
-    #                                 # fig_save_dir='./test/find_maxmin_dy/50ETF',
+    #                                 # fig_save_dir='./_test/find_maxmin_dy/50ETF',
     #                                 fig_save_dir=None,
     #                                 plot_all=True,
     #                                 plot_lag='all',

@@ -209,7 +209,7 @@ if __name__ == '__main__':
                    'v_maxs': 5, 'w_max': 0.9, 'w_min': 0.2, 'w_fix': False,
                    'c1': 2, 'c2': 2}
     # logger = simple_logger()
-    logger = get_logger('./test/log/pso_test.txt', screen_show=True)
+    logger = get_logger('./_test/log/pso_test.txt', screen_show=True)
     # parms_log = {'logger': logger, 'nshow': 10}
     parms_log = {'logger': logger, 'nshow': 100}
 

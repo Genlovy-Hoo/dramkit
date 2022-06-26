@@ -2258,10 +2258,10 @@ def sort_dict(d, by='key', reverse=False):
 
 if __name__ == '__main__':
     from dramkit import load_csv, plot_series
-    from dramkit.fintools.fintools import cci
+    from finfactory.fintools.fintools import cci
 
     # 50ETF日线行情------------------------------------------------------------
-    fpath = './test/510050_daily_pre_fq.csv'
+    fpath = './_test/510050_daily_pre_fq.csv'
     data = load_csv(fpath)
     data.set_index('date', drop=False, inplace=True)
 

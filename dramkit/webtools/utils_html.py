@@ -121,11 +121,11 @@ def get_head_num(path_html, encoding=None):
 
 
 if __name__ == '__main__':
-    path_html = './test/gauge_test.html'
+    path_html = './_test/gauge_test.html'
     open_html(path_html)
 
     bsobj = html_to_soup(path_html, encoding='utf-8')
-    path_html_ = './test/gauge_text_rewright.html'
+    path_html_ = './_test/gauge_text_rewright.html'
     soup_to_html(bsobj, path_html_, encoding='utf-8')
     open_html(path_html_)
     insert_src_head_end(path_html_,

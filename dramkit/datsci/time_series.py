@@ -678,8 +678,8 @@ if __name__ == '__main__':
     from dramkit.gentools import cut_range_to_subs, replace_repeat_pd
     from dramkit._tmp.utils_SignalDec import dec_emds, merge_high_modes
     from dramkit._tmp.utils_SignalDec import plot_modes
-    from dramkit.fintools.load_his_data import load_index_futures_daily
-    from dramkit.fintools import get_yield_curve
+    from finfactory.fintools import get_yield_curve
+    from finfactory.load_his_data import load_index_futures_daily
     from pprint import pprint
 
 
@@ -794,7 +794,7 @@ if __name__ == '__main__':
         df_pre.append(modes_pre)
     df_pre = pd.concat(df_pre, axis=0)
 
-    df_pre.to_csv('./test/df_pre.csv')
+    df_pre.to_csv('./_test/df_pre.csv')
 
     plot_series(df_pre, {'close': ('.-b', None), 'close_pre': ('.-r', None)},
                 figsize=(9.5, 7), fontname='Times New Roman', grids=True)

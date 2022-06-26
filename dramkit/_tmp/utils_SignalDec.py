@@ -119,7 +119,7 @@ if __name__ == '__main__':
     strt_tm = time.time()
     from dramkit import load_csv
 
-    fdir = '../test/'
+    fdir = '../_test/'
     fpath = fdir + '510050_daily_pre_fq.csv'
 
     series = load_csv(fpath)['close']

@@ -422,7 +422,7 @@ if __name__ == '__main__':
                    'popsize': 20, 'max_iter': 1000,
                    'p_crs': 0.7, 'p_mut': 0.1, 'n_top': 2}
     # logger = simple_logger()
-    logger = get_logger('./test/log/ga_test.txt', screen_show=True)
+    logger = get_logger('./_test/log/ga_test.txt', screen_show=True)
     # parms_log = {'logger': logger, 'nshow': 10}
     parms_log = {'logger': logger, 'nshow': 100}
 

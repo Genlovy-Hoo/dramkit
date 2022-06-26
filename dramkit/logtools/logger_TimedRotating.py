@@ -76,7 +76,7 @@ if __name__ == '__main__':
     import time
     from dramkit.logtools.utils_logger import close_log_file
 
-    log_path = './test/log_test3.log'
+    log_path = './_test/log_test3.log'
     logger = get_logger(fpath=log_path, when='S', interval=3,
                         screen_show=True)
 

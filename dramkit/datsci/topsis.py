@@ -67,10 +67,10 @@ def topsis(df, weight=None):
 if __name__ == '__main__':
     from dramkit.datsci.preprocess import norm_range
 
-    # df = pd.read_csv('../test/EntValWeight_test.csv').dropna(how='any')
+    # df = pd.read_csv('../_test/EntValWeight_test.csv').dropna(how='any')
     # weight = None
 
-    # df = pd.read_csv('../test/GDP2015.csv', encoding='gbk').set_index('地区')
+    # df = pd.read_csv('../_test/GDP2015.csv', encoding='gbk').set_index('地区')
     # indexs = ['GDP总量增速', '人口总量', '人均GDP增速', '地方财政收入总额',
     #           '固定资产投资', '社会消费品零售总额增速', '进出口总额',
     #           '城镇居民人均可支配收入', '农村居民人均可支配收入']

@@ -80,7 +80,7 @@ def get_logger(fpath=None, fmode='w', max_kb=128, nfile=3, screen_show=True):
 if __name__ == '__main__':
     from dramkit.logtools.utils_logger import close_log_file
 
-    log_path = './test/log_test2.log'
+    log_path = './_test/log_test2.log'
     logger = get_logger(fpath=log_path, fmode='w', max_kb=1, nfile=3,
                         screen_show=True)
 

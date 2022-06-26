@@ -171,8 +171,8 @@ if __name__ == '__main__':
     strt_tm = time.time()
 
     #%%
-    data = pd.read_excel('./test/test_data1.xlsx')
-    # data = pd.read_excel('./test/test_data2.xlsx')
+    data = pd.read_excel('./_test/test_data1.xlsx')
+    # data = pd.read_excel('./_test/test_data2.xlsx')
     X = data[['x1', 'x2']]
     y = data['y']
 

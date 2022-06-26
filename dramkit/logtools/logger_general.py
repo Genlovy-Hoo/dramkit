@@ -76,7 +76,7 @@ def get_logger(fpath=None, fmode='w', screen_show=True):
 if __name__ == '__main__':
     from dramkit.logtools.utils_logger import close_log_file
 
-    log_path = './test/log_test1.log'
+    log_path = './_test/log_test1.log'
     logger = get_logger(fpath=log_path, fmode='w', screen_show=True)
 
     logger.info('Log start here ********************************************')

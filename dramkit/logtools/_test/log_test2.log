@@ -1,0 +1,12 @@
+2022-06-26 02:25:44,198 -__main__[line: 101] -INFO:
+    --Log start here #############################################
+2022-06-26 02:25:44,199 -__main__[line: 102] -DEBUG:
+    --Do something.
+2022-06-26 02:25:44,200 -__main__[line: 103] -WARNING:
+    --Something maybe fail.
+2022-06-26 02:25:44,201 -__main__[line: 104] -ERROR:
+    --Some error find here.
+2022-06-26 02:25:44,202 -__main__[line: 105] -CRITICAL:
+    --Program crashed.
+2022-06-26 02:25:44,203 -__main__[line: 106] -INFO:
+    --Finish

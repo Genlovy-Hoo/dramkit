@@ -570,6 +570,39 @@ def make_dir(dir_path):
 def get_last_change_time(fpath, strformat='%Y-%m-%d %H:%M:%S'):
     '''获取文件的最后修改时间'''
     return timestamp2str(os.stat(fpath).st_mtime, strformat)
+
+
+def get_file_info(fpath):
+    '''获取文件信息'''
+    infos = os.stat(fpath)
+    r = {}
+    r['size_b'] = infos.st_size # 文件大小，字节
+    r['size_kb'] = r['size_b'] / 1024 # 文件大小，KB
+    r['size_mb'] = r['size_kb'] / 1024 # 文件大小，MB
+    r['size_gb'] = r['size_mb'] / 1024 # 文件大小，GB
+    r['modify_time'] = timestamp2str(infos.st_mtime) # 最后修改时间
+    return r
+
+
+def get_files_info(fpaths):
+    '''获取列表中的文件信息'''
+    infos = []
+    for fpath in fpaths:
+        info = get_file_info(fpath)
+        info['file'] = fpath
+        infos.append(info)
+    infos = pd.DataFrame(infos)
+    infos = infos[['file', 'modify_time', 'size_kb', 'size_mb', 'size_b', 'size_gb']]
+    return infos
+
+
+def get_files_info_dir(dir_path, **kwargs):
+    '''
+    | 获取dir_path文件夹中所有文件的信息
+    | \**kwargs为 :func:`dramkit.iotoos.get_all_paths` 接受的参数
+    '''
+    fpaths = get_all_paths(dir_path, **kwargs)
+    return get_files_info(fpaths)
     
     
 def py2pyc(py_path, pyc_path=None, force=True, del_py=False,
@@ -980,6 +1013,6 @@ def find_files_include_str(target_str, root_dir=None,
 
 
 if __name__ == '__main__':
-    fpath = './test/load_text_test_utf8.csv'
+    fpath = './_test/load_text_test_utf8.csv'
     data1 = load_text(fpath, encoding='gbk')
     data2 = load_csv(fpath, encoding='gbk')

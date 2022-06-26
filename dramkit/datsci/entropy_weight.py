@@ -78,9 +78,9 @@ def entropy_weight(df, neg_cols=[], score_type=None):
 
 
 if __name__ == '__main__':
-    # df = pd.read_csv('../test/EntValWeight_test.csv').dropna(how='any')
+    # df = pd.read_csv('../_test/EntValWeight_test.csv').dropna(how='any')
 
-    # df = pd.read_csv('../test/GDP2015.csv', encoding='gbk').set_index('地区')
+    # df = pd.read_csv('../_test/GDP2015.csv', encoding='gbk').set_index('地区')
     # indexs = ['GDP总量增速', '人口总量', '人均GDP增速', '地方财政收入总额',
     #           '固定资产投资', '社会消费品零售总额增速', '进出口总额',
     #           '城镇居民人均可支配收入', '农村居民人均可支配收入']
@@ -89,7 +89,7 @@ if __name__ == '__main__':
     print('熵值法有个明显缺点（原因是熵值法缺少了指标之间的横向比较？）：')
     print('比如下面这个例子中，从专家打分看，经济效应的重要性应高于社会效应，' + \
           '但是两者权重却相等')
-    data = pd.read_csv('../test/指标重要性专家评分表1.csv', encoding='gbk')
+    data = pd.read_csv('../_test/指标重要性专家评分表1.csv', encoding='gbk')
     indexs = ['经济效益', '社会效益', '生态效益']
     df = data.set_index('专家').reindex(columns=indexs).dropna(how='any')
     print(df)

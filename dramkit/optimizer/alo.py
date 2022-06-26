@@ -251,7 +251,7 @@ if __name__ == '__main__':
     parms_opter = {'opter_name': 'alo-test',
                    'popsize': 10, 'max_iter': 80}
     # logger = simple_logger()
-    logger = get_logger('./test/log/alo_test.txt', screen_show=True)
+    logger = get_logger('./_test/log/alo_test.txt', screen_show=True)
     # parms_log = {'logger': logger, 'nshow': 10}
     parms_log = {'logger': logger, 'nshow': 1}
 

@@ -985,7 +985,7 @@ if __name__ == '__main__':
                 xticks_rotation=45,
                 fontsize_label=15, fontsize_title=15, fontsize_legend=15,
                 fontsize_tick=15, markersize=10, logger=None,
-                fig_save_path='./test/plot_common.png')
+                fig_save_path='./_test/plot_common.png')
     plot_series(df, {'col1': ('.-r', None)},
                 # cols_to_label_info={'col1': [['label1', (1, -1), ('gv', 'r^'),
                 #             None], ['label2', (-1, 1), ('*', 'o'), None]]},
@@ -1006,7 +1006,7 @@ if __name__ == '__main__':
                 ylabels=['a', '2', None, False],
                 grids=False, figsize=(10, 8), title='test', n_xticks=10,
                 fontsize_label=30, markersize=10,
-                fig_save_path='./test/plot_common.png', logger=None)
+                fig_save_path='./_test/plot_common.png', logger=None)
 
     #%%
     df1 = pd.DataFrame({'col': [1, 10, 100, 10, 100, 10000, 100]})

@@ -226,10 +226,10 @@ def install_pkg(pkg_name, version=None, upgrade=False,
 
 
 if __name__ == '__main__':
-    fpath = '../test/中金所持仓排名_IF20100416.csv'
+    fpath = '../_test/中金所持仓排名_IF20100416.csv'
     datas = load_text_multi(fpath)
     
     
-    csv_path = '../test/510050_daily_pre_fq.csv'
+    csv_path = '../_test/510050_daily_pre_fq.csv'
     datemax, datemin, data = get_csv_df_colmaxmin(csv_path, 'date',
                                                   return_data=False)

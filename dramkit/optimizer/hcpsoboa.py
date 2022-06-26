@@ -225,7 +225,7 @@ if __name__ == '__main__':
                    'popsize': 30, 'max_iter': 500,
                    'p': 0.6, 'power_exponent': 0.1, 'sensory_modality': 0.01}
     # logger = simple_logger()
-    logger = get_logger('./test/log/hcpsoboa_test.txt', screen_show=True)
+    logger = get_logger('./_test/log/hcpsoboa_test.txt', screen_show=True)
     # parms_log = {'logger': logger, 'nshow': 10}
     parms_log = {'logger': logger, 'nshow': 100}
 

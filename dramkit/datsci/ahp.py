@@ -304,7 +304,7 @@ if __name__ == '__main__':
     print('w2: \n{}'.format(w2))
 
     # 案例2
-    data = pd.read_csv('../test/指标重要性专家评分表2.csv', encoding='gbk')
+    data = pd.read_csv('../_test/指标重要性专家评分表2.csv', encoding='gbk')
     data = data.set_index('专家')
     indexs = ['经济效益', '社会效益', '生态效益']
     df_score = data.reindex(columns=indexs).dropna(how='any')
