@@ -964,7 +964,7 @@ if __name__ == '__main__':
 
     #%%
     # 50ETF日线行情------------------------------------------------------------
-    fpath = '../_test/510050_daily_pre_fq.csv'
+    fpath = '../_test/510050.SH_daily_qfq.csv'
     his_data = load_csv(fpath)
     his_data.set_index('date', drop=False, inplace=True)
 
@@ -986,8 +986,8 @@ if __name__ == '__main__':
         print('极值点排列错误:', e)
 
     #%%
-    # 50ETF分钟行情------------------------------------------------------------
-    fpath = '../../../HooFin/data/Archive/index_minute/510050_1m.csv'
+    # 上证50分钟行情------------------------------------------------------------
+    fpath = '../../../FinFactory/data/archives/index/joinquant/000016.XSHG_1min.csv'
     his_data = load_csv(fpath)
     his_data['time'] = his_data['time'].apply(lambda x:
                     x.replace('-', '').replace(':', '').replace(' ', '')[:-2])

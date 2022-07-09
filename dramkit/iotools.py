@@ -16,6 +16,7 @@ import pandas as pd
 # from .logtools.utils_logger import logger_show
 from dramkit.gentools import isnull
 from dramkit.gentools import get_update_kwargs
+from dramkit.gentools import cut_range_to_subs
 from dramkit.logtools.utils_logger import logger_show
 from dramkit.logtools.utils_logger import close_log_file
 from dramkit.speedup.multi_thread import SingleThread
@@ -372,8 +373,45 @@ def load_csv(fpath, del_unname_cols=True, encoding=None,
     return data
 
 
-def load_csvs(fdir, kwargs_sort={}, kwargs_drop_dup={},
+def load_csvs(fpaths,
+              kwargs_sort={},
+              kwargs_drop_dup={},
               **kwargs_loadcsv):
+    '''
+    读取指定路径列表中所有的csv文件，整合到一个df里面
+
+    Parameters
+    ----------
+    fpaths : list
+        文件夹路径列表
+    kwargs_sort : dict
+        设置sort_values接受的排序参数
+    kwargs_drop_dup : dict
+        设置drop_duplicates接受的去重参数
+    **kwargs_loadcsv :
+        :func:`dramkit.iotools.load_csv` 接受的其它参数
+
+
+    :returns: `pandas.DataFrame` - 读取的数据
+    '''
+    data = []
+    for fpath in fpaths:
+        df = load_csv(fpath, **kwargs_loadcsv)
+        data.append(df)
+    data = pd.concat(data, axis=0)
+    if len(kwargs_sort) > 0:
+        _, kwargs_sort = get_update_kwargs('inplace', True, kwargs_sort)
+        data.sort_values(**kwargs_sort, inplace=True)
+    if len(kwargs_drop_dup) > 0:
+        _, kwargs_drop_dup = get_update_kwargs('inplace', True, kwargs_drop_dup)
+        data.drop_duplicates(**kwargs_drop_dup, inplace=True)
+    return data
+
+
+def load_csvs_dir(fdir,
+                  kwargs_sort={},
+                  kwargs_drop_dup={},
+                  **kwargs_loadcsv):
     '''
     读取指定文件夹中所有的csv文件，整合到一个df里面
 
@@ -393,18 +431,54 @@ def load_csvs(fdir, kwargs_sort={}, kwargs_drop_dup={},
     '''
     files = os.listdir(fdir)
     files = [os.path.join(fdir, x) for x in files if x[-4:] == '.csv']
-    data = []
-    for file in files:
-        df = load_csv(file, **kwargs_loadcsv)
-        data.append(df)
-    data = pd.concat(data, axis=0)
-    if len(kwargs_sort) > 0:
-        _, kwargs_sort = get_update_kwargs('inplace', True, kwargs_sort)
-        data.sort_values(**kwargs_sort, inplace=True)
-    if len(kwargs_drop_dup) > 0:
-        _, kwargs_drop_dup = get_update_kwargs('inplace', True, kwargs_drop_dup)
-        data.drop_duplicates(**kwargs_drop_dup, inplace=True)
+    data = load_csvs(files, kwargs_sort, kwargs_drop_dup,
+                     **kwargs_loadcsv)
     return data
+
+
+def cut_csv_by_maxline(fpath, max_line=10000,
+                       kwargs_loadcsv={},
+                       kwargs_tocsv={'index': None}):
+    '''
+    csv大文件分割，max_line指定子文件最大行数
+    '''
+    df = load_csv(fpath, **kwargs_loadcsv)
+    subs = cut_range_to_subs(df.shape[0], max_line)
+    for k in range(len(subs)):
+        i0, i1 = subs[k]
+        path_ = fpath[:-4]+'_'+str(k+1)+'.csv'
+        df_ = df.iloc[i0:i1, :].copy()
+        df_.to_csv(path_, **kwargs_tocsv)
+
+
+def cut_csv_by_year(fpath, tcol=None, name_last_year=False,
+                    kwargs_loadcsv={},
+                    kwargs_tocsv={'index': None},
+                    logger=None):
+    '''csv大文件分割，按年份，tcol指定时间列'''
+    
+    logger_show('数据读取...', logger)
+    df = load_csv(fpath, **kwargs_loadcsv)
+    if tcol is None:
+        for col in ['time', 'date']:
+            if col in df.columns:
+                tcol = col
+                break
+    logger_show('年份识别...', logger)
+    df['xxyearxx'] = pd.to_datetime(df[tcol]).apply(lambda x: x.year)
+    df['xxyearxx'] = df['xxyearxx'].astype(str)
+    years = df['xxyearxx'].unique().tolist()
+    years.sort()
+    for k in range(len(years)):
+        year = years[k]
+        logger_show('{}, 数据写入...'.format(year), logger)
+        df_ = df[df['xxyearxx'] == year].copy()
+        df_.drop('xxyearxx', axis=1, inplace=True)
+        path_ = fpath[:-4]+'_'+year+'.csv'
+        if k == len(years)-1:
+            if not name_last_year:
+                path_ = fpath
+        df_.to_csv(path_, **kwargs_tocsv)
 
 
 def load_excels(fdir, kwargs_sort={}, kwargs_drop_dup={},
@@ -932,8 +1006,10 @@ def cmdrun(cmd_str):
     
 def cmd_run_pys(py_list, logger=None):
     '''cmd命令批量运行py脚本，logger捕捉日志'''
-    for py in py_list:
-        logger_show(f'running {py} ...', logger)
+    for k in range(len(py_list)):
+        py = py_list[k]
+        logger_show('{}/{} running {} ...'.format(k+1, len(py_list), py),
+                    logger)
         if not os.path.exists(py):
             logger_show(f'{py} 不存在！', None, level='warn')
             continue
@@ -947,7 +1023,7 @@ def cmd_run_pys(py_list, logger=None):
                               encoding='gbk'
                               )
         logger_show(p.communicate()[0], logger)
-    close_log_file(logger)
+    # close_log_file(logger)
 
 
 def rename_files_in_dir(dir_path, func_rename):

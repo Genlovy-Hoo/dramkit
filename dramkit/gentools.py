@@ -2261,7 +2261,7 @@ if __name__ == '__main__':
     from finfactory.fintools.fintools import cci
 
     # 50ETF日线行情------------------------------------------------------------
-    fpath = './_test/510050_daily_pre_fq.csv'
+    fpath = './_test/510050.SH_daily_qfq.csv'
     data = load_csv(fpath)
     data.set_index('date', drop=False, inplace=True)
 

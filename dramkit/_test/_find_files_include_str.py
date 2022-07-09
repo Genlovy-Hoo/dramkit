@@ -10,10 +10,11 @@ if __name__ == '__main__':
 
     # logger = None
     logger = simple_logger()
-    target_str = 'logging'
-    root_dir = 'C:/ProgramData/Anaconda3/Lib/site-packages/tushare/'
-    root_dir = 'C:/Users/glhyy/anaconda3/Lib/site-packages/tushare/'
-    file_types = ['.py']
+    # target_str = 'utils_hoo'
+    target_str = 'HooFin'
+    # root_dir = 'D:/Genlovy_Hoo/HooProjects/FinFactory/'
+    root_dir = 'D:/Genlovy_Hoo/HooProjects/DramKit/'
+    file_types = ['.py', '.yml']
 
     files = find_files_include_str(target_str, root_dir, file_types,
                                    logger)

@@ -65,8 +65,8 @@ def diff_smooth(series, interval):
 if __name__ == '__main__':
     from dramkit import load_csv, plot_series
     
-    # 50ETF分钟行情------------------------------------------------------------
-    fpath = '../../../HooFin/data/Archive/index_minute/000016_1m.csv'
+    # 上证50分钟行情------------------------------------------------------------
+    fpath = '../../../FinFactory/data/archives/index/joinquant/000016.XSHG_1min.csv'
     his_data = load_csv(fpath).iloc[:-240, :]
     his_data['time'] = his_data['time'].apply(lambda x: x[11:])
     his_data.set_index('time', drop=False, inplace=True)

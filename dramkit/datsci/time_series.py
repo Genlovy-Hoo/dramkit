@@ -679,15 +679,15 @@ if __name__ == '__main__':
     from dramkit._tmp.utils_SignalDec import dec_emds, merge_high_modes
     from dramkit._tmp.utils_SignalDec import plot_modes
     from finfactory.fintools import get_yield_curve
-    from finfactory.load_his_data import load_index_futures_daily
+    from finfactory.load_his_data import load_future_daily_tushare
     from pprint import pprint
 
 
     strt_tm = time.time()
 
     #%%
-    code = 'IF9999'
-    data = load_index_futures_daily(code)
+    code = 'IF.CFX'
+    data = load_future_daily_tushare(code)
 
     data.set_index('date', drop=False, inplace=True)
 

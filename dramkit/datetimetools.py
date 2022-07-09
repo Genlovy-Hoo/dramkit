@@ -148,6 +148,15 @@ def today_month(joiner='-', forbid_joiners=['%']):
     return get_year_month(today_date(joiner, forbid_joiners))
 
 
+def get_quarter(date_time=None, joiner='Q'):
+    '''获取日期所在季度'''
+    if pd.isnull(date_time):
+        date_time = datetime.datetime.now()
+    t = pd.to_datetime(date_time)
+    y, q = t.year, t.quarter
+    return joiner.join([str(y), str(q)])
+
+
 def today_quarter(joiner='Q'):
     '''获取今日所在季度'''
     t = datetime.datetime.now()
@@ -378,7 +387,7 @@ def get_next_nth_inweekday(date=None, n=1):
     return date
 
 
-def cut_date(start_date, end_date, n=500):
+def cut_date(start_date, end_date, n=500, joiner=1):
     '''
     以间隔为n天划分start_date和end_date之间日期子集
 
@@ -390,6 +399,12 @@ def cut_date(start_date, end_date, n=500):
      ['20200211', '20200220'],
      ['20200221', '20200225']]
     '''
+    if joiner == 1:
+        _, joiner = get_date_format(start_date)
+        end_date = date_reformat(end_date, joiner)
+    else:
+        _, joiner = get_date_format(end_date)
+        start_date = date_reformat(start_date, joiner)
     dates = []
     tmp = start_date
     while tmp <= end_date:

@@ -23,7 +23,7 @@ def archive_data(df_new, df_old,
     合并df_new和df_old，再排序、去重、写入csv
     '''
     if isnull(df_old):
-        df = df_new
+        df = df_new.copy()
     else:
         df = pd.concat((df_old, df_new), axis=concat_axis)
     if isinstance(sort_cols, str):
@@ -230,6 +230,6 @@ if __name__ == '__main__':
     datas = load_text_multi(fpath)
     
     
-    csv_path = '../_test/510050_daily_pre_fq.csv'
+    csv_path = '../_test/510050.SH_daily_qfq.csv'
     datemax, datemin, data = get_csv_df_colmaxmin(csv_path, 'date',
                                                   return_data=False)

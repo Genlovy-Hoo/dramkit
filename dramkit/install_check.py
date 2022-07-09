@@ -5,6 +5,11 @@ from .logtools.logger_general import get_logger
 from .logtools.utils_logger import logger_show
 
 
+suscess_str = '''successfully installed, version: %s.
+      for more information, use `%s.pkg_info`
+''' % (pkg_info['__version__'], pkg_info['__pkgname__'])
+
+
 def install_check():
     '''
     检查是否成功安装dramkit
@@ -16,12 +21,6 @@ def install_check():
     
     try:
         from dramkit import load_csv
-        logger_show(
-            '''
-            successfully installed, version: %s.
-            for more information, use `%s.pkg_info`
-            '''
-            % (pkg_info['__version__'], pkg_info['__pkgname__']),
-            logger, 'info')
+        logger_show(suscess_str, logger, 'info')
     except:
         print('未成功安装dramkit, 请检查！')

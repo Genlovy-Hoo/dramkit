@@ -120,7 +120,7 @@ if __name__ == '__main__':
     from dramkit import load_csv
 
     fdir = '../_test/'
-    fpath = fdir + '510050_daily_pre_fq.csv'
+    fpath = fdir + '510050.SH_daily_qfq.csv'
 
     series = load_csv(fpath)['close']
     # series = series - series.mean() # 中心化
