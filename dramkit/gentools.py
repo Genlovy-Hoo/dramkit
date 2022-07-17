@@ -35,7 +35,7 @@ class StructureObject(object):
         self.__dirt_modify = dirt_modify
         
     def __setattr__(self, key, value):
-        _defaults = ['__dirt_modify', '__logger']
+        _defaults = ['__dirt_modify']
         _defaults = ['_StructureObject' + x for x in _defaults]
         if key in _defaults:
             self.__dict__[key] = value
@@ -49,10 +49,17 @@ class StructureObject(object):
 
     def __repr__(self):
         '''查看时以key: value格式打印'''
-        _defaults = ['__dirt_modify', '__logger']
+        _defaults = ['__dirt_modify']
         _defaults = ['_StructureObject' + x for x in _defaults]
         return ''.join('{}: {}\n'.format(k, v) for k, v in self.__dict__.items() \
                        if k not in _defaults)
+            
+    @property
+    def keys(self):
+        '''显示所有key'''
+        _defaults = ['__dirt_modify']
+        _defaults = ['_StructureObject' + x for x in _defaults]
+        return [x for x in self.__dict__.keys() if x not in _defaults]
     
     def set_key_value(self, key, value):
         self.__dict__[key] = value
@@ -1917,6 +1924,14 @@ def power(a, b, return_real=True):
     if return_real:
         c = c.real
     return c
+
+
+def log(x, bottom=None):
+    '''计算对数, bottom指定底'''
+    assert isinstance(bottom, (int, float))
+    if isnull(bottom):
+        return np.log(x)
+    return (np.log(x)) / (np.log(bottom)) # h换底公式
 
 
 def cal_pct(v0, v1, vv00=1, vv10=-1):
