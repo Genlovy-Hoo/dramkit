@@ -169,7 +169,7 @@ def load_text_multi(fpath, sep=',', encoding=None, del_first_col=False,
     return datas
 
 
-def find_pypkgs_str(tgt_str, pkgs=None):
+def _find_pypkgs_str(tgt_str, pkgs=None):
     if isnull(pkgs):
         pkgs = ['DramKit', 'FinFactory']
     if isinstance(pkgs, str):

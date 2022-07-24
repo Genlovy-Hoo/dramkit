@@ -2037,6 +2037,12 @@ def max_com_divisor_tad(l):
     return reduce(lambda x, y: mcd2_tad(x, y), l)
 
 
+def get_first_appear_index(series, values, ascending=False,
+                           return_iloc=False):
+    '''获取values中的值在series中第一次出现时的索引'''
+    raise NotImplementedError
+
+
 def get_appear_order(series, ascending=True):
     '''
     标注series (`pandas.Series` , 离散值)中重复元素是第几次出现，
@@ -2074,22 +2080,32 @@ def label_rep_index_str(df):
 
     Examples
     --------
-    >>> df = pd.DataFrame([1, 2, 3, 4, 5])
+    >>> df = pd.DataFrame([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
     >>> label_rep_index_str(df)
-       0
-    0  1
-    1  2
-    2  3
-    3  4
-    4  5
-    >>> df.index = [0, 0, 1, 2, 2]
+        0
+    0   1
+    1   2
+    2   3
+    3   4
+    4   5
+    5   6
+    6   7
+    7   8
+    8   9
+    9  10
+    >>> df.index = [0, 0, 0, 1, 1, 2, 2, 2, 2, 3]
     >>> label_rep_index_str(df)
-         0
-    0    1
-    0_2  2
-    1    3
-    2    4
-    2_2  5
+          0
+    0     1
+    0_2   2
+    0_3   3
+    1     4
+    1_2   5
+    2     6
+    2_2   7
+    2_3   8
+    2_4   9
+    3    10
     '''
     if df.index.duplicated().sum() == 0:
         return df

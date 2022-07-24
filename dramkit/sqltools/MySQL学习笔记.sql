@@ -3,6 +3,12 @@
 -- SQL语句正常以“;”结束，若以“\G”结束则可以显示更美观的结果
 --[]中为可选参数
 
+-- 登录
+mysql -h ip地址 -P 端口 -u 用户名 -p
+
+-- 写入文件
+查询语句 INTO OUTFILE 'xxx.csv'
+
 -- 改密码
 mysqladmin -u root -p password 新密码
 

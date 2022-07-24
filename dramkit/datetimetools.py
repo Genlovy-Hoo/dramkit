@@ -121,6 +121,15 @@ def get_date_format(date, joiners=[' ', '-', '/', '*', '#', '@', '.', '_']):
     return '未知日期格式', None
 
 
+def is_datetime(x):
+    '''判断x是否为时间日期'''
+    try:
+        _ = pd.to_datetime(x)
+        return True
+    except:
+        return False
+
+
 def get_year_month(date):
     '''
     | 提取date中的年月

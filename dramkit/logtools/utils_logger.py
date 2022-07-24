@@ -4,6 +4,21 @@ import logging
 from pandas import isnull
 
 
+# 日志格式
+# formatter = logging.Formatter(
+# '''%(asctime)s -%(filename)s[line: %(lineno)d] -%(levelname)s:
+# --%(message)s''')
+# formatter = logging.Formatter(
+# '''%(asctime)s -%(name)s[line: %(lineno)d] -%(levelname)s:
+# --%(message)s''')
+# formatter = logging.Formatter(
+# '''%(asctime)s -%(levelname)s:
+# --%(message)s''')
+formatter = logging.Formatter(
+'''%(message)s
+    [%(levelname)s: %(asctime)s]''')
+
+
 def logger_show(log_str, logger=None, level='info'):
     '''
     显示|记录日志信息

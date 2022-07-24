@@ -616,12 +616,36 @@ def del_specified_subdir(dir_path, del_names, recu_sub_dir=True):
     
 
 def copy_file():
-	'''复制文件，待实现'''
+	'''复制文件'''
 	raise NotImplementedError
 
 
 def copy_dir():
-    '''复制文件夹，待实现'''
+    '''复制文件夹'''
+    raise NotImplementedError
+    
+    
+def copy_dir_structure(src_dir, tgt_dir,
+                       ext=None, recu_sub_dir=True):
+    '''复制文件夹结构，不复制里面的文件'''
+    subdirs = get_all_paths(src_dir, ext=ext, only_dir=True,
+                            abspath=True, recu_sub_dir=recu_sub_dir)
+    abs_dir_path = os.path.abspath(src_dir)
+    abs_tgt_dir = os.path.abspath(tgt_dir)
+    src_name = os.path.split(abs_dir_path)[-1]
+    tgt_name = os.path.split(abs_tgt_dir)[-1]
+    if src_name != tgt_name:
+        abs_tgt_dir = os.path.abspath(os.path.join(abs_tgt_dir, src_name))
+    tgt_dirs = [x.replace(abs_dir_path, abs_tgt_dir) for x in subdirs]
+    for tgt in tgt_dirs:
+        make_dir(tgt)
+    
+    
+def copy_specified_type_files(dir_path,
+                              type_list,
+                              target_dir,
+                              recu_sub_dir=True):
+    '''复制dir_path文件夹下所有类型在type_list中的文件到target_dir中'''
     raise NotImplementedError
     
     
@@ -632,6 +656,14 @@ def move_file():
     
 def move_dir():
     '''移动文件夹，待实现'''
+    raise NotImplementedError
+    
+    
+def move_specified_type_files(dir_path,
+                              type_list,
+                              target_dir,
+                              recu_sub_dir=True):
+    '''移动dir_path文件夹下所有类型在type_list中的文件到target_dir中'''
     raise NotImplementedError
     
     

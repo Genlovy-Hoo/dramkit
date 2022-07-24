@@ -4,6 +4,7 @@ import os
 import logging
 # from .utils_logger import remove_handlers
 from dramkit.logtools.utils_logger import remove_handlers
+from dramkit.logtools.utils_logger import formatter
 
 
 def get_logger(fpath=None, fmode='w', screen_show=True):
@@ -44,14 +45,6 @@ def get_logger(fpath=None, fmode='w', screen_show=True):
 
     # 预先删除logger中已存在的handlers
     logger = remove_handlers(logger)
-
-    # 日志格式
-    # formatter = logging.Formatter(
-    # '''%(asctime)s -%(filename)s[line: %(lineno)d] -%(levelname)s:
-    # --%(message)s''')
-    formatter = logging.Formatter(
-    '''%(asctime)s -%(name)s[line: %(lineno)d] -%(levelname)s:
-    --%(message)s''')
 
     if fpath is not None:
         if fmode == 'w' and os.path.exists(fpath):

@@ -4,6 +4,7 @@ import logging
 from logging.handlers import TimedRotatingFileHandler
 # from .utils_logger import remove_handlers
 from dramkit.logtools.utils_logger import remove_handlers
+from dramkit.logtools.utils_logger import formatter
 
 
 def get_logger(fpath=None, when='S', interval=3, nfile=3,
@@ -46,11 +47,6 @@ def get_logger(fpath=None, when='S', interval=3, nfile=3,
 
     # 预先删除logger中已存在的handlers
     logger = remove_handlers(logger)
-
-    # 日志格式
-    formatter = logging.Formatter(
-    '''%(asctime)s -%(filename)s[line: %(lineno)d] -%(levelname)s:
-    --%(message)s''')
 
     if fpath is not None:
         # 日志文件保存，FileHandler
