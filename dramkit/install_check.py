@@ -23,4 +23,6 @@ def install_check():
         from dramkit import load_csv
         logger_show(suscess_str, logger, 'info')
     except:
+        import traceback
+        print(traceback.format_exc())
         print('未成功安装dramkit, 请检查！')
