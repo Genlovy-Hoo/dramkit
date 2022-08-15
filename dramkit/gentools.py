@@ -6,6 +6,7 @@ General toolboxs
 
 import sys
 import time
+import copy
 import inspect
 import numpy as np
 import pandas as pd
@@ -61,6 +62,15 @@ class StructureObject(object):
         _defaults = ['_StructureObject' + x for x in _defaults]
         return [x for x in self.__dict__.keys() if x not in _defaults]
     
+    @property
+    def items(self):
+        _defaults = ['__dirt_modify']
+        _defaults = ['_StructureObject' + x for x in _defaults]
+        for x in self.__dict__.keys():
+            if not x in _defaults:
+                d = (x, eval('self.{}'.format(x)))
+                yield d
+    
     def set_key_value(self, key, value):
         self.__dict__[key] = value
     
@@ -68,6 +78,18 @@ class StructureObject(object):
         '''通过dict批量增加属性变量'''
         assert isinstance(d, dict), '必须为dict格式'
         self.__dict__.update(d)
+        
+    def merge(self, o):
+        '''从另一个对象中合并属性和值'''
+        assert isinstance(o, (list, tuple, type(self)))
+        if isinstance(o, type(self)):
+            o = [o]
+        for x in o:
+            for key in x.keys:
+                exec('self.set_key_value(key, x.{})'.format(key))
+    
+    def copy(self):
+        return copy.deepcopy(self)
     
     def pop(self, key):
         '''删除属性变量key，有返回'''

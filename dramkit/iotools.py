@@ -1079,8 +1079,12 @@ def rename_files_in_dir(dir_path, func_rename):
 
 def find_files_include_str(target_str, root_dir=None,
                            file_types=None, logger=None):
-    '''
+    '''    
     在指定目录下的文件中，查找那些文件里面包含了目标字符串
+    
+    TODO
+    ----
+    增加排除文件类型设置
 
     Parameters
     ----------
