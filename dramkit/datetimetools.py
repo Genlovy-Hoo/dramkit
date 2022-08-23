@@ -4,7 +4,7 @@ import re
 import time
 import datetime
 import pandas as pd
-from chinese_calendar import is_workday
+from chinese_calendar import is_workday, get_workdays
 
 
 def str2datetime(tstr, strformat='%Y-%m-%d'):
@@ -324,6 +324,18 @@ def isworkday_chncal(date=None):
     date = date_reformat(date, '')
     date_dt = datetime.datetime.strptime(date, '%Y%m%d')
     return is_workday(date_dt)
+
+
+def get_work_dates(start_date, end_date=None):
+    '''利用chinese_calendar获取指定范围内的工作日列表'''
+    _, joiner = get_date_format(start_date)
+    if pd.isnull(end_date):
+        end_date = today_date(joiner=joiner)
+    start_date = pd.to_datetime(start_date)
+    end_date = pd.to_datetime(end_date)
+    dates = get_workdays(start_date, end_date)
+    dates = [x.strftime(joiner.join(['%Y', '%m', '%d'])) for x in dates]
+    return dates
 
 
 def get_recent_workday_chncal(date=None, dirt='post'):

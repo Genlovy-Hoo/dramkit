@@ -5,19 +5,19 @@ from dramkit.iotools import find_files_include_str
 
 
 if __name__ == '__main__':
-    import time
-    strt_tm = time.time()
+    from dramkit import TimeRecoder
+    tr = TimeRecoder()
 
     # logger = None
     logger = simple_logger()
-    # target_str = 'utils_hoo'
-    target_str = 'HooFin'
-    # root_dir = 'D:/Genlovy_Hoo/HooProjects/FinFactory/'
+    target_str = 'chinese_calendar'
+    # target_str = "f'"
+    root_dir = 'D:/Genlovy_Hoo/HooProjects/FinFactory/'
     root_dir = 'D:/Genlovy_Hoo/HooProjects/DramKit/'
-    file_types = ['.py', '.yml']
+    file_types = ['.py']
 
     files = find_files_include_str(target_str, root_dir, file_types,
                                    logger)
 
 
-    print('used time: %ss.'%(round(time.time()-strt_tm, 6)))
+    tr.used()

@@ -6,6 +6,7 @@ from .install_check import install_check
 from .gentools import isnull
 from .gentools import log_used_time
 from .gentools import StructureObject
+from .gentools import TimeRecoder
 
 from .iotools import load_csv
 from .iotools import load_text, write_txt

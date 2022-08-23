@@ -1043,9 +1043,9 @@ def cmd_run_pys(py_list, logger=None):
         logger_show('{}/{} running {} ...'.format(k+1, len(py_list), py),
                     logger)
         if not os.path.exists(py):
-            logger_show(f'{py} 不存在！', None, level='warn')
+            logger_show('%s 不存在！'%py, None, level='warn')
             continue
-        # cmd_str = f'python {file}'
+        # cmd_str = 'python {}'.format(file)
         # os.system(cmd_str)
         # subprocess.call(cmd_str)
         p = subprocess.Popen(['python', py],

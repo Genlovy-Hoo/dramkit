@@ -8,6 +8,7 @@ import sys
 import time
 import copy
 import inspect
+import traceback
 import numpy as np
 import pandas as pd
 from functools import reduce, wraps
@@ -17,6 +18,48 @@ from dramkit.speedup.multi_thread import SingleThread
 
 
 PYTHON_VERSION = float(sys.version[:3])
+
+
+class TimeRecoder(object):
+    '''
+    运行时间记录器
+    
+    Examples
+    --------
+    >>> tr = TimeRecoder()
+    >>> time.sleep(5)
+    >>> tr.useds()
+    >>> time.sleep(60)
+    >>> tr.usedm()
+    >>> time.sleep(5)
+    >>> tr.used()
+    '''
+    
+    def __init__(self):
+        self.strt_tm = time.time()
+        
+    def used(self, logger=None):
+        s = time.time() - self.strt_tm
+        if s < 60:
+            s = round(s, 6)
+            logger_show('used time: %ss.'%s, logger)
+        elif s < 3600:
+            m, s = divmod(s, 60)
+            logger_show('used time: %sm,%ss.'%(m, round(s, 6)),
+                        logger)
+        else:
+            h, s = divmod(s, 3600)
+            m, s = divmod(s, 60)
+            logger_show('used time: %sh,%sm,%ss.'%(h, m, round(s, 6)),
+                        logger)
+    
+    def useds(self, logger=None):
+        s = round(time.time()-self.strt_tm, 6)
+        logger_show('used time: %ss.'%s, logger)
+        
+    def usedm(self, logger=None):
+        m = round((time.time()-self.strt_tm)/60, 6)
+        logger_show('used time: %sm.'%m, logger)
 
 
 class StructureObject(object):
@@ -186,8 +229,9 @@ def try_repeat_run(n_max_run=3, logger=None, sleep_seconds=0,
                         return result
                     except:
                         if n_run == n_max_run:
+                            logger_show(traceback.format_exc(), logger)
                             logger_show('`%s`运行失败，共运行了%s次。'%(func.__name__, n_run),
-                                        logger, 'error')
+                                        logger, 'error')                            
                             return
                         else:
                             if sleep_seconds > 0:
@@ -203,6 +247,7 @@ def try_repeat_run(n_max_run=3, logger=None, sleep_seconds=0,
                         logger_show('`%s`第%s运行：成功。'%(func.__name__, n_run),
                                     logger, 'info')
                     except:
+                        logger_show(traceback.format_exc(), logger)
                         logger_show('`%s`第%s运行：失败。'%(func.__name__, n_run),
                                     logger, 'error')
                         result = None
