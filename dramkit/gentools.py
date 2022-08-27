@@ -52,14 +52,18 @@ class TimeRecoder(object):
             m, s = divmod(s, 60)
             logger_show('used time: %sh,%sm,%ss.'%(h, m, round(s, 6)),
                         logger)
+        return s
     
     def useds(self, logger=None):
         s = round(time.time()-self.strt_tm, 6)
         logger_show('used time: %ss.'%s, logger)
+        return s
         
     def usedm(self, logger=None):
-        m = round((time.time()-self.strt_tm)/60, 6)
+        s = time.time()-self.strt_tm
+        m = round(s/60, 6)
         logger_show('used time: %sm.'%m, logger)
+        return s
 
 
 class StructureObject(object):
@@ -352,6 +356,13 @@ def print_used_time(func):
         print('function `%s` run time: %ss.'%(func.__name__, round(t-t0, 6)))
         return result
     return timer
+
+
+@print_used_time
+def func_runtime_test(func, n=10000, *args, **kwargs):
+    '''函数性能（运行时间）测试，n设置测试运行测试'''
+    for _ in range(n):
+        func(*args, **kwargs)
 
 
 def get_update_kwargs(key, arg, kwargs, arg_default=None,

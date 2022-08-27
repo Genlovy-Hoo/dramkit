@@ -45,4 +45,6 @@ setup(name=__title__,
 				'dramkit.backpacks',
 				'dramkit.pystyles',
                 'dramkit.other',
-                'dramkit._tmp'])
+                'dramkit._tmp'
+                ]
+      )

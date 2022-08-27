@@ -31,7 +31,7 @@ def plot_scatter(data, colx, coly, reg_type=None, dotstyl='.k', regstyl='-b',
             lblstr = 'y = {a}x {b}'.format(
                      a=round(mdl.coef_[0], 4), b=round(mdl.intercept_, 4))
         ax.plot(df[colx], df['yreg'], regstyl, label=lblstr)
-    plt.legend(loc=0, fontsize=fontsize)
+        plt.legend(loc=0, fontsize=fontsize)
     if title:
         plt.title(title, fontsize=fontsize)
     xlabel = colx if xlabel is None else xlabel

@@ -4,7 +4,7 @@ import re
 import time
 import datetime
 import pandas as pd
-from chinese_calendar import is_workday, get_workdays
+from chncal import is_workday, get_workdays
 
 
 def str2datetime(tstr, strformat='%Y-%m-%d'):
@@ -279,7 +279,7 @@ def get_dates_between(date1, date2, keep1=False, keep2=True,
     获取date1到date2之间的日期列表，keep1和keep2设置结果是否保留date1和date2
 
 
-    .. note:: 是否为workday用了chinese_calendar包，若chinese_calendar库没更新，可能导致结果不准确
+    .. note:: 是否为workday用了chncal包，若chncal库没更新，可能导致结果不准确
     '''
     _, joiner1 = get_date_format(date1)
     _, joiner2 = get_date_format(date2)
@@ -318,7 +318,7 @@ def get_dayofyear(date=None):
 
 
 def isworkday_chncal(date=None):
-    '''利用chinese_calendar库判断date（str格式）是否为工作日'''
+    '''利用chncal库判断date（str格式）是否为工作日'''
     if pd.isnull(date):
         date = today_date()
     date = date_reformat(date, '')
@@ -326,8 +326,8 @@ def isworkday_chncal(date=None):
     return is_workday(date_dt)
 
 
-def get_work_dates(start_date, end_date=None):
-    '''利用chinese_calendar获取指定范围内的工作日列表'''
+def get_work_dates_chncal(start_date, end_date=None):
+    '''利用chncal获取指定范围内的工作日列表'''
     _, joiner = get_date_format(start_date)
     if pd.isnull(end_date):
         end_date = today_date(joiner=joiner)
@@ -343,7 +343,7 @@ def get_recent_workday_chncal(date=None, dirt='post'):
     若date为工作日，则返回，否则返回下一个(post)或上一个(pre)工作日
 
 
-    .. note:: 若chinese_calendar库没更新，可能导致结果不准确
+    .. note:: 若chncal库没更新，可能导致结果不准确
     '''
     if pd.isnull(date):
         date = today_date()
@@ -362,7 +362,7 @@ def get_next_nth_workday_chncal(date=None, n=1):
     | 若n为0，直接返回date
     
     
-    .. note:: 若chinese_calendar库没更新，可能导致结果不准确
+    .. note:: 若chncal库没更新，可能导致结果不准确
     '''
     if pd.isnull(date):
         date = today_date()

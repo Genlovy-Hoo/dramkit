@@ -6,12 +6,29 @@ Uncommonly used utility functions
 
 import os
 import sys
-import time
 import subprocess
 import pandas as pd
 from dramkit.gentools import cut_df_by_con_val, isnull
 from dramkit.iotools import read_lines, load_csv, logger_show
 from dramkit.iotools import find_files_include_str
+
+from dramkit.other.langconv import Converter
+
+
+def traditional2simplified(content):
+    '''
+    | 繁体转简体
+    | https://github.com/skydark/nstools
+    | https://yang-roc.blog.csdn.net/article/details/110952091
+    '''
+    line = Converter('zh-hans').convert(content)
+    return line
+ 
+    
+def simplified2traditional(content):
+    '''简体转繁体'''
+    line = Converter('zh-hant').convert(content)
+    return line
 
 
 def archive_data(df_new, df_old,
@@ -172,7 +189,7 @@ def load_text_multi(fpath, sep=',', encoding=None, del_first_col=False,
 
 def _find_pypkgs_str(tgt_str, pkgs=None):
     if isnull(pkgs):
-        pkgs = ['DramKit', 'FinFactory']
+        pkgs = ['DramKit', 'FinFactory', 'ChnCal']
     if isinstance(pkgs, str):
         pkgs = [pkgs]
     pkg_paths = [x for x in sys.path if any([y in x for y in pkgs])]
