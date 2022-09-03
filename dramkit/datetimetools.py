@@ -81,6 +81,17 @@ def datetime_now(strformat=None):
     return timestamp2str(t, strformat=strformat)
 
 
+def time_add(t, seconds=0, minutes=0, hours=0, days=0,
+             return_format=None):
+    '''时间运算'''
+    if pd.isnull(return_format):
+        return_format = '%Y-%m-%d %H:%M:%S'
+    seconds = seconds + 60*minutes + 60*60*hours + 60*60*24*days
+    tdelta = datetime.timedelta(seconds=seconds)
+    tnew = pd.to_datetime(t) + tdelta
+    return tnew.strftime(return_format)
+
+
 def get_date_format(date, joiners=[' ', '-', '/', '*', '#', '@', '.', '_']):
     '''
     判断日期格式位，返回日期位数和连接符

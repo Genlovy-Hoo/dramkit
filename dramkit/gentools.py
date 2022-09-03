@@ -866,20 +866,20 @@ def _replace_repeat_iter(series, val, val0, gap=None):
 
     k = 0
     while k < df.shape[0]:
-        if df.loc[df.index[k], col] == val:
+        if df.loc[k, col] == val:
             k1 = k + 1
 
             if gap is None:
                 while k1 < df.shape[0] and \
-                                    df.loc[df.index[k1], col] in [val, val0]:
-                    if df.loc[df.index[k1], col] == val:
-                        df.loc[df.index[k1], col] = val0
+                                    df.loc[k1, col] in [val, val0]:
+                    if df.loc[k1, col] == val:
+                        df.loc[k1, col] = val0
                     k1 += 1
             else:
                 while k1 < min(k+gap, df.shape[0]) and \
-                                    df.loc[df.index[k1], col] in [val, val0]:
-                    if df.loc[df.index[k1], col] == val:
-                        df.loc[df.index[k1], col] = val0
+                                    df.loc[k1, col] in [val, val0]:
+                    if df.loc[k1, col] == val:
+                        df.loc[k1, col] = val0
                     k1 += 1
             k =  k1
 
@@ -925,10 +925,10 @@ def _replace_repeat_pd(series, val, val0):
     df['pre_gap'] = df[df['val_or_gap'] == 1]['gap1'].shift(1)
     df['pre_gap'] = df['pre_gap'].fillna(method='ffill')
     k = 0
-    while k < df.shape[0] and df.loc[df.index[k], 'is_val'] != 1:
+    while k < df.shape[0] and df.loc[k, 'is_val'] != 1:
         k += 1
     if k < df.shape[0]:
-        df.loc[df.index[k], 'pre_gap'] = 1
+        df.loc[k, 'pre_gap'] = 1
     df['pre_gap'] = df['pre_gap'].fillna(0).astype(int)
     df['keep1'] = (df['is_val'] + df['pre_gap']).map({0: 0, 1: 0, 2: 1})
     df['to_rplc'] = (df['keep1'] + df['is_val']).map({2: 0, 1: 1, 0: 0})

@@ -451,7 +451,8 @@ def cut_csv_by_maxline(fpath, max_line=10000,
         df_.to_csv(path_, **kwargs_tocsv)
 
 
-def cut_csv_by_year(fpath, tcol=None, name_last_year=False,
+def cut_csv_by_year(fpath, tcol=None,
+                    name_last_year=False,
                     kwargs_loadcsv={},
                     kwargs_tocsv={'index': None},
                     logger=None):

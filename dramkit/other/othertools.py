@@ -192,7 +192,7 @@ def _find_pypkgs_str(tgt_str, pkgs=None):
         pkgs = ['DramKit', 'FinFactory', 'ChnCal']
     if isinstance(pkgs, str):
         pkgs = [pkgs]
-    pkg_paths = [x for x in sys.path if any([y in x for y in pkgs])]
+    pkg_paths = [x for x in sys.path if any([y in os.path.basename(x) for y in pkgs])]
     files = []
     for fdir in pkg_paths:
         files.append(find_files_include_str(tgt_str, fdir, '.py'))
