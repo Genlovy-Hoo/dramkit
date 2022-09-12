@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
     # logger
     # logger = simple_logger()
-    logger = get_logger('./log/heuristic-test.txt', screen_show=True)
+    logger = get_logger('./log/heuristic-test.txt')
     # parms_log = {'logger': logger, 'nshow': 10}
     parms_log = {'logger': logger, 'nshow': max_iter}
 

@@ -224,7 +224,7 @@ if __name__ == '__main__':
                    'popsize': 20, 'max_iter': 1000,
                    'pa': 0.2, 'beta': 1.5, 'alpha': 0.01}
     # logger = simple_logger()
-    logger = get_logger('./_test/log/cs_test.txt', screen_show=True)
+    logger = get_logger('./_test/log/cs_test.txt')
     # parms_log = {'logger': logger, 'nshow': 10}
     parms_log = {'logger': logger, 'nshow': 100}
 

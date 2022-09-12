@@ -126,7 +126,7 @@ def load_yml(fpath, **kwargs_open):
     
     
 def write_yml():
-    '''写入yml文件，待实现'''
+    '''写入yml文件'''
     raise NotImplementedError
 
 
@@ -171,7 +171,7 @@ def load_json(fpath, encoding=None, logger=None):
     return data_json
 
 
-def write_json(data, fpath, encoding=None):
+def write_json(data, fpath, encoding=None, mode='w', **kwargs):
     '''
     把data写入json格式文件
 
@@ -184,7 +184,7 @@ def write_json(data, fpath, encoding=None):
     encoding : str, None
         文件编码格式
     '''
-    with open(fpath, 'w', encoding=encoding) as f:
+    with open(fpath, mode=mode, encoding=encoding, **kwargs) as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
 
@@ -616,47 +616,82 @@ def del_specified_subdir(dir_path, del_names, recu_sub_dir=True):
         shutil.rmtree(subdir)
     
 
-def copy_file():
-	'''复制文件'''
-	raise NotImplementedError
-
-
-def copy_dir():
-    '''复制文件夹'''
+def copy_file_to_dir(src_path, tgt_dir, force=True):
+    '''复制文件'''
+    make_dir(tgt_dir)
+    if not force:
+        tgt_path = os.path.join(tgt_dir,
+                                   os.path.basename(src_path))
+        if os.path.exists(tgt_path):
+            return
+    if os.path.exists(tgt_dir) and not os.path.isdir(tgt_dir):
+        raise ValueError('目标路径不是文件夹，请检查！')
+    shutil.copy(src_path, tgt_dir)
+    
+    
+def copy_file_to_file(src_path, tgt_path, force=True):
+    '''文件复制（重命名）'''
     raise NotImplementedError
     
     
-def copy_dir_structure(src_dir, tgt_dir,
-                       ext=None, recu_sub_dir=True):
-    '''复制文件夹结构，不复制里面的文件'''
-    subdirs = get_all_paths(src_dir, ext=ext, only_dir=True,
-                            abspath=True, recu_sub_dir=recu_sub_dir)
+def _get_copy_abs_tgt_dir(src_dir, tgt_dir, keep_root_same):
     abs_dir_path = os.path.abspath(src_dir)
     abs_tgt_dir = os.path.abspath(tgt_dir)
     src_name = os.path.split(abs_dir_path)[-1]
     tgt_name = os.path.split(abs_tgt_dir)[-1]
-    if src_name != tgt_name:
+    if src_name != tgt_name and keep_root_same:
         abs_tgt_dir = os.path.abspath(os.path.join(abs_tgt_dir, src_name))
+    return abs_tgt_dir
+    
+    
+def copy_dir_structure(src_dir, tgt_dir,
+                       ext=None, recu_sub_dir=True,
+                       keep_root_same=True,
+                       return_map=False):
+    '''复制文件夹结构，不复制里面的文件'''
+    subdirs = get_all_paths(src_dir, ext=ext, only_dir=True,
+                            abspath=True, recu_sub_dir=recu_sub_dir)
+    abs_dir_path = os.path.abspath(src_dir)
+    abs_tgt_dir = _get_copy_abs_tgt_dir(src_dir, tgt_dir, keep_root_same)
     tgt_dirs = [x.replace(abs_dir_path, abs_tgt_dir) for x in subdirs]
     for tgt in tgt_dirs:
         make_dir(tgt)
-    
-    
-def copy_specified_type_files(dir_path,
-                              type_list,
-                              target_dir,
-                              recu_sub_dir=True):
-    '''复制dir_path文件夹下所有类型在type_list中的文件到target_dir中'''
-    raise NotImplementedError
+    if return_map:
+        return dict(zip(subdirs, tgt_dirs))
+    return
+
+
+def copy_dir(src_dir, tgt_dir, ext_file=None, ext_dir=None,
+             recu_sub_dir=True, force=True, keep_root_same=True,
+             keep_empty_dir_when_not_recu=False):
+    '''复制整个文件夹及其内容'''
+    if not recu_sub_dir and not keep_empty_dir_when_not_recu:
+        fpaths = get_all_paths(src_dir, ext=ext_file, include_dir=False,
+                               abspath=True, recu_sub_dir=False,
+                               only_dir=False)
+        abs_tgt_dir = _get_copy_abs_tgt_dir(src_dir, tgt_dir, keep_root_same)
+        for fpath in fpaths:
+            copy_file_to_dir(fpath, abs_tgt_dir, force=force)
+    else:
+        dir_map = copy_dir_structure(src_dir, tgt_dir, ext=ext_dir,
+                                     recu_sub_dir=recu_sub_dir,
+                                     keep_root_same=keep_root_same,
+                                     return_map=True)
+        fpaths = get_all_paths(src_dir, ext=ext_file, include_dir=False,
+                               abspath=True, recu_sub_dir=recu_sub_dir,
+                               only_dir=False)
+        for fpath in fpaths:
+            tdir = dir_map[os.path.dirname(fpath)]
+            copy_file_to_dir(fpath, tdir, force=force)
     
     
 def move_file():
-    '''移动文件，待实现'''
+    '''移动文件'''
     raise NotImplementedError
     
     
 def move_dir():
-    '''移动文件夹，待实现'''
+    '''移动文件夹'''
     raise NotImplementedError
     
     
@@ -939,7 +974,7 @@ def zip_fpaths(zip_path, fpaths, **kwargs):
 
 
 def zip_extract(fzip, to_dir=None, replace_exists=True):
-    '''用zipfile解压文件，待实现'''
+    '''用zipfile解压文件'''
     raise NotImplementedError
 
 
@@ -1028,17 +1063,19 @@ def zip_fpaths_7z(zip_path, fpaths, mode='zip', pwd=None, keep_zip_new=True):
 
 
 def extract_7z():
-    '''7z命令解压文件，待实现'''
+    '''7z命令解压文件'''
     raise NotImplementedError
 
 
 def cmdrun(cmd_str):
-    '''调用cmd执行cmd_str命令，待实现'''
+    '''调用cmd执行cmd_str命令'''
     raise NotImplementedError
     
     
 def cmd_run_pys(py_list, logger=None):
     '''cmd命令批量运行py脚本，logger捕捉日志'''
+    if not isinstance(py_list, (list, tuple)):
+        py_list = [py_list]
     for k in range(len(py_list)):
         py = py_list[k]
         logger_show('{}/{} running {} ...'.format(k+1, len(py_list), py),

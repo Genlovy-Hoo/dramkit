@@ -31,8 +31,8 @@ from chncal.constants_wuxing import tgwx, dzwx, tgdznywx
 # TG = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸']
 # # 地支
 # DZ = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥']
-# # 属相
-# SX = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪']
+# 属相
+SX = ['鼠', '牛', '虎', '兔', '龙', '蛇', '马', '羊', '猴', '鸡', '狗', '猪']
 # k1, k2 = 0, 0
 # TGDZ = [TG[k1]+DZ[k2]+'('+SX[k2]+')']
 # while not (k1 == len(TG)-1 and  k2 == len(DZ)-1):
@@ -626,3 +626,23 @@ def lun2gen(date, run=False):
         return lun_gen[date]
     else:
         raise ValueError('未找到对应农历日期，请检查输入参数！')
+        
+        
+def get_age_by_suxing(suxing, return_n=10):
+    '''根据属性获取可能年龄'''
+    assert isinstance(suxing, str) and suxing in SX
+    base_year, base_sx = 2022, '虎'
+    res = {}
+    n = 0
+    year, idx = base_year, SX.index(base_sx)
+    while n < return_n:
+        if SX[idx] == suxing:
+            res[year] = base_year-year
+            n += 1
+        year -= 1
+        if idx == 0:
+            idx = 11
+        else:
+            idx -= 1    
+    return res
+    

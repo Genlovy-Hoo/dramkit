@@ -236,7 +236,7 @@ if __name__ == '__main__':
                    'popsize': 10, 'max_iter': 500,
                    'beta': 1.5, 'alpha': 0.01}
     # logger = simple_logger()
-    logger = get_logger('./_test/log/hho_test.txt', screen_show=True)
+    logger = get_logger('./_test/log/hho_test.txt')
     # parms_log = {'logger': logger, 'nshow': 10}
     parms_log = {'logger': logger, 'nshow': 1}
 

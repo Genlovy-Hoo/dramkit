@@ -463,13 +463,16 @@ def lgb_cv_hoo(X_train, y_train, objective=None,
     return mdls, evals_results
 
 
-def lgb_predict(mdl, X, p_cut=0.5):
+def lgb_predict(mdl, X, p_cut=0.5, rate1=None):
     '''
     | lgb模型预测
     | mdl为训练好的模型或本地模型路径，X为待预测输入
     | p_cut为二分类确定标签时的概率切分点
+    | rate1为二分类确定标签时为1的比例
     '''
-
+    
+    assert isnull(p_cut) or isnull(rate1)
+    
     # 模型导入
     if isinstance(mdl, str):
         if os.path.exists(mdl):
@@ -493,6 +496,8 @@ def lgb_predict(mdl, X, p_cut=0.5):
     # 二分类预测
     elif mdl.params['objective'] in ['binary']:
         label_pre = np.zeros(mdl_output.shape)
+        if not isnull(rate1):
+            p_cut = np.quantile(mdl_output, 1-rate1)
         label_pre[np.where(mdl_output >= p_cut)] = 1
         return label_pre, mdl_output
 

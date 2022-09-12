@@ -3,12 +3,13 @@
 import os
 import logging
 from logging.handlers import RotatingFileHandler
-# from .utils_logger import remove_handlers
-from dramkit.logtools.utils_logger import remove_handlers
+from dramkit.logtools.utils_logger import _pre_get_logger
+from dramkit.logtools.utils_logger import _get_level
 from dramkit.logtools.utils_logger import formatter
 
 
-def get_logger(fpath=None, fmode='w', max_kb=128, nfile=3, screen_show=True):
+def get_logger(fpath=None, fmode='w', max_kb=128, nfile=3,
+               logname=None, level=None, screen_show=True):
     '''
     滚动日志记录(按文件大小)，将日志信息滚动保存在文件或在屏幕中打印
 
@@ -37,15 +38,7 @@ def get_logger(fpath=None, fmode='w', max_kb=128, nfile=3, screen_show=True):
     日志文件按时间滚动: :func:`dramkit.logtools.logger_timedrotating.get_logger`
     '''
 
-    if fpath is None and not screen_show:
-        raise ValueError('`fpath`和`screen_show`必须至少有一个为真！')
-
-    # 准备日志记录器logger
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.DEBUG)
-
-    # 预先删除logger中已存在的handlers
-    logger = remove_handlers(logger)
+    logger = _pre_get_logger(fpath, screen_show, logname, level)
 
     if fpath is not None:
         if fmode == 'w' and os.path.exists(fpath):
@@ -59,14 +52,14 @@ def get_logger(fpath=None, fmode='w', max_kb=128, nfile=3, screen_show=True):
         file_logger = RotatingFileHandler(fpath, mode=fmode,
                                           maxBytes=max_kb*1024,
                                           backupCount=nfile)
-        file_logger.setLevel(logging.DEBUG)
+        file_logger.setLevel(_get_level(level))
         file_logger.setFormatter(formatter)
         logger.addHandler(file_logger)
 
     if screen_show:
         # 控制台打印，StreamHandler
         console_logger = logging.StreamHandler()
-        console_logger.setLevel(logging.DEBUG)
+        console_logger.setLevel(_get_level(level))
         console_logger.setFormatter(formatter)
         logger.addHandler(console_logger)
 

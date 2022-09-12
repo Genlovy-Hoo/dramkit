@@ -180,7 +180,7 @@ if __name__ == '__main__':
     parms_opter = {'opter_name': 'woa-test',
                    'popsize': 20, 'max_iter': 1000}
     # logger = simple_logger()
-    logger = get_logger('./_test/log/woa_test.txt', screen_show=True)
+    logger = get_logger('./_test/log/woa_test.txt')
     # parms_log = {'logger': logger, 'nshow': 10}
     parms_log = {'logger': logger, 'nshow': 100}
 

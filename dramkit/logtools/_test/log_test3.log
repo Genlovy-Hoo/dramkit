@@ -1,24 +1,24 @@
-2022-06-26 02:26:15,505 -logger_timedrotating.py[line: 85] -INFO:
-    --Log start here *****************************************
-2022-06-26 02:26:15,508 -logger_timedrotating.py[line: 86] -DEBUG:
-    --Do something.
-2022-06-26 02:26:15,508 -logger_timedrotating.py[line: 87] -WARNING:
-    --Something maybe fail.
-2022-06-26 02:26:15,509 -logger_timedrotating.py[line: 88] -ERROR:
-    --Some error find here.
-2022-06-26 02:26:15,510 -logger_timedrotating.py[line: 89] -CRITICAL:
-    --Program crashed.
-2022-06-26 02:26:15,511 -logger_timedrotating.py[line: 90] -INFO:
-    --Finish
-2022-06-26 02:26:17,515 -logger_timedrotating.py[line: 85] -INFO:
-    --Log start here *****************************************
-2022-06-26 02:26:17,516 -logger_timedrotating.py[line: 86] -DEBUG:
-    --Do something.
-2022-06-26 02:26:17,517 -logger_timedrotating.py[line: 87] -WARNING:
-    --Something maybe fail.
-2022-06-26 02:26:17,517 -logger_timedrotating.py[line: 88] -ERROR:
-    --Some error find here.
-2022-06-26 02:26:17,518 -logger_timedrotating.py[line: 89] -CRITICAL:
-    --Program crashed.
-2022-06-26 02:26:17,519 -logger_timedrotating.py[line: 90] -INFO:
-    --Finish
+Log start here *****************************************
+    [INFO: 2022-09-04 18:46:28,675]
+Do something.
+    [DEBUG: 2022-09-04 18:46:28,678]
+Something maybe fail.
+    [WARNING: 2022-09-04 18:46:28,678]
+Some error find here.
+    [ERROR: 2022-09-04 18:46:28,679]
+Program crashed.
+    [CRITICAL: 2022-09-04 18:46:28,679]
+Finish
+    [INFO: 2022-09-04 18:46:28,680]
+Log start here *****************************************
+    [INFO: 2022-09-04 18:46:30,683]
+Do something.
+    [DEBUG: 2022-09-04 18:46:30,683]
+Something maybe fail.
+    [WARNING: 2022-09-04 18:46:30,684]
+Some error find here.
+    [ERROR: 2022-09-04 18:46:30,684]
+Program crashed.
+    [CRITICAL: 2022-09-04 18:46:30,684]
+Finish
+    [INFO: 2022-09-04 18:46:30,685]

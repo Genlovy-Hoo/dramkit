@@ -38,7 +38,7 @@ class TimeRecoder(object):
     def __init__(self):
         self.strt_tm = time.time()
         
-    def used(self, logger=None):
+    def used(self, logger=None, return_s=False):
         s = time.time() - self.strt_tm
         if s < 60:
             s = round(s, 6)
@@ -52,18 +52,24 @@ class TimeRecoder(object):
             m, s = divmod(s, 60)
             logger_show('used time: %sh,%sm,%ss.'%(h, m, round(s, 6)),
                         logger)
-        return s
+        if return_s:
+            return s
+        return
     
-    def useds(self, logger=None):
+    def useds(self, logger=None, return_s=False):
         s = round(time.time()-self.strt_tm, 6)
         logger_show('used time: %ss.'%s, logger)
-        return s
+        if return_s:
+            return s
+        return
         
-    def usedm(self, logger=None):
+    def usedm(self, logger=None, return_s=False):
         s = time.time()-self.strt_tm
         m = round(s/60, 6)
         logger_show('used time: %sm.'%m, logger)
-        return s
+        if return_s:
+            return s
+        return
 
 
 class StructureObject(object):
@@ -1919,6 +1925,12 @@ def cut_range_to_subs(n, gap):
         return [(k*gap, (k+1)*gap) for k in range(0, n_)]
 
 
+def cut_to_subs(l, gap):
+    '''将列表分段，gap指定每段的个数'''
+    idxs = cut_range_to_subs(len(l), gap)
+    return [l[idx[0]: idx[1]] for idx in idxs]
+
+
 def check_l_allin_l0(l, l0):
     '''
     判断 ``l (list)`` 中的值是否都是 ``l0 (list)`` 中的元素, 返回True或False
@@ -2307,6 +2319,16 @@ def groupby_rolling_func(data, cols_groupby, cols_val, func, keep_index=True,
     # cols = [cols_val] if isinstance(cols_val, str) else cols_val
     # df = data.reindex(columns=cols_groupby+cols)
     raise NotImplementedError
+    
+    
+def merge_dicts(dicts):
+    '''将多个字典合并成一个字典'''
+    assert isinstance(dicts, (list, tuple))
+    assert all([isinstance(x, dict) for x in dicts])
+    res = {}
+    for d in dicts:
+        res.update(d)
+    return res
 
 
 def link_lists(lists):
@@ -2323,7 +2345,7 @@ def link_lists(lists):
     >>> link_lists([a, b, c, d])
     [1, 2, 3, 4, 5, 6, 'a', 'b', [1, 2, 3], [4, 5, 6]]
     '''
-    assert isinstance(lists, list)
+    assert isinstance(lists, (list, tuple))
     assert all([isinstance(x, list) for x in lists])
     newlist = []
     for item in lists:
@@ -2351,6 +2373,11 @@ def get_num_decimal(x, ignore_tail0=True):
         while decimal[-1] == '0':
             decimal = decimal[:-1]
     return len(decimal)
+
+
+def list2dict(list_key, list_val):
+    '''两个列表生成字典'''
+    return dict(zip(list_key, list_val))
 
 
 def sort_dict(d, by='key', reverse=False):

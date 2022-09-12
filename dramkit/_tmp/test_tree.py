@@ -3,7 +3,8 @@
 import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
-from dramkit import isnull, load_csv
+from dramkit.gentools import isnull
+from dramkit.iotools import load_csv
     
 
 def tree_from_edgs(edgs):

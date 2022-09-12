@@ -26,6 +26,7 @@ from .apis import (
     fate_weight_lunar,
     get_zodiac_match,
     get_zodiac_match_lunar,
+    get_age_by_suxing,
     get_recent_workday,
     get_next_nth_workday,
     get_work_dates,

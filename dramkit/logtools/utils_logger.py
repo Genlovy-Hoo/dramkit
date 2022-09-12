@@ -74,10 +74,50 @@ def remove_handlers(logger):
         才能完全remove所有handlers，原因待查（可能由于FileHandler
         是StreamHandler的子类的缘故？）
     '''
-    for h in logger.handlers:
-        if isinstance(h, logging.FileHandler):
-            h.close()
-            logger.removeHandler(h)
-    for h in logger.handlers:
-            logger.removeHandler(h)
+    # # 逐个移除
+    # for h in logger.handlers:
+    #     if isinstance(h, logging.FileHandler):
+    #         h.close()
+    #         logger.removeHandler(h)
+    # for h in logger.handlers:
+    #     logger.removeHandler(h)
+    # 直接清空
+    logger.handlers = []
+    return logger
+
+
+def _get_level(level=None):
+    '''获取显示级别'''
+    if level in [None, 'debug', 'DEBUG', logging.DEBUG]:
+        return logging.DEBUG
+    elif level in ['info', 'INFO', logging.INFO]:
+        return logging.INFO
+    elif level in ['warning', 'WARNING', 'warn', 'WARN', logging.WARNING]:
+        return logging.WARNING
+    elif level in ['error', 'ERROR', 'err', 'ERR', logging.ERROR]:
+        return logging.ERROR
+    elif level in ['critical', 'CRITICAL', logging.CRITICAL]:
+        return logging.CRITICAL
+    else:
+        raise ValueError('level参数设置有误，请检查！')
+
+
+def set_level(logger, level=None):
+    '''设置日志显示基本'''
+    logger.setLevel(_get_level(level))
+    return logger
+
+
+def _pre_get_logger(fpath, screen_show, logname, level):
+    if fpath is None and not screen_show:
+        raise ValueError('`fpath`和`screen_show`必须至少有一个为真！')
+    # 准备日志记录器logger
+    if logname is None:
+        logger = logging.getLogger(__name__)
+    else:
+        logger = logging.getLogger(logname)
+    # 显示级别
+    logger = set_level(logger, level=level)
+    # 预先删除logger中已存在的handlers
+    logger = remove_handlers(logger)
     return logger

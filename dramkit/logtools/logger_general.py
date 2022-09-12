@@ -2,12 +2,13 @@
 
 import os
 import logging
-# from .utils_logger import remove_handlers
-from dramkit.logtools.utils_logger import remove_handlers
+from dramkit.logtools.utils_logger import _pre_get_logger
+from dramkit.logtools.utils_logger import _get_level
 from dramkit.logtools.utils_logger import formatter
 
 
-def get_logger(fpath=None, fmode='w', screen_show=True):
+def get_logger(fpath=None, fmode='w', logname=None,
+               level=None, screen_show=True):
     '''
     获取常规日志记录，将日志信息保存在文件或在屏幕中打印
 
@@ -35,16 +36,8 @@ def get_logger(fpath=None, fmode='w', screen_show=True):
     ----------
     - https://blog.csdn.net/weixin_43625263/article/details/123931477
     '''
-
-    if fpath is None and not screen_show:
-        raise ValueError('`fpath`和`screen_show`必须至少有一个为真！')
-
-    # 准备日志记录器logger
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.DEBUG)
-
-    # 预先删除logger中已存在的handlers
-    logger = remove_handlers(logger)
+    
+    logger = _pre_get_logger(fpath, screen_show, logname, level)
 
     if fpath is not None:
         if fmode == 'w' and os.path.exists(fpath):
@@ -52,14 +45,14 @@ def get_logger(fpath=None, fmode='w', screen_show=True):
             os.remove(fpath)
         # 日志文件保存，FileHandler
         file_logger = logging.FileHandler(fpath, mode=fmode)
-        file_logger.setLevel(logging.DEBUG)
+        file_logger.setLevel(_get_level(level))
         file_logger.setFormatter(formatter)
         logger.addHandler(file_logger)
 
     if screen_show:
         # 控制台打印，StreamHandler
         console_logger = logging.StreamHandler()
-        console_logger.setLevel(logging.DEBUG)
+        console_logger.setLevel(_get_level(level))
         console_logger.setFormatter(formatter)
         logger.addHandler(console_logger)
 

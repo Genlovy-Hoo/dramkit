@@ -1,0 +1,24 @@
+Log start here *****************************************
+    [INFO: 2022-09-04 18:46:16,584]
+Do something.
+    [DEBUG: 2022-09-04 18:46:16,589]
+Something maybe fail.
+    [WARNING: 2022-09-04 18:46:16,589]
+Some error find here.
+    [ERROR: 2022-09-04 18:46:16,590]
+Program crashed.
+    [CRITICAL: 2022-09-04 18:46:16,591]
+Finish
+    [INFO: 2022-09-04 18:46:16,591]
+Log start here *****************************************
+    [INFO: 2022-09-04 18:46:18,594]
+Do something.
+    [DEBUG: 2022-09-04 18:46:18,594]
+Something maybe fail.
+    [WARNING: 2022-09-04 18:46:18,595]
+Some error find here.
+    [ERROR: 2022-09-04 18:46:18,595]
+Program crashed.
+    [CRITICAL: 2022-09-04 18:46:18,595]
+Finish
+    [INFO: 2022-09-04 18:46:18,596]

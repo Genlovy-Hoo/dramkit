@@ -9,8 +9,8 @@ mysql -h ip地址 -P 端口 -u 用户名 -p
 -- 写入文件
 查询语句 INTO OUTFILE 'xxx.csv'
 
--- 改密码
-mysqladmin -u root -p password 新密码
+-- 改密码（注意：-uroot和-p旧密码之间没有空格）
+mysqladmin -uroot -p旧密码 password 新密码
 
 STATUS; /*查看当前MySQL状态，其中Current database一行会显示当前数据库*/
 
@@ -58,6 +58,8 @@ INSERT INTO user VALUES (1,'bob'),(2,'petter'),(3,'a123456789123456789123456789'
 SHOW TABLES; /*查看当前数据库中所有的表和视图*/
 DESCRIBE table_name; /*查看指定表的信息，包括字段名、字段数据类型等，DESCRIBE可简写成DESC*/
 SHOW CREATE TABLE table_name \G /*查看指定表创建时的详细信息*/
+
+TRUNCATE TABLE table_name; /*清空表中所有数据记录*/
 
 DROP TABLE table_name; /*删除指定表*/
 

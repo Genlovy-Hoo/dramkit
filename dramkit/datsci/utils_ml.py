@@ -3,7 +3,9 @@
 import numpy as np
 import pandas as pd
 from scipy import stats
-from sklearn.metrics import roc_auc_score, roc_curve, auc, f1_score
+from sklearn.metrics import auc, f1_score
+from sklearn.metrics import roc_auc_score, roc_curve
+
 
 import matplotlib as mpl
 mpl.rcParams['font.sans-serif'] = ['SimHei']
@@ -109,8 +111,8 @@ def confusion_matrix(y_true, y_pred, kwargs_f1=None):
 
 
 def plot_roc_bin(y_true_pred_prob, labels=None, lnstyls=None,
-                 figsize=(8, 8), title=None, fontsize=15, grid=False,
-                 fig_save_path=None, **kwargs):
+                 figsize=(8, 8), title=None, fontsize=15,
+                 grid=False, fig_save_path=None, **kwargs):
     '''
     | 二分类ROC曲线绘制
     | y_true_pred_prob格式：
@@ -180,6 +182,9 @@ def plot_roc_bin(y_true_pred_prob, labels=None, lnstyls=None,
 
     if fig_save_path:
         plt.savefig(fig_save_path)
+        
+    plt.xlabel('FPR(假正率)', fontsize=fontsize)
+    plt.ylabel('TPR(召回率)', fontsize=fontsize)
 
     plt.show()
 
@@ -187,3 +192,17 @@ def plot_roc_bin(y_true_pred_prob, labels=None, lnstyls=None,
         return vAUCs[0]
 
     return vAUCs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
