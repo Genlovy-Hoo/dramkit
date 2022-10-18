@@ -139,6 +139,22 @@ def is_datetime(x):
         return True
     except:
         return False
+    
+    
+def is_month_end(date=None):
+    '''判断date是否为月末'''
+    raise NotImplementedError
+    
+    
+def is_quarter_end(date=None):
+    '''判断date是否为季末'''
+    if pd.isnull(date):
+        date = datetime.datetime.now()
+    date = pd.to_datetime(date)
+    m_d = date.strftime('%m%d')
+    if m_d in ['0331', '0630', '0930', '1231']:
+        return True
+    return False
 
 
 def get_year_month(date):

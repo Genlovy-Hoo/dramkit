@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split as tts
 from dramkit.datsci.stats import r2
 from dramkit.datsci.utils_lgb import lgb_train
 from dramkit.datsci.utils_lgb import lgb_predict
-from dramkit.datsci.utils_lgb import lgb_cv_hoo
+from dramkit.datsci.utils_lgb import lgb_cv_mdls
 from dramkit.datsci.utils_lgb import lgb_cv_grid_search
 
 #%%
@@ -28,7 +28,7 @@ if __name__ == '__main__':
     r2_1 = r2(y_valid, valid_pre)
 
     # 交叉验证-----------------------------------------------------------------
-    mdls, evals_results = lgb_cv_hoo(X_train, y_train, objective='regression')
+    mdls, evals_results = lgb_cv_mdls(X_train, y_train, objective='regression')
     valid_pres = []
     for mdl in mdls:
         valid_pre, _ = lgb_predict(mdl, X_valid)

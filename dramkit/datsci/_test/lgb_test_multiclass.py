@@ -8,7 +8,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split as tts
 from dramkit.datsci.utils_lgb import lgb_train
 from dramkit.datsci.utils_lgb import lgb_predict
-from dramkit.datsci.utils_lgb import lgb_cv_hoo
+from dramkit.datsci.utils_lgb import lgb_cv_mdls
 from dramkit.datsci.utils_lgb import lgb_cv_grid_search
 from dramkit.datsci.utils_ml import vote_label_int
 from dramkit.datsci.utils_ml import vote_prob_multi
@@ -31,7 +31,7 @@ if __name__ == '__main__':
     acc1 = accuracy_score(y_valid, valid_pre)
 
     # 交叉验证-----------------------------------------------------------------
-    mdls, evals_results = lgb_cv_hoo(X_train, y_train, objective='multiclass')
+    mdls, evals_results = lgb_cv_mdls(X_train, y_train, objective='multiclass')
     valid_pres, ps = [], []
     for mdl in mdls:
         valid_pre, p = lgb_predict(mdl, X_valid)
@@ -98,7 +98,7 @@ if __name__ == '__main__':
     print('GridSearchCV used {}s.'.format(round(time.time()-strt_tm, 6)))
 
     # 交叉验证-----------------------------------------------------------------
-    mdls, evals_results = lgb_cv_hoo(X_train, y_train, objective='multiclass',
+    mdls, evals_results = lgb_cv_mdls(X_train, y_train, objective='multiclass',
                                      parms_mdl_list=parms_mdl)
     valid_pres, ps = [], []
     for mdl in mdls:

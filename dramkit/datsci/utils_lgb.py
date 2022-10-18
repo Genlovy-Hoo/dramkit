@@ -210,7 +210,8 @@ def get_parms_train_or_cv(parms_train_or_cv=None):
     return parms_train_or_cv
 
 
-def lgb_train(X_train, y_train, X_valid=None, y_valid=None, objective=None,
+def lgb_train(X_train, y_train, X_valid=None, y_valid=None,
+              weight_train=None, objective=None,
               parms_mdl=None, parms_train=None, mdl_save_path=None,
               logger=None):
     '''
@@ -233,13 +234,13 @@ def lgb_train(X_train, y_train, X_valid=None, y_valid=None, objective=None,
     parms_train = get_parms_train_or_cv(parms_train_or_cv=parms_train)
 
     # 数据集准备
-    datTrain = lgb.Dataset(X_train, y_train,
+    datTrain = lgb.Dataset(X_train, y_train, weight=weight_train,
                     categorical_feature=parms_train['categorical_feature'])
     if X_valid is None and y_valid is None:
         datValid = None
     else:
         datValid = lgb.Dataset(X_valid, y_valid,
-                    categorical_feature=parms_train['categorical_feature'])
+                   categorical_feature=parms_train['categorical_feature'])
     valid_sets = [datTrain, datValid] if datValid is not None else [datTrain]
     valid_names = ['train', 'valid'] if X_valid is not None else ['train']
     evals_result = {}
@@ -265,8 +266,8 @@ def lgb_train(X_train, y_train, X_valid=None, y_valid=None, objective=None,
 
     # 模型保存
     if not isnull(mdl_save_path):
-        # joblib.dump(mdl, 'mdl_save_path')
-        pickle_file(mdl, 'mdl_save_path')
+        # joblib.dump(mdl, mdl_save_path)
+        pickle_file(mdl, mdl_save_path)
 
     return mdl, evals_result
 
@@ -402,10 +403,10 @@ def lgb_cv_grid_search(X_train, y_train, objective=None, parms_mdl=None,
     return best_parms, {'best '+metric: best}
 
 
-def lgb_cv_hoo(X_train, y_train, objective=None,
-               parms_mdl_list=None, parms_train_list=None,
-               n_fold=5, shuffle=True, random_state=62, mdl_path_list=None,
-               logger=None):
+def lgb_cv_mdls(X_train, y_train, objective=None, weight_train=None,
+                parms_mdl_list=None, parms_train_list=None,
+                n_fold=5, shuffle=True, random_state=62, mdl_path_list=None,
+                logger=None):
     '''
     自定义lgb交叉验证，返回模型列表和结果列表
     '''
@@ -452,7 +453,7 @@ def lgb_cv_hoo(X_train, y_train, objective=None,
 
         mdl, evals_result = lgb_train(X_train_Ikf, y_train_Ikf,
                                       X_valid=X_valid_Ikf, y_valid=y_valid_Ikf,
-                                      objective=objective,
+                                      weight_train=weight_train, objective=objective,
                                       parms_mdl=parms_mdl_list[Ikf],
                                       parms_train=parms_train_list[Ikf],
                                       mdl_save_path=mdl_path_list[Ikf],

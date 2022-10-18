@@ -3,7 +3,7 @@
 from sklearn import datasets
 from sklearn.model_selection import train_test_split as tts
 from sklearn.metrics import accuracy_score, roc_auc_score
-from dramkit.datsci.utils_lgb import lgb_cv_hoo
+from dramkit.datsci.utils_lgb import lgb_cv_mdls
 from dramkit.datsci.utils_lgb import lgb_train
 from dramkit.datsci.utils_lgb import lgb_predict
 from dramkit.datsci.utils_lgb import lgb_cv_grid_search
@@ -27,7 +27,7 @@ if __name__ == '__main__':
     acc1 = accuracy_score(y_valid, valid_pre)
 
     # 交叉验证-----------------------------------------------------------------
-    mdls, evals_results = lgb_cv_hoo(X_train, y_train, objective='binary')
+    mdls, evals_results = lgb_cv_mdls(X_train, y_train, objective='binary')
     valid_pres, ps = [], []
     for mdl in mdls:
         valid_pre, p = lgb_predict(mdl, X_valid)

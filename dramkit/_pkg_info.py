@@ -1,6 +1,6 @@
 pkg_info = {
     '__pkgname__': 'dramkit',
-    '__version__': '0.3.14',
+    '__version__': '0.3.15',
     '__license__': 'MIT',
     '__url__': 'https://github.com/Genlovy-Hoo/dramkit/',
     '__urls__':

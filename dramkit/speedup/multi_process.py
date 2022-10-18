@@ -5,7 +5,8 @@ from concurrent.futures import as_completed
 from concurrent.futures import ProcessPoolExecutor
 
 
-def multi_process_concurrent(func, args_list, keep_order=True,
+def multi_process_concurrent(func, args_list,
+                             keep_order=True,
                              multi_line=None):
     '''
     多进程，同一个函数执行多次
@@ -51,8 +52,7 @@ def multi_process_concurrent(func, args_list, keep_order=True,
             results.append(result)
 
     # 使用map可保证results的值顺序与args_list一一对应
-    if keep_order:
-
+    if keep_order:        
         with ProcessPoolExecutor(max_workers=multi_line) as executor:
             results = executor.map(func, args_list)
             results = list(results)
@@ -96,6 +96,8 @@ if __name__ == '__main__':
                                                  keep_order=True)
         results_noOrder = multi_process_concurrent(_func_test_win, args_list,
                                                    keep_order=False)
+        results_Order2 = multi_process_concurrent(_func_test_win_new, args_list,
+                                                  keep_order=True, multi_line=2)
     else:
         results_Order = multi_process_concurrent(func_new, args_list,
                                                  keep_order=True)

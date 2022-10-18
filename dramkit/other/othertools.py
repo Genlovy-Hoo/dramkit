@@ -187,7 +187,14 @@ def load_text_multi(fpath, sep=',', encoding=None, del_first_col=False,
     return datas
 
 
-def _find_pypkgs_str(tgt_str, pkgs=None):
+def _find_pypkgs_str(tgt_str, pkgs=None, **kwargs):
+    '''
+    Examples
+    --------
+    >>> files1 = _find_pypkgs_str(r'\.loc\[.*:.*,', re_match=True)
+    >>> files2 = _find_pypkgs_str(r'\.loc\[.*:', re_match=True)
+    >>> files3 = _find_pypkgs_str(r'\.loc\[.*:.*,.*\]', re_match=True)
+    '''
     if isnull(pkgs):
         pkgs = ['DramKit', 'FinFactory', 'ChnCal']
     if isinstance(pkgs, str):
@@ -195,7 +202,8 @@ def _find_pypkgs_str(tgt_str, pkgs=None):
     pkg_paths = [x for x in sys.path if any([y in os.path.basename(x) for y in pkgs])]
     files = []
     for fdir in pkg_paths:
-        files.append(find_files_include_str(tgt_str, fdir, '.py'))
+        files.append(find_files_include_str(tgt_str, root_dir=fdir,
+                                            file_types='.py', **kwargs))
     files = pd.concat(files, axis=0)
     return files
 

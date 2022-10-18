@@ -10,6 +10,7 @@ if __name__ == '__main__':
 
     # logger = None
     logger = simple_logger()
+    
     target_str = 'chinese_calendar'
     # target_str = "f'"
     root_dir = 'D:/Genlovy_Hoo/HooProjects/FinFactory/'
@@ -17,7 +18,14 @@ if __name__ == '__main__':
     file_types = ['.py']
 
     files = find_files_include_str(target_str, root_dir, file_types,
-                                   logger)
+                                   logger=logger)
+    
+    
+    target_str = r'\.loc\[.*:'
+    root_dir = 'D:/Genlovy_Hoo/HooProjects/DramKit/'
+    file_types = ['.py']
+    files1 = find_files_include_str(target_str, root_dir, file_types,
+                                    re_match=True, logger=logger)
 
 
     tr.used()

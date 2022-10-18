@@ -1014,26 +1014,24 @@ def _replace_repeat_func_iter(series, func_val, func_val0, gap=None):
 
     k = 0
     while k < df.shape[0]:
-        if func_val(df.loc[df.index[k], col]):
+        if func_val(df.loc[k, col]):
             k1 = k + 1
 
             if gap is None:
                 while k1 < df.shape[0] and \
-                                    (func_val(df.loc[df.index[k1], col]) \
-                                     or df.loc[df.index[k1], col] == \
-                                         func_val0(df.loc[df.index[k1], col])):
-                    if func_val(df.loc[df.index[k1], col]):
-                        df.loc[df.index[k1], col] = \
-                                              func_val0(df.loc[df.index[k1], col])
+                                    (func_val(df.loc[k1, col]) \
+                                     or df.loc[k1, col] == \
+                                        func_val0(df.loc[k1, col])):
+                    if func_val(df.loc[k1, col]):
+                        df.loc[k1, col] = func_val0(df.loc[k1, col])
                     k1 += 1
             else:
                 while k1 < min(k+gap, df.shape[0]) and \
-                                (func_val(df.loc[df.index[k1], col]) \
-                                 or df.loc[df.index[k1], col] == \
-                                     func_val0(df.loc[df.index[k1], col])):
-                    if func_val(df.loc[df.index[k1], col]):
-                        df.loc[df.index[k1], col] = \
-                                              func_val0(df.loc[df.index[k1], col])
+                                (func_val(df.loc[k1, col]) \
+                                 or df.loc[k1, col] == \
+                                    func_val0(df.loc[k1, col])):
+                    if func_val(df.loc[k1, col]):
+                        df.loc[k1, col] = func_val0(df.loc[k1, col])
                     k1 += 1
             k =  k1
 
@@ -1080,10 +1078,10 @@ def _replace_repeat_func_pd(series, func_val, func_val0):
     df['pre_gap'] = df[df['val_or_gap'] == 1]['gap1'].shift(1)
     df['pre_gap'] = df['pre_gap'].fillna(method='ffill')
     k = 0
-    while k < df.shape[0] and df.loc[df.index[k], 'is_val'] != 1:
+    while k < df.shape[0] and df.loc[k, 'is_val'] != 1:
         k += 1
     if k < df.shape[0]:
-        df.loc[df.index[k], 'pre_gap'] = 1
+        df.loc[k, 'pre_gap'] = 1
     df['pre_gap'] = df['pre_gap'].fillna(0).astype(int)
     df['keep1'] = (df['is_val'] + df['pre_gap']).map({0: 0, 1: 0, 2: 1})
     df['to_rplc'] = (df['keep1'] + df['is_val']).map({2: 0, 1: 1, 0: 0})
@@ -1167,13 +1165,13 @@ def con_count(series, func_cond, via_pd=True):
         df['count'] = 0
         k = 0
         while k < df.shape[0]:
-            if func_cond(df.loc[df.index[k], col]):
+            if func_cond(df.loc[k, col]):
                 count = 1
-                df.loc[df.index[k], 'count'] = count
+                df.loc[k, 'count'] = count
                 k1 = k + 1
-                while k1 < df.shape[0] and func_cond(df.loc[df.index[k1], col]):
+                while k1 < df.shape[0] and func_cond(df.loc[k1, col]):
                     count += 1
-                    df.loc[df.index[k1], 'count'] = count
+                    df.loc[k1, 'count'] = count
                     k1 += 1
                 k = k1
             else:
@@ -1308,14 +1306,13 @@ def gap_count(series, func_cond, via_pd=True):
 
         df['gap'] = df['count']
         k0 = 0
-        while k0 < df.shape[0] and not func_cond(df.loc[df.index[k0], col]):
-            df.loc[df.index[k0], 'gap'] = 0
+        while k0 < df.shape[0] and not func_cond(df.loc[k0, col]):
+            df.loc[k0, 'gap'] = 0
             k0 += 1
 
         for k1 in range(k0+1, df.shape[0]):
-            if func_cond(df.loc[df.index[k1], col]):
-                df.loc[df.index[k1], 'gap'] = \
-                                        df.loc[df.index[k1-1], 'count'] + 1
+            if func_cond(df.loc[k1, col]):
+                df.loc[k1, 'gap'] = df.loc[k1-1, 'count'] + 1
 
         df.index = ori_index
 
@@ -1542,14 +1539,14 @@ def count_between_gap_iter(data, col_gap, col_count, func_gap, func_count,
 
     k = 0
     while k < df.shape[0]:
-        if func_gap(df.loc[df.index[k], col_gap]):
+        if func_gap(df.loc[k, col_gap]):
             k += 1
             gap_count = 0
             while k < df.shape[0] and \
-                                  not func_gap(df.loc[df.index[k], col_gap]):
-                if func_count(df.loc[df.index[k], col_count]):
+                                  not func_gap(df.loc[k, col_gap]):
+                if func_count(df.loc[k, col_count]):
                     gap_count += 1
-                df.loc[df.index[k], 'gap_count'] = gap_count
+                df.loc[k, 'gap_count'] = gap_count
                 k += 1
         else:
             k += 1
@@ -1557,19 +1554,19 @@ def count_between_gap_iter(data, col_gap, col_count, func_gap, func_count,
     if count_now_gap:
         k = 1
         while k < df.shape[0]:
-            if func_gap(df.loc[df.index[k], col_gap]):
-                if not func_gap(df.loc[df.index[k-1], col_gap]):
-                    if func_count(df.loc[df.index[k], col_count]):
-                        df.loc[df.index[k], 'gap_count'] = \
-                                        df.loc[df.index[k-1], 'gap_count'] + 1
+            if func_gap(df.loc[k, col_gap]):
+                if not func_gap(df.loc[k-1, col_gap]):
+                    if func_count(df.loc[k, col_count]):
+                        df.loc[k, 'gap_count'] = \
+                                        df.loc[k-1, 'gap_count'] + 1
                         k += 1
                     else:
-                        df.loc[df.index[k], 'gap_count'] = \
-                                            df.loc[df.index[k-1], 'gap_count']
+                        df.loc[k, 'gap_count'] = \
+                                            df.loc[k-1, 'gap_count']
                         k += 1
                 else:
-                    if func_count(df.loc[df.index[k], col_count]):
-                        df.loc[df.index[k], 'gap_count'] = 1
+                    if func_count(df.loc[k, col_count]):
+                        df.loc[k, 'gap_count'] = 1
                         k += 1
                     else:
                         k += 1
@@ -1580,25 +1577,25 @@ def count_between_gap_iter(data, col_gap, col_count, func_gap, func_count,
         df['gap_count_pre'] = df['gap_count'].copy()
         if not count_now_gap:
             for k in range(1, df.shape[0]):
-                if func_gap(df.loc[df.index[k], col_gap]):
-                    df.loc[df.index[k], 'gap_count'] = 0
+                if func_gap(df.loc[k, col_gap]):
+                    df.loc[k, 'gap_count'] = 0
                 else:
-                    df.loc[df.index[k], 'gap_count'] = \
-                                        df.loc[df.index[k-1], 'gap_count_pre']
+                    df.loc[k, 'gap_count'] = \
+                                        df.loc[k-1, 'gap_count_pre']
         else:
             for k in range(1, df.shape[0]):
-                if func_gap(df.loc[df.index[k-1], col_gap]):
-                    df.loc[df.index[k], 'gap_count'] = 0
+                if func_gap(df.loc[k-1, col_gap]):
+                    df.loc[k, 'gap_count'] = 0
                 else:
-                    df.loc[df.index[k], 'gap_count'] = \
-                                        df.loc[df.index[k-1], 'gap_count_pre']
+                    df.loc[k, 'gap_count'] = \
+                                        df.loc[k-1, 'gap_count_pre']
         df.drop('gap_count_pre', axis=1, inplace=True)
 
     k0 = 0
-    while k0 < df.shape[0] and not func_gap(df.loc[df.index[k0], col_gap]):
-        df.loc[df.index[k0], 'gap_count'] = 0
+    while k0 < df.shape[0] and not func_gap(df.loc[k0, col_gap]):
+        df.loc[k0, 'gap_count'] = 0
         k0 += 1
-    df.loc[df.index[k0], 'gap_count'] = 0
+    df.loc[k0, 'gap_count'] = 0
 
     df.index = ori_index
 
@@ -2294,6 +2291,56 @@ def group_rank(df, col_rank, cols_groupby,
     series_rank = df.groupby(cols_groupby)[col_rank].rank(**kwargs_rank)
     series_rank.index = df.index
     return series_rank
+
+
+def get_func_df_concat(func, args_kwargs_list, concat_axis=0):
+    '''
+    | func(args, \**kwargs)作用于args_kwargs_list中的参数，将所有结果concat返回
+    | func函数返回值必须为pd.DataFrame
+    
+    Examples
+    --------
+    >>> func = lambda x, y, z: pd.DataFrame({'a': [x, y, z]})
+    >>> args_kwargs_list = [[(1, 2), {'z': 3}],
+    ...                     [(2, 3), {'z': 4}]]
+    >>> get_func_df_concat(func, args_kwargs_list)
+       a
+    0  1
+    1  2
+    2  3
+    0  2
+    1  3
+    2  4
+    '''
+    data = []
+    for args, kwargs in args_kwargs_list:
+        data.append(func(*args, **kwargs))
+    return pd.concat(data, axis=concat_axis)
+
+
+def df_groupby_func(df, by_cols, func,
+                    as_index=False, reset_index='drop',
+                    *args_func, **kwargs_func):
+    '''
+    | df按by_cols分组作用于func(x, \*args, \**kwargs)函数
+    | reset_index:
+    |   若为drop，则重置返回的index
+    |   若为False，则不处理groupby之后的index
+    |   若为ori，如返回数据与原始df行数相同，则使用原始index，否则不处理groupby之后的index
+    '''
+    assert reset_index in ['drop', 'ori', False]
+    n = df.shape[0]
+    data = df.groupby(by_cols, as_index=as_index).apply(
+                      lambda x: func(x, *args_func, **kwargs_func))
+    if not reset_index:
+        return data
+    if reset_index == 'drop':
+        return data.reset_index(drop=True)
+    if reset_index == 'ori':
+        if data.shape[0] == n:
+            data.index = df.index
+        return data
+    return data
 
 
 def bootstrapping():

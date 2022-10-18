@@ -12,15 +12,15 @@ import requests
 import subprocess
 import py_compile
 import pandas as pd
-# from .gentools import isnull
-# from .logtools.utils_logger import logger_show
-from dramkit.gentools import isnull
-from dramkit.gentools import get_update_kwargs
-from dramkit.gentools import cut_range_to_subs
-from dramkit.logtools.utils_logger import logger_show
-from dramkit.logtools.utils_logger import close_log_file
-from dramkit.speedup.multi_thread import SingleThread
+from dramkit.gentools import (isnull,
+                              get_update_kwargs,
+                              cut_range_to_subs,
+                              merge_df)
+from dramkit.logtools.utils_logger import (logger_show,
+                                           close_log_file)
 from dramkit.datetimetools import timestamp2str
+from dramkit.speedup.multi_thread import SingleThread
+from dramkit.speedup.multi_process import multi_process_concurrent
 
 
 def get_input_with_timeout(timeout=10, hint_str=None):
@@ -525,16 +525,20 @@ def clear_text_file(fpath, encoding=None):
         
 def clear_specified_type_files(dir_path, type_list,
                                encoding=None,
-                               recu_sub_dir=False):
-    '''清空dir_path文件夹下所有类型在type_list中的文件内容，保留文件'''
+                               recu_sub_dir=False,
+                               **kwargs_getpath):
+    '''清空dir_path文件夹下所有类型在type_list中的文件内容，保留文件夹'''
     fpaths = get_all_paths(dir_path, ext=type_list,
-                           recu_sub_dir=recu_sub_dir, abspath=True)
+                           recu_sub_dir=recu_sub_dir,
+                           abspath=True, **kwargs_getpath)
     for fpath in fpaths:
         clear_text_file(fpath, encoding=encoding)
 
 
-def get_all_paths(dir_path, ext=None, include_dir=False, abspath=False,
-                  recu_sub_dir=True, only_dir=False):
+def get_all_paths(dir_path, ext=None, start=None,
+                  include_dir=False, abspath=False,
+                  recu_sub_dir=True, only_dir=False,
+                  name_func=None):
     '''
 	获取指定文件夹(及其子文件夹)中所有的文件路径
 
@@ -542,10 +546,12 @@ def get_all_paths(dir_path, ext=None, include_dir=False, abspath=False,
     ----------
     dir_path : str
         文件夹路径
-    ext : None, str, list
+    ext : None, str, list, tuple
         指定文件后缀列表，若为None，则包含所有类型文件
+    start : None, str, list, tuple
+        指定文件前缀名列表，若为None，则包含所有类型文件
     include_dir : bool
-        返回结果中是否包含文件夹路径，默认不包含（即只返回文件路径）
+        返回结果中是否包含文件夹路径（包含返回文件路径的文件夹），默认不包含（即只返回文件路径）
     abspath : bool
         是否返回绝对路径，默认返回相对路径
     rec_sub_dir : bool
@@ -553,33 +559,54 @@ def get_all_paths(dir_path, ext=None, include_dir=False, abspath=False,
     only_dir : bool
         若为True，则只返回子文件夹路径(文件夹名称尾部与ext指定尾部相同的文件夹)，
         不返回文件路径，此时include_dir不起作用
+    name_func : function
+        判断是否符合文件名筛选的函数，即满足name_func(fpath)值为True的路径被保留，
+        name_func参数为路径，返回结果只能为True或False
 
 
     :returns: `list` - 文件路径列表
 	'''
-    if not (ext is None or isinstance(ext, list) or isinstance(ext, str)):
-        raise ValueError('`ext`必须为None或str或list类型！')
+    if not (ext is None or isinstance(ext, (list, tuple)) or isinstance(ext, str)):
+        raise ValueError('`ext`必须为None或str或list,tuple类型！')
+    if not (start is None or isinstance(start, (list, tuple)) or isinstance(start, str)):
+        raise ValueError('`start`必须为None或str或list,tuple类型！')
+    if not ((name_func is None) and (not callable(name_func))):
+        raise ValueError('`name_func`必须为None或函数！')
     if ext is not None and isinstance(ext, str):
         ext = [ext]
+    if start is not None and isinstance(start, str):
+        start = [start]
+    def _tokeep(name):
+        name_ = os.path.basename(name)
+        cond1 = True
+        if not isnull(ext):
+            # cond1 = any([name_[-len(x):] in ext for x in ext])
+            cond1 = any([name_.endswith(x) for x in ext])
+        cond2 = True
+        if not isnull(start):
+            # cond2 = any([name_[:len(x)] in start for x in start])
+            cond2 = any([name_.startswith(x) for x in start])
+        cond3 = True
+        if not isnull(name_func):
+            cond3 = name_func(name_)
+        if cond1 and cond2 and cond3:
+            return True
+        return False
     if recu_sub_dir:
         fpaths = []
         for root, dirs, files in os.walk(dir_path):
             if only_dir:
-                if ext is not None:
-                    if any([root[-len(x):] in ext for x in ext]):
-                        fpaths.append(root)
-                else:
+                if _tokeep(root):
                     fpaths.append(root)
             else:
                 if include_dir:
-                    fpaths.append(root)
+                    if _tokeep(root):
+                        fpaths.append(root)
                 for fname in files:
-                    if ext is not None:
-                        for x in ext:
-                            if fname[-len(x):] == x:
-                                fpaths.append(os.path.join(root, fname))
-                    else:
+                    if _tokeep(fname):
                         fpaths.append(os.path.join(root, fname))
+                        if include_dir:
+                            fpaths.append(root)
     else:
         fpaths = [os.path.join(dir_path, x) for x in os.listdir(dir_path)]
         fpaths = [dir_path] + fpaths
@@ -588,17 +615,17 @@ def get_all_paths(dir_path, ext=None, include_dir=False, abspath=False,
         else:
             if not include_dir:
                 fpaths = [x for x in fpaths if not os.path.isdir(x)]
-        if ext is not None:
-            fpaths = [x for x in fpaths if any([x[-len(y):] in ext for y in ext])]
+        fpaths = [x for x in fpaths if _tokeep(x)]
     if abspath:
         fpaths = [os.path.abspath(x) for x in fpaths]
-    return fpaths
+    return list(set(fpaths))
 
 
-def del_specified_type_files(dir_path, type_list, recu_sub_dir=True):
+def del_specified_type_files(dir_path, type_list, recu_sub_dir=True,
+                             **kwargs_getpath):
     '''删除dir_path文件夹下所有类型在type_list中的文件'''
     fpaths = get_all_paths(dir_path, ext=type_list, recu_sub_dir=recu_sub_dir,
-                           abspath=True)
+                           abspath=True, **kwargs_getpath)
     for fpath in fpaths:
         os.remove(fpath)
     
@@ -608,10 +635,12 @@ def del_dir(dir_path):
     shutil.rmtree(dir_path)
     
     
-def del_specified_subdir(dir_path, del_names, recu_sub_dir=True):
+def del_specified_subdir(dir_path, del_names, recu_sub_dir=True,
+                         **kwargs_getpath):
     '''删除dir_path文件夹下所有文件夹名尾缀在del_names中的子文件夹'''
     subdirs = get_all_paths(dir_path, ext=del_names, only_dir=True,
-                            abspath=True, recu_sub_dir=recu_sub_dir)
+                            abspath=True, recu_sub_dir=recu_sub_dir,
+                            **kwargs_getpath)
     for subdir in subdirs:
         shutil.rmtree(subdir)
     
@@ -621,7 +650,7 @@ def copy_file_to_dir(src_path, tgt_dir, force=True):
     make_dir(tgt_dir)
     if not force:
         tgt_path = os.path.join(tgt_dir,
-                                   os.path.basename(src_path))
+                                os.path.basename(src_path))
         if os.path.exists(tgt_path):
             return
     if os.path.exists(tgt_dir) and not os.path.isdir(tgt_dir):
@@ -630,8 +659,10 @@ def copy_file_to_dir(src_path, tgt_dir, force=True):
     
     
 def copy_file_to_file(src_path, tgt_path, force=True):
-    '''文件复制（重命名）'''
-    raise NotImplementedError
+    '''文件复制（指定文件名）'''
+    if not force and os.path.exists(tgt_path):
+        return
+    shutil.copy(src_path, tgt_path)
     
     
 def _get_copy_abs_tgt_dir(src_dir, tgt_dir, keep_root_same):
@@ -647,10 +678,12 @@ def _get_copy_abs_tgt_dir(src_dir, tgt_dir, keep_root_same):
 def copy_dir_structure(src_dir, tgt_dir,
                        ext=None, recu_sub_dir=True,
                        keep_root_same=True,
-                       return_map=False):
+                       return_map=False,
+                       **kwargs_getpath):
     '''复制文件夹结构，不复制里面的文件'''
     subdirs = get_all_paths(src_dir, ext=ext, only_dir=True,
-                            abspath=True, recu_sub_dir=recu_sub_dir)
+                            abspath=True, recu_sub_dir=recu_sub_dir,
+                            **kwargs_getpath)
     abs_dir_path = os.path.abspath(src_dir)
     abs_tgt_dir = _get_copy_abs_tgt_dir(src_dir, tgt_dir, keep_root_same)
     tgt_dirs = [x.replace(abs_dir_path, abs_tgt_dir) for x in subdirs]
@@ -663,12 +696,13 @@ def copy_dir_structure(src_dir, tgt_dir,
 
 def copy_dir(src_dir, tgt_dir, ext_file=None, ext_dir=None,
              recu_sub_dir=True, force=True, keep_root_same=True,
-             keep_empty_dir_when_not_recu=False):
+             keep_empty_dir_when_not_recu=False,
+             kwargs_getpath_dir={}, kwargs_getpath_file={}):
     '''复制整个文件夹及其内容'''
     if not recu_sub_dir and not keep_empty_dir_when_not_recu:
         fpaths = get_all_paths(src_dir, ext=ext_file, include_dir=False,
                                abspath=True, recu_sub_dir=False,
-                               only_dir=False)
+                               only_dir=False, **kwargs_getpath_dir)
         abs_tgt_dir = _get_copy_abs_tgt_dir(src_dir, tgt_dir, keep_root_same)
         for fpath in fpaths:
             copy_file_to_dir(fpath, abs_tgt_dir, force=force)
@@ -679,20 +713,62 @@ def copy_dir(src_dir, tgt_dir, ext_file=None, ext_dir=None,
                                      return_map=True)
         fpaths = get_all_paths(src_dir, ext=ext_file, include_dir=False,
                                abspath=True, recu_sub_dir=recu_sub_dir,
-                               only_dir=False)
+                               only_dir=False, **kwargs_getpath_file)
         for fpath in fpaths:
             tdir = dir_map[os.path.dirname(fpath)]
             copy_file_to_dir(fpath, tdir, force=force)
     
     
-def move_file():
+def move_file_to_file(src_path, tgt_path, force=True):
+    '''移动文件（指定文件名）'''
+    if not force and os.path.exists(tgt_path):
+        return
+    shutil.move(src_path, tgt_path)
+    
+    
+def move_file_to_dir(src_path, tgt_dir, force=True):
     '''移动文件'''
-    raise NotImplementedError
+    make_dir(tgt_dir)
+    if not force:
+        tgt_path = os.path.join(tgt_dir,
+                                os.path.basename(src_path))
+        if os.path.exists(tgt_path):
+            return
+    if os.path.exists(tgt_dir) and not os.path.isdir(tgt_dir):
+        raise ValueError('目标路径不是文件夹，请检查！')
+    shutil.move(src_path, tgt_dir)
     
     
-def move_dir():
-    '''移动文件夹'''
-    raise NotImplementedError
+def move_dir(src_dir, tgt_dir, ext_file=None, ext_dir=None,
+             recu_sub_dir=True, force=True, keep_root_same=True,
+             keep_empty_dir_when_not_recu=False,
+             kwargs_getpath_dir={}, kwargs_getpath_file={}):
+    '''移动整个文件夹及其内容'''
+    if not recu_sub_dir and not keep_empty_dir_when_not_recu:
+        fpaths = get_all_paths(src_dir, ext=ext_file, include_dir=False,
+                               abspath=True, recu_sub_dir=False,
+                               only_dir=False, **kwargs_getpath_dir)
+        abs_tgt_dir = _get_copy_abs_tgt_dir(src_dir, tgt_dir, keep_root_same)
+        for fpath in fpaths:
+            move_file_to_dir(fpath, abs_tgt_dir, force=force)
+        if len(os.listdir(src_dir)) == 0:
+            os.removedirs(src_dir)
+    else:
+        dir_map = copy_dir_structure(src_dir, tgt_dir, ext=ext_dir,
+                                     recu_sub_dir=recu_sub_dir,
+                                     keep_root_same=keep_root_same,
+                                     return_map=True)
+        fpaths = get_all_paths(src_dir, ext=ext_file, include_dir=False,
+                               abspath=True, recu_sub_dir=recu_sub_dir,
+                               only_dir=False, **kwargs_getpath_file)
+        for fpath in fpaths:
+            tdir = dir_map[os.path.dirname(fpath)]
+            move_file_to_dir(fpath, tdir, force=force)
+        for dir1, dir2 in dir_map.items():
+            if len(os.listdir(dir1)) == 0:
+                os.removedirs(dir1)
+            if len(os.listdir(dir2)) == 0:
+                os.removedirs(dir2)
     
     
 def move_specified_type_files(dir_path,
@@ -738,12 +814,12 @@ def get_files_info(fpaths):
     return infos
 
 
-def get_files_info_dir(dir_path, **kwargs):
+def get_files_info_dir(dir_path, **kwargs_getpath):
     '''
     | 获取dir_path文件夹中所有文件的信息
     | \**kwargs为 :func:`dramkit.iotoos.get_all_paths` 接受的参数
     '''
-    fpaths = get_all_paths(dir_path, **kwargs)
+    fpaths = get_all_paths(dir_path, **kwargs_getpath)
     return get_files_info(fpaths)
     
     
@@ -764,10 +840,10 @@ def py2pyc(py_path, pyc_path=None, force=True, del_py=False,
     
     
 def py2pyc_dir(dir_path, force=True, del_py=False,
-               recu_sub_dir=True, **kwargs_compile):
+               recu_sub_dir=True, kwargs_compile={}, kwargs_getpath={}):
     '''将一个文件夹下的所有.py文件编译为.pyc文件'''
     all_pys = get_all_paths(dir_path, ext='.py', recu_sub_dir=recu_sub_dir,
-                            abspath=True)
+                            abspath=True, **kwargs_getpath)
     for fpy in all_pys:
         fpyc = fpy+'c'
         py2pyc(fpy, pyc_path=fpyc, force=force,
@@ -803,11 +879,14 @@ def pyc2py(pyc_path, py_path=None, force=True,
         
         
 def pyc2py_dir(dir_path, force=True, del_pyc=False,
-               recu_sub_dir=True, logger=None):
+               recu_sub_dir=True, logger=None, **kwargs_getpath):
     '''将一个文件夹下的所有.pyc文件反编译为.py文件'''
     all_pycs = get_all_paths(dir_path, ext='.pyc', recu_sub_dir=recu_sub_dir,
-                             abspath=True)
-    for fpyc in all_pycs:
+                             abspath=True, **kwargs_getpath)
+    n = len(all_pycs)
+    for k in range(n):
+        fpyc = all_pycs[k]
+        logger_show('%s / %s ...'%(k+1, n), logger, 'info')
         pyc2py(fpyc, force=force, del_pyc=del_pyc, logger=logger)
             
             
@@ -896,6 +975,37 @@ def get_ip_public():
     return cur_public_ip[0]
 
 
+def get_tasks_info_win():
+    '''windows下获取任务信息'''
+    res = cmdrun('tasklist', logger=False)
+    res = res.split('\n')[1:-1]
+    cols = re.sub(' +', ',', res[0].strip()).split(',')
+    lens = [len(x) for x in res[1].split(' ')]
+    idxs, start, end = [], 0, 0
+    for k in range(len(lens)):
+        end = start + lens[k]
+        idxs.append([start, end])
+        start = start + lens[k] + 1
+    del res[1]
+    res = [[x.strip()[k1:k2].strip() for k1, k2 in idxs] for x in res]
+    res = pd.DataFrame(res[2:], columns=cols)
+    return res
+
+
+def get_ports_info_win():
+    '''windows下获取端口信息'''
+    res = cmdrun('netstat -ano', logger=False)
+    res = res.split('\n')[3:-1]
+    res = [re.sub(' +', ',', x.strip()) for x in res] # 替换连续空格
+    res = [x.split(',') for x in res]
+    res = pd.DataFrame(res[1:], columns=res[0])
+    res['端口'] = res['本地地址'].apply(lambda x: x.split(':')[-1])
+    res['端口'] = res['端口'].astype(int)
+    tasks = get_tasks_info_win()
+    res = merge_df(res, tasks, how='left', on='PID')
+    return res
+
+
 def zip_files(zip_path, fpaths, keep_ori_path=True, keep_zip_new=True):
     '''
     使用zipfile将指定路径列表(不包括子文件(夹)内容)打包为.zip文件
@@ -926,7 +1036,7 @@ def zip_files(zip_path, fpaths, keep_ori_path=True, keep_zip_new=True):
     f.close()
     
     
-def zip_fpath(fpath, zip_path=None, **kwargs):
+def zip_fpath(fpath, zip_path=None, kwargs_zip={}, kwargs_getpath={}):
     '''
     使用zipfile压缩单个文件(夹)下所有内容为.zip文件
 
@@ -936,7 +1046,7 @@ def zip_fpath(fpath, zip_path=None, **kwargs):
         待压缩文件(夹)路径(应为相对路径)
     zip_path : None, str
         压缩文件保存路径，若为None，则为fpath路径加后缀
-    **kwargs :
+    **kwargs_zip :
         :func:`dramkit.iotools.zip_files` 接受的参数
     '''
     if isnull(zip_path):
@@ -945,13 +1055,13 @@ def zip_fpath(fpath, zip_path=None, **kwargs):
         else:
             zip_path = fpath + '.zip'
     if os.path.isfile(fpath): # fpath为文件
-        zip_files(zip_path, [fpath], **kwargs)
+        zip_files(zip_path, [fpath], **kwargs_zip)
     elif os.path.isdir(fpath): # fpath为文件夹
-        fpaths = get_all_paths(fpath, include_dir=True)
-        zip_files(zip_path, fpaths, **kwargs)
+        fpaths = get_all_paths(fpath, include_dir=True, **kwargs_getpath)
+        zip_files(zip_path, fpaths, **kwargs_zip)
 
 
-def zip_fpaths(zip_path, fpaths, **kwargs):
+def zip_fpaths(zip_path, fpaths, kwargs_zip={}, kwargs_getpath={}):
     '''
     使用zipfile将指定路径列表(包括子文件(夹)所有内容)打包为.zip文件
 
@@ -961,7 +1071,7 @@ def zip_fpaths(zip_path, fpaths, **kwargs):
         zip压缩包保存路径
     fpaths : list
         需要压缩的路径列表(可为文件也可为文件夹, 应为相对路径)
-    **kwargs :
+    **kwargs_zip :
         :func:`dramkit.iotools.zip_files` 接受的参数
     '''
     all_paths = []
@@ -969,8 +1079,9 @@ def zip_fpaths(zip_path, fpaths, **kwargs):
         if os.path.isfile(fpath):
             all_paths.append(fpath)
         elif os.path.isdir(fpath):
-            all_paths += get_all_paths(fpath, include_dir=True)
-    zip_files(zip_path, all_paths, **kwargs)
+            all_paths += get_all_paths(fpath, include_dir=True,
+                                       **kwargs_getpath)
+    zip_files(zip_path, all_paths, **kwargs_zip)
 
 
 def zip_extract(fzip, to_dir=None, replace_exists=True):
@@ -1067,9 +1178,43 @@ def extract_7z():
     raise NotImplementedError
 
 
-def cmdrun(cmd_str):
+def cmdrun(cmd_str, logger=None):
     '''调用cmd执行cmd_str命令'''
-    raise NotImplementedError
+    p = subprocess.Popen(cmd_str,
+                         shell=True,
+                         stdout=subprocess.PIPE,
+                         stderr=subprocess.STDOUT,
+                         encoding='gbk'
+                         )
+    res = p.communicate()[0]
+    logger_show(res, logger)
+    return res
+
+
+def _cmdrun(args):
+    return cmdrun(*args)
+    
+    
+def cmdruns_multi_process(cmd_str_list, logger=None,
+                          multi_line=None, keep_order=True):
+    args_list = [[cmd_str, logger] for cmd_str in cmd_str_list]
+    if not keep_order:
+        res = multi_process_concurrent(cmdrun, args_list,
+                                       multi_line=multi_line,
+                                       keep_order=False)
+    else:
+        res = multi_process_concurrent(_cmdrun, args_list,
+                                       multi_line=multi_line,
+                                       keep_order=True)
+    logger_show('\n'.join(res), logger)
+    return res
+    
+    
+def cmd_run_pys_multi_process(py_list, logger=None,
+                              multi_line=None, keep_order=True):
+    cmd_str_list = ['python %s'%py for py in py_list]
+    return cmdruns_multi_process(cmd_str_list, logger=logger,
+                                 multi_line=multi_line, keep_order=keep_order)
     
     
 def cmd_run_pys(py_list, logger=None):
@@ -1116,7 +1261,8 @@ def rename_files_in_dir(dir_path, func_rename):
 
 
 def find_files_include_str(target_str, root_dir=None,
-                           file_types=None, logger=None):
+                           file_types=None, re_match=False,
+                           logger=None, **kwargs_getpath):
     '''    
     在指定目录下的文件中，查找那些文件里面包含了目标字符串
     
@@ -1137,25 +1283,32 @@ def find_files_include_str(target_str, root_dir=None,
         - None, 在所有文件中查找
         - str, 指定一类文件后缀, 如'.py'表示在Python脚本中查找
         - list, 指定一个后缀列表, 如['.py', '.txt']
+    re_match : bool
+        若为True，则目标字符串 ``target_str`` 按正则表达式处理
     logger : None, logging.Logger
         日志记录器
 
 
     :returns: `dict` - 返回dict, key为找到的文件路径，value为包含目标字符串的文本内容(仅第一次出现的位置)
     '''
+    def _isin(line, tgt):
+        if not re_match:
+            return tgt in line
+        else:
+            return not re.search(tgt, line) is None
     if root_dir is None:
         root_dir = os.getcwd()
-    all_files = get_all_paths(root_dir, ext=file_types)
+    all_files = get_all_paths(root_dir, ext=file_types, **kwargs_getpath)
     files = []
     for fpath in all_files:
         lines = read_lines(fpath, logger=logger)
         for line in lines:
             try:
-                if target_str in line:
+                if _isin(line, target_str):
                     files.append([fpath, line])
                     break
             except:
-                if target_str.encode('gbk') in line:
+                if _isin(line, target_str.encode('gbk')):
                     files.append([fpath, line])
                     break
     files = pd.DataFrame(files, columns=['fpath', 'content'])

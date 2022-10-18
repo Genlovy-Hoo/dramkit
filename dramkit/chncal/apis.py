@@ -230,7 +230,7 @@ def find_workday(delta_days=0, date=None):
     return date
 
 
-def get_solar_terms(start, end=None):
+def get_solar_terms(start=None, end=None):
     '''
     生成24节气
     通用寿星公式：https://www.jianshu.com/p/1f814c6bb475
@@ -628,15 +628,15 @@ def lun2gen(date, run=False):
         raise ValueError('未找到对应农历日期，请检查输入参数！')
         
         
-def get_age_by_suxing(suxing, return_n=10):
+def get_age_by_shuxiang(shuxiang, return_n=10):
     '''根据属性获取可能年龄'''
-    assert isinstance(suxing, str) and suxing in SX
+    assert isinstance(shuxiang, str) and shuxiang in SX
     base_year, base_sx = 2022, '虎'
     res = {}
     n = 0
     year, idx = base_year, SX.index(base_sx)
     while n < return_n:
-        if SX[idx] == suxing:
+        if SX[idx] == shuxiang:
             res[year] = base_year-year
             n += 1
         year -= 1
