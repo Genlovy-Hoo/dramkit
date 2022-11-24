@@ -466,7 +466,8 @@ def cut_csv_by_year(fpath, tcol=None,
                 tcol = col
                 break
     logger_show('年份识别...', logger)
-    df['xxyearxx'] = pd.to_datetime(df[tcol]).apply(lambda x: x.year)
+    df['xxtcolxx'] = pd.to_datetime(df[tcol])
+    df['xxyearxx'] = df['xxtcolxx'].apply(lambda x: x.year)
     df['xxyearxx'] = df['xxyearxx'].astype(str)
     years = df['xxyearxx'].unique().tolist()
     years.sort()
@@ -1313,6 +1314,131 @@ def find_files_include_str(target_str, root_dir=None,
                     break
     files = pd.DataFrame(files, columns=['fpath', 'content'])
     return files
+
+
+def get_pip_pkgs_win():
+    '''获取windows下pip安装包列表'''
+    def _is_version(x):
+        '''判断是否为版本号'''
+        x = x.split('.')
+        if len(x) >= 2:
+            try:
+                if 0 <= int(x[0]) <= 99 and 0 <= int(x[1]) <= 99:
+                    return True
+            except:
+                return False
+        else:
+            return False
+    res = cmdrun('pip list', logger=False)
+    res = res.split('\n')
+    res = [re.sub(' +', ',', x.strip()) for x in res]
+    df = []
+    cols = ['pkg', 'version']
+    for x in res:
+        x = x.split(',')
+        if len(x) != 2:
+            continue
+        if _is_version(x[-1]):
+            df.append(x)
+    df = pd.DataFrame(df, columns=cols)
+    pkgs = df['pkg'].unique().tolist()
+    return pkgs, df
+
+
+def _find_py_import_pkgs(py):
+    '''
+    查找py脚本中import的依赖包，返回列表
+    '''
+    lines = read_lines(py)
+    lines = [x for x in lines if 'import ' in x]
+    lines = [x.replace(',', ', ') for x in lines]
+    lines = [x.replace('#', ' # ') for x in lines]
+    lines = [re.sub(' +', ' ', x.strip()) for x in lines] # 替换连续空格
+    res = []
+    for line in lines:
+        # 去除整行注释
+        if line.startswith('#'):
+            continue
+        # from xxx(.) import yyy (as zzz)
+        pkg = re.search(r'from .* import ', line)
+        if not isnull(pkg):
+            pkg = pkg.group().split(' ')[1]
+            # 去除from .xxx 这种相对路径import
+            if not pkg.startswith('.'):
+                pkg = pkg.split('.')[0]
+                res.append(pkg)
+            continue
+        # import xxx(.) (as yyy)
+        # import xxx(.) (as yyy), aaa(.) (as bbb)
+        # 必须import开头
+        if not line.startswith('import '):
+            continue
+        pkgs = line.replace('import ', '').split(', ')
+        for pkg in pkgs:
+            # 不可能出现import .xxx这种相对路径导入方式
+            pkg = pkg.split(' as ')[0]
+            pkg = pkg.split(' ')[0]
+            pkg = pkg.split('.')[0]
+            res.append(pkg)
+    res = list(set(res))
+    # 额外筛选
+    res = [x for x in res if not ',' in x]
+    res = [x for x in res if not '"' in x]
+    res = [x for x in res if not "'" in x]
+    res = [x for x in res if not '>' in x]
+    res = [x for x in res if not '(' in x]
+    res = [x for x in res if not ')' in x]
+    return res
+
+
+def _find_import_pkgs(fdir):
+    '''
+    查找依赖包（fdir下的py文件中所有import的包）
+    
+    Examples
+    --------
+    >>> pkgs, df = _find_import_pkgs('../../DramKit/')
+    >>> pkgs1, df1 = _find_import_pkgs('../../FinFactory/')
+    '''
+    pys = find_files_include_str('import ', root_dir=fdir,
+                                 file_types='.py', abspath=True)
+    res = []
+    df = []
+    pys = pys['fpath'].unique().tolist()
+    for py in pys:
+        tmp = _find_py_import_pkgs(py)
+        res += tmp
+        df += [[x, py] for x in tmp]
+    res = list(set(res))
+    df = pd.DataFrame(df, columns=['pkg', 'fpath'])
+    df.drop_duplicates(subset=['pkg'], inplace=True)
+    res.sort()
+    df.sort_values('pkg', ascending=True, inplace=True)
+    return res, df
+
+
+def _get_pkg_requirements(fdir):
+    '''
+    获取依赖包
+    
+    Note
+    ----
+    pip包名称与导入包名称不一致的会丢失，比如talib包名为TA-Lib，会丢失
+    
+    Examples
+    --------
+    >>> fdir = '../../DramKit/'
+    >>> pkgs = _get_pkg_requirements(fdir)
+    '''
+    pkgs_pip, df_pip = get_pip_pkgs_win()
+    pkgs, df = _find_import_pkgs(fdir)
+    reqs = [x for x in pkgs if x in pkgs_pip]
+    reqs.sort()
+    reqs_version = df_pip[df_pip['pkg'].isin(reqs)].copy()
+    reqs_version.sort_values('pkg', ascending=True, inplace=True)
+    reqs_str = '\n'.join(reqs)
+    reqs_version_str = '\n'.join(['=='.join(x) for x in reqs_version.values])
+    return (reqs, reqs_version), (reqs_str, reqs_version_str), (pkgs, df)
 
 
 if __name__ == '__main__':

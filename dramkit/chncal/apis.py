@@ -1,25 +1,26 @@
 # -*- coding: utf-8 -*-
 
 # TODO
-# 沪深A股日历介入tushare
+# 沪深A股日历接入tushare
 # 判断农历月大月小，判断是否闰月等
 # 增加八字排盘算命等
 
 
 from __future__ import absolute_import, unicode_literals
 
+import time
 import datetime
 import pandas as pd
 
-from chncal.constants import holidays
-from chncal.constants import in_lieu_days
-from chncal.constants import workdays
-from chncal.solar_terms import SolarTerms
-from chncal.solar_terms import SOLAR_TERMS_C_NUMS
-from chncal.solar_terms import SOLAR_TERMS_MONTH
-from chncal.solar_terms import SOLAR_TERMS_DELTA
+from chncal.constants import (holidays,
+                              in_lieu_days,
+                              workdays)
+from chncal.solar_terms import (SolarTerms,
+                                SOLAR_TERMS_C_NUMS,
+                                SOLAR_TERMS_MONTH,
+                                SOLAR_TERMS_DELTA)
 
-from chncal.constants_atrade import atrade_calendar
+from chncal.constants_trade_dates import trade_dates
 from chncal.constants_hko import gen_lun, lun_gen, gen_gz
 from chncal.constants_fate import w_year, w_month, w_date, w_hour, song
 from chncal.constants_zodiac_marry import zodiac_match
@@ -69,6 +70,19 @@ TGDZ_BASE_DATE = pd.to_datetime('2022.07.10')
 # TGDZ_BASE_TIME = pd.to_datetime('2022.08.23 23:17:05')
 TGDZ_BASE_TIME = pd.to_datetime('2022.08.23 23:00:00')
 
+# 支持查交易日历的交易所和最早日期
+# TODO
+# 目前交易所首个交易日以tushare交易日历数据最早的日期为准，待查证准确的日期
+MARKETS = {
+            'SSE': datetime.date(1990, 12, 19), # 上交所
+            'SZSE': datetime.date(1991, 7, 3), # 深交所
+            'CFFEX': datetime.date(2006, 9, 8), # 中金所
+            'SHFE': datetime.date(1991, 5, 28), # 上期所
+            'CZCE': datetime.date(1990, 10, 12), # 郑商所
+            'DCE': datetime.date(1993, 3, 1), # 大商所
+            'INE': datetime.date(2017, 5, 23), # 上能源
+        }
+
 
 def _trans_date(date):
     if pd.isnull(date):
@@ -77,6 +91,9 @@ def _trans_date(date):
         date = pd.to_datetime(date)
     elif isinstance(date, int):
         date = pd.to_datetime(str(date))
+    elif isinstance(date, time.struct_time):
+        date = pd.to_datetime(
+               datetime.datetime.fromtimestamp(time.mktime(date)))
     return date
 
 
@@ -357,15 +374,15 @@ def get_bazi_lunar(time, run=False):
 
 def get_wuxing(time=None):
     bazi = get_bazi(time)
-    wx_ = {x: tgdznywx[x[:2]] for x in bazi.split(',')}
-    wx = [v[-1] for k, v in wx_.items()]
+    wx_ = {x: tgdznywx[x[:2]]+'(%s, %s)'%(tgwx[x[0]], dzwx[x[1]]) for x in bazi.split(',')}
+    wx = [v[2] for k, v in wx_.items()]
     return wx, wx_
 
 
 def get_wuxing_lunar(time, run=False):
     bazi = get_bazi_lunar(time, run=run)
-    wx_ = {x: tgdznywx[x[:2]] for x in bazi.split(',')}
-    wx = [v[-1] for k, v in wx_.items()]
+    wx_ = {x: tgdznywx[x[:2]]+'(%s, %s)'%(tgwx[x[0]], dzwx[x[1]]) for x in bazi.split(',')}
+    wx = [v[2] for k, v in wx_.items()]
     return wx, wx_
 
 
@@ -415,7 +432,7 @@ def _trans_hour(time=None):
     if pd.isnull(time):
         hour = datetime.datetime.now().hour
     else:
-        hour = pd.to_datetime(time).hour
+        hour = pd.to_datetime(str(time)).hour
     return _hour2dz(hour)
 
 
@@ -540,15 +557,20 @@ def _is_tradeday(date):
     return is_workday(date) and date.weekday() not in [5, 6]
 
 
-def is_tradeday(date=None):
-    '''判断是否为沪深A股交易日'''
-    date = _wrap_date(date)
-    if date in atrade_calendar:
-        return bool(atrade_calendar[date])
+def is_tradeday(date=None, market='SSE'):
+    '''判断是否为交易日'''
+    market = market.upper()
+    if not market in MARKETS:
+        raise ValueError('未识别的交易所，请检查！')
+    date = _wrap_date(date)    
+    if date < MARKETS[market]: # 小于首个交易日的直接视为非交易日
+        return False
+    if (market, date) in trade_dates:
+        return bool(trade_dates[(market, date)])
     return _is_tradeday(date)
 
 
-def get_recent_tradeday(date=None, dirt='post'):
+def get_recent_tradeday(date=None, dirt='post', market='SSE'):
     '''
     若date为交易日，则直接返回date，否则返回下一个(dirt='post')或上一个(dirt='pre')交易日
     '''
@@ -556,15 +578,15 @@ def get_recent_tradeday(date=None, dirt='post'):
     date = _trans_date(date)
     tdelta = datetime.timedelta(1)
     if dirt == 'post':
-        while not is_tradeday(date):
+        while not is_tradeday(date, market=market):
             date = date + tdelta
     elif dirt == 'pre':
-        while not is_tradeday(date):
+        while not is_tradeday(date, market=market):
             date = date - tdelta
     return _wrap_date(date)
 
 
-def get_next_nth_tradeday(date=None, n=1):
+def get_next_nth_tradeday(date=None, n=1, market='SSE'):
     '''
     | 给定日期date，返回其后第n个交易日日期，n可为负数（返回结果在date之前）
     | 若n为0，直接返回date
@@ -575,19 +597,19 @@ def get_next_nth_tradeday(date=None, n=1):
     tmp = 0
     while tmp < n:
         date = date + datetime.timedelta(n_add)
-        if is_tradeday(date):
+        if is_tradeday(date, market=market):
             tmp += 1
     return _wrap_date(date)
 
 
-def get_trade_dates(start_date, end_date=None):
+def get_trade_dates(start_date, end_date=None, market='SSE'):
     '''
     取指定起止日期内的交易日期（周内的工作日）
     '''
     start_date = _trans_date(start_date)
     end_date = _trans_date(end_date)
     dates = pd.date_range(start_date, end_date)
-    dates = [x for x in dates if is_tradeday(x)]
+    dates = [x for x in dates if is_tradeday(x, market=market)]
     dates = [_wrap_date(x) for x in dates]
     return dates
 

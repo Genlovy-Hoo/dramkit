@@ -60,13 +60,14 @@ def _plot_series_with_styls_info(ax, series, styls_info,
 #%%
 def plot_series(data, cols_styl_up_left, cols_styl_up_right={},
                 cols_styl_low_left={}, cols_styl_low_right={},
-                cols_to_label_info={}, cols_to_fill_info={}, yscales=None,
+                cols_to_label_info={}, cols_to_fill_info={},
+                col_text_up={}, col_text_low={}, yscales=None,
                 xparls_info={}, yparls_info_up=None, yparls_info_low=None,
                 fills_yparl_up=None, fills_yparl_low=None, fills_xparl={},
                 twinx_align_up=None, twinx_align_low=None,
                 ylabels=None, xlabels=None, grids=False, figsize=(11, 7),
                 title=None, n_xticks=8, xticks_rotation=None,
-                fontsize_label=15, fontsize_title=15,
+                fontsize_label=15, fontsize_title=15, fontsize_text=10,
                 fontsize_legend=15, fontsize_tick=10, fontname=None,
                 markersize=10, legend_locs=None, fig_save_path=None,
                 logger=None):
@@ -113,7 +114,13 @@ def plot_series(data, cols_styl_up_left, cols_styl_up_right={},
     cols_to_fill_info : dict
         需要进行颜色填充的列信息，格式形如(具体参数key参见matplotlib的fill_between函数):
 
-        ``{col1 : {'color': 'c', 'alpha': 0.3}, ...}``
+        ``{col1: {'color': 'c', 'alpha': 0.3}, ...}``
+    col_text_up : dict
+        上图文本标注设置，格式形如（具体参数key参见matplotlib的ax.text函数）:
+            
+        ``{col1: (col2, {...}), ...}``
+    col_text_low : dict
+        下图文本标注设置，格式同 ``col_text_up``
     yscales : None, list
         y轴标轴尺度设置，若为None，则默认普通线性坐标，
         可设置为list指定每个坐标尺度(参见matplotlib中的set_yscale)
@@ -174,7 +181,7 @@ def plot_series(data, cols_styl_up_left, cols_styl_up_right={},
     - legend位置增加放在图片外面的设置
     - 不规则区域填充设置
     - 添加堆叠图（面积图）绘制方式
-    - 数字文本标注（比如在折线图上标注数值）
+    - 数字文本标注增加自定义设置（可针对文本列统一设置，也可针对单个文本设置）
     - 正常绘制与特殊标注重复绘制问题
     - x轴平行线对应列不一定非要在主图绘制列中选择
     - 平行线图层绘制在主线下面
@@ -381,6 +388,10 @@ def plot_series(data, cols_styl_up_left, cols_styl_up_right={},
             to_fills.append([xlocs, clor, alpha, kwstyl])
         return to_fills
     
+    def get_text_info(text_info, col):
+        ''''''
+        raise NotImplementedError
+    
     def twinx_align(ax_left, ax_right, v_left, v_right):
         '''双坐标轴左右按照v_left和v_right对齐'''
         left_min, left_max = ax_left.get_ybound()
@@ -445,6 +456,16 @@ def plot_series(data, cols_styl_up_left, cols_styl_up_right={},
             for ylocs, clor, alpha, kwstyl_ in to_fills:
                 axUpLeft.fill_betweenx(ylocs, xlimMinUp, xlimMaxUp,
                                   color=clor, alpha=alpha, **kwstyl_)
+        
+        # 文本标注
+        if col in col_text_up:
+            col_text = col_text_up[col][0]
+            for idx, val in df[col_text].to_dict().items():
+                if not isnull(val):
+                    yloc = df.loc[idx, col]
+                    axUpLeft.text(idx, yloc, val,
+                                  ha='center', va='bottom',
+                                  fontsize=fontsize_text)
 
     # 坐标轴尺度
     axUpLeft.set_yscale(yscales[0])
@@ -1000,7 +1021,7 @@ if __name__ == '__main__':
                 yscales=None,
                 xparls_info={'col1': [(10, 'k', '--', 5, {'alpha': 0.3}),
                                       (15, None, None, None)],
-                              'col4': [(200, None, None, None)]},
+                             'col4': [(200, None, None, None)]},
                 yparls_info_up=[('idx20', None, None, None),
                                 ('idx90', 'g', '-', 5, {'alpha': 0.5})],
                 yparls_info_low=[('idx50', None, None, None),

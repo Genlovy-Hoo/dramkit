@@ -40,6 +40,86 @@ def twinx_align(ax_left, ax_right, v_left, v_right):
     return ax_left, ax_right
 
 
+if __name__ == '__main__':
+    import numpy as np
+    import pandas as pd
+    from dramkit import plot_series
+
+    # 数据
+    # 每日净流入
+    net_in = [100, 0, 0, 0, 20, 0, 0, 0, 0, -20,
+              0, 0, 30, 0, 0, 0, 0, 0, -30, 0]
+    # 每日盈亏金额
+    net_gain= [0, -2, -3, 5, 2, 3, 4, 5, 5, -1,
+               -4, -10, 2, 5, 9, 6, 0, 1, -1, 9]
+    df = pd.DataFrame({'net_in': net_in, 'net_gain': net_gain})
+    
+    df['total_in'] = df['net_in'].cumsum()
+    df['value'] = df['total_in'] + df['net_gain'].cumsum()
+    
+    df['value_net'] = df['value'] / df['value'].iloc[0] # 每日净值  
+    df['pct'] = df['value'] / df['total_in'] - 1 # 实际累计盈亏比例
+    
+    
+    # 普通作图
+    plot_series(df,
+                {'value_net': ('-k', False)},
+                cols_styl_up_right={'pct': ('-b', False)},
+                xparls_info={'value_net': [(1,)], 'pct': [(0,)]},
+                ylabels=['净值', '总盈亏率'], title='普通作图')
+    
+    # 对齐作图
+    plot_series(df,
+                {'value_net': ('-k', False)},
+                cols_styl_up_right={'pct': ('-b', False)},
+                xparls_info={'value_net': [(1,)], 'pct': [(0,)]},
+                twinx_align_up=[1, 0],
+                ylabels=['净值', '总盈亏率'], title='普通作图')
+    
+    
+    # from matplotlib import pyplot as plt
+    
+    # # 普通作图
+    # plt.figure(figsize=(10, 7.5))
+    # ax1 = plt.subplot(111)
+    # ax1.plot(df['value_net'], '-k')
+    # ax1.axhline(1, c='k', lw=1, ls='--')
+    # ax1.set_ylabel('净值', fontsize=16)
+    # ax2 = ax1.twinx()
+    # ax2.plot(df['pct'], '-b')
+    # ax2.axhline(0, c='k', lw=1, ls='--')
+    # ax2.set_ylabel('总盈亏率', fontsize=16)
+    # plt.title('普通作图', fontsize=16)
+    # plt.show()
+    
+    # # 双坐标轴刻度对齐作图
+    # plt.figure(figsize=(10, 7.5))
+    # ax1 = plt.subplot(111)
+    # ax1.plot(df['value_net'], '-k')
+    # ax1.axhline(1, c='k', lw=1, ls='--')
+    # ax1.set_ylabel('净值', fontsize=16)
+    # ax2 = ax1.twinx()
+    # ax2.plot(df['pct'], '-b')
+    # ax2.axhline(0, c='k', lw=1, ls='--')
+    # ax2.set_ylabel('总盈亏率', fontsize=16)
+    # twinx_align(ax1, ax2, 1, 0)
+    # plt.title('净值1和盈亏率0对齐作图', fontsize=16)
+    # plt.show()
+
+
+    # plot_series文本标注测试
+    df['text_up'] = np.nan
+    df.loc[4, 'text_up'] = 'CashIn'
+    df.loc[9, 'text_up'] = '转出'
+    plot_series(df,
+                {'value_net': ('-k', False)},
+                cols_styl_up_right={'pct': ('-b', False)},
+                xparls_info={'value_net': [(1,)], 'pct': [(0,)]},
+                col_text_up={'value_net': ('text_up',)},
+                # col_text_up={'value_net': ('value_net',)},
+                fontsize_text=15,
+                ylabels=['净值', '总盈亏率'], title='普通作图')
+
 
 
 

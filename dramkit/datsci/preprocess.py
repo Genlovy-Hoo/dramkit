@@ -431,15 +431,18 @@ def drop_miss_feature(data, cols=None, thre=0.8):
     return df
 
 
-def drop_miss_sample(data, thre=0.5):
+def drop_miss_sample(data, thre=0.5, cols=None):
     '''
     | 删除数据缺失率大于thre的样本（行）
     | 注：应保证data.index是唯一的
     '''
+    assert isinstance(cols, (type(None), list))
+    if isnull(cols):
+        cols = list(data.columns)
     df = data.copy()
-    df['loss_rate'] = df.isna().sum(axis=1) / df.shape[1]
+    df['loss_rate'] = df[cols].isna().sum(axis=1) / df.shape[1]
     df = df[df['loss_rate'] <= thre]
-    df.drop('loss_rate', axis=1)
+    df = df.drop('loss_rate', axis=1)
     return df
 
 

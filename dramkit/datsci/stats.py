@@ -1112,10 +1112,10 @@ def get_pct_loc(value, series, isnew=True, method='dense'):
     '''
     if isnull(value):
         return np.nan
-    vals = [value] + list(series)
-    vals = pd.Series(vals)
     if not method in ['dense', 'average']:
         raise ValueError('未识别的并列排序方法！')
+    vals = [value] + list(series)
+    vals = pd.Series(vals)
     ranks = vals.rank(method=method)
     rank = ranks.iloc[0]
     if method == 'dense':

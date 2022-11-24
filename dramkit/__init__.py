@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from ._pkg_info import pkg_info
+__version__ = pkg_info['__version__']
 from .install_check import install_check
 
 from .gentools import isnull

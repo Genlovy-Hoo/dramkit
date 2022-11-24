@@ -11,7 +11,7 @@ if __name__ == '__main__':
     # logger = None
     logger = simple_logger()
     
-    target_str = 'chinese_calendar'
+    target_str = 'chncal'
     # target_str = "f'"
     root_dir = 'D:/Genlovy_Hoo/HooProjects/FinFactory/'
     # root_dir = 'D:/Genlovy_Hoo/HooProjects/DramKit/'

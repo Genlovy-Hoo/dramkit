@@ -1790,6 +1790,19 @@ def filter_by_func_prenext_series(series, func_prenext,
     return seriesNew
 
 
+def df_na2value(df, value=None):
+    '''
+    | df中nan值替换为value
+    | https://blog.csdn.net/Shone1214/article/details/125968784
+    '''
+    if pd.__version__ < '1.3.0':
+        df = df.where(df.notna(), value)
+    else:
+        df = df.fillna(np.nan)
+        df = df.replace({np.nan: value})
+    return df
+
+
 def merge_df(df_left, df_right, same_keep='left', **kwargs):
     '''
     在 ``pd.merge`` 上改进，相同列名时自动去除重复的
@@ -1982,7 +1995,17 @@ def isnull(x):
         if x != x:
             return True
     except:
-        pass
+        try:
+            if np.isnan(x):
+                return True
+            elif np.isnat(x):
+                return True
+        except:
+            try:
+                if pd.isnull(x):
+                    return True
+            except:
+                pass
     return False
 
 
@@ -2122,6 +2145,140 @@ def max_com_divisor_tad(l):
     # return g
 
     return reduce(lambda x, y: mcd2_tad(x, y), l)
+
+
+def _pd_pivot_table(df, **kwargs):
+    '''
+    pandas中pivot_table函数测试
+    
+    Examples
+    --------
+    >>> df = pd.DataFrame(
+    ...         {'类别': ['水果', '水果', '水果', '蔬菜', '蔬菜',
+    ...                  '肉类', '肉类'],
+    ...          '产地': ['美国', '中国', '中国', '中国',
+    ...                  '新西兰', '新西兰', '美国'],
+    ...          '名称': ['苹果', '梨', '草莓', '番茄', '黄瓜',
+    ...                  '羊肉', '牛肉'],
+    ...          '数量': [5, 5, 9, 3, 2, 10, 8],
+    ...          '价格': [5, 5, 10, 3, 3, 13, 20]}
+    ...         )
+    >>> df1 = _pd_pivot_table(df,
+    ...                       index=['产地', '类别'],
+    ...                       # columns=['名称'],
+    ...                       values=['数量', '价格'],
+    ...                       # aggfunc='sum',
+    ...                       aggfunc={'数量': 'sum', '价格': 'mean'},
+    ...                       )
+    
+    References
+    ----------
+    - https://blog.csdn.net/bqw18744018044/article/details/80015840
+    '''
+    return df.pivot_table(**kwargs)
+
+
+def _pd_crosstab(*args, **kwargs):
+    '''
+    pandas中crosstab函数测试
+    
+    Examples
+    --------
+    >>> df = pd.DataFrame(
+    ...         {'类别': ['水果', '水果', '水果', '蔬菜', '蔬菜',
+    ...                  '肉类', '肉类'],
+    ...          '产地': ['美国', '中国', '中国', '中国',
+    ...                  '新西兰', '新西兰', '美国'],
+    ...          '名称': ['苹果', '梨', '草莓', '番茄', '黄瓜',
+    ...                  '羊肉', '牛肉'],
+    ...          '数量': [5, 5, 9, 3, 2, 10, 8],
+    ...          '价格': [5, 5, 10, 3, 3, 13, 20]}
+    ...         )
+    >>> df1 = _pd_crosstab(index=df['类别'], columns=df['产地'], margins=True)
+    >>> df2 = _pd_crosstab(index=df['产地'], columns=df['类别'],
+    ...                    values=df['价格'], aggfunc='mean')
+    
+    References
+    ----------
+    - https://blog.csdn.net/bqw18744018044/article/details/80015840
+    '''
+    return pd.crosstab(*args, **kwargs)
+
+
+def df_rows2cols(df, col_name, col_val_name,
+                 fill_value=None):
+    '''
+    把df中col_value_name列数据按col_name列分组，通过unstack拆分为多列数据，新列名为col_name列中的值
+    
+    Examples
+    --------
+    >>> df0 = pd.DataFrame(
+    ...         [['Saliy', 'midterm', 'class1', 'A'],
+    ...         ['Saliy', 'midterm', 'class3', 'B'],
+    ...         ['Saliy', 'final', 'class1', 'C'],
+    ...         ['Saliy', 'final', 'class3', 'C'],
+    ...         ['Jeff', 'midterm', 'class2', 'D'],
+    ...         ['Jeff', 'midterm', 'class4', 'A'],
+    ...         ['Jeff', 'final', 'class2', 'E'],
+    ...         ['Jeff', 'final', 'class4', 'C'],
+    ...         ['Roger', 'midterm', 'class2', 'C'],
+    ...         ['Roger', 'midterm', 'class5', 'B'],
+    ...         ['Roger', 'final', 'class2', 'A'],
+    ...         ['Roger', 'final', 'class5', 'A'],
+    ...         ['Karen', 'midterm', 'class3', 'C'],
+    ...         ['Karen', 'midterm', 'class4', 'A'],
+    ...         ['Karen', 'final', 'class3', 'C'],
+    ...         ['Karen', 'final', 'class4', 'A'],
+    ...         ['Brain', 'midterm', 'class1', 'B'],
+    ...         ['Brain', 'midterm', 'class5', 'A'],
+    ...         ['Brain', 'final', 'class1', 'B'],
+    ...         ['Brain', 'final', 'class5', 'C']],
+    ...         columns=['name', 'test', 'class', 'grade'])
+    >>> col_name, col_val_name = 'class', 'grade'
+    >>> df1 = df_rows2cols(df0, col_name, col_val_name)
+    >>> df2 = df_rows2cols(df0, col_name, col_val_name,
+                           fill_value='None')
+    '''
+    idx_cols = [x for x in df.columns if not x in [col_name, col_val_name]]
+    df = df.set_index(idx_cols+[col_name])
+    df = df.unstack(fill_value=fill_value)
+    df = df.reset_index()
+    df.columns = idx_cols + [x[1] for x in df.columns[len(idx_cols):]]
+    return df
+
+
+def df_cols2rows(df, cols, col_name, col_val_name,
+                 dropna=True):
+    '''
+    把df中指定的cols列数据通过stack堆积为行数据，新列名为col_name
+    
+    Examples
+    --------
+    >>> na = [np.nan]
+    >>> df3 = pd.DataFrame({'name': ['Saliy', 'Saliy', 'Jeff', 'Jeff',
+    ...                              'Roger', 'Roger', 'Karen', 'Karen',
+    ...                              'Brain', 'Brain'],
+    ...                     'test': ['midterm', 'final'] * 5,
+    ...                     'class1': ['A', 'C'] + na*6 + ['B', 'B'],
+    ...                     'class2': na*2 + ['D', 'E', 'C', 'A'] + na*4,
+    ...                     'class3': ['B', 'C'] + na*4 + ['C', 'C'] + na*2,
+    ...                     'class4': na*2 + ['A', 'C'] + na*2 + ['A', 'A'] + na*2,
+    ...                     'class5': na*4 + ['B', 'A'] + na*2 + ['A', 'C']})
+    >>> cols = ['class%s'%x for x in range(1, 6)]
+    >>> col_name = 'class'
+    >>> col_val_name = 'grade'
+    >>> df4 = df_cols2rows(df3, cols, col_name, col_val_name)
+    >>> df5 = df_cols2rows(df3, cols, col_name, col_val_name,
+    ...                    dropna=False)
+    '''
+    assert isinstance(cols, (list, tuple))
+    idx_cols = [x for x in df.columns if not x in cols]
+    df = df.set_index(idx_cols)
+    df = df.stack(dropna=dropna)
+    df = pd.DataFrame(df, columns=[col_val_name])
+    df.index.names = idx_cols + [col_name]
+    df = df.reset_index()
+    return df
 
 
 def get_first_appear_index(series, values, ascending=False,
@@ -2327,6 +2484,8 @@ def df_groupby_func(df, by_cols, func,
     |   若为drop，则重置返回的index
     |   若为False，则不处理groupby之后的index
     |   若为ori，如返回数据与原始df行数相同，则使用原始index，否则不处理groupby之后的index
+    | 解决groupby.apply出现执行多次的问题(貌似pandas更新到1.5.0之后没出现了)，参考:
+    | http://t.zoukankan.com/wkang-p-10150401.html
     '''
     assert reset_index in ['drop', 'ori', False]
     n = df.shape[0]

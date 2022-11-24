@@ -2,7 +2,7 @@
 
 import pymysql
 import pandas as pd
-from dramkit.gentools import isnull
+from dramkit.gentools import isnull, df_na2value
 from dramkit.logtools.utils_logger import logger_show
 
 
@@ -173,6 +173,12 @@ class PyMySQL(object):
                       cols_uni=cols_uni, db_name=db_name,
                       index_name=index_name)
         self.reset_db(db_name)
+        
+    def get_unique_values(self, tb_name, field, db_name=None):
+        res = get_unique_values(self.conn, tb_name, field,
+                                db_name=db_name)
+        self.reset_db(db_name)
+        return res
     
     def df_to_mysql(self, df, tb_name, act_type='insert',
                     cols=None, db_name=None, na_val=None,
@@ -185,6 +191,19 @@ class PyMySQL(object):
                     db_name=db_name, na_val=na_val,
                     idcols=idcols, logger=logger,
                     **kwargs_cols)
+        self.reset_db(db_name)
+        
+    def df_to_mysql_by_row(self, df, tb_name, act_type='insert',
+                           cols=None, db_name=None, na_val=None,
+                           idcols=None, logger=None,
+                           **kwargs_cols):
+        db_name = self._check_db(db_name)
+        logger = self.logger if isnull(logger) else logger
+        df_to_mysql_by_row(df, self.conn, tb_name,
+                           act_type=act_type, cols=cols,
+                           db_name=db_name, na_val=na_val,
+                           idcols=idcols, logger=logger,
+                           **kwargs_cols)
         self.reset_db(db_name)
         
         
@@ -236,6 +255,15 @@ def execute_sql(conn, sql_str, db_name=None, to_df=True):
         res = pd.DataFrame(res, columns=cols)
     cur.close()
     conn.commit()
+    return res
+
+
+def get_unique_values(conn, tb_name, field, db_name=None):
+    '''获取某个字段的不重复值'''
+    sql_str = '''SELECT DISTINCT {} FROM {}
+              ;'''.format(field, tb_name)
+    res = execute_sql(conn, sql_str, db_name=db_name)
+    # res = res[field].tolist()
     return res
 
 
@@ -549,7 +577,7 @@ def change_cols_info(conn, tb_name, cols_info, db_name=None):
     execute_sql(conn, sql, db_name=db_name, to_df=False)
 
 
-def get_cols_info_df(df, cols=None, big_text=False):
+def get_cols_info_df(df, cols=None, all2str=False, big_text=False):
     '''
     根据pd.DataFrame中的列cols，识别对应列在MySQL中的字段类别
     
@@ -564,6 +592,8 @@ def get_cols_info_df(df, cols=None, big_text=False):
         待识别数据
     cols : list, None
         待识别列名列表，默认所有列
+    all2str : bool
+        若为True，则数据均按文本类型处理
     big_text : bool
         文本是否为长文本，若为True，则文本保存为TEXT类型
         
@@ -586,7 +616,13 @@ def get_cols_info_df(df, cols=None, big_text=False):
     types = df.dtypes
     cols_info, cols_type, cols_info_dict = [], [], {}
     for col in cols:
-        if 'int' in str(types[col]):
+        if all2str:
+            if big_text:
+                char = col + ' TEXT'
+            else:
+                char = col + ' VARCHAR(255)'            
+            char_ = '%s'
+        elif 'int' in str(types[col]):
             char = col + ' INT'
             char_ = '%s'
         elif 'float' in str(types[col]):
@@ -601,6 +637,8 @@ def get_cols_info_df(df, cols=None, big_text=False):
         elif 'datetime' in str(types[col]):
             char = col + ' DATETIME'
             char_ = '%s'
+        else:
+            raise ValueError('未识别（暂不支持）的字段类型: %s！'%col)
         cols_info.append(char)
         cols_type.append(char_)
         cols_info_dict[col] = (char, char_)
@@ -627,8 +665,10 @@ def df_to_mysql(df, conn, tb_name, act_type='insert',
         | 存入方式：
         |     若为'new'，则新建表（若原表已存在，则会清空已有数据）
         |     若为'insert'，则直接插入
-        |     若为'replace'，则将已存在的数据更新，不存在的新插入
-        |     若为'insert_ignore'，则已有的不更新，不存在的新插入
+        |     若为'replace'，则将已存在的数据更新，不存在的行和列都新插入
+        |     若为'insert_ignore'，则已有的行不更新，不存在的行新插入
+        |     若为'insert_newcols'，则对已存在的列同直接insert，有新列则插入新列内容
+        |     若为'insert_ignore_newcols'，则对已存在的列同直接insert_ignore，有新列则插入新列内容
     cols : None, list
         需要存入的数据列
     db_name : str
@@ -680,10 +720,12 @@ def df_to_mysql(df, conn, tb_name, act_type='insert',
     - https://blog.csdn.net/weixin_42272869/article/details/116480732
     '''
     
-    assert act_type in ['new', 'insert', 'replace', 'insert_ignore']
+    assert act_type in ['new', 'insert', 'replace',
+                        'insert_ignore', 'insert_newcols',
+                        'insert_ignore_newcols']
     
     # 清除原数据或直接新增数据
-    if act_type in ['new', 'insert']:
+    if act_type in ['new', 'insert', 'insert_ignore']:
         df_to_mysql_by_row(df, conn, tb_name, act_type=act_type,
                            cols=cols, db_name=db_name, na_val=na_val,
                            idcols=idcols, logger=logger, **kwargs_cols)
@@ -697,7 +739,7 @@ def df_to_mysql(df, conn, tb_name, act_type='insert',
         cols = df.columns.tolist()
         
     if na_val != False:
-        df = df.where(df.notna(), na_val)
+        df = df_na2value(df, value=na_val)
         
     cur = conn.cursor()
 
@@ -751,7 +793,10 @@ def df_to_mysql(df, conn, tb_name, act_type='insert',
         values = df[oldcols].values.tolist()
         colstr = ', '.join(oldcols)
         typestr = ', '.join([cols_info_dict[x][1] for x in oldcols])
-        if act_type == 'replace':
+        if act_type == 'insert_newcols':
+            sql = '''INSERT INTO {} ({}) VALUES ({})
+                  ;'''.format(tb_name, colstr, typestr)
+        elif act_type == 'replace':
             idstr = ', '.join(['{x} = VALUES({x})'.format(x=x) for x in oldcols])
             sql = '''INSERT INTO {} ({})
                      VALUES ({})
@@ -760,7 +805,13 @@ def df_to_mysql(df, conn, tb_name, act_type='insert',
         else:
             sql = '''INSERT IGNORE INTO {} ({}) VALUES ({})
                   ;'''.format(tb_name, colstr, typestr)
-        cur.executemany(sql, values)
+        if act_type == 'insert_newcols':
+            try:
+                cur.executemany(sql, values)
+            except:
+                pass
+        else:
+            cur.executemany(sql, values)
         
     # 再处理新增字段
     if len(cols_loss) > 0:
@@ -803,7 +854,7 @@ def df_to_mysql_by_row(df, conn, tb_name, act_type='insert',
         cols = df.columns.tolist()
         
     if na_val != False:
-        df = df.where(df.notna(), na_val)
+        df = df_na2value(df, value=na_val)
 
     cur = conn.cursor()
 

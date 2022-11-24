@@ -10,7 +10,9 @@ import datetime
 import requests
 from typing import List
 from pathlib import Path
+from logging import Logger
 from requests_toolbelt import MultipartEncoder
+from dramkit.logtools.utils_logger import logger_show
 
 
 UPLOAD_URL = 'https://qyapi.weixin.qq.com/cgi-bin/media/upload'
@@ -113,12 +115,14 @@ class WechatWork(object):
             if js['errmsg'] != 'ok':
                 return ''
             return js['media_id']
-
+    
     def send(self,
              msg_type: str,
              users: List[str],
              content: str = None,
-             media_id: str = None) -> bool:
+             media_id: str = None,
+             logger: Logger = None
+             ) -> bool:
         """
         发送消息
 
@@ -169,9 +173,10 @@ class WechatWork(object):
                                  json=data)
         res = response.json()
         if res['errmsg'] == 'ok':
-            return 'suscess', res
+            return True
         else:
-            return 'fail', res
+            logger_show(res, logger, 'error')
+            return False
 
     def send_image(self,
                    image_path: str,
