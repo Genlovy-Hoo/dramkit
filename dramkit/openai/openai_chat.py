@@ -13,7 +13,6 @@ from dramkit.gentools import isnull, try_repeat_run
 from dramkit.iotools import load_yml, get_parent_path
 
 
-# API_KEY = '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'
 API_KEY = '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'
 
 
