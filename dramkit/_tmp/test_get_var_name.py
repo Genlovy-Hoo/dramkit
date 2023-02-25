@@ -27,3 +27,5 @@ if __name__ == '__main__':
 
     v = get_variable_name(6)
     print(v)
+    v = get_variable_name(aaa)
+    print(v)

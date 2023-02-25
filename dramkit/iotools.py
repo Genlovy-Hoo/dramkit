@@ -8,14 +8,21 @@ import pickle
 import shutil
 import zipfile
 import socket
+import inspect
 import requests
+import traceback
 import subprocess
 import py_compile
 import pandas as pd
+from tqdm import tqdm
+from pathlib import Path
 from dramkit.gentools import (isnull,
+                              check_list_arg,
                               get_update_kwargs,
                               cut_range_to_subs,
-                              merge_df)
+                              get_tmp_col,
+                              merge_df,
+                              update_df)
 from dramkit.logtools.utils_logger import (logger_show,
                                            close_log_file)
 from dramkit.datetimetools import timestamp2str
@@ -23,7 +30,8 @@ from dramkit.speedup.multi_thread import SingleThread
 from dramkit.speedup.multi_process import multi_process_concurrent
 
 
-def get_input_with_timeout(timeout=10, hint_str=None):
+def get_input_with_timeout(timeout=10, hint_str=None,
+                           logger=None):
     '''
     | 通过input函数获取输入
     | 若等待时间超过timeout秒没接收到输入，则返回None
@@ -43,6 +51,7 @@ def get_input_with_timeout(timeout=10, hint_str=None):
 
     # 若超时后，线程依旧运行，则强制结束
     if task.is_alive():
+        logger_show('超时未接收到输入，返回None！', logger, 'warn')
         task.stop_thread()
 
     return task.get_result()
@@ -73,7 +82,7 @@ def get_input_multi_line(end_word='end', end_char='',
     while True:
         if hint_lineno:
             lineno += 1
-            hint_str = '(第{}行)'.format(lineno)+hint_str_
+            hint_str = '(第{}行)'.format(lineno) + hint_str_
         var = input(hint_str)
         if var == str(end_word):
             break
@@ -188,7 +197,8 @@ def write_json(data, fpath, encoding=None, mode='w', **kwargs):
         json.dump(data, f, indent=4, ensure_ascii=False)
 
 
-def read_lines(fpath, encoding=None, logger=None):
+def read_lines(fpath, encoding=None, split=True,
+               logger=None, **kwargs_open):
     '''
     读取文本文件中的所有行
 
@@ -205,21 +215,21 @@ def read_lines(fpath, encoding=None, logger=None):
     :returns: `list` - 文本文件中每行内容列表
     '''
     try:
-        with open(fpath, 'r', encoding=encoding) as f:
-            lines = f.readlines()
+        with open(fpath, 'r', encoding=encoding, **kwargs_open) as f:
+            lines = f.readlines() if split else f.read()
     except:
         try:
-            with open(fpath, 'r', encoding='utf-8') as f:
-                lines = f.readlines()
+            with open(fpath, 'r', encoding='utf-8', **kwargs_open) as f:
+                lines = f.readlines() if split else f.read()
         except:
             try:
-                with open(fpath, 'r', encoding='gbk') as f:
-                    lines = f.readlines()
+                with open(fpath, 'r', encoding='gbk', **kwargs_open) as f:
+                    lines = f.readlines() if split else f.read()
             except:
                 logger_show('未正确识别文件编码格式，以二进制读取: %s'%fpath,
                             logger, 'warn')
-                with open(fpath, 'rb') as f:
-                    lines = f.readlines()
+                with open(fpath, 'rb', **kwargs_open) as f:
+                    lines = f.readlines() if split else f.read()
     return lines
 
 
@@ -395,7 +405,7 @@ def load_csvs(fpaths,
     :returns: `pandas.DataFrame` - 读取的数据
     '''
     data = []
-    for fpath in fpaths:
+    for fpath in tqdm(fpaths):
         df = load_csv(fpath, **kwargs_loadcsv)
         data.append(df)
     data = pd.concat(data, axis=0)
@@ -436,6 +446,42 @@ def load_csvs_dir(fdir,
     return data
 
 
+def archive_df(df_old, df_new, idcols=None,
+               del_dup_cols=None, rep_keep='new',
+               sort_cols=None, ascendings=True,
+               file_type='.csv', save_path=None,
+               kwargs_read={}, kwargs_save={},
+               method='merge', logger=None):
+    '''
+    合并df_new和df_old，再排序、去重、写入csv或excel
+    '''
+    assert file_type in ['.csv', '.xlsx']
+    read_func = load_csv if file_type == '.csv' else pd.read_excel
+    if isinstance(df_new, str):
+        df_new = read_func(df_new, **kwargs_read)
+    if isinstance(df_old, str):
+        if os.path.exists(df_old):
+            if isnull(df_new) or df_new.shape[0] < 1:
+                return df_old
+            df_old = read_func(df_old, **kwargs_read)
+        else:
+            df_old = pd.DataFrame(columns=df_new.columns)
+    res = update_df(df_old, df_new,
+                    idcols=idcols,
+                    del_dup_cols=del_dup_cols,
+                    rep_keep=rep_keep,
+                    sort_cols=sort_cols,
+                    ascendings=ascendings,
+                    method=method,
+                    logger=logger)
+    if not isnull(save_path) and not isnull(res):
+        if file_type == '.csv':
+            res.to_csv(save_path, **kwargs_save)
+        elif file_type == '.xlsx':
+            res.to_excel(save_path, **kwargs_save)
+    return res
+
+
 def cut_csv_by_maxline(fpath, max_line=10000,
                        kwargs_loadcsv={},
                        kwargs_tocsv={'index': None}):
@@ -466,16 +512,18 @@ def cut_csv_by_year(fpath, tcol=None,
                 tcol = col
                 break
     logger_show('年份识别...', logger)
-    df['xxtcolxx'] = pd.to_datetime(df[tcol])
-    df['xxyearxx'] = df['xxtcolxx'].apply(lambda x: x.year)
-    df['xxyearxx'] = df['xxyearxx'].astype(str)
-    years = df['xxyearxx'].unique().tolist()
+    d_ = get_tmp_col(df, 'date_')
+    y_ = get_tmp_col(df, 'year_')
+    df[d_] = pd.to_datetime(df[tcol])
+    df[y_] = df[d_].apply(lambda x: x.year)
+    df[y_] = df[y_].astype(str)
+    years = df[y_].unique().tolist()
     years.sort()
     for k in range(len(years)):
         year = years[k]
         logger_show('{}, 数据写入...'.format(year), logger)
-        df_ = df[df['xxyearxx'] == year].copy()
-        df_.drop('xxyearxx', axis=1, inplace=True)
+        df_ = df[df[y_] == year].copy()
+        df_.drop([d_, y_], axis=1, inplace=True)
         path_ = fpath[:-4]+'_'+year+'.csv'
         if k == len(years)-1:
             if not name_last_year:
@@ -786,6 +834,15 @@ def make_dir(dir_path):
         os.makedirs(dir_path)
         
         
+def make_path_dir(fpath):
+    '''若fpath所指文件夹路径不存在，则新建之'''
+    if isnull(fpath):
+        return
+    dir_path = os.path.dirname(fpath)
+    if not os.path.exists(dir_path) and len(dir_path) > 0:
+        make_dir(dir_path)
+        
+        
 def get_last_change_time(fpath, strformat='%Y-%m-%d %H:%M:%S'):
     '''获取文件的最后修改时间'''
     return timestamp2str(os.stat(fpath).st_mtime, strformat)
@@ -856,11 +913,18 @@ def pyc2py(pyc_path, py_path=None, force=True,
     '''pyc文件反编译为py'''
     def _pyc2py(pyc_path, py_path, logger):
         cmdstr = 'uncompyle6 -o {} {}'.format(py_path, pyc_path)
-        cmdinfo = subprocess.check_output(cmdstr, shell=True,
-                                          stderr=subprocess.STDOUT)
+        try:
+            cmdinfo = subprocess.check_output(cmdstr, shell=True,
+                                              stderr=subprocess.STDOUT)
+        except:
+            if os.path.exists(py_path):
+                os.remove(py_path)
+            logger_show('%s反编译失败: %s'%(pyc_path, traceback.format_exc()),
+                        logger, 'error')
+            return
         cmdinfo = cmdinfo.decode('gbk')
         cmdinfo = cmdinfo.replace('\r\n', '\n')
-        logger_show(cmdinfo, logger, 'info')
+        logger_show(cmdinfo, logger, 'info')        
     if py_path is None:
         py_path = pyc_path.replace('.pyc', '.py')
         if 'cpython' in pyc_path:
@@ -1259,13 +1323,60 @@ def rename_files_in_dir(dir_path, func_rename):
         old_path = os.path.join(dir_path, name)
         new_path = os.path.join(dir_path, name_new)
         os.rename(old_path, new_path)
-
-
-def find_files_include_str(target_str, root_dir=None,
-                           file_types=None, re_match=False,
-                           logger=None, **kwargs_getpath):
+        
+        
+def find_files_include_str(target_str, fpaths, re_match=False,
+                           return_all_find=False, logger=None):
     '''    
-    在指定目录下的文件中，查找那些文件里面包含了目标字符串
+    在指定文件路径列表中，查找哪些文件里面包含了目标字符串
+
+    Parameters
+    ----------
+    target_str : str
+        目标字符串
+    fpaths : str, list
+        文件路径列表
+    re_match : bool
+        若为True，则目标字符串 ``target_str`` 按正则表达式处理
+    return_all_find : bool
+        若为True，则返回所有找到的目标字符串，否则只返回第一个
+    logger : None, logging.Logger
+        日志记录器
+
+
+    :returns: `dict` - 返回dict, key为找到的文件路径，value为包含目标字符串的文本内容(仅第一次出现的位置)
+    '''
+    def _isin(line, tgt):
+        if not re_match:
+            return tgt in line
+        else:
+            return not re.search(tgt, line) is None
+    fpaths = check_list_arg(fpaths)
+    files = []
+    for fpath in fpaths:
+        lines = read_lines(fpath, logger=logger)
+        for line in lines:
+            try:
+                if _isin(line, target_str):
+                    files.append([fpath, line])
+                    if not return_all_find:
+                        break
+            except:
+                if _isin(line, target_str.encode('gbk')):
+                    files.append([fpath, line])
+                    if not return_all_find:
+                        break
+    files = pd.DataFrame(files, columns=['fpath', 'content'])
+    files = files.sort_values('fpath')
+    return files
+
+
+def find_dir_include_str(target_str, root_dir=None,
+                         file_types=None, re_match=False,
+                         return_all_find=False, logger=None,
+                         **kwargs_getpath):
+    '''    
+    在指定目录下的文件中，查找哪些文件里面包含了目标字符串
     
     TODO
     ----
@@ -1286,37 +1397,62 @@ def find_files_include_str(target_str, root_dir=None,
         - list, 指定一个后缀列表, 如['.py', '.txt']
     re_match : bool
         若为True，则目标字符串 ``target_str`` 按正则表达式处理
+    return_all_find : bool
+        若为True，则返回所有找到的目标字符串，否则只返回第一个
     logger : None, logging.Logger
         日志记录器
 
 
     :returns: `dict` - 返回dict, key为找到的文件路径，value为包含目标字符串的文本内容(仅第一次出现的位置)
     '''
-    def _isin(line, tgt):
-        if not re_match:
-            return tgt in line
-        else:
-            return not re.search(tgt, line) is None
     if root_dir is None:
         root_dir = os.getcwd()
-    all_files = get_all_paths(root_dir, ext=file_types, **kwargs_getpath)
-    files = []
-    for fpath in all_files:
-        lines = read_lines(fpath, logger=logger)
-        for line in lines:
-            try:
-                if _isin(line, target_str):
-                    files.append([fpath, line])
-                    break
-            except:
-                if _isin(line, target_str.encode('gbk')):
-                    files.append([fpath, line])
-                    break
-    files = pd.DataFrame(files, columns=['fpath', 'content'])
+    fpaths = get_all_paths(root_dir, ext=file_types, **kwargs_getpath)
+    files = find_files_include_str(target_str, fpaths,
+                                   re_match=re_match,
+                                   return_all_find=return_all_find,
+                                   logger=logger)
     return files
 
 
-def get_pip_pkgs_win():
+def replace_str_in_file(fpath, ori_str, new_str,
+                        fpath_new=None, kwargs_read={},
+                        kwargs_write={}):
+    '''
+    | 替换文本文件fpath中的ori_str为new_str
+    | fpath_new指定新文件路径
+    | 若fpath_new为None，则新文件在原文件名加后缀_new
+    | 若fpath_new为'replace'，则新文件替换原文件
+    | 若fpath_new是函数，则新文件璐姐为fpath_new(fpath)
+    | kwargs_read为read_lines函数接收参数
+    | keargs_write为write_txt函数接收参数
+    '''
+    if isnull(fpath_new):
+        ext = os.path.splitext(fpath)[-1]
+        fpath_new_ = fpath.replace(ext, '_new'+ext)
+    elif fpath_new == 'replace':
+        fpath_new_ = fpath
+    elif inspect.isfunction(fpath_new):
+        fpath_new_ = fpath_new(fpath)
+    else:
+        fpath_new_ = fpath_new
+    text = read_lines(fpath, split=False, **kwargs_read)
+    text = text.replace(ori_str, new_str)
+    write_txt([text], fpath_new_, **kwargs_write)
+    
+    
+def replace_str_in_files(fpaths, ori_str, new_str,
+                         fpath_new=None, kwargs_read={},
+                         kwargs_write={}):
+    '''文本文件内容批量替换，参数见 :func:`replace_str_in_file` '''
+    for fpath in fpaths:
+        replace_str_in_file(fpath, ori_str, new_str,
+                            fpath_new=fpath_new,
+                            kwargs_read=kwargs_read,
+                            kwargs_write=kwargs_write)
+
+
+def get_pip_pkgs_win_deprecated():
     '''获取windows下pip安装包列表'''
     def _is_version(x):
         '''判断是否为版本号'''
@@ -1345,9 +1481,23 @@ def get_pip_pkgs_win():
     return pkgs, df
 
 
+def get_pip_pkgs_win():
+    '''获取windows下pip安装包列表'''
+    res = cmdrun('pip list', logger=False)
+    res = res.split('\n')
+    res = [x for x in res if len(re.findall(' +', x.strip())) == 1]
+    res = res[2:]
+    res = [re.sub(' +', '__,__', x.strip()) for x in res] # 替换连续空格
+    res = [x.split('__,__') for x in res]
+    df = pd.DataFrame(res, columns=['pkg', 'version'])
+    pkgs = df['pkg'].unique().tolist()
+    return pkgs, df
+
+
 def _find_py_import_pkgs(py):
     '''
-    查找py脚本中import的依赖包，返回列表
+    | 查找py脚本中import的依赖包，返回列表
+    | 可能并不完全准确
     '''
     lines = read_lines(py)
     lines = [x for x in lines if 'import ' in x]
@@ -1393,15 +1543,15 @@ def _find_py_import_pkgs(py):
 
 def _find_import_pkgs(fdir):
     '''
-    查找依赖包（fdir下的py文件中所有import的包）
+    查找被import的包（fdir下的py文件中所有import的包）
     
     Examples
     --------
     >>> pkgs, df = _find_import_pkgs('../../DramKit/')
     >>> pkgs1, df1 = _find_import_pkgs('../../FinFactory/')
     '''
-    pys = find_files_include_str('import ', root_dir=fdir,
-                                 file_types='.py', abspath=True)
+    pys = find_dir_include_str('import ', root_dir=fdir,
+                               file_types='.py', abspath=True)
     res = []
     df = []
     pys = pys['fpath'].unique().tolist()
@@ -1439,6 +1589,26 @@ def _get_pkg_requirements(fdir):
     reqs_str = '\n'.join(reqs)
     reqs_version_str = '\n'.join(['=='.join(x) for x in reqs_version.values])
     return (reqs, reqs_version), (reqs_str, reqs_version_str), (pkgs, df)
+
+
+def get_filename(fpath, with_ext=True):
+    '''获取文件名（去除前缀路径），with_ext为False则返回不带后缀'''
+    if with_ext:
+        return os.path.basename(fpath)
+    else:
+        return os.path.basename(os.path.splitext(fpath)[0])
+
+
+def get_file_ext_type(fpath):
+    '''提取文件扩展名'''
+    return os.path.splitext(fpath)[-1]
+
+
+def get_parent_path(path, n=1):
+    '''获取路径path的n级父路径'''
+    f = Path(path)
+    res = eval('f'+'.parent'*n)
+    return str(res).replace('\\', '/') + '/'
 
 
 if __name__ == '__main__':

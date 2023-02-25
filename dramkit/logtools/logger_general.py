@@ -2,9 +2,11 @@
 
 import os
 import logging
-from dramkit.logtools.utils_logger import _pre_get_logger
-from dramkit.logtools.utils_logger import _get_level
-from dramkit.logtools.utils_logger import formatter
+from dramkit.logtools.utils_logger import (
+                                   _pre_get_logger,
+                                   _get_level,
+                                   formatter,
+                                   make_path_dir)
 
 
 def get_logger(fpath=None, fmode='w', logname=None,
@@ -37,6 +39,7 @@ def get_logger(fpath=None, fmode='w', logname=None,
     - https://blog.csdn.net/weixin_43625263/article/details/123931477
     '''
     
+    make_path_dir(fpath)
     logger = _pre_get_logger(fpath, screen_show, logname, level)
 
     if fpath is not None:

@@ -5,7 +5,7 @@ import time
 import datetime
 import pandas as pd
 
-import chncal
+from dramkit import chncal
 
 
 # Python关于时间的一些知识：
@@ -163,6 +163,15 @@ def datetime2str(dt, strformat=None, tz='local'):
                 return time.strftime('%Y-%m-%d %H:%M:%S.%f', dt)
             else:
                 return str(dt)
+            
+            
+def dtseries2str(series, joiner='-', strformat=None):
+    '''pd.Series转化为str，若不指定strformat，则按joiner连接年月日'''
+    res = pd.to_datetime(series)
+    if pd.isnull(strformat):
+        strformat = '%Y{x}%m{x}%d'.format(x=joiner)
+    res = res.apply(lambda x: x.strftime(strformat))
+    return res
 
 
 def get_datetime_strformat(tstr,
@@ -298,7 +307,6 @@ def timestamp2str(t, strformat=None, tz='local', method=2):
         else:
             tbase = datetime.datetime.utcfromtimestamp(0)
         dt = tbase + datetime.timedelta(seconds=seconds)
-        # return datetime2str(dt, strformat=strformat)
         return dt.strftime(strformat)        
     # t小于0特殊处理
     if float(t) < 0:
@@ -317,7 +325,6 @@ def timestamp2str(t, strformat=None, tz='local', method=2):
             dt = datetime.datetime.fromtimestamp(ts)
         else:
             dt = datetime.datetime.utcfromtimestamp(ts)
-        # return datetime2str(dt, strformat=strformat)
         return dt.strftime(strformat)
     # 方式二：用time.localtime
     if method == 2:
@@ -367,9 +374,11 @@ def get_datetime_format(dt,
     raise ValueError('未识别的日期时间格式！')
 
     
-def copy_format(to_tm, from_tm):
-    '''复制日期时间格式'''
-    # 若from_tm是日期时间格式或时间戳格式，则直接返回to_tm
+def copy_format0(to_tm, from_tm):
+    '''
+    | 复制日期时间格式
+    | 若from_tm是日期时间格式或时间戳格式，则直接返回to_tm
+    '''
     dtype, fmt = get_datetime_format(from_tm)
     if fmt in [None, 'timestamp']:
         return to_tm
@@ -380,7 +389,9 @@ def copy_format(to_tm, from_tm):
     onlyone = False
     if not input_type in types2:
         onlyone = True
-        to_tm = [to_tm]                          
+        to_tm = [to_tm]
+    if len(to_tm) == 0:
+        return to_tm                        
     dt_type = type(to_tm[0]).__name__
     assert dt_type in ['datetime', 'date', 'Timestamp', 'struct_time']
     if dt_type == 'struct_time':
@@ -394,9 +405,9 @@ def copy_format(to_tm, from_tm):
     return res
 
 
-def x2datetime(x):
+def x2datetime(x, tz='local'):
     '''
-    | x转化为datetime格式
+    | x转化为datetime格式，若x为timestamp，应设置时区tz
     | 若x为8位整数，则转化为str处理，其余情况直接用用pd.to_datetime处理
     '''
     if isinstance(x, time.struct_time):
@@ -405,7 +416,52 @@ def x2datetime(x):
     elif isinstance(x, int) and len(str(x)) == 8:
         return pd.to_datetime(str(x))
     else:
-        return pd.to_datetime(x)
+        try:
+            xtype, fmt = get_datetime_format(x)
+            if fmt == 'timestamp':
+                return pd.to_datetime(timestamp2str(x, tz=tz))
+            else:
+                return pd.to_datetime(x)
+        except:
+            return pd.to_datetime(x)
+
+
+def copy_format(to_tm, from_tm):
+    '''
+    复制日期时间格式
+    '''
+    input_type = type(to_tm).__name__
+    types1 = ['datetime', 'date', 'Timestamp', 'struct_time']
+    types2 = ['str', 'int', 'float']
+    types3 = ['ndarray', 'Series', 'list', 'tuple']
+    assert input_type in types1+types2+types3
+    if input_type == type(from_tm).__name__ and input_type in types1:
+        return to_tm
+    onlyone = False
+    if not input_type in types3:
+        onlyone = True
+        to_tm = [to_tm]
+    if len(to_tm) == 0:
+        return to_tm
+    def _return(res):
+        if onlyone:
+            return res[0]
+        return res
+    tz = 'local'
+    res = [x2datetime(x, tz=tz) for x in to_tm]
+    dtype, fmt = get_datetime_format(from_tm)
+    if fmt is None:
+        if dtype == 'time.struct_time':
+            res = [x.timetuple() for x in res]
+        return _return(res)
+    if fmt == 'timestamp':
+        # TODO: 不同格式的timestamp处理（如10位，13位，整数，小数等）
+        res = [datetime2str(x, strformat='timestamp', tz=tz) for x in res]
+        return _return(res)
+    res = [x.strftime(fmt) for x in res]
+    if dtype in ['int', 'float']:
+        res = [eval('%s(x)'%dtype) for x in res]
+    return _return(res)
 
 
 def time_add(t, seconds=0, minutes=0, hours=0, days=0):
@@ -420,9 +476,10 @@ def date_add_nday(date, n=1):
     '''
     在给定日期date上加上n天（减去时n写成负数即可）
     '''
-    date_delta = datetime.timedelta(days=n)
-    date_new = x2datetime(date) + date_delta
-    return copy_format(date_new, date)
+    return time_add(date, days=n)
+    # date_delta = datetime.timedelta(days=n)
+    # date_new = x2datetime(date) + date_delta
+    # return copy_format(date_new, date)
 
 
 def is_datetime(x):
@@ -434,35 +491,35 @@ def is_datetime(x):
         return False
     
     
-def is_month_end(date=None):
-    '''判断date是否为月末'''
+def is_month_end(date=None, tz='local'):
+    '''判断date是否为月末，若date为timestamp，应设置时区tz'''
     if date is None:
         date = datetime.date.today()
-    date = x2datetime(date)
+    date = x2datetime(date, tz=tz)
     return date.is_month_end
 
 
-def is_month_start(date=None):
-    '''判断date是否为月初'''
+def is_month_start(date=None, tz='local'):
+    '''判断date是否为月初，若date为timestamp，应设置时区tz'''
     if date is None:
         date = datetime.date.today()
-    date = x2datetime(date)
+    date = x2datetime(date, tz=tz)
     return date.is_month_start
     
     
-def is_quarter_end(date=None):
-    '''判断date是否为季末'''
+def is_quarter_end(date=None, tz='local'):
+    '''判断date是否为季末，若date为timestamp，应设置时区tz'''
     if pd.isnull(date):
         date = datetime.date.today()
-    date = x2datetime(date)
+    date = x2datetime(date, tz=tz)
     return date.is_quarter_end
 
 
-def is_quarter_start(date=None):
-    '''判断date是否为季末'''
+def is_quarter_start(date=None, tz='local'):
+    '''判断date是否为季末，若date为timestamp，应设置时区tz'''
     if pd.isnull(date):
         date = datetime.date.today()
-    date = x2datetime(date)
+    date = x2datetime(date, tz=tz)
     return date.is_quarter_start
 
 
@@ -522,6 +579,16 @@ def get_dayofyear(date=None):
     if pd.isnull(date):
         date = datetime.date.today()
     return x2datetime(date).dayofyear
+
+
+def get_month_end(date=None):
+    '''获取date所在月的月末日期'''
+    if pd.isnull(date):
+        date = today_date()
+    day = x2datetime(date)
+    next_month = day.replace(day=28) + datetime.timedelta(days=4)
+    month_end = next_month - datetime.timedelta(days=next_month.day)
+    return copy_format(month_end, date)
 
 
 def get_date_format(date,

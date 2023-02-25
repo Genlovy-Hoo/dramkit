@@ -2,6 +2,8 @@
 
 # from __future__ import absolute_import, unicode_literals
 
+__version__ = '2.2.0'
+
 from .apis import (
     find_workday,
     get_dates,

@@ -10,7 +10,7 @@ import subprocess
 import pandas as pd
 from dramkit.gentools import cut_df_by_con_val, isnull
 from dramkit.iotools import read_lines, load_csv, logger_show
-from dramkit.iotools import find_files_include_str
+from dramkit.iotools import find_dir_include_str
 
 from dramkit.other.langconv import Converter
 
@@ -202,8 +202,8 @@ def _find_pypkgs_str(tgt_str, pkgs=None, **kwargs):
     pkg_paths = [x for x in sys.path if any([y in os.path.basename(x) for y in pkgs])]
     files = []
     for fdir in pkg_paths:
-        files.append(find_files_include_str(tgt_str, root_dir=fdir,
-                                            file_types='.py', **kwargs))
+        files.append(find_dir_include_str(tgt_str, root_dir=fdir,
+                                          file_types='.py', **kwargs))
     files = pd.concat(files, axis=0)
     return files
 

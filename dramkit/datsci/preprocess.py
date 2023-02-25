@@ -9,6 +9,18 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from dramkit.gentools import con_count, isnull
 
 
+def mad(ser, param=3):
+    arr = ser.values
+    median = np.nanmedian(arr, axis=0)
+    abs_arr = np.abs(arr - median)
+    med = np.nanmedian(abs_arr) * 1.483
+    ceil = median + param * med
+    floor = median - param * med
+    arr[arr > ceil] = ceil
+    arr[arr < floor] = floor
+    return arr
+
+
 class ExternalStd(object):
     '''极端值处理，标准差倍数法'''
 
@@ -84,7 +96,7 @@ def norm_std(series, reverse=False, ddof=1, return_mean_std=False):
 
 def norm_linear(x, xmin, xmax, ymin=0, ymax=1, reverse=False,
                 x_must_in_range=True, v_xmin_eq_xmax=np.nan,
-                v_nmin_eq_nmax=np.nan):
+                v_ymin_eq_ymax=np.nan):
     '''
     | 线性映射：
     | 将取值范围在[xmin, xmax]内的x映射到取值范围在[ymin, ymax]内的xnew
@@ -104,7 +116,7 @@ def norm_linear(x, xmin, xmax, ymin=0, ymax=1, reverse=False,
         return v_xmin_eq_xmax
 
     if ymin == ymax:
-        return v_nmin_eq_nmax
+        return v_ymin_eq_ymax
 
     if reverse:
         ymin, ymax = ymax, ymin
@@ -112,6 +124,17 @@ def norm_linear(x, xmin, xmax, ymin=0, ymax=1, reverse=False,
     xnew = ymin + (x-xmin) * (ymax-ymin) / (xmax-xmin)
 
     return xnew
+
+
+def series_norm_linear(series, ymin=0, ymax=1,
+                       reverse=False):
+    '''对series的值进行线性映射，参考 :func:`norm_linear` 函数'''
+    x = pd.Series(series)
+    xmin, xmax = x.min(), x.max()
+    if reverse:
+        ymin, ymax = ymax, ymin
+    res = ymin + (x-xmin) * (ymax-ymin) / (xmax-xmin)
+    return res
 
 
 def norm_mid(x, xmin, xmax, ymin=0, ymax=1, xbest=None):
@@ -499,15 +522,15 @@ def fillna_by_median(df, cols=None):
     return df
 
 
-# if __name__ == '__main__':
-#     fpath = '../../../No.60_CART_breakup_predict/data.csv'
-#     df = pd.read_csv(fpath)
+if __name__ == '__main__':
+    fpath = './_test/No.60_CART_breakup_predict_data.csv'
+    df = pd.read_csv(fpath)
 
-#     mis_rates = get_miss_rate(df)
-#     mis_rates = {k: v for k, v in mis_rates.items() if v > 0}
+    mis_rates = get_miss_rate(df)
+    mis_rates = {k: v for k, v in mis_rates.items() if v > 0}
 
-#     cols = ['act']
-#     df_ = fillna_by_mean(df, cols)
-#     df__ = fillna_by_mean(df, cols)
+    cols = ['act']
+    df_ = fillna_by_mean(df, cols)
+    df__ = fillna_by_mean(df, cols)
 
-#     a_ = fillna_ma(df['am'])
+    a_ = fillna_ma(df['am'])

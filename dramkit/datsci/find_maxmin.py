@@ -4,12 +4,15 @@ import time
 import numpy as np
 import pandas as pd
 from pprint import pprint
+from tqdm import tqdm
 from dramkit.logtools.utils_logger import logger_show
-from dramkit.gentools import con_count
-from dramkit.gentools import gap_count
-from dramkit.gentools import isnull, cal_pct
-from dramkit.gentools import replace_repeat_pd
-from dramkit.gentools import get_preval_func_cond
+from dramkit.gentools import (con_count,
+                              gap_count,
+                              isnull,
+                              cal_pct,
+                              replace_repeat_pd,
+                              get_preval_func_cond)
+from dramkit.iotools import load_csv
 from dramkit.datsci.preprocess import norm_linear
 from dramkit.plottools.plot_common import plot_maxmins, plot_series
 
@@ -366,6 +369,65 @@ def check_maxmins(df, col, col_label, max_lbl=1, min_lbl=-1):
                 return False, ('最后一个极大值点错误！', df.index[last_loc])
 
     return True, None
+
+#%%
+def find_maxmin_rolling(series, window, cal_n=None, **kwargs):
+    '''
+    滚动寻找极值点
+    
+    Examples
+    --------
+    >>> fpath = '../_test/510500.SH_daily_qfq.csv'
+    >>> df = load_csv(fpath)
+    >>> df = df.set_index('date', drop=False).iloc[-200:, :]
+    >>> window, t_min = 100, 3
+    >>> col = 'close'
+    >>> df['label'] = find_maxmin_rolling(df[col],
+    ...                                   window=window,
+    ...                                   cal_n=50,
+    ...                                   t_min=t_min)
+    >>> plot_maxmins(df.iloc[:, :], col, 'label', figsize=(12, 7))
+    '''
+    series = pd.Series(series)
+    n = len(series)
+    res = pd.Series([np.nan] * n, index=series.index, name='label')
+    tqdm.write('find maxmin rolling...')
+    time.sleep(0.5)
+    start = window if isnull(cal_n) else max(window, n-cal_n)
+    for k in tqdm(range(start, n+1)):
+        subseries = series.iloc[k-window:k]
+        res.iloc[k-1] = find_maxmin(subseries, **kwargs).iloc[-1]
+    return res
+
+
+def find_maxmin_cum(series, window_min=None, cal_n=None, **kwargs):
+    '''
+    滚动寻找极值点（用累计历史数据）
+    
+    Examples
+    --------
+    >>> fpath = '../_test/510500.SH_daily_qfq.csv'
+    >>> df = load_csv(fpath)
+    >>> df = df.set_index('date', drop=False).iloc[-200:, :]
+    >>> window_min, t_min = 100, 3
+    >>> col = 'close'
+    >>> df['label'] = find_maxmin_cum(df[col],
+    ...                               window_min=window_min,
+    ...                               cal_n=50,
+    ...                               t_min=t_min)
+    >>> plot_maxmins(df.iloc[:, :], col, 'label', figsize=(12, 7))
+    '''
+    window_min = 1 if isnull(window_min) else window_min
+    series = pd.Series(series)
+    n = len(series)
+    res = pd.Series([np.nan] * n, index=series.index, name='label')
+    tqdm.write('find maxmin cum...')
+    time.sleep(0.5)
+    start = window_min if isnull(cal_n) else max(window_min, n-cal_n)
+    for k in tqdm(range(start, n+1)):
+        subseries = series.iloc[:k]
+        res.iloc[k-1] = find_maxmin(subseries, **kwargs).iloc[-1]
+    return res
 
 #%%
 def get_his_maxmin_info(df, col, col_label, max_lbl=1, min_lbl=-1):
@@ -918,8 +980,6 @@ def find_maxmin_dy(df, col, t_min, his_lag=None, use_all=True,
 if __name__ == '__main__':
     strt_tm = time.time()
 
-    from dramkit import load_csv
-
     #%%
     arr = [1, 1, 1.3, 1.2, 2, 3, 4.8, 4.7, 5, 5]
     df1 = pd.DataFrame({'col': arr})
@@ -954,22 +1014,65 @@ if __name__ == '__main__':
     df['label'] = find_maxmin(df['test'], t_min=t_min, min_dif_val=4, t_max=10)
 
     plot_maxmins(df, 'test', 'label',
-                  title='标注极大极小值test：t_min='+str(t_min))
+                 title='标注极大极小值test：t_min='+str(t_min))
 
     OK, e = check_maxmins(df, df.columns[0], df.columns[1])
     if OK:
         print('极值点排列正确！')
     else:
         print('极值点排列错误:', e)
+        
+    #%%
+    # 趋势线叠加正弦余弦---------------------------------------------------------
+    N = 200
+    t = np.linspace(0, 1, N)
+    trend = 6 * t
+    circle1 = np.cos(10*2*np.pi*t*t)
+    circle2 = np.sin(6*2*np.pi*t)
+    # circle2 = 0 * t
+    noise = np.random.randn(len(t)) / 5
+    s = trend + circle1 + circle2 + noise
+    df = pd.DataFrame({'trend': trend,
+                       'circle1': circle1,
+                       'circle2': circle2,
+                       'noise': noise,
+                       'series': s})
+
+    # t_min = None
+    t_min = 3
+    df['label'] = find_maxmin(df['series'],
+                              t_min=t_min,
+                              min_dif_val=1,
+                              t_max=10)
+
+    plot_maxmins(df, 'series', 'label',
+                 title='标注极大极小值test：t_min='+str(t_min))
+
+    OK, e = check_maxmins(df, 'series', 'label')
+    if OK:
+        print('极值点排列正确！')
+    else:
+        print('极值点排列错误:', e)
+        
+    
+    plot_series(df,
+                {'series': ('.-k', None),
+                 'trend': ('-r', None),
+                 'circle1': ('-b', None),
+                 'circle2': ('-g', None),
+                 'noise': ('-y', None)},
+                # cols_to_label_info={'series':
+                #     [['label', (1, -1), ('gv', 'r^'), False]]},
+                title='周期波动示例')
 
     #%%
     # 50ETF日线行情------------------------------------------------------------
-    fpath = '../_test/510050.SH_daily_qfq.csv'
+    fpath = '../_test/510500.SH_daily_qfq.csv'
     his_data = load_csv(fpath)
     his_data.set_index('date', drop=False, inplace=True)
 
     # N = his_data.shape[0]
-    N = 200
+    N = 5000
     col = 'close'
     df = his_data.iloc[-N:, :].copy()
 
@@ -994,7 +1097,7 @@ if __name__ == '__main__':
     his_data.set_index('time', drop=False, inplace=True)
     his_data['ma'] = his_data['close'].rolling(20).mean()
 
-    df = his_data.iloc[-240*4:-240*3, :].copy()
+    df = his_data.iloc[-240*18:-240*17, :].copy()
     N = df.shape[0]
     # N = 1000
     col = 'ma'

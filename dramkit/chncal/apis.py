@@ -12,6 +12,23 @@ import time
 import datetime
 import pandas as pd
 
+# '''
+from .constants import (holidays,
+                        in_lieu_days,
+                        workdays)
+from .solar_terms import (SolarTerms,
+                          SOLAR_TERMS_C_NUMS,
+                          SOLAR_TERMS_MONTH,
+                          SOLAR_TERMS_DELTA)
+
+from .constants_trade_dates import trade_dates
+from .constants_hko import gen_lun, lun_gen, gen_gz
+from .constants_fate import w_year, w_month, w_date, w_hour, song
+from .constants_zodiac_marry import zodiac_match
+from .constants_wuxing import tgwx, dzwx, tgdznywx
+# '''
+
+'''
 from chncal.constants import (holidays,
                               in_lieu_days,
                               workdays)
@@ -25,6 +42,7 @@ from chncal.constants_hko import gen_lun, lun_gen, gen_gz
 from chncal.constants_fate import w_year, w_month, w_date, w_hour, song
 from chncal.constants_zodiac_marry import zodiac_match
 from chncal.constants_wuxing import tgwx, dzwx, tgdznywx
+# '''
 
 
 # # 干支纪年https://baike.baidu.com/item/干支纪年/3383226

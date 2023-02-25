@@ -4,13 +4,19 @@
 General toolboxs
 '''
 
+import re
 import sys
 import time
 import copy
 import inspect
+import operator
+import argparse
+import datetime
 import traceback
 import numpy as np
 import pandas as pd
+import urllib.parse
+from collections import Counter
 from functools import reduce, wraps
 from random import randint, random, uniform
 from dramkit.logtools.utils_logger import logger_show
@@ -38,38 +44,36 @@ class TimeRecoder(object):
     def __init__(self):
         self.strt_tm = time.time()
         
-    def used(self, logger=None, return_s=False):
+    def used(self, logger=None):
         s = time.time() - self.strt_tm
         if s < 60:
             s = round(s, 6)
             logger_show('used time: %ss.'%s, logger)
         elif s < 3600:
             m, s = divmod(s, 60)
-            logger_show('used time: %sm,%ss.'%(m, round(s, 6)),
+            logger_show('used time: %sm, %ss.'%(m, round(s, 2)),
                         logger)
         else:
             h, s = divmod(s, 3600)
             m, s = divmod(s, 60)
-            logger_show('used time: %sh,%sm,%ss.'%(h, m, round(s, 6)),
+            logger_show('used time: %sh, %sm, %ss.'%(h, m, round(s, 2)),
                         logger)
-        if return_s:
-            return s
-        return
+        return s
     
-    def useds(self, logger=None, return_s=False):
+    def useds(self, logger=None):
         s = round(time.time()-self.strt_tm, 6)
         logger_show('used time: %ss.'%s, logger)
-        if return_s:
-            return s
-        return
+        return s
         
-    def usedm(self, logger=None, return_s=False):
+    def usedm(self, logger=None):
         s = time.time()-self.strt_tm
         m = round(s/60, 6)
         logger_show('used time: %sm.'%m, logger)
-        if return_s:
-            return s
-        return
+        return s
+    
+    
+class DirtModifyError(Exception):
+    pass
 
 
 class StructureObject(object):
@@ -157,10 +161,6 @@ class StructureObject(object):
         self.__dict__.clear()
         
         
-class DirtModifyError(Exception):
-    pass
-        
-        
 def run_func_with_timeout(func, args, timeout=10):
     '''
     | 限定时间(timeout秒)执行函数func，若限定时间内未执行完毕，返回None
@@ -175,11 +175,6 @@ def run_func_with_timeout(func, args, timeout=10):
         task.stop_thread()
 
     return task.get_result()
-        
-        
-def get_func_arg_names(func):
-    '''获取函数func的参数名称列表'''
-    return inspect.getfullargspec(func).args
         
         
 def try_repeat_run(n_max_run=3, logger=None, sleep_seconds=0,
@@ -293,7 +288,7 @@ def log_used_time(logger=None):
     >>> wait()
     wait...
     2021-12-28 12:39:54,013 -utils_logger.py[line: 32] -INFO:
-        --function `wait` run time: 3.000383s.
+        --func `wait` run time: 3.000383s.
 
     See Also
     --------
@@ -314,7 +309,7 @@ def log_used_time(logger=None):
             t0 = time.time()
             result = func(*args, **kwargs)
             t = time.time()
-            logger_show('function `%s` run time: %ss.'%(func.__name__, round(t-t0, 6)),
+            logger_show('func `%s` run time: %ss.'%(func.__name__, round(t-t0, 6)),
                         logger, 'info')
             return result
         return timer
@@ -342,7 +337,7 @@ def print_used_time(func):
 
     >>> wait()
     wait...
-    function `wait` run time: 3.008314s.
+    func `wait` run time: 3.008314s.
 
     See Also
     --------
@@ -359,16 +354,65 @@ def print_used_time(func):
         t0 = time.time()
         result = func(*args, **kwargs)
         t = time.time()
-        print('function `%s` run time: %ss.'%(func.__name__, round(t-t0, 6)))
+        print('func `%s` run time: %ss.'%(func.__name__, round(t-t0, 6)))
         return result
     return timer
 
 
-@print_used_time
-def func_runtime_test(func, n=10000, *args, **kwargs):
+def func_res_process_decorator(func_res, *args_res, **kwargs_res):
+    '''
+    作为装饰器处理函数输出结果
+    
+    Examples
+    --------
+    >>> def res_process(res, k, b):
+    ...    return res * k + b
+    ...
+    ... @func_res_process_decorator(res_process, 2, 5)
+    ... def a(x, y):
+    ...     return x+y
+    >>> a(2, 3)
+    15
+    '''
+    def transfunc(func):
+        @wraps(func)
+        def processer(*args, **kwargs):
+            '''函数结果处理'''
+            res = func(*args, **kwargs)
+            res = func_res(res, *args_res, **kwargs_res)
+            return res
+        return processer
+    return transfunc
+
+
+def func_runtime_test(func, n=10000, return_all=False,
+                      *args, **kwargs):
     '''函数性能（运行时间）测试，n设置测试运行测试'''
-    for _ in range(n):
-        func(*args, **kwargs)
+    if not return_all:
+        tr = TimeRecoder()
+        for _ in range(n):
+            res = func(*args, **kwargs)
+        tr.useds()
+        return res
+    else:
+        tr = TimeRecoder()
+        res_all = []
+        for _ in range(n):
+            res = func(*args, **kwargs)
+            res_all.append(res)
+        tr.useds()
+        return res_all
+    
+    
+def check_list_arg(arg, allow_none=False):
+    '''检查arg，若其不是list或tuple，则转为列表'''
+    if not allow_none and isnull(arg):
+        raise ValueError('不支持`arg`为无效值！')
+    if isnull(arg):
+        return arg
+    if not isinstance(arg, (list, tuple)):
+        arg = [arg]
+    return arg
 
 
 def get_update_kwargs(key, arg, kwargs, arg_default=None,
@@ -1803,6 +1847,19 @@ def df_na2value(df, value=None):
     return df
 
 
+def copy_df_structure(df):
+    '''复制df的结构到一个空的dataframe'''
+    return df.drop(df.index)
+
+
+def get_tmp_col(df, tmp_col_name):
+    '''以tmp_col_name为基础生成一个不在df的列名中的列'''
+    assert isinstance(tmp_col_name, str)
+    while tmp_col_name in df.columns:
+        tmp_col_name += '_'
+    return tmp_col_name
+
+
 def merge_df(df_left, df_right, same_keep='left', **kwargs):
     '''
     在 ``pd.merge`` 上改进，相同列名时自动去除重复的
@@ -1837,6 +1894,115 @@ def merge_df(df_left, df_right, same_keep='left', **kwargs):
         else:
             raise ValueError('same_keep参数只接受`left`或`right`！')
     return pd.merge(df_left, df_right, **kwargs)
+    
+    
+def update_df(df_old, df_new, idcols=None,
+              del_dup_cols=None, rep_keep='new',
+              sort_cols=None, ascendings=True,
+              method='merge', logger=None):
+    '''
+    | 合并df_new到df_old
+    | 注意：df_old和df_new不应该设置index
+    | 注意：用merge处理当数据量大时占空间很大，method应设置为`concat`
+    
+    Examples
+    --------
+    >>> df_old = pd.DataFrame({'id1': [1, 2, 3, 4, 5],
+    ...                        'id2': [2, 3, 4, 5, 6],
+    ...                        'col1': ['a', 'b', 'c', 'd', 'e'],
+    ...                        'col2': [2, 4, 6, 8, 10]})
+    >>> df_new = pd.DataFrame({'id1': [3, 4, 5, 6, 7],
+    ...                        'id2': [4, 5, 6, 7, 8],
+    ...                        'col1': ['c', 'ddd', np.nan, 'f', 'g'],
+    ...                        'col3': [6, 8, 10, 12, 14]})
+    ... idcols = ['id1', 'id2']
+    ... rep_keep = 'new'
+    ... del_dup_cols = None#['id1', 'id2']
+    >>> a = update_df(df_old, df_new,
+    ...               idcols=idcols,
+    ...               del_dup_cols=del_dup_cols,
+    ...               rep_keep=rep_keep,
+    ...               method='merge')
+    >>> b = update_df(df_old, df_new,
+    ...               idcols=idcols,
+    ...               del_dup_cols=del_dup_cols,
+    ...               rep_keep=rep_keep,
+    ...               method='concat')
+    '''
+    assert rep_keep in ['new', 'old']
+    assert method in ['merge', 'concat']
+    if isnull(df_old) and isnull(df_new):
+        logger_show('`df_old`和`df_new`均为无效值，返回None。', logger, 'warn')
+        return None
+    if isnull(df_old):
+        df_old = copy_df_structure(df_new)
+    if isnull(df_new):
+        df_new = copy_df_structure(df_old)
+    if any([not isnull(x) for x in df_old.index.names]):
+        logger_show('`df_old`已存在的索引将被忽略！', logger, 'warn')
+    if any([not isnull(x) for x in df_new.index.names]):
+        logger_show('`df_new`已存在的索引将被忽略！', logger, 'warn')
+    if not df_old.index.names == df_new.index.names:
+        logger_show('`df_old`和`df_new`索引名称不一致！', logger, 'warn')
+    df_old, df_new = df_old.copy(), df_new.copy()
+    if isnull(idcols):
+        res = pd.concat((df_old, df_new), axis=0)
+    elif df_old.shape[0] < 1:
+        res = df_new
+    elif df_new.shape[0] < 1:
+        res = df_old
+    else:
+        if method == 'merge':
+            same_keep = 'left' if rep_keep == 'old' else 'right'
+            both = merge_df(df_old, df_new, same_keep=same_keep,
+                            how='inner', on=idcols)
+            old = merge_df(df_old, df_new, same_keep='left',
+                           how='left', on=idcols)
+            new = merge_df(df_old, df_new, same_keep='right',
+                           how='right', on=idcols)
+            no_both = pd.concat((old, new), axis=0)
+            no_both = no_both.drop_duplicates(subset=idcols,
+                                              keep=False)
+            res = pd.concat((no_both, both), axis=0)
+        else:
+            idcols = check_list_arg(idcols, allow_none=False)
+            assert (df_old[idcols].dtypes != df_new[idcols].dtypes).sum() == 0
+            both = [x for x in df_old.columns if x in df_new.columns]
+            old = idcols + [x for x in df_old.columns if x not in df_new.columns]
+            new = idcols + [x for x in df_new.columns if x not in df_old.columns]
+            both = pd.concat((df_old[both], df_new[both]), axis=0)
+            keep_ = 'last' if rep_keep == 'new' else 'first'
+            both = both.drop_duplicates(subset=idcols, keep=keep_)
+            res = pd.concat((both.set_index(idcols),
+                             df_old[old].set_index(idcols),
+                             df_new[new].set_index(idcols)),
+                            axis=1).reset_index()
+    if isnull(del_dup_cols):
+        del_dup_cols = idcols
+    del_dup_cols = check_list_arg(del_dup_cols, allow_none=True)
+    if not isnull(del_dup_cols):
+        keep_ = 'last' if rep_keep == 'new' else 'first'
+        res = res.drop_duplicates(subset=del_dup_cols, keep=keep_)
+    if isnull(sort_cols):
+        sort_cols = idcols
+    sort_cols = check_list_arg(sort_cols, allow_none=True)
+    if not isnull(sort_cols):
+        res = res.sort_values(sort_cols, ascending=ascendings)
+    return res.reset_index(drop=True)
+
+
+def dfs_concat_axis1(dfs_list, idcols=None,
+                     ascending=True):
+    '''多个df列表横向拼接'''
+    if isnull(idcols):
+        res = pd.concat(dfs_list, axis=1)
+        res = res.sort_index(ascending=ascending)
+    else:
+        res = pd.concat([x.set_index(idcols) for x in dfs_list],
+                        axis=1)
+        res = res.reset_index()
+        res = res.sort_values(idcols, ascending=ascending)
+    return res
 
 
 def cut_df_by_con_val(df, by_col, func_eq=None):
@@ -2050,6 +2216,10 @@ def cal_pct(v0, v1, vv00=1, vv10=-1):
 
     - vv00为当v0的值为0且v1为正时的返回值，v1为负时取负号
     - vv10为当v1的值为0且v0为正时的返回值，v0为负时取负号
+    
+    TODO
+    ----
+    正负无穷大处理
     '''
     if isnull(v0) or isnull(v1):
         return np.nan
@@ -2065,14 +2235,41 @@ def cal_pct(v0, v1, vv00=1, vv10=-1):
             return vv10
         elif v0 < 0:
             return -vv10
-    elif v0 > 0 and v1 > 0:
+    elif v0 > 0:
         return v1 / v0 - 1
-    elif v0 < 0 and v1 < 0:
+    elif v0 < 0:
         return -(v1 / v0 - 1)
-    elif v0 > 0 and v1 < 0:
-        return v1 / v0 - 1
-    elif v0 < 0 and v1 > 0:
-        return -(v1 / v0 - 1)
+    # elif v0 > 0 and v1 > 0:
+    #     return v1 / v0 - 1
+    # elif v0 < 0 and v1 < 0:
+    #     return -(v1 / v0 - 1)
+    # elif v0 > 0 and v1 < 0:
+    #     return v1 / v0 - 1
+    # elif v0 < 0 and v1 > 0:
+    #     return -(v1 / v0 - 1)
+    
+    
+def pct_change(series, lag=1):
+    '''
+    计算series百分比变化
+    
+    TODO
+    ----
+    分子分母为0或正负无穷大处理
+    '''
+    df = pd.DataFrame({'x': series})
+    df['x_'] = df['x'].shift(lag)
+    df['dif'] = df['x'] - df['x_']
+    df['res'] = df['dif'] / df['x_'].abs()
+    return df['res']
+
+
+def s1divs2(series1, series2, vs20=np.nan):
+    '''两个序列相比'''
+    df = pd.DataFrame({'s1': series1, 's2': series2})
+    df['res'] = df['s1'] / df['s2']
+    df['res'] = df[['res', 's2']].apply(lambda x: x['res'] if x['s2'] != 0 else vs20, axis=1)    
+    return df['res']
 
 
 def min_com_multer(l):
@@ -2210,6 +2407,10 @@ def df_rows2cols(df, col_name, col_val_name,
     '''
     把df中col_value_name列数据按col_name列分组，通过unstack拆分为多列数据，新列名为col_name列中的值
     
+    TODO
+    ----
+    有nan时的检查和处理
+    
     Examples
     --------
     >>> df0 = pd.DataFrame(
@@ -2252,6 +2453,10 @@ def df_cols2rows(df, cols, col_name, col_val_name,
     '''
     把df中指定的cols列数据通过stack堆积为行数据，新列名为col_name
     
+    TODO
+    ----
+    有nan时的检查和处理
+    
     Examples
     --------
     >>> na = [np.nan]
@@ -2278,6 +2483,47 @@ def df_cols2rows(df, cols, col_name, col_val_name,
     df = pd.DataFrame(df, columns=[col_val_name])
     df.index.names = idx_cols + [col_name]
     df = df.reset_index()
+    return df
+
+
+def df_freq_low2high(df, tcol, id_cols, vcols=None,
+                     tmin=None, tmax=None, keepna=True):
+    '''
+    数据填充为日频
+    
+    TODO
+    ----
+    - 填充时选择交易日或工作日参数设置
+    - idx_cols中有nan时检查和处理
+    - 其他参数/变量规范重写
+    - 日期格式不写死，根据tcol列转化
+    '''
+    vcols = check_list_arg(vcols, allow_none=True)
+    id_cols = check_list_arg(id_cols)
+    if isnull(vcols):
+        vcols = [x for x in df.columns if not x in id_cols+[tcol]]
+    if df.shape[0] == 0:
+        return pd.DataFrame(columns=[tcol]+id_cols+vcols)
+    if isnull(tmin):
+        tmin = df[tcol].min()
+    if isnull(tmax):
+        # tmax = datetime.datetime.today().strftime('%Y%m%d')
+        tmax = df[tcol].max()
+    if tmin == tmax:
+        return df[[tcol]+id_cols+vcols]
+    dates = pd.date_range(tmin, tmax)
+    dates = [x.strftime('%Y%m%d') for x in dates]
+    if keepna:
+        df = df.fillna('__tmp_None_tmp__')
+    df = df.pivot_table(values=vcols, index=tcol, columns=id_cols,
+                        aggfunc=lambda x: x)
+    index_all = list(set(dates + list(df.index)))
+    index_all.sort()
+    df = df.reindex(index=index_all)
+    df = df.fillna(method='ffill')#.fillna(method='bfill')
+    df = df.stack(level=id_cols).reset_index()
+    df = df.replace({'__tmp_None_tmp__': np.nan})
+    df = df.sort_values(id_cols+[tcol])
     return df
 
 
@@ -2311,7 +2557,7 @@ def get_appear_order(series, ascending=True):
     # df['Iidx'] = range(0, df.shape[0])
     # df['nth_appear'] = df.groupby('v')['Iidx'].rank(ascending=ascending)
     # df['nth_appear'] = df['nth_appear'].astype(int)
-    df['nth_appear'] = df.groupby('v').cumcount(ascending=ascending)+1
+    df['nth_appear'] = df.groupby('v').cumcount(ascending=ascending) + 1
     return df['nth_appear']
 
 
@@ -2356,15 +2602,17 @@ def label_rep_index_str(df):
     else:
         df = df.copy()
         idx_name = df.index.name
-        df['_idx_idx_idx_'] = df.index
-        df['_idx_idx_idx_'] = df['_idx_idx_idx_'].astype(str)
-        df['_tmp_tmp_'] = get_appear_order(df['_idx_idx_idx_'])
-        df['_idx_idx_idx_'] = df[['_idx_idx_idx_', '_tmp_tmp_']].apply(
-            lambda x: x['_idx_idx_idx_'] if x['_tmp_tmp_'] == 1 else \
-                      '{}_{}'.format(x['_idx_idx_idx_'], x['_tmp_tmp_']),
+        idx_tmp_col = get_tmp_col(df, '_tmp_idx_')
+        df[idx_tmp_col] = df.index
+        df[idx_tmp_col] = df[idx_tmp_col].astype(str)
+        tmp_col = '_tmp_'
+        df[tmp_col] = get_appear_order(df[idx_tmp_col])
+        df[idx_tmp_col] = df[[idx_tmp_col, tmp_col]].apply(
+            lambda x: x[idx_tmp_col] if x[tmp_col] == 1 else \
+                      '{}_{}'.format(x[idx_tmp_col], x[tmp_col]),
                       axis=1)
-        df.drop('_tmp_tmp_', axis=1, inplace=True)
-        df.set_index('_idx_idx_idx_', inplace=True)
+        df.drop(tmp_col, axis=1, inplace=True)
+        df.set_index(idx_tmp_col, inplace=True)
         df.index.name = idx_name
         return df
 
@@ -2402,6 +2650,16 @@ def group_shift():
     raise NotImplementedError
     
     
+def rolling_corr(df, col1, col2, *args, **kwargs):
+    '''滚动相关性（2个变量）'''
+    raise NotImplementedError
+    # res = df[[col1, col2]].rolling(*args, **kwargs).corr()
+    # res = res.reset_index()
+    # res = res[res['level_1'] == col1][col2]
+    # df['corr'] = res.values
+    # return df
+    
+    
 def group_fillna(df, col_fill, cols_groupby, return_all=False,
                  **kwargs_fillna):
     '''
@@ -2423,7 +2681,7 @@ def group_rank(df, col_rank, cols_groupby,
     
     TODO
     ----
-    col_rank可为列表，此时范围dataframe，return_all设置只返回指定列结果或者返回全部dataframe
+    col_rank可为列表，此时返回dataframe，return_all设置只返回指定列结果或者返回全部dataframe
     
     Parameters
     ----------
@@ -2476,9 +2734,15 @@ def get_func_df_concat(func, args_kwargs_list, concat_axis=0):
 
 
 def df_groupby_func(df, by_cols, func,
-                    as_index=False, reset_index='drop',
+                    as_index=False, group_keys=False,
+                    reset_index='drop',
                     *args_func, **kwargs_func):
     '''
+    TODO
+    ----
+    - by_cols中有nan时的检查和处理
+    - group_keys和as_index的异同检查确认
+    
     | df按by_cols分组作用于func(x, \*args, \**kwargs)函数
     | reset_index:
     |   若为drop，则重置返回的index
@@ -2489,7 +2753,9 @@ def df_groupby_func(df, by_cols, func,
     '''
     assert reset_index in ['drop', 'ori', False]
     n = df.shape[0]
-    data = df.groupby(by_cols, as_index=as_index).apply(
+    # data = df.groupby(by_cols, as_index=as_index).apply(
+    #                   lambda x: func(x, *args_func, **kwargs_func))
+    data = df.groupby(by_cols, group_keys=group_keys).apply(
                       lambda x: func(x, *args_func, **kwargs_func))
     if not reset_index:
         return data
@@ -2517,8 +2783,6 @@ def groupby_rolling_func(data, cols_groupby, cols_val, func, keep_index=True,
     若cols_val为str，则返回pd.Series；若为list，则返回pd.DataFrame
     若keep_index为True，则返回结果中的index与data一样，否则返回结果中的index由
     cols_groupby设定
-    
-    待实现
     '''
     # if isinstance(cols_groupby, str):
     #     cols_groupby = [cols_groupby]
@@ -2557,6 +2821,13 @@ def link_lists(lists):
     for item in lists:
         newlist.extend(item)
     return newlist
+
+
+def list_eq(l1, l2, order=True):
+    '''判断两个列表l1和l2是否相等，若orde为False，则只要元素相同即判断为相等'''
+    if order:
+        return operator.eq(l1, l2)
+    return set(l1) == set(l2)
 
 
 def get_num_decimal(x, ignore_tail0=True):
@@ -2598,43 +2869,175 @@ def sort_dict(d, by='key', reverse=False):
     return dict(d_)
 
 
+def insert_into_list(l, val, loc_val, dirt='before'):
+    '''在列表l中的loc_val前或后插入val'''
+    res = l.copy()
+    assert dirt in ['before', 'after']
+    idx = res.index(loc_val)
+    if dirt == 'before':
+        res.insert(idx, val)
+    else:
+        res.insert(idx+1, val)
+    return res
+
+
+def count_list(l):
+    '''对l中的元素计数，返回dict'''
+    # return dict(Counter(l))
+    return Counter(l)
+
+
+def url2chn(url):
+    '''将url中的中文乱码（实际上为utf-8）转化为正常url'''
+    return urllib.parse.unquote(url)
+
+
+def replace_con_blank(string, to):
+    '''将string中连续空格替换为to指定字符'''
+    return re.sub(' +', to, string)
+
+
+def change_dict_key(d, func_key_map):
+    '''修改字典d中的key值，即d[k]=v变成d[func_key_map(k)]=v'''
+    return {func_key_map(k): v for k, v in d.items()}
+
+
+def get_func_arg_info(func):
+    '''
+    获取函数func的参数信息
+    
+    Examples
+    --------
+    >>> def func(a:int, b, c:float=1.0, c1=2, *args,
+    ...          e, d=2, **kwargs):
+    ...     pass
+    >>> get_func_arg_info(func)
+    {'args': ['a', 'b', 'c', 'c1'],
+     'argdefaults': {'c': 1.0, 'c1': 2},
+     'varargs': 'args',
+     'varkw': 'kwargs',
+     'kwonlyargs': ['e', 'd'],
+     'kwonlydefaults': {'d': 2},
+     'annotations': {'a': int, 'c': float}}
+    '''
+    all_ = inspect.getfullargspec(func)
+    res = {'args': all_.args,
+           'argdefaults': all_.defaults,
+           'varargs': all_.varargs,
+           'varkw': all_.varkw,
+           'kwonlyargs': all_.kwonlyargs,
+           'kwonlydefaults': all_.kwonlydefaults,
+           'annotations': all_.annotations}
+    if not isnull(all_.defaults):
+        n_argdefaults = len(all_.defaults)
+        argdefaults = all_.args[-n_argdefaults:]
+        res['argdefaults'] = dict(zip(argdefaults, all_.defaults))
+    return res
+
+
+def parse_args(args_info, description=None):
+    '''
+    命令行参数解析
+    
+    Parameters
+    ----------
+    args_info : list, dict
+        | 参数信息
+        | 若无分组，格式为:
+        |     [(['-a', '--arg1', ...], {'type': int, 'default': 1, ...}),
+        |      (['-b', ...], {...}),
+        |      ...]
+        | 若有分组，格式为:
+        |     {'groupname1':
+        |         [(['-a', '--arg1', ...], {'type': int, 'default': 1, ...}),
+        |          (['-b', ...], {...}),
+        |          ...],
+        |      'groupname2': [...], ...}        
+    '''
+    parser = argparse.ArgumentParser(description=description)
+    group = isinstance(args_info, dict)
+    if not group:
+        for args, kwargs in args_info:
+            parser.add_argument(*args, **kwargs)
+    else:
+        for gname, gargs_info in args_info.items():
+            g = parser.add_argument_group(gname)
+            for args, kwargs in gargs_info:
+                g.add_argument(*args, **kwargs)
+    return parser
+
+
+def gen_args_praser(func):
+    '''
+    生成func函数的参数解析
+    '''
+    func_args = get_func_arg_info(func)
+    args_info = []
+    if not isnull(func_args['argdefaults']):
+        requireds = [x for x in func_args['args'] if x not in func_args['argdefaults']]
+        defaults = func_args['argdefaults'].copy()
+    else:
+        requireds = func_args['args']
+        defaults = {}
+    if not isnull(func_args['kwonlydefaults']):
+        requireds += [x for x in func_args['kwonlyargs'] if x not in func_args['kwonlydefaults']]
+        defaults.update(func_args['kwonlydefaults'])
+    else:
+        requireds += func_args['kwonlyargs']
+    for arg in requireds:
+        if arg not in func_args['annotations']:
+            args_info.append((['--%s'%arg], {'required': True}))
+        else:
+            args_info.append((['--%s'%arg], {'required': True, 'type': func_args['annotations'][arg]}))
+    for arg, default in defaults.items():
+        if arg not in func_args['annotations']:
+            args_info.append((['--%s'%arg], {'default': default}))
+        else:
+            args_info.append((['--%s'%arg], {'default': default, 'type': func_args['annotations'][arg]}))
+    return parse_args(args_info)
+    
+
 if __name__ == '__main__':
     from dramkit import load_csv, plot_series
     from finfactory.fintools.fintools import cci
 
-    # 50ETF日线行情------------------------------------------------------------
-    fpath = './_test/510050.SH_daily_qfq.csv'
-    data = load_csv(fpath)
-    data.set_index('date', drop=False, inplace=True)
-
-    data['cci'] = cci(data)
-    data['cci_100'] = data['cci'].apply(lambda x: 1 if x > 100 else \
-                                                    (-1 if x < -100 else 0))
-
-    plot_series(data.iloc[-200:, :], {'close': ('.-k', False)},
-                cols_styl_low_left={'cci': ('.-c', False)},
-                cols_to_label_info={'cci':
-                                [['cci_100', (-1, 1), ('r^', 'bv'), False]]},
-                xparls_info={'cci': [(100, 'r', '-', 1.3),
-                                     (-100, 'r', '-', 1.3)]},
-                figsize=(8, 7), grids=True)
-
-    start_ends_1 = get_con_start_end(data['cci_100'], lambda x: x == -1)
-    start_ends1 = get_con_start_end(data['cci_100'], lambda x: x == 1)
-    data['cci_100_'] = 0
-    for start, end in start_ends_1:
-        if end+1 < data.shape[0]:
-            data.loc[data.index[end+1], 'cci_100_'] = -1
-    for start, end in start_ends1:
-        if end+1 < data.shape[0]:
-            data.loc[data.index[end+1], 'cci_100_'] = 1
-
-    plot_series(data.iloc[-200:, :], {'close': ('.-k', False)},
-                cols_styl_low_left={'cci': ('.-c', False)},
-                cols_to_label_info={'cci':
-                                [['cci_100_', (-1, 1), ('r^', 'bv'), False]],
-                                    'close':
-                                [['cci_100_', (-1, 1), ('r^', 'bv'), False]]},
-                xparls_info={'cci': [(100, 'r', '-', 1.3),
-                                     (-100, 'r', '-', 1.3)]},
-                figsize=(8, 7), grids=True)
+    def test():
+        # 50ETF日线行情------------------------------------------------------------
+        fpath = './_test/510050.SH_daily_qfq.csv'
+        data = load_csv(fpath)
+        data.set_index('date', drop=False, inplace=True)
+        data.index.name = 'time'
+    
+        data['cci'] = cci(data)
+        data['cci_100'] = data['cci'].apply(lambda x: 1 if x > 100 else \
+                                                        (-1 if x < -100 else 0))
+    
+        plot_series(data.iloc[-200:, :], {'close': ('.-k', False)},
+                    cols_styl_low_left={'cci': ('.-c', False)},
+                    cols_to_label_info={'cci':
+                                    [['cci_100', (-1, 1), ('r^', 'bv'), False]]},
+                    xparls_info={'cci': [(100, 'r', '-', 1.3),
+                                         (-100, 'r', '-', 1.3)]},
+                    figsize=(8, 7), grids=True)
+    
+        start_ends_1 = get_con_start_end(data['cci_100'], lambda x: x == -1)
+        start_ends1 = get_con_start_end(data['cci_100'], lambda x: x == 1)
+        data['cci_100_'] = 0
+        for start, end in start_ends_1:
+            if end+1 < data.shape[0]:
+                data.loc[data.index[end+1], 'cci_100_'] = -1
+        for start, end in start_ends1:
+            if end+1 < data.shape[0]:
+                data.loc[data.index[end+1], 'cci_100_'] = 1
+    
+        plot_series(data.iloc[-200:, :], {'close': ('.-k', False)},
+                    cols_styl_low_left={'cci': ('.-c', False)},
+                    cols_to_label_info={'cci':
+                                    [['cci_100_', (-1, 1), ('r^', 'bv'), False]],
+                                        'close':
+                                    [['cci_100_', (-1, 1), ('r^', 'bv'), False]]},
+                    xparls_info={'cci': [(100, 'r', '-', 1.3),
+                                         (-100, 'r', '-', 1.3)]},
+                    figsize=(8, 7), grids=True)
+        return data
+    # res = test()

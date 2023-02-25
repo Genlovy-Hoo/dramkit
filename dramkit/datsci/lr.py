@@ -176,8 +176,8 @@ if __name__ == '__main__':
     X = data[['x1', 'x2']]
     y = data['y']
 
-    # opt_method = 'gd'
-    opt_method = 'newton'
+    opt_method = 'gd'
+    # opt_method = 'newton'
 
     max_iter = 10000
     lr = 0.001

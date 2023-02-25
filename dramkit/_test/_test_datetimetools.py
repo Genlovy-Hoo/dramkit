@@ -1,26 +1,23 @@
 # -*- coding: utf-8 -*-
 
 import time
-from dramkit.gentools import TimeRecoder
+from dramkit.gentools import func_runtime_test
 from dramkit.datetimetools import timestamp2str
 
 
 if __name__ == '__main__':
     ts = time.time() #* 1000
-    n = 1000000
+    n = 200000
     tz = 'utc'
     
-    tr1 = TimeRecoder()
-    for _ in range(n):
-        t1 = timestamp2str(ts, tz=tz, method=1)
-    tr1.used()
+    return_all = False
     
-    tr2 = TimeRecoder()
-    for _ in range(n):
-        t2 = timestamp2str(ts, tz=tz, method=2)
-    tr2.used()
-    
-    tr3 = TimeRecoder()
-    for _ in range(n):
-        t3 = timestamp2str(ts, tz=tz, method=3)
-    tr3.used()
+    t1 = func_runtime_test(timestamp2str, n=n,
+                           return_all=return_all,
+                           t=ts, tz=tz, method=1)
+    t2 = func_runtime_test(timestamp2str, n=n,
+                           return_all=return_all,
+                           t=ts, tz=tz, method=2)
+    t3 = func_runtime_test(timestamp2str, n=n,
+                           return_all=return_all,
+                           t=ts, tz=tz, method=3)

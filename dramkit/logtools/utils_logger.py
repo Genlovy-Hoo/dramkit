@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os
 import logging
 from pandas import isnull
 
@@ -121,3 +122,12 @@ def _pre_get_logger(fpath, screen_show, logname, level):
     # 预先删除logger中已存在的handlers
     logger = remove_handlers(logger)
     return logger
+        
+        
+def make_path_dir(fpath):
+    '''若fpath所指文件夹路径不存在，则新建之'''
+    if isnull(fpath):
+        return
+    dir_path = os.path.dirname(fpath)
+    if not os.path.exists(dir_path) and len(dir_path) > 0:
+        os.makedirs(dir_path)

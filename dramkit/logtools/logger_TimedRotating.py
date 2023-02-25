@@ -2,9 +2,11 @@
 
 import logging
 from logging.handlers import TimedRotatingFileHandler
-from dramkit.logtools.utils_logger import _pre_get_logger
-from dramkit.logtools.utils_logger import _get_level
-from dramkit.logtools.utils_logger import formatter
+from dramkit.logtools.utils_logger import (
+                                   _pre_get_logger,
+                                   _get_level,
+                                   formatter,
+                                   make_path_dir)
 
 
 def get_logger(fpath=None, when='M', interval=3, nfile=3,
@@ -38,6 +40,7 @@ def get_logger(fpath=None, when='M', interval=3, nfile=3,
     日志文件按大小滚动: :func:`dramkit.logtools.logger_rotating.get_logger`
     '''
 
+    make_path_dir(fpath)
     logger = _pre_get_logger(fpath, screen_show, logname, level)
 
     if fpath is not None:
