@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import time
 import pandas as pd
 from dramkit.optimizer.ga import ga
 from dramkit.optimizer.cs import cs
@@ -20,7 +19,8 @@ from dramkit.logtools.logger_general import get_logger
 
 
 if __name__ == '__main__':
-    strt_tm = time.time()
+    from dramkit import TimeRecoder
+    tr = TimeRecoder()
 
     # 目标函数和参数
     objf = TestFuncs.f1
@@ -155,4 +155,4 @@ if __name__ == '__main__':
     close_log_file(logger)
 
 
-    print('used time: {}s.'.format(round(time.time()-strt_tm, 6)))
+    tr.used()

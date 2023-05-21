@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>两人对话聊天页面</title>
+	<style type="text/css">
+		body {
+			background-color: #f9f9f9;
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			padding: 20px;
+		}
+
+		.container {
+			width: 80%;
+			margin: 0 auto;
+			background-color: #fff;
+			border-radius: 5px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+			padding: 20px;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.message {
+			margin-bottom: 20px;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.message p {
+			margin: 0;
+			padding: 10px;
+			border-radius: 5px;
+		}
+
+		.message.sent p {
+			background-color: #0084ff;
+			color: #fff;
+			align-self: flex-end;
+		}
+
+		.message.received p {
+			background-color: #f1f0f0;
+			color: #333;
+			align-self: flex-start;
+		}
+
+		.form {
+			display: flex;
+			margin-top: 20px;
+		}
+
+		.form input[type="text"] {
+			flex: 1;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			margin-right: 10px;
+		}
+
+		.form input[type="submit"] {
+			background-color: #0084ff;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			padding: 10px 20px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="message sent">
+			<p>Hello, how are you?</p>
+		</div>
+		<div class="message received">
+			<p>Hi, I'm good. How about you?</p>
+		</div>
+		<div class="message sent">
+			<p>I'm doing well, thanks for asking.</p>
+		</div>
+		<div class="form">
+			<input type="text" placeholder="Type your message here...">
+			<input type="submit" value="Send">
+		</div>
+	</div>
+</body>
+</html>

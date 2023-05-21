@@ -2,6 +2,7 @@
 
 import numpy as np
 import pandas as pd
+from collections.abc import Callable
 
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
@@ -9,16 +10,51 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from dramkit.gentools import con_count, isnull
 
 
-def mad(ser, param=3):
-    arr = ser.values
-    median = np.nanmedian(arr, axis=0)
-    abs_arr = np.abs(arr - median)
-    med = np.nanmedian(abs_arr) * 1.483
-    ceil = median + param * med
-    floor = median - param * med
-    arr[arr > ceil] = ceil
-    arr[arr < floor] = floor
-    return arr
+def cut_mad(series, n=3,
+            up_cut_val=None,
+            low_cut_val=None,
+            func_filter=None):
+    '''
+    | MAD极端值处理方法
+    | func_filter为对计算中位数和偏差之前对数据进行筛的函数，返回值为True的才参与计算
+    '''
+    isinstance(func_filter, (Callable, type(None)))
+    values = np.array(series)
+    if isnull(func_filter):
+        values_ = values.copy()
+    else:
+        values_ = values[func_filter(values)]
+    median = np.nanmedian(values_, axis=0)
+    abs_med_dif = np.abs(values_ - median)
+    med = np.nanmedian(abs_med_dif) * 1.483
+    upper = median + n * med
+    lower = median - n * med
+    if isnull(up_cut_val):
+        up_cut_val = upper
+    if isnull(low_cut_val):
+        low_cut_val = lower
+    values[values > upper] = up_cut_val
+    values[values < lower] = low_cut_val
+    try:
+        return pd.Series(values, index=series.index)
+    except:
+        return values
+    
+    
+def cut_nstd(series, n=3, up_cut_val=None, low_cut_val=None):
+    '''标准差倍数截断方法，极端值处理'''
+    df = pd.DataFrame({'s': series})
+    mean = df['s'].mean()
+    std = df['s'].std()
+    upper = mean + n * std
+    lower = mean - n * std
+    if isnull(up_cut_val):
+        up_cut_val = upper
+    if isnull(low_cut_val):
+        low_cut_val = lower
+    df.loc[df['s'] > upper, 's'] = up_cut_val
+    df.loc[df['s'] < lower, 's'] = low_cut_val
+    return df['s']
 
 
 class ExternalStd(object):

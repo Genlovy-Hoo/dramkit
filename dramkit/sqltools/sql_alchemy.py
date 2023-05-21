@@ -6,7 +6,9 @@ import pandas as pd
 from sqlalchemy import text, create_engine
 from sqlalchemy.orm import Session
 from sqlalchemy.types import NVARCHAR, DATE, FLOAT, INT, CLOB
-from dramkit.gentools import isnull, change_dict_key
+from dramkit.gentools import (isnull,
+                              change_dict_key,
+                              get_update_kwargs)
 
 
 class SQLAlchemy(object):
@@ -235,10 +237,12 @@ class SQLAlchemy(object):
                 self.execute_sql('ALTER TABLE {} ADD {}'.format(
                                  tb_name, cols_info_dict[col][0]))
             if act_type == 'insert':
-                df.to_sql(tb_name.lower(), self.conn,
-                          if_exists='append', index=None,
-                          dtype=dtype)
-                self.drop_table(tb_name_tmp, purge=True)
+                try:
+                    df.to_sql(tb_name.lower(), self.conn,
+                              if_exists='append', index=None,
+                              dtype=dtype)
+                finally:
+                    self.drop_table(tb_name_tmp, purge=True)
                 return
             idcols = [x.upper() for x in idcols]
             if act_type == 'replace':
@@ -272,6 +276,14 @@ def get_conn(dialect='mysql', driver='pymysql', username='root',
              password=None, host='localhost', port=3306,
              database=None, orcl_pdb=False,
              **kwargs):
+    '''
+    TODO: oracle连接参数有service_name的处理？
+    '''
+    if dialect.lower() == 'sqlite':
+        assert 'dbfile' in kwargs, '必须通过kwargs指定sqlite数据库文件路径'
+        file, kwargs_ = get_update_kwargs('dbfile', None, kwargs, func_update=False)
+        engine_str = 'sqlite:///{}'.format(file)
+        return create_engine(engine_str, **kwargs_)
     if isnull(driver):
         part1 = '{}://'.format(dialect)
     else:

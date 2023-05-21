@@ -1,69 +1,139 @@
 # -*- coding: utf-8 -*-
 
+import sys
+import platform
+import threading
+import traceback
 import inspect, ctypes
 from threading import Thread
 from concurrent.futures import ThreadPoolExecutor
 from concurrent.futures import as_completed
 from dramkit.logtools.utils_logger import logger_show
 
+_WINDOWS_SYSTEM = 'windows' in platform.system().lower()
+
 #%%
 class SingleThread(Thread):
     '''
     | 单个线程任务
     | 参考：
-    | https://www.csdn.net/tags/MtTaQg3sMDE1MzYtYmxvZwO0O0OO0O0O.html
+    | https://zhuanlan.zhihu.com/p/208260624
     | https://www.cnblogs.com/ojbk6943/p/14047952.html
     | https://blog.csdn.net/weixin_43285186/article/details/124338274
     | https://m.php.cn/article/471342.html
+    | https://stackoverflow.com/questions/323972/is-there-any-way-to-kill-a-thread
+    | https://www.bilibili.com/read/cv14368165
     '''
-
-    def __init__(self, func, args, logger=None):
+    
+    def __init__(self, func, fargs=(), fkwargs={},
+                 logger=None, **kwargs):
         '''
         Parameters
         ----------
         func : function
-            需要多线程运行的目标函数
-        args : list
-            目标函数func输入变量列表
+            目标函数
+        fargs : tuple, list
+            目标函数func接收的位置参数
+        fkwargs : None, dict
+            目标函数func接收的关键字参数
         logger : Logger, None
             日志记录器
+        **kwargs : threading.Thread接收的其他参数
         '''
-        super(SingleThread, self).__init__()
+        super(SingleThread, self).__init__(target=func,
+                                           args=fargs,
+                                           kwargs=fkwargs,
+                                           **kwargs)
         self.func = func
-        self.args = args
+        self.fargs = fargs
+        self.fkwargs = fkwargs
         self.logger = logger
-
+        self.killed = False
+    
+    def globaltrace(self, frame, event, arg): 
+    	if event == 'call': 
+            return self.localtrace 
+    	else: 
+            return None
+    
+    def localtrace(self, frame, event, arg):
+        if self.killed:
+            if event == 'line':
+                raise SystemExit()
+        return self.localtrace
+    
     def run(self):
         '''执行目标函数func，获取返回结果'''
-        self.result = self.func(*self.args)
+        if not _WINDOWS_SYSTEM:
+            sys.settrace(self.globaltrace)
+        try:
+            self.result = self.func(*self.fargs, **self.fkwargs)
+        except:
+            logger_show(traceback.format_exc(),
+                        self.logger, 'error')
+            # raise
 
     def get_result(self):
         '''获取执行结果'''
         try:
             return self.result
         except:
-            logger_show('error occurred, return None.',
+            logger_show('Error occurred when run `%s`, return None.'%self.func.__name__,
                         self.logger, 'error')
             return None
- 
+        
     def stop_thread(self):
-        '''结束线程'''
+        if _WINDOWS_SYSTEM:
+            self._stop_thread_ctypes()
+        else:
+            self._stop_thread_traces()
+        
+    def _stop_thread_traces(self): 
+    	self.killed = True
+        
+    def _get_tid(self):
+        '''
+        determines this (self's) thread id
+
+        CAREFUL: this function is executed in the context of the caller
+        thread, to get the identity of the thread represented by this
+        instance.
+        '''
+        if not self.is_alive():
+            raise threading.ThreadError('The thread is not active !')
+        # do we have it cached?
+        for name in ['ident', '_ident', '_thread_id']:
+            if hasattr(self, name):
+                return eval('self.%s'%name)
+        # no, look for it in the _active dict
+        for tid, tobj in threading._active.items():
+            if tobj is self:
+                self._thread_id = tid
+                return tid
+        raise AssertionError("Could not determine the thread's id !")
+        
+    def _stop_thread_ctypes(self):
+        '''
+        结束线程
+        
+        # TODO在linux下报错
+        '''
+        
         def _async_raise(tid, exctype):
             '''raises the exception, performs cleanup if needed'''
             if not inspect.isclass(exctype):
                 exctype = type(exctype)
             res = ctypes.pythonapi.PyThreadState_SetAsyncExc(
-                                   tid, ctypes.py_object(exctype))
+                                    tid, ctypes.py_object(exctype))
             if res == 0:
-                raise ValueError('invalid thread id')
+                raise ValueError('Invalid thread id !')
             elif res != 1:
-                '''
-                if it returns a number greater than one, you're in trouble,
-                and you should call it again with exc=NULL to revert the effect
-                '''
+                # if it returns a number greater than one, you're in trouble,
+                # and you should call it again with exc=NULL to revert the effect
                 ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, None)
-                raise SystemError('PyThreadState_SetAsyncExc failed')
-        _async_raise(self.ident, SystemExit)
+                raise SystemError('PyThreadState_SetAsyncExc failed !')
+        
+        _async_raise(self._get_tid(), SystemExit)
 
 
 def multi_thread_threading(func, args_list, logger=None):
@@ -84,7 +154,7 @@ def multi_thread_threading(func, args_list, logger=None):
     results : list
         每个元素对应func以args_list的元素为输入的返回结果
     '''
-
+    
     tasks = []
     for args in args_list:
         task = SingleThread(func, args, logger=logger)
@@ -148,6 +218,8 @@ def multi_thread_concurrent(func, args_list,
 #%%
 if __name__ == '__main__':
     import time
+    from dramkit.gentools import TimeRecoder, tmprint
+    tr = TimeRecoder()
 
 
     def func(idx, sleep_tm):
@@ -159,16 +231,16 @@ if __name__ == '__main__':
     args_list = [[1, 2], [3, 4], [4, 5], [2, 3]]
 
 
-    print('multi-thread, threading..............................')
-    strt_tm = time.time()
+    tmprint('multi-thread, threading..............................')
+    tr = TimeRecoder()
     results_threading = multi_thread_threading(func, args_list)
-    print('used time: {tm}s.'.format(tm=round(time.time() - strt_tm,6)))
+    tr.used()
 
 
-    print('multi-thread, concurrent.............................')
-    strt_tm = time.time()
+    tmprint('multi-thread, concurrent.............................')
+    tr = TimeRecoder()
     results_concurrent_Order = multi_thread_concurrent(func, args_list,
-                                                     keep_order=True)
+                                                      keep_order=True)
     results_concurrent_noOrder = multi_thread_concurrent(func, args_list,
-                                                       keep_order=False)
-    print('used time: {tm}s.'.format(tm=round(time.time() - strt_tm,6)))
+                                                        keep_order=False)
+    tr.used()

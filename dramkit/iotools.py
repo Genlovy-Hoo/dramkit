@@ -2,13 +2,17 @@
 
 import re
 import os
+import sys
+import time
 import json
 import yaml
 import pickle
 import shutil
+import logging
 import zipfile
 import socket
 import inspect
+import platform
 import requests
 import traceback
 import subprocess
@@ -16,18 +20,104 @@ import py_compile
 import pandas as pd
 from tqdm import tqdm
 from pathlib import Path
+from urllib.request import urlopen
 from dramkit.gentools import (isnull,
                               check_list_arg,
                               get_update_kwargs,
                               cut_range_to_subs,
                               get_tmp_col,
                               merge_df,
-                              update_df)
+                              update_df,
+                              run_func_with_timeout_thread)
 from dramkit.logtools.utils_logger import (logger_show,
                                            close_log_file)
 from dramkit.datetimetools import timestamp2str
-from dramkit.speedup.multi_thread import SingleThread
-from dramkit.speedup.multi_process import multi_process_concurrent
+from dramkit.speedup.multi_process_concurrent import multi_process_concurrent
+
+_WINDOWS_SYSTEM = 'windows' in platform.system().lower()
+
+_SP = ' '
+_CR = '\r'
+_LF = '\n'
+_CRLF = _CR + _LF
+
+
+class GetInputTimeoutError(Exception):
+    pass
+
+
+def _echo(string):
+    sys.stdout.write(string)
+    sys.stdout.flush()
+    
+    
+def _check_hint_str(timeout, hint_str):
+    if isnull(hint_str):
+        hint_str = 'Please input in {} seconds:\n'.format(timeout)
+    return hint_str
+
+
+def get_input_timeout_win(timeout=10, hint_str=None):
+    '''
+    | windows下设置在等待时间内获取input
+    | https://pypi.org/project/inputimeout/
+    '''
+    import msvcrt
+    hint_str = _check_hint_str(timeout, hint_str)
+    _echo(hint_str)
+    begin = time.monotonic()
+    end = begin + timeout
+    line = ''
+    while time.monotonic() < end:
+        if msvcrt.kbhit():
+            c = msvcrt.getwche()
+            if c in (_CR, _LF):
+                _echo(_CRLF)
+                return line
+            if c == '\003':
+                raise KeyboardInterrupt
+            if c == '\b':
+                line = line[:-1]
+                cover = _SP * len(hint_str + line + _SP)
+                _echo(''.join([_CR, cover, _CR, hint_str, line]))
+            else:
+                line += c
+        time.sleep(0.05)
+    _echo(_CRLF)
+    raise GetInputTimeoutError
+    
+    
+def get_input_timeout_notwin(timeout=10, hint_str=None):
+    '''
+    | 非windows下设置在等待时间内获取input
+    | https://pypi.org/project/inputimeout/
+    '''
+    import selectors
+    import termios
+    hint_str = _check_hint_str(timeout, hint_str)
+    _echo(hint_str)
+    sel = selectors.DefaultSelector()
+    sel.register(sys.stdin, selectors.EVENT_READ)
+    events = sel.select(timeout)
+    if events:
+        key, _ = events[0]
+        return key.fileobj.readline().rstrip(_LF)
+    else:
+        _echo(_LF)
+        termios.tcflush(sys.stdin, termios.TCIFLUSH)
+        raise GetInputTimeoutError
+    
+    
+def get_input_timeout(timeout=10, hint_str=None, logger=None):
+    try:
+        if _WINDOWS_SYSTEM:
+            res = get_input_timeout_win(timeout=timeout, hint_str=hint_str)
+        else:
+            res = get_input_timeout_notwin(timeout=timeout, hint_str=hint_str)
+    except GetInputTimeoutError:
+        logger_show('超时未接收到输入，返回None！', logger, 'warn')
+        res = None
+    return res
 
 
 def get_input_with_timeout(timeout=10, hint_str=None,
@@ -40,21 +130,13 @@ def get_input_with_timeout(timeout=10, hint_str=None,
     '''
     def _get_input(hint_str):
         str_input = input(hint_str)
-        return str_input
-    
-    if hint_str is None:
-        hint_str = 'Please input:\n'
-
-    task = SingleThread(_get_input, (hint_str,), False) # 创建线程
-    task.start() # 启动线程
-    task.join(timeout=timeout) # 最大执行时间
-
-    # 若超时后，线程依旧运行，则强制结束
-    if task.is_alive():
-        logger_show('超时未接收到输入，返回None！', logger, 'warn')
-        task.stop_thread()
-
-    return task.get_result()
+        return str_input    
+    hint_str = _check_hint_str(timeout, hint_str)
+    return run_func_with_timeout_thread(
+            _get_input, hint_str, timeout=timeout,
+            timeout_show_str='超时未接收到输入，返回None！',
+            logger_error=False, logger_timeout=logger,
+            kill_when_timeout=True)
 
 
 def get_input_multi_line(end_word='end', end_char='',
@@ -160,22 +242,16 @@ def load_json(fpath, encoding=None, logger=None):
         logger_show('文件不存在，返回None：{}'.format(fpath),
                     logger, 'warn')
         return None
-
-    try:
-        with open(fpath, 'r', encoding=encoding) as f:
-            data_json = json.load(f)
-    except:
+                
+    for en in [encoding, 'utf-8', 'gbk', None]:
         try:
-            with open(fpath, 'r', encoding='utf-8') as f:
+            with open(fpath, 'r', encoding=en) as f:
                 data_json = json.load(f)
+            break
         except:
-            try:
-                with open(fpath, 'r', encoding='gbk') as f:
-                    data_json = json.load(f)
-            except:
-                logger_show('读取%s出错，请检查文件（如编码或文件末尾多余字符等问题）！'%fpath,
-                            logger, 'error')
-                raise
+            logger_show('读取%s出错，请检查文件（如编码或文件末尾多余字符等问题）！'%fpath,
+                        logger, 'error')
+            raise
 
     return data_json
 
@@ -337,6 +413,142 @@ def load_text(fpath, sep=',', del_first_line=False, del_first_col=False,
     return data
 
 
+def _get_pd_ftype(fpath, ftype):
+    if isnull(ftype):
+        ftype = get_file_ext_type(fpath)
+    ftype = ftype.replace('.', '')
+    if ftype in ['xls', 'xlsx']:
+        ftype = 'excel'
+    if ftype in ['sav']:
+        ftype = 'spss'   
+    if ftype in ['dta']:
+        ftype = 'stata'
+    if ftype in ['pk', 'pkl']:
+        ftype = 'pickle'
+    return ftype
+
+
+def _drop_unname_cols(df):
+    _cols = [x for x in df.columns if 'unnamed:' in str(x).lower()]
+    if len(_cols) > 0:
+        df = df.drop(_cols, axis=1)
+    return df
+
+
+def df2file_pd(df, fpath, ftype=None, **kwargs):
+    '''pandas.DataFrame写入文件'''
+    ftype = _get_pd_ftype(fpath, ftype)
+    exec('df.to_{}(fpath, **kwargs)'.format(ftype))
+
+
+def _pd_load_df_check(fpath, ftype, logger):
+    if not os.path.exists(fpath):
+        logger_show('文件不存在，返回None：{}!'.format(fpath),
+                    logger, 'warn')
+        return None
+    ftype = _get_pd_ftype(fpath, ftype)
+    allows = [x.split('_')[-1] for x in dir(pd) if x.startswith('read_')]
+    if ftype not in allows:
+        logger_show('不支持的文件类型: `{}`！'.format(ftype))
+        raise
+    read_func = eval('pd.read_{}'.format(ftype))
+    return read_func
+
+
+def _process_df_pd_big(read_func, fpath,
+                       chunksize=100000,
+                       read_kwargs={},
+                       del_unname_cols=True,
+                       process_func=None,
+                       process_args=(),
+                       process_kwargs={},
+                       return_df=True):
+    df_iter = read_func(fpath, chunksize=chunksize,
+                        **read_kwargs)
+    res = []
+    for tmp in df_iter:
+        if del_unname_cols:
+            tmp = _drop_unname_cols(tmp)
+        if not isnull(process_func):
+            tmp = process_func(tmp, *process_args, **process_kwargs)
+        res.append(tmp)
+    if return_df:
+        res = pd.concat(res, axis=0)
+    return res
+
+
+def process_df_pd_big(fpath: str,
+                      ftype: str = None,
+                      chunksize : int = 100000,
+                      del_unname_cols: bool = True,
+                      logger: logging.Logger = None,
+                      read_kwargs: dict = {},
+                      process_func=None,
+                      process_args: tuple = (),
+                      process_kwargs: dict = {},
+                      return_df: bool = True):
+    '''用pandas读取大数据文件并分批处理，返回处理后的结果'''
+    read_func = _pd_load_df_check(fpath, ftype, logger)
+    if isnull(read_func):
+        return None
+    res = _process_df_pd_big(read_func, fpath,
+                             chunksize=chunksize,
+                             read_kwargs=read_kwargs,
+                             del_unname_cols=del_unname_cols,
+                             process_func=process_func,
+                             process_args=process_args,
+                             process_kwargs=process_kwargs,
+                             return_df=return_df)
+    return res
+
+
+def load_df_pd(fpath: str,
+               ftype: str = None,
+               del_unname_cols: bool = True,
+               encoding: str = None,
+               logger: logging.Logger = None,
+               **kwargs):
+    '''用pandas读取文件，返回DataFrame'''
+    
+    read_func = _pd_load_df_check(fpath, ftype, logger)
+    if isnull(read_func):
+        return None
+    
+    _big = False
+    if 'chunksize' in kwargs and not isnull(kwargs['chunksize']):
+        _big = True
+        chunksize, kwargs = get_update_kwargs(
+            'chunksize', None, kwargs, func_update=False)
+
+    data = None
+    for en in [encoding, 'utf-8', 'gbk']:
+        try:
+            if not _big:
+                data = read_func(fpath, encoding=en, **kwargs)
+            else:
+                kwargs.update({'encoding': en})
+                data = _process_df_pd_big(read_func, fpath,
+                                          chunksize=chunksize,
+                                          del_unname_cols=False,
+                                          read_kwargs=kwargs)
+            break
+        except:
+            pass
+    if isnull(data):
+        if not _big:
+            data = read_func(fpath, **kwargs)
+        else:
+            data = _process_df_pd_big(read_func, fpath,
+                                      chunksize=chunksize,
+                                      del_unname_cols=False,
+                                      read_kwargs=kwargs)
+
+    if del_unname_cols:
+        data = _drop_unname_cols(data)
+
+    return data
+
+
 def load_csv(fpath, del_unname_cols=True, encoding=None,
              logger=None, **kwargs):
     '''
@@ -358,28 +570,48 @@ def load_csv(fpath, del_unname_cols=True, encoding=None,
 
     :returns: `pandas.DataFrame` - 读取的数据
     '''
+    return load_df_pd(fpath, ftype='csv',
+                      del_unname_cols=del_unname_cols,
+                      encoding=encoding,
+                      logger=logger,
+                      **kwargs)
 
-    if not os.path.exists(fpath):
-        logger_show('文件不存在，返回None：{}!'.format(fpath),
-                    logger, 'warn')
-        return None
 
-    try:
-        data = pd.read_csv(fpath, encoding=encoding, **kwargs)
-    except:
-        try:
-            data = pd.read_csv(fpath, encoding='utf-8', **kwargs)
-        except:
-            try:
-                data = pd.read_csv(fpath, encoding='gbk', **kwargs)
-            except:
-                data = pd.read_csv(fpath, **kwargs)
+def load_dfs_pd(fpaths,
+                kwargs_sort={},
+                kwargs_drop_dup={},
+                mark_file=False,
+                **kwargs_loaddf):
+    '''
+    读取指定路径列表中所有的dataframe数据文件，整合到一个df里面
 
-    if del_unname_cols:
-        del_cols = [x for x in data.columns if 'Unnamed:' in str(x)]
-        if len(del_cols) > 0:
-            data.drop(del_cols, axis=1, inplace=True)
+    Parameters
+    ----------
+    fpaths : list
+        文件夹路径列表
+    kwargs_sort : dict
+        设置sort_values接受的排序参数
+    kwargs_drop_dup : dict
+        设置drop_duplicates接受的去重参数
+    **kwargs_loaddf :
+        :func:`dramkit.iotools.load_df_pd` 接受的其它参数
 
+
+    :returns: `pandas.DataFrame` - 读取的数据
+    '''
+    data = []
+    for fpath in tqdm(fpaths):
+        df = load_df_pd(fpath, **kwargs_loaddf)
+        if mark_file:
+            df[get_tmp_col(df, 'fromfile')] = fpath
+        data.append(df)
+    data = pd.concat(data, axis=0)
+    if len(kwargs_sort) > 0:
+        _, kwargs_sort = get_update_kwargs('inplace', True, kwargs_sort)
+        data.sort_values(**kwargs_sort, inplace=True)
+    if len(kwargs_drop_dup) > 0:
+        _, kwargs_drop_dup = get_update_kwargs('inplace', True, kwargs_drop_dup)
+        data.drop_duplicates(**kwargs_drop_dup, inplace=True)
     return data
 
 
@@ -399,23 +631,15 @@ def load_csvs(fpaths,
     kwargs_drop_dup : dict
         设置drop_duplicates接受的去重参数
     **kwargs_loadcsv :
-        :func:`dramkit.iotools.load_csv` 接受的其它参数
+        :func:`dramkit.iotools.load_dfs_pd` 接受的其它参数
 
 
     :returns: `pandas.DataFrame` - 读取的数据
     '''
-    data = []
-    for fpath in tqdm(fpaths):
-        df = load_csv(fpath, **kwargs_loadcsv)
-        data.append(df)
-    data = pd.concat(data, axis=0)
-    if len(kwargs_sort) > 0:
-        _, kwargs_sort = get_update_kwargs('inplace', True, kwargs_sort)
-        data.sort_values(**kwargs_sort, inplace=True)
-    if len(kwargs_drop_dup) > 0:
-        _, kwargs_drop_dup = get_update_kwargs('inplace', True, kwargs_drop_dup)
-        data.drop_duplicates(**kwargs_drop_dup, inplace=True)
-    return data
+    return load_dfs_pd(fpaths,
+                       kwargs_sort=kwargs_sort,
+                       kwargs_drop_dup=kwargs_drop_dup,
+                       **kwargs_loadcsv)
 
 
 def load_csvs_dir(fdir,
@@ -434,7 +658,7 @@ def load_csvs_dir(fdir,
     kwargs_drop_dup : dict
         设置drop_duplicates接受的去重参数
     **kwargs_loadcsv :
-        :func:`dramkit.iotools.load_csv` 接受的其它参数
+        :func:`dramkit.iotools.load_dfs_pd` 接受的其它参数
 
 
     :returns: `pandas.DataFrame` - 读取的数据
@@ -446,24 +670,67 @@ def load_csvs_dir(fdir,
     return data
 
 
+def load_excels(fdirorfpaths,
+                kwargs_sort={},
+                kwargs_drop_dup={},
+                **kwargs_readexcel):
+    '''
+    读取指定文件夹中所有的excel文件，整合到一个df里面
+
+    Parameters
+    ----------
+    fdirorfpaths : str, list
+        Excel文件所在文件夹路径或Excel文件路径列表
+    kwargs_sort : dict
+        设置sort_values接受的排序参数
+    kwargs_drop_dup : dict
+        设置drop_duplicates接受的去重参数
+    **kwargs_readexcel :
+        ``dramkit.iotools.load_dfs_pd`` 接受的其它参数
+
+
+    :returns: `pandas.DataFrame` - 读取的数据
+    '''
+    assert isinstance(fdirorfpaths, (str, list, tuple, set))
+    if isinstance(fdirorfpaths, str):
+        fpaths = os.listdir(fdirorfpaths)
+        fpaths = [os.path.join(fdirorfpaths, x) for x in fpaths if x[-4:] == '.xls' or x[-5:] == '.xlsx']
+    else:
+        fpaths = fdirorfpaths
+    return load_dfs_pd(fpaths,
+                       kwargs_sort=kwargs_sort,
+                       kwargs_drop_dup=kwargs_drop_dup,
+                       **kwargs_readexcel)
+
+
 def archive_df(df_old, df_new, idcols=None,
                del_dup_cols=None, rep_keep='new',
                sort_cols=None, ascendings=True,
-               file_type='.csv', save_path=None,
-               kwargs_read={}, kwargs_save={},
-               method='merge', logger=None):
+               old_ftype=None, new_ftype=None,
+               save_ftype=None, save_path=None,
+               kwargs_read_old={}, kwargs_read_new={},
+               kwargs_save={'index': None},
+               method='merge',
+               logger=None):
     '''
     合并df_new和df_old，再排序、去重、写入csv或excel
     '''
-    assert file_type in ['.csv', '.xlsx']
-    read_func = load_csv if file_type == '.csv' else pd.read_excel
+    if isnull(save_path):
+        if isinstance(df_old, str):
+            save_path = df_old
+        elif isinstance(df_new, str):
+            save_path = df_new
     if isinstance(df_new, str):
-        df_new = read_func(df_new, **kwargs_read)
+        df_new = load_df_pd(df_new, ftype=new_ftype,
+                            logger=logger,
+                            **kwargs_read_new)
     if isinstance(df_old, str):
         if os.path.exists(df_old):
             if isnull(df_new) or df_new.shape[0] < 1:
                 return df_old
-            df_old = read_func(df_old, **kwargs_read)
+            df_old = load_df_pd(df_old, ftype=old_ftype,
+                                logger=logger,
+                                **kwargs_read_old)
         else:
             df_old = pd.DataFrame(columns=df_new.columns)
     res = update_df(df_old, df_new,
@@ -475,37 +742,82 @@ def archive_df(df_old, df_new, idcols=None,
                     method=method,
                     logger=logger)
     if not isnull(save_path) and not isnull(res):
-        if file_type == '.csv':
-            res.to_csv(save_path, **kwargs_save)
-        elif file_type == '.xlsx':
-            res.to_excel(save_path, **kwargs_save)
+        if isnull(save_ftype):
+            save_ftype = get_file_ext_type(save_path)
+        save_ftype = save_ftype.replace('.', '')
+        eval('res.to_{}(save_path, **kwargs_save)'.format(save_ftype))
     return res
 
 
-def cut_csv_by_maxline(fpath, max_line=10000,
-                       kwargs_loadcsv={},
-                       kwargs_tocsv={'index': None}):
-    '''
-    csv大文件分割，max_line指定子文件最大行数
-    '''
-    df = load_csv(fpath, **kwargs_loadcsv)
+def add_ext_to_filename(fpath, ext):
+    '''在fpath路径的尾部（扩展名的前面）添加尾缀ext'''
+    fname, ftype = os.path.splitext(fpath)
+    return fname+str(ext)+ftype
+
+
+def cut_dffile_by_maxline(fpath, max_line=10000,
+                          kwargs_loaddf={},
+                          kwargs_tofile={'index': None}):
+    df = load_df_pd(fpath, **kwargs_loaddf)
     subs = cut_range_to_subs(df.shape[0], max_line)
     for k in range(len(subs)):
         i0, i1 = subs[k]
-        path_ = fpath[:-4]+'_'+str(k+1)+'.csv'
+        path_ = add_ext_to_filename(fpath, '_%s'%(k+1))
         df_ = df.iloc[i0:i1, :].copy()
-        df_.to_csv(path_, **kwargs_tocsv)
-
-
-def cut_csv_by_year(fpath, tcol=None,
-                    name_last_year=False,
-                    kwargs_loadcsv={},
-                    kwargs_tocsv={'index': None},
-                    logger=None):
-    '''csv大文件分割，按年份，tcol指定时间列'''
+        df2file_pd(df_, path_, **kwargs_tofile)
+        
+        
+def get_fpath_ext_num(fpath):
+    '''
+    | 给定路径fpath，若不存在，则返回fpath，若存在则返回带数字在后缀的路径
+    | 比如fpath=xxx.y存在，则返回xxx_1.y，xxx_1.y也存在，则返回xxx_2.y
+    '''
+    if not os.path.exists(fpath):
+        return fpath
+    k = 1
+    res = add_ext_to_filename(fpath, '_%s'%k)
+    while os.path.exists(res):
+        res = add_ext_to_filename(fpath, '_{}'.format(k+1))
+        k += 1
+    return res
+        
+        
+def cut_bigdffile_by_maxline(fpath, max_line=100000,
+                             kwargs_loaddf={},
+                             kwargs_tofile={'index': None}):
+    def _df2file(df, fpath, **kwargs):
+        fpath_ = get_fpath_ext_num(fpath)
+        df2file_pd(df, fpath_, ftype=None, **kwargs)
+        return fpath_
+    fpaths = process_df_pd_big(fpath,
+                      ftype=None,
+                      chunksize=max_line,
+                      del_unname_cols=True,
+                      logger=None,
+                      read_kwargs=kwargs_loaddf,
+                      process_func=_df2file,
+                      process_args=(fpath,),
+                      process_kwargs=kwargs_tofile,
+                      return_df=False)
+    return fpaths
+        
+        
+def cut_dffile_by_year(fpath, tcol=None,
+                       name_last_year=False,
+                       kwargs_loaddf={},
+                       kwargs_tofile={'index': None},
+                       kwargs_exists_merge={},
+                       logger=None):
+    '''
+    dataframe大文件分割，按年份，tcol指定时间列
+    
+    TODO
+    ----
+    指定几年的合并为一个文件，而不是固定每一年单独一个文件
+    '''
     
     logger_show('数据读取...', logger)
-    df = load_csv(fpath, **kwargs_loadcsv)
+    df = load_df_pd(fpath, **kwargs_loaddf)
     if tcol is None:
         for col in ['time', 'date']:
             if col in df.columns:
@@ -516,54 +828,46 @@ def cut_csv_by_year(fpath, tcol=None,
     y_ = get_tmp_col(df, 'year_')
     df[d_] = pd.to_datetime(df[tcol])
     df[y_] = df[d_].apply(lambda x: x.year)
-    df[y_] = df[y_].astype(str)
+    def _year2int(x):
+        try:
+            return str(int(x))
+        except:
+            return str(x)
+    df[y_] = df[y_].apply(lambda x: _year2int(x))
     years = df[y_].unique().tolist()
     years.sort()
+    for y in years:
+        try:
+            int(y)
+        except:
+            years.remove(y)
+            years.insert(0, y)
     for k in range(len(years)):
         year = years[k]
         logger_show('{}, 数据写入...'.format(year), logger)
         df_ = df[df[y_] == year].copy()
         df_.drop([d_, y_], axis=1, inplace=True)
-        path_ = fpath[:-4]+'_'+year+'.csv'
+        path_ = add_ext_to_filename(fpath, '_'+year)
         if k == len(years)-1:
             if not name_last_year:
                 path_ = fpath
-        df_.to_csv(path_, **kwargs_tocsv)
+        if len(kwargs_exists_merge) == 0 or k == len(years)-1:
+            df2file_pd(df_, path_, **kwargs_tofile)
+        else:
+            archive_df(path_, df_, save_path=path_, **kwargs_exists_merge)
 
 
-def load_excels(fdir, kwargs_sort={}, kwargs_drop_dup={},
-                **kwargs_readexcel):
-    '''
-    读取指定文件夹中所有的excel文件，整合到一个df里面
-
-    Parameters
-    ----------
-    fdir : str
-        文件夹路径
-    kwargs_sort : dict
-        设置sort_values接受的排序参数
-    kwargs_drop_dup : dict
-        设置drop_duplicates接受的去重参数
-    **kwargs_readexcel :
-        ``pd.read_excel`` 接受的其它参数
-
-
-    :returns: `pandas.DataFrame` - 读取的数据
-    '''
-    files = os.listdir(fdir)
-    files = [os.path.join(fdir, x) for x in files if x[-4:] == '.xls' or x[-5:] == '.xlsx']
-    data = []
-    for file in files:
-        df = pd.read_excel(file, **kwargs_readexcel)
-        data.append(df)
-    data = pd.concat(data, axis=0)
-    if len(kwargs_sort) > 0:
-        _, kwargs_sort = get_update_kwargs('inplace', True, kwargs_sort)
-        data.sort_values(**kwargs_sort, inplace=True)
-    if len(kwargs_drop_dup) > 0:
-        _, kwargs_drop_dup = get_update_kwargs('inplace', True, kwargs_drop_dup)
-        data.drop_duplicates(**kwargs_drop_dup, inplace=True)
-    return data
+def cut_csv_by_year(fpath, tcol=None,
+                    name_last_year=False,
+                    kwargs_loadcsv={},
+                    kwargs_tocsv={'index': None},
+                    logger=None):
+    '''csv大文件分割，按年份，tcol指定时间列'''
+    cut_dffile_by_year(fpath, tcol=tcol,
+                       name_last_year=name_last_year,
+                       kwargs_loaddf=kwargs_loadcsv,
+                       kwargs_tocsv=kwargs_tocsv,
+                       logger=logger)
 
 
 def clear_text_file(fpath, encoding=None):
@@ -834,6 +1138,11 @@ def make_dir(dir_path):
         os.makedirs(dir_path)
         
         
+def make_file_dir(fpath):
+    '''若路径fpath所指文件夹不存在，创建之'''
+    make_dir(get_parent_path(fpath))
+        
+        
 def make_path_dir(fpath):
     '''若fpath所指文件夹路径不存在，则新建之'''
     if isnull(fpath):
@@ -966,6 +1275,20 @@ def get_mac_address():
     return mac
 
 
+def get_ipconfig_all_win(logger=False):
+    res = cmdrun('ipconfig/all', logger=logger).strip()
+    # TODO: 结果转化为dataframe和dict
+    # res = res.replace('\r\n', '\n').split('\n')
+    # res = [x for x in res if len(x.strip()) > 0]
+    return res
+
+
+def get_ipconfig_win(logger=False):
+    # TODO: 结果转化为dataframe和dict
+    res = cmdrun('ipconfig', logger=logger)
+    return res
+
+
 def get_hardware_ids():
     '''
     | 获取电脑硬件序列号信息，包括主板和硬盘序列号、MAC地址、BIOS序列号等
@@ -1038,6 +1361,16 @@ def get_ip_public():
     # 从响应中提取公网ip
     cur_public_ip = re.findall(r'\d+.\d+.\d+.\d+', ip_html.text)
     return cur_public_ip[0]
+
+
+def get_ip_public2():
+    '''
+    | 获取公网ip
+    | https://blog.csdn.net/qq_39147299/article/details/122469840
+    '''
+    # ip = urlopen('http://ip.42.pl/raw').read().decode()
+    ip = requests.get('http://ip.42.pl/raw').content.decode()
+    return ip
 
 
 def get_tasks_info_win():
@@ -1591,6 +1924,11 @@ def _get_pkg_requirements(fdir):
     return (reqs, reqs_version), (reqs_str, reqs_version_str), (pkgs, df)
 
 
+def get_filedir(fpath):
+    '''获取fpath路径所在文件夹路径'''
+    return os.path.split(fpath)[0]
+
+
 def get_filename(fpath, with_ext=True):
     '''获取文件名（去除前缀路径），with_ext为False则返回不带后缀'''
     if with_ext:
@@ -1606,9 +1944,16 @@ def get_file_ext_type(fpath):
 
 def get_parent_path(path, n=1):
     '''获取路径path的n级父路径'''
-    f = Path(path)
+    if (not os.path.isabs(path)) and (not path.startswith('./')):
+        f = Path(os.path.abspath(path))
+    else:
+        f = Path(path)
     res = eval('f'+'.parent'*n)
-    return str(res).replace('\\', '/') + '/'
+    res = str(res).replace('\\', '/') + '/'
+    # TODO: path以'./'开头时，得到的res不是以'./'开头，原因待查
+    if path.startswith('./') and not res.startswith('./'):
+        res = './' + res
+    return res
 
 
 if __name__ == '__main__':

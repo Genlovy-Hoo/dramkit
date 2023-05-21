@@ -6,12 +6,12 @@ import pandas as pd
 from sklearn import datasets
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split as tts
-from dramkit.datsci.utils_lgb import lgb_train
-from dramkit.datsci.utils_lgb import lgb_predict
-from dramkit.datsci.utils_lgb import lgb_cv_mdls
-from dramkit.datsci.utils_lgb import lgb_cv_grid_search
-from dramkit.datsci.utils_ml import vote_label_int
-from dramkit.datsci.utils_ml import vote_prob_multi
+from dramkit.datsci.utils_lgb import (lgb_train,
+                                      lgb_predict,
+                                      lgb_cv_mdls,
+                                      lgb_cv_grid_search)
+from dramkit.datsci.utils_ml import (vote_label_int,
+                                     vote_prob_multi)
 
 #%%
 if __name__ == '__main__':
@@ -43,7 +43,7 @@ if __name__ == '__main__':
     acc22 = accuracy_score(y_valid, valid_pre)
 
     # 交叉验证CV网格------------------------------------------------------------
-    strt_tm = time.time()
+    strt_tm = time.monotonic()
     parms_mdl = {}
     # part1
     best1, s1 = lgb_cv_grid_search(X_train, y_train, objective='multiclass',
@@ -95,7 +95,7 @@ if __name__ == '__main__':
                                   parms_mdl=parms_mdl)
     valid_pre, p = lgb_predict(mdl, X_valid)
     acc7= accuracy_score(y_valid, valid_pre)
-    print('GridSearchCV used {}s.'.format(round(time.time()-strt_tm, 6)))
+    print('GridSearchCV used {}s.'.format(round(time.monotonic()-strt_tm, 6)))
 
     # 交叉验证-----------------------------------------------------------------
     mdls, evals_results = lgb_cv_mdls(X_train, y_train, objective='multiclass',

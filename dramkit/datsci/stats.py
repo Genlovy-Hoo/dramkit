@@ -708,7 +708,7 @@ def cumvar_nonan(series, ddof=1):
 
     See Also
     --------
-    :func:`dramkit.datsci.utils_stats.delta_var`
+    :func:`dramkit.datsci.stats.delta_var`
     '''
 
     # 数据格式检查
@@ -754,7 +754,7 @@ def cumvar(series, ddof=1, skipna=True):
 
     See Also
     --------
-    :func:`dramkit.datsci.utils_stats.cumvar_nonan`
+    :func:`dramkit.datsci.stats.cumvar_nonan`
     '''
     df = pd.DataFrame({'v': series})
     if not skipna:
@@ -1017,7 +1017,7 @@ def cumrank_nonan(series, ascending=True, method='dense'):
     for k in range(1, n):
         num = series[k]
         irank, (nums_sorted, ranks) = rank_of_insert_bin(nums_sorted, ranks,
-                                    num, ascending=ascending, method=method)
+                                      num, ascending=ascending, method=method)
         cumranks[k] = irank
 
     return cumranks
@@ -1186,7 +1186,7 @@ def cum_n_unique_pd(series, skipna=True):
 def cum_pct_loc(series, method='dense'):
     '''
     | 滚动计算series(`np.array, pd.Series`)数据累计所处百分位
-    | 调用 :func:`dramkit.datsci.utils_stats.cum_n_unique_pd` 函数
+    | 调用 :func:`dramkit.datsci.stats.cum_n_unique_pd` 函数
     '''
     if not method in ['dense', 'average']:
         raise ValueError('未识别的并列排序方法！')
@@ -1204,7 +1204,7 @@ def cum_pct_loc(series, method='dense'):
 def _cum_pct_loc1(series, method='dense'):
     '''
     | 滚动计算series(`np.array, pd.Series`)数据累计所处百分位
-    | 调用 :func:`dramkit.datsci.utils_stats.cum_n_unique` 函数
+    | 调用 :func:`dramkit.datsci.stats.cum_n_unique` 函数
     '''
     if not method in ['dense', 'average']:
         raise ValueError('未识别的并列排序方法！')
@@ -1222,7 +1222,7 @@ def _cum_pct_loc1(series, method='dense'):
 def _cum_pct_loc2(series, method='dense'):
     '''
     | 滚动计算series(`np.array, pd.Series`)数据累计所处百分位
-    | 调用 :func:`dramkit.datsci.utils_stats.get_pct_loc` 函数
+    | 调用 :func:`dramkit.datsci.stats.get_pct_loc` 函数
     '''
     df = pd.DataFrame({'v': series})
     df['PctLoc'] = np.nan

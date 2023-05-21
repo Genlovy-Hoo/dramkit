@@ -8,6 +8,7 @@ import re
 import sys
 import time
 import copy
+import string
 import inspect
 import operator
 import argparse
@@ -16,11 +17,19 @@ import traceback
 import numpy as np
 import pandas as pd
 import urllib.parse
+from tqdm import tqdm
+from io import StringIO
+from itertools import product
 from collections import Counter
 from functools import reduce, wraps
 from random import randint, random, uniform
+from collections.abc import Iterable, Callable
+from typing import Union, NewType, Literal, Any
 from dramkit.logtools.utils_logger import logger_show
 from dramkit.speedup.multi_thread import SingleThread
+
+from beartype import beartype as checkin
+from beartype.typing import List
 
 
 PYTHON_VERSION = float(sys.version[:3])
@@ -41,34 +50,51 @@ class TimeRecoder(object):
     >>> tr.used()
     '''
     
-    def __init__(self):
-        self.strt_tm = time.time()
+    def __init__(self, monotonic=True, logger=None):
+        self.monotonic = monotonic
+        self.strt_tm = self.now()
+        self.end_tm = None
+        self.logger = logger
+        
+    def _check_logger(self, logger=None):
+        if isnull(logger):
+            return self.logger
+        return logger
+        
+    def now(self):
+        if self.monotonic:
+            return time.monotonic()
+        else:
+            return time.time()
         
     def used(self, logger=None):
-        s = time.time() - self.strt_tm
+        self.end_tm = self.now()
+        s = self.end_tm - self.strt_tm
         if s < 60:
             s = round(s, 6)
-            logger_show('used time: %ss.'%s, logger)
+            logger_show('used time: %ss.'%s, self._check_logger(logger))
         elif s < 3600:
             m, s = divmod(s, 60)
             logger_show('used time: %sm, %ss.'%(m, round(s, 2)),
-                        logger)
+                        self._check_logger(logger))
         else:
             h, s = divmod(s, 3600)
             m, s = divmod(s, 60)
             logger_show('used time: %sh, %sm, %ss.'%(h, m, round(s, 2)),
-                        logger)
+                        self._check_logger(logger))
         return s
     
     def useds(self, logger=None):
-        s = round(time.time()-self.strt_tm, 6)
-        logger_show('used time: %ss.'%s, logger)
+        self.end_tm = self.now()
+        s = round(self.end_tm-self.strt_tm, 6)
+        logger_show('used time: %ss.'%s, self._check_logger(logger))
         return s
         
     def usedm(self, logger=None):
-        s = time.time()-self.strt_tm
+        self.end_tm = self.now()
+        s = self.end_tm - self.strt_tm
         m = round(s/60, 6)
-        logger_show('used time: %sm.'%m, logger)
+        logger_show('used time: %sm.'%m, self._check_logger(logger))
         return s
     
     
@@ -76,8 +102,11 @@ class DirtModifyError(Exception):
     pass
 
 
-class StructureObject(object):
-    '''类似于MATLAB结构数组，存放变量，便于直接赋值和查看'''
+class GenObject(object):
+    '''
+    | 创建一个数据类型，用于存放变量值，
+    | 既可以用.key调用，也可以像字典一样调用[key]调用
+    '''
 
     def __init__(self, dirt_modify=True, **kwargs):
         '''初始化'''
@@ -94,39 +123,56 @@ class StructureObject(object):
         
     def __setattr__(self, key, value):
         _defaults = ['__dirt_modify']
-        _defaults = ['_StructureObject' + x for x in _defaults]
+        _defaults = ['_%s'%type(self).__name__ + x for x in _defaults]
         if key in _defaults:
             self.__dict__[key] = value
             return
         if self.dirt_modify:
             self.__dict__[key] = value
         else:
-            raise DirtModifyError('不允许直接赋值！')
-            # raise DirtModifyError(
-            #     '不允许直接赋值，请调用`set_key_value`或`set_from_dict`方法！')
+            # raise DirtModifyError('不允许直接赋值！')
+            raise DirtModifyError(
+                  '不允许直接赋值，请调用`set_key_value`或`set_from_dict`方法！')
 
     def __repr__(self):
         '''查看时以key: value格式打印'''
         _defaults = ['__dirt_modify']
-        _defaults = ['_StructureObject' + x for x in _defaults]
+        _defaults = ['_%s'%type(self).__name__ + x for x in _defaults]
         return ''.join('{}: {}\n'.format(k, v) for k, v in self.__dict__.items() \
                        if k not in _defaults)
+            
+    def __getitem__(self, key):
+        '''像dict一样通过key获取value'''
+        return self.__dict__[key]
+    
+    def __setitem__(self, key, value):
+        '''像dict一样直接通过key赋值'''
+        self.__setattr__(key, value)
             
     @property
     def keys(self):
         '''显示所有key'''
         _defaults = ['__dirt_modify']
-        _defaults = ['_StructureObject' + x for x in _defaults]
-        return [x for x in self.__dict__.keys() if x not in _defaults]
+        _defaults = ['_%s'%type(self).__name__ + x for x in _defaults]
+        # return [x for x in self.__dict__.keys() if x not in _defaults]
+        for x in self.__dict__.keys():
+             if x not in _defaults:
+                yield x
+                
+    def listkeys(self):
+        return list(self.keys)
     
     @property
     def items(self):
         _defaults = ['__dirt_modify']
-        _defaults = ['_StructureObject' + x for x in _defaults]
+        _defaults = ['_%s'%type(self).__name__ + x for x in _defaults]
         for x in self.__dict__.keys():
             if not x in _defaults:
                 d = (x, eval('self.{}'.format(x)))
                 yield d
+                
+    def listitems(self):
+        return list(self.items)
     
     def set_key_value(self, key, value):
         self.__dict__[key] = value
@@ -136,11 +182,20 @@ class StructureObject(object):
         assert isinstance(d, dict), '必须为dict格式'
         self.__dict__.update(d)
         
+    def update(self, o):
+        '''像dict一样通过update函数传入字典进行更新'''
+        assert isinstance(o, (dict, list, tuple, type(self)))
+        if isinstance(o, dict):
+            self.set_from_dict(o)
+        else:
+            self.merge(o)
+        
     def merge(self, o):
         '''从另一个对象中合并属性和值'''
         assert isinstance(o, (list, tuple, type(self)))
         if isinstance(o, type(self)):
             o = [o]
+        assert all([isinstance(x, type(self)) for x in o])
         for x in o:
             for key in x.keys:
                 exec('self.set_key_value(key, x.{})'.format(key))
@@ -151,33 +206,116 @@ class StructureObject(object):
     def pop(self, key):
         '''删除属性变量key，有返回'''
         return self.__dict__.pop(key)
-    
+
     def remove(self, key):
         '''删除属性变量key，无返回'''
         del self.__dict__[key]
-    
+
     def clear(self):
         '''清空所有属性变量'''
         self.__dict__.clear()
         
         
-def run_func_with_timeout(func, args, timeout=10):
+class DeprecatedError(Exception):
+    pass
+
+
+class StructureObject(object):
+    def __init__(self, *args, **kwargs):
+        raise DeprecatedError('`StructureObject`已弃用，请调用`GenObject`!')
+        
+        
+def run_func_with_timeout_thread(func, *args,
+                                 timeout=10,
+                                 logger_error=False,
+                                 logger_timeout=None,
+                                 timeout_show_str=None,
+                                 kill_when_timeout=True,
+                                 **kwargs):
     '''
     | 限定时间(timeout秒)执行函数func，若限定时间内未执行完毕，返回None
     | args为tuple或list，为func函数接受的参数列表
+    
+    | 注：在线程中强制结束函数可能导致未知错误，
+    | 比如文件资源打开了但是强制结束时不能关闭
     '''
-    task = SingleThread(func, args, False) # 创建线程
+    # 创建线程
+    task = SingleThread(func, args, kwargs,
+                        logger=logger_error,
+                        # daemon=True
+                        )
     task.start() # 启动线程
     task.join(timeout=timeout) # 最大执行时间
-
-    # 若超时后，线程依旧运行，则强制结束
+    # 超时处理
     if task.is_alive():
-        task.stop_thread()
-
+        if not isnull(timeout_show_str):
+            logger_show(timeout_show_str, logger_timeout, 'warn')
+        # 强制结束
+        if kill_when_timeout:
+            task.stop_thread()
+            # task.join()
     return task.get_result()
+
+
+def with_timeout_thread(timeout=30,
+                        logger_error=None,
+                        logger_timeout=None,
+                        timeout_show_str=None,
+                        kill_when_timeout=True):
+    '''
+    | 作为装饰器在指定时间timeout(秒)内运行函数，超时则结束运行
+    | 通过控制线程实现
+
+    Examples
+    --------
+    .. code-block:: python
+        :linenos:
+
+        import os
+        import pandas as pd
+        from dramkit.gentools import tmprint
+        
+        df1 = pd.DataFrame([[1, 2], [3, 4]])
+        df2 = pd.DataFrame([[5, 6], [7, 8]])
+        df1.to_excel('./_test/with_timeout_thread_test_df.xlsx')
+        TIMEOUT = 3
+        
+        @with_timeout_thread(TIMEOUT,
+                             logger_error=False
+                             )
+        def func(x):
+            with open('./_test/with_timeout_thread_test_df.xlsx') as f:
+                tmprint('sleeping...')
+                time.sleep(5)
+            df2.to_excel('./_test/with_timeout_thread_test_df.xlsx')
+            return x
+        
+        def test():
+            res = func('test')
+            print('res:', res)
+            os.remove('./_test/with_timeout_thread_test_df.xlsx')
+            return res
+            
+    >>> res = test()
+    '''
+    def transfunc(func):
+        @wraps(func)
+        def timeouter(*args, **kwargs):
+            '''尝试在指定时间内运行func，超时则结束运行'''
+            return run_func_with_timeout_thread(
+                    func, *args, timeout=timeout, 
+                    logger_error=logger_error,
+                    logger_timeout=logger_timeout,
+                    timeout_show_str=timeout_show_str,
+                    kill_when_timeout=kill_when_timeout,
+                    **kwargs)
+        return timeouter
+    return transfunc
         
         
-def try_repeat_run(n_max_run=3, logger=None, sleep_seconds=0,
+def try_repeat_run(n_max_run=3,
+                   logger=None,
+                   sleep_seconds=0,
                    force_rep=False):
     '''
     | 作为装饰器尝试多次运行指定函数
@@ -227,16 +365,25 @@ def try_repeat_run(n_max_run=3, logger=None, sleep_seconds=0,
                 n_run, ok = 0, False
                 while not ok and n_run < n_max_run:
                     n_run += 1
-                    # logger_show('第%s次运行`%s`...'%(n_run, func.__name__),
-                    #             logger, 'info')
+                    # if isnull(logger) and 'logger' in kwargs:
+                    #     logger_show('第%s次运行`%s`...'%(n_run, func.__name__),
+                    #                 kwargs['logger'], 'info')
+                    # else:
+                    #     logger_show('第%s次运行`%s`...'%(n_run, func.__name__),
+                    #                 logger, 'info')
                     try:
                         result = func(*args, **kwargs)
                         return result
                     except:
                         if n_run == n_max_run:
-                            logger_show(traceback.format_exc(), logger)
-                            logger_show('`%s`运行失败，共运行了%s次。'%(func.__name__, n_run),
-                                        logger, 'error')                            
+                            if isnull(logger) and 'logger' in kwargs:
+                                logger_show(traceback.format_exc(), kwargs['logger'])
+                                logger_show('`%s`运行失败，共运行了%s次。'%(func.__name__, n_run),
+                                            kwargs['logger'], 'error')
+                            else:
+                                logger_show(traceback.format_exc(), logger)
+                                logger_show('`%s`运行失败，共运行了%s次。'%(func.__name__, n_run),
+                                            logger, 'error')                            
                             return
                         else:
                             if sleep_seconds > 0:
@@ -249,17 +396,93 @@ def try_repeat_run(n_max_run=3, logger=None, sleep_seconds=0,
                     n_run += 1
                     try:
                         result = func(*args, **kwargs)
-                        logger_show('`%s`第%s运行：成功。'%(func.__name__, n_run),
-                                    logger, 'info')
+                        if isnull(logger) and 'logger' in kwargs:
+                            logger_show('`%s`第%s运行：成功。'%(func.__name__, n_run),
+                                        kwargs['logger'], 'info')
+                        else:
+                            logger_show('`%s`第%s运行：成功。'%(func.__name__, n_run),
+                                        logger, 'info')
                     except:
-                        logger_show(traceback.format_exc(), logger)
-                        logger_show('`%s`第%s运行：失败。'%(func.__name__, n_run),
-                                    logger, 'error')
+                        if isnull(logger) and 'logger' in kwargs:
+                            logger_show(traceback.format_exc(), kwargs['logger'])
+                            logger_show('`%s`第%s运行：失败。'%(func.__name__, n_run),
+                                        kwargs['logger'], 'error')
+                        else:
+                            logger_show(traceback.format_exc(), logger)
+                            logger_show('`%s`第%s运行：失败。'%(func.__name__, n_run),
+                                        logger, 'error')
                         result = None
                     if sleep_seconds > 0:
                         time.sleep(sleep_seconds)
                 return result
         return repeater
+    return transfunc
+
+
+def capture_print(logger=None, del_last_blank=True):
+    '''
+    作为装饰器捕获函数中的print内容
+    
+    Parameters
+    ----------
+    logger : None, logging.Logger
+        日志记录器，若为None，则会优先使用被调用函数参数中的logger
+    
+
+    Examples
+    --------
+    .. code-block:: python
+        :linenos:
+
+        from dramkit import simple_logger
+        logger = simple_logger()
+
+        @capture_print(logger)
+        def test_print():
+            print('test_print...')
+            
+            
+        @capture_print()
+        def test_print1(logger=None):
+            print('test_print1...')
+            
+        @capture_print(simple_logger(logname='test'))
+        def test_print2(logger=None):
+            print('test_print2...')
+            
+        @capture_print(False)
+        def test_print3(logger=None):
+            print('test_print3...')
+
+    >>> test_print()
+    test_print...
+        [INFO: 2023-04-29 10:45:41,671]
+    >>> test_print1(logger=simple_logger('./_test/capture_print_test.log'))
+    >>> test_print2(logger=simple_logger('./_test/capture_print_test.log'))    
+    >>> test_print3()
+    '''
+    def transfunc(func):
+        @wraps(func)
+        def capturer(*args, **kwargs):
+            '''运行func并记录用时'''
+            # 替换默认的标准输出流
+            output = StringIO()
+            sys.stdout = output
+            result = func(*args, **kwargs)
+            # 恢复标准输出流，捕获内容
+            sys.stdout = sys.__stdout__
+            strs = output.getvalue()
+            if del_last_blank and len(strs) > 0:
+                strs = strs[:-1] if strs[-1] in string.whitespace else strs
+            # if del_last_blank:
+            #     strs = strs.rstrip()
+            if len(strs) > 0:
+                if isnull(logger) and 'logger' in kwargs:
+                    logger_show(strs, kwargs['logger'], 'info')
+                else:
+                    logger_show(strs, logger, 'info')
+            return result
+        return capturer
     return transfunc
 
 
@@ -270,7 +493,7 @@ def log_used_time(logger=None):
     Parameters
     ----------
     logger : None, logging.Logger
-        日志记录器
+        日志记录器，若为None，则会优先使用被调用函数参数中的logger
 
     Examples
     --------
@@ -284,11 +507,30 @@ def log_used_time(logger=None):
         def wait():
             print('wait...')
             time.sleep(3)
+            
+            
+        @log_used_time()
+        def wait1(logger=None):
+            print('wait...')
+            time.sleep(3)
+            
+        @log_used_time(simple_logger(logname='test'))
+        def wait2(logger=None):
+            print('wait...')
+            time.sleep(3)
+            
+        @log_used_time(False)
+        def wait3(logger=None):
+            print('wait...')
+            time.sleep(3)
 
     >>> wait()
     wait...
-    2021-12-28 12:39:54,013 -utils_logger.py[line: 32] -INFO:
-        --func `wait` run time: 3.000383s.
+    func `wait` run time: 3.0s.
+        [INFO: 2023-04-20 13:39:37,292]
+    >>> wait1(logger=simple_logger('./_test/log_used_time_test.log'))
+    >>> wait2(logger=simple_logger('./_test/log_used_time_test.log'))    
+    >>> wait3()
 
     See Also
     --------
@@ -306,11 +548,15 @@ def log_used_time(logger=None):
         @wraps(func)
         def timer(*args, **kwargs):
             '''运行func并记录用时'''
-            t0 = time.time()
+            t0 = time.monotonic()
             result = func(*args, **kwargs)
-            t = time.time()
-            logger_show('func `%s` run time: %ss.'%(func.__name__, round(t-t0, 6)),
-                        logger, 'info')
+            t = time.monotonic()
+            if isnull(logger) and 'logger' in kwargs:
+                logger_show('func `%s` run time: %ss.'%(func.__name__, round(t-t0, 6)),
+                            kwargs['logger'], 'info')
+            else:
+                logger_show('func `%s` run time: %ss.'%(func.__name__, round(t-t0, 6)),
+                            logger, 'info')
             return result
         return timer
     return transfunc
@@ -329,15 +575,21 @@ def print_used_time(func):
     --------
     .. code-block:: python
         :linenos:
+            
+        from dramkit import simple_logger
 
         @print_used_time
-        def wait():
+        def wait(x, **kwargs):
             print('wait...')
-            time.sleep(3)
+            time.sleep(x)
 
-    >>> wait()
+    >>> wait(3)
     wait...
-    func `wait` run time: 3.008314s.
+    func `wait` run time: 3.0s.
+    >>> wait(x=3, b=5, logger=simple_logger())
+    wait...
+    func `wait` run time: 3.0s.
+        [INFO: 2023-04-20 13:22:32,643]
 
     See Also
     --------
@@ -351,10 +603,13 @@ def print_used_time(func):
     @wraps(func)
     def timer(*args, **kwargs):
         '''运行func并print用时'''
-        t0 = time.time()
+        t0 = time.monotonic()
         result = func(*args, **kwargs)
-        t = time.time()
-        print('func `%s` run time: %ss.'%(func.__name__, round(t-t0, 6)))
+        t = time.monotonic()
+        if 'logger' in kwargs:
+            logger_show('func `%s` run time: %ss.'%(func.__name__, round(t-t0, 6)), kwargs['logger'])
+        else:
+            print('func `%s` run time: %ss.'%(func.__name__, round(t-t0, 6)))
         return result
     return timer
 
@@ -390,18 +645,26 @@ def func_runtime_test(func, n=10000, return_all=False,
     '''函数性能（运行时间）测试，n设置测试运行测试'''
     if not return_all:
         tr = TimeRecoder()
-        for _ in range(n):
+        for _ in tqdm(range(n)):
+        # for _ in range(n):
+        #     pstr = '{}/{}, {}%'.format(_+1, n, round(100*(_+1)/n, 2))
+        #     print('\r', pstr, end='', flush=True)
             res = func(*args, **kwargs)
-        tr.useds()
-        return res
+        # print('')
+        t = tr.useds()
+        return t, res
     else:
         tr = TimeRecoder()
         res_all = []
-        for _ in range(n):
+        for _ in tqdm(range(n)):
+        # for _ in range(n):
+        #     pstr = '{}/{}, {}%'.format(_+1, n, round(100*(_+1)/n, 2))
+        #     print('\r', pstr, end='', flush=True)
             res = func(*args, **kwargs)
             res_all.append(res)
-        tr.useds()
-        return res_all
+        # print('')
+        t = tr.useds()
+        return t, res_all
     
     
 def check_list_arg(arg, allow_none=False):
@@ -473,7 +736,9 @@ def get_update_kwargs(key, arg, kwargs, arg_default=None,
     >>> get_update_kwargs(key, arg, kwargs)
     (['a', 'aa_'], {'b': 'b'})
     '''
-
+    
+    kwargs = kwargs.copy()
+    
     def _default_update(arg, arg_old):
         if isinstance(arg, dict):
             assert isinstance(arg_old, dict) or isnull(arg_old)
@@ -1852,12 +2117,26 @@ def copy_df_structure(df):
     return df.drop(df.index)
 
 
+def get_tmp_new(exists, tmp_new, ext='_'):
+    '''以tmp_new为基础生成一个不在exists的值'''
+    assert isinstance(exists, Iterable)
+    assert isinstance(ext, (str, Callable))
+    if isinstance(ext, str) and isinstance(tmp_new, str):
+        while tmp_new in exists:
+            tmp_new += ext
+        return tmp_new
+    while tmp_new in exists:
+        tmp_new = ext(tmp_new)
+    return tmp_new
+    
+
 def get_tmp_col(df, tmp_col_name):
     '''以tmp_col_name为基础生成一个不在df的列名中的列'''
     assert isinstance(tmp_col_name, str)
-    while tmp_col_name in df.columns:
-        tmp_col_name += '_'
-    return tmp_col_name
+    return get_tmp_new(df.columns, tmp_col_name, ext='_')
+    # while tmp_col_name in df.columns:
+    #     tmp_col_name += '_'
+    # return tmp_col_name
 
 
 def merge_df(df_left, df_right, same_keep='left', **kwargs):
@@ -1904,6 +2183,10 @@ def update_df(df_old, df_new, idcols=None,
     | 合并df_new到df_old
     | 注意：df_old和df_new不应该设置index
     | 注意：用merge处理当数据量大时占空间很大，method应设置为`concat`
+    
+    TODO
+    ----
+    增加对各列的类型进行指定的参数设置
     
     Examples
     --------
@@ -2486,51 +2769,202 @@ def df_cols2rows(df, cols, col_name, col_val_name,
     return df
 
 
-def df_freq_low2high(df, tcol, id_cols, vcols=None,
-                     tmin=None, tmax=None, keepna=True):
+FullMethodType = NewType('FullMethodType',
+                         Literal['product', 'pivot'])
+FillMethodType = NewType('FillMethodType',
+                         Literal['ffill', 'bfill',
+                                 'ffillbfill', 'bfillffill'])
+
+@checkin
+def get_full_df(df: pd.DataFrame,
+                full_col : str,
+                fulls: Iterable,
+                idcols: Union[str, List[str], None] = None,
+                vcols: Union[str, List[str], None] = None,
+                val_nan: Any = None,
+                fill: Union[FillMethodType, None] = 'ffill',
+                final_dropna: bool = True,
+                only_fulls: bool = True,
+                method: FullMethodType = 'pivot'):
     '''
-    数据填充为日频
+    df中full_col列的值扩充到fulls
     
-    TODO
-    ----
-    - 填充时选择交易日或工作日参数设置
-    - idx_cols中有nan时检查和处理
-    - 其他参数/变量规范重写
-    - 日期格式不写死，根据tcol列转化
+    Example
+    -------
+    >>> df = pd.DataFrame({'t': [2, 3, 5, 7, 9],
+    ...                    'a': ['x1', 'x1', 'x3', 'x4', 'x4'],
+    ...                    'b': ['y1', 'y2', 'y3', 'y4', 'y4'],
+    ...                    'c': ['z1', 'z1', 'z5', 'z7', 'z9']})
+    >>> get_full_df(df, 't', range(1, 11))
+    >>> get_full_df(df, 't', range(1, 11), idcols='c', method='product')
+    >>> get_full_df(df, 't', range(1, 11), idcols=['a', 'b'], method='product')
+    >>> get_full_df(df, 't', range(1, 11), idcols=['a', 'b'])
+    >>> df['c'] = ['z1', 'z1', np.nan, np.nan, 'z9']
+    >>> get_full_df(df, 't', range(1, 11), idcols=['a', 'b'], val_nan='npnan')
+    >>> get_full_df(df, 't', [2, 5, 9, 10], idcols=['a', 'b'], val_nan='npnan', final_dropna=False)
+    >>> get_full_df(df, 't', [2, 5, 9, 10], idcols=['a', 'b'], val_nan='npnan', final_dropna=True, method='product')
     '''
-    vcols = check_list_arg(vcols, allow_none=True)
-    id_cols = check_list_arg(id_cols)
-    if isnull(vcols):
-        vcols = [x for x in df.columns if not x in id_cols+[tcol]]
     if df.shape[0] == 0:
-        return pd.DataFrame(columns=[tcol]+id_cols+vcols)
-    if isnull(tmin):
-        tmin = df[tcol].min()
-    if isnull(tmax):
-        # tmax = datetime.datetime.today().strftime('%Y%m%d')
-        tmax = df[tcol].max()
-    if tmin == tmax:
-        return df[[tcol]+id_cols+vcols]
-    dates = pd.date_range(tmin, tmax)
-    dates = [x.strftime('%Y%m%d') for x in dates]
-    if keepna:
-        df = df.fillna('__tmp_None_tmp__')
-    df = df.pivot_table(values=vcols, index=tcol, columns=id_cols,
-                        aggfunc=lambda x: x)
-    index_all = list(set(dates + list(df.index)))
-    index_all.sort()
-    df = df.reindex(index=index_all)
-    df = df.fillna(method='ffill')#.fillna(method='bfill')
-    df = df.stack(level=id_cols).reset_index()
-    df = df.replace({'__tmp_None_tmp__': np.nan})
-    df = df.sort_values(id_cols+[tcol])
-    return df
+        return df
+    idcols = check_list_arg(idcols, allow_none=True)
+    if isnull(idcols):
+        vcols = check_list_arg(vcols, allow_none=True)
+        if isnull(vcols):
+            vcols = [x for x in df.columns if not x != full_col]
+        res = pd.DataFrame({full_col: fulls})
+        res = pd.merge(res, df, how='left', on=full_col)
+        res = res.sort_values(full_col)
+        if fill in ['ffill', 'bfill']:
+            res = res.fillna(method=fill)
+        elif fill == 'ffillbfill':
+            res = res.fillna(method='ffill').fillna(method='bfill')
+        elif fill == 'bfillffill':
+            res = res.fillna(method='bfill').fillna(method='ffill')
+        if final_dropna:
+            res = res.dropna()
+    else:
+        # 受影响的列
+        vcols = check_list_arg(vcols, allow_none=True)
+        if isnull(vcols):
+            vcols = [x for x in df.columns if not x in idcols+[full_col]]
+        res = df[[full_col]+idcols+vcols].copy()
+        if not isnull(val_nan):
+            for c in vcols:
+                res[c] = res[c].fillna(val_nan)
+        oncols = [full_col]+idcols
+        assert res[oncols].isna().sum().sum() == 0
+        if method == 'product':
+            full = pd.DataFrame(
+                   product(fulls, *(res[c].unique() for c in idcols)),
+                   columns=oncols)
+            res = pd.merge(full, res, how='left', on=oncols)
+            res = res.sort_values(oncols)
+            if fill in ['ffill', 'bfill']:
+                res = res.groupby(idcols, as_index=False, group_keys=False).apply(
+                      lambda x: x.fillna(method=fill))
+            elif fill == 'ffillbfill':
+                res = res.groupby(idcols, as_index=False, group_keys=False).apply(
+                      lambda x: x.fillna(method='ffill').fillna(method='bfill'))
+            elif fill == 'bfillffill':
+                res = res.groupby(idcols, as_index=False, group_keys=False).apply(
+                      lambda x: x.fillna(method='bfill').fillna(method='ffill'))
+            if final_dropna:
+                res = res.dropna(subset=vcols, how='all')
+        elif method == 'pivot':
+            res = res.pivot_table(values=vcols, index=full_col,
+                                  columns=idcols, aggfunc=lambda x: x)
+            index_all = list(set(list(fulls) + list(res.index)))
+            index_all.sort()
+            res = res.reindex(index=index_all)
+            if fill in ['ffill', 'bfill']:
+                res = res.fillna(method=fill)
+            elif fill == 'ffillbfill':
+                res = res.fillna(method='ffill').fillna(method='bfill')
+            elif fill == 'bfillffill':
+                res = res.fillna(method='bfill').fillna(method='ffill')
+            res = res.stack(level=idcols, dropna=final_dropna).reset_index()
+    if only_fulls:
+        res = res[res[full_col].isin(list(fulls))]
+    res = res.reset_index(drop=True)
+    return res
 
 
-def get_first_appear_index(series, values, ascending=False,
-                           return_iloc=False):
-    '''获取values中的值在series中第一次出现时的索引'''
-    raise NotImplementedError
+DateTimeType = NewType('DateTimeType',
+                       Union[str,
+                             datetime.datetime,
+                             datetime.date]
+                       )
+
+
+# @checkin
+def get_full_components_df(df: pd.DataFrame,
+                           parent_col: str,
+                           child_col: str,
+                           tincol: str,
+                           toutcol: str,
+                           tfulls: Iterable,
+                           toutnan: DateTimeType,
+                           tcol_res: str = 'time',
+                           keep_inout: bool = False
+                           ):
+    '''
+    | 根据纳入、退出日期获取在给定时间内的所有成分
+    
+    Example
+    -------
+    >>> df = pd.DataFrame(
+    ...      {'idxname': ['a', 'a', 'b', 'b', 'a', 'c', 'c'],
+    ...       'stock': ['a1', 'a2', 'b1', 'b2', 'a3', 'c1', 'c2'],
+    ...       'indate': ['20210101', '20210515', '20210405', '20210206',
+    ...                  '20220307', '20220910', '20230409'],
+    ...       'outdate': ['20220305', np.nan, np.nan, '20230209',
+    ...                   np.nan, np.nan, '20230518']})
+    >>> parent_col, child_col, tincol, toutcol = 'idxname', 'stock', 'indate', 'outdate'
+    >>> from finfactory.fintools.utils_chn import get_dates_conds
+    >>> tfulls = get_dates_conds('quarter_end', '20210101')
+    >>> tfulls = [x.strftime('%Y%m%d') for x in tfulls]
+    >>> toutnan = '20991231'
+    >>> df1 = get_full_components_df(
+    ...       df, parent_col, child_col, tincol, toutcol,
+    ...       tfulls, toutnan, tcol_res='time')
+    '''
+    df = df[[parent_col, child_col, tincol, toutcol]].copy()
+    df[toutcol] = df[toutcol].fillna(toutnan)
+    tmp = df.to_dict(orient='split')['data']
+    tmp = [tuple(x) for x in tmp]
+    df = pd.DataFrame(np.ones((len(tfulls), len(tmp))), index=tfulls)
+    df.index.name = tcol_res
+    df.columns = tmp
+    df = df.reset_index()
+    df = df_cols2rows(df, tmp, 'tmp', 'IsIn')
+    df[[parent_col, child_col, tincol, toutcol]] = df['tmp'].apply(pd.Series)
+    df = df[(df[tincol] <= df[tcol_res]) & (df[toutcol]>= df[tcol_res])]
+    if keep_inout:
+        df = df[[parent_col, child_col, tcol_res, tincol, toutcol]]
+    else:
+        df = df[[parent_col, child_col, tcol_res]]
+    df = df.sort_values([parent_col, tcol_res, child_col])
+    return df.reset_index(drop=True)
+
+
+def get_first_appear(series, func_cond,
+                     reverse=False,
+                     return_iloc=False):
+    '''
+    | 获取满足func_cond(x)为True的值在series中第一次出现时的索引
+    | 若reverse为True，则是最后一次出现
+    | 若return_iloc为True，则返回行号和值，否则返回索引和值
+    '''
+    assert callable(func_cond)
+    # df = pd.DataFrame({'s': series})
+    # df['ok'] = df['s'].apply(lambda x: func_cond(x)).astype(int)
+    # if return_iloc:
+    #     df = df.reset_index(drop=True)
+    # idx = -1 if reverse else 0
+    # try:
+    #     return df[df['ok'] == 1].index[idx], df[df['ok'] == 1]['ok'].iloc[idx]
+    # except:
+    #     return None, None
+    if not reverse:
+        n, k, find = len(series), 0, False
+        while k < n and not find:
+            find = func_cond(series.iloc[k])
+            if find:
+                if return_iloc:
+                    return k, series.iloc[k]
+                return series.index[k], series.iloc[k]
+            k += 1
+        return None, None
+    else:
+        k, find = len(series)-1, False
+        while k > -1 and not find:
+            find = func_cond(series.iloc[k])
+            if find:
+                if return_iloc:
+                    return k, series.iloc[k]
+                return series.index[k], series.iloc[k]
+            k -= 1
+        return None, None
 
 
 def get_appear_order(series, ascending=True):
@@ -2643,6 +3077,37 @@ def count_index(df):
     df_index['count'] = count_values(df_index, 'index_')
     df_index.index = df_index['index_']
     return df_index['count']
+
+
+def get_all_turns(series):
+    '''获取序列series中所有的转折点，返回series中-1位低点，1位高点'''
+    s = series.copy()
+    if s.name is None:
+        s.name = 'series'
+    if s.index.name is None:
+        s.index.name = 'idx'
+    df = pd.DataFrame(s)
+    col = df.columns[0]
+    df.reset_index(inplace=True)
+    
+    df['dif'] = df[col].diff()
+    df['dif_big'] = (df['dif'] > 0).astype(int)
+    df['dif_sml'] = -1 * (df['dif'] < 0).astype(int)
+    ktmp = 1
+    while ktmp < df.shape[0] and df.loc[df.index[ktmp], 'dif'] == 0:
+        ktmp += 1
+    if df.loc[df.index[ktmp], 'dif'] > 0:
+        df.loc[df.index[0], 'dif_sml'] = -1
+    elif df.loc[df.index[ktmp], 'dif'] < 0:
+        df.loc[df.index[0], 'dif_big'] = 1
+    df['label'] = df['dif_big'] + df['dif_sml']
+    label_ = replace_repeat_pd(df['label'][::-1], 1, 0)
+    label_ = replace_repeat_pd(label_, -1, 0)
+    df['label'] = label_[::-1]
+    
+    df.set_index(s.index.name, inplace=True)
+    
+    return df['label']
 
 
 def group_shift():
@@ -2823,6 +3288,16 @@ def link_lists(lists):
     return newlist
 
 
+def get_lists_inter(lists):
+    '''获取多个列表的交集'''
+    assert isinstance(lists, (list, tuple))
+    assert all([isinstance(x, (list, tuple)) for x in lists])
+    res = set(lists[0])
+    for x in lists[1:]:
+        res = res.intersection(set(x))
+    return list(res)
+
+
 def list_eq(l1, l2, order=True):
     '''判断两个列表l1和l2是否相等，若orde为False，则只要元素相同即判断为相等'''
     if order:
@@ -2885,6 +3360,12 @@ def count_list(l):
     '''对l中的元素计数，返回dict'''
     # return dict(Counter(l))
     return Counter(l)
+
+
+def tmprint(*args, **kwargs):
+    print(*args, **kwargs)
+    print('    [time: {}]'.format(
+        datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')))
 
 
 def url2chn(url):
@@ -2967,7 +3448,8 @@ def parse_args(args_info, description=None):
     return parser
 
 
-def gen_args_praser(func):
+def gen_args_praser(func,
+                    native_eval_types=('list', 'tuple', 'dict')):
     '''
     生成func函数的参数解析
     '''
@@ -2988,19 +3470,67 @@ def gen_args_praser(func):
         if arg not in func_args['annotations']:
             args_info.append((['--%s'%arg], {'required': True}))
         else:
-            args_info.append((['--%s'%arg], {'required': True, 'type': func_args['annotations'][arg]}))
+            # if func_args['annotations'][arg].__name__.lower() == 'list':
+            #     # 传参命令写法：--arg l1 l2 l3
+            #     # 会解析成文本列表：arg = ['l1', 'l2', 'l3']
+            #     args_info.append((['--%s'%arg], {'required': True, 'nargs': '+'}))
+            if func_args['annotations'][arg].__name__.lower()  in native_eval_types:
+                # 传参命令写法：按照python正常写法即可，但是不能有空格，如：
+                # list: --arg ['a',2,{'a':3}]
+                # tuple: --arg ('a',2,{'a':3})
+                # dict: --arg {'k1':'v1','k2':2}
+                args_info.append((['--%s'%arg], {'required': True, 'type': lambda x: eval(x)}))
+            else:
+                args_info.append((['--%s'%arg], {'required': True, 'type': func_args['annotations'][arg]}))
     for arg, default in defaults.items():
         if arg not in func_args['annotations']:
             args_info.append((['--%s'%arg], {'default': default}))
         else:
-            args_info.append((['--%s'%arg], {'default': default, 'type': func_args['annotations'][arg]}))
+            if func_args['annotations'][arg].__name__ == 'bool':
+                if not default:
+                    args_info.append((['--%s'%arg], {'action': 'store_true', 'default': default}))
+                else:
+                    args_info.append((['--%s'%arg], {'action': 'store_false', 'default': default}))
+            elif func_args['annotations'][arg].__name__.lower()  in native_eval_types:
+                args_info.append((['--%s'%arg], {'default': default, 'type': lambda x: eval(x)}))
+            else:
+                args_info.append((['--%s'%arg], {'default': default, 'type': func_args['annotations'][arg]}))
     return parse_args(args_info)
+
+
+def get_topn_names(df, n=1, max_or_min='max',
+                   col_or_row='col'):
+    '''
+    获取df中值最大/小的前n列/行的名称
+    
+    Examples
+    --------
+    >>> d = {'A': [30, 2, 6, 4, 5],
+    ...      'B': [6, 7, 80, 5, 10],
+    ...      'C': [11, 12, 13, 14, 15],
+    ...      'D': [16, 17, 18, 19, 20],
+    ...      'E': [21, 22, 23, 24, 25]}
+    >>> df = pd.DataFrame(d, index=['a', 'b', 'c', 'd', 'e'])
+    >>> res = get_topn_names(df, n=2)
+    >>> res1 = get_topn_names(df, n=2, col_or_row='row')
+    '''
+    assert max_or_min.lower() in ['max', 'min']
+    assert col_or_row.lower() in ['col', 'row']
+    axis = 1 if col_or_row.lower() == 'col' else 0
+    if max_or_min.lower() == 'max':
+        res = df.apply(lambda x:
+                 x.nlargest(n).index.tolist(), axis=axis)
+    else:
+        res = df.apply(lambda x:
+                 x.nsmallest(n).index.tolist(), axis=axis)
+    return res
     
 
 if __name__ == '__main__':
     from dramkit import load_csv, plot_series
     from finfactory.fintools.fintools import cci
-
+    
+    tr = TimeRecoder()
     def test():
         # 50ETF日线行情------------------------------------------------------------
         fpath = './_test/510050.SH_daily_qfq.csv'
@@ -3041,3 +3571,4 @@ if __name__ == '__main__':
                     figsize=(8, 7), grids=True)
         return data
     # res = test()
+    tr.used()

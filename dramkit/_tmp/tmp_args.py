@@ -39,6 +39,20 @@ def h(a, **kwargs):
 
 def i(*args):
     print(args)
+    
+    
+def fbase(**kwargs):
+    print(kwargs)
+    
+    
+def f1(x=1, y=2, **kwargs):
+    print(x, y)
+    fbase(**kwargs)
+    
+    
+def f2(z=3, **kwargs):
+    print(z)
+    f1(**kwargs)
 
 
 if __name__ == '__main__':
@@ -62,3 +76,6 @@ if __name__ == '__main__':
 
     print('\n')
     i(5, 6)
+    
+    print('\n')
+    f2(z=3, y=5, a=6)

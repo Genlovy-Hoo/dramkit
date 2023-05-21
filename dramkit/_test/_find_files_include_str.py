@@ -20,7 +20,8 @@ if __name__ == '__main__':
     files = find_dir_include_str(target_str,
                                  root_dir=root_dir,
                                  file_types=file_types,
-                                 logger=logger)
+                                 logger=logger,
+                                 return_all_find=True)
     
     
     target_str = r'\.loc\[.*:'

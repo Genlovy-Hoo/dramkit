@@ -53,6 +53,9 @@ class CxOracle(object):
     def has_table(self, tb_name):
         return has_table(self.conn, tb_name)
     
+    def clear_data(self, tb_name):
+        return clear_data(self.conn, tb_name)
+    
     def drop_table(self, tb_name, purge=True):
         return drop_table(self.conn, tb_name, purge=purge)
     
@@ -151,6 +154,13 @@ def get_fields(conn, tb_name):
     fields_info = execute_sql(conn, sql_str, to_df=True)
     fields = fields_info['COLUMN_NAME'].tolist()
     return fields, fields_info
+
+
+def clear_data(conn, tb_name):
+    '''清空表中数据'''
+    sql = 'TRUNCATE TABLE {}'.format(tb_name)
+    # sql = 'DELETE FROM {}'.format(tb_name)
+    execute_sql(conn, sql, to_df=False)
 
 
 def has_table(conn, tb_name):
@@ -348,6 +358,7 @@ def df_to_sql(df, conn, tb_name, act_type='insert',
         | 存入方式：
         |     若为'ignore_tb'，则当表已经存在时不进行任何操作
         |     若为'new'，则新建表（若原表已存在，则会先删除再重建）
+        |     若为'clear'，则先清空已存在数据（若原表已存在）
         |     若为'insert'，则直接插入
         |     若为'replace'，则将已存在的数据更新，不存在的行和列都新插入
         |     若为'insert_ignore'，则已有的行不更新，不存在的行新插入
@@ -388,7 +399,7 @@ def df_to_sql(df, conn, tb_name, act_type='insert',
     >>> df_to_sql(df1, conn, tb_name, act_type='replace', idcols=idcols)
     '''
     
-    assert act_type in ['ignore_tb', 'new', 'insert', 'insert_ignore', 'replace',
+    assert act_type in ['ignore_tb', 'new', 'clear', 'insert', 'insert_ignore', 'replace',
                         'insert_newcols', 'insert_ignore_newcols']
     if act_type == 'ignore_tb' and has_table(conn, tb_name):
         return
@@ -422,6 +433,10 @@ def df_to_sql(df, conn, tb_name, act_type='insert',
         df, cols=cols, col_types=change_dict_key(col_types, lambda x: x.upper()),
         **kwargs_cols)
 
+    # 清空表
+    if act_type == 'clear':
+        if has_table(conn, tb_name):
+            clear_data(conn, tb_name)
     # 表不存在则新建
     idcols = check_list_arg(idcols, allow_none=True)
     idcols = [x.upper() for x in idcols] if not isnull(idcols) else idcols
@@ -452,7 +467,7 @@ def df_to_sql(df, conn, tb_name, act_type='insert',
     
     # 数据更新
     values = df.values.tolist()
-    if isnull(idcols) or act_type == 'new':        
+    if isnull(idcols) or act_type in ['new', 'clear']:        
         cur_.executemany('INSERT INTO {a} ({b}) VALUES ({c})'.format(
                              a=tb_name, b=','.join(cols), c=ph),
                          values)

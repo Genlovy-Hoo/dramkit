@@ -42,6 +42,7 @@ pip config list
 
 # pip安装时带临时镜像
 pip install pkgname -i https://mirror.baidu.com/pypi/simple
+pip install pkgname -i https://pypi.org/simple # PYPI官方镜像
 
 # pip设置镜像
 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
@@ -86,5 +87,8 @@ conda install nb_conda
  
 # pip强制重新安装所有软件包，即使它们已经是最新的
 --force-reinstall
+
+# pip批量安装文件夹下所有的whl包
+pip install /dirpath/*.whl
 
 # '''

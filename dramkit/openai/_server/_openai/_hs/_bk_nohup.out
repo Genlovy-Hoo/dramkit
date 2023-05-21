@@ -1,0 +1,1028 @@
+Traceback (most recent call last):
+  File "/home/azure_user0313/openai/openai_chat_server.py", line 8, in <module>
+    import uvicorn
+ModuleNotFoundError: No module named 'uvicorn'
+Traceback (most recent call last):
+  File "/home/azure_user0313/openai/openai_chat_server.py", line 9, in <module>
+    from fastapi import FastAPI
+ModuleNotFoundError: No module named 'fastapi'
+INFO:     Started server process [5775]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8080 (Press CTRL+C to quit)
+INFO:     127.0.0.1:42724 - "GET /gptchat0?prompt=%E4%B8%AD%E5%9B%BD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E7%9C%81 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34150 - "GET /gptchat0?prompt=%E4%B8%AD%E5%9B%BD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E7%9C%81 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['127.0.0.1'])
+INFO:     127.0.0.1:34156 - "GET /gptchat?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['127.0.0.1'])
+INFO:     127.0.0.1:36028 - "GET /gptchat?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%8A%E6%B5%B7%E5%91%A2 HTTP/1.1" 200 OK
+INFO:     Started server process [6211]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 99] error while attempting to bind on address ('20.194.164.9', 8080): cannot assign requested address
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [6243]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8080 (Press CTRL+C to quit)
+INFO:     127.0.0.1:38192 - "GET /gptchat0?prompt=%E4%B8%AD%E5%9B%BD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E7%9C%81 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['127.0.0.1'])
+INFO:     127.0.0.1:58404 - "GET /gptchat?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['127.0.0.1'])
+INFO:     127.0.0.1:58692 - "GET /gptchat?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%8A%E6%B5%B7%E5%91%A2 HTTP/1.1" 200 OK
+INFO:     Started server process [6286]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 99] error while attempting to bind on address ('20.194.164.9', 8080): cannot assign requested address
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [6492]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 99] error while attempting to bind on address ('20.194.164.9', 8080): cannot assign requested address
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [6531]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 99] error while attempting to bind on address ('20.194.164.9', 8000): cannot assign requested address
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [6538]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 99] error while attempting to bind on address ('20.194.164.9', 8080): cannot assign requested address
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [6542]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8080 (Press CTRL+C to quit)
+INFO:     Started server process [6572]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 98] error while attempting to bind on address ('127.0.0.1', 8080): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [6594]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8080 (Press CTRL+C to quit)
+INFO:     Started server process [6599]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno -2] Name or service not known
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [6612]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 98] error while attempting to bind on address ('0.0.0.0', 8080): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [6616]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 98] error while attempting to bind on address ('127.0.0.1', 8080): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [6622]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 98] error while attempting to bind on address ('127.0.0.1', 8080): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [6634]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8080 (Press CTRL+C to quit)
+INFO:     127.0.0.1:49838 - "GET /gptchat0?prompt=%E4%B8%AD%E5%9B%BD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E7%9C%81 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['127.0.0.1'])
+INFO:     127.0.0.1:54548 - "GET /gptchat?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['127.0.0.1'])
+INFO:     127.0.0.1:54560 - "GET /gptchat?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%8A%E6%B5%B7%E5%91%A2 HTTP/1.1" 200 OK
+INFO:     Started server process [6773]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://10.0.0.4:8080 (Press CTRL+C to quit)
+INFO:     20.194.164.9:50416 - "GET /gptchat0?prompt=%E4%B8%AD%E5%9B%BD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E7%9C%81 HTTP/1.1" 200 OK
+INFO:     115.236.69.202:52746 - "GET /gptchat0?prompt=%E4%B8%AD%E5%9B%BD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E7%9C%81 HTTP/1.1" 200 OK
+INFO:     115.236.91.21:65183 - "GET /chatgpt HTTP/1.1" 404 Not Found
+INFO:     115.236.91.21:65183 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     115.236.69.202:52934 - "GET /gptchat0?prompt=%E4%B8%AD%E5%9B%BD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E7%9C%81 HTTP/1.1" 200 OK
+INFO:     104.198.89.53:36379 - "GET / HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202'])
+INFO:     104.198.89.53:36514 - "GET /gptchat0?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E5%A6%82%E4%BD%95&api_key HTTP/1.1" 200 OK
+INFO:     115.236.91.21:54638 - "GET /gptchat0?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E5%A6%82%E4%BD%95&api_key HTTP/1.1" 200 OK
+INFO:     115.236.69.202:52984 - "GET /gptchat?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202'])
+INFO:     115.236.69.202:53002 - "GET /gptchat?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%8A%E6%B5%B7%E5%91%A2 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202'])
+INFO:     8.142.32.202:22758 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     8.142.112.208:6577 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     115.236.69.202:53319 - "GET /gptchat?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7 HTTP/1.1" 200 OK
+INFO:     203.119.241.56:59361 - "HEAD /gptchat0 HTTP/1.1" 405 Method Not Allowed
+INFO:     101.71.9.239:50796 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     101.71.9.239:50796 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     59.82.61.49:62676 - "HEAD /gptchat0 HTTP/1.1" 405 Method Not Allowed
+INFO:     115.236.91.21:51836 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     101.71.9.239:53916 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     101.71.9.239:53916 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     39.98.123.102:55259 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     8.142.156.176:41260 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     59.82.84.117:56181 - "HEAD /gptchat0 HTTP/1.1" 405 Method Not Allowed
+INFO:     39.170.59.168:53910 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     8.142.42.74:63702 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     47.92.78.77:60307 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     47.92.31.57:31980 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     8.142.156.176:40656 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     8.142.32.202:45140 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     117.128.4.200:31141 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     117.128.4.200:31142 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     162.243.130.14:45580 - "GET /hudson HTTP/1.1" 404 Not Found
+The remaining IPs with conversation: dict_keys(['115.236.69.202'])
+INFO:     115.236.69.202:56875 - "GET /gptchat?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '20.194.164.9'])
+INFO:     20.194.164.9:42498 - "GET /gptchat?prompt=%E5%8D%97%E4%BA%AC%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '20.194.164.9'])
+INFO:     20.194.164.9:48620 - "GET /gptchat?prompt=%E5%8D%97%E4%BA%AC%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '20.194.164.9'])
+INFO:     115.236.69.202:57023 - "GET /gptchat?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%8A%E6%B5%B7%E5%91%A2 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '20.194.164.9'])
+INFO:     20.194.164.9:46346 - "GET /gptchat?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%8A%E6%B5%B7%E5%91%A2 HTTP/1.1" 200 OK
+INFO:     60.191.25.170:51419 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     60.191.25.170:51419 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     60.191.25.170:51418 - "GET /gptchat0?prompt=%E5%B7%BE%E5%B8%BC%E8%8B%B1%E9%9B%84%E6%9C%89%E8%B0%81&api_key HTTP/1.1" 200 OK
+INFO:     60.191.25.170:51439 - "GET /gptchat0?prompt=%E8%AF%B7%E4%B8%BE%E4%B8%80%E4%B8%AA%E5%B7%BE%E5%B8%BC%E8%8B%B1%E9%9B%84%E7%9A%84%E6%95%85%E4%BA%8B&api_key HTTP/1.1" 200 OK
+INFO:     59.82.61.49:22000 - "HEAD /gptchat0 HTTP/1.1" 405 Method Not Allowed
+INFO:     115.236.69.202:23842 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     115.236.69.202:23842 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     111.7.100.23:1370 - "GET / HTTP/1.1" 200 OK
+INFO:     60.191.25.170:51445 - "GET /gptchat0?prompt=%E8%AF%B7%E4%B8%BE%E4%B8%A4%E4%B8%AA%E5%B7%BE%E5%B8%BC%E8%8B%B1%E9%9B%84%E7%9A%84%E6%95%85%E4%BA%8B&api_key HTTP/1.1" 200 OK
+INFO:     115.236.69.202:23860 - "GET /gptchat0?prompt=%E5%9C%A8%E8%BD%AF%E4%BB%B6%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86%E4%B8%8A%EF%BC%8Cgoogle%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%96%B9%E9%9D%A2%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%A7%80%E7%9A%84%E5%AE%9E%E8%B7%B5%E5%80%BC%E5%BE%97%E5%A4%A7%E5%AE%B6%E5%AD%A6%E4%B9%A0 HTTP/1.1" 200 OK
+INFO:     115.236.69.202:23880 - "GET /gptchat0?prompt=%E5%9C%A8%E8%BD%AF%E4%BB%B6%E7%A0%94%E5%8F%91%E7%AE%A1%E7%90%86%E4%B8%8A%EF%BC%8Cgoogle%E7%9A%84%E6%96%87%E6%A1%A3%E7%BC%96%E5%86%99%E4%B8%8E%E7%AE%A1%E7%90%86%E6%96%B9%E9%9D%A2%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%A7%80%E7%9A%84%E5%AE%9E%E8%B7%B5%E5%80%BC%E5%BE%97%E5%A4%A7%E5%AE%B6%E5%AD%A6%E4%B9%A0&apikey HTTP/1.1" 200 OK
+INFO:     115.236.69.202:23925 - "GET /gptchat0?prompt=%E7%BB%A7%E7%BB%AD%E5%B1%95%E5%BC%80%E8%AE%B2%E8%AE%B2%EF%BC%8C%E4%B8%8D%E4%B8%80%E5%AE%9A%E6%98%AF%E8%A6%81google%20docs HTTP/1.1" 200 OK
+INFO:     115.236.69.202:23941 - "GET /gptchat0?prompt=C HTTP/1.1" 200 OK
+INFO:     115.236.69.202:61459 - "GET /gptchat0?prompt=%E6%88%91%E8%AF%B4%E7%9A%84%E6%98%AFC HTTP/1.1" 200 OK
+INFO:     59.82.61.47:8333 - "HEAD /gptchat0 HTTP/1.1" 405 Method Not Allowed
+INFO:     101.71.9.239:50634 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     101.71.9.239:50634 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     115.236.91.21:49674 - "GET /gptchat0?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E5%A6%82%E4%BD%95&api_key HTTP/1.1" 200 OK
+INFO:     115.236.91.21:49698 - "GET /gptchat0?prompt=%E4%B8%8E%E4%B8%8A%E6%B5%B7%E7%9B%B8%E6%AF%94%E5%91%A2&api_key HTTP/1.1" 200 OK
+INFO:     115.236.91.21:58093 - "GET /gptchat0?prompt=%E6%88%BF%E4%BB%B7%E4%B8%8E%E4%B8%8A%E6%B5%B7%E7%9B%B8%E6%AF%94%E5%91%A2&api_key HTTP/1.1" 200 OK
+INFO:     115.236.91.21:58102 - "GET /gptchat0?prompt=%E6%9D%AD%E5%B7%9E%E7%9A%84%E6%88%BF%E4%BB%B7%E5%A6%82%E4%BD%95&api_key HTTP/1.1" 200 OK
+INFO:     115.236.91.21:58102 - "GET /gptchat0?prompt=%E6%88%BF%E4%BB%B7%E4%B8%8E%E4%B8%8A%E6%B5%B7%E7%9B%B8%E6%AF%94%E5%91%A2&api_key HTTP/1.1" 200 OK
+INFO:     47.92.29.136:56736 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     115.236.69.202:51795 - "GET /gptchat0?prompt=%E4%B8%AD%E5%9B%BD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E7%9C%81 HTTP/1.1" 200 OK
+INFO:     115.236.69.202:51813 - "GET /gptchat0?prompt=%E4%B8%AD%E5%9B%BD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E7%9C%81 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202'])
+INFO:     115.236.69.202:51820 - "GET /gptchat?prompt=%E5%8D%97%E4%BA%AC%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202'])
+INFO:     115.236.69.202:51847 - "GET /gptchat?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%8A%E6%B5%B7%E5%91%A2 HTTP/1.1" 200 OK
+INFO:     115.236.91.21:55725 - "GET /gptchat0?prompt=%E6%9D%AD%E5%B7%9E%E7%9A%84%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7%EF%BC%9F&api_key HTTP/1.1" 200 OK
+INFO:     115.236.91.21:55743 - "GET /gptchat0?prompt=%E4%B8%8E%E5%8D%97%E4%BA%AC%E7%9B%B8%E6%AF%94%E5%91%A2%EF%BC%9F&api_key HTTP/1.1" 200 OK
+INFO:     115.236.91.21:55786 - "GET /gptchat0?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E5%8D%97%E4%BA%AC%E5%91%A2%EF%BC%9F&api_key HTTP/1.1" 200 OK
+INFO:     115.236.91.21:58537 - "GET /gptchat0?prompt=%E6%9D%AD%E5%B7%9E%E7%9A%84%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7&api_key HTTP/1.1" 200 OK
+INFO:     115.236.91.21:58555 - "GET /gptchat0?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E5%8D%97%E4%BA%AC%E5%91%A2&api_key HTTP/1.1" 200 OK
+INFO:     60.191.25.170:64574 - "GET /gptchat0?prompt=%E5%BC%80%E6%88%B7%20%E7%9A%84%E7%9B%B8%E4%BC%BC%E9%97%AE%E6%B3%9510%E5%8F%A5&api_key HTTP/1.1" 200 OK
+INFO:     115.236.91.21:58589 - "GET /gptchat0?prompt=%20%E6%9D%AD%E5%B7%9E%E7%9A%84%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7%EF%BC%9F&api_key HTTP/1.1" 200 OK
+INFO:     115.236.91.21:58604 - "GET /gptchat0?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E5%8D%97%E4%BA%AC%E5%91%A2%EF%BC%9F&api_key HTTP/1.1" 200 OK
+INFO:     115.236.91.21:58613 - "GET /gptchat0?prompt=%E6%9D%AD%E5%B7%9E%E5%9C%A8%E5%93%AA%E9%87%8C&api_key HTTP/1.1" 200 OK
+INFO:     115.236.91.21:58619 - "GET /gptchat0?prompt=%E9%82%A3%E9%87%8C%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7&api_key HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '115.236.91.21'])
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '115.236.91.21', '104.198.89.53'])
+INFO:     115.236.91.21:58637 - "GET /gptchat?prompt=%E6%9D%AD%E5%B7%9E%E7%9A%84%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7&api_key HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '115.236.91.21', '104.198.89.53'])
+INFO:     115.236.91.21:58659 - "GET /gptchat?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%8A%E6%B5%B7%E5%91%A2&api_key HTTP/1.1" 200 OK
+INFO:     59.82.84.122:29096 - "HEAD /gptchat0 HTTP/1.1" 405 Method Not Allowed
+INFO:     115.236.91.21:58670 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     115.236.91.21:58670 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     59.82.61.45:1178 - "HEAD /gptchat HTTP/1.1" 405 Method Not Allowed
+INFO:     39.170.59.168:51114 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+INFO:     39.170.59.168:51114 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     115.236.69.202:12551 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+INFO:     115.236.69.202:12551 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     115.236.69.202:64107 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+INFO:     115.236.69.202:64107 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     59.82.84.27:61004 - "HEAD /gptchat0 HTTP/1.1" 405 Method Not Allowed
+INFO:     115.236.69.202:64108 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     115.236.69.202:64119 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+INFO:     8.142.32.202:20011 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+INFO:     39.98.123.102:1146 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '115.236.91.21', '104.198.89.53'])
+INFO:     115.236.69.202:55778 - "GET /gptchat?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E5%A6%82%E4%BD%95&api_key= HTTP/1.1" 200 OK
+INFO:     115.236.69.202:64146 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '115.236.91.21', '104.198.89.53'])
+INFO:     115.236.69.202:55848 - "GET /gptchat?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%8A%E6%B5%B7%E5%91%A2&api_key= HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '115.236.91.21', '104.198.89.53', '60.191.25.170'])
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '115.236.91.21', '104.198.89.53', '60.191.25.170'])
+INFO:     60.191.25.170:65012 - "GET /gptchat?prompt=%E8%AF%B7%E4%B8%BE%E4%B8%A4%E4%B8%AA%E5%B7%BE%E5%B8%BC%E8%8B%B1%E9%9B%84%E7%9A%84%E6%95%85%E4%BA%8B&api_key HTTP/1.1" 200 OK
+INFO:     60.191.25.170:65012 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '115.236.91.21', '104.198.89.53', '60.191.25.170'])
+INFO:     60.191.25.170:65027 - "GET /gptchat?prompt=XGBOOST%20%20%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B&api_key HTTP/1.1" 200 OK
+INFO:     203.119.241.49:62217 - "HEAD /gptchat HTTP/1.1" 405 Method Not Allowed
+INFO:     60.191.25.170:57619 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+INFO:     60.191.25.170:57619 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '115.236.91.21', '104.198.89.53', '60.191.25.170'])
+INFO:     59.82.84.10:5098 - "HEAD /gptchat HTTP/1.1" 405 Method Not Allowed
+INFO:     115.238.48.10:60565 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+INFO:     115.238.48.10:60565 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     203.119.241.28:26419 - "HEAD /gptchat HTTP/1.1" 405 Method Not Allowed
+INFO:     60.191.25.170:57835 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+INFO:     60.191.25.170:57835 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     60.191.25.170:65040 - "GET /gptchat?prompt=%E8%AF%B7%E4%B8%BE%E4%B8%A4%E4%B8%AA%E5%B7%BE%E5%B8%BC%E8%8B%B1%E9%9B%84%E7%9A%84%E6%95%85%E4%BA%8B&api_key HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '115.236.91.21', '104.198.89.53', '60.191.25.170', '180.163.30.76'])
+INFO:     60.191.25.170:57891 - "GET /gptchat%EF%BC%9Fprompt%3D%E5%A6%82%E4%BD%95%E8%AF%84%E4%BB%B7%E5%8F%AF%E5%8F%A3%E5%8F%AF%E4%B9%90%E8%BF%99%E5%AE%B6%E5%85%AC%E5%8F%B8%26api_key HTTP/1.1" 404 Not Found
+INFO:     180.163.30.76:45716 - "GET /gptchat?prompt=%E8%AF%B7%E4%B8%BE%E4%B8%A4%E4%B8%AA%E5%B7%BE%E5%B8%BC%E8%8B%B1%E9%9B%84%E7%9A%84%E6%95%85%E4%BA%8B&api_key HTTP/1.1" 200 OK
+INFO:     60.191.25.170:57890 - "GET /gptchat%20prompt%3D%E5%A6%82%E4%BD%95%E8%AF%84%E4%BB%B7%E5%8F%AF%E5%8F%A3%E5%8F%AF%E4%B9%90%E8%BF%99%E5%AE%B6%E5%85%AC%E5%8F%B8%26api_key HTTP/1.1" 404 Not Found
+INFO:     60.191.25.170:57895 - "GET /gptchat%20prompt%3D%E5%A6%82%E4%BD%95%E8%AF%84%E4%BB%B7%E5%8F%AF%E5%8F%A3%E5%8F%AF%E4%B9%90%E8%BF%99%E5%AE%B6%E5%85%AC%E5%8F%B8 HTTP/1.1" 404 Not Found
+INFO:     60.191.25.170:57912 - "GET /gptchat%EF%BC%8C%E9%9C%80%E8%A6%81%E6%8A%8A0%E5%8E%BB%E6%8E%89%EF%BC%8C%E4%B8%8D%E7%84%B6%E6%B2%A1%E6%9C%89%E4%B8%8A%E4%B8%8B%E6%96%87 HTTP/1.1" 404 Not Found
+INFO:     60.191.25.170:57912 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     60.191.25.170:57912 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+INFO:     203.119.241.59:15034 - "HEAD /gptchat HTTP/1.1" 405 Method Not Allowed
+INFO:     60.191.25.170:14098 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+INFO:     60.191.25.170:14098 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     60.191.25.170:14098 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '115.236.91.21', '104.198.89.53', '60.191.25.170', '180.163.30.76'])
+INFO:     60.191.25.170:14169 - "GET /gptchat?prompt=%E8%AF%B7%E4%B8%BE%E4%B8%A4%E4%B8%AA%E5%B7%BE%E5%B8%BC%E8%8B%B1%E9%9B%84%E7%9A%84%E6%95%85%E4%BA%8B&api_key HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '115.236.91.21', '60.191.25.170', '180.163.30.76'])
+INFO:     60.191.25.170:14193 - "GET /gptchat?prompt=%E8%AF%B7%E4%B8%BE%E4%B8%A4%E4%B8%AA%E5%B7%BE%E5%B8%BC%E8%8B%B1%E9%9B%84%E7%9A%84%E6%95%85%E4%BA%8B&api_key HTTP/1.1" 200 OK
+INFO:     106.11.223.176:22508 - "HEAD /gptchat0 HTTP/1.1" 405 Method Not Allowed
+INFO:     60.191.25.170:14202 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     60.191.25.170:14202 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+INFO:     60.191.25.170:14231 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76'])
+INFO:     60.191.25.170:65191 - "GET /gptchat?prompt=%E8%AF%B7%E4%B8%BE%E4%B8%A4%E4%B8%AA%E5%B7%BE%E5%B8%BC%E8%8B%B1%E9%9B%84%E7%9A%84%E6%95%85%E4%BA%8B&api_key HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76'])
+INFO:     60.191.25.170:65191 - "GET /gptchat?prompt=%E8%AF%B7%E4%B8%BE%E4%B8%A4%E4%B8%AA%E5%B7%BE%E5%B8%BC%E8%8B%B1%E9%9B%84%E7%9A%84%E6%95%85%E4%BA%8B&api_key HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143'])
+AI: No correct question detected!
+INFO:     180.163.28.143:40938 - "GET /gptchat?prompt HTTP/1.1" 200 OK
+INFO:     60.191.25.170:14250 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+INFO:     60.191.25.170:14250 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143'])
+INFO:     60.191.25.170:65190 - "GET /gptchat?prompt=%E4%BD%A0%E5%A5%BD&api_key HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143'])
+INFO:     60.191.25.170:65190 - "GET /gptchat?prompt=%E4%BD%A0%E5%A5%BD&api_key HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143'])
+INFO:     60.191.25.170:62839 - "GET /gptchat?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E5%A6%82%E4%BD%95&api_key HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143'])
+INFO:     60.191.25.170:65204 - "GET /gptchat?prompt=%E4%BD%A0%E5%A5%BD&api_key HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143'])
+INFO:     60.191.25.170:62859 - "GET /gptchat?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7&api_key HTTP/1.1" 200 OK
+INFO:     47.92.78.102:14360 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143'])
+INFO:     60.191.25.170:65214 - "GET /gptchat?prompt=%E8%AF%B7%E4%B8%BE%E4%B8%A4%E4%B8%AA%E5%B7%BE%E5%B8%BC%E8%8B%B1%E9%9B%84%E7%9A%84%E6%95%85%E4%BA%8B&api_key HTTP/1.1" 200 OK
+INFO:     101.71.9.239:53393 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143'])
+INFO:     60.191.25.170:65222 - "GET /gptchat?prompt=%E8%AF%B7%E4%B8%BE%E4%B8%A4%E4%B8%AA%E5%B7%BE%E5%B8%BC%E8%8B%B1%E9%9B%84%E7%9A%84%E6%95%85%E4%BA%8B&api_key HTTP/1.1" 200 OK
+INFO:     115.236.69.202:58098 - "GET /gptchat0?prompt=%E4%B8%AD%E5%9B%BD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E7%9C%81 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143', '115.236.91.21'])
+INFO:     115.236.91.21:55406 - "GET /gptchat?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%8A%E6%B5%B7%E5%91%A2&api_key HTTP/1.1" 200 OK
+INFO:     115.236.69.202:62696 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143', '115.236.91.21'])
+INFO:     115.236.69.202:59794 - "GET /gptchat?prompt=%E5%8D%97%E4%BA%AC%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7 HTTP/1.1" 200 OK
+INFO:     115.236.69.202:5775 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+INFO:     115.236.69.202:5775 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     60.191.25.170:63043 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143', '115.236.91.21'])
+INFO:     60.191.25.170:63102 - "GET /gptchat?prompt=%E5%86%99%E4%B8%80%E5%8F%A5%E5%94%90%E8%AF%97&api_key HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143', '115.236.91.21', '180.163.30.27'])
+AI: No correct question detected!
+INFO:     180.163.30.27:55108 - "GET /gptchat?prompt HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143', '115.236.91.21', '180.163.30.27'])
+INFO:     115.236.69.202:14212 - "GET /gptchat?prompt=%E8%AF%B7%E4%B8%BE%E4%B8%A4%E4%B8%AA%E5%B7%BE%E5%B8%BC%E8%8B%B1%E9%9B%84%E7%9A%84%E6%95%85%E4%BA%8B&api_key HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143', '115.236.91.21', '180.163.30.27'])
+INFO:     60.191.25.170:52116 - "GET /gptchat?prompt=%E8%AF%B7%E4%B8%BE%E4%B8%A4%E4%B8%AA%E5%B7%BE%E5%B8%BC%E8%8B%B1%E9%9B%84%E7%9A%84%E6%95%85%E4%BA%8B&api_key HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143', '115.236.91.21', '180.163.30.27'])
+INFO:     60.191.25.170:63324 - "GET /gptchat?prompt=%E8%AF%B7%E4%B8%BE%E4%B8%A4%E4%B8%AA%E5%B7%BE%E5%B8%BC%E8%8B%B1%E9%9B%84%E7%9A%84%E6%95%85%E4%BA%8B&api_key HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143', '115.236.91.21', '180.163.30.27'])
+INFO:     115.236.69.202:14414 - "GET /gptchat?prompt=GBDT%E7%9A%84%E5%8E%9F%E7%90%86&api_key HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143', '115.236.91.21', '180.163.30.27'])
+INFO:     60.191.25.170:63340 - "GET /gptchat?prompt=%E4%B8%8A%E6%B5%B7%E6%88%BF%E4%BB%B7%E5%A6%82%E4%BD%95 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143', '115.236.91.21', '180.163.30.27'])
+INFO:     60.191.25.170:63361 - "GET /gptchat?prompt=%E4%B8%8A%E6%B5%B7%E6%88%BF%E4%BB%B7%E5%A6%82%E4%BD%95&api_keys HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143', '115.236.91.21', '180.163.30.27'])
+INFO:     60.191.25.170:63361 - "GET /gptchat?prompt=%E4%B8%8A%E6%B5%B7%E6%88%BF%E4%BB%B7%E5%A6%82%E4%BD%95&api_keys HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.76', '180.163.28.143', '115.236.91.21', '180.163.30.27'])
+INFO:     115.236.69.202:9661 - "GET /gptchat?prompt=%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0&api_key HTTP/1.1" 200 OK
+INFO:     60.191.25.170:63483 - "GET /gptchat0?prompt=%E4%B8%AD%E5%9B%BD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E7%9C%81 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.28.143', '115.236.91.21', '180.163.30.27'])
+INFO:     60.191.25.170:63489 - "GET /gptchat?prompt=%E5%8D%97%E4%BA%AC%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.28.143', '115.236.91.21', '180.163.30.27'])
+INFO:     60.191.25.170:63490 - "GET /gptchat?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%8A%E6%B5%B7%E5%91%A2 HTTP/1.1" 200 OK
+INFO:     47.92.67.105:7126 - "GET /gptchat HTTP/1.1" 422 Unprocessable Entity
+INFO:     47.92.72.15:44296 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     59.82.61.19:1385 - "HEAD /gptchat0 HTTP/1.1" 405 Method Not Allowed
+INFO:     60.191.25.170:14163 - "GET /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     60.191.25.170:14157 - "GET /gptchat0?prompt=%E8%AF%B7%E4%B8%BE%E4%B8%A4%E4%B8%AA%E5%B7%BE%E5%B8%BC%E8%8B%B1%E9%9B%84%E7%9A%84%E6%95%85%E4%BA%8B&api_key HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.28.143', '115.236.91.21', '180.163.30.27'])
+INFO:     60.191.25.170:52175 - "GET /gptchat?prompt=%E8%AF%B7%E4%B8%BE%E4%B8%A4%E4%B8%AA%E5%B7%BE%E5%B8%BC%E8%8B%B1%E9%9B%84%E7%9A%84%E6%95%85%E4%BA%8B&api_key HTTP/1.1" 200 OK
+INFO:     60.191.25.170:7911 - "GET /gptchat0?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E5%A6%82%E4%BD%95&api_key HTTP/1.1" 200 OK
+INFO:     115.236.69.202:51431 - "GET /gptchat0?prompt=%E4%B8%AD%E5%9B%BD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E7%9C%81 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '115.236.91.21', '180.163.30.27'])
+INFO:     115.236.69.202:51535 - "GET /gptchat?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '115.236.91.21', '180.163.30.27'])
+INFO:     115.236.69.202:51536 - "GET /gptchat?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%8A%E6%B5%B7%E5%91%A2 HTTP/1.1" 200 OK
+INFO:     60.191.25.170:8059 - "GET /gptchat0?prompt=%E5%8D%97%E4%BA%AC%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.27'])
+INFO:     60.191.25.170:8109 - "GET /gptchat?prompt=%E5%8D%97%E4%BA%AC%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170', '180.163.30.27'])
+INFO:     60.191.25.170:8139 - "GET /gptchat?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E5%A6%82%E4%BD%95&api_key HTTP/1.1" 200 OK
+INFO:     Started server process [8338]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://10.0.0.4:8080 (Press CTRL+C to quit)
+INFO:     115.236.69.202:63323 - "GET /gptchat0?prompt=%E4%B8%AD%E5%9B%BD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E7%9C%81 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202'])
+INFO:     115.236.69.202:63329 - "GET /gptchat?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202'])
+INFO:     115.236.69.202:63346 - "GET /gptchat?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%8A%E6%B5%B7%E5%91%A2 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170'])
+INFO:     60.191.25.170:13263 - "GET /gptchat?prompt=%E4%B8%AD%E5%9B%BD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E7%9C%81 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170'])
+INFO:     60.191.25.170:13281 - "GET /gptchat?prompt=%E5%8D%97%E4%BA%AC%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170'])
+INFO:     60.191.25.170:13319 - "GET /gptchat?prompt=%E7%94%A8python%E5%86%99%E4%B8%80%E4%B8%AAdataframe%E6%8E%92%E5%BA%8F HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170'])
+INFO:     60.191.25.170:13354 - "GET /gptchat?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E5%A6%82%E4%BD%95&api_key HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170'])
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170'])
+The remaining IPs with conversation: dict_keys(['115.236.69.202', '60.191.25.170'])
+INFO:     107.150.122.141:35928 - "GET / HTTP/1.1" 200 OK
+INFO:     107.150.122.141:35928 - "GET / HTTP/1.1" 200 OK
+INFO:     107.150.122.141:35928 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /other/codepay/js/codepay_util.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /paint/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /product/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET / HTTP/1.1" 200 OK
+INFO:     107.150.122.141:36574 - "GET /imcore/v1/white/get/all/imconfigs HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET / HTTP/1.1" 200 OK
+INFO:     107.150.122.141:36584 - "GET /static/wap/css/trade-history.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET / HTTP/1.1" 200 OK
+INFO:     107.150.122.141:36516 - "GET /static/wap/js/order.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /static/index/js/lk/order.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /static/index/css/trade-history.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET / HTTP/1.1" 200 OK
+INFO:     107.150.122.141:35928 - "GET /6/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /h5 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /a/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /y/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /api HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /9h/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /xy/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /im/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /api HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /wap HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /h5 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /otc/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /h5/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /app/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET / HTTP/1.1" 200 OK
+INFO:     107.150.122.141:36938 - "GET /main HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /api/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /admin HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /wap/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET / HTTP/1.1" 200 OK
+INFO:     107.150.122.141:36574 - "GET /home/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET / HTTP/1.1" 200 OK
+INFO:     107.150.122.141:36516 - "GET /index HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /login HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /ding/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /app/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /mobile HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /homes/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /config HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /im/h5/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /m.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /login HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /xianyu/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /site.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /homes/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /m8/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /m/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /index/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /reg.php HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /mobile/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /jym-wn/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /api/apps HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /pc.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /wap.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /yinjian/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /platform HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /js/xz.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /getLocale HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /step1.asp HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /config.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /site/info HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /home/help HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /css/m.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /api/index HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /m/env.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /index/user/get_server_info HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /common.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /js/app.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /d1/OK.php HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /chat.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /js/home.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /api/linkPF HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /Css/Hm.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "POST /api/linkPF HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /user/Login HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /app/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /index/aurl HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /login.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /api/ht/xy1 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /js/pups.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "POST /api/notice HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /api/config HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /api/hevent HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /jiaoyimao/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /js/lang.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /baseConfig HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /lib/ab.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /js/basic.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /myConfig.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /js/base1.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /css/all.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "POST /wap/forward HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /js/a.script HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /proxy/games HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /js/post.js/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /login.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /mindex.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /index/login HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /js/index.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "POST /api/im/conf HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /api/sys/var HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /js/bk.min.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /my/zijin.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /js/config.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /api/v1/about HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /waplogin.php HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /v1/getConfig HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "POST /api/app-info HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /fePublicInfo/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /m/allticker/1 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /nyyh/game.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /nyyh/chkjs.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /css/main.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /langConfig.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /css/style.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /images/no.jpg HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /projectConfig HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /im/in/GetUuid HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /img/close.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /im/App/config HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /img/xxing.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /stock/mzhishu HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /index/gzid.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /css/other.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /bapi/st/news/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /js/options.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /api/v1/config HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /v2/game/rooms HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /chatlink.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /thriveGame.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /index.php/sign HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /api/contactWay HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "POST /kkrp/site/info HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /img/zllqdk.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /proxy/settings HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /app/js/base.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /home/login.jpg HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /res/kuai/1.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /sucai/zxkf.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /api/home_index HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /api/user/index HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /anquan/qgga.asp HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /api/config-init HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /api/apps/config HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /home/main/login HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /api/index/index HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /css/scanner.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /res/kuai/21.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "POST /api/v1/app-info HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /phalapi/public/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /files/pub_rem.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /banner.do?code=1 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /verification.asp HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /mobile/config.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /mobile/lists.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /friendGroup/list HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /v6/getAppContent HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /static/config.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /appxz/index.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /api/config/info HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /data/ticker_24hr HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /api/index/config HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /index/newapi/api HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /hetong/yq?id=500 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /index/common.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /style/Common.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /static/js/app.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /Home/Bind/binding HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /Res/font/font.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /Home/Index/ajaxTJ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /css/nsc/reset.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /csjs/bankCheck.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /Home/Get/getJnd28 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /skin/js/common.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /Public/initJs.php HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /Scripts/common.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /JS/loginstatus.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "POST /biz/server/config HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /statics/js/API.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "POST /api/link/platform HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "POST /api/link/platform HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /mytio/config/base HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /static/js/user.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /api/lottery/color HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /index/login/login HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /mobile/login.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /detail1/js/add.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /ph_acquireSession HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /code/js/config.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /static/m_text.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /static/Common.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /static/js/view.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /index/index/info/ HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /manager/js/left.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /Pc/Lang/index.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /views/home/home.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /home/GetQrCodeInfo HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /api/v1/member/kefu HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /img/subsidy/kh.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /public/img/cz1.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /api/uploads/apimap HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /Home/GetInitSource HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /api/getconfig.aspx HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /images/favicon.ico HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /static/index/3.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /loan/css/index.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /static/f_title.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /uis/app/get/config HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /api/st/index/?ac=2 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /index/login/index HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /files/pub_reset.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /room/script/face.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /assets/js/dmshub.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /skin/main/onload.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /Public/css/hall.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /api/site/getInfo.do HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /static/guide/ab.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /Public/js/common.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /api/message/webInfo HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /Content/favicon.ico HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /mobile/css/base.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /api/index/webconfig HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /api/Index/getconfig HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /home/banner/getLogo HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /static/js/config.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /static/content.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /index/api/getconfig HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /mobile/lottery/list HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /room/getRoomBangFans HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /xy/image/jiantou.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /js/subsidy/bk.min.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /public/css/style.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /Public/css/_pk10.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /api/Index/getLottery HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /api/index/grailindex HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "POST /user/getAllNicknames HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /Content/Wap/base.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "POST /api/other/appSetting HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "POST /api/user/mobilelogin HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "POST /km.asmx/getPlatParam HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /assets/etc/query.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /static/image/bg1.jpg HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /1-200611214053U8.jpg HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /static/css/index.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /assets/images/dy.jpg HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /index/login/reg.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /app/config/getConfig HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /static/css/reset.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /lottery/lottery_list HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /api/shares/hqStrList HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /apiApp/app/site/info HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /other/getTopQuestion HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /dist/images/star.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /index/login/register HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /static/diff_worker.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /data/json/config.json HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /jiaoyimao/default.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /Public/Home/js/cls.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /lanren/css/global.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /css/skin/ymPrompt.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /static/css/mobile.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /api/user/ismustmobile HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "POST /api/user/ismustmobile HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /static/css/public.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /v2/block/home/app/hot HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /static/js/download.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /index/home/login.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /index/user/login.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /index/open/login.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /public/wap/js/basis.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /zz/address.php?gid=651 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /template/css/login.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /assets/source/list.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /index/login/index.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /index/index/getchatLog HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /assets/res/mods/room.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /Public/home/js/check.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /Home/GetAllGameCategory HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /Public/css/errorCss.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /static/home/css/css.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /static/home/js/rooms.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /static/wap/js/common.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /static/data/configjs.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /static/mobile/user.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /zz2/address.php?gid=651 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /member/js/lang_zh_CN.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /api/customerServiceLink HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /static/tabBar/trade.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /detaila/images/logo.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /static/v2/css/index.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /dist/azzara/css/down.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /xianyu/image/jiantou.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /static/data/gamedatas.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /Public/Wchat/js/cvphp.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /resources/main/common.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /index_files/bankCheck.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /static/wap/css/index.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /h5/static/tabbar/txl.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /assets/app-manifest.json HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /apiapp/Ygn_Girl.CityList HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /assets/shebao/banner.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /202110/images/public.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /dist/images/mask/bg1.jpg HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /phone/images/icon_01.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /res/common/addfriend.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /assets/images/redian.jpg HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /static/voice/default.wav HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /s_api/basic/download/info HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /static/js/chat-config.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /Public/home/js/fukuang.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /Content/css/wzwstylel.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /app/common/getRegisterSet HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /mobile/film/css/index.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /static/home/imgs/jkjl.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /static/home/imgs/pico.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /saconfig/secure/yunwei.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /static/wap/css/common.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "POST /api/config/getwebsitename HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /static/image/logo.png?v=4 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /assets/AssetManifest.json HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /api/user_center/help.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /Public/Wchat/css/index.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /static/Mobile/js/common.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /Template/Mobile/js/main.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /template/920ka/css/lsy.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /static/common/js/common.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /template/tmp1/js/common.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /api/currency/quotation_new HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /public/h5static/js/main.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /pages/console/js/common.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /portal/index/protocol.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /static/img/bitbeb-logo.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /static/home/css/common.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /static/images/login_bg.jpg HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /newApp/winMessTopQuery.php HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "POST /index.php/User/sendsmscode HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /static/v/v2/image/star.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /api/grame/getHomePtLottery HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /resource/home/js/common.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /img/phonetrackeronline.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /T9sA/static/image/t-06.jpg HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /api/vue/transaction/config HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /static/wap/css/tipmask.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /index/images/tradeicon.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /static/home/2022/index1.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /resources/css/headernav.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /front/index/getSiteSetting HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /home/login/login_index.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /Templates/user/js/global.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /static/data/thirdgames.json HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /static/admincp/js/common.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /index.php/Wap/Api/getBanner HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /kkrps/im_group/show_members HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /market/market-ws/iframe.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /static/mobile/css/feiqi.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /views/commData/commonSite.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "POST /api/system/system/config/get HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /stock2c1/api/site/getInfo.do HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /Public/uploads/web/step1.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /public/static/css/public.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /Content/m_1/js/m_1_Jquery.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /resource/home/css/person.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /mobile/v3/appSuperDownload.do HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /common/member/js/user.util.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /template/920ka/js/woodyapp.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /template/mb/lang/text-zh.json HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "POST /melody/api/v1/pageconfig/list HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /detaila/images/header_v1b.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /wap/trading/lastKlineParameter HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /Public/Qts/Home/js/appAlert.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /getConfig/getArticle.do?code=1 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /ws/index/getTheLotteryInitList HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /Public/home/common/js/index.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /Public/home/wap/css/qdgame.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /api/config/proxy_servers?key=1 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /masterControl/getSystemSetting HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /api/help_documents/nitice_list HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /install.inc/vipsignInstall.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /phalapi/public/?s=System.index HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "POST /api/getUserCertificationStatus HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "POST /api/GetConfigByKeys?keys=of_we HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /stage-api/common/configKey/all HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /api/appVersion?mobile_system=2 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /getConfig/getArticle.do?code=19 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /stock/search.html?keyword=00202 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /Application/Buy/Static/js/if.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /images/src_images_but_dianz_s.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /static/common/js/vant/vant.min.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /wap/static//images/index_tzjr.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /server/business/api/customer/list HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /a/other/codepay/js/codepay_util.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /api/public/?service=Home.getConfig HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /h5/static/cert/icon_yanzhengma.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /index/police/index.html?agent=1000 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /assets/mstock/newimg/guid-info.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /bet/lotteryinfo/allLotteryInfoList HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /v1/management/tenant/getSpeedDomain HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /admin/webadmin.php?mod=do&act=login HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /assets/extension/market/css/mt4.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /mg/other/codepay/js/codepay_util.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /api/user/dataDictionaryService/list HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /dist/images/mask/guide/cn/step1.jpg HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /client/static/icon/hangqingicon.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /api/exclude/siteConfig/webSiteConfig HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /static/home/css/feiqi-ee5401a8e6.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /assets/yibao/Nweshebao/img/icon2.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /site/get-hq?proNo=btc&panType=1&pid=1 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /public/static/home/js/moblie/login.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /static/customer/js/xiaotian.cli.v2.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /Templates/user/finance/css/userPay.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /index.php/Wap/Api/getSystemNotice?id=1 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /uploads/admin/202103/60584c5b88017.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /source/20220119/static/wap/js/order.js HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /static/_zxzx/bottom/index_bottom.shtml HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /api/stock/getSingleStock.do?code=002405 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /mobile21/js/index/gameManagement.js?v=7 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /ajax/allcoin_a/id/0?t=0.3782499195965951 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /index.php?m=api&c=app&a=getPlatformConfig HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /wap/api/exchangerateuserconfig%21get.action HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /Public/Home/ecshe_css/main.css?v=1543997196 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /s_api/basic/config_js?callback=__set_config HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /common/template/lottery/lecai/css/style.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET /openApi/systemConfig/findSystemConfigById?id=3 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /static/local/img/userCenter/hourlyPrivilege.svg HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "POST /api/system/systemConfigs/getCustomerServiceLink HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /Public/Mobile/ecshe_css/wapmain.css?v=1545408652 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /source/20220119/static/wap/css/trade-history.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /infe/rest/fig/advertise/common.json?mobile_open=1 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /client/api/findConfigByKey?configKey=level_config HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "POST /site/api/v1/site/vipExclusiveDomain/getGuestDomain HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET / HTTP/1.1" 200 OK
+INFO:     107.150.122.141:38354 - "GET /ipl/app/flash/publicbmw/ball/FigLeaf.js?site=member HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /api/v/index/queryOfficePage?officeCode=customHomeLink HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /uploads/20210928/01737e4f85f971bdf4d892dfaee6579c.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /service?action=getBasicInfo&terminal_id=2&token=&debug=true HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:37264 - "GET /api/get/specifyUrl?name=%E4%B8%89%E5%BD%B1%E6%96%87%E5%8C%96 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /sdk.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36584 - "GET /leftDao.php?callback=jQuery183016740860980352856_1604309800583 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:35928 - "GET /getConfig/listPopFrame.do?code=1&position=index&_=1601489645097 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36516 - "GET /getConfig/listPopFrame.do?code=14&position=index&_=1601489645097 HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36938 - "GET /Pay_Index.html HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36926 - "GET /themes/pay/assets/core.css HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:36574 - "GET /public/static/index/picture/img_33.png HTTP/1.1" 404 Not Found
+INFO:     107.150.122.141:38354 - "GET / HTTP/1.1" 200 OK
+INFO:     107.150.122.141:37264 - "GET /t000/login-img-3.svg HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     162.142.125.13:41468 - "GET / HTTP/1.1" 200 OK
+INFO:     162.142.125.13:57554 - "GET / HTTP/1.1" 200 OK
+INFO:     162.142.125.13:38058 - "PRI %2A HTTP/2.0" 404 Not Found
+WARNING:  Invalid HTTP request received.
+INFO:     162.142.125.13:47564 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     199.195.248.153:48494 - "CONNECT google.com%3A443 HTTP/1.1" 404 Not Found
+INFO:     Started server process [8530]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://10.0.0.4:8080 (Press CTRL+C to quit)
+INFO:     20.194.164.9:51964 - "GET /gptchat0?prompt=%E4%B8%AD%E5%9B%BD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E7%9C%81 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['20.194.164.9'])
+INFO:     20.194.164.9:56106 - "GET /gptchat?prompt=%E5%8D%97%E4%BA%AC%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7&reset=0 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['20.194.164.9'])
+INFO:     20.194.164.9:56110 - "GET /gptchat?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%8A%E6%B5%B7%E5%91%A2&reset=0 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['20.194.164.9'])
+INFO:     20.194.164.9:41884 - "GET /gptchat?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7&reset=0 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['20.194.164.9'])
+INFO:     20.194.164.9:44750 - "GET /gptchat?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E5%8C%97%E4%BA%AC%E5%91%A2&reset=1 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['20.194.164.9', '115.236.69.202'])
+INFO:     115.236.69.202:54090 - "GET /gptchat?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%8A%E6%B5%B7%E5%91%A2&api_key=&reset=1 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['20.194.164.9', '115.236.69.202'])
+INFO:     202.124.225.53:41454 - "GET / HTTP/1.1" 200 OK
+INFO:     115.236.69.202:54192 - "GET /gptchat?prompt=%E5%8D%97%E4%BA%AC%E6%88%BF%E4%BB%B7%E5%A6%82%E4%BD%95&api_key=&reset=1 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['20.194.164.9', '115.236.69.202'])
+INFO:     115.236.69.202:54250 - "GET /gptchat?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E5%8C%97%E4%BA%AC%E5%91%A2&api_key=&reset=1 HTTP/1.1" 200 OK
+INFO:     115.236.69.202:54300 - "GET /gptchat?api_key=&prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E5%A6%82%E4%BD%95 HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 21, in __call__
+    raise e
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 716, in __call__
+    await route.handle(scope, receive, send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 237, in app
+    raw_response = await run_endpoint_function(
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 165, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/anyio/to_thread.py", line 28, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(func, *args, cancellable=cancellable,
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/anyio/_backends/_asyncio.py", line 818, in run_sync_in_worker_thread
+    return await future
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/anyio/_backends/_asyncio.py", line 754, in run
+    result = context.run(func, *args)
+  File "/home/azure_user0313/openai/openai_chat_server.py", line 53, in gptchat
+    reset = bool(eval(reset))
+TypeError: eval() arg 1 must be a string, bytes or code object
+INFO:     115.236.69.202:54379 - "GET /gptchat?api_key=&prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E5%A6%82%E4%BD%95 HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 21, in __call__
+    raise e
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 716, in __call__
+    await route.handle(scope, receive, send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 237, in app
+    raw_response = await run_endpoint_function(
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 165, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/anyio/to_thread.py", line 28, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(func, *args, cancellable=cancellable,
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/anyio/_backends/_asyncio.py", line 818, in run_sync_in_worker_thread
+    return await future
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/anyio/_backends/_asyncio.py", line 754, in run
+    result = context.run(func, *args)
+  File "/home/azure_user0313/openai/openai_chat_server.py", line 53, in gptchat
+    reset = bool(eval(reset))
+TypeError: eval() arg 1 must be a string, bytes or code object
+INFO:     Started server process [8681]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://10.0.0.4:8080 (Press CTRL+C to quit)
+The remaining IPs with conversation: dict_keys(['115.236.69.202'])
+INFO:     115.236.69.202:54795 - "GET /gptchat?api_key=&prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E5%A6%82%E4%BD%95 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202'])
+INFO:     115.236.69.202:54853 - "GET /gptchat?api_key=&reset=1&prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%8A%E6%B5%B7%E5%91%A2 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202'])
+INFO:     115.236.69.202:54909 - "GET /gptchat?api_key=&reset=0&prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E5%A6%82%E4%BD%95 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202'])
+INFO:     115.236.69.202:54968 - "GET /gptchat?api_key=&prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%8A%E6%B5%B7%E5%91%A2 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202'])
+INFO:     115.236.69.202:60543 - "GET /gptchat?api_key=&reset=&prompt=%E5%8D%97%E4%BA%AC%E6%88%BF%E4%BB%B7%E5%A6%82%E4%BD%95 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202'])
+INFO:     115.236.69.202:60583 - "GET /gptchat?api_key=&reset=&prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%8A%E6%B5%B7%E5%91%A2 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202'])
+INFO:     115.236.69.202:62008 - "GET /gptchat?api_key=&reset=&prompt=%E4%BD%A0%E6%98%AF%E5%82%BB%E9%80%BC%E5%90%97 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['115.236.69.202'])
+INFO:     115.236.69.202:62035 - "GET /gptchat?api_key=&reset=&prompt=%E4%BD%A0%E5%A5%BD HTTP/1.1" 200 OK
+INFO:     107.170.236.11:52778 - "GET / HTTP/1.1" 200 OK
+INFO:     45.95.55.150:51090 - "CONNECT google.com%3A443 HTTP/1.1" 404 Not Found
+INFO:     101.71.9.239:57825 - "GET /gptchat0?prompt=%E6%9D%AD%E5%B7%9E%E6%94%BE%E5%81%87%E5%A6%82%E4%BD%95&api_key HTTP/1.1" 200 OK
+INFO:     101.71.9.239:57858 - "GET /gptchat0?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E9%AB%98%E5%98%9B&api_key HTTP/1.1" 200 OK
+INFO:     192.241.210.7:39260 - "GET /actuator/health HTTP/1.1" 404 Not Found
+INFO:     45.95.55.150:60472 - "CONNECT google.com%3A443 HTTP/1.1" 404 Not Found
+Traceback (most recent call last):
+  File "/home/azure_user0313/openai/openai_chat_server.py", line 14, in <module>
+    from dramkit.gentools import isnull
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/dramkit/__init__.py", line 13, in <module>
+    from .iotools import load_csv
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/dramkit/iotools.py", line 20, in <module>
+    from inputimeout import inputimeout, TimeoutOccurred
+ModuleNotFoundError: No module named 'inputimeout'
+INFO:     Started server process [10432]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://10.0.0.4:8080 (Press CTRL+C to quit)
+INFO:     Started server process [10649]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://10.0.0.4:8080 (Press CTRL+C to quit)
+INFO:     20.194.164.9:60584 - "GET /gptchat0?prompt=%E4%B8%AD%E5%9B%BD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E7%9C%81 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['20.194.164.9'])
+INFO:     20.194.164.9:60586 - "GET /gptchat?prompt=%E5%8D%97%E4%BA%AC%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7&reset=0 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['20.194.164.9'])
+INFO:     20.194.164.9:41224 - "GET /gptchat?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E4%B8%8A%E6%B5%B7%E5%91%A2&reset=0 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['20.194.164.9'])
+INFO:     20.194.164.9:42536 - "GET /gptchat?prompt=%E6%9D%AD%E5%B7%9E%E6%88%BF%E4%BB%B7%E6%80%8E%E4%B9%88%E6%A0%B7&reset=0 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['20.194.164.9'])
+INFO:     20.194.164.9:50526 - "GET /gptchat?prompt=%E7%9B%B8%E6%AF%94%E4%BA%8E%E5%8C%97%E4%BA%AC%E5%91%A2&reset=1 HTTP/1.1" 200 OK
+INFO:     46.174.191.30:38364 - "GET / HTTP/1.0" 200 OK
+INFO:     Started server process [10719]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://10.0.0.4:8080 (Press CTRL+C to quit)
+INFO:     20.194.164.9:60224 - "GET /gptchat0?prompt=%E4%B8%AD%E5%9B%BD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E7%9C%81 HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 21, in __call__
+    raise e
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 716, in __call__
+    await route.handle(scope, receive, send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 237, in app
+    raw_response = await run_endpoint_function(
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 165, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/starlette/concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/anyio/to_thread.py", line 28, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(func, *args, cancellable=cancellable,
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/anyio/_backends/_asyncio.py", line 818, in run_sync_in_worker_thread
+    return await future
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/anyio/_backends/_asyncio.py", line 754, in run
+    result = context.run(func, *args)
+  File "/home/azure_user0313/openai/openai_chat_server.py", line 51, in gptchat0
+    suscess, result = chat(prompt, api_key=api_key)
+TypeError: cannot unpack non-iterable NoneType object
+INFO:     Started server process [10847]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://10.0.0.4:8080 (Press CTRL+C to quit)

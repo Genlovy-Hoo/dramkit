@@ -1,6 +1,18 @@
-Some error find here.
-    [ERROR: 2022-09-04 18:48:02,960]
-Program crashed.
-    [CRITICAL: 2022-09-04 18:48:02,962]
-Finish
-    [INFO: 2022-09-04 18:48:02,962]
+Log start here *********************************************
+    [INFO: 2023-03-28 10:52:34,599]
+info of test func ------------------------------------------
+    [INFO: 2023-03-28 10:52:34,600]
+get input x: 3, y: 1.
+    [INFO: 2023-03-28 10:52:34,601]
+this is a warning.
+    [WARNING: 2023-03-28 10:52:34,601]
+some error may find here.
+    [ERROR: 2023-03-28 10:52:34,602]
+x div y : 3.0
+    [DEBUG: 2023-03-28 10:52:34,602]
+program may crash here.
+    [CRITICAL: 2023-03-28 10:52:34,603]
+test function finished.
+    [INFO: 2023-03-28 10:52:34,603]
+test finished.
+    [INFO: 2023-03-28 10:52:34,604]

@@ -12,7 +12,7 @@ import time
 import datetime
 import pandas as pd
 
-# '''
+'''
 from .constants import (holidays,
                         in_lieu_days,
                         workdays)
@@ -28,7 +28,7 @@ from .constants_zodiac_marry import zodiac_match
 from .constants_wuxing import tgwx, dzwx, tgdznywx
 # '''
 
-'''
+# '''
 from chncal.constants import (holidays,
                               in_lieu_days,
                               workdays)
@@ -600,6 +600,9 @@ def get_recent_tradeday(date=None, dirt='post', market='SSE'):
             date = date + tdelta
     elif dirt == 'pre':
         while not is_tradeday(date, market=market):
+            if date.date() < MARKETS[market]:
+                date = MARKETS[market]
+                break
             date = date - tdelta
     return _wrap_date(date)
 
@@ -614,6 +617,8 @@ def get_next_nth_tradeday(date=None, n=1, market='SSE'):
     n = abs(n)
     tmp = 0
     while tmp < n:
+        if n_add == -1 and date.date() <= MARKETS[market]:
+            break
         date = date + datetime.timedelta(n_add)
         if is_tradeday(date, market=market):
             tmp += 1

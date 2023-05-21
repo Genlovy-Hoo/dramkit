@@ -2,6 +2,7 @@
 
 import os
 import logging
+import datetime
 from pandas import isnull
 
 
@@ -41,6 +42,8 @@ def logger_show(log_str, logger=None, level='info'):
     '''
     if isnull(logger):
         print(log_str)
+        print('    [time: {}]'.format(
+        datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')))
     elif logger is False:
         return
     elif isinstance(logger, logging.Logger):

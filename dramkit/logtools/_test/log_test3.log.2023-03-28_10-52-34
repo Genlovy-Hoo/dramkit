@@ -1,0 +1,36 @@
+1th log start here ********************
+    [INFO: 2023-03-28 10:52:34,606]
+info of test func ------------------------------------------
+    [INFO: 2023-03-28 10:52:34,610]
+get input x: 3, y: 2.
+    [INFO: 2023-03-28 10:52:34,611]
+this is a warning.
+    [WARNING: 2023-03-28 10:52:34,611]
+some error may find here.
+    [ERROR: 2023-03-28 10:52:34,612]
+x div y : 1.5
+    [DEBUG: 2023-03-28 10:52:34,612]
+program may crash here.
+    [CRITICAL: 2023-03-28 10:52:34,613]
+test function finished.
+    [INFO: 2023-03-28 10:52:34,613]
+test finished.
+    [INFO: 2023-03-28 10:52:34,614]
+2th log start here ********************
+    [INFO: 2023-03-28 10:52:36,623]
+info of test func ------------------------------------------
+    [INFO: 2023-03-28 10:52:36,624]
+get input x: 3, y: 2.
+    [INFO: 2023-03-28 10:52:36,625]
+this is a warning.
+    [WARNING: 2023-03-28 10:52:36,626]
+some error may find here.
+    [ERROR: 2023-03-28 10:52:36,627]
+x div y : 1.5
+    [DEBUG: 2023-03-28 10:52:36,627]
+program may crash here.
+    [CRITICAL: 2023-03-28 10:52:36,628]
+test function finished.
+    [INFO: 2023-03-28 10:52:36,628]
+test finished.
+    [INFO: 2023-03-28 10:52:36,629]

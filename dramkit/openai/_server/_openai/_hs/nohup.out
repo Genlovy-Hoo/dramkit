@@ -1,0 +1,241 @@
+Traceback (most recent call last):
+  File "/root/openai/openai_chat_server_new.py", line 9, in <module>
+    import uvicorn
+ModuleNotFoundError: No module named 'uvicorn'
+Traceback (most recent call last):
+  File "/root/openai/openai_chat_server_new.py", line 9, in <module>
+    import uvicorn
+ModuleNotFoundError: No module named 'uvicorn'
+Traceback (most recent call last):
+  File "/root/openai/openai_chat_server_new.py", line 12, in <module>
+    from fastapi import FastAPI, Request
+ModuleNotFoundError: No module named 'fastapi'
+Traceback (most recent call last):
+  File "/root/openai/openai_chat_server_new.py", line 17, in <module>
+    from slowapi import Limiter, _rate_limit_exceeded_handler
+ModuleNotFoundError: No module named 'slowapi'
+INFO:     Started server process [5290]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8080 (Press CTRL+C to quit)
+INFO:     Started server process [5353]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 99] error while attempting to bind on address ('10.0.0.4', 8080): cannot assign requested address
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [5366]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 99] error while attempting to bind on address ('10.0.0.4', 8080): cannot assign requested address
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [5385]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 99] error while attempting to bind on address ('10.0.0.4', 8080): cannot assign requested address
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [5556]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 99] error while attempting to bind on address ('10.0.0.4', 80): cannot assign requested address
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [5607]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 99] error while attempting to bind on address ('10.0.0.4', 80): cannot assign requested address
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [5647]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 99] error while attempting to bind on address ('8.209.222.49', 80): cannot assign requested address
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [5698]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:80 (Press CTRL+C to quit)
+INFO:     127.0.0.1:40150 - "POST /gptchat0 HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/root/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/root/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 276, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/root/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/root/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/root/anaconda3/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 21, in __call__
+    raise e
+  File "/root/anaconda3/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/root/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "/root/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/root/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+  File "/root/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 237, in app
+    raw_response = await run_endpoint_function(
+  File "/root/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 163, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/root/anaconda3/lib/python3.9/site-packages/slowapi/extension.py", line 728, in async_wrapper
+    self._check_request_limit(request, func, False)
+  File "/root/anaconda3/lib/python3.9/site-packages/slowapi/extension.py", line 585, in _check_request_limit
+    dynamic_limits.extend(list(lim.with_request(request)))
+  File "/root/anaconda3/lib/python3.9/site-packages/slowapi/wrappers.py", line 92, in __iter__
+    limit_raw = self.__limit_provider(self.key_function(self.request))
+  File "/root/openai/openai_chat_server_new.py", line 106, in get_limit
+    return '{}/minute'.format(TOKENS[key])
+KeyError: None
+INFO:     Started server process [5962]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:80 (Press CTRL+C to quit)
+INFO:     127.0.0.1:46500 - "POST /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:46514 - "POST /gptchat?reset=0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:37348 - "POST /gptchat0 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['127.0.0.1'])
+INFO:     127.0.0.1:43310 - "POST /gptchat?reset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43316 - "POST /gptchat0 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['127.0.0.1'])
+INFO:     127.0.0.1:43324 - "POST /gptchat?reset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50686 - "POST /gptchat0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50692 - "POST /gptchat?reset=0 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:55666 - "POST /gptchat0 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['127.0.0.1'])
+INFO:     127.0.0.1:55680 - "POST /gptchat?reset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52334 - "POST /gptchat0 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['127.0.0.1'])
+INFO:     127.0.0.1:52338 - "POST /gptchat?reset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50668 - "POST /gptchat0 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['127.0.0.1'])
+INFO:     127.0.0.1:50670 - "POST /gptchat?reset=0 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49558 - "POST /gptchat0 HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/root/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/root/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/root/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 276, in __call__
+    await super().__call__(scope, receive, send)
+  File "/root/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 122, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/root/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/root/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/root/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/root/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/root/anaconda3/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 21, in __call__
+    raise e
+  File "/root/anaconda3/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/root/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "/root/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/root/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+  File "/root/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 237, in app
+    raw_response = await run_endpoint_function(
+  File "/root/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 163, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/root/anaconda3/lib/python3.9/site-packages/slowapi/extension.py", line 728, in async_wrapper
+    self._check_request_limit(request, func, False)
+  File "/root/anaconda3/lib/python3.9/site-packages/slowapi/extension.py", line 585, in _check_request_limit
+    dynamic_limits.extend(list(lim.with_request(request)))
+  File "/root/anaconda3/lib/python3.9/site-packages/slowapi/wrappers.py", line 92, in __iter__
+    limit_raw = self.__limit_provider(self.key_function(self.request))
+  File "/root/openai/openai_chat_server_new.py", line 106, in get_limit
+    return '{}/minute'.format(TOKENS[key])
+KeyError: 'MVBRFveFh-zRtEcQnc4x6ABdm47lKK4XVqjMZsQ77Do1'
+INFO:     Started server process [6200]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:80 (Press CTRL+C to quit)
+INFO:     127.0.0.1:58480 - "POST /gptchat0 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:58482 - "POST /gptchat?reset=0 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:59368 - "POST /gptchat0 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:59370 - "POST /gptchat?reset=0 HTTP/1.1" 429 Too Many Requests
+INFO:     127.0.0.1:56662 - "POST /gptchat0 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['127.0.0.1'])
+INFO:     127.0.0.1:56672 - "POST /gptchat?reset=0 HTTP/1.1" 200 OK
+INFO:     Started server process [6289]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 99] error while attempting to bind on address ('10.0.0.4', 80): cannot assign requested address
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [6338]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 99] error while attempting to bind on address ('8.209.222.49', 80): cannot assign requested address
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Started server process [6409]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://172.18.143.237:80 (Press CTRL+C to quit)
+INFO:     8.209.222.49:56082 - "POST /gptchat0 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['8.209.222.49'])
+INFO:     8.209.222.49:56090 - "POST /gptchat?reset=0 HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['8.209.222.49', '115.236.91.21'])
+INFO:     115.236.91.21:50560 - "POST /gptchat HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['8.209.222.49', '115.236.91.21'])
+INFO:     115.236.91.21:50560 - "POST /gptchat HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['8.209.222.49', '115.236.91.21'])
+INFO:     115.236.91.21:50560 - "POST /gptchat HTTP/1.1" 200 OK
+The remaining IPs with conversation: dict_keys(['8.209.222.49', '115.236.91.21'])
+INFO:     115.236.91.21:50560 - "POST /gptchat HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     104.248.132.60:37040 - "GET / HTTP/1.1" 404 Not Found
+INFO:     104.248.132.60:37044 - "GET /client/get_targets HTTP/1.1" 404 Not Found
+INFO:     104.248.132.60:37058 - "GET /upl.php HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+INFO:     104.248.132.60:37080 - "GET /geoip/ HTTP/1.1" 404 Not Found
+INFO:     104.248.132.60:37082 - "GET / HTTP/1.1" 404 Not Found
+INFO:     104.248.132.60:37096 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     Started server process [7190]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://172.18.143.237:80 (Press CTRL+C to quit)
+INFO:     115.236.91.21:55472 - "POST /gptchat0 HTTP/1.1" 200 OK
+INFO:     115.236.91.21:55472 - "POST /gptchat0 HTTP/1.1" 200 OK
+INFO:     115.236.91.21:55472 - "POST /gptchat0 HTTP/1.1" 200 OK
+INFO:     115.236.91.21:55472 - "POST /gptchat0 HTTP/1.1" 200 OK
+INFO:     115.236.91.21:55472 - "POST /gptchat0 HTTP/1.1" 200 OK
+INFO:     115.236.91.21:55472 - "POST /gptchat0 HTTP/1.1" 429 Too Many Requests
+INFO:     115.236.91.21:55604 - "POST /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     115.236.91.21:55628 - "POST /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     115.236.91.21:55648 - "POST /gptchat0 HTTP/1.1" 200 OK
+INFO:     115.236.91.21:56422 - "POST /gptchat0 HTTP/1.1" 200 OK
+INFO:     115.236.91.21:56690 - "POST /gptchat0 HTTP/1.1" 429 Too Many Requests
+INFO:     175.17.180.217:55936 - "GET / HTTP/1.0" 404 Not Found
+INFO:     27.227.187.123:35154 - "GET / HTTP/1.1" 404 Not Found
+INFO:     179.43.177.243:40616 - "GET / HTTP/1.1" 404 Not Found
+INFO:     115.236.91.21:55183 - "POST /gptchat0 HTTP/1.1" 200 OK
+INFO:     115.236.91.21:57505 - "POST /gptchat0 HTTP/1.1" 200 OK
+INFO:     193.0.166.4:59364 - "GET / HTTP/1.1" 404 Not Found
+INFO:     115.236.91.21:56366 - "POST /gptchat0 HTTP/1.1" 422 Unprocessable Entity
+INFO:     115.236.91.21:56422 - "POST /gptchat0 HTTP/1.1" 200 OK
+INFO:     115.236.91.21:56441 - "POST /gptchat0 HTTP/1.1" 200 OK
+INFO:     212.107.231.67:50084 - "GET / HTTP/1.1" 404 Not Found
+INFO:     157.254.193.26:36526 - "GET /gptchat0 HTTP/1.1" 405 Method Not Allowed
+INFO:     157.254.193.26:35737 - "GET /favicon.ico HTTP/1.1" 404 Not Found

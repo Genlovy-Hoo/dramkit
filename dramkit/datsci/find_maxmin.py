@@ -76,13 +76,16 @@ def find_maxmin(series, t_min=2, t_max=np.inf,
             raise ValueError('发现无效值，请先处理！')
 
     # 序列名和索引名
-    series.name = 'series'
+    if series.name is None:
+        series.name = 'series'
     if series.index.name is None:
         series.index.name = 'idx'
 
     df = pd.DataFrame(series)
     col = df.columns[0]
     df.reset_index(inplace=True)
+    
+    # plot_series(df, {col: '.-k'}, title='原始数据', grids=True)
 
     # 所有转折点
     df['dif'] = df[col].diff()
@@ -100,7 +103,7 @@ def find_maxmin(series, t_min=2, t_max=np.inf,
     label_ = replace_repeat_pd(label_, -1, 0)
     df['label'] = label_[::-1]
 
-    # plot_maxmins(df, col, 'label', title='Ori')
+    # plot_maxmins(df, col, 'label', title='所有拐点')
 
     # t_min应大于等于1
     if t_min is not None and t_min < 1:
@@ -236,18 +239,18 @@ def find_maxmin(series, t_min=2, t_max=np.inf,
                     to_del, idxs = _to_del(df, k1, k2, k3, k4)
                     if to_del:
                         df.loc[idxs, 'label'] = 0
+                        # plot_maxmins(df, col, 'label', title='筛除不满足条件的极值对', grid=False)
 
                     k2 = k3
 
             return df
 
         df = _del_t_min(df)
-        # plot_maxmins(df, col, 'label', title='1st del1')
+        # plot_maxmins(df, col, 'label', title='第1次正向筛除')
 
         df.index = range(df.shape[0]-1, -1, -1)
         df = _del_t_min(df)
-        # plot_maxmins(df, col, 'label', title='1st del2')
-
+        
         def _check_t_min(df, t_min):
             Fcond = lambda x: True if x == 0 else False
             df['tmp'] = con_count(df['label'], Fcond).shift(1)
@@ -265,16 +268,19 @@ def find_maxmin(series, t_min=2, t_max=np.inf,
                     return False, tmp
         t_min_ok, tmp = _check_t_min(df, t_min)
         tmp_new = []
-        # plot_maxmins(df, col, 'label', title='t_min check: '+str(t_min_ok))
+        # plot_maxmins(df, col, 'label', title='第1次反向筛除，t_min check: '+str(t_min_ok))
         # 注：特殊情况下不可能满足任何两个极大极小值对之间的间隔都大于t_min
+        k = 2
         while not t_min_ok and not tmp == tmp_new:
             t_min_ok, tmp = _check_t_min(df, t_min)
             df.index = range(df.shape[0])
             df = _del_t_min(df)
+            # plot_maxmins(df, col, 'label', title='第%s次正向筛除'%k)
             df.index = range(df.shape[0]-1, -1, -1)
             df = _del_t_min(df)
             t_min_ok, tmp_new = _check_t_min(df, t_min)
-            # plot_maxmins(df, col, 'label', title='t_min check: '+str(t_min_ok))
+            # plot_maxmins(df, col, 'label', title='第%s次反向筛除，t_min check: %s'%(k, t_min_ok))
+            k += 1
 
     df.set_index(series.index.name, inplace=True)
 
@@ -978,9 +984,13 @@ def find_maxmin_dy(df, col, t_min, his_lag=None, use_all=True,
 
 #%%
 if __name__ == '__main__':
-    strt_tm = time.time()
+    from dramkit import TimeRecoder    
+    from finfactory.load_his_data import load_index_joinquant
 
+    tr = TimeRecoder()    
+    
     #%%
+    # '''
     arr = [1, 1, 1.3, 1.2, 2, 3, 4.8, 4.7, 5, 5]
     df1 = pd.DataFrame({'col': arr})
     df1['label'] = find_maxmin(df1['col'])
@@ -1001,8 +1011,10 @@ if __name__ == '__main__':
         print('极值点排列正确！')
     else:
         print('极值点排列错误:', e)
+    # '''
 
     #%%
+    # '''
     # 二次曲线叠加正弦余弦-------------------------------------------------------
     N = 200
     t = np.linspace(0, 1, N)
@@ -1021,8 +1033,10 @@ if __name__ == '__main__':
         print('极值点排列正确！')
     else:
         print('极值点排列错误:', e)
+    # '''
         
     #%%
+    # '''
     # 趋势线叠加正弦余弦---------------------------------------------------------
     N = 200
     t = np.linspace(0, 1, N)
@@ -1064,15 +1078,17 @@ if __name__ == '__main__':
                 # cols_to_label_info={'series':
                 #     [['label', (1, -1), ('gv', 'r^'), False]]},
                 title='周期波动示例')
+    # '''
 
     #%%
+    # '''
     # 50ETF日线行情------------------------------------------------------------
     fpath = '../_test/510500.SH_daily_qfq.csv'
     his_data = load_csv(fpath)
     his_data.set_index('date', drop=False, inplace=True)
 
     # N = his_data.shape[0]
-    N = 5000
+    N = 200
     col = 'close'
     df = his_data.iloc[-N:, :].copy()
 
@@ -1087,11 +1103,12 @@ if __name__ == '__main__':
         print('极值点排列正确！')
     else:
         print('极值点排列错误:', e)
+    # '''
 
     #%%
+    '''
     # 上证50分钟行情------------------------------------------------------------
-    fpath = '../../../FinFactory/data/archives/index/joinquant/000016.XSHG_1min.csv'
-    his_data = load_csv(fpath)
+    his_data = load_index_joinquant('000016', '1min')
     his_data['time'] = his_data['time'].apply(lambda x:
                     x.replace('-', '').replace(':', '').replace(' ', '')[:-2])
     his_data.set_index('time', drop=False, inplace=True)
@@ -1121,6 +1138,7 @@ if __name__ == '__main__':
 
     his_cycle_info, df_his = get_his_maxmin_info(df, col, 'label')
     last_pos_info = get_last_pos_info(df.iloc[:-1, :], col, 'label', min_gap=0)
+    # '''
 
     #%%
     # 动态标签
@@ -1145,4 +1163,4 @@ if __name__ == '__main__':
     #                                 plot_sleep=0.5)
 
     #%%
-    print('used time: {}s.'.format(round(time.time()-strt_tm, 6)))
+    tr.used()

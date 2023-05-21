@@ -1,0 +1,1695 @@
+Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+Traceback (most recent call last):
+  File "/home/azure_user0313/_aiedu/aiedu_chat_web.py", line 52, in <module>
+    async def webchat(req: Request, prompt: str = Form(None)):
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 661, in decorator
+    self.add_api_route(
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 600, in add_api_route
+    route = route_class(
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 452, in __init__
+    self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/dependencies/utils.py", line 844, in get_body_field
+    check_file_field(final_field)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/dependencies/utils.py", line 112, in check_file_field
+    raise RuntimeError(multipart_not_installed_error) from None
+RuntimeError: Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+Traceback (most recent call last):
+  File "/home/azure_user0313/_aiedu/aiedu_chat_web.py", line 52, in <module>
+    async def webchat(req: Request, prompt: str = Form(None)):
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 661, in decorator
+    self.add_api_route(
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 600, in add_api_route
+    route = route_class(
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 452, in __init__
+    self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/dependencies/utils.py", line 844, in get_body_field
+    check_file_field(final_field)
+  File "/home/azure_user0313/anaconda3/lib/python3.9/site-packages/fastapi/dependencies/utils.py", line 112, in check_file_field
+    raise RuntimeError(multipart_not_installed_error) from None
+RuntimeError: Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+INFO:     Started server process [45062]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://10.0.0.4:8081 (Press CTRL+C to quit)
+INFO:     Started server process [45153]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://10.0.0.4:8080 (Press CTRL+C to quit)
+INFO:     112.10.220.48:9717 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     112.10.220.48:9627 - "GET / HTTP/1.1" 200 OK
+INFO:     112.10.220.48:9627 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+question:
+你好
+    [time: 2023-03-31 16:40:14.789982]
+The remaining IPs with conversation: dict_keys(['112.10.220.48'])
+answer:
+你好！有什么我可以帮助你的吗？
+error info:
+None
+    [time: 2023-03-31 16:40:17.191810]
+INFO:     112.10.220.48:9719 - "POST /webchat HTTP/1.1" 200 OK
+INFO:     27.115.124.53:13034 - "GET / HTTP/1.1" 200 OK
+INFO:     42.236.10.93:21745 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+Traceback (most recent call last):
+  File "/home/glhyy/_aiedu/aiedu_chat_web.py", line 52, in <module>
+    async def webchat(req: Request, prompt: str = Form(None)):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 659, in decorator
+    self.add_api_route(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 598, in add_api_route
+    route = route_class(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 452, in __init__
+    self.body_field = get_body_field(dependant=self.dependant, name=self.unique_id)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/dependencies/utils.py", line 766, in get_body_field
+    check_file_field(final_field)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/dependencies/utils.py", line 111, in check_file_field
+    raise RuntimeError(multipart_not_installed_error) from None
+RuntimeError: Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+INFO:     Started server process [185430]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://10.0.0.4:8080 (Press CTRL+C to quit)
+WARNING:  Invalid HTTP request received.
+INFO:     150.66.39.241:46408 - "GET / HTTP/1.1" 200 OK
+INFO:     150.66.39.241:46540 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     112.10.220.48:9501 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     112.10.220.48:9501 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     112.10.220.48:9553 - "GET / HTTP/1.1" 200 OK
+INFO:     112.10.220.48:9553 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     27.115.124.45:21946 - "GET / HTTP/1.1" 200 OK
+question:
+你好
+    [time: 2023-03-31 16:57:36.133791]
+The remaining IPs with conversation: dict_keys(['112.10.220.48'])
+answer:
+你好！我是AI助手，请问有什么需要帮助的吗？
+error info:
+None
+    [time: 2023-03-31 16:57:38.865407]
+INFO:     112.10.220.48:9584 - "POST /webchat HTTP/1.1" 200 OK
+INFO:     112.10.220.48:9584 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+INFO:     27.115.124.70:19996 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+question:
+中国面积
+    [time: 2023-03-31 16:57:47.845217]
+The remaining IPs with conversation: dict_keys(['112.10.220.48'])
+answer:
+中国的总面积是9,596,961平方千米。
+error info:
+None
+    [time: 2023-03-31 16:57:49.947930]
+INFO:     112.10.220.48:9591 - "POST /webchat HTTP/1.1" 200 OK
+INFO:     27.115.124.6:34013 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+INFO:     112.10.220.48:9596 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     112.10.220.48:9596 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     112.10.220.48:9597 - "GET / HTTP/1.1" 200 OK
+INFO:     112.10.220.48:9597 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     112.10.220.48:9501 - "GET / HTTP/1.1" 200 OK
+INFO:     112.10.220.48:9501 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+question:
+印度有多少个省
+    [time: 2023-03-31 16:59:22.823878]
+The remaining IPs with conversation: dict_keys(['112.10.220.48'])
+answer:
+印度现在有28个邦和8个联邦直辖区。
+error info:
+None
+    [time: 2023-03-31 16:59:25.112186]
+INFO:     112.10.220.48:9596 - "POST /webchat HTTP/1.1" 200 OK
+INFO:     27.115.124.53:2167 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+INFO:     42.236.10.93:13610 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+INFO:     180.163.29.234:34662 - "GET / HTTP/1.1" 200 OK
+INFO:     180.163.30.100:60420 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     42.236.10.114:2711 - "GET / HTTP/1.1" 200 OK
+question:
+耶稣的名字
+    [time: 2023-03-31 17:00:25.113362]
+The remaining IPs with conversation: dict_keys(['112.10.220.48', '150.66.39.241'])
+answer:
+耶稣的名字源于希伯来文，意为“上帝拯救”。在希伯来文中，耶稣的名字是“耶稣”（Yeshua），在希腊文中是“耶稣”（Iesous），在拉丁文中是“耶稣”（Iesus）。耶稣是基督教的中心人物，被认为是上帝的儿子，为世人的罪而死，并在第三天复活，为人类带来救赎。
+error info:
+None
+    [time: 2023-03-31 17:00:31.535475]
+INFO:     150.66.39.241:47832 - "POST /webchat HTTP/1.1" 200 OK
+INFO:     180.163.30.85:52016 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+WARNING:  Invalid HTTP request received.
+question:
+耶稣的名字
+    [time: 2023-03-31 17:13:58.007091]
+The remaining IPs with conversation: dict_keys(['150.66.39.241'])
+answer:
+耶稣的名字在希伯来语中是"ישוע"，在希腊语中是"Iesous"，在拉丁语中是"Iesus"。在英语中，我们通常会将其写作"Jesus"。
+error info:
+None
+    [time: 2023-03-31 17:14:01.672738]
+INFO:     150.66.39.241:54266 - "POST /webchat HTTP/1.1" 200 OK
+INFO:     150.66.39.241:54266 - "GET / HTTP/1.1" 200 OK
+INFO:     150.66.39.241:54530 - "GET / HTTP/1.1" 200 OK
+INFO:     150.66.39.241:54530 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     112.10.220.48:9541 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     112.10.220.48:9541 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     112.10.220.48:9554 - "GET / HTTP/1.1" 200 OK
+INFO:     112.10.220.48:9554 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     42.236.10.125:12227 - "GET / HTTP/1.1" 200 OK
+question:
+狗能活多少岁
+    [time: 2023-03-31 17:15:37.808698]
+The remaining IPs with conversation: dict_keys(['150.66.39.241', '112.10.220.48'])
+answer:
+狗的寿命取决于其品种、健康状况、生活方式和遗传基因等因素。通常，小型犬种的寿命可以达到12-16年，中型犬种的寿命可以达到10-13年，大型犬种的寿命则较短，通常为8-10年。但是，有些狗可以活得更长，甚至超过20年。
+error info:
+None
+    [time: 2023-03-31 17:15:43.362746]
+INFO:     112.10.220.48:9555 - "POST /webchat HTTP/1.1" 200 OK
+INFO:     27.115.124.70:46721 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+INFO:     180.163.30.100:35270 - "GET / HTTP/1.1" 200 OK
+INFO:     27.115.124.53:26655 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+INFO:     180.163.29.79:46892 - "GET / HTTP/1.1" 200 OK
+INFO:     27.115.124.45:9911 - "GET / HTTP/1.1" 200 OK
+INFO:     27.115.124.45:9911 - "GET / HTTP/1.1" 200 OK
+INFO:     27.115.124.109:25940 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+INFO:     27.115.124.109:20507 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+INFO:     42.236.10.106:14414 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+WARNING:  Invalid HTTP request received.
+INFO:     150.66.39.241:57080 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+question:
+中国最长时间的朝代
+    [time: 2023-03-31 17:22:36.213849]
+The remaining IPs with conversation: dict_keys(['150.66.39.241', '112.10.220.48'])
+answer:
+中国历史上最长时间的朝代是周朝，共存在了约800年（公元前1046年-公元前256年）。周朝分为西周和东周两个时期，其中西周存在了约250年，东周存在了约550年。周朝是中国古代社会的一个重要阶段，奠定了封建制度的基础，并且在文化、艺术等方面也取得了较为显著的成就。
+error info:
+None
+    [time: 2023-03-31 17:22:41.670312]
+INFO:     150.66.39.241:57620 - "POST /webchat HTTP/1.1" 200 OK
+question:
+最短的呢
+    [time: 2023-03-31 17:23:46.675588]
+The remaining IPs with conversation: dict_keys(['150.66.39.241', '112.10.220.48'])
+answer:
+最短的朝代应该是西汉的王莽新朝，只存在了14年（公元9年-公元23年）。王莽在汉朝灭亡后自立，建立了新朝，但不久就被推翻，恢复了汉朝的统治。
+error info:
+None
+    [time: 2023-03-31 17:23:51.116116]
+INFO:     150.66.39.241:58056 - "POST /webchat HTTP/1.1" 200 OK
+INFO:     112.10.220.48:9574 - "GET / HTTP/1.1" 200 OK
+INFO:     112.10.220.48:9574 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+question:
+婴儿几个月能坐
+    [time: 2023-03-31 17:26:50.365277]
+The remaining IPs with conversation: dict_keys(['150.66.39.241', '112.10.220.48'])
+answer:
+一般来说，婴儿在出生后的头几个月内都无法坐起来。通常在3-6个月的时候，婴儿的颈部和躯干肌肉逐渐得到发展和强化，才能够支撑起身体，开始学会坐起来。但是，具体情况还要根据婴儿的身体发展状况来确定。如果您对婴儿的身体发展有疑问，建议咨询专业医生或儿科医生。
+error info:
+None
+    [time: 2023-03-31 17:26:56.570724]
+INFO:     112.10.220.48:9575 - "POST /webchat HTTP/1.1" 200 OK
+question:
+你是傻逼吗
+    [time: 2023-03-31 17:27:26.322107]
+The remaining IPs with conversation: dict_keys(['150.66.39.241', '112.10.220.48'])
+answer:
+非常抱歉，根据我们的产品规则，无法为你提供该问题的回答，请尝试其他问题。
+error info:
+None
+    [time: 2023-03-31 17:27:26.754393]
+INFO:     112.10.220.48:9628 - "POST /webchat HTTP/1.1" 200 OK
+question:
+好吧
+    [time: 2023-03-31 17:27:34.155107]
+The remaining IPs with conversation: dict_keys(['150.66.39.241', '112.10.220.48'])
+answer:
+如果您有任何其他问题或疑虑，也可以随时向我提出，我会尽力回答您的问题。
+error info:
+None
+    [time: 2023-03-31 17:27:36.233844]
+INFO:     112.10.220.48:9638 - "POST /webchat HTTP/1.1" 200 OK
+question:
+好吧
+    [time: 2023-03-31 17:27:36.236665]
+The remaining IPs with conversation: dict_keys(['150.66.39.241', '112.10.220.48'])
+answer:
+如果您还有其他问题需要咨询，可以随时向我提出。我会尽我所能回答您的问题。
+error info:
+None
+    [time: 2023-03-31 17:27:38.014203]
+INFO:     112.10.220.48:9640 - "POST /webchat HTTP/1.1" 200 OK
+question:
+好吧
+    [time: 2023-03-31 17:27:38.015670]
+The remaining IPs with conversation: dict_keys(['150.66.39.241', '112.10.220.48'])
+answer:
+请告诉我您有什么问题或需要帮助的地方。我会尽力回答您的疑虑。
+error info:
+None
+    [time: 2023-03-31 17:27:40.026688]
+INFO:     112.10.220.48:9641 - "POST /webchat HTTP/1.1" 200 OK
+question:
+好吧
+    [time: 2023-03-31 17:27:40.383894]
+The remaining IPs with conversation: dict_keys(['150.66.39.241', '112.10.220.48'])
+answer:
+请问您有什么需要我帮忙的地方吗？
+error info:
+None
+    [time: 2023-03-31 17:27:41.879957]
+INFO:     112.10.220.48:9641 - "POST /webchat HTTP/1.1" 200 OK
+INFO:     180.163.28.109:35504 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+INFO:     112.10.220.48:9574 - "GET / HTTP/1.1" 200 OK
+INFO:     112.10.220.48:9574 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     190.112.65.251:35820 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     23.101.191.98:36148 - "GET /.env HTTP/1.1" 404 Not Found
+INFO:     23.101.191.98:36160 - "POST / HTTP/1.1" 405 Method Not Allowed
+WARNING:  Invalid HTTP request received.
+INFO:     142.93.195.217:40838 - "GET /manager/html HTTP/1.1" 404 Not Found
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 91, in __call__
+    await response(scope, receive, sender)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/responses.py", line 164, in __call__
+    await send(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 65, in sender
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 159, in _send
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 513, in send
+    output = self.conn.send(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 512, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 537, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 272, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 293, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 311, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+h11._util.LocalProtocolError: can't handle event type Response when role=SERVER and state=MUST_CLOSE
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     142.93.195.217:52674 - "GET /manager/html HTTP/1.1" 404 Not Found
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 91, in __call__
+    await response(scope, receive, sender)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/responses.py", line 164, in __call__
+    await send(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 65, in sender
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 159, in _send
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 513, in send
+    output = self.conn.send(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 512, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 537, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 272, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 293, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 311, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+h11._util.LocalProtocolError: can't handle event type Response when role=SERVER and state=MUST_CLOSE
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     78.108.177.51:37974 - "GET / HTTP/1.0" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     112.10.220.48:42847 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     112.10.220.48:9726 - "GET / HTTP/1.1" 200 OK
+INFO:     112.10.220.48:9726 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+question:
+你好
+    [time: 2023-03-31 23:11:23.214332]
+The remaining IPs with conversation: dict_keys(['112.10.220.48'])
+answer:
+你好！我是AI助手，有什么我能帮助你的吗？
+error info:
+None
+    [time: 2023-03-31 23:11:25.835520]
+INFO:     112.10.220.48:9552 - "POST /webchat HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     142.93.195.217:49350 - "GET /manager/html HTTP/1.1" 404 Not Found
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 91, in __call__
+    await response(scope, receive, sender)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/responses.py", line 164, in __call__
+    await send(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 65, in sender
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 159, in _send
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 513, in send
+    output = self.conn.send(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 512, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 537, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 272, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 293, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 311, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+h11._util.LocalProtocolError: can't handle event type Response when role=SERVER and state=MUST_CLOSE
+INFO:     180.163.29.212:36976 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     175.178.136.143:49794 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+INFO:     175.178.136.143:49794 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     46.174.191.30:38364 - "GET / HTTP/1.0" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     114.253.76.102:39500 - "GET / HTTP/1.1" 200 OK
+INFO:     114.253.76.102:39500 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     112.10.220.48:9638 - "GET / HTTP/1.1" 200 OK
+INFO:     112.10.220.48:9638 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+question:
+中国朝代史
+    [time: 2023-04-01 00:50:22.617106]
+The remaining IPs with conversation: dict_keys(['112.10.220.48'])
+answer:
+sorry，当前访问人数太多，请稍后再试！
+error info:
+None
+    [time: 2023-04-01 00:52:01.428812]
+INFO:     112.10.220.48:9651 - "POST /webchat HTTP/1.1" 200 OK
+question:
+中国朝代史
+    [time: 2023-04-01 00:52:01.430605]
+The remaining IPs with conversation: dict_keys(['112.10.220.48'])
+answer:
+sorry，当前访问人数太多，请稍后再试！
+error info:
+None
+    [time: 2023-04-01 00:53:27.234346]
+INFO:     112.10.220.48:9662 - "POST /webchat HTTP/1.1" 200 OK
+INFO:     112.10.220.48:9638 - "GET / HTTP/1.1" 200 OK
+INFO:     112.10.220.48:9536 - "GET / HTTP/1.1" 200 OK
+INFO:     112.10.220.48:9546 - "GET / HTTP/1.1" 200 OK
+INFO:     112.10.220.48:9614 - "GET / HTTP/1.1" 200 OK
+INFO:     112.10.220.48:9614 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+question:
+中国朝代史
+    [time: 2023-04-01 00:53:43.946043]
+The remaining IPs with conversation: dict_keys(['112.10.220.48'])
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/dramkit/openai/aiedu_chat.py", line 40, in _chat
+    res = response.json()['choices'][0]['text'].strip()
+KeyError: 'choices'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/dramkit/gentools.py", line 283, in repeater
+    result = func(*args, **kwargs)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/dramkit/openai/aiedu_chat.py", line 44, in _chat
+    return False, exc.error.to_dict()
+AttributeError: 'KeyError' object has no attribute 'error'
+
+    [time: 2023-04-01 01:02:04.299678]
+`_chat`运行失败，共运行了1次。
+    [time: 2023-04-01 01:02:04.300511]
+INFO:     112.10.220.48:9591 - "POST /webchat HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 21, in __call__
+    raise e
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 716, in __call__
+    await route.handle(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 237, in app
+    raw_response = await run_endpoint_function(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 163, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/home/glhyy/_aiedu/aiedu_chat_web.py", line 66, in webchat
+    result, error_info = CONVERS[ip]['chater'].chat(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/dramkit/openai/aiedu_chat.py", line 109, in chat
+    ans = self._chat(question, **kwargs)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/dramkit/openai/aiedu_chat.py", line 125, in _chat
+    suscess, result = _chat(messages, **kwargs)
+TypeError: cannot unpack non-iterable NoneType object
+WARNING:  Invalid HTTP request received.
+INFO:     42.3.27.7:59942 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     42.3.27.7:59950 - "GET / HTTP/1.1" 200 OK
+INFO:     42.3.27.7:33272 - "GET / HTTP/1.1" 200 OK
+INFO:     42.3.27.7:45170 - "GET / HTTP/1.1" 200 OK
+INFO:     42.3.27.7:49636 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     42.3.27.7:49646 - "GET / HTTP/1.1" 200 OK
+INFO:     42.3.27.88:7544 - "GET / HTTP/1.1" 200 OK
+INFO:     42.3.27.88:18438 - "GET / HTTP/1.1" 200 OK
+INFO:     42.3.27.7:63250 - "GET / HTTP/1.1" 200 OK
+INFO:     42.3.27.7:63250 - "GET http%3A//glhyychat.japaneast.cloudapp.azure.com%3A8080/favicon.ico HTTP/1.1" 404 Not Found
+INFO:     172.105.124.154:46340 - "POST /boaform/admin/formLogin HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     112.10.220.48:9595 - "GET / HTTP/1.1" 200 OK
+INFO:     112.10.220.48:9595 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+question:
+中国朝代史
+    [time: 2023-04-01 01:20:47.883622]
+The remaining IPs with conversation: dict_keys(['112.10.220.48'])
+answer:
+sorry，当前访问人数太多，请稍后再试！
+error info:
+None
+    [time: 2023-04-01 01:22:57.219056]
+INFO:     112.10.220.48:9596 - "POST /webchat HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     74.235.152.95:59068 - "GET / HTTP/1.0" 200 OK
+INFO:     74.235.152.95:59128 - "OPTIONS / HTTP/1.0" 405 Method Not Allowed
+WARNING:  Invalid HTTP request received.
+INFO:     74.235.152.95:59158 - "GET /nice%20ports%2C/Trinity.txt.bak HTTP/1.0" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     139.59.37.208:59844 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     139.59.37.208:59862 - "GET http%3A//checkip.dyndns.org/ HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     205.210.31.11:64656 - "GET / HTTP/1.1" 200 OK
+INFO:     115.192.201.244:64221 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     45.79.172.21:5332 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     64.62.197.109:30103 - "GET / HTTP/1.1" 200 OK
+INFO:     64.62.197.121:20673 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     64.62.197.111:29603 - "GET http%3A//api.ipify.org/?format=json HTTP/1.1" 404 Not Found
+INFO:     64.62.197.111:48905 - "CONNECT www.shadowserver.org%3A443 HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     111.183.112.11:3981 - "GET / HTTP/1.1" 200 OK
+INFO:     111.183.112.11:3909 - "GET / HTTP/1.1" 200 OK
+INFO:     111.183.112.11:3909 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     198.235.24.23:58174 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     198.235.24.158:49187 - "GET / HTTP/1.0" 200 OK
+INFO:     47.87.230.235:38478 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     111.183.112.11:4031 - "GET / HTTP/1.1" 200 OK
+INFO:     111.183.112.11:4031 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+question:
+天下谁最美
+    [time: 2023-04-01 04:49:08.107107]
+The remaining IPs with conversation: dict_keys(['111.183.112.11'])
+answer:
+sorry，当前访问人数太多，请稍后再试！
+error info:
+None
+    [time: 2023-04-01 04:54:02.164187]
+INFO:     111.183.112.11:3996 - "POST /webchat HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+question:
+天下谁最美
+    [time: 2023-04-01 04:54:02.168113]
+The remaining IPs with conversation: dict_keys(['111.183.112.11'])
+answer:
+非常抱歉，根据我们的产品规则，无法为你提供该问题的回答，请尝试其他问题。
+error info:
+None
+    [time: 2023-04-01 04:54:02.637630]
+INFO:     111.183.112.11:3997 - "POST /webchat HTTP/1.1" 200 OK
+question:
+天下谁最美
+    [time: 2023-04-01 04:54:02.638801]
+The remaining IPs with conversation: dict_keys(['111.183.112.11'])
+answer:
+非常抱歉，根据我们的产品规则，无法为你提供该问题的回答，请尝试其他问题。
+error info:
+None
+    [time: 2023-04-01 04:54:02.968905]
+INFO:     111.183.112.11:4002 - "POST /webchat HTTP/1.1" 200 OK
+question:
+天下谁最美
+    [time: 2023-04-01 04:54:02.970356]
+The remaining IPs with conversation: dict_keys(['111.183.112.11'])
+answer:
+非常抱歉，根据我们的产品规则，无法为你提供该问题的回答，请尝试其他问题。
+error info:
+None
+    [time: 2023-04-01 04:54:03.207226]
+INFO:     111.183.112.11:3986 - "POST /webchat HTTP/1.1" 200 OK
+INFO:     112.17.247.183:27105 - "GET / HTTP/1.1" 200 OK
+INFO:     112.17.247.183:27106 - "GET / HTTP/1.1" 200 OK
+INFO:     112.17.247.183:27107 - "GET / HTTP/1.1" 200 OK
+INFO:     112.17.247.183:27108 - "GET / HTTP/1.1" 200 OK
+INFO:     112.17.247.183:27109 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     183.6.9.76:55767 - "GET / HTTP/1.1" 200 OK
+INFO:     183.6.9.76:55767 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+question:
+你是谁
+    [time: 2023-04-01 05:18:12.642782]
+The remaining IPs with conversation: dict_keys(['183.6.9.76'])
+answer:
+我是一个AI语言模型，专门用来回答您的问题和提供帮助。
+error info:
+None
+    [time: 2023-04-01 05:18:19.193587]
+INFO:     183.6.9.76:52194 - "POST /webchat HTTP/1.1" 200 OK
+question:
+你是谁
+    [time: 2023-04-01 05:18:19.195726]
+The remaining IPs with conversation: dict_keys(['183.6.9.76'])
+answer:
+我是一个AI语言模型，由计算机程序驱动，可以模拟人类的语言交流，帮助回答问题和提供相关信息。
+error info:
+None
+    [time: 2023-04-01 05:18:22.854164]
+INFO:     183.6.9.76:13268 - "POST /webchat HTTP/1.1" 200 OK
+question:
+你是谁
+    [time: 2023-04-01 05:18:22.855677]
+The remaining IPs with conversation: dict_keys(['183.6.9.76'])
+answer:
+我是一个AI语言模型，由计算机程序驱动，可以模拟人类的语言交流，帮助回答问题和提供相关信息。
+error info:
+None
+    [time: 2023-04-01 05:18:26.015189]
+INFO:     183.6.9.76:11253 - "POST /webchat HTTP/1.1" 200 OK
+question:
+你是谁
+    [time: 2023-04-01 05:18:26.018275]
+The remaining IPs with conversation: dict_keys(['183.6.9.76'])
+answer:
+我是一个AI语言模型，专门用来回答您的问题和提供帮助。
+error info:
+None
+    [time: 2023-04-01 05:18:28.301776]
+INFO:     183.6.9.76:47081 - "POST /webchat HTTP/1.1" 200 OK
+question:
+你是谁
+    [time: 2023-04-01 05:18:28.303000]
+The remaining IPs with conversation: dict_keys(['183.6.9.76'])
+answer:
+我是一个AI语言模型，由计算机程序驱动，可以模拟人类的语言交流，帮助回答问题和提供相关信息。
+error info:
+None
+    [time: 2023-04-01 05:18:31.208688]
+INFO:     183.6.9.76:24058 - "POST /webchat HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+question:
+可以帮我写论文吗
+    [time: 2023-04-01 05:24:10.176839]
+The remaining IPs with conversation: dict_keys(['183.6.9.76'])
+answer:
+我很抱歉，我不可以直接为您撰写论文。作为一个AI语言模型，我的目的是为您提供信息和答案，并帮助您解决问题。如果您需要撰写论文，我可以提供一些写作建议和指导，但是最终的论文还需要您自己完成。
+error info:
+None
+    [time: 2023-04-01 05:24:15.690566]
+INFO:     183.6.9.76:6020 - "POST /webchat HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     81.211.44.50:58060 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     107.170.229.6:45444 - "GET /hudson HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+INFO:     78.108.177.51:37974 - "GET / HTTP/1.0" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+question:
+这篇论文Rethinking Image Restoration for Object Detection讲了什么
+    [time: 2023-04-01 06:40:18.668350]
+The remaining IPs with conversation: dict_keys(['183.6.9.76'])
+answer:
+这篇论文主要探讨了图像修复对于目标检测的影响，并提出了一种新的方法来重新思考图像修复的问题。论文指出，传统的图像修复方法通常会在修复图像时丢失一些重要的目标信息，从而对目标检测的准确性产生负面影响。为了解决这个问题，论文提出了一种新的方法，即使用深度学习模型来同时进行图像修复和目标检测，从而保证修复后的图像仍然包含重要的目标信息。该方法在多个数据集上进行实验，结果表明其能够有效提高目标检测的准确性。
+error info:
+None
+    [time: 2023-04-01 06:40:28.965422]
+INFO:     183.6.9.76:12920 - "POST /webchat HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     59.98.136.53:38678 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     198.199.119.63:46226 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     87.236.176.81:47951 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     162.243.150.11:55560 - "GET / HTTP/1.1" 200 OK
+INFO:     89.248.168.235:44640 - "CONNECT google.com%3A443 HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     41.216.182.168:43068 - "CONNECT google.com%3A443 HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     42.3.27.7:1622 - "GET / HTTP/1.1" 200 OK
+question:
+中国朝代历史
+    [time: 2023-04-01 09:42:42.063142]
+The remaining IPs with conversation: dict_keys(['42.3.27.7'])
+answer:
+中国历史上有许多朝代，以下为主要的朝代历史：
+
+1. 夏朝（约公元前2070年-约公元前1600年）
+夏朝是中国历史上的第一个朝代，由大禹建立，是一个以氏族联盟为基础的王朝。夏朝的最大特点是用 bronzeware（青铜器）作为重要的礼仪器物。
+
+2. 商朝（约公元前1600年-约公元前1046年）
+商朝是中国历史上的第二个朝代，是一个以商人为主的王朝。商朝的最大特点是用 oracle bones（甲骨文）进行卜卦、预测未来。
+
+3. 周朝（约公元前1046年-公元256年）
+周朝是中国历史上的第三个朝代，是一个以农民为主的王朝。周朝的最大特点是实行封建制度，统治者将土地赏赐给亲信，而被赏赐者则要向统治者效忠。
+
+4. 秦朝（公元221年-公元206年）
+秦朝是中国历史上的第一个封建王朝，由秦始皇建立。秦朝的最大特点是进行大规模的改革，统一货币、文字、度量衡、法律等制度，修建了万里长城。
+
+5. 汉朝（公元206年-公元220年）
+汉朝是中国历史上的第二个封建王朝，由刘邦建立。汉朝的最大特点是推行儒家思想，实行科举制度，开放“丝绸之路”贸易。
+
+6. 魏晋南北朝（公元220年-公元589年）
+这个时期是中国历史上的动荡时期，有魏、晋、南北朝等多个朝代交替。这个时期的最大特点是民族大迁徙，北方游牧民族逐渐南下，南方的汉族逐渐向南方迁徙。
+
+7. 隋朝（公元581年-公元618年）
+隋朝是中国历史上的第三个封建王朝，由杨坚建立。隋朝的最大特点是统一北方和南方，完成了大运河的修建。
+
+8. 唐朝（公元618年-公元907年）
+唐朝是中国历史上最辉煌的朝代之一，是一个以士族为主的王朝。唐朝的最大特点是开放对外贸易和文化交流，统一文字和度量衡，发明了活字印刷。
+
+9. 宋朝（公元960年-公元1279年）
+宋朝是中国历史上的第四个封建王朝，由赵匡胤建立。宋朝的最大特点是实行科技创新，发明了火药、指南针、活字印刷、纸币等重要技术。
+
+10. 元朝（公元1271年-公元1368年）
+元朝是中国历史上的第一个外族王朝，由成吉思汗的孙子忽必烈建立。元朝的最大特点是扩大了中国的领土，建立了蒙古汉文化的交融。
+
+11. 明朝（公元1368年-公元1644年）
+明朝是中国历史上的第五个封建王朝，由朱元璋建立。明朝的最大特点是进行了国内的大规模改革，如开疆拓土、重修水利、实行科举制度等。
+
+12. 清朝（公元1644年-1911年）
+清朝是中国历史上的最后一个封建王朝，由满族人建立。清朝的最大特点是进行了对外的扩张，如康熙、雍正、乾隆三朝的“领土之最”。
+error info:
+None
+    [time: 2023-04-01 09:43:39.900379]
+INFO:     42.3.27.7:61090 - "POST /webchat HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     162.243.143.22:58270 - "GET /actuator/health HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+INFO:     107.190.248.119:52378 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     180.155.0.237:51150 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     146.196.63.118:32939 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     193.35.18.221:56262 - "CONNECT google.com%3A443 HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     161.35.125.12:52102 - "GET /manager/html HTTP/1.1" 404 Not Found
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 91, in __call__
+    await response(scope, receive, sender)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/responses.py", line 164, in __call__
+    await send(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 65, in sender
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 159, in _send
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 513, in send
+    output = self.conn.send(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 512, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 537, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 272, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 293, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 311, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+h11._util.LocalProtocolError: can't handle event type Response when role=SERVER and state=MUST_CLOSE
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     194.55.224.203:43528 - "POST /cgi-bin/.%25%25%252%25e/.%25%25%252%25e/.%25%25%252%25e/.%25%25%252%25e/.%25%25%252%25e/bin/sh HTTP/1.1" 404 Not Found
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 91, in __call__
+    await response(scope, receive, sender)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/responses.py", line 164, in __call__
+    await send(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 65, in sender
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 159, in _send
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 513, in send
+    output = self.conn.send(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 512, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 537, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 272, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 293, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 311, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+h11._util.LocalProtocolError: can't handle event type Response when role=SERVER and state=MUST_CLOSE
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     92.118.39.82:58996 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     142.93.195.217:58984 - "GET /manager/html HTTP/1.1" 404 Not Found
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 91, in __call__
+    await response(scope, receive, sender)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/responses.py", line 164, in __call__
+    await send(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 65, in sender
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 159, in _send
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 513, in send
+    output = self.conn.send(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 512, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 537, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 272, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 293, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 311, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+h11._util.LocalProtocolError: can't handle event type Response when role=SERVER and state=MUST_CLOSE
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     167.94.138.125:48634 - "GET / HTTP/1.1" 200 OK
+INFO:     167.94.138.125:41034 - "PRI %2A HTTP/2.0" 404 Not Found
+WARNING:  Invalid HTTP request received.
+INFO:     167.94.138.125:53754 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     161.35.125.12:60280 - "GET /manager/html HTTP/1.1" 404 Not Found
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 91, in __call__
+    await response(scope, receive, sender)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/responses.py", line 164, in __call__
+    await send(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 65, in sender
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 159, in _send
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 513, in send
+    output = self.conn.send(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 512, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 537, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 272, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 293, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 311, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+h11._util.LocalProtocolError: can't handle event type Response when role=SERVER and state=MUST_CLOSE
+WARNING:  Invalid HTTP request received.
+INFO:     152.89.196.54:49912 - "GET /?XDEBUG_SESSION_START=phpstorm HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     152.89.196.54:38416 - "GET /actuator/gateway/routes HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     142.93.195.217:40868 - "GET /manager/html HTTP/1.1" 404 Not Found
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 91, in __call__
+    await response(scope, receive, sender)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/responses.py", line 164, in __call__
+    await send(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 65, in sender
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 159, in _send
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 513, in send
+    output = self.conn.send(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 512, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 537, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 272, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 293, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 311, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+h11._util.LocalProtocolError: can't handle event type Response when role=SERVER and state=MUST_CLOSE
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     45.61.185.123:54374 - "CONNECT www.baidu.com%3A443 HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     193.35.18.103:49356 - "CONNECT ssl.getitnow.pro%3A443 HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     142.93.195.217:36104 - "GET /manager/html HTTP/1.1" 404 Not Found
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 91, in __call__
+    await response(scope, receive, sender)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/responses.py", line 164, in __call__
+    await send(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 65, in sender
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 159, in _send
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 513, in send
+    output = self.conn.send(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 512, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 537, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 272, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 293, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 311, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+h11._util.LocalProtocolError: can't handle event type Response when role=SERVER and state=MUST_CLOSE
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     103.239.204.208:23108 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     198.235.24.6:61920 - "GET / HTTP/1.1" 200 OK
+INFO:     198.235.24.2:52929 - "GET / HTTP/1.0" 200 OK
+INFO:     46.174.191.29:38364 - "GET / HTTP/1.0" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     195.58.39.198:44912 - "CONNECT google.com%3A443 HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     161.35.125.12:34250 - "GET /manager/html HTTP/1.1" 404 Not Found
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 91, in __call__
+    await response(scope, receive, sender)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/responses.py", line 164, in __call__
+    await send(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 65, in sender
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 159, in _send
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 513, in send
+    output = self.conn.send(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 512, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 537, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 272, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 293, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 311, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+h11._util.LocalProtocolError: can't handle event type Response when role=SERVER and state=MUST_CLOSE
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     165.227.0.21:52986 - "GET / HTTP/1.0" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     142.93.195.217:46038 - "GET /manager/html HTTP/1.1" 404 Not Found
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 91, in __call__
+    await response(scope, receive, sender)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/responses.py", line 164, in __call__
+    await send(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 65, in sender
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 159, in _send
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 513, in send
+    output = self.conn.send(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 512, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 537, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 272, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 293, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 311, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+h11._util.LocalProtocolError: can't handle event type Response when role=SERVER and state=MUST_CLOSE
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     142.93.195.217:44338 - "GET /manager/html HTTP/1.1" 404 Not Found
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 91, in __call__
+    await response(scope, receive, sender)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/responses.py", line 164, in __call__
+    await send(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 65, in sender
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 159, in _send
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 513, in send
+    output = self.conn.send(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 512, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 537, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 272, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 293, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 311, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+h11._util.LocalProtocolError: can't handle event type Response when role=SERVER and state=MUST_CLOSE
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     190.211.252.122:42228 - "CONNECT pro.ip-api.com%3A443 HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     161.35.125.12:57896 - "GET /manager/html HTTP/1.1" 404 Not Found
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 91, in __call__
+    await response(scope, receive, sender)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/responses.py", line 164, in __call__
+    await send(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 65, in sender
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 159, in _send
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 513, in send
+    output = self.conn.send(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 512, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 537, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 272, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 293, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 311, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+h11._util.LocalProtocolError: can't handle event type Response when role=SERVER and state=MUST_CLOSE
+INFO:     54.219.173.74:54544 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     92.118.39.82:37548 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     161.35.125.12:53668 - "GET /manager/html HTTP/1.1" 404 Not Found
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 91, in __call__
+    await response(scope, receive, sender)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/responses.py", line 164, in __call__
+    await send(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 65, in sender
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 159, in _send
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 513, in send
+    output = self.conn.send(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 512, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 537, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 272, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 293, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 311, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+h11._util.LocalProtocolError: can't handle event type Response when role=SERVER and state=MUST_CLOSE
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     20.115.211.154:59567 - "GET / HTTP/1.0" 200 OK
+INFO:     20.115.211.154:59616 - "OPTIONS / HTTP/1.0" 405 Method Not Allowed
+WARNING:  Invalid HTTP request received.
+INFO:     20.115.211.154:59634 - "GET /nice%20ports%2C/Trinity.txt.bak HTTP/1.0" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     78.108.177.52:37974 - "GET / HTTP/1.0" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     103.103.131.196:60950 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     142.93.195.217:38184 - "GET /manager/html HTTP/1.1" 404 Not Found
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 91, in __call__
+    await response(scope, receive, sender)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/responses.py", line 164, in __call__
+    await send(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 65, in sender
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 159, in _send
+    await send(message)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 513, in send
+    output = self.conn.send(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 512, in send
+    data_list = self.send_with_data_passthrough(event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 537, in send_with_data_passthrough
+    self._process_event(self.our_role, event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_connection.py", line 272, in _process_event
+    self._cstate.process_event(role, type(event), server_switch_event)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 293, in process_event
+    self._fire_event_triggered_transitions(role, _event_type)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/h11/_state.py", line 311, in _fire_event_triggered_transitions
+    raise LocalProtocolError(
+h11._util.LocalProtocolError: can't handle event type Response when role=SERVER and state=MUST_CLOSE
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     42.3.27.7:53792 - "GET / HTTP/1.1" 200 OK
+INFO:     42.3.27.7:53792 - "GET http%3A//glhyy.japaneast.cloudapp.azure.com%3A8080/favicon.ico HTTP/1.1" 404 Not Found
+INFO:     42.3.27.7:53794 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+question:
+汉武帝活了多少岁
+    [time: 2023-04-02 04:03:58.543259]
+The remaining IPs with conversation: dict_keys(['42.3.27.7'])
+answer:
+汉武帝刘彻活了54岁，生于前156年，卒于前87年。
+error info:
+None
+    [time: 2023-04-02 04:04:00.929962]
+INFO:     42.3.27.7:5016 - "POST /webchat HTTP/1.1" 200 OK
+INFO:     27.115.124.53:22462 - "GET / HTTP/1.1" 200 OK
+INFO:     27.115.124.45:38624 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+INFO:     27.115.124.109:40669 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+INFO:     27.115.124.38:47016 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+INFO:     27.115.124.38:47016 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+INFO:     27.115.124.70:38226 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+INFO:     27.115.124.70:38226 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+INFO:     27.115.124.38:45422 - "GET / HTTP/1.1" 200 OK
+INFO:     27.115.124.38:45422 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     47.87.230.235:33252 - "GET / HTTP/1.1" 200 OK
+INFO:     80.87.206.190:62241 - "HEAD / HTTP/1.1" 405 Method Not Allowed
+INFO:     80.87.206.190:62241 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     178.32.197.90:55941 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     45.33.80.243:28038 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     92.118.39.82:34338 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     178.128.21.155:35206 - "GET / HTTP/1.0" 200 OK
+INFO:     178.128.21.155:56556 - "OPTIONS / HTTP/1.0" 405 Method Not Allowed
+WARNING:  Invalid HTTP request received.
+INFO:     178.128.21.155:56578 - "GET /nice%20ports%2C/Trinity.txt.bak HTTP/1.0" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     170.254.73.156:7471 - "GET / HTTP/1.1" 200 OK
+INFO:     24.176.175.60:54318 - "GET / HTTP/1.1" 200 OK
+INFO:     24.176.175.60:54343 - "GET /manager/html HTTP/1.1" 404 Not Found
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     150.66.39.241:45124 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     150.66.39.241:45124 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     150.66.39.241:45154 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+INFO:     150.66.39.241:45154 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     150.66.39.241:45328 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     150.66.39.241:45338 - "GET / HTTP/1.1" 200 OK
+question:
+昭通有多少个区县
+    [time: 2023-04-02 05:31:38.933326]
+The remaining IPs with conversation: dict_keys(['150.66.39.241'])
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/dramkit/openai/aiedu_chat.py", line 40, in _chat
+    res = response.json()['choices'][0]['text'].strip()
+KeyError: 'choices'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/dramkit/gentools.py", line 283, in repeater
+    result = func(*args, **kwargs)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/dramkit/openai/aiedu_chat.py", line 44, in _chat
+    return False, exc.error.to_dict()
+AttributeError: 'KeyError' object has no attribute 'error'
+
+    [time: 2023-04-02 05:39:59.382855]
+`_chat`运行失败，共运行了1次。
+    [time: 2023-04-02 05:39:59.382906]
+INFO:     150.66.39.241:45578 - "POST /webchat HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 21, in __call__
+    raise e
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 716, in __call__
+    await route.handle(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 237, in app
+    raw_response = await run_endpoint_function(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 163, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/home/glhyy/_aiedu/aiedu_chat_web.py", line 66, in webchat
+    result, error_info = CONVERS[ip]['chater'].chat(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/dramkit/openai/aiedu_chat.py", line 109, in chat
+    ans = self._chat(question, **kwargs)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/dramkit/openai/aiedu_chat.py", line 125, in _chat
+    suscess, result = _chat(messages, **kwargs)
+TypeError: cannot unpack non-iterable NoneType object
+WARNING:  Invalid HTTP request received.
+question:
+昭通有多少个区县
+    [time: 2023-04-02 05:39:59.387404]
+The remaining IPs with conversation: dict_keys(['150.66.39.241'])
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/dramkit/openai/aiedu_chat.py", line 40, in _chat
+    res = response.json()['choices'][0]['text'].strip()
+KeyError: 'choices'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/dramkit/gentools.py", line 283, in repeater
+    result = func(*args, **kwargs)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/dramkit/openai/aiedu_chat.py", line 44, in _chat
+    return False, exc.error.to_dict()
+AttributeError: 'KeyError' object has no attribute 'error'
+
+    [time: 2023-04-02 05:48:19.782729]
+`_chat`运行失败，共运行了1次。
+    [time: 2023-04-02 05:48:19.782778]
+INFO:     150.66.39.241:46470 - "POST /webchat HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 429, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 78, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/applications.py", line 273, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/applications.py", line 120, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 21, in __call__
+    raise e
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 716, in __call__
+    await route.handle(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 237, in app
+    raw_response = await run_endpoint_function(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/fastapi/routing.py", line 163, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/home/glhyy/_aiedu/aiedu_chat_web.py", line 66, in webchat
+    result, error_info = CONVERS[ip]['chater'].chat(
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/dramkit/openai/aiedu_chat.py", line 109, in chat
+    ans = self._chat(question, **kwargs)
+  File "/home/glhyy/anaconda3/lib/python3.9/site-packages/dramkit/openai/aiedu_chat.py", line 125, in _chat
+    suscess, result = _chat(messages, **kwargs)
+TypeError: cannot unpack non-iterable NoneType object
+INFO:     150.66.39.241:47592 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+INFO:     150.66.39.241:48224 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+INFO:     150.66.39.241:48798 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+INFO:     150.66.39.241:49418 - "GET /webchat HTTP/1.1" 405 Method Not Allowed
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:      - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     112.10.220.48:9570 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     112.10.220.48:9583 - "GET / HTTP/1.1" 200 OK
+INFO:     112.10.220.48:9584 - "GET / HTTP/1.1" 200 OK
+INFO:     112.10.220.48:9585 - "GET /favicon.ico HTTP/1.1" 404 Not Found

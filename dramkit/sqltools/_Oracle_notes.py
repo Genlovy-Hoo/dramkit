@@ -8,7 +8,7 @@ r'''
 -- 大写字母为SQL命令，小写字母为对象名称
 -- []中为可选参数
 
--- 登录: sqlplus 输入用户名(sys as sysdb)和密码
+-- 登录: sqlplus 输入用户名(sys as sysdba)和密码
 
 CONN / as sysdba; /*sys连接，出现`SP2-0640: 未连接`错误时用*/
 

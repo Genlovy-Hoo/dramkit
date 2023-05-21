@@ -8,9 +8,9 @@ import os
 import sys
 import subprocess
 import pandas as pd
-from dramkit.gentools import cut_df_by_con_val, isnull
+from dramkit.gentools import cut_df_by_con_val, isnull, check_list_arg
 from dramkit.iotools import read_lines, load_csv, logger_show
-from dramkit.iotools import find_dir_include_str
+from dramkit.iotools import find_dir_include_str, del_specified_subdir
 
 from dramkit.other.langconv import Converter
 
@@ -206,6 +206,15 @@ def _find_pypkgs_str(tgt_str, pkgs=None, **kwargs):
                                           file_types='.py', **kwargs))
     files = pd.concat(files, axis=0)
     return files
+
+
+def _drop_pypkgs_dir(dirname='__pycache__', pkgs=None, **kwargs):
+    pkgs = check_list_arg(pkgs, allow_none=True)
+    if isnull(pkgs):
+        pkgs = ['DramKit', 'FinFactory', 'ChnCal']
+    pkg_paths = [x for x in sys.path if any([y in os.path.basename(x) for y in pkgs])]
+    for fdir in pkg_paths:
+        del_specified_subdir(fdir, dirname, **kwargs)
 
 
 def install_pkg(pkg_name, version=None, upgrade=False,

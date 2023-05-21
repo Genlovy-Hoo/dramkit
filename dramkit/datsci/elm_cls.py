@@ -168,15 +168,15 @@ class ELMClassifier(object):
 
 #%%
 if __name__ == '__main__':
-    import time
     import pandas as pd
     from sklearn import metrics
     import sklearn.datasets as datasets
     from sklearn.model_selection import train_test_split as tts
+    from dramkit import TimeRecoder
     from dramkit.datsci.preprocess import scale_skl
 
 
-    strt_tm = time.time()
+    tr = TimeRecoder()
 
     #%%
     data = datasets.load_iris()
@@ -206,4 +206,4 @@ if __name__ == '__main__':
         print('n_hide - %d, acc：%f' % (n_hide, acc))
 
     #%%
-    print('used time: {}s.'.format(round(time.time()-strt_tm, 6)))
+    tr.used()

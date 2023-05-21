@@ -140,7 +140,7 @@ def alo(objf, func_opter_parms):
     nshow = func_opter_parms.parms_log['nshow']
 
     # 时间记录
-    strt_tm = time.time()
+    strt_tm = time.monotonic()
     func_opter_parms.set_start_time(time.strftime('%Y-%m-%d %H:%M:%S'))
 
 
@@ -218,7 +218,7 @@ def alo(objf, func_opter_parms):
 
 
     # 更新func_opter_parms
-    end_tm = time.time()
+    end_tm = time.monotonic()
     func_opter_parms.set_end_time(time.strftime('%Y-%m-%d %H:%M:%S'))
     func_opter_parms.set_exe_time(end_tm-strt_tm)
     func_opter_parms.set_convergence_curve(convergence_curve)
@@ -233,12 +233,12 @@ if __name__ == '__main__':
     import pandas as pd
     from dramkit.optimizer.base_funcs import TestFuncs
     from dramkit.optimizer.utils_heuristic import FuncOpterInfo
-    from dramkit import plot_series, simple_logger
+    from dramkit import plot_series, simple_logger, TimeRecoder
     from dramkit.logtools.logger_general import get_logger
     from dramkit.logtools.utils_logger import close_log_file
 
 
-    strt_tm = time.time()
+    tr = TimeRecoder()
 
     # objf = TestFuncs.f5
     # parms_func = {'func_name': objf.__name__,
@@ -268,4 +268,4 @@ if __name__ == '__main__':
     close_log_file(logger)
 
 
-    print('used time: {}s.'.format(round(time.time()-strt_tm, 6)))
+    tr.used()

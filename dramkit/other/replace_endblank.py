@@ -46,8 +46,8 @@ def replace_endblank_in_file(fpath, func_new_path=None, logger=None,
 
 
 if __name__ == '__main__':
-    import time
-    strt_tm = time.time()
+    from dramkit import TimeRecoder
+    tr = TimeRecoder()
 
     root_dir = './'
     files_types = ['.py_']
@@ -61,4 +61,4 @@ if __name__ == '__main__':
                                  encoding_new=encoding_new)
 
 
-    print('used time: %ss.'%(round(time.time()-strt_tm, 6)))
+    tr.used()

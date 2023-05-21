@@ -246,9 +246,10 @@ class PyMySQL(object):
         return res
     
     def has_table(self, tb_name, db_name=None):
-        tbs = self.show_tables(db_name=db_name)
-        return tb_name.lower() in [x.lower() for x in tbs]
-        
+        # tbs = self.show_tables(db_name=db_name)
+        # return tb_name.lower() in [x.lower() for x in tbs]
+        return self.execute_sql('SHOW TABLES LIKE "{}"'.format(tb_name), db_name=db_name).shape[0] > 0
+
         
 def _check_list_arg(arg, allow_none=True):
     if allow_none:
@@ -293,8 +294,9 @@ def execute_sql(conn, sql_str, db_name=None, to_df=True):
 
 
 def has_table(conn, tb_name, db_name=None):
-    tbs = show_tables(conn, db_name=db_name)
-    return tb_name.lower() in [x.lower() for x in tbs]
+    # tbs = show_tables(conn, db_name=db_name)
+    # return tb_name.lower() in [x.lower() for x in tbs]
+    return execute_sql(conn, 'SHOW TABLES LIKE "{}"'.format(tb_name), db_name=db_name).shape[0] > 0
 
 
 def get_fields(conn, tb_name, db_name=None):
@@ -828,6 +830,7 @@ def df_to_sql(df, conn, tb_name, act_type='replace',
         | 存入方式：
         |     若为'ignore_tb'，则当表已经存在时不进行任何操作
         |     若为'new'，则新建表（若原表已存在，则会先删除再重建）
+        |     若为'clear'，则先清空原表数据（若原表已存在）
         |     若为'insert'，则直接插入
         |     若为'replace'，则将已存在的数据更新，不存在的行和列都新插入
         |     若为'insert_ignore'，则已有的行不更新，不存在的行新插入
@@ -936,7 +939,7 @@ def df_to_sql(df, conn, tb_name, act_type='replace',
         act_type = 'insert' if act_type != 'new' else 'new'
     
     # 清除原数据或直接新增数据
-    if act_type in ['new', 'insert', 'insert_ignore']:
+    if act_type in ['new', 'clear', 'insert', 'insert_ignore']:
         df_to_sql_by_row(df, conn, tb_name, act_type=act_type,
                          db_name=db_name, cols=cols, idcols=idcols,
                          col_types=col_types, na_val=na_val,
@@ -1072,7 +1075,7 @@ def df_to_sql_by_row(df, conn, tb_name,
     此函数应慎用'replace'（可能导致原有数据变成Null）
     '''
     
-    assert act_type in ['ignore_tb', 'new', 'insert', 'replace', 'insert_ignore']
+    assert act_type in ['ignore_tb', 'new', 'clear', 'insert', 'replace', 'insert_ignore']
     if act_type == 'ignore_tb' and has_table(conn, tb_name, db_name=db_name):
         return
     
@@ -1105,6 +1108,12 @@ def df_to_sql_by_row(df, conn, tb_name,
         df, cols=cols, col_types=change_dict_key(col_types, lambda x: x.upper()),
         **kwargs_cols)
 
+    # 清空表
+    if act_type == 'clear':
+        n = cur.execute('SHOW TABLES LIKE "{}";'.format(tb_name))
+        if n > 0:
+            cur.execute('TRUNCATE TABLE {};'.format(tb_name))
+            # cur.execute('DELETE FROM {};'.format(tb_name))
     # 表不存在则新建
     if act_type == 'new':
         cur.execute('DROP TABLE IF EXISTS {};'.format(tb_name))
@@ -1139,7 +1148,7 @@ def df_to_sql_by_row(df, conn, tb_name,
     
     # 数据更新
     values = df.values.tolist()
-    if act_type == 'new' or isnull(idcols):
+    if act_type in ['new', 'clear'] or isnull(idcols):
         cur.executemany('INSERT INTO {a} ({b}) VALUES ({c});'.format(
                         a=tb_name, b=','.join(cols), c=ph),
                         values)

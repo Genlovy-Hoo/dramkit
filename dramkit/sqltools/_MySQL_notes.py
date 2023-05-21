@@ -66,6 +66,14 @@ SELECT @@basedir;
 -- （windows）mysql57开启bin log，在配置文件my.ini中[mysqld]下添加内容：log-bin=mysql-bin
 -- （windows）mysql8关闭bin log，在配置文件my.ini中[mysqld]下添加内容：skip-log-bin
 
+-- 2006 MySQL server has gone解决
+show global status like 'uptime'; /*查看mysql的运行时长*/
+show global variables like '%timeout'; /*查看超时设置*/
+set global wait_timeout=3600*48; /*设置连接超时*/
+show global status like 'com_kill'; /*查看连接进程被kill*/
+show global variables like 'max_allowed_packet'; /*查看查询结果大小限制*/
+set global max_allowed_packet=1024*1024*16; /*修改查询结果大小限制*/
+
 -- Ubuntu设置MySql局域网可以访问
 -- 1. 编辑 /etc/mysql/mysql.conf.d/mysqld.cnf
 -- 把里面的bind-address = 127.0.0.1

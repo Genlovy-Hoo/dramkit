@@ -12,12 +12,12 @@ if __name__ == '__main__':
     
     return_all = False
     
-    t1 = func_runtime_test(timestamp2str, n=n,
-                           return_all=return_all,
-                           t=ts, tz=tz, method=1)
-    t2 = func_runtime_test(timestamp2str, n=n,
-                           return_all=return_all,
-                           t=ts, tz=tz, method=2)
-    t3 = func_runtime_test(timestamp2str, n=n,
-                           return_all=return_all,
-                           t=ts, tz=tz, method=3)
+    t1, res1 = func_runtime_test(timestamp2str, n=n,
+                                 return_all=return_all,
+                                 t=ts, tz=tz, method=1)
+    t2, res2 = func_runtime_test(timestamp2str, n=n,
+                                 return_all=return_all,
+                                 t=ts, tz=tz, method=2)
+    t3, res3 = func_runtime_test(timestamp2str, n=n,
+                                 return_all=return_all,
+                                 t=ts, tz=tz, method=3)

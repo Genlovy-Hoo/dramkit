@@ -73,11 +73,12 @@ def lrc_skl(X, y):
 if __name__ == '__main__':
     import time
     import pandas as pd
+    from dramkit.gentools import TimeRecoder
     from dramkit.datsci.preprocess import scale_skl
     from sklearn.datasets import load_iris, load_diabetes
 
 
-    strt_tm = time.time()
+    tr = TimeRecoder()
 
     # 回归数据集
     data_reg = load_diabetes()
@@ -115,4 +116,4 @@ if __name__ == '__main__':
     mdl_lrc_skl = lrc_skl(Xcls, ycls)
 
 
-    print('used time: {}s.'.format(round(time.time()-strt_tm, 6)))
+    tr.used()

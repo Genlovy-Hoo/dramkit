@@ -1,0 +1,385 @@
+[
+    {
+        "prompt": "美国最大的城市是哪个",
+        "model": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-13 11:33:39",
+        "answer": [
+            true,
+            "美国最大的城市是纽约市（New York City）。"
+        ]
+    },
+    {
+        "prompt": "中国最大的城市是哪个",
+        "model": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-13 11:33:59",
+        "answer": [
+            true,
+            "中国最大的城市是上海。"
+        ]
+    },
+    {
+        "prompt": "北京在中国的地位",
+        "model": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-13 11:34:29",
+        "answer": [
+            true,
+            "北京是中国的首都，也是中国政治、文化、经济、科技和教育中心之一。它拥有丰富的历史和文化遗产，包括紫禁城、天坛、颐和园等著名景点。同时，北京也是中国的国际交往中心，各国驻华使馆、国际组织和大型企业都在这里设立了办事处。因此，北京在中国的地位非常重要，它不仅代表着中国的传统文化和现代化发展，也是中国与世界接轨的重要窗口。"
+        ]
+    },
+    {
+        "prompt": "美国的历史",
+        "model": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-13 11:36:36",
+        "answer": [
+            true,
+            "美国的历史可以追溯到公元前15000年左右，当时北美洲原住民开始迁移至这片土地。15世纪时，欧洲人开始向北美洲探险，1492年哥伦布发现了美洲大陆。17世纪末到18世纪初，英国在北美建立了13个殖民地，这些殖民地逐渐发展成为美国。1776年7月4日，美国宣布独立，成立了美利坚合众国。19世纪是美国的发展时期，经济和政治上都迅速发展，1850年代爆发南北战争，在1865年南北战争结束后，美国成功保持了国家的统一。20世纪初，美国成为了世界强国之一，两次世界大战也让美国成为了世界第一大经济体。21世纪以来，美国面临着各种挑战和机遇，继续在政治、经济、文化等方面发展壮大。"
+        ]
+    },
+    {
+        "question": "",
+        "reset": false,
+        "model": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-14 08:29:03",
+        "answer": [
+            "No correct question detected!",
+            {
+                "error_info": "No correct question detected!"
+            }
+        ]
+    },
+    {
+        "question": "杭州房价如何",
+        "reset": false,
+        "model": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-14 09:09:21",
+        "answer": [
+            "作为中国东部的大城市，杭州的房价相对较高。根据最新的数据，2021年第一季度，杭州市新建商品住宅平均价格为每平方米24207元人民币，二手房平均价格为每平方米29312元人民币。不过，具体的房价还要根据房屋的地理位置、房型、楼层等因素进行具体分析。",
+            null
+        ]
+    },
+    {
+        "question": "杭州房价如何",
+        "reset": false,
+        "model": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-14 11:26:41",
+        "answer": [
+            "作为中国经济发展最快的城市之一，杭州房价一直比较高。根据2021年3月份的数据，杭州市区二手房平均价格约为每平方米3.8万元左右，而新房价格则更高，一般在每平方米4万元以上。此外，杭州市区的房价还存在区域差异，一些繁华商圈、地铁沿线和名校周边的房价更高，而市区较偏远的地区则相对便宜一些。总体来说，杭州房价属于较高水平。",
+            null
+        ]
+    },
+    {
+        "question": "杭州房价如何？",
+        "reset": false,
+        "model": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-14 11:38:52",
+        "answer": [
+            "作为一个AI语言模型，我无法提供最新的、具体的房价数据。但是，根据公开的信息，杭州是中国的一个经济、文化和交通中心，房价较高，尤其是城市中心区域和热门商业区。然而，由于不同地段、楼盘类型、房屋质量等因素的影响，房价会有所不同。需要您根据自己的需求和预算进行详细的调查和比较。",
+            null
+        ]
+    },
+    {
+        "question": "杭州房价高不高？",
+        "reset": false,
+        "model": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-14 11:41:39",
+        "answer": [
+            "作为中国的一个经济、文化和交通中心，杭州的房价相对较高，尤其是城市中心区域和热门商业区。但是，由于不同地段、楼盘类型、房屋质量等因素的影响，房价会有所不同。需要您根据自己的需求和预算进行详细的调查和比较。",
+            null
+        ]
+    },
+    {
+        "question": "杭州房价高不高",
+        "reset": false,
+        "model": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-14 11:44:37",
+        "answer": [
+            "作为一个经济、文化和交通中心，杭州的房价相对较高，尤其是城市中心区域和热门商业区。但是，由于不同地段、楼盘类型、房屋质量等因素的影响，房价会有所不同。需要您根据自己的需求和预算进行详细的调查和比较。",
+            null
+        ]
+    },
+    {
+        "question": "“潦水尽而寒潭清，烟光凝而暮山紫”出自哪篇文章？",
+        "reset": false,
+        "model": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-14 12:38:29",
+        "answer": [
+            "《白雪歌送武判官归京》。",
+            null
+        ]
+    },
+    {
+        "question": "潦水尽而寒潭清，烟光凝而暮山紫",
+        "reset": false,
+        "model": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-14 12:41:34",
+        "answer": [
+            "白雪纷纷何所似，撒盐空中差可拟。\n\n明月几时有？把酒问青天。\n\n不知天上宫阙，今夕是何年？\n\n我欲乘风归去，又恐琼楼玉宇，高处不胜寒。\n\n起舞弄清影，何似在人间。\n\n转朱阁，低绮户，照无眠。\n\n不应有恨，何事长向别时圆？\n\n人有悲欢离合，月有阴晴圆缺，此事古难全。\n\n但愿人长久，千里共婵娟。",
+            null
+        ]
+    },
+    {
+        "question": "“落霞与孤鹜齐飞，秋水共长天一色。”出自哪篇文章？",
+        "reset": false,
+        "model": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-14 12:43:50",
+        "answer": [
+            "这句话出自唐代王之涣的《登鹳雀楼》。",
+            null
+        ]
+    },
+    {
+        "question": "“落霞与孤鹜齐飞，秋水共长天一色。”出自哪篇文章？",
+        "reset": false,
+        "model": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-14 12:52:37",
+        "answer": [
+            "这句话出自唐代王勃的《滕王阁序》。",
+            null
+        ]
+    },
+    {
+        "question": "“潦水尽而寒潭清，烟光凝而暮山紫”出自哪篇文章？",
+        "reset": false,
+        "model": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-14 12:54:28",
+        "answer": [
+            "这句话出自唐代白居易的《赋得古原草送别》。全句为：“离离原上草，一岁一枯荣。野火烧不尽，春风吹又生。远芳侵古道，晴翠接荒城。又送王孙去，萋萋满别情。潦水尽而寒潭清，烟光凝而暮山紫。深院静，只闻砧杵声。”",
+            null
+        ]
+    },
+    {
+        "question": "“潦水尽而寒潭清，烟光凝而暮山紫”出自哪篇文章？",
+        "reset": false,
+        "model": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-14 12:54:53",
+        "answer": [
+            "这句话出自唐代白居易的《赋得古原草送别》。全句为：“离离原上草，一岁一枯荣。野火烧不尽，春风吹又生。远芳侵古道，晴翠接荒城。又送王孙去，萋萋满别情。潦水尽而寒潭清，烟光凝而暮山紫。深院静，只闻砧杵声。”",
+            null
+        ]
+    },
+    {
+        "question": "介绍一下杭州",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-20 05:47:57",
+        "answer": [
+            "杭州是中国浙江省的省会城市，也是一个历史悠久、文化底蕴深厚的城市。杭州有着得天独厚的自然环境和人文景观，素有“人间天堂”之称。\n\n杭州的西湖是其最为著名的景点，被联合国教科文组织列为世界文化遗产。西湖景区包括苏堤、白堤、断桥等多处景点，风景优美，历史悠久，吸引了无数游客前来观赏。\n\n除了西湖景区外，杭州还有许多其他著名景点，如雷峰塔、灵隐寺、千岛湖等。此外，杭州还有悠久的历史和文化底蕴，许多古建筑、文物等见证着这座城市的变迁与发展。\n\n杭州是中国重要的文化、商业和科技中心，也是全球电子商务巨头阿里巴巴的总部所在地。在杭州，人们可以品尝到地道的浙江菜，购买到各种特色产品，并享受到现代化城市带来的便利和舒适。\n\n总之，杭州是一座既有传统魅力又充满现代活力的城市，值得一游。",
+            null
+        ]
+    },
+    {
+        "question": "如何学习金融财务报表",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-20 06:13:51",
+        "answer": [
+            "学习金融财务报表需要掌握以下几个方面：\n\n1. 理解基本会计知识：包括会计核算原则、会计科目、会计方程等，这是学习财务报表的基础。\n\n2. 学习财务报表的类别和内容：主要包括资产负债表、利润表、现金流量表和股东权益变动表等。\n\n3. 掌握财务报表分析方法：通过分析财务报表的比率分析、趋势分析、横向分析和纵向分析等方法，来评估企业的财务状况和经营绩效。\n\n4. 学习财务报表编制的规范和标准：了解财务报表编制的法律法规和国际标准，如中国会计准则、美国通用会计准则等。\n\n建议通过以下途径来学习金融财务报表：\n\n1. 通过自学书籍或在线课程：推荐《会计基础》、《财务报表分析》等经典教材，或者在网上搜索金融财务报表在线课程。\n\n2. 参加培训班或课程：可以参加相关财务培训班和课程，例如财务报表分析、财务报表编制等。\n\n3. 实践操作：通过实践操作掌握财务报表的编制和分析方法，可以尝试编制自己的财务报表并进行分析。\n\n4. 参考行业报告和分析师报告：阅读行业报告和分析师报告，了解行业发展趋势和企业财务状况，同时也可以学习他们对财务报表的分析方法和思路。",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码可以推出某一天一年之前的日期，以20200710代表2020年7月10日为例。",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-22 01:30:14",
+        "answer": [
+            "```python\nfrom datetime import datetime, timedelta\n\ndate_str = '20200710'\ndate = datetime.strptime(date_str, '%Y%m%d')\none_year_ago = date - timedelta(days=365)\nprint(one_year_ago.strftime('%Y%m%d'))\n```\n\n输出结果为：20190710",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中调用sql文件，将其转换为dataframe，以data.csv为例",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-22 01:37:23",
+        "answer": [
+            "要在Python中调用SQL文件，需要使用一个SQL连接器，比如`pymysql`或者`pyodbc`。以下是一个使用`pandas`和`pyodbc`连接器的例子：\n\n```python\nimport pandas as pd\nimport pyodbc\n\n# 创建数据库连接\nconn = pyodbc.connect('DRIVER={SQL Server};SERVER=server_name;DATABASE=db_name;UID=user_id;PWD=password')\n\n# 读取SQL文件到字符串\nwith open('query.sql', 'r') as f:\n    sql = f.read()\n\n# 执行SQL查询并将结果存储到dataframe\ndf = pd.read_sql(sql, conn)\n\n# 将dataframe写入CSV文件\ndf.to_csv('data.csv', index=False)\n```\n\n在这个例子中，我们首先创建了一个数据库连接对象，并使用`open`函数读取了一个名为`query.sql`的SQL文件。然后我们使用`pandas`的`read_sql`函数执行了这个SQL查询，并将结果存储到一个名为`df`的dataframe中。最后，我们使用`to_csv`函数将dataframe写入了一个名为`data.csv`的CSV文件。",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中将csv转换为dataframe，以data.csv为例",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-22 01:53:53",
+        "answer": [
+            "```python\nimport pandas as pd\n\n# 读取csv文件并转换为dataframe\ndf = pd.read_csv('data.csv')\n\n# 输出dataframe的前5行数据\nprint(df.head())\n```\n\n注：需确保data.csv文件在当前目录下。",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中将两个dataframe放进一个dataframe中，以data1.csv，data2.csv为例",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-22 01:57:17",
+        "answer": [
+            "```python\nimport pandas as pd\n\n# 读取data1.csv和data2.csv文件并转换为dataframe\ndf1 = pd.read_csv('data1.csv')\ndf2 = pd.read_csv('data2.csv')\n\n# 将df1和df2拼接成一个新的dataframe\nresult = pd.concat([df1, df2])\n\n# 输出拼接后的dataframe\nprint(result)\n```\n\n注：需确保data1.csv和data2.csv文件在当前目录下。",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中将含有两个不同股票信息的dataframe按日期date为标准合并在一个dataframe中，以data1.csv，data2.csv为例",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-22 02:01:44",
+        "answer": [
+            "假设data1.csv和data2.csv中都有日期(date)、股票1的收盘价(price1)和股票2的收盘价(price2)三列数据，可以按照如下代码实现合并：\n\n```python\nimport pandas as pd\n\n# 读取data1.csv和data2.csv文件并转换为dataframe\ndf1 = pd.read_csv('data1.csv')\ndf2 = pd.read_csv('data2.csv')\n\n# 将df1和df2按日期(date)合并成一个新的dataframe\nresult = pd.merge(df1, df2, on='date')\n\n# 输出合并后的dataframe\nprint(result)\n```\n\n其中，pd.merge()函数是将两个dataframe按照指定的键（这里是日期date）进行合并。合并后的新dataframe中包含了两个原始dataframe中的所有列数据，可以根据需要使用.drop()方法删除不需要的列。",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中将2019/7/16转化为‘20190716’，",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-22 03:16:09",
+        "answer": [
+            "可以使用datetime模块和strftime()方法来实现日期格式的转换：\n\n```python\nfrom datetime import datetime\n\ndate_str = '2019/7/16'\ndate = datetime.strptime(date_str, '%Y/%m/%d')\nnew_date_str = date.strftime('%Y%m%d')\n\nprint(new_date_str)\n```\n\n输出结果为：\n\n```\n20190716\n```\n\n首先使用strptime()方法将字符串类型的日期转换为datetime类型的日期，然后使用strftime()方法将datetime类型的日期转换为新的字符串格式。其中，'%Y/%m/%d'和'%Y%m%d'分别表示原日期的格式和新日期的格式。",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中将dataframe中的一列2019/7/16转化为一列‘20190716’，",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-22 03:21:05",
+        "answer": [
+            "可以使用pandas中的to_datetime()方法和strftime()方法，将原DataFrame中的日期列转换为datetime类型，然后再使用strftime()方法将其转换为新的字符串格式：\n\n```python\nimport pandas as pd\n\ndf = pd.DataFrame({'date': ['2019/7/16', '2019/7/17', '2019/7/18']})\n\ndf['date'] = pd.to_datetime(df['date'], format='%Y/%m/%d')\ndf['new_date'] = df['date'].dt.strftime('%Y%m%d')\n\nprint(df)\n```\n\n输出结果为：\n\n```\n        date  new_date\n0 2019-07-16  20190716\n1 2019-07-17  20190717\n2 2019-07-18  20190718\n```\n\n首先使用pd.to_datetime()方法将原DataFrame中的日期列转换为datetime类型，其中format参数表示原日期的格式。然后使用dt.strftime()方法将datetime类型的日期转换为新的字符串格式，并将其赋值给新的一列new_date。",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中将含有两个不同股票信息的dataframe按日期date为标准合并在一个dataframe中，以data1.csv，data2.csv为例",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-22 05:38:26",
+        "answer": [
+            "假设data1.csv和data2.csv中的数据格式如下：\n\ndata1.csv\n\n| date       | stock1_price |\n|------------|--------------|\n| 2021-01-01 | 10           |\n| 2021-01-02 | 12           |\n| 2021-01-03 | 11           |\n\ndata2.csv\n\n| date       | stock2_price |\n|------------|--------------|\n| 2021-01-01 | 20           |\n| 2021-01-02 | 18           |\n| 2021-01-03 | 22           |\n\n则可以使用如下代码将两个数据合并：\n\n```python\nimport pandas as pd\n\n# 读取数据\ndf1 = pd.read_csv('data1.csv')\ndf2 = pd.read_csv('data2.csv')\n\n# 将两个数据按日期合并\nmerged_df = pd.merge(df1, df2, on='date')\n\n# 打印结果\nprint(merged_df)\n```\n\n输出结果为：\n\n| date       | stock1_price | stock2_price |\n|------------|--------------|--------------|\n| 2021-01-01 | 10           | 20           |\n| 2021-01-02 | 12           | 18           |\n| 2021-01-03 | 11           | 22           |\n\n其中，pd.merge函数将两个数据按照date列进行合并。如果两个数据中的date列名称不同，需要在调用pd.merge函数时指定left_on和right_on参数。",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中修改dataframe的列名",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-22 06:21:27",
+        "answer": [
+            "假设我们有一个名为df的dataframe，其中包含两个列'old_col1'和'old_col2'，我们想要将它们的列名分别改为'new_col1'和'new_col2'。代码如下：\n\n```python\nimport pandas as pd\n\n# 创建一个示例dataframe\ndf = pd.DataFrame({'old_col1': [1, 2, 3], 'old_col2': [4, 5, 6]})\n\n# 使用rename方法修改列名\ndf = df.rename(columns={'old_col1': 'new_col1', 'old_col2': 'new_col2'})\n\n# 打印修改后的dataframe\nprint(df)\n```\n\n输出结果如下：\n\n```\n   new_col1  new_col2\n0         1         4\n1         2         5\n2         3         6\n```\n\n在这个例子中，我们使用了rename方法来修改列名。该方法使用一个字典作为参数，其中键是旧列名，值是新列名。在这个例子中，我们将'old_col1'改为'new_col1'，将'old_col2'改为'new_col2'。最后，我们将修改后的dataframe赋值回原始变量df，以便进行后续操作。",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中通过pymysql连接数据库",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-22 08:38:25",
+        "answer": [
+            "import pymysql\n\n# 连接数据库\nconn = pymysql.connect(\n    host='localhost',\n    user='root',\n    password='password',\n    db='database_name'\n)\n\n# 创建游标对象\ncursor = conn.cursor()\n\n# 执行SQL语句\nsql = \"SELECT * FROM table_name\"\ncursor.execute(sql)\n\n# 获取查询结果\nresult = cursor.fetchall()\nfor row in result:\n    print(row)\n\n# 关闭游标和连接\ncursor.close()\nconn.close()",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中 \"SELECT DISTINCT ChangePCT FROM QT_PerformanceData WHERE (InnerCode = 1679) AND (TradingDay > '2019-07-10') AND (TradingDay < '2020-07-10');\"将其中的数字改成传参",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-22 08:40:49",
+        "answer": [
+            "import pymysql\n\ndef query_performance_data(inner_code, start_date, end_date):\n    # 连接数据库\n    conn = pymysql.connect(\n        host='localhost',\n        user='root',\n        password='password',\n        db='database_name'\n    )\n\n    # 创建游标对象\n    cursor = conn.cursor()\n\n    # 执行SQL语句\n    sql = f\"SELECT DISTINCT ChangePCT FROM QT_PerformanceData WHERE (InnerCode = {inner_code}) AND (TradingDay > '{start_date}') AND (TradingDay < '{end_date}');\"\n    cursor.execute(sql)\n\n    # 获取查询结果\n    result = cursor.fetchall()\n\n    # 关闭游标和连接\n    cursor.close()\n    conn.close()\n\n    return result\n\n# 测试\ninner_code = 1679\nstart_date = '2019-07-10'\nend_date = '2020-07-10'\nresult = query_performance_data(inner_code, start_date, end_date)\nfor row in result:\n    print(row)",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中将时间的表述方式由2020-07-10 00:00:00修改为‘2020-07-10’",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-23 01:40:28",
+        "answer": [
+            "import datetime\n\ntime_str = '2020-07-10 00:00:00'\ntime_obj = datetime.datetime.strptime(time_str, '%Y-%m-%d %H:%M:%S')\nmodified_time_str = time_obj.strftime('%Y-%m-%d')\n\nprint(modified_time_str)",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中检查dataframe中是否含有空值并删去改行",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-23 07:17:11",
+        "answer": [
+            "以下是一个示例代码，它将检查 pandas dataframe 中是否包含任何空值，并删除包含空值的行：\n\n```\nimport pandas as pd\n\n# 生成一个示例数据帧\ndf = pd.DataFrame({'A': [1, 2, 3, None], 'B': ['foo', None, 'bar', 'baz']})\n\n# 检查数据帧中是否有任何空值\nif df.isnull().values.any():\n    # 如果有空值，则删除包含空值的行\n    df.dropna(inplace=True)\n\n# 打印结果\nprint(df)\n```\n\n输出：\n\n```\n     A    B\n0  1.0  foo\n2  3.0  bar\n```\n\n在此示例中，我们首先创建一个包含空值的数据帧。然后，我们使用 `isnull()` 方法检查数据帧中是否有任何空值。如果存在空值，则使用 `dropna()` 方法删除包含空值的行。最后，我们打印结果以查看修改后的数据帧。",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中检查dataframe中是否含有空值并删去该行",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-23 07:17:18",
+        "answer": [
+            "下面是一个示例代码，它可以在Python中检查dataframe中是否包含空值并删除该行：\n\n```python\nimport pandas as pd\n\n# 创建一个包含空值的dataframe\ndf = pd.DataFrame({'A': [1, 2, None, 4], 'B': [5, 6, 7, 8]})\n\n# 检查dataframe中是否有空值\nprint(df.isnull().any())\n\n# 删除包含空值的行\ndf.dropna(inplace=True)\n\n# 打印删除后的dataframe\nprint(df)\n```\n\n输出结果如下：\n\n```\nA     True\nB    False\ndtype: bool\n\n     A  B\n0  1.0  5\n1  2.0  6\n3  4.0  8\n```\n\n在上面的代码中，首先创建了一个包含空值的dataframe。然后使用`isnull().any()`方法检查dataframe中是否包含空值，返回一个布尔数组。接下来使用`dropna()`方法删除包含空值的行，并使用`inplace=True`参数使更改生效。最后打印删除后的dataframe。",
+            null
+        ]
+    },
+    {
+        "question": "在python中将sql_s = \"SELECT DISTINCT TradingDay,ChangePCT FROM QT_PerformanceData WHERE (InnerCode = %s) AND (TradingDay >= '%s') AND (TradingDay < '%s');\"%(inner_code_stock,start_date,end_date)分成三行",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-23 07:38:32",
+        "answer": [
+            "sql_s = \"SELECT DISTINCT TradingDay,ChangePCT FROM QT_PerformanceData WHERE \"\\\n        \"(InnerCode = %s) AND (TradingDay >= '%s') AND (TradingDay < '%s');\" \\\n        % (inner_code_stock, start_date, end_date)",
+            null
+        ]
+    },
+    {
+        "question": "在python中将def con_sql(sql_command):\n    ''' Connect to MySQL database to return data as dataframe\n    '''\n    cf = configparser.ConfigParser()\n    cf.read('E:\\code\\config.ini')\n\n    host = cf.get('Database-jy','host')\n    user = cf.get('Database-jy','user')\n    password  = cf.get('Database-jy','password')\n    database  = cf.get('Database-jy','database')\n    port  = cf.get('Database-jy','port')\n\n    db = pymysql.connect(host=host, port=int(port), db=database, user=user, password=password)\n    cursor = db.cursor()\n\n    cursor.execute(sql_command)\n    row = cursor.fetchall()\n    cols = cursor.description\n    col = []\n    for i in cols:\n        col.append(i[0])\n    data_df = pd.DataFrame(row, dtype=float,columns=col)\n    db.close()将这段代码的登陆和执行语句分开\n        \n    return data_df这段代码的d",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-24 02:38:40",
+        "answer": [
+            "ef con_sql(sql_command):\n    ''' Connect to MySQL database to return data as dataframe\n    '''\n    cf = configparser.ConfigParser()\n    cf.read('E:\\code\\config.ini')\n\n    host = cf.get('Database-jy','host')\n    user = cf.get('Database-jy','user')\n    password  = cf.get('Database-jy','password')\n    database  = cf.get('Database-jy','database')\n    port  = cf.get('Database-jy','port')\n\n    db = pymysql.connect(host=host, port=int(port), db=database, user=user, password=password)\n    cursor = db.cursor()\n\n    cursor.execute(sql_command)\n    row = cursor.fetchall()\n    cols = cursor.description\n    col = []\n    for i in cols:\n        col.append(i[0])\n    data_df = pd.DataFrame(row, dtype=float,columns=col)\n    \n    cursor.close()\n    db.close()\n    \n    return data_df",
+            null
+        ]
+    },
+    {
+        "question": "在python中将一个按时间排列的dataframe，取出所有之前记录含有超过200条的行，放到新的list里",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-24 03:15:52",
+        "answer": [
+            "假设DataFrame的时间列名为\"timestamp\"，数据列名为\"data\"，可以使用以下代码实现：\n\n```python\n# 导入pandas库\nimport pandas as pd\n\n# 读取数据文件，假设文件名为data.csv\ndf = pd.read_csv('data.csv')\n\n# 按时间升序排序\ndf = df.sort_values(by='timestamp')\n\n# 定义一个空的列表，用来存放结果\nresult = []\n\n# 遍历每一行数据，判断是否满足条件\nfor index, row in df.iterrows():\n    if row['data'] > 200:\n        # 如果数据大于200，将该行数据加入到结果列表中\n        result.append(row)\n    else:\n        # 如果数据不足200，跳出循环\n        break\n\n# 打印结果\nprint(result)\n```\n\n该代码首先按照时间升序对DataFrame进行排序，然后遍历每一行数据，如果该行数据大于200，则将该行数据加入到结果列表中。如果数据不足200，就跳出循环。最后打印结果列表。",
+            null
+        ]
+    }
+]

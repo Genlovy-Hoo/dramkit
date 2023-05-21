@@ -33,6 +33,9 @@ TSDIF_PD_DTTM = pd.to_datetime('19700102 08:00:00').timestamp() - \
                 datetime.datetime(1970, 1, 2, 8, 0, 0).timestamp()
 TS_BIAS_DT = (datetime.datetime.fromtimestamp(0) - \
               datetime.datetime.utcfromtimestamp(0)).seconds
+    
+MONTH_DAYS = {1: 31, 2: 28, 3:31, 4: 30, 5:31, 6:30, 7: 31,
+              8: 31, 9: 30, 10: 31, 11:30, 12: 31}
 
 
 def _show_time_infos():
@@ -430,6 +433,8 @@ def copy_format(to_tm, from_tm):
     '''
     复制日期时间格式
     '''
+    if pd.isna(from_tm):
+        return to_tm
     input_type = type(to_tm).__name__
     types1 = ['datetime', 'date', 'Timestamp', 'struct_time']
     types2 = ['str', 'int', 'float']
@@ -543,11 +548,17 @@ def datetime_now(strformat=None):
 
 def today_month(joiner='-'):
     '''获取今日所在年月，格式由连接符joiner确定'''
+    if joiner.lower() == 'int':
+        return int(datetime.date.today().strftime('%Y%m'))
     return datetime.date.today().strftime('%Y{}%m'.format(joiner))
 
 
 def today_date(joiner='-'):
     '''获取今日日期，格式由连接符joiner确定'''
+    if joiner.lower() == 'int':
+        return int(datetime.date.today().strftime('%Y%m%d'))
+    if joiner.lower() in ['dt', 'datetime']:
+        return pd.to_datetime(datetime.date.today())
     return datetime.date.today().strftime(joiner.join(['%Y', '%m', '%d']))
 
 
@@ -557,14 +568,98 @@ def get_quarter(dt=None, joiner='Q'):
         dt = datetime.datetime.now()
     t = x2datetime(dt)
     y, q = t.year, t.quarter
+    if not joiner:
+        return (y, q)
     return joiner.join([str(y), str(q)])
+
+
+def get_quarter_start_end_by_yq(y, q, joiner='-'):
+    m1 = {1: '01', 2: '04', 3: '07', 4: '10'}[q]
+    d1 = '01'
+    m2 = {1: '03', 2: '06', 3: '09', 4: '12'}[q]
+    d2 = {3: '31', 6: '30', 9: '30', 12: '31'}[int(m2)]
+    start = joiner.join([str(y), m1, d1])
+    end = joiner.join([str(y), m2, d2])
+    return start, end
+
+
+def get_quarter_start_end_by_date(date=None):
+    '''获取date日期所在季度的起始日期'''
+    y, q = get_quarter(date, None)
+    return copy_format(get_quarter_start_end_by_yq(y, q),
+                       date)
 
 
 def today_quarter(joiner='Q'):
     '''获取今日所在季度'''
     t = pd.to_datetime(datetime.datetime.now())
     y, q = t.year, t.quarter
+    if not joiner:
+        return (y, q)
     return joiner.join([str(y), str(q)])
+
+
+def get_2part_next(part1, part2, step, n=1):
+    '''
+    Example
+    -------
+    >>> get_2part_next(2023, 2, 4, 2) # 2023Q2往后推2个季度
+    (2023, 4)
+    >>> get_2part_next(2023, 4, 4, 5) # 2023Q4往后推5个季度
+    (2025, 1)
+    >>> get_2part_next(2023, 4, 12, 8) # 202304往后推8个月
+    (2023, 12)
+    >>> get_2part_next(2023, 9, 12, 10) # 202309往后推10个月
+    (2024, 7)
+    >>> get_2part_next(2023, 2, 4, -2) # 2023Q2往前推2个季度
+    (2022, 4)
+    >>> get_2part_next(2023, 4, 4, -5) # 2023Q4往前推5个季度
+    (2022, 3)
+    >>> get_2part_next(2023, 4, 12, -8) # 202304往前推8个月
+    (2022, 4)
+    >>> get_2part_next(2023, 9, 12, -10) # 202309往前推10个月
+    (2022, 11)
+    '''
+    assert all([isinstance(x, int) for x in [part1, part2, step, n]])
+    if n == 0:
+        p1new, p2new = part1, part2
+    elif n > 0:
+        p1add = n // step + int((part2 + n % step) > step)
+        p1new = part1 + p1add
+        p2new = part2 + (n % step)
+        if p2new > step:
+            p2new = p2new - step
+    else:
+        n = abs(n)
+        p1add = -(n // step) - int((part2 - n % step) <= 0)
+        p1new = part1 + p1add
+        p2new = part2 - (n % step)
+        if p2new <= 0:
+            p2new = step + p2new
+    return (p1new, p2new)
+
+
+def get_pre_quarter(date=None, n=1, joiner='Q'):
+    '''
+    | 获取date前第n个季度
+    | 如:
+    | get_pre_quarter("20230418") -> "2023Q1"
+    | get_pre_quarter("20230418", 2) -> "2022Q4"
+    | get_pre_quarter("20230418", 3) -> "2022Q3"
+    | get_pre_quarter("20230418", 4) -> "2022Q2"
+    | get_pre_quarter("20230418", 5) -> "2022Q1"
+    | get_pre_quarter("20230418", 6) -> "2021Q4"
+    | get_pre_quarter("20230418", 7) -> "2021Q3"
+    | get_pre_quarter("20230418", 8) -> "2021Q2"
+    '''
+    if pd.isnull(date):
+        date = datetime.datetime.now()
+    t = x2datetime(date)
+    y, q = t.year, t.quarter
+    ynew, qnew = get_2part_next(y, q, 4, -n)
+    if not joiner:
+        return (ynew, qnew)
+    return joiner.join([str(ynew), str(qnew)])
 
 
 def get_dayofweek(date=None):
@@ -586,9 +681,35 @@ def get_month_end(date=None):
     if pd.isnull(date):
         date = today_date()
     day = x2datetime(date)
-    next_month = day.replace(day=28) + datetime.timedelta(days=4)
-    month_end = next_month - datetime.timedelta(days=next_month.day)
+    m = day.month
+    if m != 2:
+        month_end = day.replace(day=MONTH_DAYS[m])
+    else:
+        next_month = day.replace(day=28) + datetime.timedelta(days=4)
+        month_end = next_month - datetime.timedelta(days=next_month.day)
     return copy_format(month_end, date)
+
+
+def get_next_nmonth_start_end(date=None, n=1):
+    if pd.isnull(date):
+        date = today_date()
+    day = x2datetime(date)
+    y, m = day.year, day.month
+    y, m = get_2part_next(y, m, 12, n)
+    month_start = pd.to_datetime('%s-%s-01'%(y, m))
+    next_month = month_start.replace(day=28) + datetime.timedelta(days=4)
+    month_end = next_month - datetime.timedelta(days=next_month.day)
+    return copy_format(month_start, date), copy_format(month_end, date)
+
+
+def get_next_nquarter_start_end(date=None, n=1):
+    if pd.isnull(date):
+        date = today_date()
+    day = x2datetime(date)
+    y, q = day.year, day.quarter
+    y, q = get_2part_next(y, q, 4, n)
+    start, end = get_quarter_start_end_by_yq(y, q, '')
+    return copy_format(start, date), copy_format(end, date)
 
 
 def get_date_format(date,

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import time
 import pandas as pd
 
 from sklearn.ensemble import GradientBoostingRegressor as GBR
@@ -61,7 +60,8 @@ def gbr_objf(superParams, Xtrain=None, Ytrain=None, Xtest=None, Ytest=None,
 
 #%%
 if __name__ == '__main__':
-    strt_tm = time.time()
+    from dramkit import TimeRecoder
+    tr = TimeRecoder()
 
     #%%
     # 分类任务数据集
@@ -175,4 +175,4 @@ if __name__ == '__main__':
     close_log_file(logger)
 
     #%%
-    print('used time: {}s.'.format(round(time.time()-strt_tm, 6)))
+    tr.used()

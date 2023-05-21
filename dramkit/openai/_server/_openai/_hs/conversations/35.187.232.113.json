@@ -1,0 +1,205 @@
+[
+    {
+        "prompt": "Recognize all opinion terms in the following review with the format [‘opinion_1’, ‘opinion_2’, …]:“Great food but the service was dreadful !”",
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-16 10:58:57",
+        "answer": [
+            true,
+            "['opinion_1', 'opinion_2'] - Great food and dreadful service."
+        ]
+    },
+    {
+        "prompt": "Recognize all opinion terms in the following review with the format ['opinion_1', 'opinion_2', ...]: \r\n\"Great food but the service was dreadful !\"",
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-16 11:02:41",
+        "answer": [
+            true,
+            "['opinion_1', 'opinion_2'] \n(opinion_1: Great food, opinion_2: dreadful service)"
+        ]
+    },
+    {
+        "prompt": "Recognize all opinion terms in the following review with the format ['opinion_1', 'opinion_2', ...]: \r\n\"Great food but the service was dreadful !\"",
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-21 09:29:05",
+        "answer": [
+            true,
+            "['opinion_1', 'opinion_2'] \n- Great food \n- the service was dreadful"
+        ]
+    },
+    {
+        "prompt": "正文：3、本基金的基金资产总值占基金资产净值的比例不得超过200%； 4、本基金持有的存托凭证，以市值合计，不得超过基金资产净值的100%; 5、本基金投资于沪深交易所上市公司非公开发行股票（未解禁流通部分），依市值合计，不得超过基金资产净值的50%；沪深交易所上市公司非公开发行股票解禁流通后不受上述投资比例限制；\\n 任务：提取实体“投资限制-比例-资产总值占比 ”的值，输出json，形式为{“name”: 投资限制-比例-资产总值占比，“value”：number，“单位”：string}",
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-21 09:29:34",
+        "answer": [
+            true,
+            "{\"name\": \"投资限制-比例-资产总值占比\", \"value\": 200, \"单位\": \"%\"}"
+        ]
+    },
+    {
+        "prompt": "<正文：3、本基金的基金资产总值占基金资产净值的比例不得超过200%； 4、本基金持有的存托凭证，以市值合计，不得超过基金资产净值的100%; 5、本基金投资于沪深交易所上市公司非公开发行股票（未解禁流通部分），依市值合计，不得超过基金资产净值的50%；沪深交易所上市公司非公开发行股票解禁流通后不受上述投资比例限制；\n 任务：提取实体“投资限制-比例-资产总值占比 ”的值，输出json，形式为{“name”: 投资限制-比例-资产总值占比，“value”：number，“单位”：string}>",
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-21 09:41:48",
+        "answer": [
+            false,
+            {
+                "message": "Incorrect API key provided: <api_key>. You can find your API key at https://platform.openai.com/account/api-keys.",
+                "type": "invalid_request_error",
+                "param": null,
+                "code": "invalid_api_key"
+            }
+        ]
+    },
+    {
+        "prompt": "<正文：3、本基金的基金资产总值占基金资产净值的比例不得超过200%； 4、本基金持有的存托凭证，以市值合计，不得超过基金资产净值的100%; 5、本基金投资于沪深交易所上市公司非公开发行股票（未解禁流通部分），依市值合计，不得超过基金资产净值的50%；沪深交易所上市公司非公开发行股票解禁流通后不受上述投资比例限制；\n 任务：提取实体“投资限制-比例-资产总值占比 ”的值，输出json，形式为{“name”: 投资限制-比例-资产总值占比，“value”：number，“单位”：string}>",
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-21 09:43:59",
+        "answer": [
+            true,
+            "{\"name\": \"投资限制-比例-资产总值占比\", \"value\": 200, \"单位\": \"%\"}"
+        ]
+    },
+    {
+        "question": "写一段代码可以推出某一天一年之前的日期，以20200710代表2020年7月10日为例。",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-22 01:30:14",
+        "answer": [
+            "```python\nfrom datetime import datetime, timedelta\n\ndate_str = \"20200710\"\ndate_obj = datetime.strptime(date_str, \"%Y%m%d\")\none_year_ago = date_obj - timedelta(days=365)\nprint(one_year_ago.strftime(\"%Y%m%d\"))\n```\n\n输出结果为：20190710",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中将2019/7/16转化为‘20190716’，",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-22 03:16:12",
+        "answer": [
+            "我们可以使用datetime模块来实现这个任务，下面是一段示例代码：\n\n```python\nimport datetime\n\ndate_str = '2019/7/16'\ndate_obj = datetime.datetime.strptime(date_str, '%Y/%m/%d')\nnew_date_str = date_obj.strftime('%Y%m%d')\n\nprint(new_date_str)  # 输出：20190716\n```\n\n首先，我们将原始的日期字符串`'2019/7/16'`传递给`datetime.datetime.strptime()`函数，指定日期格式为`'%Y/%m/%d'`，这样就可以将它转换成一个datetime对象。\n\n然后，我们调用datetime对象的`strftime()`方法，指定输出格式为`'%Y%m%d'`，得到一个新的字符串`'20190716'`。\n\n最后，我们可以打印出这个新的字符串进行验证。",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中将dataframe中的一列2019/7/16转化为一列‘20190716’，",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-22 03:21:08",
+        "answer": [
+            "假设原始的数据框为`df`，包含一列名为`date_str`，里面存储的是日期字符串，我们可以使用`apply()`方法和上面提到的代码来实现转换，示例代码如下：\n\n```python\nimport datetime\nimport pandas as pd\n\ndf = pd.DataFrame({'date_str': ['2019/7/16', '2019/8/28', '2020/1/1']})\n\ndef convert_date(date_str):\n    date_obj = datetime.datetime.strptime(date_str, '%Y/%m/%d')\n    return date_obj.strftime('%Y%m%d')\n\ndf['new_date_str'] = df['date_str'].apply(convert_date)\n\nprint(df)\n```\n\n首先，我们定义了一个`convert_date()`函数，它的输入是一个日期字符串，输出是该日期字符串转换后的新字符串。这个函数和上面的示例代码中的代码是一样的。\n\n然后，我们使用`apply()`方法将`convert_date()`函数应用到`df['date_str']`这一列的每一个元素上，得到一个新的Series对象，其中每个元素都是转换后的新字符串。\n\n最后，我们将这个新的Series对象赋值给`df['new_date_str']`这一列，得到一个新的数据框，其中包含原始的日期字符串列以及转换后的新字符串列。",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中将dataframe中的一列2019/7/16转化为一列‘20190716’，",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-22 03:21:08",
+        "answer": [
+            "假设你的dataframe叫做`df`，需要转换的列名叫做`date_str`，那么可以使用下面的代码：\n\n```python\nimport datetime\n\ndate_format = '%Y/%m/%d'\n\n# 定义一个函数，用于将日期字符串转化为新的格式\ndef convert_date(date_str):\n    date_obj = datetime.datetime.strptime(date_str, date_format)\n    new_date_str = date_obj.strftime('%Y%m%d')\n    return new_date_str\n\n# 使用apply函数对date_str列中的每个元素都调用convert_date函数进行转换\ndf['new_date'] = df['date_str'].apply(convert_date)\n```\n\n首先，我们定义了一个新的日期格式`date_format = '%Y/%m/%d'`，用于指定原始日期字符串的格式。\n\n接着，我们定义了一个函数`convert_date()`，用于将日期字符串转化为新的格式。在函数内部，我们先使用`datetime.datetime.strptime()`函数将原始日期字符串转换成datetime对象，然后再使用`strftime()`方法将其转换成新的日期字符串。最后，我们返回新的日期字符串。\n\n最后，我们使用`apply()`函数将`convert_date()`函数应用到`date_str`列中的每个元素上，并将结果存储在一个新列`new_date`中。",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中将含有两个不同股票信息的dataframe按日期date为标准合并在一个dataframe中，以data1.csv，data2.csv为例",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-22 05:38:23",
+        "answer": [
+            "以下是示例代码：\n\n```python\nimport pandas as pd\n\n# 读取两个csv文件\ndata1 = pd.read_csv('data1.csv')\ndata2 = pd.read_csv('data2.csv')\n\n# 合并两个dataframe\nmerged_data = pd.merge(data1, data2, on='date')\n\n# 输出合并后的结果\nprint(merged_data)\n```\n\n这段代码首先使用`pd.read_csv()`函数读取了两个csv文件，然后使用`pd.merge()`函数按照日期列`date`将两个dataframe合并起来。最后，使用`print()`函数输出合并结果。\n\n请注意，以上代码仅适用于两个dataframe中的日期列命名相同。如果命名不同，需要在`pd.merge()`函数中指定左右两个dataframe中的日期列名字。例如：\n\n```python\nmerged_data = pd.merge(data1, data2, left_on='date1', right_on='date2')\n```\n\n其中，`left_on`和`right_on`分别表示左右两个dataframe中的日期列名字。",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中修改dataframe的列名",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-22 06:21:27",
+        "answer": [
+            "可以使用`rename()`方法来修改DataFrame的列名。下面是一个示例代码：\n\n```python\nimport pandas as pd\n\n# 创建一个DataFrame\ndf = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})\n\n# 打印原始列名\nprint(df.columns)\n\n# 修改列名\ndf.rename(columns={'A': 'New_A', 'B': 'New_B'}, inplace=True)\n\n# 打印修改后的列名\nprint(df.columns)\n```\n\n运行结果如下：\n\n```\nIndex(['A', 'B'], dtype='object')\nIndex(['New_A', 'New_B'], dtype='object')\n```\n\n在上面的示例中，我们首先创建了一个DataFrame对象，并打印了它的列名。然后，我们使用`rename()`方法将列名从`A`和`B`改为`New_A`和`New_B`，并设置`inplace=True`参数来修改原始对象。最后，我们再次打印了修改后的列名。",
+            null
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中通过pymysql连接数据库",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-22 08:38:26",
+        "answer": [
+            "import pymysql\n\n# 打开数据库连接\ndb = pymysql.connect(host=\"localhost\", user=\"root\", password=\"password\", database=\"test\")\n\n# 使用 cursor() 方法创建一个游标对象 cursor\ncursor = db.cursor()\n\n# 使用 execute() 方法执行 SQL 查询\ncursor.execute(\"SELECT VERSION()\")\n\n# 使用 fetchone() 方法获取单条数据.\ndata = cursor.fetchone()\n\nprint(\"Database version : %s \" % data)\n\n# 关闭数据库连接\ndb.close()",
+            null
+        ]
+    },
+    {
+        "prompt": "老紫问老绿，喝老白干不？老绿说老青的店老黑了，不去！ 其中出现了几个人？",
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-23 05:21:23",
+        "answer": [
+            true,
+            "出现了4个人，老紫、老绿、老青和老黑。"
+        ]
+    },
+    {
+        "prompt": "<正文：3、本基金的基金资产总值占基金资产净值的比例不得超过200%； 4、本基金持有的存托凭证，以市值合计，不得超过基金资产净值的100%; 5、本基金投资于沪深交易所上市公司非公开发行股票（未解禁流通部分），依市值合计，不得超过基金资产净值的50%；沪深交易所上市公司非公开发行股票解禁流通后不受上述投资比例限制；\n 任务：提取实体“投资限制-比例-资产总值占比 ”的值，输出json，形式为{“name”: “投资限制-比例-资产总值占比”，“value”：number，“单位”：string}>",
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-23 05:28:10",
+        "answer": [
+            true,
+            "{\"name\": \"投资限制-比例-资产总值占比\", \"value\": 200, \"单位\": \"%\"}"
+        ]
+    },
+    {
+        "prompt": "<正文：基金份额持有人持有的基金资产净值高于100万元人民币时，基金份额持有人可对份额全部赎回或者部分赎回；选择部分赎回基金份额的，赎回后持有的基金资产净值不得低于100万元人民币。任务：提取“最低保有金额”的json，形式为：{\"name\": \"最低保有金额\", \"value\": string}>",
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-23 05:29:35",
+        "answer": [
+            true,
+            "{\"name\": \"最低保有金额\", \"value\": \"100万元人民币\"}"
+        ]
+    },
+    {
+        "prompt": "<正文：本基金采用“单人单笔份额高水位法”计提业绩报酬，即对投资者不同时间参与本基金的每笔份额分别计算高出高水位线的收益部分计提业绩报酬。任务：提取 “业绩报酬计提方式”的json，形式为{\"name\":“业绩报酬计提方式”,\"value\": string}>",
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-23 05:29:37",
+        "answer": [
+            true,
+            "{\"name\":\"业绩报酬计提方式\",\"value\":\"单人单笔份额高水位法\"}"
+        ]
+    },
+    {
+        "prompt": "<正文：\"4、认购的费率\", \"本基金的认购费率详见“私募基金的基本情况”章节之“私募基金的份额分类。 \\n5、认购份额的计算方式\", \"认购份额=认购金额/（1 认购费率）/面值。\\n认购费用=认购金额*认购费率/（1 认购费率）。\\n净认购金额=认购金额/（1 认购费率）。\\n认购份额保留到小数点后2位，小数点后第3位四舍五入，由此带来的收益和损失归入基金财产。\\n6、初始认购资金的管理及利息处理方式\"\\n任务：提取“认购份额公式”的上述原始表述，输出json，形式为{“认购份额公式”: string}>",
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-23 05:29:45",
+        "answer": [
+            true,
+            "{\"认购份额公式\": \"认购份额=认购金额/（1 认购费率）/面值。\\n认购费用=认购金额*认购费率/（1 认购费率）。\\n净认购金额=认购金额/（1 认购费率）。\\n认购份额保留到小数点后2位，小数点后第3位四舍五入，由此带来的收益和损失归入基金财产。\"}"
+        ]
+    },
+    {
+        "question": "写一段代码，可以在python中检查dataframe中是否含有空值并删去改行",
+        "reset": false,
+        "version": "gpt3.5",
+        "kwargs": {},
+        "tm": "2023-03-23 07:17:17",
+        "answer": [
+            "以下是可以在Python中检查数据框DataFrame中是否有空值并删除该行的代码示例：\n\n```python\nimport pandas as pd\n\n# 创建一个包含空值的数据框\ndf = pd.DataFrame({'A': [1, 2, None, 4], 'B': [5, None, 7, 8], 'C': [None, 10, 11, 12]})\n\n# 检查数据框中是否有空值\nprint(df.isnull().any())\n\n# 删除包含空值的行\ndf.dropna(inplace=True)\n\n# 输出处理后的数据框\nprint(df)\n```\n\n输出结果为：\n\n```\nA     True\nB     True\nC     True\ndtype: bool\n     A    B     C\n0  1.0  5.0  11.0\n```\n\n首先，我们使用`pd.DataFrame()`创建了一个包含空值的数据框。然后，使用`df.isnull().any()`检查数据框中是否有空值，返回一个由布尔值组成的Series对象，如果某一列包含空值，则该列对应的值为True，否则为False。\n\n接下来，我们使用`df.dropna(inplace=True)`删除包含空值的行，其中`inplace=True`表示在原数据框上进行修改。最后，我们输出处理后的数据框，可以看到包含空值的行已经被删除了。",
+            null
+        ]
+    }
+]

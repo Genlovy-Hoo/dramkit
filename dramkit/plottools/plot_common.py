@@ -70,7 +70,7 @@ def plot_series(data, cols_styl_up_left, cols_styl_up_right={},
                 fontsize_label=15, fontsize_title=15, fontsize_text=10,
                 fontsize_legend=15, fontsize_tick=10, fontname=None,
                 markersize=10, legend_locs=None, fig_save_path=None,
-                logger=None):
+                show=True, logger=None):
     '''
     对data (`pd.DataFrame`)进行多列绘图
 
@@ -800,7 +800,10 @@ def plot_series(data, cols_styl_up_left, cols_styl_up_right={},
     if fig_save_path:
         plt.savefig(fig_save_path)
 
-    plt.show()
+    if not show:
+        plt.close()
+    else:
+        plt.show()
 
 #%%
 def plot_series_conlabel(data, conlabel_info, del_repeat_lbl=True, **kwargs):
@@ -948,10 +951,10 @@ def _plot_maxmins_bk(data, col, col_label, label_legend=['Max', 'Min'],
 
 #%%
 if __name__ == '__main__':
-    import time
     import pandas as pd
-
-    strt_tm = time.time()
+    from dramkit.gentools import TimeRecoder
+    
+    tr = TimeRecoder()
 
     #%%
     col1 = np.random.normal(10, 5, (100, 1))
@@ -1080,4 +1083,4 @@ if __name__ == '__main__':
                           xticks_rotation=45)
 
     #%%
-    print('used time: {}s.'.format(round(time.time()-strt_tm, 6)))
+    tr.used()

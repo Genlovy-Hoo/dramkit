@@ -158,10 +158,10 @@ class ELMRegressor(object):
 
 #%%
 if __name__ == '__main__':
-    import time
     import pandas as pd
     import sklearn.datasets as datasets
     from sklearn.model_selection import train_test_split as tts
+    from dramkit import TimeRecoder
     from dramkit.datsci.stats import mape
 
     import matplotlib as mpl
@@ -171,7 +171,7 @@ if __name__ == '__main__':
     import matplotlib.pyplot as plt
 
 
-    strt_tm = time.time()
+    tr = TimeRecoder()
 
     #%%
     # 产生数据集
@@ -246,4 +246,4 @@ if __name__ == '__main__':
         # plt.show()
 
     #%%
-    print('used time: {}s.'.format(round(time.time()-strt_tm, 6)))
+    tr.used()

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import time
 import numpy as np
 import pandas as pd
 
@@ -77,7 +76,8 @@ def plot_result(data, w, b, title=None):
 
 #%%
 if __name__ == '__main__':
-    strt_tm = time.time()
+    from dramkit import TimeRecoder
+    tr = TimeRecoder()
 
     #%%
     # 分类任务数据集
@@ -190,4 +190,4 @@ if __name__ == '__main__':
     close_log_file(logger)
 
     #%%
-    print('used time: {}s.'.format(round(time.time()-strt_tm, 6)))
+    tr.used()

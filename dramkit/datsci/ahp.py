@@ -275,10 +275,10 @@ def cal_weights_mats(judge_mats, RI_dict=None, w_func=None,
 #%%
 if __name__ == '__main__':
     import time
-    from dramkit import simple_logger
+    from dramkit import simple_logger, TimeRecoder
 
 
-    strt_tm = time.time()
+    tr = TimeRecoder()
 
     #%%
     # 来自论文：土地整治的扶贫成效分析及评价——以北川羌族自治县开坪乡土地开发整理项目为例
@@ -464,4 +464,4 @@ if __name__ == '__main__':
     print('w: \n{}'.format(w))
 
     #%%
-    print('\nused time: {}s.'.format(round(time.time()-strt_tm, 6)))
+    tr.used()

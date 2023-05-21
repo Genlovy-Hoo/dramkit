@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import time
-
 
 def find_addends_backpack01float(tgt_sum, alts):
     '''
@@ -94,8 +92,8 @@ def find_addends_backpack01float(tgt_sum, alts):
 
 
 if __name__ == '__main__':
-    strt_tm = time.time()
-
+    from dramkit import TimeRecoder
+    tr = TimeRecoder()
 
     tgt_sum = 22 + 21 + 5.1
     alts = [22, 15, 14, 13, 7, 6.1, 5, 21.5, 100]
@@ -115,4 +113,4 @@ if __name__ == '__main__':
     print('备选加数:', addends)
 
 
-    print('used {}s.'.format(round(time.time()-strt_tm, 6)))
+    tr.used()

@@ -79,10 +79,10 @@ def get_RIs(max_num_indicator=20, num_sim=50000):
 
 
 if __name__ == '__main__':
-    import time
+    from dramkit import TimeRecoder
 
-    strt_tm = time.time()
+    tr = TimeRecoder()
 
     RI_dict = get_RIs()
 
-    print('used time: {}s.'.format(round(time.time()-strt_tm, 6)))
+    tr.used()

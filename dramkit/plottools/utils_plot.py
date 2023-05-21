@@ -74,7 +74,7 @@ if __name__ == '__main__':
                 cols_styl_up_right={'pct': ('-b', False)},
                 xparls_info={'value_net': [(1,)], 'pct': [(0,)]},
                 twinx_align_up=[1, 0],
-                ylabels=['净值', '总盈亏率'], title='普通作图')
+                ylabels=['净值', '总盈亏率'], title='对齐作图')
     
     
     # from matplotlib import pyplot as plt

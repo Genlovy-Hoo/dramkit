@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-import time
+from dramkit.gentools import TimeRecoder
 from dramkit.find_addends.find_addends_bigfirst import find_addends_bigfirst as fab
 from dramkit.find_addends.find_addends_utils import get_alts_sml
 from dramkit.iotools import unpickle_file
 from dramkit.speedup.multi_thread import multi_thread_threading
-from dramkit.speedup.multi_process import multi_process_concurrent
+from dramkit.speedup.multi_process_concurrent import multi_process_concurrent
 
 
 def find_addends_all(tgt_sums, alts):
@@ -79,14 +79,14 @@ if __name__ == '__main__':
     tgt_sums, alts = tgt_sums1, alts1
     # tgt_sums, alts = tgt_sums2, alts2
 
-    strt_tm = time.time()
+    tr = TimeRecoder()
     choseds_all = find_addends_all(tgt_sums, alts)
-    print('total used: {}s.\n'.format(round(time.time() - strt_tm,6)))
+    tr.used()
 
-    strt_tm = time.time()
+    tr = TimeRecoder()
     choseds_all_multi_thread = find_addends_all_multi_thread(tgt_sums, alts)
-    print('total used: {}s.\n'.format(round(time.time() - strt_tm,6)))
+    tr.used()
 
-    strt_tm = time.time()
+    tr = TimeRecoder()
     choseds_all_multi_proces = find_addends_all_multi_process(tgt_sums, alts)
-    print('total used: {}s.\n'.format(round(time.time() - strt_tm,6)))
+    tr.used()

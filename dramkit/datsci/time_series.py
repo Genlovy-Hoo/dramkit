@@ -671,11 +671,10 @@ def forward_valid_test_predict_X2d_y1dsteps(model, func_pred, df_train,
 
 #%%
 if __name__ == '__main__':
-    import time
     from dramkit import plot_series
     from sklearn.linear_model import LinearRegression as lr
     from sklearn.svm import SVR as svr
-    from dramkit.gentools import cut_range_to_subs, replace_repeat_pd
+    from dramkit.gentools import cut_range_to_subs, replace_repeat_pd, TimeRecoder
     from dramkit._tmp.utils_SignalDec import dec_emds, merge_high_modes
     from dramkit._tmp.utils_SignalDec import plot_modes
     from finfactory.fintools import get_yield_curve
@@ -683,7 +682,7 @@ if __name__ == '__main__':
     from pprint import pprint
 
 
-    strt_tm = time.time()
+    tr = TimeRecoder()
 
     #%%
     code = 'IF.CFX'
@@ -896,4 +895,4 @@ if __name__ == '__main__':
     pprint(trade_gain_info3)
 
     #%%
-    print('used time: {}s.'.format(round(time.time()-strt_tm, 6)))
+    tr.used()

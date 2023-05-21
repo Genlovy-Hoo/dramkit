@@ -1,0 +1,203 @@
+[
+    {
+        "question": "中国有多少人",
+        "kwargs": {
+            "model": "gpt-3.5-turbo"
+        },
+        "tm": "2023-03-31 15:35:51",
+        "answer": [
+            true,
+            "截至2021年，中国的人口约为14.5亿人。"
+        ]
+    },
+    {
+        "question": "杭州有多少人",
+        "kwargs": {
+            "model": "gpt-3.5-turbo"
+        },
+        "tm": "2023-03-31 15:35:55",
+        "answer": [
+            "根据2019年的数据，杭州市的总人口为1093.63万人。",
+            null
+        ]
+    },
+    {
+        "question": "印度有多少人",
+        "kwargs": {
+            "model": "gpt-3.5-turbo"
+        },
+        "tm": "2023-03-31 15:40:15",
+        "answer": [
+            true,
+            "根据2021年的统计数据，印度的人口约为13.4亿人。"
+        ]
+    },
+    {
+        "question": "云南有多少人",
+        "kwargs": {
+            "model": "gpt-3.5-turbo"
+        },
+        "tm": "2023-03-31 15:40:19",
+        "answer": [
+            "根据2019年的数据，云南省的总人口为4852.86万人。",
+            null
+        ]
+    },
+    {
+        "question": "你真傻",
+        "kwargs": {
+            "model": "gpt-3.5-turbo"
+        },
+        "tm": "2023-03-31 16:23:11",
+        "answer": [
+            true,
+            "作为AI语言模型，我不会感到傻，因为我只是根据输入的数据和算法生成回复。但是，如果我的回复不符合您的期望或需要，我会努力改进并提供更好的回复。"
+        ]
+    },
+    {
+        "question": "秦始皇叫啥名字",
+        "kwargs": {
+            "model": "gpt-3.5-turbo"
+        },
+        "tm": "2023-03-31 16:23:16",
+        "answer": [
+            "秦始皇的真名是嬴政（yíng zhèng）。",
+            null
+        ]
+    },
+    {
+        "question": "你好",
+        "kwargs": {},
+        "tm": "2023-03-31 18:26:12",
+        "answer": [
+            "你好！有什么我能帮助你的吗？",
+            null
+        ]
+    },
+    {
+        "question": "秦始皇哪年统一中国",
+        "kwargs": {},
+        "tm": "2023-03-31 18:26:33",
+        "answer": [
+            "秦始皇统一中国的时间是公元前221年。",
+            null
+        ]
+    },
+    {
+        "question": "哪年死的",
+        "kwargs": {},
+        "tm": "2023-03-31 18:28:12",
+        "answer": [
+            "秦始皇死于公元前210年。",
+            null
+        ]
+    },
+    {
+        "question": "哪年死的",
+        "kwargs": {},
+        "tm": "2023-03-31 18:31:54",
+        "answer": [
+            "我是一个AI语言模型，没有死亡概念。",
+            null
+        ]
+    },
+    {
+        "question": "杭州在浙江的哪个位置",
+        "kwargs": {},
+        "tm": "2023-03-31 18:32:19",
+        "answer": [
+            "杭州位于浙江省的北部，地理坐标为东经119°30'至120°30'、北纬29°02'至30°33'之间。",
+            null
+        ]
+    },
+    {
+        "question": "html中如何给段落文字加粗",
+        "kwargs": {},
+        "tm": "2023-03-31 18:32:50",
+        "answer": [
+            "在HTML中给段落文字加粗，可以使用`<strong>`标签或`<b>`标签。\n\n使用`<strong>`标签：\n\n```html\n<p>这是一段<strong>加粗</strong>的文字</p>\n```\n\n使用`<b>`标签：\n\n```html\n<p>这是一段<b>加粗</b>的文字</p>\n```\n\n两种标签的效果都是一样的，都会将包裹的文字加粗显示。但是，`<strong>`标签语义更加强烈，表示强调的意思，而`<b>`标签只是简单的加粗效果。因此，建议在需要强调语义的情况下使用`<strong>`标签。",
+            null
+        ]
+    },
+    {
+        "question": "HTML中如何让文字居中",
+        "kwargs": {},
+        "tm": "2023-03-31 18:35:37",
+        "answer": [
+            "要让文字居中，可以使用CSS中的`text-align`属性。该属性可以控制文本在其容器内的水平对齐方式。\n\n例如，要将一段文字居中显示，可以使用以下CSS样式：\n\n```css\n.center {\n  text-align: center;\n}\n```\n\n然后将该样式应用于所需的HTML元素，如下所示：\n\n```html\n<div class=\"center\">\n  <p>这里是要居中显示的文字</p>\n</div>\n```\n\n在这个例子中，我们将`text-align`属性应用于一个`<div>`元素，并给该元素一个类名`.center`。然后，我们将`<p>`元素放在这个`<div>`元素内，这样`<p>`元素内的文本就会被居中对齐了。\n\n除了`text-align`属性之外，还有其他的CSS属性可以让元素居中。例如，可以使用`margin`属性来控制元素的外边距，从而实现水平和垂直居中。具体实现方式根据情况而定。",
+            null
+        ]
+    },
+    {
+        "question": "你好",
+        "kwargs": {},
+        "tm": "2023-03-31 21:41:03",
+        "answer": [
+            "你好！我是AI助手，请问有什么需要帮助的吗？",
+            null
+        ]
+    },
+    {
+        "question": "html如何渲染成markdown格式",
+        "kwargs": {},
+        "tm": "2023-03-31 21:41:20",
+        "answer": [
+            "将HTML转换为Markdown需要使用一些工具或库。以下是两种常见的方法：\n\n1. 使用在线工具：有一些在线工具可以将HTML转换为Markdown格式，例如 https://euangoddard.github.io/clipboard2markdown/ 或 https://domchristie.github.io/to-markdown/。你只需要将HTML代码粘贴到工具中，然后点击转换按钮即可。\n\n2. 使用库：如果你想在自己的代码中将HTML转换为Markdown，可以使用一些开源库，例如turndown、html-to-markdown或pandoc。这些库可以通过npm包管理器进行安装，然后在你的代码中使用它们来进行转换。例如，使用turndown可以这样写：\n\n```\nconst TurndownService = require('turndown');\nconst turndownService = new TurndownService();\nconst markdown = turndownService.turndown('<h1>Hello, World!</h1>');\nconsole.log(markdown);\n```\n\n以上代码将把`\"<h1>Hello, World!</h1>\"`转换为Markdown格式。",
+            null
+        ]
+    },
+    {
+        "question": "让html遇到\\n时正确显示换行",
+        "kwargs": {},
+        "tm": "2023-03-31 21:51:33",
+        "answer": [
+            "可以使用HTML中的`<br>`标签来表示换行。在文本中遇到`\\n`时，可以使用字符串替换的方法将其替换为`<br>`标签，例如：\n\n```html\n<p>这是一段有换行的文本，第一行<br>第二行<br>第三行</p>\n```\n\n如果是通过JavaScript动态生成HTML文本，可以使用`replace()`方法将`\\n`替换为`<br>`，例如：\n\n```javascript\nvar text = \"这是一段有换行的文本，第一行\\n第二行\\n第三行\";\nvar html = \"<p>\" + text.replace(/\\n/g, \"<br>\") + \"</p>\";\n```",
+            null
+        ]
+    },
+    {
+        "question": "如何调整html中输入框的大小",
+        "kwargs": {},
+        "tm": "2023-03-31 21:56:13",
+        "answer": [
+            "可以使用CSS中的`width`和`height`属性来调整HTML中输入框的大小。例如：\n\n```html\n<input type=\"text\" style=\"width: 200px; height: 50px;\">\n```\n\n上面的代码中，`width`属性设置输入框的宽度为`200px`，`height`属性设置输入框的高度为`50px`。也可以在CSS文件中定义样式，例如：\n\n```css\ninput {\n  width: 200px;\n  height: 50px;\n}\n```\n\n上面的代码中，定义了一个`input`样式，设置输入框的宽度为`200px`，高度为`50px`，然后在HTML中使用该样式，例如：\n\n```html\n<input type=\"text\" class=\"input-box\">\n```\n\n这样，输入框的大小就会按照定义的样式显示。",
+            null
+        ]
+    },
+    {
+        "question": "写一段python实现对列表中的每个元素计数",
+        "kwargs": {},
+        "tm": "2023-03-31 21:59:46",
+        "answer": [
+            "可以使用Python中的`collections`模块中的`Counter`类来实现对列表中的每个元素计数。具体实现方法如下：\n\n```python\nfrom collections import Counter\n\nmy_list = [1, 2, 3, 2, 1, 1, 4, 5, 4, 3, 2]\n\nmy_counter = Counter(my_list)\n\nprint(my_counter)\n```\n\n输出：\n\n```\nCounter({1: 3, 2: 3, 3: 2, 4: 2, 5: 1})\n```\n\n上面的代码中，首先定义了一个列表`my_list`，其中包含多个重复的元素。然后使用`Counter()`函数创建了一个计数器`my_counter`，并将`my_list`作为参数传入。最后输出计数器的结果。\n\n可以看到，输出的结果显示了每个元素出现的次数。例如，元素1出现了3次，元素2出现了3次，以此类推。",
+            null
+        ]
+    },
+    {
+        "question": "如何让html按照markdown语法渲染",
+        "kwargs": {},
+        "tm": "2023-03-31 22:01:38",
+        "answer": [
+            "可以使用第三方库将Markdown语法转换为HTML标签，然后将转换后的HTML代码嵌入到HTML页面中。常用的Python第三方库有`markdown`和`mistune`，可以通过`pip`命令进行安装，例如：\n\n```\npip install markdown\n```\n\n使用`markdown`库将Markdown文本转换为HTML的示例代码如下：\n\n```python\nimport markdown\n\nmd_text = \"\"\"\n# 标题1\n## 标题2\n### 标题3\n\n正文内容\n- 列表项1\n- 列表项2\n\"\"\"\n\nhtml_text = markdown.markdown(md_text)\n\nprint(html_text)\n```\n\n输出：\n\n```html\n<h1>标题1</h1>\n<h2>标题2</h2>\n<h3>标题3</h3>\n<p>正文内容</p>\n<ul>\n<li>列表项1</li>\n<li>列表项2</li>\n</ul>\n```\n\n上面的代码中，首先定义了一个Markdown文本`md_text`，包含了标题、列表等Markdown语法。然后使用`markdown.markdown()`函数将Markdown文本转换为HTML标签，得到的结果保存在`html_text`变量中。最后输出`html_text`，即可看到转换后的HTML代码。\n\n将转换后的HTML代码嵌入到HTML页面中时，可以使用`<div>`标签将Markdown文本包裹起来，然后设置`class`属性为`markdown`，例如：\n\n```html\n<div class=\"markdown\">\n# 标题1\n## 标题2\n### 标题3\n\n正文内容\n- 列表项1\n- 列表项2\n</div>\n```\n\n然后在CSS中定义`.markdown`样式，例如：\n\n```css\n.markdown {\n  font-size: 16px;\n  line-height: 1.5;\n  color: #333;\n}\n```\n\n这样，包裹在`.markdown`标签中的Markdown文本就会按照CSS样式渲染为HTML页面。",
+            null
+        ]
+    },
+    {
+        "question": "如何让HTML正确显示代码块",
+        "kwargs": {},
+        "tm": "2023-03-31 22:06:50",
+        "answer": [
+            "在HTML中正确显示代码块，可以使用`<pre>`和`<code>`标签。`<pre>`标签表示预格式化的文本，会保留文本中的空格和换行符。`<code>`标签表示计算机代码，可以将其中的文本呈现为等宽字体，以突出显示代码。\n\n下面是一个示例代码，展示如何使用`<pre>`和`<code>`标签正确显示代码块：\n\n```html\n<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <title>代码块示例</title>\n  <style>\n    pre {\n      background-color: #f8f8f8;\n      border: 1px solid #ddd;\n      padding: 10px;\n    }\n    code {\n      font-family: Consolas, Monaco, Menlo, \"Ubuntu Mono\", \"Liberation Mono\", monospace;\n      font-size: 14px;\n      color: #333;\n    }\n  </style>\n</head>\n<body>\n  <pre><code>\ndef hello():\n    print(\"Hello, world!\")\n  </code></pre>\n</body>\n</html>\n```\n\n在上面的示例中，首先使用`<pre>`标签将代码块包裹起来，然后在`<pre>`标签内部使用`<code>`标签定义代码。在CSS中，通过设置`pre`标签的样式，将其背景色设置为灰色，添加边框和内边距，使其更加突出。同时，通过设置`code`标签的样式，将其字体设置为等宽字体，字号设置为14px，颜色为黑色。\n\n这样，代码块就可以以更加清晰的方式显示在HTML页面中了。",
+            null
+        ]
+    },
+    {
+        "question": "介绍下gpt模型",
+        "kwargs": {},
+        "tm": "2023-03-31 22:14:06",
+        "answer": [
+            "GPT（Generative Pre-trained Transformer，生成式预训练变压器）模型是一种基于Transformer架构的深度学习语言模型，由OpenAI提出。GPT模型是一种无监督的预训练模型，其目的是学习自然语言处理任务的通用表示，可以用于各种下游任务，如文本生成、文本分类、文本摘要等。\n\nGPT模型是使用单向Transformer实现的，即只考虑前面的文本来预测下一个词。在预训练阶段，GPT模型使用大量的文本数据来训练，包括维基百科、新闻、小说等多个领域的数据。训练过程中，GPT模型通过自回归方式，即每次预测下一个词的概率，来学习词与词之间的关系、句子与句子之间的关系等。\n\nGPT模型使用了多层的Transformer编码器，对输入的文本进行编码。每个Transformer编码器包含多个自注意力机制（Self-Attention）和前馈神经网络，其中自注意力机制用于学习输入序列中不同位置之间的依赖关系，前馈神经网络用于对自注意力机制生成的特征进行细化。GPT模型在Transformer的基础上做出了一些改进，如使用Layer Normalization代替了Batch Normalization，这使得模型训练更加稳定。\n\n在完成预训练后，GPT模型可以通过微调的方式用于各种下游任务。例如，可以在GPT模型的顶部添加一个全连接层和Softmax激活函数，用于文本分类任务；也可以使用GPT模型生成文本，如文章、对话等。\n\n总之，GPT模型是一种强大的预训练语言模型，可以学习自然语言处理任务的通用表示，可以应用于各种下游任务，并在各种自然语言处理任务中取得了令人瞩目的成果。",
+            null
+        ]
+    }
+]

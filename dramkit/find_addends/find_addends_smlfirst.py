@@ -55,7 +55,7 @@ def find_addends_smlfirst(tgt_sum, alts, n_adds=None,
     adds_process = [] if save_process else None
 
     if log_info:
-        start_time = time.time()
+        start_time = time.monotonic()
 
     if len(alts) == 0:
         return [], [], adds_process
@@ -142,7 +142,7 @@ def find_addends_smlfirst(tgt_sum, alts, n_adds=None,
 
     if log_info:
         logger_show('loop_count: {}'.format(loop_count), logger, 'info')
-        logger_show('used time {}s.'.format(round(time.time() - start_time,6)),
+        logger_show('used time {}s.'.format(round(time.monotonic() - start_time,6)),
                     logger, 'info')
 
     return choseds_best, chosed_addends, adds_process

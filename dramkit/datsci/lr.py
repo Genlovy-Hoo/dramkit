@@ -158,8 +158,8 @@ class LRClassifierBinary(object):
 
 #%%
 if __name__ == '__main__':
-    import time
     import pandas as pd
+    from dramkit import TimeRecoder
 
     import matplotlib as mpl
     mpl.rcParams['font.sans-serif'] = ['SimHei']
@@ -168,7 +168,7 @@ if __name__ == '__main__':
     import matplotlib.pyplot as plt
 
 
-    strt_tm = time.time()
+    tr = TimeRecoder()
 
     #%%
     data = pd.read_excel('./_test/test_data1.xlsx')
@@ -209,4 +209,4 @@ if __name__ == '__main__':
     plot_result(data, mdl.w, mdl.b, opt_method)
 
     #%%
-    print('\nused time: {}s.'.format(round(time.time()-strt_tm, 6)))
+    tr.used()
